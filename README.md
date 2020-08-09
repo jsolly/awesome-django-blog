@@ -1,1 +1,1 @@
-# shower-thought-blog
+https://showerthoughtblog.com
