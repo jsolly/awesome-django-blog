@@ -60,6 +60,7 @@ cover/
 db.sqlite3
 db.sqlite3-journal
 profile_pics/
+settings.py
 
 # Flask stuff:
 instance/
