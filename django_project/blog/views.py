@@ -40,13 +40,18 @@ class PostDetailView(DetailView):
     model = Post
 
 
-class CreatePostView(LoginRequiredMixin, CreateView):
+class CreatePostView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Post
     fields = ["title", "content"]
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+    def test_func(self):
+        if self.request.user.is_staff:
+            return True
+        return False
 
 
 class CreateCommentView(LoginRequiredMixin, CreateView):
