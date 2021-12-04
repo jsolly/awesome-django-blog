@@ -10,10 +10,13 @@ def register(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
+            human = True
             form.save()
             username = form.cleaned_data.get("username")
             messages.success(request, f"Account created for {username}")
             return redirect("blog-home")
+        else:
+            messages.error(request, "Wrong Capcha!")
 
     else:
         form = UserRegisterForm()
