@@ -10,11 +10,17 @@ def register(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            human = True
-            form.save()
-            username = form.cleaned_data.get("username")
-            messages.success(request, f"Account created for {username}")
-            return redirect("blog-home")
+            secret_password = form.cleaned_data.get("secret_password")
+            if secret_password != "John Solly is awesome!":
+                human = False
+                messages.error(request, "Hmm, I don't think that is the right password")
+            else:
+                human = True
+                form.save()
+                username = form.cleaned_data.get("username")
+                messages.success(request, f"Account created for {username}")
+                return redirect("blog-home")
+
         else:
             messages.error(request, "Wrong Capcha!")
 
