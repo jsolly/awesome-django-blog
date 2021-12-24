@@ -1,11 +1,12 @@
 {% extends "blog/base.html" %}
+{% block title %} Delete - "{{ object.title }}"{% endblock %}
 {% block content %}
 <div class="content-section">
     <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
             <legend class="boarder-bottom mb-4"> Delete Post</legend>
-            <h2>Are you sure you want to delete the post "{{ object.title }}"</h2>
+            <h3>Are you sure you want to delete the post "{{ object.title }}"?</h3>
         </fieldset>
         <div class="form-group">
             <button class="btn btn-outline-danger" type="submit">Yes, delete</button>
@@ -13,4 +14,5 @@
         </div>
     </form>
 </div>
-{% endblock content %}
+{% endblock %}
+

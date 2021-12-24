@@ -57,21 +57,9 @@ class CreatePostView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
             return True
         return False
 
-
-class CreateCommentView(LoginRequiredMixin, CreateView):
-    model = Comment
-    form_class = CommentForm
-    template_name = "blog/add_comment.html"
-
-    def form_valid(self, form):
-        form.instance.post = Post.objects.get(id=self.kwargs["pk"])
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ["title", "content"]
+    form_class = PostForm
     template_name = "blog/edit_post.html"
 
     def form_valid(self, form):
@@ -84,9 +72,16 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return True
         return False
 
+class CreateCommentView(LoginRequiredMixin, CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = "blog/add_comment.html"
 
+    def form_valid(self, form):
+        form.instance.post = Post.objects.get(id=self.kwargs["pk"])
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 class PostDeleteView(DeleteView, LoginRequiredMixin, UserPassesTestMixin):
-
     model = Post
     success_url = "/"
 

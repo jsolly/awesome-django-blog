@@ -1,10 +1,12 @@
-{% extends "blog/base.html" %} {% load crispy_forms_tags %} {% block content %}
+{% extends "blog/base.html" %}
+{% block title %} Register! {% endblock %}
+{% block content %}
 <div class="content-section">
   <form method="POST">
     {% csrf_token %}
     <fieldset class="form-group">
       <legend class="boarder-bottom mb-4">Join Today</legend>
-      {{ form|crispy }}
+      {{ form.as_p }}
     </fieldset>
 
     <div class="form-group">

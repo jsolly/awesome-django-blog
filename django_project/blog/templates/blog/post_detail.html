@@ -1,4 +1,5 @@
-{% extends "blog/base.html" %} {% block content %}
+{% extends "blog/base.html" %} {% block title %} {{object.title}} {% endblock %}
+{% block content %}
 <article class="media content-section">
   <img
     class="rounded-circle article-img"
@@ -23,7 +24,7 @@
           class="btn btn-danger btn-sm mt-1 mb-1"
           href="{% url 'post-delete' object.id %}"
         >
-          Delete</a
+          Delete Post</a
         >
       </div>
       {% endif %}
@@ -52,4 +53,4 @@
 
 <a href="{% url 'blog-home' %}" class="btn btn-secondary"> Back to Home </a>
 
-{% endblock %} {% block title %} {{object.title}} {% endblock %}
+{% endblock %}
