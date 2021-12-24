@@ -7,6 +7,7 @@ from django.views.generic import (
     CreateView,
     UpdateView,
     DeleteView,
+    UpdateView
 )
 from .models import Post, Comment
 from django.forms import widgets
@@ -45,7 +46,7 @@ class PostDetailView(DetailView):
 class CreatePostView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Post
     form_class = PostForm
-    template_name = "blog/post_form.html"
+    template_name = "blog/add_post.html"
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -60,7 +61,7 @@ class CreatePostView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 class CreateCommentView(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
-    template_name = "blog/comment_form.html"
+    template_name = "blog/add_comment.html"
 
     def form_valid(self, form):
         form.instance.post = Post.objects.get(id=self.kwargs["pk"])
@@ -71,6 +72,7 @@ class CreateCommentView(LoginRequiredMixin, CreateView):
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     fields = ["title", "content"]
+    template_name = "blog/edit_post.html"
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -93,7 +95,6 @@ class PostDeleteView(DeleteView, LoginRequiredMixin, UserPassesTestMixin):
         if self.request.user == post.author:
             return True
         return False
-
 
 def about(request):
     return render(request, "blog/about.html", {"title": "About"})
