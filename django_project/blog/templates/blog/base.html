@@ -1,3 +1,4 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -5,26 +6,26 @@
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
 
 
-    {% if title %}
-    <title>John Solly's Blog - {{ title }}</title>
-    {% else %}
-    <title>John's Blog</title>
-    {% endif %}
+    <title>
+        {% block title %}
+            John's Blog
+        {% endblock %}
+    </title>
 </head>
 <body>
+
 <header class="site-header">
     <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-            <a class="navbar-brand mr-4" href="{% url 'blog-home' %}">John Solly</a>
+            <a class="navbar-brand mr-4" href="{% url 'blog-home' %}">John's Blog</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
                     aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -33,10 +34,7 @@
                 <div class="navbar-nav mr-auto">
                     <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
                     <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
-                </div>
-                <!-- Navbar Right Side -->
-                <div class="navbar-nav">
-                    {% if user.is_authenticated %}
+                     {% if user.is_authenticated %}
                     <a class="nav-item nav-link" href="{% url 'post-create' %} ">New Post</a>
                     <a class="nav-item nav-link" href="{% url 'profile' %} ">Profile</a>
                     <a class="nav-item nav-link" href="{% url 'logout' %} ">Logout</a>
@@ -46,6 +44,12 @@
                         <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
                         <a class="nav-item nav-link" href="{% url 'login' %} ">Login</a>
                     {% endif %}
+                </div>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+
                 </div>
             </div>
         </div>
@@ -66,12 +70,11 @@
         <div class="col-md-4">
             <div class="content-section">
                 <h3>Sidebar</h3>
-                <p class='text-muted'>Links to come!
                 <ul class="list-group">
-                    <li class="list-group-item list-group-item-light"> My Github</li>
-                    <li class="list-group-item list-group-item-light">Resume</li>
+                    <li class="list-group-item list-group-item-light"> <a href="https://github.com/jsolly" target="_blank">John's Github</a></li>
+                    <li class="list-group-item list-group-item-light"> <a href="https://www.linkedin.com/in/jsolly/" target="_blank">Linkedin</a></li>
                 </ul>
-                </p>
+                
             </div>
         </div>
     </div>
@@ -87,5 +90,17 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
 </body>
 </html>

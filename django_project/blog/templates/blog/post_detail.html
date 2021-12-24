@@ -1,34 +1,55 @@
-{% extends "blog/base.html" %}
-{% block content %}
+{% extends "blog/base.html" %} {% block content %}
 <article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}" alt="">
-    <div class="media-body">
-        <div class="article-metadata">
-            <a class="mr-2" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
-            <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
-            {% if object.author == user %}
-            <div>
-                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}"> Update</a>
-                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}"> Delete</a>
-            </div>
-            {% endif %}
-        </div>
-        <h2 class="article-title"> {{ object.title }}</h2>
-        <p class="article-content">{{ object.content }}</p>
+  <img
+    class="rounded-circle article-img"
+    src="{{ object.author.profile.image.url }}"
+    alt=""
+  />
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href="{% url 'user-posts' object.author.username %}"
+        >{{ object.author }}</a
+      >
+      <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+      {% if object.author == user %}
+      <div>
+        <a
+          class="btn btn-secondary btn-sm mt-1 mb-1"
+          href="{% url 'post-update' object.id %}"
+        >
+          Edit Post</a
+        >
+        <a
+          class="btn btn-danger btn-sm mt-1 mb-1"
+          href="{% url 'post-delete' object.id %}"
+        >
+          Delete</a
+        >
+      </div>
+      {% endif %}
     </div>
+    <h2 class="article-title">{{ object.title }}</h2>
+    <p>{{ object.content|safe }}</p>
+  </div>
 </article>
 
-<hr>
+<hr />
 <div>
-<a class="btn btn-primary" href="{% url 'comment-create' pk=post.pk %}">Add comment</a>
+  <a class="btn btn-primary" href="{% url 'comment-create' pk=post.pk %}"
+    >Add comment</a
+  >
 </div>
 {% for comment in post.comments.all %}
-    <div class="comment" style="padding: 10px;">
-        <div class="date"><strong>{{ comment.author }}</strong> {{ comment.date_posted|date:"F d, Y"  }}</div>
-        <p>{{ comment.content }}</p>
-    </div>
+<div class="comment" style="padding: 10px">
+  <div class="date">
+    <strong>{{comment.author}}</strong> {{comment.date_posted|date:"F d, Y"}}
+  </div>
+  <p>{{ comment.content|safe }}</p>
+</div>
 {% empty %}
-    <p>No comments here yet :(</p>
+<p>No comments here yet :(</p>
 {% endfor %}
 
-{% endblock content %}
+<a href="{% url 'blog-home' %}" class="btn btn-secondary"> Back to Home </a>
+
+{% endblock %} {% block title %} {{object.title}} {% endblock %}

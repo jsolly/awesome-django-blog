@@ -10,19 +10,20 @@ from django.views.generic import (
 )
 from .models import Post, Comment
 from django.forms import widgets
+from .forms import PostForm, CommentForm
 
 
-def home(request):
-    context = {"posts": Post.objects.all()}
-    return render(request, "blog/home.html", context=context)
-
-
-class PostListView(ListView):
+class HomeView(ListView):
     model = Post
     template_name = "blog/home.html"  # <app>/<model>_<viewtype>.html
     context_object_name = "posts"  # The default is object_list
     ordering = ["-date_posted"]
     paginate_by = 5
+
+
+def home(request):
+    context = {"posts": Post.objects.all()}
+    return render(request, "blog/home.html", context=context)
 
 
 class UserPostListView(ListView):
@@ -38,11 +39,13 @@ class UserPostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
+    template_name = "blog/post_detail.html"
 
 
 class CreatePostView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Post
-    fields = ["title", "content"]
+    form_class = PostForm
+    template_name = "blog/post_form.html"
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -56,7 +59,8 @@ class CreatePostView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
 class CreateCommentView(LoginRequiredMixin, CreateView):
     model = Comment
-    fields = ["content"]
+    form_class = CommentForm
+    template_name = "blog/comment_form.html"
 
     def form_valid(self, form):
         form.instance.post = Post.objects.get(id=self.kwargs["pk"])

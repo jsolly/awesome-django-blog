@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import (
-    PostListView,
+    HomeView,
     PostDetailView,
     CreatePostView,
     PostUpdateView,
@@ -27,7 +27,7 @@ from .views import (
 from . import views
 
 urlpatterns = [
-    path("", PostListView.as_view(), name="blog-home"),
+    path("", HomeView.as_view(), name="blog-home"),
     path("user/<str:username>", UserPostListView.as_view(), name="user-posts"),
     path("post/<int:pk>/", PostDetailView.as_view(), name="post-detail"),
     path("about/", views.about, name="blog-about"),

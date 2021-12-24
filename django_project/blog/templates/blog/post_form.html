@@ -1,16 +1,14 @@
 {% extends "blog/base.html" %}
-{% load crispy_forms_tags %}
+{% block title %}Create A New Blog Post!{% endblock %}
 {% block content %}
-<div class="content-section">
+<h1>Add Post</h1>
+<br/><br/>
+<div class="form-group">
     <form method="POST">
         {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="boarder-bottom mb-4"> Blog Post</legend>
-            {{ form|crispy }}
-        </fieldset>
-        <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Post</button>
-        </div>
-    </form>
-</div>
-{% endblock content %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <button class="btn btn-outline-info" type="submit">Post</button>
+  </div>
+
+{% endblock %}
