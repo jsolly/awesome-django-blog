@@ -2,6 +2,7 @@
 {% block content %}
 {% for post in posts %}
 <article class="media content-section">
+  <p>Hello world</p>
   <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
   <div class="media-body">
     <div class="article-metadata">
@@ -12,7 +13,6 @@
     <p class="article-content">{{ post.content|slice:":200"|safe }}</p>
     <a href="{% url 'post-detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
   </div>
-  <p>Hello world</p>
 </article>
 
 {% endfor %}
