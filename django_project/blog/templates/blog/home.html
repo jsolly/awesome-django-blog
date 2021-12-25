@@ -1,16 +1,15 @@
 {% extends "blog/base.html" %}
 {% block content %}
 {% for post in posts %}
+
 <article class="media content-section">
-  <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" />
+  <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
   <div class="media-body">
     <div class="article-metadata">
       <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
       <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
     </div>
-    <h2>
-      <a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a>
-    </h2>
+    <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
     <p class="article-content">{{ post.content|slice:":200"|safe }}</p>
     <a href="{% url 'post-detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
   </div>
@@ -29,10 +28,13 @@
 <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
 {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} <a class="btn btn-outline-info mb-4"
   href="?page={{ num }}">{{ num }}</a>
-  {% endif %} {% endfor %} {% if page_obj.has_next %}
+  {% endif %}
+  {% endfor %}
+
+  {% if page_obj.has_next %}
   <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
   <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
   {% endif %}
-  
+
   {% endif %}
   {% endblock content %}
