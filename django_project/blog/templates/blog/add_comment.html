@@ -2,13 +2,13 @@
 {% block title %}Add a comment!{% endblock %}
 {% block content %}
 <h1>Add Comment</h1>
-<br/><br/>
+<br /><br />
 <div class="form-group">
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.media }}
-        {{ form.as_p }}
-        <button class="btn btn-outline-info" type="submit">Add Comment</button>
-  </div>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+    <button class="btn btn-outline-info" type="submit">Add Comment</button>
+</div>
 
 {% endblock %}
