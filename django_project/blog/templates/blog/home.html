@@ -12,10 +12,10 @@
     <p class="article-content">{{ post.content|slice:":200"|safe }}</p>
     <a href="{% url 'post-detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
   </div>
+  <p>Hello world</p>
 </article>
 
 {% endfor %}
-<p>Hello world</p>
 {% if is_paginated %}
 
 {% if page_obj.has_previous %}
