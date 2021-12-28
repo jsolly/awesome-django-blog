@@ -12,7 +12,7 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             secret_password = form.cleaned_data.get("secret_password")
-            if secret_password != "John Solly is awesome!":
+            if secret_password != "African Swallows":
                 human = False
                 messages.error(request, "Hmm, I don't think that is the right password")
             else:
