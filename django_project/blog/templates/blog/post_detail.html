@@ -1,25 +1,35 @@
-{% extends "blog/base.html" %} {% block title %} {{object.title}} {% endblock %}
+{% extends "blog/base.html" %} {% block title %} {{post.title}} {% endblock %}
 {% block content %}
 <article class="media content-section">
-  <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}" alt="" />
+  <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="" />
   <div class="media-body">
     <div class="article-metadata">
-      <a class="mr-2" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
-      <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
-      {% if object.author == user %}
+      <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+      <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+      {% if post.author == user %}
       <div>
-        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' post.id %}">
           Edit Post</a>
-        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">
+        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' post.id %}">
           Delete Post</a>
       </div>
       {% endif %}
     </div>
-    <h2 class="article-title">{{ object.title }}</h2>
-    <p>{{ object.content|safe }}</p>
+    <h2 class="article-title">{{ post.title }}</h2>
+    <p>{{ post.content|safe }}</p>
+    <p>{{post.total_likes}} likes</p>
   </div>
 </article>
-
+<form action="{% url 'post-like' pk=post.id %}" method="post">
+  {% csrf_token %}
+  <button type="submit" name="post-id" value="{{post.id}}" class="btn btn-primary ml-3">
+    {% if like_status %}
+    <i>Unlike</i>
+    {% else %}
+    <i>Like</i>
+    {% endif %}
+  </button>
+</form>
 <hr />
 <div>
   <a class="btn btn-primary" href="{% url 'comment-create' pk=post.pk %}">Add comment</a>

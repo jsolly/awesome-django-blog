@@ -2,11 +2,12 @@ from django.shortcuts import render, redirect
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
+from blog.models import Category
 # Create your views here.
 
 
 def register(request):
+    cat_list = Category.objects.all()
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -27,7 +28,7 @@ def register(request):
     else:
         form = UserRegisterForm()
 
-    return render(request, "users/register.html", {"form": form})
+    return render(request, "users/register.html", {"form": form, "cat_list":cat_list})
 
 
 @login_required
