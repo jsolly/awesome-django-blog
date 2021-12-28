@@ -11,7 +11,7 @@
     <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
     <p class="article-content">{{ post.content|slice:":200"|safe }}...</p>
     <a href="{% url 'post-detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
-    <p>{{post.total_likes}} likes</p>
+      <p>{{post.total_views}} views </br> {{post.total_likes}} likes </p>
   </div>
 </article>
 

@@ -18,6 +18,7 @@
     <h2 class="article-title">{{ post.title }}</h2>
     <p>{{ post.content|safe }}</p>
     <p>{{post.total_likes}} likes</p>
+    <p>{{post.total_views}} views</p>
   </div>
 </article>
 <form action="{% url 'post-like' pk=post.id %}" method="post">

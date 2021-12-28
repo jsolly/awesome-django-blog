@@ -55,13 +55,22 @@ class PostDetailView(DetailView):
 
         like_status = False
         ip = get_client_ip(self.request)
+        post = Post.objects.get(id=self.kwargs["pk"])
+
+        # Check for views
+        if not IpPerson.objects.filter(ip=ip).exists():
+            IpPerson.objects.create(ip=ip)
+
+        post.views.add(IpPerson.objects.get(ip=ip))
+
+        # Check for likes
         try:
             if self.object.likes.filter(id=IpPerson.objects.get(ip=ip).id).exists():
                 like_status = True
         except IpPerson.DoesNotExist:
             pass
-        
-        context['like_status'] = like_status
+
+        context["like_status"] = like_status
         return context
 
 
