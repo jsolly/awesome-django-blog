@@ -1,12 +1,12 @@
 from django import forms
 from .models import Post, Comment, Category
 
-choices = [
-    ("software development", "software development"),
-    ("life optimization", "life optimization"),
-    ("shower thoughts", "shower thoughts"),
-]
-
+# choices = [
+#     ("software development", "software development"),
+#     ("life optimization", "life optimization"),
+#     ("shower thoughts", "shower thoughts"),
+# ]
+choices = Category.objects.all().values_list('name', 'name') # comment this if doing an initial DB migration
 
 class PostForm(forms.ModelForm):
     class Meta:

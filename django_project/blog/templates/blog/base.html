@@ -59,18 +59,19 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{% url 'blog-about' %}">About</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'register' %} ">Register</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'login' %} ">Login</a>
-            </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{% url 'profile' %} ">Profile</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{% url 'logout' %} ">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'register' %} ">Register</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'login' %} ">Login</a>
             </li>
             {% endif %}
             {% if user.is_staff %}
