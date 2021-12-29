@@ -23,13 +23,11 @@
 </article>
 <form action="{% url 'post-like' pk=post.id %}" method="post">
   {% csrf_token %}
-  <button type="submit" name="post-id" value="{{post.id}}" class="btn btn-primary ml-3">
     {% if like_status %}
-    <i>Unlike</i>
+      <button type="submit" name="post-id" value="{{post.id}}" class="btn btn-danger btn-sm">Unlike</button>
     {% else %}
-    <i>Like</i>
+    <button type="submit" name="post-id" value="{{post.id}}" class="btn btn-primary btn-sm">Like</button>
     {% endif %}
-  </button>
 </form>
 <hr />
 <div>

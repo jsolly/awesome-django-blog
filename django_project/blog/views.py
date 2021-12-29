@@ -53,7 +53,6 @@ class PostDetailView(DetailView):
         context = super(DetailView, self).get_context_data(*args, **kwargs)
         context["cat_list"] = Category.objects.all()
 
-        like_status = False
         ip = get_client_ip(self.request)
         post = Post.objects.get(id=self.kwargs["pk"])
 
@@ -64,6 +63,7 @@ class PostDetailView(DetailView):
         post.views.add(IpPerson.objects.get(ip=ip))
 
         # Check for likes
+        like_status = False
         try:
             if self.object.likes.filter(id=IpPerson.objects.get(ip=ip).id).exists():
                 like_status = True
@@ -181,4 +181,4 @@ def PostLikeView(request, pk):
         post.likes.remove(IpPerson.objects.get(ip=ip))
     else:
         post.likes.add(IpPerson.objects.get(ip=ip))
-    return HttpResponseRedirect(reverse("post-detail", args=[pk]))
+    return HttpResponseRedirect(reverse("post-detail", args=[str(pk)]))
