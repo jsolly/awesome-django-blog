@@ -152,6 +152,15 @@ def AboutView(request):
         {"cat_list": cat_list},
     )
 
+def RoadMapView(request):
+    cat_list = Category.objects.all()
+    return render(
+        request,
+        "blog/roadmap.html",
+        {"cat_list": cat_list},
+    )
+
+
 
 def get_client_ip(request):
     x_forward_for = request.META.get("HTTP_X_FORWARD_FOR")
