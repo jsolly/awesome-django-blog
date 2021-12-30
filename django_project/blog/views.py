@@ -146,7 +146,7 @@ class CategoryView(ListView):
 
 def AboutView(request):
     cat_list = Category.objects.all()
-    my_profile = Profile.objects.filter(id=1)[0]
+    my_profile = Profile.objects.filter(id=2)[0]
     return render(
         request,
         "blog/about.html",
