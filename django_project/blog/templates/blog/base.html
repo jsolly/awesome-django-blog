@@ -98,16 +98,6 @@
       </div>
       <div class="col-md-4">
         <div class="content-section">
-          <h3>External Links</h3>
-          <ul class="list-group">
-            <li class="list-group-item list-group-item-light">
-              <a href="https://github.com/jsolly" target="_blank">Solly's Github</a>
-            </li>
-            <li class="list-group-item list-group-item-light">
-              <a href="https://www.linkedin.com/in/jsolly/" target="_blank">Linkedin</a>
-            </li>
-          </ul>
-          </br>
           <!-- Category Menu Code -->
           <h3>Categories</h3>
           {% for cat in cat_list %}
@@ -115,8 +105,11 @@
             <li class="list-group-item list-group-item-light">
               <a href="{% url 'blog-category' cat|slugify %}"> {{cat|title}} </a>
             </li>
+            {% endfor %}
+            <li class="list-group-item list-group-item-light">
+              <a href="{% url 'blog-home' %}"> All Categories</a>
+            </li>
           </ul>
-          {% endfor %}
         </div>
       </div>
     </div>

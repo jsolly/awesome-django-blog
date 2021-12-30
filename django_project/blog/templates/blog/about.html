@@ -2,19 +2,40 @@
 {% block title %}About Me{% endblock %}
 {% block content %}
 <h1>About Me</h1>
-<p>
-  Know anyone with a medical grade EEG to monitor their sleep? That's the kind
-  of stuff I do! My goal in life is to optimize my faith, family, friends, and
-  career so I am 1% better every day in every way. I have my B.A. in GIS and
-  Remote sensing from UC Santa Barbara and a M.S. in Geoinformatics and
-  Geospatial Intelligence (that's a mouthful!) from George Mason University.
-  <br /><br />
-  My master's thesis on Team Spatial Cognition was funded by the Army Research
-  Institute. Team Spatial Cognition is the idea that groups of people can
-  communally develop shared maps in their heads. If you want to learn more,
-  check out my thesis!
-  <br /><br />
-  I created this blog as a way to strengthen my web development skills and share
-  my thoughts with the world. Stay tuned for updates!
-</p>
+</br>
+<div class="card mb-3">
+  <div class="row no-gutters">
+    <div class="col-md-2">
+      <img src="{{my_profile.image.url}}" class="card-img">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title">
+          John
+          Solly
+        </h5>
+        <p class="small text-muted">
+          <a href="https://www.linkedin.com/in/jsolly/" target="_blank">Linkedin</a>
+          |
+          <a href="https://github.com/jsolly" target="_blank">Github</a>
+        </p>
+        <p class="card-text">
+          Know anyone with a medical grade EEG to monitor their sleep? That's the kind
+          of stuff I do! My goal in life is to optimize my faith, family, friends, and
+          career so I am 1% better every day in every way. I have my B.A. in GIS and
+          Remote sensing from UC Santa Barbara and a M.S. in Geoinformatics and
+          Geospatial Intelligence (that's a mouthful!) from George Mason University.
+          <br /><br />
+          My master's thesis on Team Spatial Cognition was funded by the Army Research
+          Institute. Team Spatial Cognition is the idea that groups of people can
+          communally develop shared maps in their heads. If you want to learn more,
+          check out my thesis!
+          <br /><br />
+          I created this blog as a way to strengthen my web development skills and share
+          my thoughts with the world. Stay tuned for updates!
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock content %}

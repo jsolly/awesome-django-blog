@@ -11,10 +11,10 @@ from django.views.generic import (
     UpdateView,
 )
 from .models import Post, Comment, Category, IpPerson
+from users.models import Profile
 from django.forms import widgets
 from django.urls import reverse
 from .forms import PostForm, CommentForm
-
 
 class HomeView(ListView):
     model = Post
@@ -146,10 +146,11 @@ class CategoryView(ListView):
 
 def AboutView(request):
     cat_list = Category.objects.all()
+    my_profile = Profile.objects.filter(id=1)[0]
     return render(
         request,
         "blog/about.html",
-        {"cat_list": cat_list},
+        {"cat_list": cat_list, "my_profile":my_profile},
     )
 
 def RoadMapView(request):

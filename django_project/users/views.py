@@ -3,7 +3,6 @@ from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from blog.models import Category
-# Create your views here.
 
 
 def register(request):
