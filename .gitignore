@@ -61,6 +61,7 @@ db.sqlite3
 db.sqlite3-journal
 profile_pics/
 server_only/
+static/
 
 # Flask stuff:
 instance/
