@@ -136,3 +136,9 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = config.get("EMAIL_HOST_PASSWORD")
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full'
+    },
+}
