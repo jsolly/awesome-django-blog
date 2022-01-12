@@ -26,7 +26,8 @@ from .views import (
     CategoryView,
     AboutView,
     PostLikeView,
-    RoadMapView
+    RoadMapView,
+    SearchView
 )
 
 urlpatterns = [
@@ -40,6 +41,7 @@ urlpatterns = [
     path("post/<int:pk>/comment/", CreateCommentView.as_view(), name="comment-create"),
     path("category/<str:cat>/", CategoryView.as_view(), name='blog-category'),
     path('like/<int:pk>', PostLikeView, name='post-like'),
-    path("roadmap/", RoadMapView, name="blog-roadmap")
+    path("roadmap/", RoadMapView, name="blog-roadmap"),
+    path("search/", SearchView, name="blog-search")
 
 ]

@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.db.models import Q
+from django.forms import widgets
+from django.urls import reverse
 from django.views.generic import (
     ListView,
     DetailView,
@@ -12,9 +15,8 @@ from django.views.generic import (
 )
 from .models import Post, Comment, Category, IpPerson
 from users.models import Profile
-from django.forms import widgets
-from django.urls import reverse
 from .forms import PostForm, CommentForm
+
 
 class HomeView(ListView):
     model = Post
@@ -150,8 +152,9 @@ def AboutView(request):
     return render(
         request,
         "blog/about.html",
-        {"cat_list": cat_list, "my_profile":my_profile},
+        {"cat_list": cat_list, "my_profile": my_profile},
     )
+
 
 def RoadMapView(request):
     cat_list = Category.objects.all()
@@ -160,7 +163,6 @@ def RoadMapView(request):
         "blog/roadmap.html",
         {"cat_list": cat_list},
     )
-
 
 
 def get_client_ip(request):
@@ -183,3 +185,34 @@ def PostLikeView(request, pk):
     else:
         post.likes.add(IpPerson.objects.get(ip=ip))
     return HttpResponseRedirect(reverse("post-detail", args=[str(pk)]))
+
+
+def SearchView(request):
+    cat_list = Category.objects.all()
+    if request.method == 'POST':
+        searched = request.POST['searched']
+        #filtered_posts = Post.objects.filter(content__contains=searched)
+        filtered_posts = Post.objects.filter(Q(content__contains=searched) | Q(title__contains=searched))
+        return render(
+            request,
+            "blog/search_posts.html",
+            {"cat_list": cat_list, "searched": searched, "filtered_posts": filtered_posts},
+        )
+    else:
+        return render(
+            request,
+            "blog/search_posts.html",
+            {"cat_list": cat_list},
+        )
+        
+
+    # model = Post
+    # template_name = "blog/home.html"  # <app>/<model>_<viewtype>.html
+    # context_object_name = "posts"  # The default is object_list
+    # ordering = ["-date_posted"]
+    # paginate_by = 5
+
+    # def get_context_data(self, *args, **kwargs):
+    #     context = super(HomeView, self).get_context_data(*args, **kwargs)
+    #     context["cat_list"] = Category.objects.all()
+    #     return context

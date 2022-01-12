@@ -83,6 +83,11 @@
             </li>
           </ul>
           {% endif %}
+          <form class="d-flex" method=POST action="{% url 'blog-search' %}">
+            {% csrf_token %}
+            <input class="form-control me-2" type="search" placeholder="Search Posts" aria-label="Search" name="searched">
+            <button class="btn btn-success" type="submit">Search</button>
+          </form>
         </div>
       </div>
     </nav>
