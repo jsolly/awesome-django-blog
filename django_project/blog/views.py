@@ -133,14 +133,14 @@ class CategoryView(ListView):
     model = Post
     template_name = "blog/categories.html"  # <app>/<model>_<viewtype>.html
     context_object_name = "category_posts"  # The default is object_list
-    ordering = ["-date_posted"]
     paginate_by = 5
+
+    def get_queryset(self):
+        cat = self.kwargs.get("cat").replace("-", " ")
+        return Post.objects.filter(category=cat).order_by("-date_posted")
 
     def get_context_data(self, *args, **kwargs):
         context = super(CategoryView, self).get_context_data(*args, **kwargs)
-        context["category_posts"] = Post.objects.filter(
-            category=self.kwargs["cat"].replace("-", " ")
-        )
         context["cat_list"] = Category.objects.all()
         context["cat"] = self.kwargs["cat"].replace("-", " ")
         return context
@@ -191,7 +191,6 @@ def SearchView(request):
     cat_list = Category.objects.all()
     if request.method == 'POST':
         searched = request.POST['searched']
-        #filtered_posts = Post.objects.filter(content__contains=searched)
         filtered_posts = Post.objects.filter(Q(content__contains=searched) | Q(title__contains=searched))
         return render(
             request,
@@ -204,15 +203,3 @@ def SearchView(request):
             "blog/search_posts.html",
             {"cat_list": cat_list},
         )
-        
-
-    # model = Post
-    # template_name = "blog/home.html"  # <app>/<model>_<viewtype>.html
-    # context_object_name = "posts"  # The default is object_list
-    # ordering = ["-date_posted"]
-    # paginate_by = 5
-
-    # def get_context_data(self, *args, **kwargs):
-    #     context = super(HomeView, self).get_context_data(*args, **kwargs)
-    #     context["cat_list"] = Category.objects.all()
-    #     return context
