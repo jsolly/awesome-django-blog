@@ -6,6 +6,9 @@
 	],
 	"settings": {
 		"python.terminal.activateEnvInCurrentTerminal": true,
-		"python.defaultInterpreterPath": "/Users/johnsolly/Documents/code/blogthedata/venv/bin/python3"
+		"python.defaultInterpreterPath": "/Users/johnsolly/Documents/code/blogthedata/venv/bin/python3",
+		"conventionalCommits.scopes": [
+			"ckeditor"
+		]
 	}
 }
