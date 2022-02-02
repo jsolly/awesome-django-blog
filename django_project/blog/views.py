@@ -56,8 +56,8 @@ class PostDetailView(DetailView):
         context["cat_list"] = Category.objects.all()
 
         ip = get_client_ip(self.request)
-        post = Post.objects.get(id=self.kwargs["pk"])
-
+        #post = Post.objects.get(id=self.kwargs["pk"])
+        post = Post.objects.get(slug=self.object.slug)
         # Check for views
         if not IpPerson.objects.filter(ip=ip).exists():
             IpPerson.objects.create(ip=ip)
@@ -113,7 +113,7 @@ class CreateCommentView(LoginRequiredMixin, CreateView):
     template_name = "blog/add_comment.html"
 
     def form_valid(self, form):
-        form.instance.post = Post.objects.get(id=self.kwargs["pk"])
+        form.instance.post = Post.objects.get(slug=self.kwargs["slug"])
         form.instance.author = self.request.user
         return super().form_valid(form)
 
@@ -175,8 +175,8 @@ def get_client_ip(request):
     return ip
 
 
-def PostLikeView(request, pk):
-    post = Post.objects.get(pk=pk)
+def PostLikeView(request, slug):
+    post = Post.objects.get(slug=slug)
     ip = get_client_ip(request)
     if not IpPerson.objects.filter(ip=ip).exists():
         IpPerson.objects.create(ip=ip)
@@ -184,14 +184,14 @@ def PostLikeView(request, pk):
         post.likes.remove(IpPerson.objects.get(ip=ip))
     else:
         post.likes.add(IpPerson.objects.get(ip=ip))
-    return HttpResponseRedirect(reverse("post-detail", args=[str(pk)]))
+    return HttpResponseRedirect(reverse("post-detail", args=[str(slug)]))
 
 
 def SearchView(request):
     cat_list = Category.objects.all()
     if request.method == 'POST':
         searched = request.POST['searched']
-        filtered_posts = Post.objects.filter(Q(content__contains=searched) | Q(title__contains=searched))
+        filtered_posts = Post.objects.filter(Q(content__icontains=searched) | Q(title__icontains=searched))
         return render(
             request,
             "blog/search_posts.html",

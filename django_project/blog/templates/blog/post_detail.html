@@ -8,9 +8,9 @@
       <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
       {% if post.author == user %}
       <div>
-        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' post.id %}">
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' post.slug %}">
           Edit Post</a>
-        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' post.id %}">
+        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' post.slug %}">
           Delete Post</a>
       </div>
       {% endif %}
@@ -21,17 +21,17 @@
     <p>{{post.total_views}} views</p>
   </div>
 </article>
-<form action="{% url 'post-like' pk=post.id %}" method="post">
+<form action="{% url 'post-like' slug=post.slug %}" method="post">
   {% csrf_token %}
     {% if like_status %}
-      <button type="submit" name="post-id" value="{{post.id}}" class="btn btn-danger btn-sm">Unlike</button>
+      <button type="submit" name="post-id" value="{{post.slug}}" class="btn btn-danger btn-sm">Unlike</button>
     {% else %}
-    <button type="submit" name="post-id" value="{{post.id}}" class="btn btn-primary btn-sm">Like</button>
+    <button type="submit" name="post-id" value="{{post.slug}}" class="btn btn-primary btn-sm">Like</button>
     {% endif %}
 </form>
 <hr />
 <div>
-  <a class="btn btn-primary" href="{% url 'comment-create' pk=post.pk %}">Add comment</a>
+  <a class="btn btn-primary" href="{% url 'comment-create' slug=post.slug %}">Add comment</a>
 </div>
 {% for comment in post.comments.all %}
 <div class="comment" style="padding: 10px">

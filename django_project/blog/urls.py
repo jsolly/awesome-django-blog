@@ -33,14 +33,14 @@ from .views import (
 urlpatterns = [
     path("", HomeView.as_view(), name="blog-home"),
     path("user/<str:username>", UserPostListView.as_view(), name="user-posts"),
-    path("post/<int:pk>/", PostDetailView.as_view(), name="post-detail"),
+    path("post/<slug:slug>/", PostDetailView.as_view(), name="post-detail"),
     path("about/", AboutView, name="blog-about"),
     path("post/new", CreatePostView.as_view(), name="post-create"),
-    path("post/<int:pk>/update", PostUpdateView.as_view(), name="post-update"),
-    path("post/<int:pk>/delete", PostDeleteView.as_view(), name="post-delete"),
-    path("post/<int:pk>/comment/", CreateCommentView.as_view(), name="comment-create"),
+    path("post/<slug:slug>/update", PostUpdateView.as_view(), name="post-update"),
+    path("post/<slug:slug>/delete", PostDeleteView.as_view(), name="post-delete"),
+    path("post/<slug:slug>/comment/", CreateCommentView.as_view(), name="comment-create"),
     path("category/<str:cat>/", CategoryView.as_view(), name='blog-category'),
-    path('like/<int:pk>', PostLikeView, name='post-like'),
+    path('like/<slug:slug>', PostLikeView, name='post-like'),
     path("roadmap/", RoadMapView, name="blog-roadmap"),
     path("search/", SearchView, name="blog-search")
 
