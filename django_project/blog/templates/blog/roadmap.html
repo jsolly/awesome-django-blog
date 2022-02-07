@@ -1,16 +1,22 @@
 {% extends "blog/base.html" %}
 {% block title %}Site Road Map{% endblock %}
+
+{% block metadescription %}
+    <meta name="description" content="Roadmap of feature development on blogthedata.com">
+{% endblock %}
+
 {% block content %}
 <h1>Site Road Map</h1>
 </br>
 <h3>Todo</h3>
 <ul>
+  <li>Fix links on search result page</li>
   <li>Migrate from sqlite to postgres db</li>
   <li>Enable image upload (ckeditor)</li>
-  <li>Add meta tags to each page</li>
+  <li>Add meta descriptions to each page</li>
   <li>Rename image files to be SEO friendly</li>
+  <li>Add meta description field to posts</li>
   <li>Add alt text to all images</li>
-  <li>Create Newsletter</li>
 
 </ul>
 </br>
@@ -25,29 +31,31 @@
   <li>Improve formatting on Login page.</li>
   <li>Add site-wide analytics to the home page</li>
   <li>Turn these items into 'ideas' that can be voted on via 'likes'</li>
-  <li>Add 'Surprise me' button that takes user to random post</li>
+  <li>Add 'Surprise me' button that takes user to random post 🎉</li>
   <li>Migrate to serverless architecture (AWS Lambda?)</li>
+  <li>Create Newsletter 🗞</li>
 </ul>
 </br>
-<h3>Functional Requirements Done</h3>
+<h3>Functional Requirements ✅</h3>
 <ul>
   <li><del>Improve url slugging so that they aren't just /post/5</del></li>
   <li><del>Add line numbers to code snippets (check out prism plugin)</del></li>
   <li><del>Add code snippets to ckeditor</del></li>
-  <li><del>Add spell-check to ckeditor</del></li>
+  <li><del>Add spell-check to ckeditor 🔤</del></li>
   <li><del>Add an 'All Categories' link in sidebar</del></li>
-  <li><del>Like button for posts</del></li>
+  <li><del>Like button for posts 👍</del></li>
   <li><del>Views for posts</del></li>
   <li><del>Post categories</del></li>
-  <del><li>Global Search (to find posts)</li></del>
+  <del><li>Global Search (to find posts) 🔎</li></del>
 </ul>
-<h3>Non-functional Requirements Done</h3>
+<h3>Non-functional Requirements ✅</h3>
 <ul>
-  <li><del>Use Git Hooks to collect static files before commits</del></li>
+  <li><del>Use Git Hooks to collect static files before commits 🪝</del></li>
   </ul>
   <h3>Bugs Fixed</h3>
   <li><del>Fix pagination/sorting issues with posts</del></li>
   <ul>
 
 </ul>
+</br>
 {% endblock content %}

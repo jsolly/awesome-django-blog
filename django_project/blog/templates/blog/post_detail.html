@@ -1,4 +1,6 @@
-{% extends "blog/base.html" %} {% block title %} {{post.title}} {% endblock %}
+{% extends "blog/base.html" %}
+{% block title %} {{post.title}} {% endblock %}
+
 {% block content %}
 <article class="media content-section">
   <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="" />
