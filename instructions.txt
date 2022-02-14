@@ -1,0 +1,44 @@
+ssh jsolly@69.164.205.120
+
+#### Migrate SQLlite to postgres
+scp jsolly@69.164.205.120:/home/jsolly/blogthedata/django_project/db.sqlite3 . #copy db from prod
+python3 -m pip install psycopg2
+python3 manage.py 
+python3 manage.py dumpdata > ../datadump.json
+# Add engine info to settings.py
+# uncomment line in forms.py so that categories are not fetched before the table is created
+python3 manage.py migrate --run-syncdb # create empty tables
+
+# Remove auto added contenttypes from django for loading data
+python3 manage.py shell
+from django.contrib.contenttypes.models import ContentType
+ContentType.objects.all().delete()
+
+
+# if you run into Key (id)=(1) already exists errors, try this after switching the Engine over to the new db in settings.py
+# or django.db.utils.IntegrityError: Problem installing fixture Could not load contenttypes.ContentType
+
+# important paths
+sudo tail -f /var/log/apache2/access.log
+sudo tail -f /var/log/apache2/error.log
+sudo nano /etc/django_config.json 
+sudo nano -c /etc/apache2/sites-available/django_project.conf
+/var/log/postgresql/postgresql-13-main.log
+/etc/postgresql-common/createcluster.conf 
+
+### Create new migration
+ python3 manage.py makemigrations --name changed_my_model your_app_label
+ python3 manage.py migrate
+
+# Other useful commands
+sudo service postgresql restart
+sudo chmod -R 777 blogthedata
+become root user -> sudo -i
+# Not needed anymore -> python3 manage.py collectstatic
+
+After pulling new changes from github
+1 - Modify settings.py as needed
+2 - source venv/bib/activate to get the Python virtual env
+3 - python3 manage.py migrate (to inherit db changes) # Don't need to makemigrations, because migrations are already in git
+4 - sudo chmod -R 777 blogthedata
+5 - sudo service apache2 restart  
