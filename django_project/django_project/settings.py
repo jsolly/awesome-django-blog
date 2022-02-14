@@ -131,21 +131,18 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.1/howto/static-files/
-STATIC_URL = "/static/"
-# STATIC_ROOT = os.path.join(BASE_DIR, "static")
-# if not DEBUG: 
-#     STATIC_ROOT = '/home/jsolly/blogthedata/django_project/static/'
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static/'),
-]
 
-# STATIC_ROOT = os.path.join(BASE_DIR, "static")
 CKEDITOR_UPLOAD_PATH = "uploads/"
-
-
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
