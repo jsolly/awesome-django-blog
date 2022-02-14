@@ -62,6 +62,7 @@ urlpatterns = [
         name="password_reset_complete",
     ),
     path("captcha", include("captcha.urls")),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 if settings.DEBUG:
