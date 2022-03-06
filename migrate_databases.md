@@ -13,7 +13,10 @@ $ python3 manage.py dumpdata > ../datadump.json
 
 Next, Add engine info to settings.py
 
-make sure psycopg2 is installed
+make sure psycopg2 is installed. You might need to run these commands
+sudo apt-get install libpq-dev
+pip install psycopg2-binary
+pip install psycopg2
 
 ## Create empty tables (schema) in postgres
 $ python3 manage.py migrate --run-syncdb 
