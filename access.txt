@@ -1,0 +1,36 @@
+ssh jsolly@69.164.205.120
+scp jsolly@69.164.205.120:/home/jsolly/blogthedata/django_project/db.sqlite3 .
+
+### Create new migration
+ python3 manage.py makemigrations --name changed_my_model your_app_label
+ python3 manage.py migrate
+
+After pulling new changes from github
+1 - Modify settings.py as needed
+2 - source venv/bib/activate to get the Python virtual env
+3 - python3 manage.py migrate (to inherit db changes) # Don't need to makemigrations, because migrations are already in git
+4 - sudo chmod -R 777 blogthedata
+5 - sudo service apache2 restart  
+
+# Configuring Python install on new Mac
+Install using the regular installer from python.org. Make sure to match the version that is on production.
+The file path should look like:
+/Applications/"Python 3.9"/IDLE.app/Contents/MacOS/Python
+
+# login to postgres in terminal
+psql -U postgres
+
+
+# important paths
+sudo tail -f /var/log/apache2/access.log
+sudo tail -f /var/log/apache2/error.log
+sudo nano /etc/django_config.json 
+sudo nano -c /etc/apache2/sites-available/django_project.conf
+/var/log/postgresql/postgresql-13-main.log
+/etc/postgresql-common/createcluster.conf 
+
+# Other useful commands
+sudo service postgresql restart
+sudo chmod -R 777 blogthedata
+become root user -> sudo -i
+# Not needed anymore -> python3 manage.py collectstatic

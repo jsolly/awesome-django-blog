@@ -2,7 +2,7 @@
     "configurations": [
     {
         "name": "BlogTheData",
-        "python": "/Users/johnsolly/Documents/code/blogthedata/venv/bin/python3",
+        "python": "/Users/johnsolly/Documents/code/blogthedata/django_project/venv/bin/python3",
         "type": "python",
         "request": "launch",
         "program": "/Users/johnsolly/Documents/code/blogthedata/django_project/manage.py",
