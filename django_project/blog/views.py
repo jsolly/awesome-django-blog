@@ -191,6 +191,7 @@ def PostLikeView(request, slug):
 
 
 def SearchView(request):
+    """Controls what is shown to a user when they search for a post."""
     cat_list = Category.objects.all()
     if request.method == 'POST':
         searched = request.POST['searched']
