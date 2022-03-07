@@ -1,4 +1,7 @@
 {% extends "blog/base.html" %}
+{% block metadescription %}
+    <meta name="description" content="A blog about data-driven decision making">
+{% endblock %}
 {% block content %}
 <h1>All Categories</h1>
 {% for post in posts %}

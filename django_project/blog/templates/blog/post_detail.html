@@ -1,6 +1,10 @@
 {% extends "blog/base.html" %}
 {% block title %} {{post.title}} {% endblock %}
 
+{% block metadescription %}
+    <meta name="description" content="{{ post.metadesc }}">
+{% endblock %}
+
 {% block content %}
 <article class="media content-section">
   <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="" />
