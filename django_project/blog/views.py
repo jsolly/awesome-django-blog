@@ -48,23 +48,26 @@ class UserPostListView(ListView):
 
 
 class PostDetailView(DetailView):
+    """
+    Controls everything to do with what a user sees when viewing a single post.
+    """
     model = Post
     template_name = "blog/post_detail.html"
 
     def get_context_data(self, *args, **kwargs):
+        """Need to re-generate context based on whether user has viewed post or not"""
         context = super(DetailView, self).get_context_data(*args, **kwargs)
         context["cat_list"] = Category.objects.all()
 
         ip = get_client_ip(self.request)
-        #post = Post.objects.get(id=self.kwargs["pk"])
         post = Post.objects.get(slug=self.object.slug)
-        # Check for views
+        # Check to see if we should +1 view count
         if not IpPerson.objects.filter(ip=ip).exists():
             IpPerson.objects.create(ip=ip)
 
         post.views.add(IpPerson.objects.get(ip=ip))
 
-        # Check for likes
+        # Check to see if we should +1 total likes
         like_status = False
         try:
             if self.object.likes.filter(id=IpPerson.objects.get(ip=ip).id).exists():

@@ -3,6 +3,7 @@
 db.sqlite3
 db.sqlite3-journal
 profile_pics/
+media/
 datadump.json
 
 # Virtual Environments

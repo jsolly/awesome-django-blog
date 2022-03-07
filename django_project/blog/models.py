@@ -8,6 +8,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from .utils import slugify_instance_title
 
 class Category(models.Model):
+    """A category contains a subset of posts that are associated with a single category"""
     name = models.CharField(max_length=100)
 
     def __str__(self):
@@ -25,13 +26,12 @@ class IpPerson(models.Model): #Anonymous user
 class Post(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True, blank=True, null=True)
-    content = RichTextField(blank=True, null=True)
+    content = RichTextUploadingField(blank=True, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.CharField(max_length=100, default='uncategorized')
     likes = models.ManyToManyField(IpPerson, related_name="post_likes", blank=True)
     views = models.ManyToManyField(IpPerson, related_name="post_views", blank=True)
-    images = RichTextUploadingField(blank=True, null=True)
 
     def __str__(self):
         return self.title + " | " + str(self.author)
