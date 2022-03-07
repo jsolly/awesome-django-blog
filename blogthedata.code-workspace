@@ -8,7 +8,8 @@
 		"python.terminal.activateEnvInCurrentTerminal": true,
 		"python.defaultInterpreterPath": "/Users/johnsolly/Documents/code/blogthedata/django_project/venv/bin/python3",
 		"conventionalCommits.scopes": [
-			"ckeditor"
+			"ckeditor",
+			"blog model"
 		]
 	}
 }
