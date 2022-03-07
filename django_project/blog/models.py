@@ -27,7 +27,7 @@ class Post(models.Model):
     """Contains all the information that is relavent to a blog post"""
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True, blank=True, null=True)
-    snippet = models.CharField(max_length=500, blank=True, null=True)
+    snippet = RichTextField(max_length=500, blank=True, null=True)
     content = RichTextUploadingField(blank=True, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
