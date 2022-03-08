@@ -1,5 +1,5 @@
+### Access server
 ssh jsolly@69.164.205.120
-scp jsolly@69.164.205.120:/home/jsolly/blogthedata/django_project/db.sqlite3 .
 
 ### Create new migration
  python3 manage.py makemigrations --name changed_my_model your_app_label
@@ -34,3 +34,9 @@ sudo service postgresql restart
 sudo chmod -R 777 blogthedata
 become root user -> sudo -i
 # Not needed anymore -> python3 manage.py collectstatic
+
+### Postgres export and restore
+scp jsolly@69.164.205.120:/home/jsolly/blogthedata/django_project/db.sqlite3 .
+scp jsolly@69.164.205.120:/home/jsolly/backups/blogthedata_db_3_8_22.sql .
+sudo -u postgres pg_dump blogthedata > blogthedata_db_3_8_22.sql
+psql blogthedata < blogthedata_db_3_8_22.sql
