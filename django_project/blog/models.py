@@ -25,10 +25,10 @@ class IpPerson(models.Model): #Anonymous user
 
 class Post(models.Model):
     """Contains all the information that is relavent to a blog post"""
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=60)
     slug = models.SlugField(unique=True, blank=True, null=True)
-    snippet = RichTextField(max_length=500, blank=True, null=True)
-    metadesc = models.CharField(max_length=160, blank=True, null=True)
+    snippet = RichTextField(max_length=300, blank=True, null=True)
+    metadesc = models.CharField(max_length=140, blank=True, null=True)
     content = RichTextUploadingField(blank=True, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
