@@ -49,3 +49,15 @@ a.article-title:hover {
   margin-right: 20px;
   margin-bottom: 16px;
 }
+
+blockquote {
+  font-style: italic;
+  font-family: Georgia, Times, "Times New Roman", serif;
+  padding: .5rem 1rem;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 40px;
+  margin-inline-end: 40px;
+  border-left: .25rem solid #ccc;
+  }       
