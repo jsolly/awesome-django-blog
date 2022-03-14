@@ -19,12 +19,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   {% block metadescription %}
   <meta name="description"
-    content="Researched Articles about Software Development, Productivity, & Maternal and Newborn Care. Learn things that you can apply immediately to improve your life and work.">
+    content="Researched Articles about Software Development and Productivity. Learn things that you can apply immediately to improve your life and work.">
   {% endblock %}
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
   <!-- My CSS -->
   <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}" />
@@ -33,82 +33,99 @@
 </head>
 
 <body>
+  <a href="https://www.example.com">a link</a>
   <header class="site-header">
     <!-- Nav Bar -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
-      <div class="container">
-        <a class="navbar-brand mr-4" href="{% url 'blog-home' %}">Solly's Blog</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
-          aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-steel">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Solly's Blog</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarToggle">
-          <div class="navbar-nav mr-auto">
-            <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
-            <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
-            <a class="nav-item nav-link" href="{% url 'blog-roadmap' %}">Site Roadmap</a>
-          </div>
-          <!-- Navbar Right Side -->
-          <div class="navbar-nav">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'blog-home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'blog-about' %}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'blog-roadmap' %}">Site Roadmap</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Categories
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {% for cat in cat_list %}
+                <li><a class="dropdown-item" href="{% url 'blog-category' cat|slugify %}">{{cat|title}}</a></li>
+                {% endfor %}
+              </ul>
+            </li>
             {% if user.is_authenticated %}
-            <a class="nav-item nav-link" href="{% url 'profile' %} ">Profile</a>
-            <a class="nav-item nav-link" href="{% url 'logout' %} ">Logout</a>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
             {% else %}
-            <a class="nav-item nav-link" href="{% url 'register' %} ">Register</a>
-            <a class="nav-item nav-link" href="{% url 'login' %} ">Login</a>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'register' %}">Register</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
             {% endif %}
             {% if user.is_staff %}
-            <a class="nav-item nav-link" href="{% url 'post-create' %} ">New Post</a>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'post-create' %}">New Post</a>
+            </li>
             {% endif %}
-            <form class="d-flex" method=POST action="{% url 'blog-search' %}">
-              {% csrf_token %}
-              <input class="form-control me-2" type="search" placeholder="Search Posts" aria-label="Search"
-                name="searched">
-              <button class="btn btn-success" type="submit">Search</button>
-            </form>
-          </div>
+          </ul>
+
+          <form class="d-flex" method=POST action="{% url 'blog-search' %}">
+            {% csrf_token %}
+            <input class="form-control me-2" type="search" placeholder="Search Posts" aria-label="Search"
+            name="searched">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
         </div>
       </div>
     </nav>
-  </header>
-  <!-- End Nav Bar -->
-  <main role="main" class="container">
-    <div class="row">
-      <div class="col-md-8">
-        {% if messages %} {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-        {% endfor %} {% endif %}
-        {% block content %}{% endblock %}
-      </div>
-      <div class="col-md-4">
-        <div class="content-section">
-          <!-- Category Menu Code -->
-          <h3>Categories</h3>
-          {% for cat in cat_list %}
-          <ul class="list-group">
-            <li class="list-group-item list-group-item-light">
-              <a href="{% url 'blog-category' cat|slugify %}"> {{cat|title}} </a>
-            </li>
-            {% endfor %}
-            <li class="list-group-item list-group-item-light">
-              <a href="{% url 'blog-home' %}"> All Categories</a>
-            </li>
-          </ul>
+    </header>
+
+    <!-- End Nav Bar -->
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% if messages %} {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+          {% endfor %} {% endif %}
+          {% block content %}{% endblock %}
+        </div>
+        <div class="col-md-4">
+          <div class="content-section">
+            <!-- Category Menu Code -->
+            <h3>Categories</h3>
+            {% for cat in cat_list %}
+            <ul class="list-group">
+              <li class="list-group-item list-group-item-light">
+                <a href="{% url 'blog-category' cat|slugify %}"> {{cat|title}} </a>
+              </li>
+              {% endfor %}
+              <li class="list-group-item list-group-item-light">
+                <a href="{% url 'blog-home' %}"> All Categories</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </main>
-  <!-- JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
-    integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
-    crossorigin="anonymous"></script>
+    </main>
+    <!-- JavaScript -->
 </body>
 
 </html>

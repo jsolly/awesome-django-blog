@@ -40,3 +40,6 @@ sudo -u postgres pg_dump blogthedata > blogthedata_db_3_8_22.sql
 scp jsolly@69.164.205.120:/home/jsolly/blogthedata/django_project/db.sqlite3 .
 scp jsolly@69.164.205.120:/home/jsolly/backups/blogthedata_db_3_8_22.sql .
 psql blogthedata < blogthedata_db_3_8_22.sql
+
+### Backup Linode
+ssh jsolly@69.164.205.120 "dd if=/dev/sda " | dd of=/Users/johnsolly/Documents/code/blogthedata/backups/linode.img
