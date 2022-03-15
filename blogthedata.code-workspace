@@ -9,7 +9,8 @@
 		"python.defaultInterpreterPath": "/Users/johnsolly/Documents/code/blogthedata/django_project/venv/bin/python3",
 		"conventionalCommits.scopes": [
 			"ckeditor",
-			"blog model"
+			"blog model",
+			"bootstrap"
 		]
 	}
 }
