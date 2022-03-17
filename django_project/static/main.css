@@ -1,9 +1,9 @@
 .bg-steel {
-  background-color: #063f68;
+  background-color: #003366;
 }
 
 .site-header .navbar-nav .nav-link {
-  color: #cbd5db;
+  color: #ffffff;
 }
 
 .content-section {
@@ -28,7 +28,7 @@ a.article-title:hover {
 }
 
 .article-img {
-  height: 65px;
+  height: 54px;
   width: 65px;
   margin-right: 16px;
 }
@@ -40,7 +40,7 @@ a.article-title:hover {
 }
 
 .account-img {
-  height: 125px;
+  height: 104px;
   width: 125px;
   margin-right: 20px;
   margin-bottom: 16px;
