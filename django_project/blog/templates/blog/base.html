@@ -119,7 +119,7 @@
           <h3>Navigate to a Category</h3>
           <div class="list-group">
             {% for cat_item in cat_list %}
-            <a href="{% url 'blog-category' cat_item|slugify %}" class="list-group-item list-group-item-action {% if request.path == '/category/' %}active{% endif %}">{{cat_item}}</a>
+            <a href="{% url 'blog-category' cat_item|slugify %}" class="list-group-item list-group-item-action {% if request.resolver_match.kwargs.cat == cat_item|slugify %}active{% endif %}">{{cat_item|title}}</a>
             {% endfor %}
             <a href="{% url 'blog-home' %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == "blog-home" %}active{% endif %}">
               Blog Home
