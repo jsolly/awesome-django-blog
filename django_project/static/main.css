@@ -1,6 +1,9 @@
 .bg-steel {
   background-color: #003366;
 }
+.navbar {
+  margin-bottom: 10px;
+}
 
 .site-header .navbar-nav .nav-link {
   color: #ffffff;
