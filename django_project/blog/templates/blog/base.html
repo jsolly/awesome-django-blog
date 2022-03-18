@@ -118,11 +118,11 @@
           <!-- Category Menu Code -->
           <h3>Navigate to a Category</h3>
           <div class="list-group">
-            {% for cat in cat_list %}
-            <a href="{% url 'blog-category' cat|slugify %}" class="list-group-item list-group-item-action">{{cat|title}}</a>
+            {% for cat_item in cat_list %}
+            <a href="{% url 'blog-category' cat_item|slugify %}" class="list-group-item list-group-item-action {% if request.path == '/category/' %}active{% endif %}">{{cat_item}}</a>
             {% endfor %}
-            <a href="{% url 'blog-home' %}" class="list-group-item list-group-item-action" aria-current="true">
-              All Categories
+            <a href="{% url 'blog-home' %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == "blog-home" %}active{% endif %}">
+              Blog Home
             </a>
           </div>
 <!-- Begin Mailchimp Signup Form -->
