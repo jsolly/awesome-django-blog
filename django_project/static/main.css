@@ -60,3 +60,10 @@ blockquote {
   margin-inline-end: 40px;
   border-left: .25rem solid #ccc;
   }       
+
+  #mc_embed_signup h2 {
+    font-weight: bold;
+    padding: 0;
+    margin: 10px 0px;
+    font-size: 1.4em;
+}

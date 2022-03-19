@@ -29,14 +29,14 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
 
-  <!-- My CSS -->
-  <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}" />
-
   <!-- MailChimp-->
   <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7_dtp.css" rel="stylesheet" type="text/css">
   <style type="text/css">
     #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
   </style>
+
+    <!-- My CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}" />
 
   <title>{% block title %} Solly's Blog {% endblock %}</title>
 </head>
@@ -129,18 +129,24 @@
 <div id="mc_embed_signup">
 <form action="https://blogthedata.us14.list-manage.com/subscribe/post?u=3fb3f4adf8ab2cd1ebd6ff743&amp;id=cfb05572d0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
     <div id="mc_embed_signup_scroll">
-	<h2>Subscribe</h2>
+	<h2>Subscribe to Digest Email</h2>
 <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
 <div class="mc-field-group">
-	<label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+	<label for="mce-EMAIL">Email  <span class="asterisk">*</span>
 </label>
 	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
 </div>
+<strong>Desired Frequency </strong>
 <div class="mc-field-group input-group">
-    <strong>What would you like to subscribe to? </strong>
-    <ul><li><input type="checkbox" value="1" name="group[44976][1]" id="mce-group[44976]-44976-0" checked="true"><label for="mce-group[44976]-44976-0">Software Development</label></li>
-<li><input type="checkbox" value="2" name="group[44976][2]" id="mce-group[44976]-44976-1" checked="true"><label for="mce-group[44976]-44976-1">Productivity</label></li>
-<li><input type="checkbox" value="4" name="group[44976][4]" id="mce-group[44976]-44976-2" checked="true"><label for="mce-group[44976]-44976-2">Site Updates</label></li>
+    <ul><li><input type="radio" value="Monthly" name="FREQUENCY" id="mce-FREQUENCY-0"><label for="mce-FREQUENCY-0">Monthly</label></li>
+</ul>
+</div>
+<strong>What Interests You? </strong>
+<div class="mc-field-group input-group">
+    <ul><li><input type="checkbox" value="1" name="group[44996][1]" id="mce-group[44996]-44996-0"><label for="mce-group[44996]-44996-0">Software Development</label></li>
+<li><input type="checkbox" value="2" name="group[44996][2]" id="mce-group[44996]-44996-1"><label for="mce-group[44996]-44996-1">Productivity</label></li>
+<li><input type="checkbox" value="4" name="group[44996][4]" id="mce-group[44996]-44996-2"><label for="mce-group[44996]-44996-2">Site Updates</label></li>
+<li><input type="checkbox" value="8" name="group[44996][8]" id="mce-group[44996]-44996-3"><label for="mce-group[44996]-44996-3">Health</label></li>
 </ul>
 </div>
 	<div id="mce-responses" class="clear foot">
@@ -157,7 +163,7 @@
     </div>
 </form>
 </div>
-<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FREQUENCY';ftypes[1]='radio';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
 <!--End mc_embed_signup-->
       </div>
     </div>
