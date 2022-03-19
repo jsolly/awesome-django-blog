@@ -159,6 +159,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'full'
+        'toolbar':'full',
+        'height': '400px',
+        'width': '100%',
+        'extraPlugins': ','.join(
+            [
+                'mathjax',
+                
+            ]),
     },
+
 }
