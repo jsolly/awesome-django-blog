@@ -100,7 +100,6 @@ DATABASES = {
 }
 
 
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -159,14 +158,83 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar':'full',
-        'height': '400px',
-        'width': '100%',
-        'extraPlugins': ','.join(
-            [
-                'mathjax',
-                
-            ]),
-    },
+        # name - Toolbar name
+        # items - The buttons enabled in the toolbar
+        'toolbar_DefaultToolbarConfig': [
+            {
+                'name': 'basicstyles',
+                'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript',
+                          'Superscript', 'RemoveFormat', ],
+            },
+            {
+                'name': 'clipboard',
+                'items': ['Undo', 'Redo', ],
+            },
+            {
+                'name': 'paragraph',
+                'items': ['NumberedList', 'BulletedList', 'Outdent', 'Indent',
+                          'HorizontalRule', 'JustifyLeft', 'JustifyCenter',
+                          'JustifyRight', 'JustifyBlock', ],
+            },
+            {
+                'name': 'links',
+                'items': ['Link', 'Unlink', ],
+            },
+            {
+                'name': 'extra',
+                'items': ['Blockquote', 'Image', 'Table',
+                          'CodeSnippet', 'Mathjax', ],
+            },
 
+            {
+                'name': 'source',
+                'items': ['Maximize', 'Source', ],
+            },
+            {
+                'name': 'styles',
+                'items': ['Styles', 'Format', 'Font', 'FontSize'],
+            },
+            {'name': 'colors',
+             'items': ['TextColor', 'BGColor']}
+        ],
+
+        # This hides the default title provided by CKEditor
+        'title': False,
+
+        # Use this toolbar
+        'toolbar': 'DefaultToolbarConfig',
+
+        # Which tags to allow in format tab
+        'format_tags': 'p;h1;h2;h3;h4;h5;h6',
+
+        # Remove these dialog tabs (semicolon separated dialog:tab)
+        'removeDialogTabs': ';'.join([
+            'image:advanced',
+            'image:Link',
+            'link:upload',
+            'table:advanced',
+            'tableProperties:advanced',
+        ]),
+        'linkShowTargetTab': True,
+        'linkShowAdvancedTab': False,
+
+        # CKEditor height and width settings
+        'height': '400px',
+        'width': 'auto',
+        'forcePasteAsPlainText ': True,
+
+        # Class used inside span to render mathematical formulae using latex
+        'mathJaxClass': 'mathjax-latex',
+
+        # Mathjax library link to be used to render mathematical formulae
+        'mathJaxLib': 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_SVG',
+
+        # Tab = 4 spaces inside the editor
+        'tabSpaces': 4,
+
+        # Extra plugins to be used in the editor
+        'extraPlugins': ','.join([
+            'mathjax',  # Used to render mathematical formulae
+        ]),
+    }
 }
