@@ -1,3 +1,4 @@
+from urllib import request
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -22,8 +23,12 @@ class HomeView(ListView):
     model = Post
     template_name = "blog/home.html"  # <app>/<model>_<viewtype>.html
     context_object_name = "posts"  # The default is object_list
-    ordering = ["-date_posted"]
     paginate_by = 5
+
+    def get_queryset(self):
+        if self.request.user.is_staff or self.request.user.is_superuser:
+            return Post.objects.all()
+        return Post.objects.active()
 
     def get_context_data(self, *args, **kwargs):
         context = super(HomeView, self).get_context_data(*args, **kwargs)
@@ -31,7 +36,7 @@ class HomeView(ListView):
         return context
 
 
-class UserPostListView(ListView):
+class UserPostListView(ListView):  # Not actively worked on
     model = Post
     template_name = "blog/user_posts.html"  # <app>/<model>_<viewtype>.html
     context_object_name = "posts"  # The default is object_list
@@ -42,7 +47,8 @@ class UserPostListView(ListView):
         return Post.objects.filter(author=user).order_by("-date_posted")
 
     def get_context_data(self, *args, **kwargs):
-        context = super(UserPostListView, self).get_context_data(*args, **kwargs)
+        context = super(UserPostListView, self).get_context_data(
+            *args, **kwargs)
         context["cat_list"] = Category.objects.all()
         return context
 
@@ -140,7 +146,10 @@ class CategoryView(ListView):
 
     def get_queryset(self):
         cat = self.kwargs.get("cat").replace("-", " ")
-        return Post.objects.filter(category=cat).order_by("-date_posted")
+        posts = Post.objects.active()
+        if self.request.user.is_staff or self.request.user.is_superuser:
+            posts = Post.objects.all()
+        return posts.filter(category=cat)
 
     def get_context_data(self, *args, **kwargs):
         context = super(CategoryView, self).get_context_data(*args, **kwargs)
@@ -191,15 +200,20 @@ def PostLikeView(request, slug):
 
 
 def SearchView(request):
-    """Controls what is shown to a user when they search for a post."""
+    """Controls what is shown to a user when they search for a post. A note...I never bothered to make sure admins could see draft posts in this view"""
     cat_list = Category.objects.all()
     if request.method == 'POST':
         searched = request.POST['searched']
-        filtered_posts = Post.objects.filter(Q(content__icontains=searched) | Q(title__icontains=searched))
+        posts = Post.objects.active()
+        if request.user.is_staff or request.user.is_superuser:
+            posts = Post.objects.all()
+        filtered_posts = posts.filter(
+            Q(content__icontains=searched) | Q(title__icontains=searched))
         return render(
             request,
             "blog/search_posts.html",
-            {"cat_list": cat_list, "searched": searched, "filtered_posts": filtered_posts},
+            {"cat_list": cat_list, "searched": searched,
+                "filtered_posts": filtered_posts},
         )
     else:
         return render(

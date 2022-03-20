@@ -17,8 +17,9 @@
     <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
     <div class="media-body">
         <div class="article-metadata">
-            <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-            <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+            <nobr>John Solly <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+                {% if post.draft %} <span style="color:red"> (Draft)</span> {% endif %}
+              </nobr>
         </div>
         <h2><a class="article-title" href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h2>
         <p class="article-content">{{ post.snippet|safe }}...</p>

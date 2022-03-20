@@ -11,7 +11,7 @@ choices = Category.objects.all().values_list('name', 'name') # comment this if d
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ("title", "slug", "category", "metadesc", "snippet", "content")
+        fields = ("title", "slug", "category", "metadesc", "draft", "snippet", "content")
 
         widgets = {
             "title": forms.TextInput(attrs={"class": "form-control"}),

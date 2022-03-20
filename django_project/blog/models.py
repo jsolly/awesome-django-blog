@@ -7,6 +7,15 @@ from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from .utils import slugify_instance_title
 
+
+class PostManager(models.Manager):
+    def active(self, *args, **kwargs):
+        return super(PostManager, self).filter(draft=False).order_by('-date_posted')
+
+    def all(self, *args, **kwargs):
+        return super(PostManager, self).order_by('-date_posted')
+
+
 class Category(models.Model):
     """A category contains a subset of posts that are associated with a single category"""
     name = models.CharField(max_length=100)
@@ -17,11 +26,13 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse("blog-home")
 
-class IpPerson(models.Model): #Anonymous user
+
+class IpPerson(models.Model):  # Anonymous user
     ip = models.CharField(max_length=100)
 
     def __str__(self):
         return self.ip
+
 
 class Post(models.Model):
     """Contains all the information that is relavent to a blog post"""
@@ -30,18 +41,23 @@ class Post(models.Model):
     snippet = RichTextField(max_length=300, blank=True, null=True)
     metadesc = models.CharField(max_length=140, blank=True, null=True)
     content = RichTextUploadingField(blank=True, null=True)
+    draft = models.BooleanField(default=False)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.CharField(max_length=100, default='uncategorized')
-    likes = models.ManyToManyField(IpPerson, related_name="post_likes", blank=True)
-    views = models.ManyToManyField(IpPerson, related_name="post_views", blank=True)
+    likes = models.ManyToManyField(
+        IpPerson, related_name="post_likes", blank=True)
+    views = models.ManyToManyField(
+        IpPerson, related_name="post_views", blank=True)
+
+    objects = PostManager()  # Make sure objects only include active (not draft) posts
 
     def __str__(self):
         return self.title + " | " + str(self.author)
 
     def get_absolute_url(self):
         return reverse("post-detail", kwargs={"slug": self.slug})
-    
+
     def total_likes(self):
         return self.likes.count()
 
@@ -53,8 +69,10 @@ class Post(models.Model):
             slugify_instance_title(self, save=False)
         super().save(*args, **kwargs)
 
+
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, related_name="comments")
     content = RichTextField(blank=True, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
