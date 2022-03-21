@@ -235,6 +235,16 @@ CKEDITOR_CONFIGS = {
         # Extra plugins to be used in the editor
         'extraPlugins': ','.join([
             'mathjax',  # Used to render mathematical formulae
+            'wordcount',
+            'notification'
         ]),
+        # Character count
+        'wordcount': {'showWordCount': False,
+                      'showCharCount': True,
+                      'showParagraphs': False,
+                      'countSpacesAsChars': True,
+                      'countHTML': True,
+                      'countLineBreaks':True,
+                      }
     }
 }
