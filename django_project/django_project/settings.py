@@ -6,13 +6,13 @@ https://docs.djangoproject.com/en/2.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
-
 import os
 import json
 
 with open("/etc/django_config.json") as config_file:
     config = json.load(config_file)
 
+GIT_TOKEN = config.get("GITHUB_TOKEN")
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 

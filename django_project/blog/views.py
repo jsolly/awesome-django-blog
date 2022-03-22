@@ -17,7 +17,9 @@ from django.views.generic import (
 from .models import Post, Comment, Category, IpPerson
 from users.models import Profile
 from .forms import PostForm, CommentForm
-
+from django_project.settings import GIT_TOKEN
+import requests
+HEAD = {"Authorization": f"token {GIT_TOKEN}"}
 
 class HomeView(ListView):
     model = Post
@@ -169,11 +171,23 @@ def AboutView(request):
 
 
 def RoadMapView(request):
+    all_issues = requests.request(
+        method="GET", url='https://api.github.com/repos/jsolly/blogthedata/issues', params={'state':'open'}, headers=HEAD).json()
+
+    inprog_cards = requests.request(
+            method="GET", url='https://api.github.com/projects/columns/18242400/cards', headers=HEAD,
+        ).json()
+    inprog_issue_urls = [card['content_url'] for card in inprog_cards ]
+    backlog_issues = [issue for issue in all_issues if issue['url'] not in inprog_issue_urls]
+    inprog_issues = [issue for issue in all_issues if issue['url'] in inprog_issue_urls]
+
     cat_list = Category.objects.all()
     return render(
         request,
         "blog/roadmap.html",
-        {"cat_list": cat_list},
+        {"cat_list": cat_list,
+        "backlog_issues": backlog_issues,
+        "inprog_issues": inprog_issues,}
     )
 
 
