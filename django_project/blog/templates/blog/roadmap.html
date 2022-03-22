@@ -2,35 +2,37 @@
 {% block title %}Road Map{% endblock %}
 
 {% block metadescription %}
-    <meta name="description" content="Roadmap of feature development on blogthedata.com">
+<meta name="description" content="Roadmap of feature development on blogthedata.com">
 {% endblock %}
 
 {% block content %}
 <h1>Road Map</h1>
 </br>
-<h3>Todo</h3>
+<h3>In Progress</h3>
 <ul>
+  {% for issue in inprog_issues %}
+  <li><a href="https://github.com/jsolly/blogthedata/issues/{{ issue.number }}" target="_blank">{{ issue.title }}</a></li>
+  {% endfor %}
+</ul>
+<h3>Backlog</h3>
+<ul>
+  {% for issue in backlog_issues %}
+  <li> <a href="https://github.com/jsolly/blogthedata/issues/{{ issue.number }}" target="_blank">{{ issue.title }}</a></li>
+  {% endfor %}
   <li>Improved social media sharing (previews, etc)</li>
   <li>Add character counter to fields with character limits</li>
-  <li>Add a footer with Copyright, Sitemap, Privacy Policy, Terms of use, Contact, Site navigation, social media icons, site search</li>
+  <li>Add a footer with Copyright, Sitemap, Privacy Policy, Terms of use, Contact, Site navigation, social media icons,
+    site search</li>
   <!--
     https://www.orbitmedia.com/blog/website-footer-design-best-practices/
     https://favicon.io/emoji-favicons/bar-chart
   
   -->
-</ul>
-</br>
-<h3>Active Backlog</h3>
-<ul>
   <li>Start using 'Git Flow' </li>
   <li>Add sort by most popular posts</li>
   <li>Make post like button an AJAX call to prevent reloading</li>
   <li>Create Application Diagram</li>
 
-</ul>
-</br>
-<h3>Backburner/Ideas</h3>
-<ul>
   <li>Add cache control for performance</li>
   <li>Login with email or username</li>
   <li>Reverse pagination on comments (Latest is at the top)</li>
@@ -41,33 +43,5 @@
   <li>Migrate to serverless architecture (AWS Lambda?)</li>
   <li>Move to React front end?</li>
 </ul>
-</br>
-<h3>Functional Requirements ✅ </h3>
-<ul>
-  <li><del>Add Ability to save posts as drafts</del></li>
-  <li><del>Add Mathmatical formulas to ckeditor</del></li>
-  <li><del>Create Newsletter 🗞</del></li>
-  <li><del>Change post snippet from a truncated post to a snippet field</del></li>
-  <li><del>Add ability to upload images to server ⏫ </del></li>
-  <li><del>Add Favicon and serve different file depending on device (mobile vs desktop)</del></li>
-  <li><del>Improve url slugging so that they aren't just /post/5 🐌 </del></li>
-  <li><del>Add line numbers to code snippets (check out prism plugin)</del></li>
-  <li><del>Add code snippets to ckeditor</del></li>
-  <li><del>Add spell-check to ckeditor 🔤 </del></li>
-  <li><del>Add an 'All Categories' link in sidebar</del></li>
-  <li><del>Like button for posts 👍</del></li>
-  <li><del>Views for posts </del></li>
-  <li><del>Post categories</del></li>
-  <del><li>Global Search (to find posts) 🔎 </li></del>
-</ul>
-<h3>Non-functional Requirements ✅</h3>
-<ul>
-  <li><del>Add meta description field to posts</del></li>
-  <li><del>Add alt text to all images 🏞 </del></li>
-  <li><del>Rename image files to be SEO friendly</del></li>
-  <li><del>Migrate from sqlite to postgres db</del></li>
-  <li><del>Use Git Hooks to collect static files before commits 🪝</del></li>
-  <li><del>Add meta descriptions to each page</del></li>
-  </ul>
-</br>
+<h3><a href="https://github.com/jsolly/blogthedata/issues?q=is%3Aissue+is%3Aclosed" target="_blank">Link to Completed ✅ </a></h3>
 {% endblock content %}
