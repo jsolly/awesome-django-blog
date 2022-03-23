@@ -1,0 +1,1 @@
+~/Documents/code/blogthedata/django_project/venv/bin/python3 ~/Documents/code/blogthedata/django_project/manage.py collectstatic --noinput
