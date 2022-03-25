@@ -5,6 +5,9 @@ ssh jsolly@69.164.205.120
  python3 manage.py makemigrations --name changed_my_model your_app_label
  python3 manage.py migrate
 
+ ### Roll back migration
+ python3 manage.py migrate blog 0011
+
 After pulling new changes from github
 1 - Modify settings.py as needed
 2 - source venv/bib/activate to get the Python virtual env

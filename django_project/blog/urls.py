@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from .views import (
     HomeView,
     PostDetailView,
@@ -38,10 +40,14 @@ urlpatterns = [
     path("post/new", CreatePostView.as_view(), name="post-create"),
     path("post/<slug:slug>/update", PostUpdateView.as_view(), name="post-update"),
     path("post/<slug:slug>/delete", PostDeleteView.as_view(), name="post-delete"),
-    path("post/<slug:slug>/comment/", CreateCommentView.as_view(), name="comment-create"),
+    path("post/<slug:slug>/comment/",
+         CreateCommentView.as_view(), name="comment-create"),
     path("category/<str:cat>/", CategoryView.as_view(), name='blog-category'),
     path('like/<slug:slug>', PostLikeView, name='post-like'),
     path("roadmap/", RoadMapView, name="blog-roadmap"),
     path("search/", SearchView, name="blog-search")
 
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

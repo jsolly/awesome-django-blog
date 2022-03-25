@@ -1,8 +1,12 @@
 {% extends "blog/base.html" %}
 {% block title %} {{post.title}} {% endblock %}
 
-{% block metadescription %}
+{% block meta %}
     <meta name="description" content="{{ post.metadesc }}">
+    <meta property="og:image" content="{{ post.metaimg.url }}">
+    <meta property="og:image:type" content="{{ post.metaimg_mimetype }}">
+    <meta property="og:image:width" content="{{ post.metaimg.width }}">
+    <meta property="og:image:height" content="{{ post.metaimg.height }}">
 {% endblock %}
 
 {% block content %}
