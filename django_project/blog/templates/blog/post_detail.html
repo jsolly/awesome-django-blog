@@ -3,6 +3,9 @@
 
 {% block meta %}
     <meta name="description" content="{{ post.metadesc }}">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="{{ post.date_posted|date:'c' }}">
+    <meta name="author" content="John Solly">
     <meta property="og:image" content="{{ post.metaimg.url }}">
     <meta property="og:image:type" content="{{ post.metaimg_mimetype }}">
     <meta property="og:image:width" content="{{ post.metaimg.width }}">
