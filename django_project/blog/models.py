@@ -1,12 +1,11 @@
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-from django.db.models.signals import pre_save, post_save
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from .utils import slugify_instance_title
-
+import filetype
 
 class PostManager(models.Manager):
     def active(self, *args, **kwargs):
@@ -38,13 +37,15 @@ class Post(models.Model):
     """Contains all the information that is relavent to a blog post"""
     title = models.CharField(max_length=60)
     slug = models.SlugField(unique=True, blank=True, null=True)
-    snippet = RichTextField(max_length=300, blank=True, null=True)
+    category = models.CharField(max_length=100, default='uncategorized')
     metadesc = models.CharField(max_length=140, blank=True, null=True)
-    content = RichTextUploadingField(blank=True, null=True)
     draft = models.BooleanField(default=False)
+    metaimg = models.ImageField(default="jsolly.jpeg", upload_to="post_metaimgs/")
+    metaimg_mimetype = models.CharField(max_length=20, default="image/jpeg")
+    snippet = RichTextField(max_length=300, blank=True, null=True)
+    content = RichTextUploadingField(blank=True, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    category = models.CharField(max_length=100, default='uncategorized')
     likes = models.ManyToManyField(
         IpPerson, related_name="post_likes", blank=True)
     views = models.ManyToManyField(
@@ -67,6 +68,8 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             slugify_instance_title(self, save=False)
+
+        self.metaimg_mimetype = filetype.guess(self.metaimg).MIME
         super().save(*args, **kwargs)
 
 
