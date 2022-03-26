@@ -135,15 +135,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-)
+]
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = "/media/"
 
 LOGIN_REDIRECT_URL = "blog-home"
 LOGIN_URL = "login"
@@ -211,7 +211,6 @@ CKEDITOR_CONFIGS = {
         'removeDialogTabs': ';'.join([
             'image:advanced',
             'image:Link',
-            'link:upload',
             'table:advanced',
             'tableProperties:advanced',
         ]),
