@@ -226,7 +226,7 @@ CKEDITOR_CONFIGS = {
         'mathJaxClass': 'mathjax-latex',
 
         # Mathjax library link to be used to render mathematical formulae
-        'mathJaxLib': 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_SVG',
+        'mathJaxLib': '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML',
 
         # Tab = 4 spaces inside the editor
         'tabSpaces': 4,
