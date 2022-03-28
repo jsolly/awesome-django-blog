@@ -1,13 +1,23 @@
 {
-    "configurations": [
+  "configurations": [
     {
-        "name": "BlogTheData",
-        "python": "/Users/johnsolly/Documents/code/blogthedata/django_project/venv/bin/python3",
-        "type": "python",
-        "request": "launch",
-        "program": "/Users/johnsolly/Documents/code/blogthedata/django_project/manage.py",
-        "console": "internalConsole",
-        "args": ["runserver"]
-      }
-    ]
+      "name": "Python: Current File",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "BlogTheData",
+      "python": "/Users/johnsolly/Documents/code/blogthedata/django_project/venv/bin/python3",
+      "type": "python",
+      "request": "launch",
+      "program": "/Users/johnsolly/Documents/code/blogthedata/django_project/manage.py",
+      "console": "internalConsole",
+      "args": [
+        "runserver"
+      ]
+    }
+  ]
 }
