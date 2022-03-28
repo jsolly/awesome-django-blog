@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 import json
 
-with open("/etc/django_config.json") as config_file:
+with open("/etc/django_config.json", encoding="utf-8") as config_file:
     config = json.load(config_file)
 
 GIT_TOKEN = config.get("GITHUB_TOKEN")
@@ -144,7 +144,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
 
-
 LOGIN_REDIRECT_URL = "blog-home"
 LOGIN_URL = "login"
 
@@ -243,7 +242,7 @@ CKEDITOR_CONFIGS = {
                       'showParagraphs': False,
                       'countSpacesAsChars': True,
                       'countHTML': True,
-                      'countLineBreaks':True,
+                      'countLineBreaks': True,
                       }
     }
 }
