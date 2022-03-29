@@ -34,7 +34,7 @@ class IpPerson(models.Model):  # Anonymous user
 
 
 class Post(models.Model):
-    """Contains all the information that is relavent to a blog post"""
+    """Contains all the information that is relevant to a blog post"""
     title = models.CharField(max_length=60)
     slug = models.SlugField(unique=True, blank=True, null=True)
     category = models.CharField(max_length=100, default='uncategorized')
