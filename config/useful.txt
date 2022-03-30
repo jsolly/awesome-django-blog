@@ -49,7 +49,7 @@ ssh jsolly@69.164.205.120 "dd if=/dev/sda " | dd of=/Users/johnsolly/Documents/c
 ### Code Coverage
 coverage run -m unittest discover
 coverage report -m
-coverage html --skip-empty -d templates/
+coverage html --skip-empty -d blog/templates/htmlcov --omit=.gitignore
 
 # Not needed anymore
 python3 manage.py collectstatic

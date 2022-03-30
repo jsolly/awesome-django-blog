@@ -29,7 +29,8 @@ from .views import (
     AboutView,
     PostLikeView,
     RoadMapView,
-    SearchView
+    SearchView,
+    UnitTestView
 )
 
 urlpatterns = [
@@ -48,6 +49,8 @@ urlpatterns = [
     path("search/", SearchView, name="blog-search"),
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path("unittests/", UnitTestView, name="blog-unittest"),
+    path("unittests/<str:filename>", UnitTestView, name="blog-unittest")
 
 ]
 if settings.DEBUG:
