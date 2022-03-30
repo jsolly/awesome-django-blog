@@ -235,3 +235,15 @@ def SearchView(request):
             "blog/search_posts.html",
             {"cat_list": cat_list},
         )
+
+def UnitTestView(request, filename=None):
+    cat_list = Category.objects.all()
+    html_path = "htmlcov/index.html"
+    if filename:
+        html_path = f"htmlcov/{filename}"
+
+    return render(
+        request,
+        html_path,
+        {"cat_list": cat_list}
+    )
