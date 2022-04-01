@@ -21,6 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path("", include("blog.urls")),
     path("admin/", admin.site.urls),
     path("register/", user_views.register, name="register"),
     path("profile/", user_views.profile, name="profile"),
@@ -54,7 +55,6 @@ urlpatterns = [
         ),
         name="password_reset_confirm",
     ),
-    path("", include("blog.urls")),
     path(
         "password-reset-complete/",
         auth_views.PasswordResetCompleteView.as_view(
@@ -63,9 +63,7 @@ urlpatterns = [
         name="password_reset_complete",
     ),
     path("captcha", include("captcha.urls")),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
-
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)

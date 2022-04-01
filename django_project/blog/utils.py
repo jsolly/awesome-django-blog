@@ -10,6 +10,16 @@ def slugify_instance_title(instance, save=False, new_slug=None):
         instance.save()
 
 
+def get_client_ip(request):
+    x_forward_for = request.META.get("HTTP_X_FORWARD_FOR")
+
+    if x_forward_for:
+        ip = x_forward_for.split(",")[0]
+    else:
+        ip = request.META.get("REMOTE_ADDR")
+    return ip
+
+
 # def post_pre_save(sender, instance, *args, **kwargs):
 #     print("pre_save")
 #     if instance.slug is None:

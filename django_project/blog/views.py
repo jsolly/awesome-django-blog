@@ -1,10 +1,8 @@
-from urllib import request
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.db.models import Q
-from django.forms import widgets
 from django.urls import reverse
 from django.views.generic import (
     ListView,
@@ -14,12 +12,13 @@ from django.views.generic import (
     DeleteView,
     UpdateView,
 )
-from .models import Post, Comment, Category, IpPerson
 from users.models import Profile
-from .forms import PostForm, CommentForm
-from django_project.settings import GIT_TOKEN
 import requests
+from django_project.settings import GIT_TOKEN
 HEAD = {"Authorization": f"token {GIT_TOKEN}"}
+from .models import Post, Comment, Category, IpPerson
+from .forms import PostForm, CommentForm
+from .utils import get_client_ip
 
 class HomeView(ListView):
     model = Post
@@ -189,16 +188,6 @@ def RoadMapView(request):
         "backlog_issues": backlog_issues,
         "inprog_issues": inprog_issues,}
     )
-
-
-def get_client_ip(request):
-    x_forward_for = request.META.get("HTTP_X_FORWARD_FOR")
-
-    if x_forward_for:
-        ip = x_forward_for.split(",")[0]
-    else:
-        ip = request.META.get("REMOTE_ADDR")
-    return ip
 
 
 def PostLikeView(request, slug):

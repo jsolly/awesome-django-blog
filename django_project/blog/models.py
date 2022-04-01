@@ -4,8 +4,8 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
-from .utils import slugify_instance_title
 import filetype
+from .utils import slugify_instance_title
 
 class PostManager(models.Manager):
     def active(self, *args, **kwargs):
@@ -68,8 +68,11 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             slugify_instance_title(self, save=False)
-
-        self.metaimg_mimetype = filetype.guess(self.metaimg).MIME
+        try:
+            self.metaimg_mimetype = filetype.guess(self.metaimg).MIME
+        except AttributeError:
+            pass
+        
         super().save(*args, **kwargs)
 
 

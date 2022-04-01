@@ -19,6 +19,13 @@
       "args": [
         "runserver"
       ]
-    }
+    },
+    {
+      "name": "Python: Debug Unit Tests",
+      "type": "python",
+      "request": "launch",
+      "purpose": ["debug-test"],
+      "justMyCode": true,
+  }
   ]
 }
