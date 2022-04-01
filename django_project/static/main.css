@@ -19,6 +19,8 @@
 
 .article-title {
   color: #444444;
+  text-decoration: none;
+  margin-bottom: 0;
 }
 
 a.article-title:hover {
