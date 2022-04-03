@@ -27,6 +27,7 @@ SECRET_KEY = config.get("SECRET_KEY")
 DEBUG = False
 if config['DEBUG'] == 'True':
     DEBUG = True
+    CAPTCHA_TEST_MODE = True 
 
 ALLOWED_HOSTS = config.get("ALLOWED_HOSTS")
 
