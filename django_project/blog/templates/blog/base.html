@@ -41,7 +41,7 @@
     <!-- My CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}" />
 
-  <title>{% block title %} Solly's Blog {% endblock %}</title>
+  <title>{% block title %} Solly's Blog | A blog about data-driven decisions {% endblock %}</title>
 </head>
 
 <body>
@@ -118,6 +118,9 @@
         {% block content %}{% endblock %}
       </div>
       <div class="col-md-4">
+        <!-- About Section-->
+        <h3>About</h4>
+          <p>Great decisions are informed by data. I present deeply researched articles to improve your life. </p>
           <!-- Category Menu Code -->
           <h3>Navigate to a Category</h3>
           <div class="list-group">
