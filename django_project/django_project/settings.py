@@ -56,6 +56,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+     "django.utils.deprecation.MiddlewareMixin",
 ]
 
 ROOT_URLCONF = "django_project.urls"
@@ -146,7 +147,7 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 
 
 LOGIN_REDIRECT_URL = "blog-home"
-LOGIN_URL = "login"
+LOGIN_URL = "login/"
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"

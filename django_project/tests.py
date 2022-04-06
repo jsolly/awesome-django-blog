@@ -4,13 +4,15 @@ import warnings
 from PIL import Image
 
 from django import setup
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
+setup()
 from django.test import TestCase, Client
 from django.urls import resolve, reverse
 from django.contrib.messages import get_messages
 from django.test.utils import setup_test_environment
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
-setup()
+from django.utils.deprecation import MiddlewareMixin
+from django.conf import settings
+from django.contrib.auth import views as auth_views
 from blog.views import (
     add_ip_person_if_not_exist,
     add_ip_person_view_if_not_exist,
@@ -161,8 +163,9 @@ class TestUrls(SetUp):
     # def test_profile_url_is_resolved(self):
     #     self.assertEqual(resolve(self.unittest_url).func, UnitTestView)
 
-    # def test_login_url_is_resolved(self):
-    #     self.assertEqual(resolve(self.unittest_url).func, UnitTestView)
+    def test_login_url_is_resolved(self):
+        self.assertEqual(resolve(self.login_url).func.view_class, auth_views.LoginView)
+        self.assertEqual(f"/{settings.LOGIN_URL}", self.login_url)
 
     # def test_logout_url_is_resolved(self):
     #     self.assertEqual(resolve(self.unittest_url).func, UnitTestView)
@@ -332,8 +335,12 @@ class TestViews(SetUp):
     #         response = self.client.get(self.profile_url)
     #         self.assertEqual(response.status_code, 200)
 
-    # def test_login
+    def test_login_view(self):
+        data = {'username':self.user1.username, 'password':self.user1.password}
+        response = self.client.post(self.login_url, data=data, follow=True)
 
+        for message in get_messages(response.wsgi_request):
+            print(message)
     # def test_logout
 
     # define test_password_reset
@@ -345,13 +352,17 @@ class TestViews(SetUp):
     # def test_password_reset_complete
 
 
-class TestUtils(SetUp):
+class TestUtils(SetUp, MiddlewareMixin):
     """Tests for helper functions"""
 
-    def test_get_client_ip(self):  # Is this the right way to do this?
+    def test_get_client_ip(self):
         request = self.client.get(self.post1_detail_url).wsgi_request
+        self.assertEqual(get_client_ip(request), self.localhost_ip) 
+
+        # Simulate connecting via proxy server
+        request.META['HTTP_X_FORWARD_FOR'] = "1.1.1.1, 127.0.0.1"
         self.assertEqual(get_client_ip(request),
-                         self.localhost_ip)
+                         '1.1.1.1')
 
     def test_slugify_instance_title(self):
         slugify_instance_title(self.post1, new_slug='My-First-Post', save=True)
