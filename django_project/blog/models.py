@@ -9,10 +9,10 @@ from .utils import slugify_instance_title
 
 class PostManager(models.Manager):
     def active(self, *args, **kwargs):
-        return super(PostManager, self).filter(draft=False).order_by('-date_posted')
+        return super().filter(draft=False).order_by('-date_posted')
 
     def all(self, *args, **kwargs):
-        return super(PostManager, self).order_by('-date_posted')
+        return super().order_by('-date_posted')
 
 
 class Category(models.Model):
@@ -23,7 +23,7 @@ class Category(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("blog-home")
+       return reverse("blog-category", kwargs={"cat": self.name})
 
 
 class IpPerson(models.Model):  # Anonymous user
@@ -51,7 +51,7 @@ class Post(models.Model):
     views = models.ManyToManyField(
         IpPerson, related_name="post_views", blank=True)
 
-    objects = PostManager()  # Make sure objects only include active (not draft) posts
+    objects = PostManager()  # Make sure objects only include active (not draft) posts.
 
     def __str__(self):
         return self.title + " | " + str(self.author)
@@ -72,7 +72,7 @@ class Post(models.Model):
             self.metaimg_mimetype = filetype.guess(self.metaimg).MIME
         except AttributeError:
             pass
-        
+
         super().save(*args, **kwargs)
 
 

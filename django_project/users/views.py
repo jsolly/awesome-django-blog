@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from blog.models import Category
 
 
-def register(request):
+def RegisterView(request):
     cat_list = Category.objects.all()
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
@@ -21,9 +21,6 @@ def register(request):
                 messages.success(request, f"Account created for {username}")
                 return redirect("blog-home")
 
-        else:
-            messages.error(request, "Wrong Capcha!")
-
     else:
         form = UserRegisterForm()
 
@@ -31,7 +28,7 @@ def register(request):
 
 
 @login_required
-def profile(request):
+def ProfileView(request):
     if request.method == "POST":
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(

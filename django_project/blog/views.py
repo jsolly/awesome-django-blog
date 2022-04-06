@@ -18,7 +18,27 @@ from django_project.settings import GIT_TOKEN
 HEAD = {"Authorization": f"token {GIT_TOKEN}"}
 from .models import Post, Comment, Category, IpPerson
 from .forms import PostForm, CommentForm
-from .utils import get_client_ip
+from .utils import get_client_ip, get_post_like_status
+
+
+def add_ip_person_if_not_exist(request):
+    ip = get_client_ip(request)
+    # Check to see if we should +1 view count (for this IpPerson)
+    try:
+        return IpPerson.objects.get(ip=ip)
+    except IpPerson.DoesNotExist:
+        return IpPerson.objects.create(ip=ip)
+
+
+def add_ip_person_view_if_not_exist(request, post):
+    ip_person = add_ip_person_if_not_exist(request)
+    ip = get_client_ip(request)
+    if post.views.filter(ip=ip).exists():
+        return ip_person
+
+    post.views.add(ip_person)
+    return ip_person
+
 
 class HomeView(ListView):
     model = Post
@@ -63,26 +83,13 @@ class PostDetailView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         """Need to re-generate context based on whether user has viewed post or not"""
-        context = super(DetailView, self).get_context_data(*args, **kwargs)
+        context = super().get_context_data(*args, **kwargs)
         context["cat_list"] = Category.objects.all()
 
-        ip = get_client_ip(self.request)
         post = Post.objects.get(slug=self.object.slug)
-        # Check to see if we should +1 view count
-        if not IpPerson.objects.filter(ip=ip).exists():
-            IpPerson.objects.create(ip=ip)
+        add_ip_person_view_if_not_exist(self.request, post)
 
-        post.views.add(IpPerson.objects.get(ip=ip))
-
-        # Check to see if we should +1 total likes
-        like_status = False
-        try:
-            if self.object.likes.filter(id=IpPerson.objects.get(ip=ip).id).exists():
-                like_status = True
-        except IpPerson.DoesNotExist:
-            pass
-
-        context["like_status"] = like_status
+        context["like_status"] = get_post_like_status(self.request, post)
         return context
 
 
@@ -171,34 +178,37 @@ def AboutView(request):
 
 def RoadMapView(request):
     all_issues = requests.request(
-        method="GET", url='https://api.github.com/repos/jsolly/blogthedata/issues', params={'state':'open'}, headers=HEAD).json()
+        method="GET", url='https://api.github.com/repos/jsolly/blogthedata/issues', params={'state': 'open'}, headers=HEAD).json()
 
     inprog_cards = requests.request(
-            method="GET", url='https://api.github.com/projects/columns/18242400/cards', headers=HEAD,
-        ).json()
-    inprog_issue_urls = [card['content_url'] for card in inprog_cards ]
-    backlog_issues = [issue for issue in all_issues if issue['url'] not in inprog_issue_urls]
-    inprog_issues = [issue for issue in all_issues if issue['url'] in inprog_issue_urls]
+        method="GET", url='https://api.github.com/projects/columns/18242400/cards', headers=HEAD,
+    ).json()
+    inprog_issue_urls = [card['content_url'] for card in inprog_cards]
+    backlog_issues = [
+        issue for issue in all_issues if issue['url'] not in inprog_issue_urls]
+    inprog_issues = [
+        issue for issue in all_issues if issue['url'] in inprog_issue_urls]
 
     cat_list = Category.objects.all()
     return render(
         request,
         "blog/roadmap.html",
         {"cat_list": cat_list,
-        "backlog_issues": backlog_issues,
-        "inprog_issues": inprog_issues,}
+         "backlog_issues": backlog_issues,
+         "inprog_issues": inprog_issues, }
     )
 
 
 def PostLikeView(request, slug):
     post = Post.objects.get(slug=slug)
     ip = get_client_ip(request)
-    if not IpPerson.objects.filter(ip=ip).exists():
-        IpPerson.objects.create(ip=ip)
-    if post.likes.filter(id=IpPerson.objects.get(ip=ip).id).exists():
+
+    ip_person = add_ip_person_view_if_not_exist(request, post)
+
+    if post.likes.filter(id=ip_person.id).exists():
         post.likes.remove(IpPerson.objects.get(ip=ip))
     else:
-        post.likes.add(IpPerson.objects.get(ip=ip))
+        post.likes.add(ip_person)
     return HttpResponseRedirect(reverse("post-detail", args=[str(slug)]))
 
 
@@ -224,6 +234,7 @@ def SearchView(request):
             "blog/search_posts.html",
             {"cat_list": cat_list},
         )
+
 
 def UnitTestView(request, filename=None):
     cat_list = Category.objects.all()
