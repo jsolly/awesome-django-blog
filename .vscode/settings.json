@@ -8,7 +8,4 @@
     ],
     "python.testing.pytestEnabled": false,
     "python.testing.unittestEnabled": true,
-    "python.testing.pytestArgs": [
-        "django_project"
-    ]
 }
