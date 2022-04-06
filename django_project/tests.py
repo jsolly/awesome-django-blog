@@ -1,9 +1,7 @@
-from ipaddress import ip_address
 import os
-from telnetlib import IP
-from threading import local
 import unittest
 import warnings
+from PIL import Image
 
 from django import setup
 from django.test import TestCase, Client
@@ -41,17 +39,18 @@ from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 class SetUp(TestCase):
     """Create User and Post object to be shared by tests. Also create urls using reverse()"""
     setup_test_environment()
+
     def setUp(self):
         warnings.simplefilter('ignore', category=ResourceWarning)
         self.localhost_ip = '127.0.0.1'
 
         if IpPerson.objects.filter(ip=self.localhost_ip).exists():
-            localhost_ip_person =  IpPerson.objects.get(ip=self.localhost_ip)
+            localhost_ip_person = IpPerson.objects.get(ip=self.localhost_ip)
             localhost_ip_person.delete()
 
         # User Object
         self.user1 = User.objects.create_superuser(username="test_superuser")
-        self.assertTrue(Profile.objects.get(user=self.user1))
+        self.profile1 = Profile.objects.get(user=self.user1)
 
         # Post Object
         self.category1 = Category.objects.create(name="TEST")
@@ -82,7 +81,8 @@ class SetUp(TestCase):
         self.post_update_url = reverse("post-update", args=['some-slug'])
         self.post_delete_url = reverse("post-delete", args=['some-slug'])
         self.create_comment_url = reverse("comment-create", args=['some-slug'])
-        self.category_url = reverse("blog-category", args=[self.category1.name])
+        self.category_url = reverse(
+            "blog-category", args=[self.category1.name])
         self.about_url = reverse("blog-about")
         self.roadmap_url = reverse("blog-roadmap")
         self.search_url = reverse("blog-search")
@@ -185,14 +185,15 @@ class TestUrls(SetUp):
 
 class TestViews(SetUp):
     def test_add_ip_person_if_not_exist(self):
-        self.assertFalse(IpPerson.objects.filter(ip=self.localhost_ip).exists())
+        self.assertFalse(IpPerson.objects.filter(
+            ip=self.localhost_ip).exists())
         request = self.client.get(self.home_url).wsgi_request
         add_ip_person_if_not_exist(request)
         self.assertTrue(IpPerson.objects.filter(ip=self.localhost_ip).exists())
 
-
     def test_add_ip_person_view_if_not_exist(self):
-        self.assertFalse(self.post1.views.filter(ip=self.localhost_ip).exists())
+        self.assertFalse(self.post1.views.filter(
+            ip=self.localhost_ip).exists())
         request = self.client.get(self.post1_detail_url).wsgi_request
 
         ip_person = add_ip_person_view_if_not_exist(request, self.post1)
@@ -243,7 +244,7 @@ class TestViews(SetUp):
 
     # def post_delete_view
 
-    def test_category_view(self): #TODO
+    def test_category_view(self):  # TODO
         response = self.client.get(self.category_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/categories.html')
@@ -255,42 +256,44 @@ class TestViews(SetUp):
         self.assertTemplateUsed(response, 'blog/about.html')
         self.assertIsInstance(response.context['my_profile'], Profile)
 
-    def test_roadmap_view(self): #TODO
+    def test_roadmap_view(self):  # TODO
         response = self.client.get(self.roadmap_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/roadmap.html')
 
     def test_post_like_view(self):
         response = self.client.get(self.post1_like_url, follow=True)
-        self.assertRedirects(response, expected_url=f"/post/{self.post1.slug}/")
+        self.assertRedirects(
+            response, expected_url=f"/post/{self.post1.slug}/")
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/post_detail.html')
         self.assertTrue(self.post1.likes.filter(ip=self.localhost_ip).exists())
-   
+
         # # Unlike post
         response = self.client.get(self.post1_like_url, follow=True)
-        self.assertRedirects(response, expected_url=f"/post/{self.post1.slug}/")
+        self.assertRedirects(
+            response, expected_url=f"/post/{self.post1.slug}/")
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/post_detail.html')
-        self.assertFalse(self.post1.likes.filter(ip=self.localhost_ip).exists())
+        self.assertFalse(self.post1.likes.filter(
+            ip=self.localhost_ip).exists())
 
     def test_search_view(self):
         # Empty page if user didn't search for anything and manually typed in the search url (get)
-        response=self.client.get(self.search_url)
+        response = self.client.get(self.search_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/search_posts.html')
 
         # If anonymous, should be able to find a post
-        data = {"searched":"My First Post"}
+        data = {"searched": "My First Post"}
         response = self.client.post(self.search_url, data=data)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context['filtered_posts'][0], self.post1)
 
         # TODO: If authenticated, can see drafts
 
-
     def test_unittest_view(self):
-        response=self.client.get(self.unittest_url)
+        response = self.client.get(self.unittest_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'htmlcov/index.html')
 
@@ -298,10 +301,10 @@ class TestViews(SetUp):
     # def test_admin_view
 
     def test_register_view(self):
-        response=self.client.get(self.register_url)
+        response = self.client.get(self.register_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'users/register.html')
-        data={"username": "test2",
+        data = {"username": "test2",
                 "email": "example2@test.com",
                 "password1": "Coff33cak3s!",
                 "password2": "Coff33cak3s!",
@@ -309,16 +312,16 @@ class TestViews(SetUp):
                 "captcha_0": "dummy-value",
                 "captcha_1": "PASSED"}
 
-        response=self.client.post(self.register_url, data=data, follow=True)
+        response = self.client.post(self.register_url, data=data, follow=True)
         self.assertRedirects(response, expected_url="/")
         self.assertTrue('blog/home.html' in response.template_name)
 
-        data["secret_password"]="Wrong Password"
-        data["username"]="test3"
+        data["secret_password"] = "Wrong Password"
+        data["username"] = "test3"
 
-        response=self.client.post(self.register_url, data=data, follow=True)
+        response = self.client.post(self.register_url, data=data, follow=True)
 
-        message_list=[]
+        message_list = []
         for message in get_messages(response.wsgi_request):
             message_list.append(message.message)
 
@@ -346,8 +349,8 @@ class TestUtils(SetUp):
     """Tests for helper functions"""
 
     def test_get_client_ip(self):  # Is this the right way to do this?
-        response=self.client.get(self.post1_detail_url)
-        self.assertEqual(get_client_ip(response.wsgi_request),
+        request = self.client.get(self.post1_detail_url).wsgi_request
+        self.assertEqual(get_client_ip(request),
                          self.localhost_ip)
 
     def test_slugify_instance_title(self):
@@ -355,13 +358,15 @@ class TestUtils(SetUp):
         self.assertEqual(self.post1.slug, 'My-First-Post')
 
     def test_post_like_status(self):
-        self.assertFalse(self.post1.likes.filter(ip=self.localhost_ip).exists())
+        self.assertFalse(self.post1.likes.filter(
+            ip=self.localhost_ip).exists())
+
 
 class TestModels(SetUp):
     def test_post_manager_all(self):
-        posts=Post.objects.all()
+        posts = Post.objects.all()
         self.assertIsInstance(posts[0], Post)
-        post_count=posts.count()
+        post_count = posts.count()
         Post.objects.create(
             title="My Second Post",
             slug="second-post",
@@ -378,14 +383,14 @@ class TestModels(SetUp):
             # views
 
         )
-        new_post_count=Post.objects.count()
+        new_post_count = Post.objects.count()
         self.assertEqual(new_post_count, post_count + 1)
 
     def test_post_manager_active(self):
-        active_posts=Post.objects.active()
+        active_posts = Post.objects.active()
         self.assertIsInstance(active_posts[0], Post)
-        active_posts_count=active_posts.count()
-        post3=Post.objects.create(
+        active_posts_count = active_posts.count()
+        post3 = Post.objects.create(
             title="My Second Post",
             slug="second-post",
             category="health",
@@ -401,12 +406,13 @@ class TestModels(SetUp):
             # views
 
         )
-        new_active_post_count=Post.objects.active().count()
+        new_active_post_count = Post.objects.active().count()
         self.assertEqual(new_active_post_count, active_posts_count + 1)
-        post_draft=post3
-        post_draft.draft=True  # Needed a new variable, else it wasn't saving.
+        post_draft = post3
+        # Needed a new variable, else it wasn't saving.
+        post_draft.draft = True
         post_draft.save()
-        active_posts_minus_draft=Post.objects.active().count()
+        active_posts_minus_draft = Post.objects.active().count()
         self.assertEqual(active_posts_minus_draft, new_active_post_count - 1)
 
     def test_category(self):
@@ -421,7 +427,7 @@ class TestModels(SetUp):
         self.assertEqual(str(self.post1), "My First Post | test_superuser")
         self.assertEqual(self.post1.get_absolute_url(), "/post/first-post/")
 
-        post_no_slug=Post.objects.create(
+        post_no_slug = Post.objects.create(
             title="No slug given",
             # slug="first-post",
             category="health",
@@ -441,21 +447,20 @@ class TestModels(SetUp):
     # Users Models
 
     def test_profile(self):
-        self.assertEqual(str(Profile.objects.get(
-            user = self.user1)), "test_superuser Profile")
-        # TODO
-        # Create new default.png file
-        # verify it is large
-        #Profile.save()
-        # Verify image is small again.
-
-
-
+        self.assertEqual(str(self.profile1), "test_superuser Profile")
+        width, height = 400, 400
+        img = Image.new(mode="RGB", size=(width, height))
+        img.save(
+            "/Users/johnsolly/Documents/code/blogthedata/django_project/media/default.png")
+        self.profile1.save()
+        with Image.open(self.profile1.image.path) as img:
+            self.assertEqual(img.height, 300)
+            self.assertEqual(img.width, 300)
 
 
 class TestForms(SetUp):
     def test_post_form_valid_data(self):
-        form=PostForm(data={
+        form = PostForm(data={
             "title": "My Second Post",
             "slug": "second-post",
             "category": "productivity",
@@ -475,22 +480,22 @@ class TestForms(SetUp):
         self.assertTrue(form.is_valid())
 
     def test_post_form_no_data(self):
-        post_form=PostForm(data={})
+        post_form = PostForm(data={})
         self.assertFalse(post_form.is_valid())
         self.assertEqual(len(post_form.errors), 2)
 
     def test_comment_form_valid_data(self):
-        form=CommentForm(data={"content": "Hello World!"})
+        form = CommentForm(data={"content": "Hello World!"})
         self.assertTrue(form.is_valid())
 
     # How to test when you can comment nothing??
     def test_comment_form_no_data_still_valid(self):
-        form=CommentForm(data={})
+        form = CommentForm(data={})
         self.assertTrue(form.is_valid())
 
     # Users Forms
     def test_user_register_form_valid_data(self):
-        user_form=UserRegisterForm(data={"username": "test",
+        user_form = UserRegisterForm(data={"username": "test",
                                            "email": "example@test.com",
                                            "password1": "Coff33cak3s!",
                                            "password2": "Coff33cak3s!",
@@ -500,14 +505,14 @@ class TestForms(SetUp):
         self.assertTrue(user_form.is_valid())
 
     def test_user_update_form_valid_data(self):
-        form=UserUpdateForm(data={"email": "example@test.com",
+        form = UserUpdateForm(data={"email": "example@test.com",
                                     "username": "test"})
 
         self.assertTrue(form.is_valid())
 
     # Might want to add image validation
     def test_profile_update_form_valid_data(self):
-        form=ProfileUpdateForm(data={"image": "image1"})
+        form = ProfileUpdateForm(data={"image": "image1"})
 
         self.assertTrue(form.is_valid())
 
