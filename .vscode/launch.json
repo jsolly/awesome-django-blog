@@ -16,9 +16,26 @@
       "request": "launch",
       "program": "/Users/johnsolly/Documents/code/blogthedata/django_project/manage.py",
       "console": "internalConsole",
+      "django": true,
+      "autoReload": {
+        "enable": true
+      },
       "args": [
         "runserver"
       ]
-    }
+    },
+    {
+      "name": "Python: Debug",
+      "type": "python",
+      "purpose": ["debug-test"],
+      "console": "internalConsole",
+      "request": "launch",
+      "program": "${file}",
+      "justMyCode": true,
+      "django": true,
+      "autoReload": {
+        "enable": true
+      }
+  }
   ]
 }

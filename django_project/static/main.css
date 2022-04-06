@@ -63,6 +63,9 @@ blockquote {
   border-left: .25rem solid #ccc;
   }       
 
+.errorlist{
+    color: red;
+  }
   #mc_embed_signup h2 {
     font-weight: bold;
     padding: 0;

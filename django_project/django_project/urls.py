@@ -16,14 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
-from users import views as user_views
+from users.views import RegisterView, ProfileView
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path("", include("blog.urls")),
     path("admin/", admin.site.urls),
-    path("register/", user_views.register, name="register"),
-    path("profile/", user_views.profile, name="profile"),
+    path("register/", RegisterView, name="register"),
+    path("profile/", ProfileView, name="profile"),
     path(
         "login/",
         auth_views.LoginView.as_view(template_name="users/login.html"),
@@ -54,7 +55,6 @@ urlpatterns = [
         ),
         name="password_reset_confirm",
     ),
-    path("", include("blog.urls")),
     path(
         "password-reset-complete/",
         auth_views.PasswordResetCompleteView.as_view(
@@ -63,9 +63,7 @@ urlpatterns = [
         name="password_reset_complete",
     ),
     path("captcha", include("captcha.urls")),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
-
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)

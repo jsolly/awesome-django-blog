@@ -15,3 +15,7 @@ __pycache__/
 .DS_Store
 .AppleDouble
 .LSOverride
+
+# Misc
+temp.py
+temp.html
