@@ -51,7 +51,13 @@ class SetUp(TestCase):
             localhost_ip_person.delete()
 
         # User Object
-        self.user1 = User.objects.create_superuser(username="test_superuser")
+        self.user1 = User(username="test_superuser", email="test@invalid.com")
+        self.user1_password = "T3stingIsFun!"
+        self.user1.is_staff = True
+        self.user1.is_superuser = True
+        self.user1.save()
+        self.user1.set_password(self.user1_password)
+
         self.profile1 = Profile.objects.get(user=self.user1)
 
         # Post Object
@@ -337,10 +343,9 @@ class TestViews(SetUp):
 
     def test_login_view(self):
         data = {'username':self.user1.username, 'password':self.user1.password}
-        response = self.client.post(self.login_url, data=data, follow=True)
-
-        for message in get_messages(response.wsgi_request):
-            print(message)
+        response = self.client.post(self.login_url, data=data)
+        
+        print(response)
     # def test_logout
 
     # define test_password_reset
@@ -527,6 +532,10 @@ class TestForms(SetUp):
 
         self.assertTrue(form.is_valid())
 
+
+class TestMisc(SetUp):
+    def test_user_exists(self):
+        self.assertTrue(User.objects.filter(username="test_superuser").exists())
 
 if __name__ == "__main__":
     unittest.main()

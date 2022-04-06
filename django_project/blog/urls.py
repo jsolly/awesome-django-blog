@@ -47,7 +47,6 @@ urlpatterns = [
     path('like/<slug:slug>', PostLikeView, name='post-like'),
     path("roadmap/", RoadMapView, name="blog-roadmap"),
     path("search/", SearchView, name="blog-search"),
-    path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path("unittests/", UnitTestView, name="blog-unittest"),
     path("unittests/<str:filename>", UnitTestView, name="blog-unittest")
