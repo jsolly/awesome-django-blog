@@ -41,7 +41,7 @@
     <!-- My CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}" />
 
-  <title>{% block title %} Solly's Blog {% endblock %}</title>
+  <title>{% block title %} Solly's Blog | A blog about data-driven decisions {% endblock %}</title>
 </head>
 
 <body>
@@ -63,7 +63,7 @@
               <a class="nav-link" href="{% url 'blog-about' %}">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'blog-roadmap' %}">Roadmap</a>
+              <a class="nav-link" href="{% url 'blog-roadmap' %}">Blog Roadmap</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -118,6 +118,9 @@
         {% block content %}{% endblock %}
       </div>
       <div class="col-md-4">
+        <!-- About Section-->
+        <h3>About</h4>
+          <p>Great decisions are informed by data. I present deeply researched articles to improve your life. </p>
           <!-- Category Menu Code -->
           <h3>Navigate to a Category</h3>
           <div class="list-group">
@@ -160,7 +163,7 @@
         <div class="optionalParent">
             <div class="clear foot">
                 <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-success">
-                <p class="brandingLogo"><a href="http://eepurl.com/hXpvzj" title="Mailchimp - email marketing made easy and fun"><img src="https://eep.io/mc-cdn-images/template_images/branding_logo_text_dark_dtp.svg"></a></p>
+                <p class="brandingLogo"><a href="http://eepurl.com/hXpvzj" title="Mailchimp - email marketing made easy and fun"><img src="https://eep.io/mc-cdn-images/template_images/branding_logo_text_dark_dtp.svg" alt="Mailchimp Logo" width="220" height="42"></a></p>
             </div>
         </div>
     </div>
