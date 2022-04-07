@@ -1,5 +1,12 @@
 {% extends "blog/base.html" %}
 {% block title %}Create A New Blog Post!{% endblock %}
+
+{% block head %}
+<!-- ckeditor -->
+<link href="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.css' %}" rel="stylesheet">
+<script src="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 <h1>Add Post</h1>
 <br /><br />
