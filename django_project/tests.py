@@ -55,8 +55,8 @@ class SetUp(TestCase):
         self.user1_password = "T3stingIsFun!"
         self.user1.is_staff = True
         self.user1.is_superuser = True
-        self.user1.save()
         self.user1.set_password(self.user1_password)
+        self.user1.save()
 
         self.profile1 = Profile.objects.get(user=self.user1)
 
@@ -192,7 +192,7 @@ class TestUrls(SetUp):
     #     self.assertEqual(resolve(self.unittest_url).func, UnitTestView)
 
 
-class TestViews(SetUp):
+class TestViews(SetUp, MiddlewareMixin):
     def test_add_ip_person_if_not_exist(self):
         self.assertFalse(IpPerson.objects.filter(
             ip=self.localhost_ip).exists())
@@ -209,10 +209,17 @@ class TestViews(SetUp):
         self.assertTrue(self.post1.views.filter(ip=ip_person.ip).exists())
         self.post1.views.get(ip=self.localhost_ip).delete()
 
-    def test_home_view(self):
+    def test_home_view(self): #TODO
+        # Anonymous user
         response = self.client.get(self.home_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/home.html')
+
+        # Access using super_user (should get posts in draft mode)
+        self.client.login(username=self.user1.username, password=self.user1_password)
+        response = self.client.get(self.home_url)
+        
+
 
     def test_user_post_list_view(self):
         response = self.client.get(self.user_posts_url)
@@ -323,7 +330,7 @@ class TestViews(SetUp):
 
         response = self.client.post(self.register_url, data=data, follow=True)
         self.assertRedirects(response, expected_url="/")
-        self.assertTrue('blog/home.html' in response.template_name)
+        self.assertTemplateUsed(response, 'blog/home.html')
 
         data["secret_password"] = "Wrong Password"
         data["username"] = "test3"
@@ -337,15 +344,17 @@ class TestViews(SetUp):
         self.assertTrue(any(
             "Hmm, I don't think that is the right password" in message for message in message_list))
 
-    # def test_profile_view(self):
-    #         response = self.client.get(self.profile_url)
-    #         self.assertEqual(response.status_code, 200)
+    def test_profile_view(self):
+        self.client.login(username=self.user1.username, password=self.user1_password)
+        response = self.client.get(self.profile_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'users/profile.html')
 
     def test_login_view(self):
-        data = {'username':self.user1.username, 'password':self.user1.password}
-        response = self.client.post(self.login_url, data=data)
-        
-        print(response)
+        response = self.client.get(self.login_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'users/login.html')
+       
     # def test_logout
 
     # define test_password_reset
