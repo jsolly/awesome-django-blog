@@ -32,10 +32,17 @@ from blog.views import (
 )
 from blog.forms import PostForm, CommentForm
 from blog.models import Post, Comment, Category, IpPerson
-from blog.utils import get_client_ip, slugify_instance_title, get_post_like_status
+from blog.utils import get_client_ip, slugify_instance_title
 from users.views import RegisterView, ProfileView
 from users.models import User, Profile
 from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+
+
+def message_in_response(response, message:str):
+         for resp_message in get_messages(response.wsgi_request):
+             if message == resp_message.message:
+                 return True
+         return False
 class SetUp(TestCase):
     """Create User and Post object to be shared by tests. Also create urls using reverse()"""
     setup_test_environment()
@@ -228,7 +235,7 @@ class TestViews(SetUp, MiddlewareMixin):
         self.assertTrue(self.post1.views.filter(ip=ip_person.ip).exists())
         self.post1.views.get(ip=self.localhost_ip).delete()
 
-    def test_home_view(self):  # TODO
+    def test_home_view(self):  # TODO add check for draft post
         # Anonymous user
         response = self.client.get(self.home_url)
         self.assertEqual(response.status_code, 200)
@@ -238,6 +245,7 @@ class TestViews(SetUp, MiddlewareMixin):
         self.client.login(username=self.user1.username,
                           password=self.user1_password)
         response = self.client.get(self.home_url)
+        
 
     def test_user_post_list_view(self):
         response = self.client.get(self.user_posts_url)
@@ -539,7 +547,7 @@ class TestModels(SetUp):
         self.assertEqual(active_posts_minus_draft, new_active_post_count - 1)
 
     def test_category(self):
-        category = Category.objects.create(name="TEST")
+        Category.objects.create(name="TEST")
         self.assertEqual(self.category1.get_absolute_url(), "/category/TEST/")
 
     def test_ip_person(self):
@@ -566,7 +574,7 @@ class TestModels(SetUp):
     def test_comment(self):
         test_comment = Comment.objects.create(post=self.post1, content="I am a comment", author=self.user1)
         self.assertEqual(str(test_comment), "I am a comment")
-        self.assertEqual(test_comment.get_absolute_url(), "/post/first-post/")
+        self.assertEqual(test_comment.get_absolute_url(), self.post1_detail_url)
 
     # Users Models
 

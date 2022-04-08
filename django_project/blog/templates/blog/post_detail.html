@@ -1,9 +1,14 @@
 {% extends "blog/base.html" %}
+{% load static %}
 {% block title %} {{post.title}} {% endblock %}
 
 {% block head %}
     <!-- MathJax-->
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML"></script>
+
+    <!-- ckeditor -->
+    <link href="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.css' %}" rel="stylesheet">
+    <script src="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.js' %}"></script>
 {% endblock %}
 
 {% block meta %}
