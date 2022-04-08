@@ -93,7 +93,7 @@ class PostDetailView(DetailView):
         return context
 
 
-class CreatePostView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class CreatePostView(UserPassesTestMixin, CreateView):
     model = Post
     form_class = PostForm
     template_name = "blog/add_post.html"
@@ -105,10 +105,8 @@ class CreatePostView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     def test_func(self):
         if self.request.user.is_staff:
             return True
-        return False
-
-
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+        
+class PostUpdateView(UserPassesTestMixin, UpdateView):
     model = Post
     form_class = PostForm
     template_name = "blog/edit_post.html"
@@ -121,7 +119,6 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         post = self.get_object()
         if self.request.user == post.author:
             return True
-        return False
 
 
 class CreateCommentView(LoginRequiredMixin, CreateView):
@@ -135,15 +132,14 @@ class CreateCommentView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class PostDeleteView(DeleteView, LoginRequiredMixin, UserPassesTestMixin):
+class PostDeleteView(DeleteView):
     model = Post
     success_url = "/"
 
-    def test_func(self):
-        post = self.get_object()
-        if self.request.user == post.author:
-            return True
-        return False
+    # def test_func(self):
+    #     post = self.get_object()
+    #     if self.request.user == post.author:
+    #         return True
 
 
 class CategoryView(ListView):

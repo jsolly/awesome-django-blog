@@ -17,9 +17,6 @@
       "program": "/Users/johnsolly/Documents/code/blogthedata/django_project/manage.py",
       "console": "internalConsole",
       "django": true,
-      "autoReload": {
-        "enable": true
-      },
       "args": [
         "runserver"
       ]
@@ -33,9 +30,6 @@
       "program": "${file}",
       "justMyCode": true,
       "django": true,
-      "autoReload": {
-        "enable": true
-      }
   }
   ]
 }

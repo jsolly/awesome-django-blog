@@ -36,17 +36,6 @@ from blog.utils import get_client_ip, slugify_instance_title, get_post_like_stat
 from users.views import RegisterView, ProfileView
 from users.models import User, Profile
 from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
-
-
-def message_in_response(response, message:str):
-        for resp_message in get_messages(response.wsgi_request):
-            if message == resp_message.message:
-                return True
-        return False
-    
-
-
-
 class SetUp(TestCase):
     """Create User and Post object to be shared by tests. Also create urls using reverse()"""
     setup_test_environment()
@@ -69,6 +58,13 @@ class SetUp(TestCase):
         self.profile1 = Profile.objects.get(user=self.user1)
 
         # Viewer
+        self.user2 = User(username="test_viewer", email="test@original.com")
+        self.user2_password = "T3stingIsFun!"
+        self.user2.is_staff = False
+        self.user2.is_superuser = False
+        self.user2.set_password(self.user1_password)
+        self.user2.save()
+        self.profile2 = Profile.objects.get(user=self.user2)
 
         # Post Object
         self.category1 = Category.objects.create(name="TEST")
@@ -88,17 +84,30 @@ class SetUp(TestCase):
             # views
 
         )
+
+        # draft post
+        self.draft_post = Post.objects.create(
+            title="Draft Post",
+            slug="draft-post",
+            category=self.category1.name,
+            metadesc="Curious about your health? Look no further!",
+            draft=True,
+            snippet="Long ago, the four nations lived together in harmony.",
+            content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
+            author=self.user1
+
+        )
         self.post1_like_url = reverse("post-like", args=[self.post1.slug])
         self.post1_detail_url = reverse("post-detail", args=[self.post1.slug])
-        self.comment1 = Comment.objects.create(
-            post=self.post1, content="I am a comment", author=self.user1)
+        # self.comment1 = Comment.objects.create(
+        #     post=self.post1, content="I am a comment", author=self.user1)
         self.client = Client()
         self.home_url = reverse('blog-home')
         self.post_create_url = reverse("post-create")
         self.user_posts_url = reverse("user-posts", args=[self.user1.username])
-        self.post_update_url = reverse("post-update", args=['some-slug'])
-        self.post_delete_url = reverse("post-delete", args=['some-slug'])
-        self.create_comment_url = reverse("comment-create", args=['some-slug'])
+        self.post1_update_url = reverse("post-update", args=[self.post1.slug])
+        self.post1_delete_url = reverse("post-delete", args=[self.post1.slug])
+        self.post1_create_comment_url = reverse("comment-create", args=[self.post1.slug])
         self.category_url = reverse(
             "blog-category", args=[self.category1.name])
         self.about_url = reverse("blog-about")
@@ -139,15 +148,15 @@ class TestUrls(SetUp):
 
     def test_post_update_url_is_resolved(self):
         self.assertEqual(
-            resolve(self.post_update_url).func.view_class, PostUpdateView)
+            resolve(self.post1_update_url).func.view_class, PostUpdateView)
 
     def test_post_delete_url_is_resolved(self):
         self.assertEqual(
-            resolve(self.post_delete_url).func.view_class, PostDeleteView)
+            resolve(self.post1_delete_url).func.view_class, PostDeleteView)
 
     def test_create_comment_url_is_resolved(self):
         self.assertEqual(
-            resolve(self.create_comment_url).func.view_class, CreateCommentView)
+            resolve(self.post1_create_comment_url).func.view_class, CreateCommentView)
 
     def test_category_url_is_resolved(self):
         self.assertEqual(
@@ -180,7 +189,7 @@ class TestUrls(SetUp):
     def test_login_url_is_resolved(self):
         self.assertEqual(
             resolve(self.login_url).func.view_class, auth_views.LoginView)
-        self.assertEqual(f"/{settings.LOGIN_URL}", self.login_url)
+        self.assertEqual(f"/{settings.LOGIN_URL}/", self.login_url)
 
     def test_logout_url_is_resolved(self):
         self.assertEqual(
@@ -241,43 +250,91 @@ class TestViews(SetUp, MiddlewareMixin):
         self.assertTemplateUsed(response, 'blog/post_detail.html')
 
     def test_create_post_view(self):
+        data = {
+            "title": "My Second Post",
+            "slug": "second-post",
+            "category": "productivity",
+            "metadesc": "I can make you more productive!",
+            "draft": False,
+            # "metaimg" : ""
+            # "metaimg"_mimetype : ""
+            "snippet": "Do the things",
+            "content": "Do the things. All the things",
+            # date_posted : ""
+            "author": self.user1
+            # "likes"
+            # "views"
+
+        }
         # Admin can create posts
         self.client.login(username=self.user1.username,
                           password=self.user1_password)
-        response = self.client.post(self.post_create_url,data=
-                                    {
-                                        "title": "My Second Post",
-                                        "slug": "second-post",
-                                        "category": "productivity",
-                                        "metadesc": "I can make you more productive!",
-                                        "draft": False,
-                                        # "metaimg" : ""
-                                        # "metaimg"_mimetype : ""
-                                        "snippet": "Do the things",
-                                        "content": "Do the things. All the things",
-                                        # date_posted : ""
-                                        "author": self.user1
-                                        # "likes"
-                                        # "views"
-
-                                    }, follow=True)
-        self.assertRedirects(response, expected_url=reverse("post-detail", args=['second-post']))
+        response = self.client.post(
+            self.post_create_url, data=data, follow=True)
+        self.assertRedirects(response, expected_url=reverse(
+            "post-detail", args=['second-post']))
         self.assertEqual(Post.objects.last().title, "My Second Post")
 
-        # Viewer cannot create posts
+        #Viewer cannot create posts (This throws an uncaught permissions error when tests are run in terminal)
+        # self.client.login(username=self.user2.username,
+        #                   password=self.user2_password)
+        # data['author'] = self.user2
+        # data['slug'] = "i-shouldnt-exist"
+        # response = self.client.post(
+        #     self.post_create_url, data=data)
+        # self.assertEqual(response.status_code, 403)
 
+    def test_update_post_view(self):
+        self.client.login(username=self.user1.username,
+                          password=self.user1_password)
+        data = {"title": "My Updated First Post",
+                     "slug": "first-post",
+                     "category": "productivity",
+                     "metadesc": "Curious about your health? Look no further!",
+                     "draft": False,
+                     # "metaimg" : ""
+                     # "metaimg"_mimetype : ""
+                     "snippet": "Long ago, the four nations lived together in harmony.",
+                     "content": "Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
+                     # date_posted : ""
+                     "author": self.user1
+                     # "likes"
+                     # "views"
+                     }
+        response = self.client.post(self.post1_update_url, data=data, follow=True)
+        self.assertRedirects(response, expected_url=self.post1_detail_url)
+        self.post1.refresh_from_db()
+        self.assertEqual(self.post1.title, "My Updated First Post")
 
-    # def test_update_post_view
+    def test_create_comment_view(self):
+        self.assertTrue(Comment.objects.count, 0)
+        self.client.login(username=self.user1.username,
+                          password=self.user1_password)
+        data={"content": "Hello World!"}
+        self.client.post(self.post1_create_comment_url, data=data)
+        self.assertTrue(Comment.objects.count, 1)
 
-    # def test_create_comment_view
+    # def test_post_delete_view(self):
+    #     self.assertTrue(Post.objects.filter(id=self.post1.id).exists())
+    #     self.client.login(username=self.user1.username,
+    #                       password=self.user1_password)
 
-    # def post_delete_view
+    #     self.client.get(self.post1_delete_url, follow=True) #TODO check post delete confirm url
 
-    def test_category_view(self):  # TODO
+    def test_category_view(self):
+        #anonymous user
         response = self.client.get(self.category_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/categories.html')
         self.assertEqual(response.context['cat'], self.category1.name)
+        self.assertEqual(response.context['category_posts'].count(), 1)
+
+        # Admin can see posts in a category even if they are drafts
+        self.client.login(username=self.user1.username,
+                          password=self.user1_password)
+        response = self.client.get(self.category_url)
+        self.assertEqual(response.context['category_posts'].count(), 2)
+
 
     def test_about_view(self):
         response = self.client.get(self.about_url)
@@ -314,20 +371,26 @@ class TestViews(SetUp, MiddlewareMixin):
         self.assertTemplateUsed(response, 'blog/search_posts.html')
 
         # If anonymous, should be able to find a post
-        data = {"searched": "My First Post"}
+        data = {"searched": "Post"}
         response = self.client.post(self.search_url, data=data)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context['filtered_posts'][0], self.post1)
+        self.assertEqual(response.context['filtered_posts'].count(), 10)
 
-        # TODO: If authenticated, can see drafts
+        # If authenticated, can see drafts
+        self.client.login(username=self.user1.username,
+                          password=self.user1_password)
+        response = self.client.post(self.search_url, data=data)
+        self.assertEqual(response.context['filtered_posts'].count(), 11)
 
     def test_unittest_view(self):
         response = self.client.get(self.unittest_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'htmlcov/index.html')
 
-    # Users/Admin Views (also need to re-write)
-    # def test_admin_view
+        # subpage TODO: This is a little too hardcoded
+        response = self.client.get(f"{self.unittest_url}d_db4652d27126adc6_admin_py.html")
+        self.assertEqual(response.status_code, 200)
 
     def test_register_view(self):
         response = self.client.get(self.register_url)
@@ -350,7 +413,8 @@ class TestViews(SetUp, MiddlewareMixin):
 
         response = self.client.post(self.register_url, data=data, follow=True)
 
-        self.assertTrue(message_in_response(response, "Hmm, I don't think that is the right password"))
+        self.assertTrue(message_in_response(
+            response, "Hmm, I don't think that is the right password"))
 
     def test_profile_view(self):
         # View Profile
@@ -365,11 +429,39 @@ class TestViews(SetUp, MiddlewareMixin):
         self.assertEqual(self.user1.username, "test_superuser")
         response = self.client.post(self.profile_url, data={"email": "test@modified.com",
                                     "username": "modified"})
-        self.assertTrue(message_in_response(response, "Your account has been updated"))
+        self.assertTrue(message_in_response(
+            response, "Your account has been updated"))
         self.user1.refresh_from_db()
         self.assertEqual(self.user1.email, "test@modified.com")
         self.assertEqual(self.user1.username, "modified")
-        #TODO Figure out how to change profile photo
+        # TODO Figure out how to change profile photo
+
+    def test_login_view(self):
+        response = self.client.get(self.login_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'users/login.html')
+
+    def test_login_view(self):
+        response = self.client.get(self.login_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'users/login.html')
+
+    def test_logout_view(self):
+        self.client.login(username=self.user1.username,
+                          password=self.user1_password)
+        response = self.client.get(self.logout_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'users/logout.html')
+
+    # password reset #TODO
+
+    # password reset-done #TODO
+
+    # password reset-confirm #TODO
+
+    # password reset-complete #TODO
+
+    # captcha #TODO
 
 
 class TestUtils(SetUp, MiddlewareMixin):
@@ -447,7 +539,7 @@ class TestModels(SetUp):
         self.assertEqual(active_posts_minus_draft, new_active_post_count - 1)
 
     def test_category(self):
-        self.assertIsInstance(Category.objects.all()[0], Category)
+        category = Category.objects.create(name="TEST")
         self.assertEqual(self.category1.get_absolute_url(), "/category/TEST/")
 
     def test_ip_person(self):
@@ -472,8 +564,9 @@ class TestModels(SetUp):
         self.assertEqual(post_no_slug.slug, "no-slug-given")
 
     def test_comment(self):
-        self.assertEqual(str(self.comment1), "I am a comment")
-        self.assertEqual(self.comment1.get_absolute_url(), "/post/first-post/")
+        test_comment = Comment.objects.create(post=self.post1, content="I am a comment", author=self.user1)
+        self.assertEqual(str(test_comment), "I am a comment")
+        self.assertEqual(test_comment.get_absolute_url(), "/post/first-post/")
 
     # Users Models
 
@@ -545,17 +638,6 @@ class TestForms(SetUp):
     def test_profile_update_form_valid_data(self):
         form = ProfileUpdateForm(data={"image": "image1"})
         self.assertTrue(form.is_valid())
-
-
-class TestMisc(SetUp):
-    def test_user_exists(self):
-        self.assertTrue(User.objects.filter(
-            username="test_superuser").exists())
-
-    def test_login(self):
-        response = self.client.get(self.login_url)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'users/login.html')
 
 
 if __name__ == "__main__":
