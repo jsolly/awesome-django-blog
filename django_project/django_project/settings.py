@@ -24,13 +24,26 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-if config['DEBUG'] == 'True':
-    DEBUG = True
-    CAPTCHA_TEST_MODE = True 
+DEBUG = True
+CAPTCHA_TEST_MODE = True 
+
+if config['DEBUG'] == 'FALSE':
+    DEBUG = False
+    CAPTCHA_TEST_MODE = False 
+
+    # HTTPS SETTINGS
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+
+    # HSTS SETTINGS
+    SECURE_HSTS_SECONDS = 300 # 5 mins to make sure nothing breaks. This should then keep being extended until it's 2 years.
+    SECURE_HSTS_PRELOAD = True
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+    
 
 ALLOWED_HOSTS = config.get("ALLOWED_HOSTS")
-
 
 # Application definition
 
@@ -144,7 +157,6 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
-
 
 LOGIN_REDIRECT_URL = "blog-home"
 LOGIN_URL = "login"
