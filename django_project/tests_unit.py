@@ -123,7 +123,7 @@ class SetUp(TestCase):
         self.unittest_url = reverse("blog-unittest")
 
         # Users/Admin urls
-        # self.admin_url = reverse("admin")
+        self.admin_url = reverse("admin_honeypot:index")
         self.register_url = reverse("register")
         self.profile_url = reverse("profile")
         self.login_url = reverse("login")
@@ -647,6 +647,11 @@ class TestForms(SetUp):
         form = ProfileUpdateForm(data={"image": "image1"})
         self.assertTrue(form.is_valid())
 
-
+class TestSingals(SetUp):
+    def test_block_honeypot_ip_user(self):
+        response = self.client.get(self.admin_url, follow=True)
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(self.post1_detail_url)
+        self.assertEqual(response.status_code, 403)
 if __name__ == "__main__":
     unittest.main()
