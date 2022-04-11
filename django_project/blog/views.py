@@ -158,7 +158,7 @@ class CategoryView(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super(CategoryView, self).get_context_data(*args, **kwargs)
         context["cat_list"] = Category.objects.all()
-        context["cat"] = self.kwargs["cat"].replace("-", " ")
+        context["cat"] = Category.objects.get(name=self.kwargs["cat"].replace("-", " "))
         return context
 
 
