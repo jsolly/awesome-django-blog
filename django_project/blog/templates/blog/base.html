@@ -89,7 +89,7 @@
               <a class="nav-link" href="{% url 'register' %}">Register</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}">Login</a>
+              <a class="nav-link" name="nav-login" href="{% url 'login' %}">Login</a>
             </li>
             {% endif %}
             {% if user.is_staff %}

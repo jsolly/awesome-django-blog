@@ -64,7 +64,7 @@ class SetUp(TestCase):
         self.user1.save()
         self.profile1 = Profile.objects.get(user=self.user1)
 
-        # Viewer
+        # Regular User
         self.user2 = User(username="test_viewer", email="test@original.com")
         self.user2_password = "T3stingIsFun!"
         self.user2.is_staff = False
@@ -185,7 +185,7 @@ class TestUrls(SetUp):
 
     def test_unittest_url_is_resolved(self):
         self.assertEqual(
-            resolve(self.logout_url).func.view_class, auth_views.LogoutView)
+            resolve(self.unittest_url).func, UnitTestView)
 
     def test_register_url_is_resolved(self):
         self.assertEqual(resolve(self.register_url).func, RegisterView)
@@ -383,13 +383,13 @@ class TestViews(SetUp, MiddlewareMixin):
         response = self.client.post(self.search_url, data=data)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context['filtered_posts'][0], self.post1)
-        self.assertEqual(response.context['filtered_posts'].count(), 10)
+        anon_post_count = response.context['filtered_posts'].count()
 
         # If authenticated, can see drafts
         self.client.login(username=self.user1.username,
                           password=self.user1_password)
         response = self.client.post(self.search_url, data=data)
-        self.assertEqual(response.context['filtered_posts'].count(), 11)
+        self.assertGreater(response.context['filtered_posts'].count(), anon_post_count)
 
     def test_unittest_view(self):
         response = self.client.get(self.unittest_url)
