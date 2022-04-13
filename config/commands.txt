@@ -22,6 +22,9 @@ Install using the regular installer from python.org. Make sure to match the vers
 The file path should look like:
 /Applications/"Python 3.9"/IDLE.app/Contents/MacOS/Python
 
+Go into Applications/<Python Directory>
+Open 'Install Certificates.command'
+
 # login to postgres in terminal
 psql -U postgres
 
@@ -52,6 +55,10 @@ ssh jsolly@69.164.205.120 "dd if=/dev/sda " | dd of=/Users/johnsolly/Documents/c
 coverage run -m unittest discover
 coverage report -m --omit tests.py --skip-empty
 coverage html --skip-empty -d blog/templates/htmlcov
+
+### Setup new test database
+- Configure settings.py to point to a sqlite database
+- run python3 manage.py migrate to create all the tables in sqlite
 
 # Not needed anymore
 python3 manage.py collectstatic

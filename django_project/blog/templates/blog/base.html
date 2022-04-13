@@ -58,20 +58,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'blog-home' %}">Home</a>
+              <a class="nav-link active" aria-current="page" id="nav-home" href="{% url 'blog-home' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'blog-about' %}">About</a>
+              <a class="nav-link" id="nav-about" href="{% url 'blog-about' %}">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'blog-roadmap' %}">Blog Roadmap</a>
+              <a class="nav-link" id="nav-roadmap" href="{% url 'blog-roadmap' %}">Blog Roadmap</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 Categories
               </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul class="dropdown-menu" id="nav-categories" aria-labelledby="navbarDropdown">
                 {% for cat in cat_list %}
                 <li><a class="dropdown-item" href="{% url 'blog-category' cat|slugify %}">{{cat|title}}</a></li>
                 {% endfor %}
@@ -79,31 +79,31 @@
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+              <a class="nav-link" id="nav-profile" href="{% url 'profile' %}">Profile</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+              <a class="nav-link" id="nav-logout" href="{% url 'logout' %}">Logout</a>
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'register' %}">Register</a>
+              <a class="nav-link" id="nav-register" href="{% url 'register' %}">Register</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}">Login</a>
+              <a class="nav-link" id="nav-login" href="{% url 'login' %}">Login</a>
             </li>
             {% endif %}
             {% if user.is_staff %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'post-create' %}">New Post</a>
+              <a class="nav-link" id="nav-new-post" href="{% url 'post-create' %}">New Post</a>
             </li>
             {% endif %}
           </ul>
 
           <form class="d-flex" method=POST action="{% url 'blog-search' %}">
             {% csrf_token %}
-            <input class="form-control me-2" type="search" placeholder="Search Posts" aria-label="Search"
+            <input class="form-control me-2" id="search-posts-input" type="search" placeholder="Search Posts" aria-label="Search"
               name="searched">
-            <button class="btn btn-success" type="submit">Search</button>
+            <button class="btn btn-success" id="search-posts-button" type="submit">Search</button>
           </form>
         </div>
       </div>
@@ -121,16 +121,16 @@
       <div class="col-md-4">
         <!-- About Section-->
         <h3>About</h4>
-          <p>Great decisions are informed by data. I present deeply researched articles to improve your life. </p>
+          <p>{% block about %} Great decisions are informed by data. I present deeply researched articles to improve your life. {% endblock %}</p>
           <!-- Category Menu Code -->
           <h3>Navigate to a Category</h3>
           <div class="list-group">
             {% for cat_item in cat_list %}
             <a href="{% url 'blog-category' cat_item|slugify %}"
-              class="list-group-item list-group-item-action {% if request.resolver_match.kwargs.cat == cat_item|slugify %}active{% endif %}">{{cat_item|title}}</a>
+              class="list-group-item list-group-item-action {% if request.resolver_match.kwargs.cat == cat_item|slugify %}active{% endif %}" id="sidebar-{{ cat_item|slugify }}">{{cat_item|title}}</a>
             {% endfor %}
             <a href="{% url 'blog-home' %}"
-              class="list-group-item list-group-item-action {% if request.resolver_match.url_name == " blog-home" %}active{% endif %}">
+              id="sidebar-blog-home" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == " blog-home" %}active{% endif %}">
               Blog Home
             </a>
           </div>
@@ -158,10 +158,10 @@
                 <strong>What Interests You? </strong>
                 <div class="mc-field-group input-group">
                   <ul>
-                    <li><input type="checkbox" value="2" name="group[44996][2]" id="mce-group[44996]-44996-1"
-                        checked="true"><label for="mce-group[44996]-44996-1">Productivity</label></li>
-                    <li><input type="checkbox" value="4" name="group[44996][4]" id="mce-group[44996]-44996-2"
-                        checked="true"><label for="mce-group[44996]-44996-2">Site Updates</label></li>
+                    <li><input type="checkbox" value="2" name="group[44996][2]" id="mce-group[44996]-44996-0"
+                        checked="true"><label for="mce-group[44996]-44996-0">Life Advice</label></li>
+                    <li><input type="checkbox" value="4" name="group[44996][4]" id="mce-group[44996]-44996-1"
+                        checked="true"><label for="mce-group[44996]-44996-1">Site Updates</label></li>
                   </ul>
                 </div>
                 <div id="mce-responses" class="clear foot">

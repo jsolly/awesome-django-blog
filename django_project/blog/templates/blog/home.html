@@ -11,14 +11,14 @@
 <meta property="og:image:height" content="1280">
 {% endblock %}
 {% block content %}
-<h1>All Categories</h1>
+<h1>All Categories </h1>
 {% for post in posts %}
 <article class="media content-section">
   <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="John Solly Profile Picture">
   <div class="media-body">
     <div class="article-metadata">
       <h2 class="article-title"><a class="article-title" href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h2>
-      <nobr>John Solly <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+      <nobr>{{ post.author }} <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
         {% if post.draft %} <span style="color:red"> (Draft)</span> {% endif %}
       </nobr>
     </div>

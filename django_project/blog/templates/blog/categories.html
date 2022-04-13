@@ -5,6 +5,10 @@
 <meta name="description" content="Researched articles about {{ cat }}. Stay up-to-date and improve your knowledge.">
 {% endblock %}
 
+{% block about %}
+{{ cat.description }}
+{% endblock %}
+
 {% block content %}
 <h1>{{ cat|title }}</h1>
 {% for post in category_posts %}
