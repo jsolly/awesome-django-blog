@@ -32,9 +32,9 @@
       </nobr>
       {% if post.author == user %}
       <div>
-        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' post.slug %}">
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" id="post-edit-button" href="{% url 'post-update' post.slug %}">
           Edit Post</a>
-        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' post.slug %}">
+        <a class="btn btn-danger btn-sm mt-1 mb-1" id="post-delete-button" href="{% url 'post-delete' post.slug %}">
           Delete Post</a>
       </div>
       {% endif %}
@@ -48,14 +48,14 @@
 <form action="{% url 'post-like' slug=post.slug %}" method="post">
   {% csrf_token %}
     {% if like_status %}
-      <button type="submit" name="post-id" value="{{post.slug}}" class="btn btn-danger btn-sm">Unlike</button>
+      <button type="submit" name="post-id" id="post-unlike-button" value="{{post.slug}}" class="btn btn-danger btn-sm">Unlike</button>
     {% else %}
-    <button type="submit" name="post-id" value="{{post.slug}}" class="btn btn-primary btn-sm">Like</button>
+    <button type="submit" name="post-id" id="post-like-button" value="{{post.slug}}" class="btn btn-primary btn-sm">Like</button>
     {% endif %}
 </form>
 <hr />
 <div>
-  <a class="btn btn-primary" href="{% url 'comment-create' slug=post.slug %}">Add comment</a>
+  <a class="btn btn-primary" id="comment-create-button" href="{% url 'comment-create' slug=post.slug %}">Add comment</a>
 </div>
 {% for comment in post.comments.all %}
 <div class="comment" style="padding: 10px">
@@ -68,6 +68,6 @@
 <p>No comments here yet :(</p>
 {% endfor %}
 
-<a href="{% url 'blog-home' %}" class="btn btn-secondary"> Back to Home </a>
+<a href="{% url 'blog-home' %}" id="post-back-to-home-button" class="btn btn-secondary"> Back to Home </a>
 
 {% endblock %}
