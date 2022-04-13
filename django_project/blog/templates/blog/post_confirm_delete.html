@@ -9,7 +9,7 @@
             <h3>Are you sure you want to delete the post "{{ object.title }}"?</h3>
         </fieldset>
         <div class="form-group">
-            <button class="btn btn-outline-danger" type="submit">Yes, delete</button>
+            <button class="btn btn-outline-danger" id="confirm-delete-button" type="submit">Yes, delete</button>
             <a class="btn btn-outline-secondary" href="{% url 'post-detail' slug=post.slug %}">Cancel</a>
         </div>
     </form>

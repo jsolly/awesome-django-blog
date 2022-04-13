@@ -19,3 +19,4 @@ __pycache__/
 # Misc
 temp.py
 temp.html
+geckodriver.log

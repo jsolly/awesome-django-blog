@@ -6,6 +6,7 @@ from PIL import Image
 from django import setup
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
 setup()
+
 from django.test import TestCase, Client
 from django.urls import resolve, reverse
 from django.contrib.messages import get_messages
@@ -322,12 +323,16 @@ class TestViews(SetUp, MiddlewareMixin):
         self.client.post(self.post1_create_comment_url, data=data)
         self.assertTrue(Comment.objects.count, 1)
 
-    # def test_post_delete_view(self):
-    #     self.assertTrue(Post.objects.filter(id=self.post1.id).exists())
-    #     self.client.login(username=self.user1.username,
-    #                       password=self.user1_password)
+    def test_post_delete_view(self):
+        self.assertTrue(Post.objects.filter(id=self.post1.id).exists())
+        self.client.login(username=self.user1.username,
+                          password=self.user1_password)
 
-    #     self.client.get(self.post1_delete_url, follow=True) #TODO check post delete confirm url
+        response = self.client.get(self.post1_delete_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'blog/post_confirm_delete.html')
+        response = self.client.post(self.post1_delete_url, follow=True)
+        self.assertRedirects(response, expected_url=self.home_url)
 
     def test_category_view(self):
         #anonymous user
@@ -345,10 +350,10 @@ class TestViews(SetUp, MiddlewareMixin):
 
 
     def test_about_view(self):
+        User.objects.create(username="John_Solly", email="test@invalid.com")
         response = self.client.get(self.about_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/about.html')
-        self.assertIsInstance(response.context['my_profile'], Profile)
 
     def test_roadmap_view(self):  # TODO
         response = self.client.get(self.roadmap_url)
