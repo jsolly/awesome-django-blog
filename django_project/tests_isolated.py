@@ -14,6 +14,7 @@ from django.test.utils import setup_test_environment
 from django.utils.deprecation import MiddlewareMixin
 from django.conf import settings
 from django.contrib.auth import views as auth_views
+from admin_honeypot.views import AdminHoneypot
 from blog.views import (
     add_ip_person_if_not_exist,
     add_ip_person_view_if_not_exist,
@@ -204,6 +205,8 @@ class TestUrls(SetUp):
         self.assertEqual(
             resolve(self.logout_url).func.view_class, auth_views.LogoutView)
 
+    def test_admin_honey_pot_url_is_resolved(self):
+        self.assertEqual(resolve(self.honey_pot_url).func.view_class, AdminHoneypot)
     # def test_admin_url_is_resolved(self): # wasn't able to figure this one out
     #             self.assertIsInstance(
     #         resolve(self.admin_url).func, AdminSite.index)
