@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.db.models import Q
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views.generic import (
     ListView,
     DetailView,
@@ -134,7 +134,7 @@ class CreateCommentView(LoginRequiredMixin, CreateView):
 
 class PostDeleteView(DeleteView):
     model = Post
-    success_url = "/"
+    success_url = reverse_lazy("blog-home")
 
     # def test_func(self):
     #     post = self.get_object()
