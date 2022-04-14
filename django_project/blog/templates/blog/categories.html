@@ -1,9 +1,9 @@
 {% extends "blog/base.html" %}
-{% block title %}{{ cat|title }}{% endblock %}
+{% block title %}{{ cat|title }}{% endblock title %}
 
 {% block metadescription %}
 <meta name="description" content="Researched articles about {{ cat }}. Stay up-to-date and improve your knowledge.">
-{% endblock %}
+{% endblock metadescription %}
 
 {% block about %}
 {{ cat.description }}

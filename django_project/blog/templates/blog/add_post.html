@@ -1,6 +1,6 @@
 {% extends "blog/base.html" %}
 {% load static %}
-{% block title %}Create A New Blog Post!{% endblock %}
+{% block title %}Create A New Blog Post!{% endblock title %}
 
 {% block head %}
 <!-- ckeditor -->
@@ -19,4 +19,4 @@
     <button class="btn btn-outline-info" id="post-create-button" type="submit">Post</button>
 </div>
 
-{% endblock %}
+{% endblock content %}
