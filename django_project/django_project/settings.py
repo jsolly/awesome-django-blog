@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     "captcha",
     "ckeditor",
     "ckeditor_uploader",
+    "admin_honeypot"
 ]
 
 MIDDLEWARE = [

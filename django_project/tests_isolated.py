@@ -14,6 +14,7 @@ from django.test.utils import setup_test_environment
 from django.utils.deprecation import MiddlewareMixin
 from django.conf import settings
 from django.contrib.auth import views as auth_views
+from admin_honeypot.views import AdminHoneypot
 from blog.views import (
     add_ip_person_if_not_exist,
     add_ip_person_view_if_not_exist,
@@ -57,22 +58,22 @@ class SetUp(TestCase):
             localhost_ip_person.delete()
 
         # SuperUser Object
-        self.user1 = User(username="test_superuser", email="test@original.com")
-        self.user1_password = "T3stingIsFun!"
-        self.user1.is_staff = True
-        self.user1.is_superuser = True
-        self.user1.set_password(self.user1_password)
-        self.user1.save()
-        self.profile1 = Profile.objects.get(user=self.user1)
+        self.super_user = User(username="test_superuser", email="test@original.com")
+        self.super_user_password = "T3stingIsFun!"
+        self.super_user.is_staff = True
+        self.super_user.is_superuser = True
+        self.super_user.set_password(self.super_user_password)
+        self.super_user.save()
+        self.profile1 = Profile.objects.get(user=self.super_user)
 
-        # Regular User
-        self.user2 = User(username="test_viewer", email="test@original.com")
-        self.user2_password = "T3stingIsFun!"
-        self.user2.is_staff = False
-        self.user2.is_superuser = False
-        self.user2.set_password(self.user1_password)
-        self.user2.save()
-        self.profile2 = Profile.objects.get(user=self.user2)
+        # Basic User
+        self.basic_user = User(username="test_viewer", email="test@original.com")
+        self.basic_user_password = "T3stingIsFun!"
+        self.basic_user.is_staff = False
+        self.basic_user.is_superuser = False
+        self.basic_user.set_password(self.super_user_password)
+        self.basic_user.save()
+        self.profile2 = Profile.objects.get(user=self.basic_user)
 
         # Post Object
         self.category1 = Category.objects.create(name="TEST")
@@ -87,7 +88,7 @@ class SetUp(TestCase):
             snippet="Long ago, the four nations lived together in harmony.",
             content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
             # date_posted = ""
-            author=self.user1
+            author=self.super_user
             # likes
             # views
 
@@ -102,17 +103,17 @@ class SetUp(TestCase):
             draft=True,
             snippet="Long ago, the four nations lived together in harmony.",
             content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
-            author=self.user1
+            author=self.super_user
 
         )
         self.post1_like_url = reverse("post-like", args=[self.post1.slug])
         self.post1_detail_url = reverse("post-detail", args=[self.post1.slug])
         # self.comment1 = Comment.objects.create(
-        #     post=self.post1, content="I am a comment", author=self.user1)
+        #     post=self.post1, content="I am a comment", author=self.super_user)
         self.client = Client()
         self.home_url = reverse('blog-home')
         self.post_create_url = reverse("post-create")
-        self.user_posts_url = reverse("user-posts", args=[self.user1.username])
+        self.user_posts_url = reverse("user-posts", args=[self.super_user.username])
         self.post1_update_url = reverse("post-update", args=[self.post1.slug])
         self.post1_delete_url = reverse("post-delete", args=[self.post1.slug])
         self.post1_create_comment_url = reverse("comment-create", args=[self.post1.slug])
@@ -124,7 +125,8 @@ class SetUp(TestCase):
         self.unittest_url = reverse("blog-unittest")
 
         # Users/Admin urls
-        # self.admin_url = reverse("admin")
+        self.honey_pot_url = reverse("admin_honeypot:index")
+        self.admin_url = reverse("admin:index")
         self.register_url = reverse("register")
         self.profile_url = reverse("profile")
         self.login_url = reverse("login")
@@ -203,6 +205,12 @@ class TestUrls(SetUp):
         self.assertEqual(
             resolve(self.logout_url).func.view_class, auth_views.LogoutView)
 
+    def test_admin_honey_pot_url_is_resolved(self):
+        self.assertEqual(resolve(self.honey_pot_url).func.view_class, AdminHoneypot)
+    # def test_admin_url_is_resolved(self): # wasn't able to figure this one out
+    #             self.assertIsInstance(
+    #         resolve(self.admin_url).func, AdminSite.index)
+
     # def test_password_reset_url_is_resolved(self):
     #     self.assertEqual(resolve(self.password_reset_url).func.view_class, auth_views.PasswordResetView)
 
@@ -243,8 +251,8 @@ class TestViews(SetUp, MiddlewareMixin):
         self.assertTemplateUsed(response, 'blog/home.html')
 
         # Access using super_user (should get posts in draft mode)
-        self.client.login(username=self.user1.username,
-                          password=self.user1_password)
+        self.client.login(username=self.super_user.username,
+                          password=self.super_user_password)
         response = self.client.get(self.home_url)
         
 
@@ -270,14 +278,14 @@ class TestViews(SetUp, MiddlewareMixin):
             "snippet": "Do the things",
             "content": "Do the things. All the things",
             # date_posted : ""
-            "author": self.user1
+            "author": self.super_user
             # "likes"
             # "views"
 
         }
         # Admin can create posts
-        self.client.login(username=self.user1.username,
-                          password=self.user1_password)
+        self.client.login(username=self.super_user.username,
+                          password=self.super_user_password)
         response = self.client.post(
             self.post_create_url, data=data, follow=True)
         self.assertRedirects(response, expected_url=reverse(
@@ -285,17 +293,17 @@ class TestViews(SetUp, MiddlewareMixin):
         self.assertEqual(Post.objects.last().title, "My Second Post")
 
         #Viewer cannot create posts (This throws an uncaught permissions error when tests are run in terminal)
-        # self.client.login(username=self.user2.username,
-        #                   password=self.user2_password)
-        # data['author'] = self.user2
+        # self.client.login(username=self.basic_user.username,
+        #                   password=self.basic_user_password)
+        # data['author'] = self.basic_user
         # data['slug'] = "i-shouldnt-exist"
         # response = self.client.post(
         #     self.post_create_url, data=data)
         # self.assertEqual(response.status_code, 403)
 
     def test_update_post_view(self):
-        self.client.login(username=self.user1.username,
-                          password=self.user1_password)
+        self.client.login(username=self.super_user.username,
+                          password=self.super_user_password)
         data = {"title": "My Updated First Post",
                      "slug": "first-post",
                      "category": "productivity",
@@ -306,7 +314,7 @@ class TestViews(SetUp, MiddlewareMixin):
                      "snippet": "Long ago, the four nations lived together in harmony.",
                      "content": "Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
                      # date_posted : ""
-                     "author": self.user1
+                     "author": self.super_user
                      # "likes"
                      # "views"
                      }
@@ -317,16 +325,16 @@ class TestViews(SetUp, MiddlewareMixin):
 
     def test_create_comment_view(self):
         self.assertTrue(Comment.objects.count, 0)
-        self.client.login(username=self.user1.username,
-                          password=self.user1_password)
+        self.client.login(username=self.super_user.username,
+                          password=self.super_user_password)
         data={"content": "Hello World!"}
         self.client.post(self.post1_create_comment_url, data=data)
         self.assertTrue(Comment.objects.count, 1)
 
     def test_post_delete_view(self):
         self.assertTrue(Post.objects.filter(id=self.post1.id).exists())
-        self.client.login(username=self.user1.username,
-                          password=self.user1_password)
+        self.client.login(username=self.super_user.username,
+                          password=self.super_user_password)
 
         response = self.client.get(self.post1_delete_url)
         self.assertEqual(response.status_code, 200)
@@ -339,12 +347,12 @@ class TestViews(SetUp, MiddlewareMixin):
         response = self.client.get(self.category_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/categories.html')
-        self.assertEqual(response.context['cat'], self.category1.name)
+        self.assertEqual(response.context['cat'], self.category1)
         self.assertEqual(response.context['category_posts'].count(), 1)
 
         # Admin can see posts in a category even if they are drafts
-        self.client.login(username=self.user1.username,
-                          password=self.user1_password)
+        self.client.login(username=self.super_user.username,
+                          password=self.super_user_password)
         response = self.client.get(self.category_url)
         self.assertEqual(response.context['category_posts'].count(), 2)
 
@@ -391,8 +399,8 @@ class TestViews(SetUp, MiddlewareMixin):
         anon_post_count = response.context['filtered_posts'].count()
 
         # If authenticated, can see drafts
-        self.client.login(username=self.user1.username,
-                          password=self.user1_password)
+        self.client.login(username=self.super_user.username,
+                          password=self.super_user_password)
         response = self.client.post(self.search_url, data=data)
         self.assertGreater(response.context['filtered_posts'].count(), anon_post_count)
 
@@ -431,22 +439,22 @@ class TestViews(SetUp, MiddlewareMixin):
 
     def test_profile_view(self):
         # View Profile
-        self.client.login(username=self.user1.username,
-                          password=self.user1_password)
+        self.client.login(username=self.super_user.username,
+                          password=self.super_user_password)
         response = self.client.get(self.profile_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'users/profile.html')
 
         # Edit profile
-        self.assertEqual(self.user1.email, "test@original.com")
-        self.assertEqual(self.user1.username, "test_superuser")
+        self.assertEqual(self.super_user.email, "test@original.com")
+        self.assertEqual(self.super_user.username, "test_superuser")
         response = self.client.post(self.profile_url, data={"email": "test@modified.com",
                                     "username": "modified"})
         self.assertTrue(message_in_response(
             response, "Your account has been updated"))
-        self.user1.refresh_from_db()
-        self.assertEqual(self.user1.email, "test@modified.com")
-        self.assertEqual(self.user1.username, "modified")
+        self.super_user.refresh_from_db()
+        self.assertEqual(self.super_user.email, "test@modified.com")
+        self.assertEqual(self.super_user.username, "modified")
         # TODO Figure out how to change profile photo
 
     def test_login_view(self):
@@ -460,8 +468,8 @@ class TestViews(SetUp, MiddlewareMixin):
         self.assertTemplateUsed(response, 'users/login.html')
 
     def test_logout_view(self):
-        self.client.login(username=self.user1.username,
-                          password=self.user1_password)
+        self.client.login(username=self.super_user.username,
+                          password=self.super_user_password)
         response = self.client.get(self.logout_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'users/logout.html')
@@ -475,28 +483,6 @@ class TestViews(SetUp, MiddlewareMixin):
     # password reset-complete #TODO
 
     # captcha #TODO
-
-
-class TestUtils(SetUp, MiddlewareMixin):
-    """Tests for helper functions"""
-
-    def test_get_client_ip(self):
-        request = self.client.get(self.post1_detail_url).wsgi_request
-        self.assertEqual(get_client_ip(request), self.localhost_ip)
-
-        # Simulate connecting via proxy server
-        request.META['HTTP_X_FORWARD_FOR'] = "1.1.1.1, 127.0.0.1"
-        self.assertEqual(get_client_ip(request),
-                         '1.1.1.1')
-
-    def test_slugify_instance_title(self):
-        slugify_instance_title(self.post1, new_slug='My-First-Post', save=True)
-        self.assertEqual(self.post1.slug, 'My-First-Post')
-
-    def test_post_like_status(self):
-        self.assertFalse(self.post1.likes.filter(
-            ip=self.localhost_ip).exists())
-
 
 class TestModels(SetUp):
     def test_post_manager_all(self):
@@ -514,7 +500,7 @@ class TestModels(SetUp):
             snippet="Long ago, the four nations lived together in harmony.",
             content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
             # date_posted = ""
-            author=self.user1
+            author=self.super_user
             # likes
             # views
 
@@ -537,7 +523,7 @@ class TestModels(SetUp):
             snippet="Long ago, the four nations lived together in harmony.",
             content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
             # date_posted = ""
-            author=self.user1
+            author=self.super_user
             # likes
             # views
 
@@ -572,12 +558,12 @@ class TestModels(SetUp):
             # metaimg = ""
             snippet="Long ago, the four nations lived together in harmony.",
             content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
-            author=self.user1
+            author=self.super_user
         )
         self.assertEqual(post_no_slug.slug, "no-slug-given")
 
     def test_comment(self):
-        test_comment = Comment.objects.create(post=self.post1, content="I am a comment", author=self.user1)
+        test_comment = Comment.objects.create(post=self.post1, content="I am a comment", author=self.super_user)
         self.assertEqual(str(test_comment), "I am a comment")
         self.assertEqual(test_comment.get_absolute_url(), self.post1_detail_url)
 
@@ -608,7 +594,7 @@ class TestForms(SetUp):
             "snippet": "Do the things",
             "content": "Do the things. All the things",
             # date_posted : ""
-            "author": self.user1
+            "author": self.super_user
             # "likes"
             # "views"
 
@@ -652,6 +638,25 @@ class TestForms(SetUp):
         form = ProfileUpdateForm(data={"image": "image1"})
         self.assertTrue(form.is_valid())
 
+class TestUtils(SetUp, MiddlewareMixin):
+    """Tests for helper functions"""
+
+    def test_get_client_ip(self):
+        request = self.client.get(self.post1_detail_url).wsgi_request
+        self.assertEqual(get_client_ip(request), self.localhost_ip)
+
+        # Simulate connecting via proxy server
+        request.META['HTTP_X_FORWARD_FOR'] = "1.1.1.1, 127.0.0.1"
+        self.assertEqual(get_client_ip(request),
+                         '1.1.1.1')
+
+    def test_slugify_instance_title(self):
+        slugify_instance_title(self.post1, new_slug='My-First-Post', save=True)
+        self.assertEqual(self.post1.slug, 'My-First-Post')
+
+    def test_post_like_status(self):
+        self.assertFalse(self.post1.likes.filter(
+            ip=self.localhost_ip).exists())
 
 if __name__ == "__main__":
     unittest.main()
