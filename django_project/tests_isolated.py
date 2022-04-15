@@ -571,6 +571,7 @@ class TestModels(SetUp):
 
     def test_profile(self):
         self.assertEqual(str(self.profile1), "test_superuser Profile")
+        self.assertEqual(self.profile1.get_absolute_url, )
         width, height = 400, 400
         img = Image.new(mode="RGB", size=(width, height))
         img.save(

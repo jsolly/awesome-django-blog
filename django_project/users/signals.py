@@ -15,7 +15,7 @@ def create_profile(sender, instance, created, **kwargs):
 def save_profile(sender, instance, **kwargs):
     instance.profile.save()
 
-@receiver(honeypot)
-def my_callback(sender, **kwargs):
-    print("Request finished!")
+# @receiver(honeypot)
+# def my_callback(sender, **kwargs):
+#     print("Request finished!")
     
