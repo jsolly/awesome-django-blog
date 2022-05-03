@@ -30,11 +30,14 @@ CAPTCHA_TEST_MODE = False
 
 # HTTPS SETTINGS
 SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # HSTS SETTINGS
-SECURE_HSTS_SECONDS = 300 # 5 mins to make sure nothing breaks. This should then keep being extended until it's 2 years.
+SECURE_HSTS_SECONDS = 31557600
 SECURE_HSTS_PRELOAD = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
@@ -46,9 +49,12 @@ if config['DEBUG'] == 'True':
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SECURE = False
     SECURE_SSL_REDIRECT = False
+    SESSION_COOKIE_HTTPONLY = False
+    SECURE_BROWSER_XSS_FILTER = False
+    SECURE_CONTENT_TYPE_NOSNIFF = False
 
     # HSTS SETTINGS
-    SECURE_HSTS_SECONDS = 300 # 5 mins to make sure nothing breaks. This should then keep being extended until it's 2 years.
+    SECURE_HSTS_SECONDS = 31557600
     SECURE_HSTS_PRELOAD = False
     SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 
@@ -81,7 +87,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-     "django.utils.deprecation.MiddlewareMixin",
+    "django.utils.deprecation.MiddlewareMixin",
 ]
 
 ROOT_URLCONF = "django_project.urls"

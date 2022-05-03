@@ -36,6 +36,10 @@ sudo nano /etc/django_config.json
 sudo nano -c /etc/apache2/sites-available/django_project.conf
 /var/log/postgresql/postgresql-13-main.log
 /etc/postgresql-common/createcluster.conf 
+sudo nano /etc/apache2/apache2.conf
+
+ServerTokens Prod
+ServerSignature Off
 
 # Other useful commands
 sudo service postgresql restart
