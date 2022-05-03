@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Comment, Category
+from .models import Post, Comment
 
 choices = [
     ("life advice", "life advice"),

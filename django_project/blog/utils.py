@@ -15,14 +15,14 @@ def get_client_ip(request):
     x_forward_for = request.META.get("HTTP_X_FORWARD_FOR")
 
     if x_forward_for:
-        ip = x_forward_for.split(",")[0]
+        ip_adrr = x_forward_for.split(",")[0]
     else:
-        ip = request.META.get("REMOTE_ADDR")
-    return ip
+        ip_adrr = request.META.get("REMOTE_ADDR")
+    return ip_adrr
 
 def get_post_like_status(request, post):
-    ip = get_client_ip(request)
-    if post.likes.filter(ip=ip).exists():
+    ip_adrr = get_client_ip(request)
+    if post.likes.filter(ip=ip_adrr).exists():
         return True
     return False
 

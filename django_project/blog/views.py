@@ -10,7 +10,6 @@ from django.views.generic import (
     CreateView,
     UpdateView,
     DeleteView,
-    UpdateView,
 )
 from users.models import Profile
 import requests
@@ -22,18 +21,18 @@ from .utils import get_client_ip, get_post_like_status
 
 
 def add_ip_person_if_not_exist(request):
-    ip = get_client_ip(request)
+    ip_adrr = get_client_ip(request)
     # Check to see if we should +1 view count (for this IpPerson)
     try:
-        return IpPerson.objects.get(ip=ip)
+        return IpPerson.objects.get(ip=ip_adrr)
     except IpPerson.DoesNotExist:
-        return IpPerson.objects.create(ip=ip)
+        return IpPerson.objects.create(ip=ip_adrr)
 
 
 def add_ip_person_view_if_not_exist(request, post):
     ip_person = add_ip_person_if_not_exist(request)
-    ip = get_client_ip(request)
-    if post.views.filter(ip=ip).exists():
+    ip_adrr = get_client_ip(request)
+    if post.views.filter(ip=ip_adrr).exists():
         return ip_person
 
     post.views.add(ip_person)
@@ -105,7 +104,7 @@ class CreatePostView(UserPassesTestMixin, CreateView):
     def test_func(self):
         if self.request.user.is_staff:
             return True
-        
+
 class PostUpdateView(UserPassesTestMixin, UpdateView):
     model = Post
     form_class = PostForm
@@ -119,8 +118,6 @@ class PostUpdateView(UserPassesTestMixin, UpdateView):
         post = self.get_object()
         if self.request.user == post.author:
             return True
-
-
 class CreateCommentView(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
@@ -162,10 +159,10 @@ class CategoryView(ListView):
         return context
 
 
-def AboutView(request):
+def about_view(request):
     cat_list = Category.objects.all()
-    me = User.objects.get(username="John_Solly")
-    my_profile = Profile.objects.get(user=me)
+    my_user = User.objects.get(username="John_Solly")
+    my_profile = Profile.objects.get(user=my_user)
     return render(
         request,
         "blog/about.html",
@@ -173,7 +170,7 @@ def AboutView(request):
     )
 
 
-def RoadMapView(request):
+def road_map_view(request):
     all_issues = requests.request(
         method="GET", url='https://api.github.com/repos/jsolly/blogthedata/issues', params={'state': 'open'}, headers=HEAD).json()
 
@@ -196,20 +193,20 @@ def RoadMapView(request):
     )
 
 
-def PostLikeView(request, slug):
+def post_like_view(request, slug):
     post = Post.objects.get(slug=slug)
-    ip = get_client_ip(request)
+    ip_adrr = get_client_ip(request)
 
     ip_person = add_ip_person_view_if_not_exist(request, post)
 
     if post.likes.filter(id=ip_person.id).exists():
-        post.likes.remove(IpPerson.objects.get(ip=ip))
+        post.likes.remove(IpPerson.objects.get(ip=ip_adrr))
     else:
         post.likes.add(ip_person)
     return HttpResponseRedirect(reverse("post-detail", args=[str(slug)]))
 
 
-def SearchView(request):
+def search_view(request):
     """Controls what is shown to a user when they search for a post. A note...I never bothered to make sure admins could see draft posts in this view"""
     cat_list = Category.objects.all()
     if request.method == 'POST':
@@ -233,7 +230,7 @@ def SearchView(request):
         )
 
 
-def UnitTestView(request, filename=None):
+def unit_test_view(request, filename=None):
     cat_list = Category.objects.all()
     html_path = "htmlcov/index.html"
     if filename:

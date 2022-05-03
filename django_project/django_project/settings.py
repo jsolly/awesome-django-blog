@@ -26,7 +26,7 @@ SECRET_KEY = config.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-CAPTCHA_TEST_MODE = False 
+CAPTCHA_TEST_MODE = False
 
 # HTTPS SETTINGS
 SESSION_COOKIE_SECURE = True
@@ -40,7 +40,7 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 if config['DEBUG'] == 'True':
     DEBUG = True
-    CAPTCHA_TEST_MODE = True 
+    CAPTCHA_TEST_MODE = True
 
     # HTTPS SETTINGS
     SESSION_COOKIE_SECURE = False
@@ -52,7 +52,7 @@ if config['DEBUG'] == 'True':
     SECURE_HSTS_PRELOAD = False
     SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 
-    
+
 
 ALLOWED_HOSTS = config.get("ALLOWED_HOSTS")
 

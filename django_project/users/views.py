@@ -5,17 +5,15 @@ from django.contrib.auth.decorators import login_required
 from blog.models import Category
 
 
-def RegisterView(request):
+def register_view(request):
     cat_list = Category.objects.all()
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             secret_password = form.cleaned_data.get("secret_password")
             if secret_password != "African Swallows":
-                human = False
                 messages.error(request, "Hmm, I don't think that is the right password")
             else:
-                human = True
                 form.save()
                 username = form.cleaned_data.get("username")
                 messages.success(request, f"Account created for {username}")
@@ -28,7 +26,7 @@ def RegisterView(request):
 
 
 @login_required
-def ProfileView(request):
+def profile_view(request):
     if request.method == "POST":
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(

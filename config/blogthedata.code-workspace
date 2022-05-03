@@ -5,6 +5,19 @@
 		}
 	],
 	"settings": {
+		"python.linting.pylintArgs": [
+			"--load-plugins=pylint_django",
+			"--django-settings-module=django_project.settings",
+			"--disable=C0301",
+			"--disable=C0116",
+			"--disable=C0112",
+			"--disable=C0114",
+			"--disable=C0115",
+			"--disable=C0116",
+			"--disable=E0401",
+			"--disable=C0413",
+			"--disable=C0411",
+		],
 		"python.terminal.activateEnvInCurrentTerminal": true,
 		"python.defaultInterpreterPath": "/Users/johnsolly/Documents/code/blogthedata/django_project/venv/bin/python3",
 		"conventionalCommits.scopes": [
@@ -12,6 +25,13 @@
 			"blog model",
 			"bootstrap"
 		],
-		"terminal.integrated.cwd": "/Users/johnsolly/Documents/code/blogthedata/django_project"
+		"terminal.integrated.cwd": "/Users/johnsolly/Documents/code/blogthedata/django_project",
+		"python.testing.unittestArgs": [
+			"-v",
+			"-s",
+			"./django_project",
+			"-p",
+			"test*.py"
+		]
 	}
 }

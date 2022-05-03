@@ -25,7 +25,7 @@ class Category(models.Model):
         return self.name
 
     def get_absolute_url(self):
-       return reverse("blog-category", kwargs={"cat": self.name})
+        return reverse("blog-category", kwargs={"cat": self.name})
 
 
 class IpPerson(models.Model):  # Anonymous user
@@ -86,7 +86,7 @@ class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.content
+        return str(self.content)
 
     def get_absolute_url(self):
         return reverse("post-detail", kwargs={"slug": self.post.slug})
