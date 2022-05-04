@@ -67,6 +67,18 @@ coverage html --skip-empty --omit tests/tests_isolated -d blog/templates/htmlcov
 - Configure settings.py to point to a sqlite database
 - run python3 manage.py migrate to create all the tables in sqlite
 
+### Upgrade django
+- Check for depreciations and make sure unit tests are passing
+python3 -Wa manage.py test
+- Freeze dependencies
+pip freeze > requirements_5_4_22.txt
+- Upgrade
+pip install Django==3.2.13
+- Re-run unit tests
+- commit dependencies to source control
+- use dependencies to upgrade prod
+pip install -r requirements_5_4_22.txt
+
 # Not needed anymore
 python3 manage.py collectstatic
 scp jsolly@69.164.205.120:/home/jsolly/blogthedata/django_project/db.sqlite3 .
