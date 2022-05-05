@@ -72,12 +72,17 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "django.contrib.sites",
     "django.contrib.staticfiles",
+    "django.contrib.sitemaps",
     "captcha",
     "ckeditor",
     "ckeditor_uploader",
-    "admin_honeypot"
+    "admin_honeypot",
+    'robots',
 ]
+
+SITE_ID = 1 
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -88,6 +93,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.utils.deprecation.MiddlewareMixin",
+    'django.contrib.sites.middleware.CurrentSiteMiddleware'
 ]
 
 ROOT_URLCONF = "django_project.urls"
@@ -128,6 +134,12 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.sqlite3",
+#             "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+#         }
+#     }
 
 if any("test" in arg for arg in sys.argv):
     DATABASES = {

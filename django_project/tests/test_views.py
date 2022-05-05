@@ -251,6 +251,16 @@ class TestViews(SetUp, MiddlewareMixin):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'users/logout.html')
 
+    def test_sitemap_view(self):
+        response = self.client.get(self.sitemap_url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_robots_view(self):
+        response = self.client.get(self.robots_url)
+        self.assertEqual(response.status_code, 200)
+        lines = response.content.decode().splitlines()
+        self.assertEqual(lines[0], "User-agent: *")
+
     # password reset #TODO
 
     # password reset-done #TODO

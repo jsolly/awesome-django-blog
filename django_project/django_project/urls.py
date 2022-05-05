@@ -15,12 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from django.contrib.sitemaps.views import sitemap
 from django.urls import path, include
 from users.views import register_view, profile_view
 from django.conf import settings
 from django.conf.urls.static import static
+from django_project.sitemaps import PostSitemap, StaticSitemap
+sitemaps = { 'posts' : PostSitemap,
+            'static': StaticSitemap}
 
 urlpatterns = [
+    path("sitemap.xml", sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path("robots.txt", include('robots.urls')),
     path("", include("blog.urls")),
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('config/', admin.site.urls),
