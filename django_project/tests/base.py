@@ -98,6 +98,8 @@ class SetUp(TestCase):
 
         # Users/Admin urls
         self.honey_pot_url = reverse("admin_honeypot:index")
+        self.sitemap_url = reverse('django.contrib.sitemaps.views.sitemap')
+        self.robots_url = reverse("robots_rule_list")
         self.admin_url = reverse("admin:index")
         self.register_url = reverse("register")
         self.profile_url = reverse("profile")

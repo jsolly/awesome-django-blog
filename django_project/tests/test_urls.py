@@ -3,6 +3,8 @@ from django.urls import resolve
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 from admin_honeypot.views import AdminHoneypot
+from robots.views import RuleList
+from django.contrib.sitemaps.views import sitemap
 from blog.views import (
     HomeView,
     UserPostListView,
@@ -89,6 +91,14 @@ class TestUrls(SetUp):
 
     def test_admin_honey_pot_url_is_resolved(self):
         self.assertEqual(resolve(self.honey_pot_url).func.view_class, AdminHoneypot)
+    
+    def test_sitemap_url_is_resolved(self):
+        self.assertEqual(resolve(self.sitemap_url).func, sitemap)
+
+    def test_robots_url_is_resolved(self):
+        self.assertEqual(resolve(self.robots_url).func.view_class, RuleList)
+
+        
     # def test_admin_url_is_resolved(self): # wasn't able to figure this one out
     #             self.assertIsInstance(
     #         resolve(self.admin_url).func, AdminSite.index)
