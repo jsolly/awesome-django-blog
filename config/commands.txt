@@ -5,25 +5,15 @@ ssh jsolly@69.164.205.120
  python3 manage.py makemigrations --name changed_my_model your_app_label
  python3 manage.py migrate
 
- ### Roll back migration
- python3 manage.py migrate blog 0011
 
 After pulling new changes from github
 python3 manage.py check --deploy
 
-1 - Modify settings.py as needed
-2 - source venv/bib/activate to get the Python virtual env
-3 - python3 manage.py migrate (to inherit db changes) # Don't need to makemigrations, because migrations are already in git
-4 - sudo chmod -R 777 blogthedata
-5 - sudo service apache2 restart  
+1 - source venv/bib/activate to get the Python virtual env
+2 - python3 manage.py migrate (to inherit db changes) # Don't need to makemigrations, because migrations are already in git
+3 - sudo chmod -R 777 blogthedata
+4 - sudo service apache2 restart  
 
-# Configuring Python install on new Mac
-Install using the regular installer from python.org. Make sure to match the version that is on production.
-The file path should look like:
-/Applications/"Python 3.9"/IDLE.app/Contents/MacOS/Python
-
-Go into Applications/<Python Directory>
-Open 'Install Certificates.command'
 
 # login to postgres in terminal
 psql -U postgres
@@ -38,8 +28,6 @@ sudo nano -c /etc/apache2/sites-available/django_project.conf
 /etc/postgresql-common/createcluster.conf 
 sudo nano /etc/apache2/apache2.conf
 
-ServerTokens Prod
-ServerSignature Off
 
 # Other useful commands
 sudo service postgresql restart
@@ -82,3 +70,28 @@ pip install -r requirements_5_4_22.txt
 # Not needed anymore
 python3 manage.py collectstatic
 scp jsolly@69.164.205.120:/home/jsolly/blogthedata/django_project/db.sqlite3 .
+
+# Configuring Python install on new Mac
+Install using the regular installer from python.org. Make sure to match the version that is on production.
+The file path should look like:
+/Applications/"Python 3.9"/IDLE.app/Contents/MacOS/Python
+
+Go into Applications/<Python Directory>
+Open 'Install Certificates.command'
+
+
+ ### Roll back migration
+ python3 manage.py migrate blog 0011
+
+ ### Roll back a currupt db on production
+ # Log into postgres
+ psql -U postgres
+ # drop existing database
+postgres=# DROP DATABASE blogthedata;
+# Create an empty db
+postgres=# CREATE DATABASE blogthedata;
+type <exit> and hit enter to go back to the terminal
+# Cd to the backups folder and restore the db
+psql blogthedata < blogthedata_db_5_5_22.sql
+# If that doesn't work, try
+sudo -u postgres psql blogthedata < blogthedata_db_5_5_22.sql

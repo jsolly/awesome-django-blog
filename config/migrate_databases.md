@@ -6,6 +6,7 @@ $ psql -U postgres # Might need sudo -u postgres psql
 postgres=# ALTER ROLE postgres WITH PASSWORD 'secret123';
 
 postgres=# CREATE DATABASE blogthedata;
+postgres=# SELECT datname FROM pg_database;
 
 Check settings.py to make sure sqllite db is enabled
 ## Export data from sqlite to json file
