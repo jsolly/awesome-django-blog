@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config.get("SECRET_KEY")
-SITE_ID = 2 # blogthedata.com
+SITE_ID = 1 # blogthedata.com
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 CAPTCHA_TEST_MODE = False
@@ -42,7 +42,7 @@ SECURE_HSTS_PRELOAD = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 if config['DEBUG'] == 'True':
-    SITE_ID = 1
+    SITE_ID = 2
     DEBUG = True
     CAPTCHA_TEST_MODE = True
 
