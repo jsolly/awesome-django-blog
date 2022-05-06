@@ -37,7 +37,11 @@ become root user -> sudo -i
 ### Postgres export and restore
 sudo -u postgres pg_dump blogthedata > blogthedata_db_3_8_22.sql
 scp jsolly@69.164.205.120:/home/jsolly/backups/blogthedata_db_3_8_22.sql .
-psql blogthedata < blogthedata_db_3_8_22.sql
+psql -U postgres
+postgres=# DROP DATABASE blogthedata;
+postgres=# CREATE DATABASE blogthedata;
+exit
+psql blogthedata < blogthedata_db_5_6_22.sql
 
 # Copy over media folder
 scp -r jsolly@69.164.205.120:/home/jsolly/blogthedata/django_project/media .
