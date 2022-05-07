@@ -18,7 +18,8 @@ from blog.views import (
     post_like_view,
     road_map_view,
     search_view,
-    unit_test_view
+    unit_test_view,
+    works_cited_view
 )
 from users.views import register_view, profile_view
 
@@ -97,6 +98,9 @@ class TestUrls(SetUp):
 
     def test_robots_url_is_resolved(self):
         self.assertEqual(resolve(self.robots_url).func.view_class, RuleList)
+    
+    def test_works_cited_url_is_resolved(self):
+        self.assertEqual(resolve(self.works_cited_url).func, works_cited_view)
 
         
     # def test_admin_url_is_resolved(self): # wasn't able to figure this one out

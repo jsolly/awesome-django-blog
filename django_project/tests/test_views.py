@@ -261,6 +261,11 @@ class TestViews(SetUp, MiddlewareMixin):
         lines = response.content.decode().splitlines()
         self.assertEqual(lines[0], "User-agent: *")
 
+    def test_works_cited_view(self):
+        response = self.client.get(self.works_cited_url)
+        self.assertEqual(response.status_code, 200)
+
+
     # password reset #TODO
 
     # password reset-done #TODO

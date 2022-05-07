@@ -1,0 +1,18 @@
+      <div class="col-md-4">
+        <!-- About Section-->
+        <h3>About</h4>
+          <p>{% block about %} Great decisions are informed by data. I present deeply researched articles to improve your life. {% endblock %}</p>
+          <!-- Category Menu Code -->
+          <h3>Navigate to a Category</h3>
+          <div class="list-group">
+            {% for cat_item in cat_list %}
+            <a href="{% url 'blog-category' cat_item|slugify %}"
+              class="list-group-item list-group-item-action {% if request.resolver_match.kwargs.cat == cat_item|slugify %}active{% endif %}" id="sidebar-{{ cat_item|slugify }}">{{cat_item|title}}</a>
+            {% endfor %}
+            <a href="{% url 'blog-home' %}"
+              id="sidebar-blog-home" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'blog-home' %} active {% endif %}">
+              Blog Home
+            </a>
+          </div>
+          {% include "blog/parts/mailchimp_embed.html" %}
+      </div>

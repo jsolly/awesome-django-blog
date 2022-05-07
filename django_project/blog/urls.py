@@ -29,11 +29,13 @@ from .views import (
     post_like_view,
     road_map_view,
     search_view,
-    unit_test_view
+    unit_test_view,
+    works_cited_view
 )
 
 urlpatterns = [
     path("", HomeView.as_view(), name="blog-home"),
+    path("works-cited", works_cited_view, name='blog-works-cited'),
     path("user/<str:username>", UserPostListView.as_view(), name="user-posts"),
     path("post/<slug:slug>/", PostDetailView.as_view(), name="post-detail"),
     path("about/", about_view, name="blog-about"),

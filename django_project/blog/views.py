@@ -241,3 +241,11 @@ def unit_test_view(request, filename=None):
         html_path,
         {"cat_list": cat_list}
     )
+
+def works_cited_view(request):
+    cat_list = Category.objects.all()
+    return render(
+        request,
+        "blog/works_cited.html",
+        {"cat_list": cat_list},
+    )

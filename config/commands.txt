@@ -18,6 +18,8 @@ python3 manage.py check --deploy
 # login to postgres in terminal
 psql -U postgres
 
+# test on mobile
+ngrok http 8000
 
 # important paths
 sudo tail -f /var/log/apache2/access.log
