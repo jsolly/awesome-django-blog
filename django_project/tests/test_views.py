@@ -265,6 +265,14 @@ class TestViews(SetUp, MiddlewareMixin):
         response = self.client.get(self.works_cited_url)
         self.assertEqual(response.status_code, 200)
 
+    def test_security_txt_view(self):
+        response = self.client.get(reverse("security-txt"))
+        self.assertEqual(response.status_code, 200)
+
+    def test_security_pgp_key_view(self):
+        response = self.client.get(reverse("security-pgp-key-txt"))
+        self.assertEqual(response.status_code, 200)
+
 
     # password reset #TODO
 

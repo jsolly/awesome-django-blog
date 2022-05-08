@@ -73,6 +73,14 @@ pip install Django==3.2.13
 - use dependencies to upgrade prod
 pip install -r requirements_5_4_22.txt
 
+# Create new venv
+# make sure an up-to-date pip freeze has happened
+# make sure you're using the right python version
+python3 -m pip install virtualenv
+virtualenv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
 # Not needed anymore
 python3 manage.py collectstatic
 scp jsolly@69.164.205.120:/home/jsolly/blogthedata/django_project/db.sqlite3 .
