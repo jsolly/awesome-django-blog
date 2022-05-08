@@ -18,6 +18,7 @@ from django.contrib.auth import views as auth_views
 from django.contrib.sitemaps.views import sitemap
 from django.urls import path, include
 from users.views import register_view, profile_view
+from blog.views import security_txt_view, security_pgp_key_view
 from django.conf import settings
 from django.conf.urls.static import static
 from django_project.sitemaps import PostSitemap, StaticSitemap
@@ -26,6 +27,8 @@ sitemaps = { 'posts' : PostSitemap,
 
 urlpatterns = [
     path("sitemap.xml", sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path(".well-known/security.txt", security_txt_view, name="security-txt"),
+    path("pgp-key.txt", security_pgp_key_view, name="security-pgp-key-txt"),
     path("robots.txt", include('robots.urls')),
     path("", include("blog.urls")),
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),

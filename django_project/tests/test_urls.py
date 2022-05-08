@@ -1,5 +1,5 @@
 from .base import SetUp
-from django.urls import resolve
+from django.urls import resolve, reverse
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 from admin_honeypot.views import AdminHoneypot
@@ -19,9 +19,14 @@ from blog.views import (
     road_map_view,
     search_view,
     unit_test_view,
-    works_cited_view
+    works_cited_view,
+    security_txt_view,
+    security_pgp_key_view
 )
 from users.views import register_view, profile_view
+
+def get_url(url_name):
+    return resolve(reverse(url_name))
 
 class TestUrls(SetUp):
     """Make sure urls are hooked up to the correct View"""
@@ -101,6 +106,14 @@ class TestUrls(SetUp):
     
     def test_works_cited_url_is_resolved(self):
         self.assertEqual(resolve(self.works_cited_url).func, works_cited_view)
+
+    def test_security_txt_url_is_resolved(self):
+        self.assertEqual(get_url("security-txt").func, security_txt_view)
+
+
+    def test_security_pgp_key_url_is_resolved(self):
+        self.assertEqual(get_url("security-pgp-key-txt").func, security_pgp_key_view)
+
 
         
     # def test_admin_url_is_resolved(self): # wasn't able to figure this one out

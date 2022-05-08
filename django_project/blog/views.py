@@ -249,3 +249,15 @@ def works_cited_view(request):
         "blog/works_cited.html",
         {"cat_list": cat_list},
     )
+
+def security_txt_view(request):
+    return render(
+        request,
+        "blog/security.txt",
+    )
+
+def security_pgp_key_view(request):
+    return render(
+        request,
+        "blog/pgp-key.txt",
+    )
