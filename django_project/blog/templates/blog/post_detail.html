@@ -12,9 +12,10 @@
 {% endblock head %}
 
 {% block meta %}
+{% load tz %}
     <meta name="description" content="{{ post.metadesc }}">
     <meta property="og:type" content="article">
-    <meta property="article:published_time" content="{{ post.date_posted|date:'c' }}">
+    <meta property="article:published_time" content="2022-05-05T12:38:00.635360">
     <meta name="author" content="John Solly">
     <meta property="og:image" content="{{ post.metaimg.url }}">
     <meta property="og:image:type" content="{{ post.metaimg_mimetype }}">
@@ -23,7 +24,6 @@
 {% endblock meta %}
 
 {% block content %}
-<time datetime="{{ post.date_posted|date:'c' }}"></time>
 <article class="media content-section">
   <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="" />
   <div class="media-body">
