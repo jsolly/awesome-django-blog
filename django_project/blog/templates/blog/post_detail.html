@@ -23,11 +23,12 @@
 {% endblock meta %}
 
 {% block content %}
+<time datetime="{{ post.date_posted|date:'c' }}"></time>
 <article class="media content-section">
   <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="" />
   <div class="media-body">
     <div class="article-metadata">
-      <nobr>John Solly <small class="text-muted"><time datetime="{{ post.date_posted|date:'c' }}">{{ post.date_posted|date:"F d, Y" }}</time></small>
+      <nobr>John Solly <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
         {% if post.draft %} <span style="color:red"> (Draft)</span> {% endif %}
       </nobr>
       {% if post.author == user %}
