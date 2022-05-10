@@ -17,5 +17,5 @@ def save_profile(instance, **kwargs):
 
 # @receiver(honeypot)
 # def my_callback(sender, **kwargs):
-#     print("Request finished!")
+#     print("Caught ya!")
     
