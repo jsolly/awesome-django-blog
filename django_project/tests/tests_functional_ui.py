@@ -67,7 +67,7 @@ class TestFunctionalUI(StaticLiveServerTestCase):
             # views
         )
         # URLs
-        self.home_url = self.live_server_url + reverse("blog-home")
+        self.blog_home = self.live_server_url + reverse("blog-home")
         self.login_url = self.live_server_url + reverse("login")
         self.post1_url = self.live_server_url + reverse("post-detail", args=[self.post1.slug])
 
@@ -137,7 +137,7 @@ class TestFunctionalUI(StaticLiveServerTestCase):
 
     def test_anonymous_can_register_workflow(self):
         # User navigates to Home Page
-        self.browser.get(self.home_url)
+        self.browser.get(self.blog_home)
         
         # User clicks on 'register' nav option
         self.browser.find_element(By.ID, value="nav-register").click()
@@ -157,7 +157,7 @@ class TestFunctionalUI(StaticLiveServerTestCase):
 
     def test_anonymnous_can_search_for_and_open_a_post(self):
         # Anonymous navigates to Home Page
-        self.browser.get(self.home_url)
+        self.browser.get(self.blog_home)
 
         # Anonymous focuses into the search input box and types "Post" and clicks 'Search'
         self.browser.find_element(By.ID, value="search-posts-input").send_keys("Post")

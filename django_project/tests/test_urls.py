@@ -32,7 +32,7 @@ class TestUrls(SetUp):
     """Make sure urls are hooked up to the correct View"""
 
     def test_home_url_is_resolved(self):
-        self.assertEqual(resolve(self.home_url).func.view_class, HomeView)
+        self.assertEqual(resolve(reverse('blog-home')).func.view_class, HomeView)
 
     def test_user_posts_url_is_resolved(self):
         self.assertEqual(
@@ -40,7 +40,7 @@ class TestUrls(SetUp):
 
     def test_create_post_url_is_resolved(self):
         self.assertEqual(
-            resolve(self.post_create_url).func.view_class, CreatePostView)
+            resolve(reverse("post-create")).func.view_class, CreatePostView)
 
     def test_post_detail_url_is_resolved(self):
         self.assertEqual(
@@ -63,7 +63,7 @@ class TestUrls(SetUp):
             resolve(self.category_url).func.view_class, CategoryView)
 
     def test_about_url_is_resolved(self):
-        self.assertEqual(resolve(self.about_url).func, about_view)
+        self.assertEqual(resolve(reverse("blog-about")).func, about_view)
 
     def test_post_like_url_is_resolved(self):
         self.assertEqual(
@@ -71,41 +71,41 @@ class TestUrls(SetUp):
 
     def test_roadmap_url_is_resolved(self):
         self.assertEqual(
-            resolve(self.roadmap_url).func, road_map_view)
+            resolve(reverse("blog-roadmap")).func, road_map_view)
 
     def test_search_url_is_resolved(self):
-        self.assertEqual(resolve(self.search_url).func, search_view)
+        self.assertEqual(resolve(reverse("blog-search")).func, search_view)
 
     def test_unittest_url_is_resolved(self):
         self.assertEqual(
-            resolve(self.unittest_url).func, unit_test_view)
+            resolve(reverse("blog-unittest")).func, unit_test_view)
 
     def test_register_url_is_resolved(self):
-        self.assertEqual(resolve(self.register_url).func, register_view)
+        self.assertEqual(resolve(reverse("register")).func, register_view)
 
     def test_profile_url_is_resolved(self):
-        self.assertEqual(resolve(self.profile_url).func, profile_view)
+        self.assertEqual(resolve(reverse("profile")).func, profile_view)
 
     def test_login_url_is_resolved(self):
         self.assertEqual(
-            resolve(self.login_url).func.view_class, auth_views.LoginView)
-        self.assertEqual(f"/{settings.LOGIN_URL}/", self.login_url)
+            resolve(reverse("login")).func.view_class, auth_views.LoginView)
+        self.assertEqual(f"/{settings.LOGIN_URL}/", reverse("login"))
 
     def test_logout_url_is_resolved(self):
         self.assertEqual(
-            resolve(self.logout_url).func.view_class, auth_views.LogoutView)
+            resolve(reverse("logout")).func.view_class, auth_views.LogoutView)
 
     def test_admin_honey_pot_url_is_resolved(self):
-        self.assertEqual(resolve(self.honey_pot_url).func.view_class, AdminHoneypot)
+        self.assertEqual(resolve(reverse("admin_honeypot:index")).func.view_class, AdminHoneypot)
     
     def test_sitemap_url_is_resolved(self):
-        self.assertEqual(resolve(self.sitemap_url).func, sitemap)
+        self.assertEqual(resolve(reverse('django.contrib.sitemaps.views.sitemap')).func, sitemap)
 
     def test_robots_url_is_resolved(self):
-        self.assertEqual(resolve(self.robots_url).func.view_class, RuleList)
+        self.assertEqual(resolve(reverse("robots_rule_list")).func.view_class, RuleList)
     
     def test_works_cited_url_is_resolved(self):
-        self.assertEqual(resolve(self.works_cited_url).func, works_cited_view)
+        self.assertEqual(resolve(reverse("blog-works-cited")).func, works_cited_view)
 
     def test_security_txt_url_is_resolved(self):
         self.assertEqual(get_url("security-txt").func, security_txt_view)
@@ -118,7 +118,7 @@ class TestUrls(SetUp):
         
     # def test_admin_url_is_resolved(self): # wasn't able to figure this one out
     #             self.assertIsInstance(
-    #         resolve(self.admin_url).func, AdminSite.index)
+    #         resolve(reverse("admin:index")).func, AdminSite.index)
 
     # def test_password_reset_url_is_resolved(self):
     #     self.assertEqual(resolve(self.password_reset_url).func.view_class, auth_views.PasswordResetView)
@@ -133,4 +133,4 @@ class TestUrls(SetUp):
     #     self.assertEqual(resolve(self.password_reset_complete).func.view_class, auth_views.PasswordResetCompleteView)
 
     # def test_captcha_url_is_resolved(self):
-    #     self.assertEqual(resolve(self.logout_url).func.view_class, auth_views.LogoutView)
+    #     self.assertEqual(resolve(reverse("logout")).func.view_class, auth_views.LogoutView)

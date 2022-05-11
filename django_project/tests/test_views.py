@@ -13,7 +13,7 @@ class TestViews(SetUp, MiddlewareMixin):
     def test_add_ip_person_if_not_exist(self):
         self.assertFalse(IpPerson.objects.filter(
             ip=self.localhost_ip).exists())
-        request = self.client.get(self.home_url).wsgi_request
+        request = self.client.get(reverse('blog-home')).wsgi_request
         add_ip_person_if_not_exist(request)
         self.assertTrue(IpPerson.objects.filter(ip=self.localhost_ip).exists())
 
@@ -28,14 +28,14 @@ class TestViews(SetUp, MiddlewareMixin):
 
     def test_home_view(self):  # TODO add check for draft post
         # Anonymous user
-        response = self.client.get(self.home_url)
+        response = self.client.get(reverse('blog-home'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/home.html')
 
         # Access using super_user (should get posts in draft mode)
         self.client.login(username=self.super_user.username,
                           password=self.super_user_password)
-        response = self.client.get(self.home_url)
+        response = self.client.get(reverse('blog-home'))
 
     def test_user_post_list_view(self):
         response = self.client.get(self.user_posts_url)
@@ -68,7 +68,7 @@ class TestViews(SetUp, MiddlewareMixin):
         self.client.login(username=self.super_user.username,
                           password=self.super_user_password)
         response = self.client.post(
-            self.post_create_url, data=data, follow=True)
+            reverse("post-create"), data=data, follow=True)
         self.assertRedirects(response, expected_url=reverse(
             "post-detail", args=['second-post']))
         self.assertEqual(Post.objects.last().title, "My Second Post")
@@ -79,7 +79,7 @@ class TestViews(SetUp, MiddlewareMixin):
         # data['author'] = self.basic_user
         # data['slug'] = "i-shouldnt-exist"
         # response = self.client.post(
-        #     self.post_create_url, data=data)
+        #     reverse("post-create"), data=data)
         # self.assertEqual(response.status_code, 403)
 
     def test_update_post_view(self):
@@ -121,7 +121,7 @@ class TestViews(SetUp, MiddlewareMixin):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/post_confirm_delete.html')
         response = self.client.post(self.post1_delete_url, follow=True)
-        self.assertRedirects(response, expected_url=self.home_url)
+        self.assertRedirects(response, expected_url=reverse('blog-home'))
 
     def test_category_view(self):
         #anonymous user
@@ -140,12 +140,12 @@ class TestViews(SetUp, MiddlewareMixin):
 
     def test_about_view(self):
         User.objects.create(username="John_Solly", email="test@invalid.com")
-        response = self.client.get(self.about_url)
+        response = self.client.get(reverse("blog-about"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/about.html')
 
     def test_roadmap_view(self):  # TODO
-        response = self.client.get(self.roadmap_url)
+        response = self.client.get(reverse("blog-roadmap"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/roadmap.html')
 
@@ -168,13 +168,13 @@ class TestViews(SetUp, MiddlewareMixin):
 
     def test_search_view(self):
         # Empty page if user didn't search for anything and manually typed in the search url (get)
-        response = self.client.get(self.search_url)
+        response = self.client.get(reverse("blog-search"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/search_posts.html')
 
         # If anonymous, should be able to find a post.
         data = {"searched": "Post"}
-        response = self.client.post(self.search_url, data=data)
+        response = self.client.post(reverse("blog-search"), data=data)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context['filtered_posts'][0], self.post1)
         anon_post_count = response.context['filtered_posts'].count()
@@ -182,21 +182,21 @@ class TestViews(SetUp, MiddlewareMixin):
         # If authenticated, can see drafts
         self.client.login(username=self.super_user.username,
                           password=self.super_user_password)
-        response = self.client.post(self.search_url, data=data)
+        response = self.client.post(reverse("blog-search"), data=data)
         self.assertGreater(response.context['filtered_posts'].count(), anon_post_count)
 
     @skip("WIP")
     def test_unittest_view(self):
-        response = self.client.get(self.unittest_url)
+        response = self.client.get(reverse("blog-unittest"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'htmlcov/index.html')
 
         # subpage TODO: This is a little too hardcoded
-        response = self.client.get(f"{self.unittest_url}d_db4652d27126adc6_admin_py.html")
+        response = self.client.get(f"{reverse('blog-unittest')}d_db4652d27126adc6_admin_py.html")
         self.assertEqual(response.status_code, 200)
 
     def test_register_view(self):
-        response = self.client.get(self.register_url)
+        response = self.client.get(reverse("register"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'users/register.html')
         data = {"username": "test2",
@@ -207,14 +207,14 @@ class TestViews(SetUp, MiddlewareMixin):
                 "captcha_0": "dummy-value",
                 "captcha_1": "PASSED"}
 
-        response = self.client.post(self.register_url, data=data, follow=True)
-        self.assertRedirects(response, expected_url=self.login_url)
+        response = self.client.post(reverse("register"), data=data, follow=True)
+        self.assertRedirects(response, expected_url=reverse("login"))
         self.assertTemplateUsed(response, 'users/login.html')
 
         data["secret_password"] = "Wrong Password"
         data["username"] = "test3"
 
-        response = self.client.post(self.register_url, data=data, follow=True)
+        response = self.client.post(reverse("register"), data=data, follow=True)
 
         self.assertTrue(message_in_response(
             response, "Hmm, I don't think that is the right password"))
@@ -223,14 +223,14 @@ class TestViews(SetUp, MiddlewareMixin):
         # View Profile
         self.client.login(username=self.super_user.username,
                           password=self.super_user_password)
-        response = self.client.get(self.profile_url)
+        response = self.client.get(reverse("profile"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'users/profile.html')
 
         # Edit profile
         self.assertEqual(self.super_user.email, "test@original.com")
         self.assertEqual(self.super_user.username, "test_superuser")
-        response = self.client.post(self.profile_url, data={"email": "test@modified.com",
+        response = self.client.post(reverse("profile"), data={"email": "test@modified.com",
                                     "username": "modified"})
         self.assertTrue(message_in_response(
             response, "Your account has been updated"))
@@ -240,29 +240,29 @@ class TestViews(SetUp, MiddlewareMixin):
         # TODO Figure out how to change profile photo
 
     def test_login_view(self):
-        response = self.client.get(self.login_url)
+        response = self.client.get(reverse("login"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'users/login.html')
 
     def test_logout_view(self):
         self.client.login(username=self.super_user.username,
                           password=self.super_user_password)
-        response = self.client.get(self.logout_url)
+        response = self.client.get(reverse("logout"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'users/logout.html')
 
     def test_sitemap_view(self):
-        response = self.client.get(self.sitemap_url)
+        response = self.client.get(reverse('django.contrib.sitemaps.views.sitemap'))
         self.assertEqual(response.status_code, 200)
 
     def test_robots_view(self):
-        response = self.client.get(self.robots_url)
+        response = self.client.get(reverse("robots_rule_list"))
         self.assertEqual(response.status_code, 200)
         lines = response.content.decode().splitlines()
         self.assertEqual(lines[0], "User-agent: *")
 
     def test_works_cited_view(self):
-        response = self.client.get(self.works_cited_url)
+        response = self.client.get(reverse("blog-works-cited"))
         self.assertEqual(response.status_code, 200)
 
     def test_security_txt_view(self):
