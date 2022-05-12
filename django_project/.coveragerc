@@ -1,3 +1,2 @@
 [run]
 plugins = django_coverage_plugin
-omit = "*/tests/*

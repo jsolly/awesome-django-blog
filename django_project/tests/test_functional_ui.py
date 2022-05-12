@@ -15,11 +15,13 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
 setup()
 from users.models import User, Profile
 from blog.models import Category, Post
+from unittest import skip
 
 
 # geckodriver_autoinstaller.install()
 chromedriver_autoinstaller.install()
 
+@skip
 class TestFunctionalUI(StaticLiveServerTestCase):
     def setUp(self):
         self.random_number = random.randint(0,100000)
