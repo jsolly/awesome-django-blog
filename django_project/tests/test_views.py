@@ -1,5 +1,4 @@
 from .base import SetUp, message_in_response
-from unittest import skip
 from django.utils.deprecation import MiddlewareMixin
 from django.urls import reverse
 from blog.views import (
@@ -144,7 +143,7 @@ class TestViews(SetUp, MiddlewareMixin):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/about.html')
 
-    def test_roadmap_view(self):  # TODO
+    def test_roadmap_view(self):
         response = self.client.get(reverse("blog-roadmap"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/roadmap.html')
@@ -184,16 +183,6 @@ class TestViews(SetUp, MiddlewareMixin):
                           password=self.super_user_password)
         response = self.client.post(reverse("blog-search"), data=data)
         self.assertGreater(response.context['filtered_posts'].count(), anon_post_count)
-
-    @skip("WIP")
-    def test_unittest_view(self):
-        response = self.client.get(reverse("blog-unittest"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'htmlcov/index.html')
-
-        # subpage TODO: This is a little too hardcoded
-        response = self.client.get(f"{reverse('blog-unittest')}d_db4652d27126adc6_admin_py.html")
-        self.assertEqual(response.status_code, 200)
 
     def test_register_view(self):
         response = self.client.get(reverse("register"))
@@ -274,12 +263,12 @@ class TestViews(SetUp, MiddlewareMixin):
         self.assertEqual(response.status_code, 200)
 
 
-    # password reset #TODO
+    # password reset
 
-    # password reset-done #TODO
+    # password reset-done
 
-    # password reset-confirm #TODO
+    # password reset-confirm
 
-    # password reset-complete #TODO
+    # password reset-complete
 
-    # captcha #TODO
+    # captcha

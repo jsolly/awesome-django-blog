@@ -29,7 +29,6 @@ from .views import (
     post_like_view,
     road_map_view,
     search_view,
-    unit_test_view,
     works_cited_view
 )
 
@@ -52,8 +51,6 @@ urlpatterns = [
     path("roadmap/", road_map_view, name="blog-roadmap"),
     path("search/", search_view, name="blog-search"),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path("unittests/", unit_test_view, name="blog-unittest"),
-    path("unittests/<str:filename>", unit_test_view, name="blog-unittest")
 
 ]
 if settings.DEBUG:

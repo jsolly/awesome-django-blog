@@ -1,11 +1,11 @@
 from selenium import webdriver
-from selenium.common import exceptions
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 import chromedriver_autoinstaller
 #import geckodriver_autoinstaller
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django import setup
 from django.urls import reverse
 import os
@@ -16,14 +16,10 @@ setup()
 from users.models import User, Profile
 from blog.models import Category, Post
 
-from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-# from django.urls import reverse
 
-# geckodriver_autoinstaller.install() 
+# geckodriver_autoinstaller.install()
 chromedriver_autoinstaller.install()
 
-def test_all_links_resolve(self):
-    return False
 class TestFunctionalUI(StaticLiveServerTestCase):
     def setUp(self):
         self.random_number = random.randint(0,100000)
@@ -80,7 +76,7 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         self.browser.find_element(by=By.NAME, value="password").send_keys(self.general_password)
         self.browser.find_element(By.ID, value="main-login-button").click()
 
-    def test_author_post_CRUD(self):
+    def test_author_post_crud(self):
         self.do_login(self.super_user.username)
 
         # Author clicks on the 'New Post' nav option
@@ -93,7 +89,7 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         actions = ActionChains(self.browser)
         actions.send_keys(Keys.TAB * 4).perform()
         actions.send_keys("Some Content").perform()
-        
+
         # Author scrolls down and clicks 'Create Post'
         actions.send_keys(Keys.PAGE_DOWN).perform()
         time.sleep(1)
@@ -112,7 +108,7 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         # Author clicks on the post's title to get to its post details page
         first_post.find_element(by=By.TAG_NAME, value="a").click()
         #self.browser.get(first_article_link.get_attribute("href"))
-        
+
         # Author Clicks 'Edit Post' and changes the post's title
         self.browser.find_element(By.ID, value='post-edit-button').click()
         self.browser.find_element(by=By.NAME, value="title").send_keys(" Edit")
@@ -138,7 +134,7 @@ class TestFunctionalUI(StaticLiveServerTestCase):
     def test_anonymous_can_register_workflow(self):
         # User navigates to Home Page
         self.browser.get(self.blog_home)
-        
+
         # User clicks on 'register' nav option
         self.browser.find_element(By.ID, value="nav-register").click()
 
@@ -170,17 +166,14 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         first_post.find_element(by=By.TAG_NAME, value="a").click()
         self.assertEqual(self.browser.find_element(by=By.TAG_NAME, value="h2").text, "My First Post")
 
-    
-
     def test_basic_user_can_comment_on_a_post(self):
         self.do_login(self.basic_user.username)
         self.browser.get(self.post1_url)
         self.browser.find_element(By.ID, value="comment-create-button").click()
 
         # Productivity page displays
-        self.assertEqual(self.browser.find_element(By.TAG_NAME, value="h1").text, f"Add Comment")
+        self.assertEqual(self.browser.find_element(By.TAG_NAME, value="h1").text, "Add Comment")
 
-    
     def test_anonymmous_can_like_unlike_a_post(self):
         # Anonymous opens a link to a post
         self.browser.get(self.post1_url)

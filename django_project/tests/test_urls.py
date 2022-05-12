@@ -2,9 +2,9 @@ from .base import SetUp
 from django.urls import resolve, reverse
 from django.conf import settings
 from django.contrib.auth import views as auth_views
+from django.contrib.sitemaps.views import sitemap
 from admin_honeypot.views import AdminHoneypot
 from robots.views import RuleList
-from django.contrib.sitemaps.views import sitemap
 from blog.views import (
     HomeView,
     UserPostListView,
@@ -18,7 +18,6 @@ from blog.views import (
     post_like_view,
     road_map_view,
     search_view,
-    unit_test_view,
     works_cited_view,
     security_txt_view,
     security_pgp_key_view
@@ -76,10 +75,6 @@ class TestUrls(SetUp):
     def test_search_url_is_resolved(self):
         self.assertEqual(resolve(reverse("blog-search")).func, search_view)
 
-    def test_unittest_url_is_resolved(self):
-        self.assertEqual(
-            resolve(reverse("blog-unittest")).func, unit_test_view)
-
     def test_register_url_is_resolved(self):
         self.assertEqual(resolve(reverse("register")).func, register_view)
 
@@ -97,13 +92,13 @@ class TestUrls(SetUp):
 
     def test_admin_honey_pot_url_is_resolved(self):
         self.assertEqual(resolve(reverse("admin_honeypot:index")).func.view_class, AdminHoneypot)
-    
+
     def test_sitemap_url_is_resolved(self):
         self.assertEqual(resolve(reverse('django.contrib.sitemaps.views.sitemap')).func, sitemap)
 
     def test_robots_url_is_resolved(self):
         self.assertEqual(resolve(reverse("robots_rule_list")).func.view_class, RuleList)
-    
+
     def test_works_cited_url_is_resolved(self):
         self.assertEqual(resolve(reverse("blog-works-cited")).func, works_cited_view)
 
@@ -114,8 +109,6 @@ class TestUrls(SetUp):
     def test_security_pgp_key_url_is_resolved(self):
         self.assertEqual(get_url("security-pgp-key-txt").func, security_pgp_key_view)
 
-
-        
     # def test_admin_url_is_resolved(self): # wasn't able to figure this one out
     #             self.assertIsInstance(
     #         resolve(reverse("admin:index")).func, AdminSite.index)

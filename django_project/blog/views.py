@@ -229,19 +229,6 @@ def search_view(request):
             {"cat_list": cat_list},
         )
 
-
-def unit_test_view(request, filename=None):
-    cat_list = Category.objects.all()
-    html_path = "htmlcov/index.html"
-    if filename:
-        html_path = f"htmlcov/{filename}"
-
-    return render(
-        request,
-        html_path,
-        {"cat_list": cat_list}
-    )
-
 def works_cited_view(request):
     cat_list = Category.objects.all()
     return render(

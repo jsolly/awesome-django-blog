@@ -54,7 +54,7 @@ ssh jsolly@69.164.205.120 "dd if=/dev/sda " | dd of=/Users/johnsolly/Documents/c
 
 ### Code Coverage
 coverage run -m unittest discover
-coverage report -m --omit tests/tests_isolated.py --skip-empty
+coverage report -m --omit 'tests/*' --skip-empty --skip-covered
 coverage html --skip-empty --omit tests/tests_isolated -d blog/templates/htmlcov
 
 ### Setup new test database
@@ -81,10 +81,6 @@ virtualenv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
-# Not needed anymore
-python3 manage.py collectstatic
-scp jsolly@69.164.205.120:/home/jsolly/blogthedata/django_project/db.sqlite3 .
-
 # Configuring Python install on new Mac
 Install using the regular installer from python.org. Make sure to match the version that is on production.
 The file path should look like:
@@ -109,3 +105,8 @@ type <exit> and hit enter to go back to the terminal
 psql blogthedata < blogthedata_db_5_5_22.sql
 # If that doesn't work, try
 sudo -u postgres psql blogthedata < blogthedata_db_5_5_22.sql
+
+
+# Not needed anymore
+python3 manage.py collectstatic
+scp jsolly@69.164.205.120:/home/jsolly/blogthedata/django_project/db.sqlite3 .

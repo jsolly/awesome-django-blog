@@ -15,6 +15,7 @@
 			"--disable=C0116",
 			"--disable=E0401",
 			"--disable=C0413",
+			"--disable=R0904",
 		],
 		"python.terminal.activateEnvInCurrentTerminal": true,
 		"python.defaultInterpreterPath": "/Users/johnsolly/Documents/code/blogthedata/django_project/venv/bin/python3",
