@@ -232,8 +232,10 @@ def search_view(request):
         return render(
             request,
             "blog/search_posts.html",
-            {"cat_list": cat_list, "searched": ""},
+            {"cat_list": cat_list, "searched": "", "posts": []},
         )
+        # Seems to be the best approach for now
+        # https://stackoverflow.com/questions/53146842/check-if-text-exists-in-django-template-context-variable
 
 def works_cited_view(request):
     cat_list = Category.objects.all()

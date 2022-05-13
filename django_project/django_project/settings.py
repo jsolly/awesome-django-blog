@@ -205,6 +205,9 @@ EMAIL_HOST_PASSWORD = config.get("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = config.get("FROM_EMAIL")
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
+# -----FASTDEV-----
+FASTDEV_STRICT_IF = True
+
 CKEDITOR_CONFIGS = {
     'default': {
         # name - Toolbar name
