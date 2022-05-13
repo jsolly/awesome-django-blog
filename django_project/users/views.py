@@ -4,8 +4,6 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
 from blog.models import Category
-
-
 def register_view(request):
     cat_list = Category.objects.all()
     if request.method == "POST":

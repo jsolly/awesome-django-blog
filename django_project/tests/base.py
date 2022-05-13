@@ -18,7 +18,6 @@ def message_in_response(response, message: str):
             return True
     return False
 
-
 def create_several_posts(category_name, user, number_of_posts):
     for i in range(number_of_posts):
         Post.objects.create(

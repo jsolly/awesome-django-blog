@@ -119,17 +119,17 @@ class TestUrls(SetUp):
     #             self.assertIsInstance(
     #         resolve(reverse("admin:index")).func, AdminSite.index)
 
-    # def test_password_reset_url_is_resolved(self):
-    #     self.assertEqual(resolve(self.password_reset_url).func.view_class, MyPasswordResetView)
+    def test_password_reset_url_is_resolved(self):
+        self.assertEqual(get_url("password_reset").func.view_class, MyPasswordResetView)
 
-    # def test_password_resset_done_url_is_resolved(self):
-    #     self.assertEqual(resolve(self.password_reset_done_url).func.view_class, MyPasswordResetDoneView)
+    def test_password_resset_done_url_is_resolved(self):
+        self.assertEqual(get_url("password_reset_done").func.view_class, MyPasswordResetDoneView)
 
-    # def test_password_reset_confirm_url_is_resolved(self):
-    #     self.assertEqual(resolve(self.password_reset_confirm).func.view_class, MyPasswordResetConfirmView)
+    # def test_password_reset_confirm_url_is_resolved(self): #TODO
+    #     self.assertEqual(get_url("password_reset_confirm").func.view_class, MyPasswordResetConfirmView)
 
-    # def test_password_reset_complete_url_is_resolved(self):
-    #     self.assertEqual(resolve(self.password_reset_complete).func.view_class, MyPasswordResetCompleteView)
+    def test_password_reset_complete_url_is_resolved(self):
+        self.assertEqual(get_url("password_reset_complete").func.view_class, MyPasswordResetCompleteView)
 
     # def test_captcha_url_is_resolved(self):
     #     self.assertEqual(resolve(reverse("logout")).func.view_class, MyLogoutView)

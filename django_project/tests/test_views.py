@@ -1,5 +1,5 @@
 from .base import SetUp, message_in_response, create_several_posts
-from django.utils.deprecation import MiddlewareMixin
+import base64
 from django.urls import reverse
 from blog.views import (
     add_ip_person_if_not_exist,
@@ -7,8 +7,8 @@ from blog.views import (
 )
 from blog.models import Post, Comment, IpPerson
 from users.models import User
-
-class TestViews(SetUp, MiddlewareMixin):
+from blog.views import CategoryView
+class TestViews(SetUp):
     def test_add_ip_person_if_not_exist(self):
         self.assertFalse(IpPerson.objects.filter(
             ip=self.localhost_ip).exists())
@@ -139,7 +139,12 @@ class TestViews(SetUp, MiddlewareMixin):
         # Paginated list appears when there are many posts
         create_several_posts(self.category1.name, self.super_user, 20)
         response = self.client.get(self.category_url)
+        self.assertTrue(response.context['is_paginated'])
         self.assertEqual(response.context['posts'].count(), 5) # 5 per page
+
+        # Paginated list works when user has moved forward at least one page
+        response = self.client.get(self.category_url, {'page': 2})
+        self.assertTrue(response.context['page_obj'].has_previous())
 
     def test_about_view(self):
         User.objects.create(username="John_Solly", email="test@invalid.com")
@@ -244,6 +249,24 @@ class TestViews(SetUp, MiddlewareMixin):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'users/logout.html')
 
+    def test_password_rest_view(self):
+        response = self.client.get(reverse("password_reset"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'users/password_reset.html')
+
+    def test_password_reset_done_view(self):
+        response = self.client.get(reverse("password_reset_done"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'users/password_reset_done.html')
+
+    # def test_password_reset_confirm_view(self):
+    #     # TODO
+
+    def test_password_reset_complete(self):
+        response = self.client.get(reverse("password_reset_complete"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'users/password_reset_complete.html')
+
     def test_sitemap_view(self):
         response = self.client.get(reverse('django.contrib.sitemaps.views.sitemap'))
         self.assertEqual(response.status_code, 200)
@@ -265,14 +288,3 @@ class TestViews(SetUp, MiddlewareMixin):
     def test_security_pgp_key_view(self):
         response = self.client.get(reverse("security-pgp-key-txt"))
         self.assertEqual(response.status_code, 200)
-
-
-    # password reset
-
-    # password reset-done
-
-    # password reset-confirm
-
-    # password reset-complete
-
-    # captcha
