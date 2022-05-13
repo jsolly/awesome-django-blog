@@ -53,7 +53,11 @@
         {% endfor %} {% endif %}
         {% block content %}{% endblock %}
       </div>
+      <div class="col-md-4">
+        <h3>About</h3>
+        <p>{% block about %} Great decisions are informed by data. I present deeply researched articles to improve your life. {% endblock about %}</p>
       {% include "blog/parts/sidebar.html" %}
+    </div>
     </div>
   </main>
 
