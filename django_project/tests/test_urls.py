@@ -1,7 +1,6 @@
 from .base import SetUp
 from django.urls import resolve, reverse
 from django.conf import settings
-from django.contrib.auth import views as auth_views
 from django.contrib.sitemaps.views import sitemap
 from admin_honeypot.views import AdminHoneypot
 from robots.views import RuleList
@@ -22,16 +21,19 @@ from blog.views import (
     security_txt_view,
     security_pgp_key_view
 )
-from users.views import register_view, profile_view
+from users.views import register_view, profile_view, MyLoginView, MyLogoutView, MyPasswordResetView, MyPasswordResetDoneView, MyPasswordResetConfirmView, MyPasswordResetCompleteView
+
 
 def get_url(url_name):
     return resolve(reverse(url_name))
+
 
 class TestUrls(SetUp):
     """Make sure urls are hooked up to the correct View"""
 
     def test_home_url_is_resolved(self):
-        self.assertEqual(resolve(reverse('blog-home')).func.view_class, HomeView)
+        self.assertEqual(resolve(reverse('blog-home')
+                                 ).func.view_class, HomeView)
 
     def test_user_posts_url_is_resolved(self):
         self.assertEqual(
@@ -83,47 +85,51 @@ class TestUrls(SetUp):
 
     def test_login_url_is_resolved(self):
         self.assertEqual(
-            resolve(reverse("login")).func.view_class, auth_views.LoginView)
+            resolve(reverse("login")).func.view_class, MyLoginView)
         self.assertEqual(f"/{settings.LOGIN_URL}/", reverse("login"))
 
     def test_logout_url_is_resolved(self):
         self.assertEqual(
-            resolve(reverse("logout")).func.view_class, auth_views.LogoutView)
+            resolve(reverse("logout")).func.view_class, MyLogoutView)
 
     def test_admin_honey_pot_url_is_resolved(self):
-        self.assertEqual(resolve(reverse("admin_honeypot:index")).func.view_class, AdminHoneypot)
+        self.assertEqual(resolve(reverse("admin_honeypot:index")
+                                 ).func.view_class, AdminHoneypot)
 
     def test_sitemap_url_is_resolved(self):
-        self.assertEqual(resolve(reverse('django.contrib.sitemaps.views.sitemap')).func, sitemap)
+        self.assertEqual(
+            resolve(reverse('django.contrib.sitemaps.views.sitemap')).func, sitemap)
 
     def test_robots_url_is_resolved(self):
-        self.assertEqual(resolve(reverse("robots_rule_list")).func.view_class, RuleList)
+        self.assertEqual(resolve(reverse("robots_rule_list")
+                                 ).func.view_class, RuleList)
 
     def test_works_cited_url_is_resolved(self):
-        self.assertEqual(resolve(reverse("blog-works-cited")).func, works_cited_view)
+        self.assertEqual(
+            resolve(reverse("blog-works-cited")).func, works_cited_view)
 
     def test_security_txt_url_is_resolved(self):
         self.assertEqual(get_url("security-txt").func, security_txt_view)
 
-
     def test_security_pgp_key_url_is_resolved(self):
-        self.assertEqual(get_url("security-pgp-key-txt").func, security_pgp_key_view)
+        self.assertEqual(get_url("security-pgp-key-txt").func,
+                         security_pgp_key_view)
 
     # def test_admin_url_is_resolved(self): # wasn't able to figure this one out
     #             self.assertIsInstance(
     #         resolve(reverse("admin:index")).func, AdminSite.index)
 
     # def test_password_reset_url_is_resolved(self):
-    #     self.assertEqual(resolve(self.password_reset_url).func.view_class, auth_views.PasswordResetView)
+    #     self.assertEqual(resolve(self.password_reset_url).func.view_class, MyPasswordResetView)
 
     # def test_password_resset_done_url_is_resolved(self):
-    #     self.assertEqual(resolve(self.password_reset_done_url).func.view_class, auth_views.PasswordResetDoneView)
+    #     self.assertEqual(resolve(self.password_reset_done_url).func.view_class, MyPasswordResetDoneView)
 
     # def test_password_reset_confirm_url_is_resolved(self):
-    #     self.assertEqual(resolve(self.password_reset_confirm).func.view_class, auth_views.PasswordResetConfirmView)
+    #     self.assertEqual(resolve(self.password_reset_confirm).func.view_class, MyPasswordResetConfirmView)
 
     # def test_password_reset_complete_url_is_resolved(self):
-    #     self.assertEqual(resolve(self.password_reset_complete).func.view_class, auth_views.PasswordResetCompleteView)
+    #     self.assertEqual(resolve(self.password_reset_complete).func.view_class, MyPasswordResetCompleteView)
 
     # def test_captcha_url_is_resolved(self):
-    #     self.assertEqual(resolve(reverse("logout")).func.view_class, auth_views.LogoutView)
+    #     self.assertEqual(resolve(reverse("logout")).func.view_class, MyLogoutView)

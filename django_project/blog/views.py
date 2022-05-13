@@ -133,6 +133,12 @@ class PostDeleteView(DeleteView):
     model = Post
     success_url = reverse_lazy("blog-home")
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["cat_list"] = Category.objects.all()
+        return context
+
+
     # def test_func(self):
     #     post = self.get_object()
     #     if self.request.user == post.author:
@@ -142,7 +148,7 @@ class PostDeleteView(DeleteView):
 class CategoryView(ListView):
     model = Post
     template_name = "blog/categories.html"  # <app>/<model>_<viewtype>.html
-    context_object_name = "category_posts"  # The default is object_list
+    context_object_name = "posts"  # The default is object_list
     paginate_by = 5
 
     def get_queryset(self):
@@ -220,13 +226,13 @@ def search_view(request):
             request,
             "blog/search_posts.html",
             {"cat_list": cat_list, "searched": searched,
-                "filtered_posts": filtered_posts},
+                "posts": filtered_posts},
         )
     else:
         return render(
             request,
             "blog/search_posts.html",
-            {"cat_list": cat_list},
+            {"cat_list": cat_list, "searched": ""},
         )
 
 def works_cited_view(request):
