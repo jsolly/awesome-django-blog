@@ -81,7 +81,9 @@ INSTALLED_APPS = [
     "ckeditor_uploader",
     "admin_honeypot",
     'robots',
+    'django_fastdev'
 ]
+#     "django_fastdev"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

@@ -14,19 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.contrib.auth import views as auth_views
 from django.contrib.sitemaps.views import sitemap
 from django.urls import path, include
-from users.views import register_view, profile_view
+from users.views import register_view, profile_view, MyLoginView, MyLogoutView, MyPasswordResetView, MyPasswordResetDoneView, MyPasswordResetConfirmView, MyPasswordResetCompleteView
 from blog.views import security_txt_view, security_pgp_key_view
 from django.conf import settings
 from django.conf.urls.static import static
 from django_project.sitemaps import PostSitemap, StaticSitemap
-sitemaps = { 'posts' : PostSitemap,
+sitemaps = {'posts': PostSitemap,
             'static': StaticSitemap}
 
 urlpatterns = [
-    path("sitemap.xml", sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path("sitemap.xml", sitemap, {'sitemaps': sitemaps},
+         name='django.contrib.sitemaps.views.sitemap'),
     path(".well-known/security.txt", security_txt_view, name="security-txt"),
     path("pgp-key.txt", security_pgp_key_view, name="security-pgp-key-txt"),
     path("robots.txt", include('robots.urls')),
@@ -37,37 +37,37 @@ urlpatterns = [
     path("profile/", profile_view, name="profile"),
     path(
         "login/",
-        auth_views.LoginView.as_view(template_name="users/login.html"),
+        MyLoginView.as_view(template_name="users/login.html"),
         name="login",
     ),
     path(
         "logout/",
-        auth_views.LogoutView.as_view(template_name="users/logout.html"),
+        MyLogoutView.as_view(template_name="users/logout.html"),
         name="logout",
     ),
     path(
         "password-reset/",
-        auth_views.PasswordResetView.as_view(
+        MyPasswordResetView.as_view(
             template_name="users/password_reset.html"),
         name="password_reset",
     ),
     path(
         "password-reset/done/",
-        auth_views.PasswordResetDoneView.as_view(
+        MyPasswordResetDoneView.as_view(
             template_name="users/password_reset_done.html"
         ),
         name="password_reset_done",
     ),
     path(
         "password-reset-confirm/<uidb64>/<token>/",
-        auth_views.PasswordResetConfirmView.as_view(
+        MyPasswordResetConfirmView.as_view(
             template_name="users/password_reset_confirm.html"
         ),
         name="password_reset_confirm",
     ),
     path(
         "password-reset-complete/",
-        auth_views.PasswordResetCompleteView.as_view(
+        MyPasswordResetCompleteView.as_view(
             template_name="users/password_reset_complete.html"
         ),
         name="password_reset_complete",

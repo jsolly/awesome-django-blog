@@ -1,34 +1,19 @@
-{% extends "blog/base.html" %}
-{% block title %} {{ searched }} – Solly's Blog{% endblock title %}
+{% extends "blog/parts/base.html" %}
+{% if searched %}
+    {% block title %} {{ searched }} – Solly's Blog {% endblock title %}
+    {% endif %}
 
 {% block content %}
 <center>
     {% if searched %}
-
     <h1>You searched for '{{ searched }}' </h1>
     {% else %}
     <h1>You didn't search for anything!</h1>
     {% endif %}
 </center>
 </br>
-{% if filtered_posts %}
-{% for post in filtered_posts %}
-<article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
-    <div class="media-body">
-        <div class="article-metadata">
-            <nobr>John Solly <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
-                {% if post.draft %} <span style="color:red"> (Draft)</span> {% endif %}
-              </nobr>
-        </div>
-        <h2><a class="article-title" href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h2>
-        <p class="article-content">{{ post.snippet|safe }}...</p>
-        <a href="{% url 'post-detail' slug=post.slug %}">Comments: {{ post.comments.count }}</a>
-        <p>{{post.total_views}} views </br> {{post.total_likes}} likes </p>
-    </div>
-</article>
-
-{% endfor %}
+{% if posts %}
+{% include "blog/parts/posts.html" %}
 {% else %}
 <center><h3>I didn't find any posts matching that search 🤷‍♂️ </h3></center>
 {% endif %}

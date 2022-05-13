@@ -128,18 +128,18 @@ class TestViews(SetUp, MiddlewareMixin):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/categories.html')
         self.assertEqual(response.context['cat'], self.category1)
-        self.assertEqual(response.context['category_posts'].count(), 1)
+        self.assertEqual(response.context['posts'].count(), 1)
 
         # Admin can see posts in a category even if they are drafts
         self.client.login(username=self.super_user.username,
                           password=self.super_user_password)
         response = self.client.get(self.category_url)
-        self.assertEqual(response.context['category_posts'].count(), 2)
+        self.assertEqual(response.context['posts'].count(), 2)
 
         # Paginated list appears when there are many posts
         create_several_posts(self.category1.name, self.super_user, 20)
         response = self.client.get(self.category_url)
-        self.assertEqual(response.context['category_posts'].count(), 5) # 5 per page
+        self.assertEqual(response.context['posts'].count(), 5) # 5 per page
 
     def test_about_view(self):
         User.objects.create(username="John_Solly", email="test@invalid.com")
@@ -179,14 +179,14 @@ class TestViews(SetUp, MiddlewareMixin):
         data = {"searched": "Post"}
         response = self.client.post(reverse("blog-search"), data=data)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['filtered_posts'][0], self.post1)
-        anon_post_count = response.context['filtered_posts'].count()
+        self.assertEqual(response.context['posts'][0], self.post1)
+        anon_post_count = response.context['posts'].count()
 
         # If authenticated, can see drafts
         self.client.login(username=self.super_user.username,
                           password=self.super_user_password)
         response = self.client.post(reverse("blog-search"), data=data)
-        self.assertGreater(response.context['filtered_posts'].count(), anon_post_count)
+        self.assertGreater(response.context['posts'].count(), anon_post_count)
 
     def test_register_view(self):
         response = self.client.get(reverse("register"))

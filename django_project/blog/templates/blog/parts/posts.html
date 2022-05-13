@@ -1,0 +1,17 @@
+{% for post in posts %}
+<article class="media content-section">
+  <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="John Solly Profile Picture">
+  <div class="media-body">
+    <div class="article-metadata">
+      <h2 class="article-title"><a class="article-title" href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h2>
+      <nobr>{{ post.author }} <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+        {% if post.draft %} <span style="color:red"> (Draft)</span> {% endif %}
+      </nobr>
+    </div>
+    <p class="article-content">{{ post.snippet|safe }}</p>
+    <a href="{% url 'post-detail' slug=post.slug %}">Comments: {{ post.comments.count }}</a>
+    <p>{{post.total_views}} views </br> {{post.total_likes}} likes </p>
+  </div>
+</article>
+
+{% endfor %}
