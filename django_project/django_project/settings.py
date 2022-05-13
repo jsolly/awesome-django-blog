@@ -263,6 +263,7 @@ CKEDITOR_CONFIGS = {
         ]),
         'linkShowTargetTab': True,
         'linkShowAdvancedTab': False,
+        'allowedContent' : True,
 
         # CKEditor height and width settings
         'height': '400px',
