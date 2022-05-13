@@ -1,22 +1,43 @@
 import warnings
 
 from django import setup
-#os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings") # I moved this into an environment variable
+# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings") # I moved this into an environment variable
 setup()
 
 from django.test import TestCase, Client
 from django.urls import reverse
 from django.contrib.messages import get_messages
 from django.test.utils import setup_test_environment
-from blog.models import Post, Category, IpPerson
+from blog.models import Post, Comment, Category, IpPerson
 from users.models import User, Profile
 
 
-def message_in_response(response, message:str):
+def message_in_response(response, message: str):
     for resp_message in get_messages(response.wsgi_request):
         if message == resp_message.message:
             return True
     return False
+
+
+def create_several_posts(category_name, user, number_of_posts):
+    for i in range(number_of_posts):
+        Post.objects.create(
+            title="My First Post",
+            slug=f"{i}",
+            category=category_name,
+            metadesc="Curious about your health? Look no further!",
+            draft=False,
+            # metaimg = ""
+            # metaimg_mimetype = ""
+            snippet="ultrices dui sapien eget mi proin sed libero enim sed faucibus turpis in eu mi bibendum neque egestas congue quisque egestas diam in arcu cursus euismod quis viverra nibh cras pulvinar mattis nunc sed blandit libero volutpat sed cras ornare arcu dui vivamus arcu felis bibendum ut tristique et egestas",
+            content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
+            # date_posted = ""
+            author=user
+            # likes
+            # views
+        )
+
+
 class SetUp(TestCase):
     """Create User and Post object to be shared by tests. Also create urls using reverse()"""
     setup_test_environment()
@@ -30,7 +51,8 @@ class SetUp(TestCase):
             localhost_ip_person.delete()
 
         # SuperUser Object
-        self.super_user = User(username="test_superuser", email="test@original.com")
+        self.super_user = User(username="test_superuser",
+                               email="test@original.com")
         self.super_user_password = "T3stingIsFun!"
         self.super_user.is_staff = True
         self.super_user.is_superuser = True
@@ -39,7 +61,8 @@ class SetUp(TestCase):
         self.profile1 = Profile.objects.get(user=self.super_user)
 
         # Basic User
-        self.basic_user = User(username="test_viewer", email="test@original.com")
+        self.basic_user = User(username="test_viewer",
+                               email="test@original.com")
         self.basic_user_password = "T3stingIsFun!"
         self.basic_user.is_staff = False
         self.basic_user.is_superuser = False
@@ -80,13 +103,15 @@ class SetUp(TestCase):
         )
         self.post1_like_url = reverse("post-like", args=[self.post1.slug])
         self.post1_detail_url = reverse("post-detail", args=[self.post1.slug])
-        # self.comment1 = Comment.objects.create(
-        #     post=self.post1, content="I am a comment", author=self.super_user)
+        self.comment1 = Comment.objects.create(
+            post=self.post1, content="I am a comment", author=self.super_user)
         self.client = Client()
-        self.user_posts_url = reverse("user-posts", args=[self.super_user.username])
+        self.user_posts_url = reverse(
+            "user-posts", args=[self.super_user.username])
         self.post1_update_url = reverse("post-update", args=[self.post1.slug])
         self.post1_delete_url = reverse("post-delete", args=[self.post1.slug])
-        self.post1_create_comment_url = reverse("comment-create", args=[self.post1.slug])
+        self.post1_create_comment_url = reverse(
+            "comment-create", args=[self.post1.slug])
         self.category_url = reverse(
             "blog-category", args=[self.category1.name])
 

@@ -1,4 +1,4 @@
-from .base import SetUp, message_in_response
+from .base import SetUp, message_in_response, create_several_posts
 from django.utils.deprecation import MiddlewareMixin
 from django.urls import reverse
 from blog.views import (
@@ -136,6 +136,10 @@ class TestViews(SetUp, MiddlewareMixin):
         response = self.client.get(self.category_url)
         self.assertEqual(response.context['category_posts'].count(), 2)
 
+        # Paginated list appears when there are many posts
+        create_several_posts(self.category1.name, self.super_user, 20)
+        response = self.client.get(self.category_url)
+        self.assertEqual(response.context['category_posts'].count(), 5) # 5 per page
 
     def test_about_view(self):
         User.objects.create(username="John_Solly", email="test@invalid.com")
