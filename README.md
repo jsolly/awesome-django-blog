@@ -47,6 +47,8 @@ A django blog about data-driven decisions
 - Compatible with Sqllite or postgres
 - Git hooks for automatic static file generation
 - Global search
+- 100% code coverage
+- Fully PEP 8 compliant (with some exceptions*)
 
 ## Tests
 - Contained within tests/
