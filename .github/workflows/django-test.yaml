@@ -4,33 +4,33 @@ on:
   push:
     branches:
       - main
-
+  
   pull_request:
     branches:
       - main
 
-  jobs:
-    build:
+jobs:
+  build:
 
-      runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-      steps:
-      - uses: actions/checkout@v2
-      - name: Setup Python 3.9.7
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.7
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-      - name: Lint with Pylint
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Python 3.9.7
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Lint with Pylint
       run: |
         pylint
-      - name: Coverage report
-        run: |
-          coverage run manage.py test
-          coverage report
-      - name: Django Testing
-        run: |
-          python3 manage.py test
+    - name: Coverage report
+      run: |
+        coverage run manage.py test
+        coverage report
+    - name: Django Testing
+      run: |
+        python3 manage.py test
