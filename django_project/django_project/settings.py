@@ -208,6 +208,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 # -----FASTDEV-----
 FASTDEV_STRICT_IF = True
 
+#-----TESTRUNNER-----
+TEST_RUNNER = "django_rich.test.RichRunner"
+
 CKEDITOR_CONFIGS = {
     'default': {
         # name - Toolbar name
