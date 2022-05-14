@@ -8,8 +8,6 @@ A django blog about data-driven decisions
 
 ## Table of Contents
 
-> If your `README` has a lot of info, section headers might be nice.
-
 - [Installation](#installation)
 - [Features](#features)
 - [Contributing](#contributing)
@@ -106,7 +104,7 @@ Reach out to me at one of the following places!
 
 ---
 
-## Donations (Optional)
+## Donations
 
 ### Coming Soon
 
