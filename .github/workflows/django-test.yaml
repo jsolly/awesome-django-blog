@@ -28,7 +28,7 @@ on:
       run: |
         pylint
 
-      -name: Coverage report
+      - name: Coverage report
         run: |
           coverage run manage.py test
           coverage report
