@@ -26,7 +26,7 @@ A django blog about data-driven decisions
 
 
 ### Setup
-- See commented out Database section in django_project/settings.py to use sqllite database or postgres
+- See commented out Database section in [django_project/settings.py](https://github.com/jsolly/blogthedata/blob/master/django_project/django_project/settings.py) to use sqllite database or postgres
 - python3 manage.py migrate
 
 ---
