@@ -32,9 +32,23 @@ A django blog about data-driven decisions
 ---
 
 ## Features
-## Usage (Optional)
-## Documentation (Optional)
-## Tests (Optional)
+- User login
+- Ability to create posts and comments
+- Ckeditor for rich text (also includes spell check, code snippets, character counter, and more!)
+- Multiple categoires to organize posts
+- Post views and likes
+- Newsletter Sign up
+- Github Integration
+- Optimized for Performance, SEO, and A11Y
+- Latest Django 3.x
+- Slugified URLs 
+- Open Graph protocol compliant social media sharing
+- Bootstrap 5
+- Compatible with Sqllite or postgres
+- Git hooks for automatic static file generation
+- Global search
+
+## Tests
 - Contained within tests/
 - Run coverage
 $ cd django_project
