@@ -23,29 +23,11 @@ A django blog about data-driven decisions
 
 - Clone repo https://github.com/jsolly/blogthedata.git
 - Install Python and dependencies using requirements stored in config/requirements.txt
-- See commented out Database section in django_project/settings.py to use sqllite database or postgres
-- python3 manage.py migrate
 
 
 ### Setup
-
-- If you want more syntax highlighting, format your code like this:
-
-> update and install this package first
-
-```shell
-$ brew update
-$ brew install fvcproductions
-```
-
-> now install npm and bower packages
-
-```shell
-$ npm install
-$ bower install
-```
-
-- For all the possible languages that support syntax highlithing on GitHub (which is basically all of them), refer <a href="https://github.com/github/linguist/blob/master/lib/linguist/languages.yml" target="_blank">here</a>.
+- See commented out Database section in django_project/settings.py to use sqllite database or postgres
+- python3 manage.py migrate
 
 ---
 
