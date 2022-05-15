@@ -1,7 +1,7 @@
 {% extends "blog/parts/base.html" %}
 {% if searched %}
-    {% block title %} {{ searched }} – Solly's Blog {% endblock title %}
-    {% endif %}
+{% block title %} {{ searched }} – Solly's Blog {% endblock title %}
+{% endif %}
 
 {% block content %}
 <center>
@@ -15,6 +15,8 @@
 {% if posts %}
 {% include "blog/parts/posts.html" %}
 {% else %}
-<center><h3>I didn't find any posts matching that search 🤷‍♂️ </h3></center>
+<center>
+    <h3>I didn't find any posts matching that search 🤷‍♂️ </h3>
+</center>
 {% endif %}
 {% endblock content %}

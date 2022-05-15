@@ -16,23 +16,36 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.urls import path, include
-from users.views import register_view, profile_view, MyLoginView, MyLogoutView, MyPasswordResetView, MyPasswordResetDoneView, MyPasswordResetConfirmView, MyPasswordResetCompleteView
-from blog.views import security_txt_view, security_pgp_key_view
 from django.conf import settings
 from django.conf.urls.static import static
 from django_project.sitemaps import PostSitemap, StaticSitemap
-sitemaps = {'posts': PostSitemap,
-            'static': StaticSitemap}
+from users.views import (
+    register_view,
+    profile_view,
+    MyLoginView,
+    MyLogoutView,
+    MyPasswordResetView,
+    MyPasswordResetDoneView,
+    MyPasswordResetConfirmView,
+    MyPasswordResetCompleteView,
+)
+from blog.views import security_txt_view, security_pgp_key_view
+
+sitemaps = {"posts": PostSitemap, "static": StaticSitemap}
 
 urlpatterns = [
-    path("sitemap.xml", sitemap, {'sitemaps': sitemaps},
-         name='django.contrib.sitemaps.views.sitemap'),
+    path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": sitemaps},
+        name="django.contrib.sitemaps.views.sitemap",
+    ),
     path(".well-known/security.txt", security_txt_view, name="security-txt"),
     path("pgp-key.txt", security_pgp_key_view, name="security-pgp-key-txt"),
-    path("robots.txt", include('robots.urls')),
+    path("robots.txt", include("robots.urls")),
     path("", include("blog.urls")),
-    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
-    path('config/', admin.site.urls),
+    path("admin/", include("admin_honeypot.urls", namespace="admin_honeypot")),
+    path("config/", admin.site.urls),
     path("register/", register_view, name="register"),
     path("profile/", profile_view, name="profile"),
     path(
@@ -47,15 +60,12 @@ urlpatterns = [
     ),
     path(
         "password-reset/",
-        MyPasswordResetView.as_view(
-            template_name="users/password_reset.html"),
+        MyPasswordResetView.as_view(template_name="users/password_reset.html"),
         name="password_reset",
     ),
     path(
         "password-reset/done/",
-        MyPasswordResetDoneView.as_view(
-            template_name="users/password_reset_done.html"
-        ),
+        MyPasswordResetDoneView.as_view(template_name="users/password_reset_done.html"),
         name="password_reset_done",
     ),
     path(
@@ -75,5 +85,4 @@ urlpatterns = [
     path("captcha", include("captcha.urls")),
 ]
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

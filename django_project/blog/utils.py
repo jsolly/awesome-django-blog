@@ -1,5 +1,6 @@
 from django.utils.text import slugify
 
+
 def slugify_instance_title(instance, save=False, new_slug=None):
     if new_slug is not None:
         slug = new_slug
@@ -20,13 +21,12 @@ def get_client_ip(request):
         ip_adrr = request.META.get("REMOTE_ADDR")
     return ip_adrr
 
+
 def get_post_like_status(request, post):
     ip_adrr = get_client_ip(request)
     if post.likes.filter(ip=ip_adrr).exists():
         return True
     return False
-
-
 
 
 # def post_pre_save(sender, instance, *args, **kwargs):

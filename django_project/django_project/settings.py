@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config.get("SECRET_KEY")
-SITE_ID = 1 # blogthedata.com
+SITE_ID = 1  # blogthedata.com
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 CAPTCHA_TEST_MODE = False
@@ -41,7 +41,7 @@ SECURE_HSTS_SECONDS = 31557600
 SECURE_HSTS_PRELOAD = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
-if config['DEBUG'] == 'True':
+if config["DEBUG"] == "True":
     SITE_ID = 2
     DEBUG = True
     CAPTCHA_TEST_MODE = True
@@ -58,7 +58,6 @@ if config['DEBUG'] == 'True':
     SECURE_HSTS_SECONDS = 31557600
     SECURE_HSTS_PRELOAD = False
     SECURE_HSTS_INCLUDE_SUBDOMAINS = False
-
 
 
 ALLOWED_HOSTS = config.get("ALLOWED_HOSTS")
@@ -80,8 +79,8 @@ INSTALLED_APPS = [
     "ckeditor",
     "ckeditor_uploader",
     "admin_honeypot",
-    'robots',
-    'django_fastdev'
+    "robots",
+    "django_fastdev",
 ]
 #     "django_fastdev"
 
@@ -94,7 +93,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.utils.deprecation.MiddlewareMixin",
-    'django.contrib.sites.middleware.CurrentSiteMiddleware'
+    "django.contrib.sites.middleware.CurrentSiteMiddleware",
 ]
 
 ROOT_URLCONF = "django_project.urls"
@@ -111,9 +110,8 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
-            'debug': True,
+            "debug": True,
         },
-
     },
 ]
 
@@ -129,9 +127,9 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "blogthedata",
         "USER": "postgres",
-        "PASSWORD": config.get('POSTGRES_PASS'),
+        "PASSWORD": config.get("POSTGRES_PASS"),
         "HOST": "localhost",
-        "PORT": "5432"
+        "PORT": "5432",
     }
 }
 
@@ -181,12 +179,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_URL = "/static/"
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, "static"),
 ]
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -209,94 +207,117 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 FASTDEV_STRICT_IF = True
 
 CKEDITOR_CONFIGS = {
-    'default': {
+    "default": {
         # name - Toolbar name
         # items - The buttons enabled in the toolbar
-        'toolbar_DefaultToolbarConfig': [
+        "toolbar_DefaultToolbarConfig": [
             {
-                'name': 'basicstyles',
-                'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript',
-                          'Superscript', 'RemoveFormat', ],
+                "name": "basicstyles",
+                "items": [
+                    "Bold",
+                    "Italic",
+                    "Underline",
+                    "Strike",
+                    "Subscript",
+                    "Superscript",
+                    "RemoveFormat",
+                ],
             },
             {
-                'name': 'clipboard',
-                'items': ['Undo', 'Redo', ],
+                "name": "clipboard",
+                "items": [
+                    "Undo",
+                    "Redo",
+                ],
             },
             {
-                'name': 'paragraph',
-                'items': ['NumberedList', 'BulletedList', 'Outdent', 'Indent',
-                          'HorizontalRule', 'JustifyLeft', 'JustifyCenter',
-                          'JustifyRight', 'JustifyBlock', ],
+                "name": "paragraph",
+                "items": [
+                    "NumberedList",
+                    "BulletedList",
+                    "Outdent",
+                    "Indent",
+                    "HorizontalRule",
+                    "JustifyLeft",
+                    "JustifyCenter",
+                    "JustifyRight",
+                    "JustifyBlock",
+                ],
             },
             {
-                'name': 'links',
-                'items': ['Link', 'Unlink', ],
+                "name": "links",
+                "items": [
+                    "Link",
+                    "Unlink",
+                ],
             },
             {
-                'name': 'extra',
-                'items': ['Blockquote', 'Image', 'Table',
-                          'CodeSnippet', 'Mathjax', ],
+                "name": "extra",
+                "items": [
+                    "Blockquote",
+                    "Image",
+                    "Table",
+                    "CodeSnippet",
+                    "Mathjax",
+                ],
             },
-
             {
-                'name': 'source',
-                'items': ['Maximize', 'Source', ],
+                "name": "source",
+                "items": [
+                    "Maximize",
+                    "Source",
+                ],
             },
             {
-                'name': 'styles',
-                'items': ['Styles', 'Format', 'Font', 'FontSize'],
+                "name": "styles",
+                "items": ["Styles", "Format", "Font", "FontSize"],
             },
-            {'name': 'colors',
-             'items': ['TextColor', 'BGColor']}
+            {"name": "colors", "items": ["TextColor", "BGColor"]},
         ],
-
         # This hides the default title provided by CKEditor
-        'title': False,
-
+        "title": False,
         # Use this toolbar
-        'toolbar': 'DefaultToolbarConfig',
-
+        "toolbar": "DefaultToolbarConfig",
         # Which tags to allow in format tab
-        'format_tags': 'p;h1;h2;h3;h4;h5;h6',
-
+        "format_tags": "p;h1;h2;h3;h4;h5;h6",
         # Remove these dialog tabs (semicolon separated dialog:tab)
-        'removeDialogTabs': ';'.join([
-            'image:advanced',
-            'image:Link',
-            'table:advanced',
-            'tableProperties:advanced',
-        ]),
-        'linkShowTargetTab': True,
-        'linkShowAdvancedTab': False,
-        'allowedContent' : True,
-
+        "removeDialogTabs": ";".join(
+            [
+                "image:advanced",
+                "image:Link",
+                "table:advanced",
+                "tableProperties:advanced",
+            ]
+        ),
+        "linkShowTargetTab": True,
+        "linkShowAdvancedTab": False,
+        "allowedContent": True,
         # CKEditor height and width settings
-        'height': '400px',
-        'width': 'auto',
-        'forcePasteAsPlainText ': True,
-
+        "height": "400px",
+        "width": "auto",
+        "forcePasteAsPlainText ": True,
         # Class used inside span to render mathematical formulae using latex
-        'mathJaxClass': 'mathjax-latex',
-
+        "mathJaxClass": "mathjax-latex",
         # Mathjax library link to be used to render mathematical formulae
-        'mathJaxLib': '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML',
-
+        "mathJaxLib": "//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML",
         # Tab = 4 spaces inside the editor
-        'tabSpaces': 4,
-
+        "tabSpaces": 4,
         # Extra plugins to be used in the editor
-        'extraPlugins': ','.join([
-            'mathjax',  # Used to render mathematical formulae
-            'wordcount',
-            'notification'
-        ]),
+        "extraPlugins": ",".join(
+            [
+                "mathjax",  # Used to render mathematical formulae
+                "wordcount",
+                "notification",
+            ]
+        ),
         # Character count
-        'wordcount': {'showWordCount': False,
-                      'showCharCount': True,
-                      'showParagraphs': False,
-                      'countSpacesAsChars': True,
-                      'countHTML': True,
-                      'countLineBreaks': True,
-                      }
+        "wordcount": {
+            "showWordCount": False,
+            "showCharCount": True,
+            "showParagraphs": False,
+            "countSpacesAsChars": True,
+            "countHTML": True,
+            "countLineBreaks": True,
+        },
     }
 }

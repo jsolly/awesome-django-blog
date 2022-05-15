@@ -1,6 +1,6 @@
 from django.contrib.sitemaps import Sitemap
-from django.urls import reverse
 from blog.models import Post
+from django.urls import reverse
 
 
 class PostSitemap(Sitemap):
@@ -13,24 +13,26 @@ class PostSitemap(Sitemap):
     def lastmod(self, obj):
         return obj.date_posted
 
-    #def location() Django uses get_absolute_url() by default
+    # def location() Django uses get_absolute_url() by defaultsss
+
 
 class RoadmapSitemap(Sitemap):
     changefreq = "daily"
     priority = 0.7
 
     def items(self):
-        return ['blog-roadmap']
+        return ["blog-roadmap"]
 
     def location(self, item):
         return reverse(item)
+
 
 class StaticSitemap(Sitemap):
     changefreq = "monthly"
     priority = 0.5
 
     def items(self):
-        return ['blog-about']
+        return ["blog-about"]
 
     def location(self, item):
         return reverse(item)

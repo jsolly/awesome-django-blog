@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
 from blog.models import Category
+
+
 def register_view(request):
     cat_list = Category.objects.all()
     if request.method == "POST":
@@ -21,7 +23,7 @@ def register_view(request):
     else:
         form = UserRegisterForm()
 
-    return render(request, "users/register.html", {"form": form, "cat_list":cat_list})
+    return render(request, "users/register.html", {"form": form, "cat_list": cat_list})
 
 
 @login_required
@@ -43,7 +45,7 @@ def profile_view(request):
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
-    context = {"u_form": u_form, "p_form": p_form, "cat_list":cat_list}
+    context = {"u_form": u_form, "p_form": p_form, "cat_list": cat_list}
     return render(request, "users/profile.html", context=context)
 
 
@@ -63,6 +65,8 @@ class MyLogoutView(auth_views.LogoutView):
         context = super().get_context_data(**kwargs)
         context["cat_list"] = Category.objects.all()
         return context
+
+
 class MyPasswordResetView(auth_views.PasswordResetView):
     template_name = "users/password_reset.html"
 
@@ -79,6 +83,7 @@ class MyPasswordResetDoneView(auth_views.PasswordResetDoneView):
         context = super().get_context_data(**kwargs)
         context["cat_list"] = Category.objects.all()
         return context
+
 
 class MyPasswordResetConfirmView(auth_views.PasswordResetConfirmView):
     template_name = "users/password_reset_confirm.html"

@@ -29,30 +29,33 @@ from .views import (
     post_like_view,
     road_map_view,
     search_view,
-    works_cited_view
+    works_cited_view,
 )
 
 urlpatterns = [
     path("", HomeView.as_view(), name="blog-home"),
-    path("works-cited", works_cited_view, name='blog-works-cited'),
+    path("works-cited", works_cited_view, name="blog-works-cited"),
     path("user/<str:username>", UserPostListView.as_view(), name="user-posts"),
     path("post/<slug:slug>/", PostDetailView.as_view(), name="post-detail"),
     path("about/", about_view, name="blog-about"),
     path("post/new", CreatePostView.as_view(), name="post-create"),
-    path("post/<slug:slug>/", include([
-        path("update", PostUpdateView.as_view(), name="post-update"),
-        path("delete", PostDeleteView.as_view(), name="post-delete"),
-
-    ])),
-    path("post/<slug:slug>/comment/",
-         CreateCommentView.as_view(), name="comment-create"),
-    path("category/<str:cat>/", CategoryView.as_view(), name='blog-category'),
-    path('like/<slug:slug>', post_like_view, name='post-like'),
+    path(
+        "post/<slug:slug>/",
+        include(
+            [
+                path("update", PostUpdateView.as_view(), name="post-update"),
+                path("delete", PostDeleteView.as_view(), name="post-delete"),
+            ]
+        ),
+    ),
+    path(
+        "post/<slug:slug>/comment/", CreateCommentView.as_view(), name="comment-create"
+    ),
+    path("category/<str:cat>/", CategoryView.as_view(), name="blog-category"),
+    path("like/<slug:slug>", post_like_view, name="post-like"),
     path("roadmap/", road_map_view, name="blog-roadmap"),
     path("search/", search_view, name="blog-search"),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
-
+    path("ckeditor/", include("ckeditor_uploader.urls")),
 ]
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

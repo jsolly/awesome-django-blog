@@ -1,6 +1,7 @@
 import warnings
 
 from django import setup
+
 # os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings") # I moved this into an environment variable
 setup()
 
@@ -17,6 +18,7 @@ def message_in_response(response, message: str):
         if message == resp_message.message:
             return True
     return False
+
 
 def create_several_posts(category_name, user, number_of_posts):
     for i in range(number_of_posts):
@@ -39,19 +41,19 @@ def create_several_posts(category_name, user, number_of_posts):
 
 class SetUp(TestCase):
     """Create User and Post object to be shared by tests. Also create urls using reverse()"""
+
     setup_test_environment()
 
     def setUp(self):
-        warnings.simplefilter('ignore', category=ResourceWarning)
-        self.localhost_ip = '127.0.0.1'
+        warnings.simplefilter("ignore", category=ResourceWarning)
+        self.localhost_ip = "127.0.0.1"
 
         if IpPerson.objects.filter(ip=self.localhost_ip).exists():
             localhost_ip_person = IpPerson.objects.get(ip=self.localhost_ip)
             localhost_ip_person.delete()
 
         # SuperUser Object
-        self.super_user = User(username="test_superuser",
-                               email="test@original.com")
+        self.super_user = User(username="test_superuser", email="test@original.com")
         self.super_user_password = "T3stingIsFun!"
         self.super_user.is_staff = True
         self.super_user.is_superuser = True
@@ -60,8 +62,7 @@ class SetUp(TestCase):
         self.profile1 = Profile.objects.get(user=self.super_user)
 
         # Basic User
-        self.basic_user = User(username="test_viewer",
-                               email="test@original.com")
+        self.basic_user = User(username="test_viewer", email="test@original.com")
         self.basic_user_password = "T3stingIsFun!"
         self.basic_user.is_staff = False
         self.basic_user.is_superuser = False
@@ -85,7 +86,6 @@ class SetUp(TestCase):
             author=self.super_user
             # likes
             # views
-
         )
 
         # draft post
@@ -97,22 +97,21 @@ class SetUp(TestCase):
             draft=True,
             snippet="Long ago, the four nations lived together in harmony.",
             content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
-            author=self.super_user
-
+            author=self.super_user,
         )
         self.post1_like_url = reverse("post-like", args=[self.post1.slug])
         self.post1_detail_url = reverse("post-detail", args=[self.post1.slug])
         self.comment1 = Comment.objects.create(
-            post=self.post1, content="I am a comment", author=self.super_user)
+            post=self.post1, content="I am a comment", author=self.super_user
+        )
         self.client = Client()
-        self.user_posts_url = reverse(
-            "user-posts", args=[self.super_user.username])
+        self.user_posts_url = reverse("user-posts", args=[self.super_user.username])
         self.post1_update_url = reverse("post-update", args=[self.post1.slug])
         self.post1_delete_url = reverse("post-delete", args=[self.post1.slug])
         self.post1_create_comment_url = reverse(
-            "comment-create", args=[self.post1.slug])
-        self.category_url = reverse(
-            "blog-category", args=[self.category1.name])
+            "comment-create", args=[self.post1.slug]
+        )
+        self.category_url = reverse("blog-category", args=[self.category1.name])
 
         # Users/Admin urls
         # self.password_reset_url = reverse("password_reset")
@@ -120,6 +119,7 @@ class SetUp(TestCase):
         # self.password_reset_confirm = reverse("password_reset_confirm")
         # self.password_reset_complete = reverse("password_reset_complete")
         # self.captcha = reverse("captcha")
+
 
 # if __name__ == "__main__":
 #     unittest.main()

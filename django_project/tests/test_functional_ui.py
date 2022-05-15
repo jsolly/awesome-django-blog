@@ -4,13 +4,15 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 import chromedriver_autoinstaller
-#import geckodriver_autoinstaller
+
+# import geckodriver_autoinstaller
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django import setup
 from django.urls import reverse
 import os
 import time
 import random
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
 setup()
 from users.models import User, Profile
@@ -21,14 +23,17 @@ from unittest import skip
 # geckodriver_autoinstaller.install()
 chromedriver_autoinstaller.install()
 
+
 @skip
 class TestFunctionalUI(StaticLiveServerTestCase):
     def setUp(self):
-        self.random_number = random.randint(0,100000)
+        self.random_number = random.randint(0, 100000)
         self.browser = webdriver.Chrome()
 
         # Super User
-        self.super_user = User(username=f"super_user{self.random_number}", email="super_user@invalid.com")
+        self.super_user = User(
+            username=f"super_user{self.random_number}", email="super_user@invalid.com"
+        )
         self.general_password = "T3stingIsFun!"
         self.super_user.is_staff = True
         self.super_user.is_superuser = True
@@ -36,7 +41,9 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         self.super_user.save()
 
         # Basic User
-        self.basic_user = User(username=f"basic_user{self.random_number}", email="basic_user@original.com")
+        self.basic_user = User(
+            username=f"basic_user{self.random_number}", email="basic_user@original.com"
+        )
         self.general_password = "T3stingIsFun!"
         self.basic_user.is_staff = False
         self.basic_user.is_superuser = False
@@ -45,8 +52,9 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         self.basic_user_profile = Profile.objects.get(user=self.basic_user)
 
         # Productivity Category
-        self.productivity_category = Category.objects.create(name=f"Productivity{self.random_number}")
-
+        self.productivity_category = Category.objects.create(
+            name=f"Productivity{self.random_number}"
+        )
 
         # regular post
         self.post1 = Post.objects.create(
@@ -67,7 +75,9 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         # URLs
         self.blog_home = self.live_server_url + reverse("blog-home")
         self.login_url = self.live_server_url + reverse("login")
-        self.post1_url = self.live_server_url + reverse("post-detail", args=[self.post1.slug])
+        self.post1_url = self.live_server_url + reverse(
+            "post-detail", args=[self.post1.slug]
+        )
 
     def tearDown(self):
         self.browser.close()
@@ -75,19 +85,27 @@ class TestFunctionalUI(StaticLiveServerTestCase):
     def do_login(self, username):
         self.browser.get(self.login_url)
         self.browser.find_element(by=By.NAME, value="username").send_keys(username)
-        self.browser.find_element(by=By.NAME, value="password").send_keys(self.general_password)
+        self.browser.find_element(by=By.NAME, value="password").send_keys(
+            self.general_password
+        )
         self.browser.find_element(By.ID, value="main-login-button").click()
 
     def test_author_post_crud(self):
         self.do_login(self.super_user.username)
 
         # Author clicks on the 'New Post' nav option
-        self.browser.find_element(By.ID, value='nav-new-post').click()
+        self.browser.find_element(By.ID, value="nav-new-post").click()
 
         # Author Enters required fields
-        self.browser.find_element(by=By.NAME, value="title").send_keys("Super User's Post")
-        self.browser.find_element(by=By.NAME, value="slug").send_keys(f"super-user-post{self.random_number}")
-        Select(self.browser.find_element(by=By.NAME, value="category")).select_by_value("site updates")
+        self.browser.find_element(by=By.NAME, value="title").send_keys(
+            "Super User's Post"
+        )
+        self.browser.find_element(by=By.NAME, value="slug").send_keys(
+            f"super-user-post{self.random_number}"
+        )
+        Select(self.browser.find_element(by=By.NAME, value="category")).select_by_value(
+            "site updates"
+        )
         actions = ActionChains(self.browser)
         actions.send_keys(Keys.TAB * 4).perform()
         actions.send_keys("Some Content").perform()
@@ -95,11 +113,16 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         # Author scrolls down and clicks 'Create Post'
         actions.send_keys(Keys.PAGE_DOWN).perform()
         time.sleep(1)
-        post_create_button = self.browser.find_element(By.ID, value="post-create-button")
+        post_create_button = self.browser.find_element(
+            By.ID, value="post-create-button"
+        )
         actions.move_to_element(post_create_button).click().perform()
 
         # Author is brought to Post details page
-        self.assertEqual(self.browser.find_element(by=By.TAG_NAME, value="h2").text, "Super User's Post")
+        self.assertEqual(
+            self.browser.find_element(by=By.TAG_NAME, value="h2").text,
+            "Super User's Post",
+        )
 
         # Author visits Blog Home to see that the post is the first one on the page
         self.browser.find_element(By.ID, value="post-back-to-home-button").click()
@@ -109,10 +132,10 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         self.assertTrue("Super User's Post" in first_post.text)
         # Author clicks on the post's title to get to its post details page
         first_post.find_element(by=By.TAG_NAME, value="a").click()
-        #self.browser.get(first_article_link.get_attribute("href"))
+        # self.browser.get(first_article_link.get_attribute("href"))
 
         # Author Clicks 'Edit Post' and changes the post's title
-        self.browser.find_element(By.ID, value='post-edit-button').click()
+        self.browser.find_element(By.ID, value="post-edit-button").click()
         self.browser.find_element(by=By.NAME, value="title").send_keys(" Edit")
 
         # Author scrolls down and clicks 'Create Post'
@@ -121,13 +144,16 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         self.browser.find_element(By.ID, value="post-update-button").click()
 
         # Author is brought to the post details page and the title is updated
-        self.assertEqual(self.browser.find_element(by=By.TAG_NAME, value="h2").text, "Super User's Post Edit")
+        self.assertEqual(
+            self.browser.find_element(by=By.TAG_NAME, value="h2").text,
+            "Super User's Post Edit",
+        )
 
         # Author clicks "Delete Post"
-        self.browser.find_element(By.ID, value='post-delete-button').click()
+        self.browser.find_element(By.ID, value="post-delete-button").click()
 
         # Author confirms deletion
-        self.browser.find_element(By.ID, value='confirm-delete-button').click()
+        self.browser.find_element(By.ID, value="confirm-delete-button").click()
 
         # Author is brought to blog Home and the post is not present
         first_article = self.browser.find_element(by=By.TAG_NAME, value="article")
@@ -141,17 +167,32 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         self.browser.find_element(By.ID, value="nav-register").click()
 
         # User enters their information
-        self.browser.find_element(by=By.NAME, value="username").send_keys("selenium_user")
-        self.browser.find_element(by=By.NAME, value="email").send_keys("selenium_user@invalid.com")
-        self.browser.find_element(by=By.NAME, value="password1").send_keys(self.general_password)
-        self.browser.find_element(by=By.NAME, value="password2").send_keys(self.general_password)
-        self.browser.find_element(by=By.NAME, value="secret_password").send_keys("African Swallows")
+        self.browser.find_element(by=By.NAME, value="username").send_keys(
+            "selenium_user"
+        )
+        self.browser.find_element(by=By.NAME, value="email").send_keys(
+            "selenium_user@invalid.com"
+        )
+        self.browser.find_element(by=By.NAME, value="password1").send_keys(
+            self.general_password
+        )
+        self.browser.find_element(by=By.NAME, value="password2").send_keys(
+            self.general_password
+        )
+        self.browser.find_element(by=By.NAME, value="secret_password").send_keys(
+            "African Swallows"
+        )
         self.browser.find_element(by=By.NAME, value="captcha_1").send_keys("PASSED")
 
         # User clicks 'Register' and is now on the sign-in page
         self.browser.find_element(By.ID, value="sign-up-button").click()
-        self.assertEqual(self.browser.find_element(by=By.TAG_NAME, value="legend").text, "Login")
-        self.assertEqual("Account created for selenium_user", self.browser.find_element(by=By.CLASS_NAME, value="alert").text)
+        self.assertEqual(
+            self.browser.find_element(by=By.TAG_NAME, value="legend").text, "Login"
+        )
+        self.assertEqual(
+            "Account created for selenium_user",
+            self.browser.find_element(by=By.CLASS_NAME, value="alert").text,
+        )
 
     def test_anonymnous_can_search_for_and_open_a_post(self):
         # Anonymous navigates to Home Page
@@ -159,14 +200,16 @@ class TestFunctionalUI(StaticLiveServerTestCase):
 
         # Anonymous focuses into the search input box and types "Post" and clicks 'Search'
         self.browser.find_element(By.ID, value="search-posts-input").send_keys("Post")
-        self.browser.find_element(By.ID, value='search-posts-button').click()
+        self.browser.find_element(By.ID, value="search-posts-button").click()
 
         # At least one post should be shown
         first_post = self.browser.find_element(by=By.TAG_NAME, value="article")
 
         # Anonymous clicks on post link
         first_post.find_element(by=By.TAG_NAME, value="a").click()
-        self.assertEqual(self.browser.find_element(by=By.TAG_NAME, value="h2").text, "My First Post")
+        self.assertEqual(
+            self.browser.find_element(by=By.TAG_NAME, value="h2").text, "My First Post"
+        )
 
     def test_basic_user_can_comment_on_a_post(self):
         self.do_login(self.basic_user.username)
@@ -174,7 +217,9 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         self.browser.find_element(By.ID, value="comment-create-button").click()
 
         # Productivity page displays
-        self.assertEqual(self.browser.find_element(By.TAG_NAME, value="h1").text, "Add Comment")
+        self.assertEqual(
+            self.browser.find_element(By.TAG_NAME, value="h1").text, "Add Comment"
+        )
 
     def test_anonymmous_can_like_unlike_a_post(self):
         # Anonymous opens a link to a post

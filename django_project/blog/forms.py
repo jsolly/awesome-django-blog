@@ -12,8 +12,16 @@ choices = [
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ("title", "slug", "category", "metadesc",
-                  "draft", "metaimg", "content", "snippet",)
+        fields = (
+            "title",
+            "slug",
+            "category",
+            "metadesc",
+            "draft",
+            "metaimg",
+            "content",
+            "snippet",
+        )
 
         widgets = {
             "title": forms.TextInput(attrs={"class": "form-control"}),
