@@ -27,7 +27,7 @@ jobs:
         pip install -r config/requirements.txt
     - name: Lint with Pylint
       run: |
-        pylint
+        flake8 django_project
     - name: Coverage report
       run: |
         coverage run manage.py test
