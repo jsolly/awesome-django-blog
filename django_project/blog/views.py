@@ -102,6 +102,11 @@ class CreatePostView(UserPassesTestMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["cat_list"] = Category.objects.all()
+        return context
+
     def test_func(self):
         if self.request.user.is_staff:
             return True
@@ -111,6 +116,11 @@ class PostUpdateView(UserPassesTestMixin, UpdateView):
     model = Post
     form_class = PostForm
     template_name = "blog/edit_post.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["cat_list"] = Category.objects.all()
+        return context
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -126,6 +136,11 @@ class CreateCommentView(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
     template_name = "blog/add_comment.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["cat_list"] = Category.objects.all()
+        return context
 
     def form_valid(self, form):
         form.instance.post = Post.objects.get(slug=self.kwargs["slug"])
