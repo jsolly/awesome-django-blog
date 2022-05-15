@@ -5,20 +5,36 @@
 		}
 	],
 	"settings": {
-		"python.linting.pylintArgs": [
-			"--load-plugins=pylint_django",
-			"--django-settings-module=django_project.settings",
-			"--disable=C0301",
-			"--disable=C0411",
-			"--disable=C0114",
-			"--disable=C0115",
-			"--disable=C0116",
-			"--disable=E0401",
-			"--disable=C0413",
-			"--disable=R0904",
-		],
+		"python.analysis.autoImportCompletions": false,
+		"python.testing.unittestEnabled": true,
+		"python.linting.enabled": true,
+		"python.linting.flake8Enabled": true,
+		"python.formatting.provider": "black",
+		"python.formatting.autopep8Args": ["--ignore","E402"],
 		"python.terminal.activateEnvInCurrentTerminal": true,
 		"python.defaultInterpreterPath": "/Users/johnsolly/Documents/code/blogthedata/django_project/venv/bin/python3",
+		"liveServer.settings.NoBrowser": true,
+		"liveServer.settings.donotShowInfoMsg": true,
+		"editor.rulers": [
+			79,
+			120
+		],
+		"files.exclude": {
+			"**/__pycache__": true,
+			"**/.git": false,
+			"**/*.pyc": {
+				"when": "$(basename).py"
+			}
+		},
+		"git.autofetch": true,
+		"explorer.confirmDragAndDrop": false,
+		"explorer.confirmDelete": false,
+		"git.confirmSync": false,
+		"git.enableSmartCommit": true,
+		"editor.minimap.enabled": false,
+		"window.autoDetectColorScheme": true,
+		"terminal.integrated.enableMultiLinePasteWarning": false,
+		"diffEditor.ignoreTrimWhitespace": false,
 		"conventionalCommits.scopes": [
 			"ckeditor",
 			"blog model",
@@ -31,6 +47,10 @@
 			"./django_project",
 			"-p",
 			"test*.py"
-		]
+		],
+		"python.linting.flake8Args": [
+			"--ignore=E501, E402",
+			"--exlcude=venv, migrations, apps.py"
+		],
 	}
 }

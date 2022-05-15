@@ -61,11 +61,13 @@ exit
 
 
 # Create Python Environment
+#TODO Take a second look at installing python
 sudo apt-get install python3-pip -y
 sudo apt-get install python3-venv -y
 python3 -m venv ~/blogthedata/django_project/venv
 source venv/bin/activate
 which python3 #Make sure Python is pointing to the new virtual environment
+python3 --version
 python3 -m pip install --upgrade pip
 python3 -m pip install wheel # needed for other packages
 python3 -m pip install -r requirements.txt
