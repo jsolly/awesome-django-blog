@@ -24,7 +24,7 @@ from unittest import skip
 chromedriver_autoinstaller.install()
 
 
-@skip
+# @skip("Tests take too long to run")
 class TestFunctionalUI(StaticLiveServerTestCase):
     def setUp(self):
         self.random_number = random.randint(0, 100000)
@@ -216,9 +216,19 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         self.browser.get(self.post1_url)
         self.browser.find_element(By.ID, value="comment-create-button").click()
 
+        actions = ActionChains(self.browser)
+        actions.send_keys(Keys.TAB * 10).perform()
+        actions.send_keys("A brand new comment!").perform()
+
+        comment_create_button = self.browser.find_element(
+            By.ID, value="comment-create-button"
+        )
+        actions.move_to_element(comment_create_button).click().perform()
+
         # Productivity page displays
+        comment_div = self.browser.find_element(By.CLASS_NAME, value="comment")
         self.assertEqual(
-            self.browser.find_element(By.TAG_NAME, value="h1").text, "Add Comment"
+            comment_div.find_element(By.TAG_NAME, value="p").text, "A brand new comment!"
         )
 
     def test_anonymmous_can_like_unlike_a_post(self):
