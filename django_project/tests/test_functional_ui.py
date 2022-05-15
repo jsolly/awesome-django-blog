@@ -24,7 +24,7 @@ from unittest import skip
 chromedriver_autoinstaller.install()
 
 
-# @skip("Tests take too long to run")
+@skip("Tests take too long to run")
 class TestFunctionalUI(StaticLiveServerTestCase):
     def setUp(self):
         self.random_number = random.randint(0, 100000)
