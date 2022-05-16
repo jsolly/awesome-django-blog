@@ -15,6 +15,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      DJANGO_SETTINGS_MODULE: django_project.settings
+
     steps:
     - uses: actions/checkout@v2
     - name: Setup Python 3.9.7
