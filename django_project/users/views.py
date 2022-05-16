@@ -88,7 +88,7 @@ class MyPasswordResetDoneView(auth_views.PasswordResetDoneView):
 class MyPasswordResetConfirmView(auth_views.PasswordResetConfirmView):
     template_name = "users/password_reset_confirm.html"
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs):  # pragma: no cover
         context = super().get_context_data(**kwargs)
         context["cat_list"] = Category.objects.all()
         return context

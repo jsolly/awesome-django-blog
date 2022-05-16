@@ -65,6 +65,8 @@ class TestViews(SetUp):
         self.client.login(
             username=self.super_user.username, password=self.super_user_password
         )
+        response = self.client.get(reverse("post-create"), data=data)
+        self.assertTrue(len(response.context["cat_list"]) == 1)
         response = self.client.post(reverse("post-create"), data=data, follow=True)
         self.assertRedirects(
             response, expected_url=reverse("post-detail", args=["second-post"])
@@ -99,6 +101,8 @@ class TestViews(SetUp):
             # "likes"
             # "views"
         }
+        response = self.client.get(self.post1_update_url)
+        self.assertTrue(len(response.context["cat_list"]) == 1)
         response = self.client.post(self.post1_update_url, data=data, follow=True)
         self.assertRedirects(response, expected_url=self.post1_detail_url)
         self.post1.refresh_from_db()
@@ -110,6 +114,8 @@ class TestViews(SetUp):
             username=self.super_user.username, password=self.super_user_password
         )
         data = {"content": "Hello World!"}
+        response = self.client.get(self.post1_create_comment_url)
+        self.assertTrue(len(response.context["cat_list"]) == 1)
         self.client.post(self.post1_create_comment_url, data=data)
         self.assertTrue(Comment.objects.count, 1)
 
@@ -127,7 +133,8 @@ class TestViews(SetUp):
 
     def test_category_view(self):
         # anonymous user
-        response = self.client.get(self.category_url)
+        category_url = reverse("blog-category", args=[self.category1.name])
+        response = self.client.get(category_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/categories.html")
         self.assertEqual(response.context["cat"], self.category1)
@@ -137,17 +144,17 @@ class TestViews(SetUp):
         self.client.login(
             username=self.super_user.username, password=self.super_user_password
         )
-        response = self.client.get(self.category_url)
+        response = self.client.get(category_url)
         self.assertEqual(response.context["posts"].count(), 2)
 
         # Paginated list appears when there are many posts
         create_several_posts(self.category1.name, self.super_user, 20)
-        response = self.client.get(self.category_url)
+        response = self.client.get(category_url)
         self.assertTrue(response.context["is_paginated"])
         self.assertEqual(response.context["posts"].count(), 5)  # 5 per page
 
         # Paginated list works when user has moved forward at least one page
-        response = self.client.get(self.category_url, {"page": 2})
+        response = self.client.get(category_url, {"page": 2})
         self.assertTrue(response.context["page_obj"].has_previous())
 
     def test_about_view(self):

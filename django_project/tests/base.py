@@ -111,7 +111,6 @@ class SetUp(TestCase):
         self.post1_create_comment_url = reverse(
             "comment-create", args=[self.post1.slug]
         )
-        self.category_url = reverse("blog-category", args=[self.category1.name])
 
         # Users/Admin urls
         # self.password_reset_url = reverse("password_reset")
