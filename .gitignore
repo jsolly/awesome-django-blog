@@ -1,6 +1,8 @@
 # Django stuff:
 profile_pics/
-media/
+post_metaimgs/
+profile_pics/
+uploads/
 backups/
 datadump.json
 
