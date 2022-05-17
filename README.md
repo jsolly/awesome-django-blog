@@ -91,8 +91,20 @@ $ coverage report -m --omit 'tests/*' --skip-empty
 
 ## FAQ
 
-- **How do I do *specifically* so and so?**
-    - No problem! Just do this.
+- **How do I create a new migration?**
+
+    ```bash
+    $ python3 manage.py makemigrations --name changed_my_model your_app_label
+
+    $ python3 manage.py migrate
+    ```
+
+- **How do I access the production server?**
+    ```
+    $ ssh <username>@69.164.205.120
+    ```
+
+
 
 ---
 

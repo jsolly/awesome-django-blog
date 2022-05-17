@@ -1,11 +1,3 @@
-### Access server
-ssh jsolly@69.164.205.120
-
-### Create new migration
- python3 manage.py makemigrations --name changed_my_model your_app_label
- python3 manage.py migrate
-
-
 After pulling new changes from github
 python3 manage.py check --deploy
 
