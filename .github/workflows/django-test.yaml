@@ -17,6 +17,9 @@ jobs:
 
     env:
       DJANGO_SETTINGS_MODULE: django_project.settings
+      DEBUG: False
+      SECRET_KEY: {{secrets.SECRET_KEY}}
+
 
     steps:
     - uses: actions/checkout@v2
