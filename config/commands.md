@@ -57,6 +57,9 @@ coverage run -m unittest discover django_project
 coverage report -m --skip-empty --skip-covered
 coverage html --skip-empty -d blog/templates/htmlcov
 
+### Linting (flake8)
+flake8 django_project
+
 ### Setup new test database
 - Configure settings.py to point to a sqlite database
 - run python3 manage.py migrate to create all the tables in sqlite
