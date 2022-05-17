@@ -21,6 +21,16 @@
       "args": [
         "runserver"
       ]
-    }
+    },
+    {
+      "name": "Python: Debug",
+      "type": "python",
+      "purpose": ["debug-test"],
+      "console": "internalConsole",
+      "request": "launch",
+      "program": "${file}",
+      "justMyCode": false,
+      "django": true,
+  }
   ]
 }
