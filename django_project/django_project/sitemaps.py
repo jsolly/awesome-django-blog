@@ -25,14 +25,3 @@ class RoadmapSitemap(Sitemap):
 
     def location(self, item):
         return reverse(item)
-
-
-class StaticSitemap(Sitemap):
-    changefreq = "monthly"
-    priority = 0.5
-
-    def items(self):
-        return ["blog-about"]
-
-    def location(self, item):
-        return reverse(item)

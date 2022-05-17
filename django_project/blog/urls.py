@@ -25,7 +25,6 @@ from .views import (
     PostDeleteView,
     CreateCommentView,
     CategoryView,
-    about_view,
     post_like_view,
     road_map_view,
     search_view,
@@ -37,7 +36,6 @@ urlpatterns = [
     path("works-cited", works_cited_view, name="blog-works-cited"),
     path("user/<str:username>", UserPostListView.as_view(), name="user-posts"),
     path("post/<slug:slug>/", PostDetailView.as_view(), name="post-detail"),
-    path("about/", about_view, name="blog-about"),
     path("post/new", CreatePostView.as_view(), name="post-create"),
     path(
         "post/<slug:slug>/",

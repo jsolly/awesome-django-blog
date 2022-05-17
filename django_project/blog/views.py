@@ -54,6 +54,8 @@ class HomeView(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super(HomeView, self).get_context_data(*args, **kwargs)
         context["cat_list"] = Category.objects.all()
+        my_user = User.objects.get(username="John_Solly")
+        context['my_profile'] = Profile.objects.get(user=my_user)
         return context
 
 
@@ -181,17 +183,6 @@ class CategoryView(ListView):
         context["cat_list"] = Category.objects.all()
         context["cat"] = Category.objects.get(name=self.kwargs["cat"].replace("-", " "))
         return context
-
-
-def about_view(request):
-    cat_list = Category.objects.all()
-    my_user = User.objects.get(username="John_Solly")
-    my_profile = Profile.objects.get(user=my_user)
-    return render(
-        request,
-        "blog/about.html",
-        {"cat_list": cat_list, "my_profile": my_profile},
-    )
 
 
 def road_map_view(request):

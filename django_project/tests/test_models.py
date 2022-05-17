@@ -64,7 +64,7 @@ class TestModels(SetUp):
         self.assertEqual(str(ip_person), self.localhost_ip)
 
     def test_post(self):
-        self.assertEqual(str(self.post1), "My First Post | test_superuser")
+        self.assertEqual(str(self.post1), f"My First Post | {self.super_user.username}")
         self.assertEqual(self.post1.get_absolute_url(), "/post/first-post/")
 
         post_no_slug = Post.objects.create(
@@ -90,7 +90,7 @@ class TestModels(SetUp):
     # Users Models
 
     def test_profile(self):
-        self.assertEqual(str(self.profile1), "test_superuser Profile")
+        self.assertEqual(str(self.profile1), f"{self.super_user.username} Profile")
         self.assertEqual(self.profile1.get_absolute_url(), reverse("profile"))
         width, height = 400, 400
         img = Image.new(mode="RGB", size=(width, height))

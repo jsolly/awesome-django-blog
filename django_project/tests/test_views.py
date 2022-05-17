@@ -5,7 +5,6 @@ from blog.views import (
     add_ip_person_view_if_not_exist,
 )
 from blog.models import Post, Comment, IpPerson
-from users.models import User
 
 
 class TestViews(SetUp):
@@ -157,12 +156,6 @@ class TestViews(SetUp):
         response = self.client.get(category_url, {"page": 2})
         self.assertTrue(response.context["page_obj"].has_previous())
 
-    def test_about_view(self):
-        User.objects.create(username="John_Solly", email="test@invalid.com")
-        response = self.client.get(reverse("blog-about"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/about.html")
-
     def test_roadmap_view(self):
         response = self.client.get(reverse("blog-roadmap"))
         self.assertEqual(response.status_code, 200)
@@ -241,8 +234,6 @@ class TestViews(SetUp):
         self.assertTemplateUsed(response, "users/profile.html")
 
         # Edit profile
-        self.assertEqual(self.super_user.email, "test@original.com")
-        self.assertEqual(self.super_user.username, "test_superuser")
         response = self.client.post(
             reverse("profile"),
             data={"email": "test@modified.com", "username": "modified"},

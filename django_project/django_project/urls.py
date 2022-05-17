@@ -18,7 +18,7 @@ from django.contrib.sitemaps.views import sitemap
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django_project.sitemaps import PostSitemap, StaticSitemap
+from django_project.sitemaps import PostSitemap
 from users.views import (
     register_view,
     profile_view,
@@ -31,7 +31,7 @@ from users.views import (
 )
 from blog.views import security_txt_view, security_pgp_key_view
 
-sitemaps = {"posts": PostSitemap, "static": StaticSitemap}
+sitemaps = {"posts": PostSitemap}
 
 urlpatterns = [
     path(

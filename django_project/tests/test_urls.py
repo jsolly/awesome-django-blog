@@ -13,7 +13,6 @@ from blog.views import (
     PostDeleteView,
     CreateCommentView,
     CategoryView,
-    about_view,
     post_like_view,
     road_map_view,
     search_view,
@@ -67,9 +66,6 @@ class TestUrls(SetUp):
     def test_category_url_is_resolved(self):
         category_url = reverse("blog-category", args=[self.category1.name])
         self.assertEqual(resolve(category_url).func.view_class, CategoryView)
-
-    def test_about_url_is_resolved(self):
-        self.assertEqual(resolve(reverse("blog-about")).func, about_view)
 
     def test_post_like_url_is_resolved(self):
         self.assertEqual(resolve(self.post1_like_url).func, post_like_view)
