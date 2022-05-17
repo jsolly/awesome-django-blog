@@ -1,7 +1,7 @@
 import warnings
 
 from django import setup
-# import os
+#import os
 # os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
 setup()
 
@@ -11,8 +11,6 @@ from django.contrib.messages import get_messages
 from django.test.utils import setup_test_environment
 from blog.models import Post, Comment, Category, IpPerson
 from users.models import User, Profile
-
-from django.contrib.sites.models import Site
 
 
 def message_in_response(response, message: str):
