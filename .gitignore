@@ -9,6 +9,9 @@ datadump.json
 # Virtual Environments
 venv/
 
+# Environ Varibles File
+.env
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 
