@@ -17,8 +17,15 @@ jobs:
 
     env:
       DJANGO_SETTINGS_MODULE: ${{secrets.DJANGO_SETTINGS_MODULE}}
-      GIT_TOKEN: ${{secrets.GIT_TOKEN}}
       SECRET_KEY: ${{secrets.SECRET_KEY}}
+      EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
+      EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
+      FROM_EMAIL: ${{secrets.FROM_EMAIL}}
+      ALLOWED_HOSTS: ${{secrets.ALLOWED_HOSTS}}
+      POSTGRES_PASS: $${{secrets.POSTGRES_PASS}}
+      GIT_TOKEN: ${{secrets.GIT_TOKEN}}
+      DEBUG: ${{secrets.SECRET_DEBUGKEY}}
+
 
 
     steps:
