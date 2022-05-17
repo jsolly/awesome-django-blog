@@ -47,10 +47,6 @@
 			"./django_project",
 			"-p",
 			"test*.py"
-		],
-		"python.linting.flake8Args": [
-			"--ignore=E501, E402",
-			"--exlcude=venv"
-		],
+		]
 	}
 }
