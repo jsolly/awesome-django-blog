@@ -74,13 +74,14 @@ pip install Django==3.2.13
 pip install -r requirements_5_4_22.txt
 
 # Create new venv
-# make sure an up-to-date pip freeze has happened
-# make sure you're using the right python version
-python3 -m pip install virtualenv
-virtualenv venv
-source venv/bin/activate
-pip install --upgrade pip
-pip install -r requirements.txt
+make sure an up-to-date pip freeze has happened
+make sure you're using the right python version
+
+$ python3 -m pip install virtualenv
+$ virtualenv venv
+$ source venv/bin/activate
+$ pip install --upgrade pip
+$ pip install -r requirements.txt
 
 # Configuring Python install on new Mac
 Install using the regular installer from python.org. Make sure to match the version that is on production.
