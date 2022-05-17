@@ -40,7 +40,6 @@ jobs:
         python3 gitactions.py
     - name: Lint with Flake8
       run: |
-        ls -a
         flake8 django_project
     - name: Coverage report
       run: |
