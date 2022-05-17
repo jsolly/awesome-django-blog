@@ -23,7 +23,7 @@ jobs:
       ALLOWED_HOSTS: ${{secrets.ALLOWED_HOSTS}}
       POSTGRES_PASS: $${{secrets.POSTGRES_PASS}}
       GIT_TOKEN: ${{secrets.GIT_TOKEN}}
-      DEBUG: ${{secrets.SECRET_DEBUGKEY}}
+      DEBUG: ${{secrets.DEBUG}}
       MODE: ${{secrets.MODE}}
 
     steps:
