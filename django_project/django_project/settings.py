@@ -7,9 +7,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 import os
-environment = os.environ
-for key, value in environment.items():
-    print (f"{key}:{value}")
 import sys
 from dotenv import load_dotenv
 load_dotenv()
