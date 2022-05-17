@@ -15,9 +15,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    env:
-      DJANGO_SETTINGS_MODULE: "django_project.settings"
-      GIT_TOKEN: ${{GIT_TOKEN}}
+    secrets:
+      DJANGO_SETTINGS_MODULE: ${{secrets.DJANGO_SETTINGS_MODULE}}
+      GIT_TOKEN: ${{secrets.GIT_TOKEN}}
 
 
     steps:
