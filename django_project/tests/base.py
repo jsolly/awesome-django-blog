@@ -1,8 +1,8 @@
 import warnings
 
 from django import setup
-
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings") # I moved this into an environment variable
+import os
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
 setup()
 
 from django.test import TestCase, Client
@@ -53,7 +53,7 @@ class SetUp(TestCase):
             localhost_ip_person.delete()
 
         # SuperUser Object
-        self.super_user = User(username="test_superuser", email="test@original.com")
+        self.super_user = User(username="John_Solly", email="test@original.com")
         self.super_user_password = "T3stingIsFun!"
         self.super_user.is_staff = True
         self.super_user.is_superuser = True

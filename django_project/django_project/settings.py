@@ -7,13 +7,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 import os
-import json
 import sys
+from dotenv import load_dotenv
+load_dotenv()
 
-with open("/etc/django_config.json", encoding="utf-8") as config_file:
-    config = json.load(config_file)
-
-GIT_TOKEN = config.get("GITHUB_TOKEN")
+GIT_TOKEN = os.environ["GITHUB_TOKEN"]
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -22,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config.get("SECRET_KEY")
+SECRET_KEY = os.environ["SECRET_KEY"]
 SITE_ID = 1  # blogthedata.com
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -41,7 +39,7 @@ SECURE_HSTS_SECONDS = 31557600
 SECURE_HSTS_PRELOAD = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
-if config["DEBUG"] == "True":
+if os.environ["DEBUG"] == "True":
     SITE_ID = 2
     DEBUG = True
     CAPTCHA_TEST_MODE = True
@@ -60,7 +58,7 @@ if config["DEBUG"] == "True":
     SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 
 
-ALLOWED_HOSTS = config.get("ALLOWED_HOSTS")
+ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(' ')
 
 # Application definition
 
@@ -127,7 +125,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "blogthedata",
         "USER": "postgres",
-        "PASSWORD": config.get("POSTGRES_PASS"),
+        "PASSWORD": os.environ["POSTGRES_PASS"],
         "HOST": "localhost",
         "PORT": "5432",
     }
@@ -198,9 +196,9 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.sendgrid.net"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = config.get("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = config.get("EMAIL_HOST_PASSWORD")
-DEFAULT_FROM_EMAIL = config.get("FROM_EMAIL")
+EMAIL_HOST_USER = os.environ["EMAIL_HOST_USER"]
+EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]
+DEFAULT_FROM_EMAIL = os.environ["FROM_EMAIL"]
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 # -----FASTDEV-----
