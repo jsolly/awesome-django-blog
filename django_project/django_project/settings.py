@@ -58,7 +58,7 @@ if os.environ["DEBUG"] == "True":
 
 
 ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(' ')
-
+print(ALLOWED_HOSTS)
 # Application definition
 
 INSTALLED_APPS = [
