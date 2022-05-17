@@ -10,9 +10,21 @@
         </label>
         <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
       </div>
-      <div class="mc-field-group">
-        <label for="mce-NAME">First Name (Improves Deliverability) </label>
-        <input type="text" value="" name="NAME" class="" id="mce-NAME">
+      <strong>Desired Frequency </strong>
+      <div class="mc-field-group input-group">
+        <ul>
+          <li><input type="radio" value="Monthly" name="FREQUENCY" id="mce-FREQUENCY-0" checked="true"> <label
+              for="mce-FREQUENCY-0">Monthly</label></li>
+        </ul>
+      </div>
+      <strong>What Interests You? </strong>
+      <div class="mc-field-group input-group">
+        <ul>
+          <li><input type="checkbox" value="2" name="group[44996][2]" id="mce-group[44996]-44996-0"
+              checked="true"><label for="mce-group[44996]-44996-0">Life Advice</label></li>
+          <li><input type="checkbox" value="4" name="group[44996][4]" id="mce-group[44996]-44996-1"
+              checked="true"><label for="mce-group[44996]-44996-1">Site Updates</label></li>
+        </ul>
       </div>
       <div id="mce-responses" class="clear foot">
         <div class="response" id="mce-error-response" style="display:none"></div>
@@ -25,8 +37,10 @@
         <div class="clear foot">
           <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-success">
           <p class="brandingLogo"><a href="http://eepurl.com/hXpvzj"
-              title="Mailchimp - email marketing made easy and fun"><img alt="Mailchimp Logo" width="220" height="42"
-                src="https://eep.io/mc-cdn-images/template_images/branding_logo_text_dark_dtp.svg"></a></p>
+              title="Mailchimp - email marketing made easy and fun">
+              <img alt="Mailchimp Logo" width="220" height="42"
+                src="https://eep.io/mc-cdn-images/template_images/branding_logo_text_dark_dtp.svg">
+            </a></p>
         </div>
       </div>
     </div>
@@ -34,4 +48,4 @@
 </div>
 <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
 <script
-  type='text/javascript'>(function ($) { window.fnames = new Array(); window.ftypes = new Array(); fnames[0] = 'EMAIL'; ftypes[0] = 'email'; fnames[2] = 'NAME'; ftypes[2] = 'text'; }(jQuery)); var $mcj = jQuery.noConflict(true);</script>
+  type='text/javascript'>(function ($) { window.fnames = new Array(); window.ftypes = new Array(); fnames[0] = 'EMAIL'; ftypes[0] = 'email'; fnames[1] = 'FREQUENCY'; ftypes[1] = 'radio'; }(jQuery)); var $mcj = jQuery.noConflict(true);</script>
