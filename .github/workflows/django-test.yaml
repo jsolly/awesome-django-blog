@@ -36,6 +36,7 @@ jobs:
         pip install --upgrade pip
         pip install wheel
         pip install -r config/requirements.txt
+        python3 gitactions.py
     - name: Lint with Flake8
       run: |
         ls -a
