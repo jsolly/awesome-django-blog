@@ -15,7 +15,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    secrets:
+    env:
       DJANGO_SETTINGS_MODULE: ${{secrets.DJANGO_SETTINGS_MODULE}}
       GIT_TOKEN: ${{secrets.GIT_TOKEN}}
 
