@@ -17,6 +17,7 @@ jobs:
 
     env:
       DJANGO_SETTINGS_MODULE: "django_project.settings"
+      GIT_TOKEN: ${{GIT_TOKEN}}
 
 
     steps:
