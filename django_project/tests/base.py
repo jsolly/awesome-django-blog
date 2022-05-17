@@ -13,7 +13,6 @@ from blog.models import Post, Comment, Category, IpPerson
 from users.models import User, Profile
 
 from django.contrib.sites.models import Site
-print(f"The site id is {Site.objects.get(name='example.com').id}")
 
 
 def message_in_response(response, message: str):
