@@ -58,7 +58,6 @@ if os.environ["DEBUG"] == "True":
 
 
 ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(' ')
-print(ALLOWED_HOSTS)
 # Application definition
 
 INSTALLED_APPS = [
@@ -129,7 +128,6 @@ DATABASES = {
         "PORT": "5432",
     }
 }
-
 
 if os.environ["MODE"] in ('TEST', 'GITACTIONS'):
     DATABASES = {
