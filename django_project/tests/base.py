@@ -1,8 +1,8 @@
 import warnings
 
 from django import setup
-#import os
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
+# import os
+#os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
 setup()
 
 from django.test import TestCase, Client
