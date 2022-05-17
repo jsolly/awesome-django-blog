@@ -37,6 +37,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_HSTS_SECONDS = 31557600
 SECURE_HSTS_PRELOAD = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+print(f"The value of DEBUG is {os.environ['DEBUG']}")
 
 if os.environ["DEBUG"] == "True":
     SITE_ID = 2
