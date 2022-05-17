@@ -24,6 +24,7 @@ jobs:
       POSTGRES_PASS: $${{secrets.POSTGRES_PASS}}
       GIT_TOKEN: ${{secrets.GIT_TOKEN}}
       DEBUG: ${{secrets.SECRET_DEBUGKEY}}
+      MODE: ${{secrets.MODE}}
 
     steps:
     - uses: actions/checkout@v2
