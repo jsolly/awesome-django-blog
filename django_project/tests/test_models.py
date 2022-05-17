@@ -94,9 +94,7 @@ class TestModels(SetUp):
         self.assertEqual(self.profile1.get_absolute_url(), reverse("profile"))
         width, height = 400, 400
         img = Image.new(mode="RGB", size=(width, height))
-        img.save(
-            "/Users/johnsolly/Documents/code/blogthedata/django_project/media/default.png"
-        )
+        img.save(self.profile1.image.path)
         self.profile1.save()
         with Image.open(self.profile1.image.path) as img:
             self.assertEqual(img.height, 300)
