@@ -45,25 +45,30 @@
 
 <body>
   {% include "blog/parts/header.html" %}
-  <main role="main" class="container">
+  <main role="main" class="container-fluid">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md">
+        <!--Sidebar-->
+        {% include "blog/parts/sidebar.html" %}
+        <h3>About this Page</h3>   
+        {% block about %} <p>Great decisions are informed by data. I present deeply researched articles to improve your
+          life. </p>{% endblock about %}
+      </div>
+      <div class="col-lg-10">
         {% if messages %} {% for message in messages %}
         <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %} {% endif %}
-        {% block content %}{% endblock %}
-      </div>
-      <div class="col-md-4">
-        <h3>About this Page</h3>
-        <p>{% block about %} Great decisions are informed by data. I present deeply researched articles to improve your
-          life. {% endblock about %}</p>
-        <!--Sidebar-->
-        {% include "blog/parts/sidebar.html" %}
+        {% block content %}
+        
+        {% endblock %}
+                <!--Mailchimp Embed-->
+  {% include "blog/parts/mailchimp_embed.html" %}
+        <!--Footer-->
+        {% include "blog/parts/footer.html" %}
       </div>
     </div>
+
   </main>
-  <!--Footer-->
-  {% include "blog/parts/footer.html" %}
 </body>
 
 </html>

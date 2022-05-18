@@ -12,34 +12,7 @@
 <meta property="og:image:height" content="1280">
 {% endblock meta %}
 {% block content %}
-<h1>About Me</h1>
-</br>
-<div class="card mb-3">
-  <div class="row no-gutters">
-    <div class="col-md-2">
-      <img src="{{my_profile.image.url}}" class="card-img" alt="John Solly Profile Picture">
-    </div>
-    <div class="col-md-10">
-      <div class="card-body">
-        <h5 class="card-title">
-          John
-          Solly
-        </h5>
-        <p class="small text-muted">
-          <a href="https://www.linkedin.com/in/jsolly/" target="_blank">Linkedin</a>
-          |
-          <a href="https://github.com/jsolly" target="_blank">Github</a>
-          <a href="https://www.youtube.com/channel/UCxsK9UorVj2F17DMSXLuSQw" target="_blank">Youtube</a>
-        </p>
-        <p class="card-text">
-          I am a web developer with domain expertise in GIS, Remote Sensing, and business intelligence. One of my
-          favorite things to do is research a topic and share my knowledge and conclusions with others. I created
-          blogthedata.com as a space to collect my thoughts and share my most important insights.
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
+{% include "blog/parts/about_me.html" %}
 <h1>Latest Posts</h1>
 {% include "blog/parts/posts.html" %}
 {% include "blog/parts/pagination.html" %}
