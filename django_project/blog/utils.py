@@ -28,7 +28,6 @@ def get_post_like_status(request, post):
         return True
     return False
 
-
 # def post_pre_save(sender, instance, *args, **kwargs):
 #     print("pre_save")
 #     if instance.slug is None:

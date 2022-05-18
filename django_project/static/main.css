@@ -1,12 +1,13 @@
-.bg-steel {
-  background-color: #003366;
+body {
+  margin-top: 5rem;
 }
-.navbar {
-  margin-bottom: 10px;
+
+.bg-steel {
+  background-color: #5f788a;
 }
 
 .site-header .navbar-nav .nav-link {
-  color: #ffffff;
+  color: #cbd5db;
 }
 
 .content-section {
@@ -19,8 +20,6 @@
 
 .article-title {
   color: #444444;
-  text-decoration: none;
-  margin-bottom: 0;
 }
 
 a.article-title:hover {
@@ -33,7 +32,7 @@ a.article-title:hover {
 }
 
 .article-img {
-  height: 54px;
+  height: 65px;
   width: 65px;
   margin-right: 16px;
 }
@@ -45,30 +44,8 @@ a.article-title:hover {
 }
 
 .account-img {
-  height: 104px;
+  height: 125px;
   width: 125px;
   margin-right: 20px;
   margin-bottom: 16px;
-}
-
-blockquote {
-  font-style: italic;
-  font-family: Georgia, Times, "Times New Roman", serif;
-  padding: .5rem 1rem;
-  display: block;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 40px;
-  margin-inline-end: 40px;
-  border-left: .25rem solid #ccc;
-  }       
-
-.errorlist{
-    color: red;
-  }
-  #mc_embed_signup h2 {
-    font-weight: bold;
-    padding: 0;
-    margin: 10px 0px;
-    font-size: 1.4em;
 }
