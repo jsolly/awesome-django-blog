@@ -38,7 +38,7 @@ exit
 psql blogthedata < blogthedata_db_5_6_22.sql
 
 # Copy over media folder
-scp -r jsolly@69.164.205.120:/home/jsolly/blogthedata/django_project/media .
+scp -r jsolly@69.164.205.120:/home/jsolly/blogthedata/django_project/media /Users/johnsolly/Documents/code/blogthedata/django_project
 
 ### Backup Linode
 ssh jsolly@69.164.205.120 "dd if=/dev/sda " | dd of=/Users/johnsolly/Documents/code/blogthedata/backups/linode.img
