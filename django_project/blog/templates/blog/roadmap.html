@@ -21,14 +21,16 @@ A list of Github issues for the development of blogthedata.com. In progress item
   </li>
   {% endfor %}
 </ul>
-<h3>Backlog</h3>
+<h3>Implemented Soon</h3>
 <ul>
   {% for issue in backlog_issues %}
   <li> <a href="https://github.com/jsolly/blogthedata/issues/{{ issue.number }}" target="_blank">{{ issue.title }}</a>
   </li>
   {% endfor %}
 </ul>
-<h3><a href="https://github.com/jsolly/blogthedata/issues?q=is%3Aissue+is%3Aclosed" target="_blank">Link to Completed ✅
-  </a></h3>
+<h4><a href="https://github.com/jsolly/blogthedata/issues?q=is%3Aopen+is%3Aissue" target="_blank">Backlog items 🗂
+</a></h4>
+<h4><a href="https://github.com/jsolly/blogthedata/issues?q=is%3Aissue+is%3Aclosed" target="_blank">Link to Completed/Closed ✅
+  </a></h4>
 
 {% endblock content %}

@@ -16,9 +16,6 @@ from django.views.generic import (
 )
 from users.models import Profile
 import requests
-from django_project.settings import GIT_TOKEN
-
-HEAD = {"Authorization": f"token {GIT_TOKEN}"}
 
 
 def add_ip_person_if_not_exist(request):
@@ -186,6 +183,12 @@ class CategoryView(ListView):
 
 
 def road_map_view(request):
+    from django_project.settings import GIT_TOKEN
+    HEAD = {"Authorization": f"token {GIT_TOKEN}"}
+    # project_url = "https://api.github.com/projects/14278916"
+    in_progress_column_url = "https://api.github.com/projects/columns/18242400"
+    backlog_column_url = "https://api.github.com/projects/columns/18271705"
+
     all_issues = requests.request(
         method="GET",
         url="https://api.github.com/repos/jsolly/blogthedata/issues",
@@ -195,14 +198,21 @@ def road_map_view(request):
 
     inprog_cards = requests.request(
         method="GET",
-        url="https://api.github.com/projects/columns/18242400/cards",
+        url=in_progress_column_url + "/cards",
         headers=HEAD,
     ).json()
+
+    backlog_cards = requests.request(
+        method="GET",
+        url=backlog_column_url + "/cards",
+        headers=HEAD,
+    ).json()
+
     inprog_issue_urls = [card["content_url"] for card in inprog_cards]
-    backlog_issues = [
-        issue for issue in all_issues if issue["url"] not in inprog_issue_urls
-    ]
+    backlog_issue_urls = [card["content_url"] for card in backlog_cards]
+
     inprog_issues = [issue for issue in all_issues if issue["url"] in inprog_issue_urls]
+    backlog_issues = [issue for issue in all_issues if issue["url"] in backlog_issue_urls]
 
     cat_list = Category.objects.all()
     return render(

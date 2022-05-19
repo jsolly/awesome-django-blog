@@ -50,7 +50,7 @@
       <div class="col-md">
         <!--Sidebar-->
         {% include "blog/parts/sidebar.html" %}
-        <h3>About this Page</h3>   
+        <h3>About this Page</h3>
         {% block about %} <p>Great decisions are informed by data. I present deeply researched articles to improve your
           life. </p>{% endblock about %}
       </div>
@@ -59,10 +59,9 @@
         <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %} {% endif %}
         {% block content %}
-        
         {% endblock %}
-                <!--Mailchimp Embed-->
-  {% include "blog/parts/mailchimp_embed.html" %}
+        <!--Mailchimp Embed-->
+        {% include "blog/parts/mailchimp_embed.html" %}
         <!--Footer-->
         {% include "blog/parts/footer.html" %}
       </div>
