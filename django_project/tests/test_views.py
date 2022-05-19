@@ -202,6 +202,8 @@ class TestViews(SetUp):
         data = {
             "username": "test2",
             "email": "example2@test.com",
+            "first_name": "Tester2",
+            "last_name": "Smith",
             "password1": "Coff33cak3s!",
             "password2": "Coff33cak3s!",
             "secret_password": "African Swallows",

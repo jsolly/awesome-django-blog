@@ -45,6 +45,8 @@ class TestForms(SetUp):
             data={
                 "username": "test",
                 "email": "example@test.com",
+                "first_name": "Tester",
+                "last_name": "Smith",
                 "password1": "Coff33cak3s!",
                 "password2": "Coff33cak3s!",
                 "secret_password": "African Swallows",
