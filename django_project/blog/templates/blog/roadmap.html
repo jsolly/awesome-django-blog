@@ -21,9 +21,17 @@ A list of Github issues for the development of blogthedata.com. In progress item
   </li>
   {% endfor %}
 </ul>
-<h3>Implemented Soon</h3>
+<h3>2022 Sprint {{ sprint_number }} of 26</h3>
 <ul>
   {% for issue in backlog_issues %}
+  <li> <a href="https://github.com/jsolly/blogthedata/issues/{{ issue.number }}" target="_blank">{{ issue.title }}</a>
+  </li>
+  {% endfor %}
+</ul>
+
+<h3>Next Sprint</h3>
+<ul>
+  {% for issue in next_sprint_issues %}
   <li> <a href="https://github.com/jsolly/blogthedata/issues/{{ issue.number }}" target="_blank">{{ issue.title }}</a>
   </li>
   {% endfor %}

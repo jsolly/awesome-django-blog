@@ -184,10 +184,13 @@ class CategoryView(ListView):
 
 def road_map_view(request):
     from django_project.settings import GIT_TOKEN
+    from datetime import date
+
     HEAD = {"Authorization": f"token {GIT_TOKEN}"}
     # project_url = "https://api.github.com/projects/14278916"
     in_progress_column_url = "https://api.github.com/projects/columns/18242400"
     backlog_column_url = "https://api.github.com/projects/columns/18271705"
+    next_sprint_column_url = "https://api.github.com/projects/columns/18739295"
 
     all_issues = requests.request(
         method="GET",
@@ -208,13 +211,22 @@ def road_map_view(request):
         headers=HEAD,
     ).json()
 
+    next_sprint_cards = requests.request(
+        method="GET",
+        url=next_sprint_column_url + "/cards",
+        headers=HEAD,
+    ).json()
+
     inprog_issue_urls = [card["content_url"] for card in inprog_cards]
     backlog_issue_urls = [card["content_url"] for card in backlog_cards]
+    next_sprint_issue_urls = [card["content_url"] for card in next_sprint_cards]
 
     inprog_issues = [issue for issue in all_issues if issue["url"] in inprog_issue_urls]
     backlog_issues = [issue for issue in all_issues if issue["url"] in backlog_issue_urls]
+    next_sprint_issues = [issue for issue in all_issues if issue["url"] in next_sprint_issue_urls]
 
     cat_list = Category.objects.all()
+    sprint_number = date.today().isocalendar().week // 2  # Two week sprints
     return render(
         request,
         "blog/roadmap.html",
@@ -222,6 +234,8 @@ def road_map_view(request):
             "cat_list": cat_list,
             "backlog_issues": backlog_issues,
             "inprog_issues": inprog_issues,
+            "next_sprint_issues": next_sprint_issues,
+            "sprint_number": sprint_number,
         },
     )
 
