@@ -8,12 +8,12 @@
 
 <!-- About Section-->
 {% block about %}
-A list of Github issues for the development of blogthedata.com. In progress items are being actively developed. Backlog tasks are planned for future sprints. Feel free to create new issues for bugs and enhancements!
+A list of Github issues for the development of blogthedata.com. In progress items are being actively developed. Backlog
+tasks are planned for future sprints. Feel free to create new issues for bugs and enhancements!
 {% endblock about %}
 
 {% block content %}
 <h1>Blog Roadmap</h1>
-</br>
 <h3>In Progress</h3>
 <ul>
   {% for issue in inprog_issues %}
@@ -28,7 +28,6 @@ A list of Github issues for the development of blogthedata.com. In progress item
   </li>
   {% endfor %}
 </ul>
-
 <h3>Next Sprint</h3>
 <ul>
   {% for issue in next_sprint_issues %}
@@ -37,8 +36,9 @@ A list of Github issues for the development of blogthedata.com. In progress item
   {% endfor %}
 </ul>
 <h4><a href="https://github.com/jsolly/blogthedata/issues?q=is%3Aopen+is%3Aissue" target="_blank">Backlog items 🗂
-</a></h4>
-<h4><a href="https://github.com/jsolly/blogthedata/issues?q=is%3Aissue+is%3Aclosed" target="_blank">Link to Completed/Closed ✅
+  </a></h4>
+<h4><a href="https://github.com/jsolly/blogthedata/issues?q=is%3Aissue+is%3Aclosed" target="_blank">Link to
+    Completed/Closed ✅
   </a></h4>
 
 {% endblock content %}
