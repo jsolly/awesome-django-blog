@@ -77,8 +77,10 @@ INSTALLED_APPS = [
     "admin_honeypot",
     "robots",
     "django_fastdev",
+    "sri"
 ]
-#     "django_fastdev"
+
+USE_SRI = True
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

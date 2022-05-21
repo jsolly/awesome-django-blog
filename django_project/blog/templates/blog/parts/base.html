@@ -1,4 +1,5 @@
 {% load static %}
+{% load sri %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,7 +39,7 @@
   </style>
 
   <!-- My CSS -->
-  <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}" />
+  {% sri_static 'main.css' %}
 
   <title>{% block title %} Solly's Blog | A blog about data-driven decisions {% endblock %}</title>
 </head>
