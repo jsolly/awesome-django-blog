@@ -1,5 +1,6 @@
 {% extends "blog/parts/base.html" %}
 {% load static %}
+{% load sri %}
 {% block title %} {{post.title}} {% endblock title %}
 
 {% block head %}
@@ -7,7 +8,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML"></script>
 
 <!-- ckeditor -->
-<link href="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.css' %}" rel="stylesheet">
+{% sri_static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.css' %}
 <script src="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.js' %}"></script>
 {% endblock head %}
 
