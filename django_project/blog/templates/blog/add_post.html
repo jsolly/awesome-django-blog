@@ -1,11 +1,12 @@
 {% extends "blog/parts/base.html" %}
 {% load static %}
+{% load sri %}
 {% block title %}Create A New Blog Post!{% endblock title %}
 
 {% block head %}
 <!-- ckeditor -->
 <link href="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.css' %}" rel="stylesheet">
-<script src="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.js' %}"></script>
+{% sri_static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.js' %}
 {% endblock %}
 
 {% block content %}
