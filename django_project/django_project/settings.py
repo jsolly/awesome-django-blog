@@ -248,7 +248,6 @@ CKEDITOR_CONFIGS = {
                     "Image",
                     "Table",
                     "CodeSnippet",
-                    "Mathjax",
                 ],
             },
             {
@@ -286,16 +285,11 @@ CKEDITOR_CONFIGS = {
         "height": "400px",
         "width": "auto",
         "forcePasteAsPlainText ": True,
-        # Class used inside span to render mathematical formulae using latex
-        "mathJaxClass": "mathjax-latex",
-        # Mathjax library link to be used to render mathematical formulae
-        "mathJaxLib": "//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML",
         # Tab = 4 spaces inside the editor
         "tabSpaces": 4,
         # Extra plugins to be used in the editor
         "extraPlugins": ",".join(
             [
-                "mathjax",  # Used to render mathematical formulae
                 "wordcount",
                 "notification",
             ]
