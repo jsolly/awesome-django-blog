@@ -28,8 +28,7 @@
   <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="" />
   <div class="media-body">
     <div class="article-metadata">
-      <nobr>{{ post.author.first_name }} {{ post.author.last_name }} <small class="text-muted">{{
-          post.date_posted|date:"F d, Y" }}</small>
+      <nobr>{{ post.author.first_name }} {{ post.author.last_name }} <small class="text-muted">{{post.date_posted|date:"F d, Y" }}</small>
         {% if post.draft %} <span style="color:red"> (Draft)</span> {% endif %}
       </nobr>
       {% if post.author == user %}
