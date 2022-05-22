@@ -29,3 +29,10 @@ Copyright 2015 by [Engr. Ranel O. Padon](http://www.ranelpadon.com)<br>
 Thanks to CKEditor, Prism, and other great open-source softwares and their unsung developers.<br>
 
 =======================================================
+
+
+
+
+
+
+

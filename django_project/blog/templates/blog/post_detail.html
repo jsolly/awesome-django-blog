@@ -1,15 +1,14 @@
 {% extends "blog/parts/base.html" %}
 {% load static %}
+{% load sri %}
 {% block title %} {{post.title}} {% endblock title %}
 
 {% block head %}
-<!-- MathJax-->
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML"></script>
-
 <!-- ckeditor -->
-<link href="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.css' %}" rel="stylesheet">
+{% sri_static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.css' %}
 <script src="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.js' %}"></script>
+
+
 {% endblock head %}
 
 {% block meta %}
@@ -29,7 +28,7 @@
   <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="" />
   <div class="media-body">
     <div class="article-metadata">
-      <nobr>{{ post.author.first_name }} {{ post.author.last_name }} <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+      <nobr>{{ post.author.first_name }} {{ post.author.last_name }} <small class="text-muted">{{post.date_posted|date:"F d, Y" }}</small>
         {% if post.draft %} <span style="color:red"> (Draft)</span> {% endif %}
       </nobr>
       {% if post.author == user %}

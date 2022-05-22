@@ -78,6 +78,14 @@ $ source venv/bin/activate
 $ pip install --upgrade pip
 $ pip install -r requirements.txt
 
+# Manually generated integrity hash values
+1 - mailchimp/local-mc-validate.js
+2 - 
+
+# How to generate integrity hash values
+openssl dgst -sha384 -binary prism_patched.min.js | openssl base64 -A
+
+
 # Configuring Python install on new Mac
 Install using the regular installer from python.org. Make sure to match the version that is on production.
 The file path should look like:
