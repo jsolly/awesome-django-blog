@@ -23,6 +23,15 @@
 <!-- Mailchimp -->
 <script type='text/javascript' src="{% static 'mailchimp/local-mc-validate.js' %}" integrity="kNtXczGtgYT982q0agqJfC1hsrUBi3Z3JLr1VrrUIyUZRn2yS6GfAvZ0Dv10mpiy%" crossorigin="anonymous"></script>
 
+<link href="{% static 'mailchimp/classic-10_7_dtp.css' %}" rel="stylesheet" type="text/css" media="print"
+  integrity="{% sri_integrity_static 'mailchimp/classic-10_7_dtp.css' %}" crossorigin="anonymous" onload="this.media='all'">
+<style type="text/css">
+  #mc_embed_signup {
+    background: #fff;
+    clear: left;
+    font: 14px Helvetica, Arial, sans-serif;
+  }
+</style>
 <!-- My CSS -->
 {% sri_static 'main.css' %}
 
