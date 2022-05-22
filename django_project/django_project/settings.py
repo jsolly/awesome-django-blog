@@ -24,6 +24,7 @@ SITE_ID = 1  # blogthedata.com
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 CAPTCHA_TEST_MODE = False
+USE_SRI = True
 
 # HTTPS SETTINGS
 SESSION_COOKIE_SECURE = True
