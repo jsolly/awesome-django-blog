@@ -292,8 +292,10 @@ CKEDITOR_CONFIGS = {
                 "codesnippet",
                 "wordcount",
                 "notification",
+                "prism"
             ]
         ),
+        "codeSnippetGeshi_url": '../lib/colorize.php',
         # Character count
         "wordcount": {
             "showWordCount": False,
