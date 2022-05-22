@@ -48,19 +48,23 @@ A django blog about data-driven decisions
 - 100% code coverage
 - Fully PEP 8 compliant (with some exceptions*)
 
-## Tests
-- Contained within tests/
-- Run coverage
-$ cd django_project
-$ coverage run -m unittest discover
-$ coverage report -m --omit 'tests/*' --skip-empty
+## Coverage, Tests, Linting
+Contained within tests/
+#### Coverage
+coverage run -m unittest discover django_project 
+coverage report -m --skip-empty --skip-covered
+#### Test
+unittest discover django_project
+#### Lint
+flake8 django_project
 
+Also see the [actions tab]([url](https://github.com/jsolly/blogthedata/actions)) to see if everything is passing.
 
 ---
 
 ## Contributing
 
-> To get started...
+Want to work on this with me? DM me [@effortlessgis]([url](https://twitter.com/effortlessgis))
 
 ### Step 1
 
@@ -68,7 +72,7 @@ $ coverage report -m --omit 'tests/*' --skip-empty
     - 🍴 Fork this repo!
 
 - **Option 2**
-    - 👯 Clone this repo to your local machine using `https://github.com/jsolly/blogthedata.git`
+    - 👯 Clone to your local machine using `https://github.com/jsolly/blogthedata.git`
 
 ### Step 2
 
@@ -91,20 +95,11 @@ $ coverage report -m --omit 'tests/*' --skip-empty
 
 ## FAQ
 
-- **How do I create a new migration?**
+- **How do I do things?**
 
     ```bash
-    $ python3 manage.py makemigrations --name changed_my_model your_app_label
-
-    $ python3 manage.py migrate
+    TODO
     ```
-
-- **How do I access the production server?**
-    ```
-    $ ssh <username>@69.164.205.120
-    ```
-
-
 
 ---
 
