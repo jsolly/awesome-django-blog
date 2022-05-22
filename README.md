@@ -64,7 +64,7 @@ Also see the [actions tab]([url](https://github.com/jsolly/blogthedata/actions))
 
 ## Contributing
 
-Want to work on this with me? DM me [@effortlessgis]([url](https://twitter.com/effortlessgis))
+Want to work on this with me? DM me <a href="https://twitter.com/effortlessgis" target="_blank">`@effortlessgis`</a>
 
 ### Step 1
 
