@@ -25,13 +25,15 @@ A django blog about data-driven decisions
 
 ### Setup
 - See commented out Database section in [django_project/settings.py](https://github.com/jsolly/blogthedata/blob/master/django_project/django_project/settings.py) to use sqllite database or postgres
-- python3 manage.py migrate
+- $ python3 manage.py migrate
+- $ python3 manage.py runserver
 
 ---
 
 ## Features
 - User login
-- Ability to create posts and comments
+- Create posts and comments filtered by category or author
+- User profile with avatar (automatic sizing and compression using Pillow)
 - Ckeditor for rich text (also includes spell check, code snippets, character counter, and more!)
 - Multiple categoires to organize posts
 - Post views and likes
@@ -47,6 +49,9 @@ A django blog about data-driven decisions
 - Global search
 - 100% code coverage
 - Fully PEP 8 compliant (with some exceptions*)
+- Ko-Fi donation button
+- Robots.txt, security.txt, and sitemap.xml
+- Honeypot Admin page
 
 ## Coverage, Tests, Linting
 Contained within tests/
