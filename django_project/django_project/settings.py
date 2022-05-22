@@ -288,6 +288,7 @@ CKEDITOR_CONFIGS = {
         # Extra plugins to be used in the editor
         "extraPlugins": ",".join(
             [
+                "codesnippet",
                 "wordcount",
                 "notification",
             ]
