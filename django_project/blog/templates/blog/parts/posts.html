@@ -8,7 +8,7 @@
         {% if post.draft %} <span style="color:red"> (Draft)</span> {% endif %}
       </nobr>
     </div>
-    <p class="article-content">{{ post.snippet|safe }} <a href="{% url 'post-detail' slug=post.slug %}">Read More</a></p>
+    <p class="article-content">{{ post.snippet|safe }} <a href="{% url 'post-detail' slug=post.slug %}">Open blog post</a></p>
     Comments: {{ post.comments.count }}
     <p>{{post.total_views}} views </br> {{post.total_likes}} likes </p>
   </div>
