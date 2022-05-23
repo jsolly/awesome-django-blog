@@ -51,6 +51,11 @@ a.article-title:hover {
   margin-bottom: 16px;
 }
 
+.card-img {
+  height:"83";
+  width:"100";
+}
+
 blockquote {
   font-style: italic;
   font-family: Georgia, Times, "Times New Roman", serif;
