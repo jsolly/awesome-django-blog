@@ -52,7 +52,7 @@ CSP_MANIFEST_SRC = ("'self'", )
 CSP_BASE_URI = ('none', )
 CSP_FORM_ACTION = ("'self'",)
 CSP_OBJECT_SRC = ('none')
-
+CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
 if os.environ["DEBUG"] == "True":
     SITE_ID = 2
     DEBUG = True
