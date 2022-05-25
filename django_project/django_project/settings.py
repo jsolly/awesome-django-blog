@@ -51,6 +51,8 @@ CSP_FRAME_ANCESTORS = ('none')
 CSP_MANIFEST_SRC = ("'self'", )
 CSP_BASE_URI = ('none', )
 CSP_FORM_ACTION = ("'self'",)
+CSP_OBJECT_SRC = ('none')
+
 if os.environ["DEBUG"] == "True":
     SITE_ID = 2
     DEBUG = True
