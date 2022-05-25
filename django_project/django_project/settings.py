@@ -40,16 +40,16 @@ SECURE_HSTS_PRELOAD = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 # Content Security Policy
-CSP_DEFAULT_SRC = ("'none'", )
+CSP_DEFAULT_SRC = ("'none'",)
 CSP_STYLE_SRC = ("'self'", "https://cdn.jsdelivr.net", "'unsafe-inline'")
 CSP_SCRIPT_SRC = ("'self'", "https://cdn.jsdelivr.net", "'unsafe-inline'")
 CSP_IMG_SRC = ("'self'", "data:")
-CSP_FONT_SRC = ("'self'", )
-CSP_CONNECT_SRC = ("'self'", )
+CSP_FONT_SRC = ("'self'",)
+CSP_CONNECT_SRC = ("'self'",)
 CSP_FRAME_SRC = ('*')
 # CSP_FRAME_ANCESTORS = ('none')
-CSP_MANIFEST_SRC = ("'self'", )
-# CSP_BASE_URI = ('none', )
+CSP_MANIFEST_SRC = ("'self'",)
+# CSP_BASE_URI = ('none',)
 CSP_FORM_ACTION = ("'self'", "https://blogthedata.us14.list-manage.com")
 CSP_OBJECT_SRC = ("'none'")
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
