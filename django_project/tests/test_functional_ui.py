@@ -11,14 +11,12 @@ from django import setup
 from django.urls import reverse
 import os
 import time
-import random
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
 setup()
-from users.models import User, Profile
+from users.models import User
 from blog.models import Category, Post
 from unittest import skip
-
 
 # geckodriver_autoinstaller.install()
 chromedriver_autoinstaller.install()
@@ -26,52 +24,57 @@ chromedriver_autoinstaller.install()
 
 @skip("Tests take too long to run")
 class TestFunctionalUI(StaticLiveServerTestCase):
+
     def setUp(self):
-        self.random_number = random.randint(0, 100000)
+        self.general_password = "T3stingIsFun!"
+
+        def create_user(provided_username, super_user=False):
+            try:
+                return User.objects.get(username=provided_username)
+
+            except User.DoesNotExist:
+                self.provided_username = User(
+                    username=provided_username, email="test@original.com"
+                )
+                self.provided_username.set_password(self.general_password)
+                if super_user:
+                    self.provided_username.is_staff = True
+                    self.provided_username.is_superuser = True
+
+                self.provided_username.save()
+                return User.objects.get(username=provided_username)
+
         self.browser = webdriver.Chrome()
 
-        # Super User
-        self.super_user = User(
-            username=f"super_user{self.random_number}", email="super_user@invalid.com"
-        )
-        self.general_password = "T3stingIsFun!"
-        self.super_user.is_staff = True
-        self.super_user.is_superuser = True
-        self.super_user.set_password(self.general_password)
-        self.super_user.save()
-
-        # Basic User
-        self.basic_user = User(
-            username=f"basic_user{self.random_number}", email="basic_user@original.com"
-        )
-        self.general_password = "T3stingIsFun!"
-        self.basic_user.is_staff = False
-        self.basic_user.is_superuser = False
-        self.basic_user.set_password(self.general_password)
-        self.basic_user.save()
-        self.basic_user_profile = Profile.objects.get(user=self.basic_user)
+        self.super_user = create_user("John_Solly", super_user=True)
+        self.basic_user = create_user("basic_user", super_user=False)
 
         # Productivity Category
-        self.productivity_category = Category.objects.create(
-            name=f"Productivity{self.random_number}"
-        )
+        try:
+            self.productivity_category = Category.objects.get(name="Productivity")
+        except Category.DoesNotExist:
+            self.productivity_category = Category.objects.create(name="Productivity")
 
         # regular post
-        self.post1 = Post.objects.create(
-            title="My First Post",
-            slug=f"first-post{self.random_number}",
-            category=self.productivity_category.name,
-            metadesc="Curious about your health? Look no further!",
-            draft=False,
-            # metaimg = ""
-            # metaimg_mimetype = ""
-            snippet="Long ago, the four nations lived together in harmony.",
-            content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
-            # date_posted = ""
-            author=self.super_user
-            # likes
-            # views
-        )
+        try:
+            self.post1 = Post.objects.get(slug="first-post")
+        except Post.DoesNotExist:
+            self.post1 = Post.objects.create(
+                title="My First Post",
+                slug="first-post",
+                category=self.productivity_category.name,
+                metadesc="Curious about your health? Look no further!",
+                draft=False,
+                # metaimg = ""
+                # metaimg_mimetype = ""
+                snippet="Long ago, the four nations lived together in harmony.",
+                content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
+                # date_posted = ""
+                author=self.super_user
+                # likes
+                # views
+            )
+
         # URLs
         self.blog_home = self.live_server_url + reverse("blog-home")
         self.login_url = self.live_server_url + reverse("login")
@@ -100,9 +103,7 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         self.browser.find_element(by=By.NAME, value="title").send_keys(
             "Super User's Post"
         )
-        self.browser.find_element(by=By.NAME, value="slug").send_keys(
-            f"super-user-post{self.random_number}"
-        )
+        self.browser.find_element(by=By.NAME, value="slug").send_keys("super-user-post")
         Select(self.browser.find_element(by=By.NAME, value="category")).select_by_value(
             "site updates"
         )
@@ -170,6 +171,12 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         self.browser.find_element(by=By.NAME, value="username").send_keys(
             "selenium_user"
         )
+        self.browser.find_element(by=By.NAME, value="first_name").send_keys(
+            "Michael"
+        )
+        self.browser.find_element(by=By.NAME, value="last_name").send_keys(
+            "Jenkins"
+        )
         self.browser.find_element(by=By.NAME, value="email").send_keys(
             "selenium_user@invalid.com"
         )
@@ -186,9 +193,6 @@ class TestFunctionalUI(StaticLiveServerTestCase):
 
         # User clicks 'Register' and is now on the sign-in page
         self.browser.find_element(By.ID, value="sign-up-button").click()
-        self.assertEqual(
-            self.browser.find_element(by=By.TAG_NAME, value="legend").text, "Login"
-        )
         self.assertEqual(
             "Account created for selenium_user",
             self.browser.find_element(by=By.CLASS_NAME, value="alert").text,
@@ -217,7 +221,7 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         self.browser.find_element(By.ID, value="comment-create-button").click()
 
         actions = ActionChains(self.browser)
-        actions.send_keys(Keys.TAB * 10).perform()
+        actions.send_keys(Keys.TAB * 12).perform()
         actions.send_keys("A brand new comment!").perform()
 
         comment_create_button = self.browser.find_element(
@@ -228,7 +232,8 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         # Productivity page displays
         comment_div = self.browser.find_element(By.CLASS_NAME, value="comment")
         self.assertEqual(
-            comment_div.find_element(By.TAG_NAME, value="p").text, "A brand new comment!"
+            comment_div.find_element(By.TAG_NAME, value="p").text,
+            "A brand new comment!",
         )
 
     def test_anonymmous_can_like_unlike_a_post(self):

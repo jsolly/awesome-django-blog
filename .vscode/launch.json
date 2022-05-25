@@ -29,7 +29,7 @@
       "console": "internalConsole",
       "request": "launch",
       "program": "${file}",
-      "justMyCode": false,
+      "justMyCode": true,
       "django": true,
   }
   ]
