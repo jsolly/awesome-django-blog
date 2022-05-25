@@ -43,8 +43,10 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 CSP_DEFAULT_SRC = ("'self'", )
 CSP_STYLE_SRC = ("'self'", "https://cdn.jsdelivr.net")
 CSP_SCRIPT_SRC = ("'self'", "https://cdn.jsdelivr.net")
-CSP_IMG_SRC = ("'self'", )
-# CSP_FONT_SRC = ("'self'", )
+CSP_IMG_SRC = ("'self'", "data:")
+CSP_FONT_SRC = ("'self'", )
+CSP_CONNECT_SRC = ("'self'", )
+CSP_FRAME_SRC = ('*')
 
 if os.environ["DEBUG"] == "True":
     SITE_ID = 2

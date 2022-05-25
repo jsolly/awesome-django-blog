@@ -31,10 +31,6 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
 
-  <!-- Mailchimp -->
-  <link href="{% static 'mailchimp/classic-10_7_dtp.css' %}" rel="stylesheet" type="text/css" media="print"
-    integrity="{% sri_integrity_static 'mailchimp/classic-10_7_dtp.css' %}" crossorigin="anonymous"
-    onload="this.media='all'">
   <!-- My CSS -->
   {% sri_static 'main.css' %}
 
@@ -53,10 +49,9 @@
         <h3>About this Page</h3>
         {% block about %} <p>Great decisions are informed by data. I present deeply researched articles to improve your
           life. </p>{% endblock about %}
-          <!--Kofi Donation-->
-        <a href='https://ko-fi.com/S6S6CSR2Q' target='_blank'><img height='36' width="141"
-            style='border:0px;height:36px;' src="{% static 'kofi/kofi2_v3.png' static %}" border='0'
-            alt='Buy Me a Coffee at ko-fi.com' /></a>
+        <!--Kofi Donation-->
+        <a href='https://ko-fi.com/S6S6CSR2Q' id="kofi" target='_blank'><img height='36' width="141"
+            src="{% static 'kofi/kofi2_v3.png' static %}" border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
       </div>
       <div class="col-lg-10">
         {% if messages %} {% for message in messages %}

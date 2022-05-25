@@ -1,5 +1,14 @@
 {% extends "blog/parts/base.html" %}
 {% block title %}Edit Blog Post!{% endblock title %}
+{% load static %}
+{% load sri %}
+
+{% block head %}
+<!-- ckeditor -->
+{% sri_static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.css' %}
+<script src="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.js' %}"></script>
+
+{% endblock head %}
 {% block content %}
 <h1>Update Post</h1>
 <br /><br />
