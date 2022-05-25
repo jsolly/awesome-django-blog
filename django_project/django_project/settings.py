@@ -40,19 +40,19 @@ SECURE_HSTS_PRELOAD = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 # Content Security Policy
-CSP_DEFAULT_SRC = ('none', )
+CSP_DEFAULT_SRC = ("'none'",)
 CSP_STYLE_SRC = ("'self'", "https://cdn.jsdelivr.net", "'unsafe-inline'")
 CSP_SCRIPT_SRC = ("'self'", "https://cdn.jsdelivr.net", "'unsafe-inline'")
 CSP_IMG_SRC = ("'self'", "data:")
-CSP_FONT_SRC = ("'self'", )
-CSP_CONNECT_SRC = ("'self'", )
+CSP_FONT_SRC = ("'self'",)
+CSP_CONNECT_SRC = ("'self'",)
 CSP_FRAME_SRC = ('*')
-CSP_FRAME_ANCESTORS = ('none')
-CSP_MANIFEST_SRC = ("'self'", )
-CSP_BASE_URI = ('none', )
-CSP_FORM_ACTION = ("'self'",)
-CSP_OBJECT_SRC = ('none')
-CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
+CSP_FRAME_ANCESTORS = ("'none'")
+CSP_MANIFEST_SRC = ("'self'",)
+CSP_BASE_URI = ("'none'",)
+CSP_FORM_ACTION = ("'self'", "https://blogthedata.us14.list-manage.com")
+CSP_OBJECT_SRC = ("'none'")
+# CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",) # breaks ckeditor
 if os.environ["DEBUG"] == "True":
     SITE_ID = 2
     DEBUG = True
@@ -65,6 +65,7 @@ if os.environ["DEBUG"] == "True":
     SESSION_COOKIE_HTTPONLY = False
     SECURE_BROWSER_XSS_FILTER = False
     SECURE_CONTENT_TYPE_NOSNIFF = False
+    CSRF_COOKIE_HTTPONLY = True
 
     # HSTS SETTINGS
     SECURE_HSTS_SECONDS = 31557600
