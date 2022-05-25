@@ -29,7 +29,7 @@
   <div class="media-body">
     <div class="article-metadata">
       <nobr>{{ post.author.first_name }} {{ post.author.last_name }} <small class="text-muted">{{post.date_posted|date:"F d, Y" }}</small>
-        {% if post.draft %} <span style="color:red"> (Draft)</span> {% endif %}
+        {% if post.draft %}(Draft){% endif %}
       </nobr>
       {% if post.author == user %}
       <div>
@@ -61,7 +61,7 @@
   <a class="btn btn-primary" id="comment-create-button" href="{% url 'comment-create' slug=post.slug %}">Add comment</a>
 </div>
 {% for comment in post.comments.all %}
-<div class="comment" style="padding: 10px">
+<div class="comment">
   <div class="date">
     <strong>{{comment.author}}</strong> {{comment.date_posted|date:"F d, Y"}}
   </div>

@@ -39,6 +39,15 @@ SECURE_HSTS_SECONDS = 31557600
 SECURE_HSTS_PRELOAD = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
+# Content Security Policy
+CSP_DEFAULT_SRC = ("'self'", )
+CSP_STYLE_SRC = ("'self'", "https://cdn.jsdelivr.net", "'unsafe-inline'")
+CSP_SCRIPT_SRC = ("'self'", "https://cdn.jsdelivr.net", "'unsafe-inline'")
+CSP_IMG_SRC = ("'self'", "data:")
+CSP_FONT_SRC = ("'self'", )
+CSP_CONNECT_SRC = ("'self'", )
+CSP_FRAME_SRC = ('*')
+
 if os.environ["DEBUG"] == "True":
     SITE_ID = 2
     DEBUG = True
@@ -91,6 +100,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.utils.deprecation.MiddlewareMixin",
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
+    "csp.middleware.CSPMiddleware"
 ]
 
 ROOT_URLCONF = "django_project.urls"
@@ -197,6 +207,7 @@ FASTDEV_STRICT_IF = True
 
 CKEDITOR_CONFIGS = {
     "default": {
+        "removePlugins": "exportpdf",
         # name - Toolbar name
         # items - The buttons enabled in the toolbar
         "toolbar_DefaultToolbarConfig": [

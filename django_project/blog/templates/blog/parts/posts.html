@@ -5,7 +5,7 @@
     <div class="article-metadata">
       <h2 class="article-title"><a class="article-title" href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h2>
       <nobr>{{ post.author.first_name }} {{ post.author.last_name }} <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
-        {% if post.draft %} <span style="color:red"> (Draft)</span> {% endif %}
+        {% if post.draft %} (Draft) {% endif %}
       </nobr>
     </div>
     <p class="article-content">{{ post.snippet|safe }} <a href="{% url 'post-detail' slug=post.slug %}">Open blog post</a></p>
