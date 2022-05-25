@@ -59,7 +59,7 @@ class TestUrls(SetUp):
     def test_category_url_is_resolved(self):
         category_url = reverse("blog-category", args=[self.category1.name])
         self.assertEqual(resolve(category_url).func.view_class, CategoryView)
-        
+
     def test_roadmap_url_is_resolved(self):
         self.assertEqual(resolve(reverse("blog-roadmap")).func, road_map_view)
 

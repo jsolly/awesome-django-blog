@@ -71,7 +71,7 @@ class TestModels(SetUp):
             author=self.super_user,
         )
         self.assertEqual(post_no_slug.slug, "no-slug-given")
-    
+
     # Users Models
     def test_profile(self):
         self.assertEqual(str(self.profile1), f"{self.super_user.username} Profile")
