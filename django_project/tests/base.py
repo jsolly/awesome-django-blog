@@ -9,7 +9,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from django.contrib.messages import get_messages
 from django.test.utils import setup_test_environment
-from blog.models import Post, Comment, Category, IpPerson
+from blog.models import Post, Category
 from users.models import User, Profile
 
 
@@ -41,34 +41,27 @@ def create_several_posts(category_name, user, number_of_posts):
 
 class SetUp(TestCase):
     """Create User and Post object to be shared by tests. Also create urls using reverse()"""
-
     setup_test_environment()
 
     def setUp(self):
+        self.general_password = "T3stingIsFun!"
         warnings.simplefilter("ignore", category=ResourceWarning)
-        self.localhost_ip = "127.0.0.1"
 
-        if IpPerson.objects.filter(ip=self.localhost_ip).exists():
-            localhost_ip_person = IpPerson.objects.get(ip=self.localhost_ip)
-            localhost_ip_person.delete()
+        def create_user(provided_username, super_user=False):
+            self.provided_username = User(
+                username=provided_username, email="test@original.com"
+            )
+            self.provided_username.set_password(self.general_password)
+            if super_user:
+                self.provided_username.is_staff = True
+                self.provided_username.is_superuser = True
 
-        # SuperUser Object
-        self.super_user = User(username="John_Solly", email="test@original.com")
-        self.super_user_password = "T3stingIsFun!"
-        self.super_user.is_staff = True
-        self.super_user.is_superuser = True
-        self.super_user.set_password(self.super_user_password)
-        self.super_user.save()
+            self.provided_username.save()
+            return User.objects.get(username=provided_username)
+
+        self.super_user = create_user("John_Solly", super_user=True)
+        self.basic_user = create_user("basic_user", super_user=False)
         self.profile1 = Profile.objects.get(user=self.super_user)
-
-        # Basic User
-        self.basic_user = User(username="test_viewer", email="test@original.com")
-        self.basic_user_password = "T3stingIsFun!"
-        self.basic_user.is_staff = False
-        self.basic_user.is_superuser = False
-        self.basic_user.set_password(self.super_user_password)
-        self.basic_user.save()
-        self.profile2 = Profile.objects.get(user=self.basic_user)
 
         # Post Object
         self.category1 = Category.objects.create(name="TEST")
@@ -84,8 +77,6 @@ class SetUp(TestCase):
             content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
             # date_posted = ""
             author=self.super_user
-            # likes
-            # views
         )
 
         # draft post
@@ -99,18 +90,11 @@ class SetUp(TestCase):
             content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
             author=self.super_user,
         )
-        self.post1_like_url = reverse("post-like", args=[self.post1.slug])
         self.post1_detail_url = reverse("post-detail", args=[self.post1.slug])
-        self.comment1 = Comment.objects.create(
-            post=self.post1, content="I am a comment", author=self.super_user
-        )
         self.client = Client()
         self.user_posts_url = reverse("user-posts", args=[self.super_user.username])
         self.post1_update_url = reverse("post-update", args=[self.post1.slug])
         self.post1_delete_url = reverse("post-delete", args=[self.post1.slug])
-        self.post1_create_comment_url = reverse(
-            "comment-create", args=[self.post1.slug]
-        )
 
         # Users/Admin urls
         # self.password_reset_url = reverse("password_reset")

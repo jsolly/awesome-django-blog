@@ -1,12 +1,10 @@
-from .models import Post, Comment, Category, IpPerson
-from .forms import PostForm, CommentForm
-from .utils import get_client_ip, get_post_like_status
+from .models import Post, Category
+from .forms import PostForm
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.db.models import Q
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
     DetailView,
@@ -16,25 +14,6 @@ from django.views.generic import (
 )
 from users.models import Profile
 import requests
-
-
-def add_ip_person_if_not_exist(request):
-    ip_adrr = get_client_ip(request)
-    # Check to see if we should +1 view count (for this IpPerson)
-    try:
-        return IpPerson.objects.get(ip=ip_adrr)
-    except IpPerson.DoesNotExist:
-        return IpPerson.objects.create(ip=ip_adrr)
-
-
-def add_ip_person_view_if_not_exist(request, post):
-    ip_person = add_ip_person_if_not_exist(request)
-    ip_adrr = get_client_ip(request)
-    if post.views.filter(ip=ip_adrr).exists():
-        return ip_person
-
-    post.views.add(ip_person)
-    return ip_person
 
 
 class HomeView(ListView):
@@ -84,11 +63,6 @@ class PostDetailView(DetailView):
         """Need to re-generate context based on whether user has viewed post or not"""
         context = super().get_context_data(*args, **kwargs)
         context["cat_list"] = Category.objects.all()
-
-        post = Post.objects.get(slug=self.object.slug)
-        add_ip_person_view_if_not_exist(self.request, post)
-
-        context["like_status"] = get_post_like_status(self.request, post)
         return context
 
 
@@ -129,22 +103,6 @@ class PostUpdateView(UserPassesTestMixin, UpdateView):
         post = self.get_object()
         if self.request.user == post.author:
             return True
-
-
-class CreateCommentView(LoginRequiredMixin, CreateView):
-    model = Comment
-    form_class = CommentForm
-    template_name = "blog/add_comment.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["cat_list"] = Category.objects.all()
-        return context
-
-    def form_valid(self, form):
-        form.instance.post = Post.objects.get(slug=self.kwargs["slug"])
-        form.instance.author = self.request.user
-        return super().form_valid(form)
 
 
 class PostDeleteView(DeleteView):
@@ -238,19 +196,6 @@ def road_map_view(request):
             "sprint_number": sprint_number,
         },
     )
-
-
-def post_like_view(request, slug):
-    post = Post.objects.get(slug=slug)
-    ip_adrr = get_client_ip(request)
-
-    ip_person = add_ip_person_view_if_not_exist(request, post)
-
-    if post.likes.filter(id=ip_person.id).exists():
-        post.likes.remove(IpPerson.objects.get(ip=ip_adrr))
-    else:
-        post.likes.add(ip_person)
-    return HttpResponseRedirect(reverse("post-detail", args=[str(slug)]))
 
 
 def search_view(request):

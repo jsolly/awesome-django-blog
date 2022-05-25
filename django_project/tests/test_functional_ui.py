@@ -71,8 +71,6 @@ class TestFunctionalUI(StaticLiveServerTestCase):
                 content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
                 # date_posted = ""
                 author=self.super_user
-                # likes
-                # views
             )
 
         # URLs
@@ -214,30 +212,3 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         self.assertEqual(
             self.browser.find_element(by=By.TAG_NAME, value="h2").text, "My First Post"
         )
-
-    def test_basic_user_can_comment_on_a_post(self):
-        self.do_login(self.basic_user.username)
-        self.browser.get(self.post1_url)
-        self.browser.find_element(By.ID, value="comment-create-button").click()
-
-        actions = ActionChains(self.browser)
-        actions.send_keys(Keys.TAB * 12).perform()
-        actions.send_keys("A brand new comment!").perform()
-
-        comment_create_button = self.browser.find_element(
-            By.ID, value="comment-create-button"
-        )
-        actions.move_to_element(comment_create_button).click().perform()
-
-        # Productivity page displays
-        comment_div = self.browser.find_element(By.CLASS_NAME, value="comment")
-        self.assertEqual(
-            comment_div.find_element(By.TAG_NAME, value="p").text,
-            "A brand new comment!",
-        )
-
-    def test_anonymmous_can_like_unlike_a_post(self):
-        # Anonymous opens a link to a post
-        self.browser.get(self.post1_url)
-        self.browser.find_element(By.ID, value="post-like-button").click()
-        self.browser.find_element(By.ID, value="post-unlike-button")

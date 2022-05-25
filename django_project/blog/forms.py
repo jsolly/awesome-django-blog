@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Comment
+from .models import Post
 
 choices = [
     ("life advice", "life advice"),
@@ -30,14 +30,4 @@ class PostForm(forms.ModelForm):
             "metadesc": forms.TextInput(attrs={"class": "form-control"}),
             "content": forms.Textarea(attrs={"class": "form-control"}),
             "snippet": forms.Textarea(attrs={"class": "form-control"}),
-        }
-
-
-class CommentForm(forms.ModelForm):
-    class Meta:
-        model = Comment
-        fields = ("content",)
-
-        widgets = {
-            "content": forms.Textarea(attrs={"class": "form-control"}),
         }

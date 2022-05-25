@@ -11,23 +11,6 @@ def slugify_instance_title(instance, save=False, new_slug=None):
     if save:
         instance.save()
 
-
-def get_client_ip(request):
-    x_forward_for = request.META.get("HTTP_X_FORWARD_FOR")
-
-    if x_forward_for:
-        ip_adrr = x_forward_for.split(",")[0]
-    else:
-        ip_adrr = request.META.get("REMOTE_ADDR")
-    return ip_adrr
-
-
-def get_post_like_status(request, post):
-    ip_adrr = get_client_ip(request)
-    if post.likes.filter(ip=ip_adrr).exists():
-        return True
-    return False
-
 # def post_pre_save(sender, instance, *args, **kwargs):
 #     print("pre_save")
 #     if instance.slug is None:

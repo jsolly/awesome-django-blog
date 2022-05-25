@@ -1,7 +1,7 @@
 from .base import SetUp
 from django.urls import reverse
 from PIL import Image
-from blog.models import Post, Comment, Category, IpPerson
+from blog.models import Post, Category
 
 
 class TestModels(SetUp):
@@ -21,8 +21,6 @@ class TestModels(SetUp):
             content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
             # date_posted = ""
             author=self.super_user
-            # likes
-            # views
         )
         new_post_count = Post.objects.count()
         self.assertEqual(new_post_count, post_count + 1)
@@ -43,8 +41,6 @@ class TestModels(SetUp):
             content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
             # date_posted = ""
             author=self.super_user
-            # likes
-            # views
         )
         new_active_post_count = Post.objects.active().count()
         self.assertEqual(new_active_post_count, active_posts_count + 1)
@@ -58,10 +54,6 @@ class TestModels(SetUp):
     def test_category(self):
         Category.objects.create(name="TEST")
         self.assertEqual(self.category1.get_absolute_url(), "/category/TEST/")
-
-    def test_ip_person(self):
-        ip_person = IpPerson.objects.create(ip=self.localhost_ip)
-        self.assertEqual(str(ip_person), self.localhost_ip)
 
     def test_post(self):
         self.assertEqual(str(self.post1), f"My First Post | {self.super_user.username}")
@@ -79,16 +71,8 @@ class TestModels(SetUp):
             author=self.super_user,
         )
         self.assertEqual(post_no_slug.slug, "no-slug-given")
-
-    def test_comment(self):
-        test_comment = Comment.objects.create(
-            post=self.post1, content="I am a comment", author=self.super_user
-        )
-        self.assertEqual(str(test_comment), "I am a comment")
-        self.assertEqual(test_comment.get_absolute_url(), self.post1_detail_url)
-
+    
     # Users Models
-
     def test_profile(self):
         self.assertEqual(str(self.profile1), f"{self.super_user.username} Profile")
         self.assertEqual(self.profile1.get_absolute_url(), reverse("profile"))
