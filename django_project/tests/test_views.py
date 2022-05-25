@@ -1,26 +1,9 @@
 from .base import SetUp, message_in_response, create_several_posts
 from django.urls import reverse
-from blog.views import (
-    add_ip_person_if_not_exist,
-    add_ip_person_view_if_not_exist,
-)
-from blog.models import Post, Comment, IpPerson
+from blog.models import Post
 
 
 class TestViews(SetUp):
-    def test_add_ip_person_if_not_exist(self):
-        self.assertFalse(IpPerson.objects.filter(ip=self.localhost_ip).exists())
-        request = self.client.get(reverse("blog-home")).wsgi_request
-        add_ip_person_if_not_exist(request)
-        self.assertTrue(IpPerson.objects.filter(ip=self.localhost_ip).exists())
-
-    def test_add_ip_person_view_if_not_exist(self):
-        self.assertFalse(self.post1.views.filter(ip=self.localhost_ip).exists())
-        request = self.client.get(self.post1_detail_url).wsgi_request
-
-        ip_person = add_ip_person_view_if_not_exist(request, self.post1)
-        self.assertTrue(self.post1.views.filter(ip=ip_person.ip).exists())
-        self.post1.views.get(ip=self.localhost_ip).delete()
 
     def test_home_view(self):  # TODO add check for draft post
         # Anonymous user
@@ -30,7 +13,7 @@ class TestViews(SetUp):
 
         # Access using super_user (should get posts in draft mode)
         self.client.login(
-            username=self.super_user.username, password=self.super_user_password
+            username=self.super_user.username, password=self.general_password
         )
         response = self.client.get(reverse("blog-home"))
 
@@ -62,7 +45,7 @@ class TestViews(SetUp):
         }
         # Admin can create posts
         self.client.login(
-            username=self.super_user.username, password=self.super_user_password
+            username=self.super_user.username, password=self.general_password
         )
         response = self.client.get(reverse("post-create"), data=data)
         self.assertTrue(len(response.context["cat_list"]) == 1)
@@ -83,7 +66,7 @@ class TestViews(SetUp):
 
     def test_update_post_view(self):
         self.client.login(
-            username=self.super_user.username, password=self.super_user_password
+            username=self.super_user.username, password=self.general_password
         )
         data = {
             "title": "My Updated First Post",
@@ -107,21 +90,10 @@ class TestViews(SetUp):
         self.post1.refresh_from_db()
         self.assertEqual(self.post1.title, "My Updated First Post")
 
-    def test_create_comment_view(self):
-        self.assertTrue(Comment.objects.count, 0)
-        self.client.login(
-            username=self.super_user.username, password=self.super_user_password
-        )
-        data = {"content": "Hello World!"}
-        response = self.client.get(self.post1_create_comment_url)
-        self.assertTrue(len(response.context["cat_list"]) == 1)
-        self.client.post(self.post1_create_comment_url, data=data)
-        self.assertTrue(Comment.objects.count, 1)
-
     def test_post_delete_view(self):
         self.assertTrue(Post.objects.filter(id=self.post1.id).exists())
         self.client.login(
-            username=self.super_user.username, password=self.super_user_password
+            username=self.super_user.username, password=self.general_password
         )
 
         response = self.client.get(self.post1_delete_url)
@@ -141,7 +113,7 @@ class TestViews(SetUp):
 
         # Admin can see posts in a category even if they are drafts
         self.client.login(
-            username=self.super_user.username, password=self.super_user_password
+            username=self.super_user.username, password=self.general_password
         )
         response = self.client.get(category_url)
         self.assertEqual(response.context["posts"].count(), 2)
@@ -161,20 +133,6 @@ class TestViews(SetUp):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/roadmap.html")
 
-    def test_post_like_view(self):
-        response = self.client.get(self.post1_like_url, follow=True)
-        self.assertRedirects(response, expected_url=self.post1_detail_url)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/post_detail.html")
-        self.assertTrue(self.post1.likes.filter(ip=self.localhost_ip).exists())
-
-        # # Unlike post
-        response = self.client.get(self.post1_like_url, follow=True)
-        self.assertRedirects(response, expected_url=self.post1_detail_url)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/post_detail.html")
-        self.assertFalse(self.post1.likes.filter(ip=self.localhost_ip).exists())
-
     def test_search_view(self):
         # Empty page if user didn't search for anything and manually typed in the search url (get)
         response = self.client.get(reverse("blog-search"))
@@ -190,7 +148,7 @@ class TestViews(SetUp):
 
         # If authenticated, can see drafts
         self.client.login(
-            username=self.super_user.username, password=self.super_user_password
+            username=self.super_user.username, password=self.general_password
         )
         response = self.client.post(reverse("blog-search"), data=data)
         self.assertGreater(response.context["posts"].count(), anon_post_count)
@@ -229,7 +187,7 @@ class TestViews(SetUp):
     def test_profile_view(self):
         # View Profile
         self.client.login(
-            username=self.super_user.username, password=self.super_user_password
+            username=self.super_user.username, password=self.general_password
         )
         response = self.client.get(reverse("profile"))
         self.assertEqual(response.status_code, 200)
@@ -253,7 +211,7 @@ class TestViews(SetUp):
 
     def test_logout_view(self):
         self.client.login(
-            username=self.super_user.username, password=self.super_user_password
+            username=self.super_user.username, password=self.general_password
         )
         response = self.client.get(reverse("logout"))
         self.assertEqual(response.status_code, 200)

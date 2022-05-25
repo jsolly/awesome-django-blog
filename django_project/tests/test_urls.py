@@ -11,9 +11,7 @@ from blog.views import (
     PostDetailView,
     PostUpdateView,
     PostDeleteView,
-    CreateCommentView,
     CategoryView,
-    post_like_view,
     road_map_view,
     search_view,
     works_cited_view,
@@ -58,17 +56,9 @@ class TestUrls(SetUp):
     def test_post_delete_url_is_resolved(self):
         self.assertEqual(resolve(self.post1_delete_url).func.view_class, PostDeleteView)
 
-    def test_create_comment_url_is_resolved(self):
-        self.assertEqual(
-            resolve(self.post1_create_comment_url).func.view_class, CreateCommentView
-        )
-
     def test_category_url_is_resolved(self):
         category_url = reverse("blog-category", args=[self.category1.name])
         self.assertEqual(resolve(category_url).func.view_class, CategoryView)
-
-    def test_post_like_url_is_resolved(self):
-        self.assertEqual(resolve(self.post1_like_url).func, post_like_view)
 
     def test_roadmap_url_is_resolved(self):
         self.assertEqual(resolve(reverse("blog-roadmap")).func, road_map_view)

@@ -1,5 +1,5 @@
 from .base import SetUp
-from blog.forms import PostForm, CommentForm
+from blog.forms import PostForm
 from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 
@@ -29,15 +29,6 @@ class TestForms(SetUp):
         post_form = PostForm(data={})
         self.assertFalse(post_form.is_valid())
         self.assertEqual(len(post_form.errors), 2)
-
-    def test_comment_form_valid_data(self):
-        form = CommentForm(data={"content": "Hello World!"})
-        self.assertTrue(form.is_valid())
-
-    # How to test when you can comment nothing??
-    def test_comment_form_no_data_still_valid(self):
-        form = CommentForm(data={})
-        self.assertTrue(form.is_valid())
 
     # Users Forms
     def test_user_register_form_valid_data(self):

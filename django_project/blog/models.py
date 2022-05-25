@@ -29,13 +29,6 @@ class Category(models.Model):
         return reverse("blog-category", kwargs={"cat": self.name})
 
 
-class IpPerson(models.Model):  # Anonymous user
-    ip = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.ip
-
-
 class Post(models.Model):
     """Contains all the information that is relevant to a blog post"""
 
@@ -50,8 +43,6 @@ class Post(models.Model):
     content = RichTextUploadingField(blank=True, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    likes = models.ManyToManyField(IpPerson, related_name="post_likes", blank=True)
-    views = models.ManyToManyField(IpPerson, related_name="post_views", blank=True)
 
     objects = PostManager()  # Make sure objects only include active (not draft) posts..
 
@@ -60,12 +51,6 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse("post-detail", kwargs={"slug": self.slug})
-
-    def total_likes(self):
-        return self.likes.count()
-
-    def total_views(self):
-        return self.views.count()
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -76,16 +61,3 @@ class Post(models.Model):
             pass
 
         super().save(*args, **kwargs)
-
-
-class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
-    content = RichTextField(blank=True, null=True)
-    date_posted = models.DateTimeField(default=timezone.now)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return str(self.content)
-
-    def get_absolute_url(self):
-        return reverse("post-detail", kwargs={"slug": self.post.slug})
