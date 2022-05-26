@@ -24,7 +24,6 @@
 <!-- Twitter Cards Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@effortlessgis">
-<meta name="twitter:creator" content="@SarahMaslinNir">
 <meta name="twitter:title" content="{{ post.title }}">
 <meta name="twitter:description" content="{{ post.metadesc }}">
 <meta name="twitter:image" content="{{ request.site.name }}{{ post.metaimg.url }}">
@@ -56,7 +55,6 @@
   
 {% load social_share %}
 {% post_to_twitter "{{post.title}}" "" %}
-{% post_to_facebook "{{post.title}}" "" %}
 {% post_to_linkedin "{{post.title}}" %}
 {% post_to_reddit "{{post.title}}" "" %}
 
