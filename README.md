@@ -30,7 +30,9 @@ A django blog about data-driven decisions
 
 ---
 
-## Functional Features
+## Features
+
+#### Functional Features
 - User login
 - Create posts filtered by category or author
 - Create Comments (Removed in https://github.com/jsolly/blogthedata/pull/77)
@@ -45,7 +47,7 @@ A django blog about data-driven decisions
 - Global search
 - Ko-Fi donation button
 
-## Non-functional Features
+#### Functional Features
 - Robots.txt, security.txt, and sitemap.xml
 - Honeypot Admin page
 - Git hooks for automatic static file generation
