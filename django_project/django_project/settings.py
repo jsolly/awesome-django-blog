@@ -92,7 +92,8 @@ INSTALLED_APPS = [
     "admin_honeypot",
     "robots",
     "django_fastdev",
-    "sri"
+    "sri",
+    'django_social_share'
 ]
 
 MIDDLEWARE = [
@@ -123,8 +124,8 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
             ],
             "debug": True,
-        },
-    },
+        }
+    }
 ]
 
 WSGI_APPLICATION = "django_project.wsgi.application"
