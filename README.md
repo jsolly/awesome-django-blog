@@ -47,7 +47,7 @@ A django blog about data-driven decisions
 - Global search
 - Ko-Fi donation button
 
-#### Functional Features
+#### Non-Functional Features
 - Robots.txt, security.txt, and sitemap.xml
 - Honeypot Admin page
 - Git hooks for automatic static file generation
