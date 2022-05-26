@@ -59,6 +59,8 @@ A django blog about data-driven decisions
 - Fully PEP 8 compliant (with some exceptions*)
 - 100% code coverage
 - 100% linted with flake8
+- Content Security Policy
+- Subresource Integrity
 
 ## Coverage, Tests, Linting
 Contained within tests/
