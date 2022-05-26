@@ -30,28 +30,33 @@ A django blog about data-driven decisions
 
 ---
 
-## Features
+## Functional Features
 - User login
-- Create posts and comments filtered by category or author
+- Create posts filtered by category or author
+- Create Comments (Removed in https://github.com/jsolly/blogthedata/pull/77)
 - User profile with avatar (automatic sizing and compression using Pillow)
 - Ckeditor for rich text (also includes spell check, code snippets, character counter, and more!)
 - Multiple categoires to organize posts
-- Post views and likes
+- Post views and likes (Removed in https://github.com/jsolly/blogthedata/pull/77)  
 - Newsletter Sign up
-- Github Integration
-- Optimized for Performance, SEO, and A11Y
-- Latest Django 3.x
+- Github Integration to show active issue backlog without leaving blog
 - Slugified URLs 
 - Open Graph protocol compliant social media sharing
-- Bootstrap 5
-- Compatible with Sqllite or postgres
-- Git hooks for automatic static file generation
 - Global search
-- 100% code coverage
-- Fully PEP 8 compliant (with some exceptions*)
 - Ko-Fi donation button
+
+## Non-functional Features
 - Robots.txt, security.txt, and sitemap.xml
 - Honeypot Admin page
+- Git hooks for automatic static file generation
+- GitActions CI integration with coverage, linting, and testing
+- Bootstrap 5
+- Compatible with Sqllite or postgres
+- Optimized for Performance, SEO, and A11Y
+- Latest Django 3.x
+- Fully PEP 8 compliant (with some exceptions*)
+- 100% code coverage
+- 100% linted with flake8
 
 ## Coverage, Tests, Linting
 Contained within tests/
