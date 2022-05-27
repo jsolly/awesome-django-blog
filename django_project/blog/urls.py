@@ -15,6 +15,7 @@ from .views import (
 )
 
 urlpatterns = [
+    path("ckeditor5/", include("django_ckeditor_5.urls")),
     path("", HomeView.as_view(), name="blog-home"),
     path("works-cited", works_cited_view, name="blog-works-cited"),
     path("user/<str:username>", UserPostListView.as_view(), name="user-posts"),
@@ -32,7 +33,6 @@ urlpatterns = [
     path("category/<str:cat>/", CategoryView.as_view(), name="blog-category"),
     path("roadmap/", road_map_view, name="blog-roadmap"),
     path("search/", search_view, name="blog-search"),
-    path("ckeditor/", include("ckeditor_uploader.urls")),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
+from django_ckeditor_5.fields import CKEditor5Field
 import filetype
 from .utils import slugify_instance_title
 
@@ -39,8 +40,8 @@ class Post(models.Model):
     draft = models.BooleanField(default=False)
     metaimg = models.ImageField(default="jsolly.jpeg", upload_to="post_metaimgs/")
     metaimg_mimetype = models.CharField(max_length=20, default="image/jpeg")
-    snippet = RichTextField(max_length=300, blank=True, null=True)
-    content = RichTextUploadingField(blank=True, null=True)
+    snippet = CKEditor5Field(max_length=300, blank=True, null=True, config_name='extends')
+    content = CKEditor5Field(blank=True, null=True, config_name='extends')
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 

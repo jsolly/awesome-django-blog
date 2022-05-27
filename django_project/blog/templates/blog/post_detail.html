@@ -4,9 +4,9 @@
 {% block title %} {{post.title}} {% endblock title %}
 
 {% block head %}
-<!-- ckeditor -->
-{% sri_static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.css' %}
-<script defer src="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.js' %}"></script>
+<!-- django_ckeditor_5 -->
+{% sri_static 'django_ckeditor_5/prism.css' %}
+<script src="{% static 'django_ckeditor_5/prism.js' %}"></script>
 
 <!-- Twitter -->
 <script defer src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -37,7 +37,7 @@
 {% block content %}
 <article class="media content-section">
   <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="" />
-  <div class="media-body">
+  <div class="media-body line-numbers">
     <div class="article-metadata">
       <nobr>{{ post.author.first_name }} {{ post.author.last_name }} <small
           class="text-muted">{{post.date_posted|date:"F d, Y" }}</small>
