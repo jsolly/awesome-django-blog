@@ -6,8 +6,13 @@
 {% block head %}
 <!-- ckeditor -->
 {% sri_static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.css' %}
-<script src="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.js' %}"></script>
+<script defer src="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.js' %}"></script>
 
+<!-- Twitter -->
+<script defer src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<!-- LinkedIn -->
+<script defer src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
 
 {% endblock head %}
 
@@ -34,7 +39,8 @@
   <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="" />
   <div class="media-body">
     <div class="article-metadata">
-      <nobr>{{ post.author.first_name }} {{ post.author.last_name }} <small class="text-muted">{{post.date_posted|date:"F d, Y" }}</small>
+      <nobr>{{ post.author.first_name }} {{ post.author.last_name }} <small
+          class="text-muted">{{post.date_posted|date:"F d, Y" }}</small>
         {% if post.draft %}(Draft){% endif %}
       </nobr>
       {% if post.author == user %}
@@ -50,12 +56,15 @@
     <p>{{ post.content|safe }}</p>
   </div>
 </article>
+
 <a href="{% url 'blog-home' %}" id="post-back-to-home-button" class="btn btn-secondary"> Back to Home </a>
 
-  
-{% load social_share %}
-{% post_to_twitter "{{post.title}}" "" %}
-{% post_to_linkedin "{{post.title}}" %}
-{% post_to_reddit "{{post.title}}" "" %}
+<ul class="nav justify-content-center">
+  <li class="nav-item"><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+      data-show-count="false">Tweet</a></li>
+  <li class="nav-item">
+    <script type="IN/Share" data-url="https://www.linkedin.com"></script>
+  </li>
+</ul>
 
 {% endblock content %}
