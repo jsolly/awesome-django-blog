@@ -63,7 +63,7 @@
   <li class="nav-item"><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
       data-show-count="false">Tweet</a></li>
   <li class="nav-item">
-    <script type="IN/Share" data-url="{% url 'post-detail' post.slug %}"></script>
+    <script type="IN/Share" data-url="{{ request.site.name }}{{ request.path }}"></script>
   </li>
 </ul>
 
