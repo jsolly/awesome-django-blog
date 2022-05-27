@@ -47,7 +47,6 @@ CSP_SCRIPT_SRC = (
     "https://cdn.jsdelivr.net",
     "https://platform.linkedin.com",
     "https://platform.twitter.com",
-    "https://platform.linkedin.com",
     "'unsafe-inline'",
 )
 CSP_IMG_SRC = ("'self'", "https://syndication.twitter.com", "data:")
