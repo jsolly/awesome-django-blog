@@ -42,15 +42,21 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 # Content Security Policy
 CSP_DEFAULT_SRC = ("'none'",)
 CSP_STYLE_SRC = ("'self'", "https://cdn.jsdelivr.net", "'unsafe-inline'")
-CSP_SCRIPT_SRC = ("'self'", "https://cdn.jsdelivr.net", "'unsafe-inline'")
-CSP_IMG_SRC = ("'self'", "data:")
+CSP_SCRIPT_SRC = (
+    "'self'",
+    "https://cdn.jsdelivr.net",
+    "https://platform.linkedin.com",
+    "https://platform.twitter.com",
+    "'unsafe-inline'",
+)
+CSP_IMG_SRC = ("'self'", "https://syndication.twitter.com", "data:")
 CSP_FONT_SRC = ("'self'",)
 CSP_CONNECT_SRC = ("'self'",)
-CSP_FRAME_SRC = ('*')
-CSP_FRAME_ANCESTORS = ("'none'")
+CSP_FRAME_SRC = "*"
+CSP_FRAME_ANCESTORS = "'none'"
 CSP_BASE_URI = ("'none'",)
 CSP_FORM_ACTION = ("'self'", "https://blogthedata.us14.list-manage.com")
-CSP_OBJECT_SRC = ("'none'")
+CSP_OBJECT_SRC = "'none'"
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",) # breaks ckeditor
 if os.environ["DEBUG"] == "True":
     SITE_ID = 2
@@ -72,7 +78,7 @@ if os.environ["DEBUG"] == "True":
     SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 
 
-ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(' ')
+ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
 # Application definition
 
 INSTALLED_APPS = [
@@ -92,7 +98,7 @@ INSTALLED_APPS = [
     "admin_honeypot",
     "robots",
     "django_fastdev",
-    "sri"
+    "sri",
 ]
 
 MIDDLEWARE = [
@@ -105,7 +111,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.utils.deprecation.MiddlewareMixin",
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
-    "csp.middleware.CSPMiddleware"
+    "csp.middleware.CSPMiddleware",
 ]
 
 ROOT_URLCONF = "django_project.urls"
@@ -124,7 +130,7 @@ TEMPLATES = [
             ],
             "debug": True,
         },
-    },
+    }
 ]
 
 WSGI_APPLICATION = "django_project.wsgi.application"
@@ -145,7 +151,7 @@ DATABASES = {
     }
 }
 
-if os.environ["MODE"] in ('TEST', 'GITACTIONS'):
+if os.environ["MODE"] in ("TEST", "GITACTIONS"):
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -188,7 +194,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
 
 # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "staticfiles"), ]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "staticfiles"),
+]
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -303,15 +311,7 @@ CKEDITOR_CONFIGS = {
         # Tab = 4 spaces inside the editor
         "tabSpaces": 4,
         # Extra plugins to be used in the editor
-        "extraPlugins": ",".join(
-            [
-                "codesnippet",
-                "wordcount",
-                "notification",
-                "prism"
-            ]
-        ),
-        "codeSnippetGeshi_url": '../lib/colorize.php',
+        "extraPlugins": ",".join(["codesnippet", "wordcount", "notification", "prism"]),
         # Character count
         "wordcount": {
             "showWordCount": False,
