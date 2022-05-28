@@ -71,7 +71,7 @@
 
   </li>
   <li class="nav-item">
-    <a href="http://www.linkedin.com/shareArticle?mini=true&title=[custom share title (not mandatory)]&summary=[custom description (not mandatory)]&source=[your page full url]" target="_blank" title="Share on Linkedin">
+    <a href="http://www.linkedin.com/shareArticle?mini=true&title={{ post.title }}&summary={{ post.metadesc }}&source={{ request.site.name }}{{ request.path }}" target="_blank" title="Share on Linkedin">
       Share on Linkedin
       </a>
   </li>
@@ -93,7 +93,7 @@
   <li>
     <!-- Sharingbutton Tumblr -->
     <a class="resp-sharing-button__link"
-      href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=222&amp;caption=222&amp;content=111&amp;canonicalUrl=111&amp;shareSource=tumblr_share_button"
+      href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=222&amp;caption=222&amp;content={{ request.site.name }}{{ request.path }}&amp;canonicalUrl=111&amp;shareSource=tumblr_share_button"
       target="_blank" rel="noopener" aria-label="Share on Tumblr">
       <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--large">
         <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
