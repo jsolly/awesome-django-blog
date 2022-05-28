@@ -19,6 +19,9 @@
   $ sudo service apache2 restart  
   ```
 
+### Test a PR in prod
+git checkout origin/<branch name>
+
 ### Export prod database and restore locally
     ```
     $ sudo -u postgres pg_dump blogthedata > blogthedata_db_3_8_22.sql # do this inside prod
