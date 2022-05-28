@@ -20,7 +20,7 @@
   ```
 
 ### Test a PR in prod
-git checkout origin/<branch name>
+git checkout -b <local_branch_name> origin/<branch_name> # local_branch_name and branch_name can be the same
 
 ### Export prod database and restore locally
     ```
