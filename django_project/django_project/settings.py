@@ -48,7 +48,6 @@ CSP_SCRIPT_SRC = (
     "https://cdn.jsdelivr.net",
     "https://platform.linkedin.com",
     "https://platform.twitter.com",
-    "'unsafe-inline'",
 )
 CSP_IMG_SRC = ("'self'", "https://syndication.twitter.com", "data:")
 CSP_FONT_SRC = ("'self'",)
@@ -356,3 +355,5 @@ CKEDITOR_5_CONFIGS = {
         }
     },
 }
+
+CKEDITOR_5_FILE_STORAGE = "blog.storage.CustomStorage"
