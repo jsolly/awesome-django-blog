@@ -240,6 +240,21 @@ CKEDITOR_5_CONFIGS = {
         ],
     },
     "extends": {
+        "codeBlock": {
+            "languages": [
+                {"language": "python", "label": "Python"},
+                {"language": "css", "label": "CSS"},
+                {"language": "yaml", "label": "YAML"},
+                {"language": "json", "label": "JSON"},
+                {"language": "git", "label": "Git"},
+                {"language": "sql", "label": "SQL"},
+                {"language": "html", "label": "HTML"},
+                {"language": "bash", "label": "BASH"},
+                {"language": "javascript", "label": "JavaScript"},
+                {"language": "apacheconf", "label": "ApacheConf"},
+            ]
+
+        },
         "blockToolbar": [
             "paragraph",
             "heading1",
