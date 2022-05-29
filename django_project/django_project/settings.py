@@ -237,9 +237,11 @@ CKEDITOR_5_CONFIGS = {
             "numberedList",
             "blockQuote",
             "imageUpload",
+            "RemoveFormat",
         ],
     },
     "extends": {
+        "link": {"addTargetToExternalLinks": "true"},
         "codeBlock": {
             "languages": [
                 {"language": "python", "label": "Python"},
@@ -253,7 +255,6 @@ CKEDITOR_5_CONFIGS = {
                 {"language": "javascript", "label": "JavaScript"},
                 {"language": "apacheconf", "label": "ApacheConf"},
             ]
-
         },
         "blockToolbar": [
             "paragraph",
