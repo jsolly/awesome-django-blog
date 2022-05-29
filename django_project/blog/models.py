@@ -40,8 +40,8 @@ class Post(models.Model):
     draft = models.BooleanField(default=False)
     metaimg = models.ImageField(default="jsolly.jpeg", upload_to="post_metaimgs/")
     metaimg_mimetype = models.CharField(max_length=20, default="image/jpeg")
-    snippet = CKEditor5Field(max_length=300, blank=True, null=True, config_name='extends')
     content = CKEditor5Field(blank=True, null=True, config_name='extends')
+    snippet = CKEditor5Field(max_length=300, blank=True, null=True, config_name='extends')
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
