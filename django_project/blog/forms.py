@@ -24,7 +24,7 @@ class PostForm(forms.ModelForm):
         )
 
         widgets = {
-            "title": forms.TextInput(attrs={"class": "form-control"}),
+            "title": forms.TextInput(attrs={"class": "form-control", 'autofocus': True}),
             "slug": forms.TextInput(attrs={"class": "form-control"}),
             "category": forms.Select(choices=choices, attrs={"class": "form-control"}),
             "metadesc": forms.TextInput(attrs={"class": "form-control"}),
