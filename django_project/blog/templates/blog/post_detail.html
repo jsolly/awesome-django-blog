@@ -25,7 +25,8 @@
 <meta name="twitter:site" content="@effortlessgis">
 <meta name="twitter:title" content="{{ post.title }}">
 <meta name="twitter:description" content="{{ post.metadesc }}">
-<meta name="twitter:image" content="{{ request.site.name }}{{ post.metaimg.url }}">
+<meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ post.metaimg.url }}">
+
 {% endblock meta %}
 
 {% block content %}
