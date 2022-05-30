@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 import os
 from dotenv import load_dotenv
+
 load_dotenv()
 
 GIT_TOKEN = os.environ["GIT_TOKEN"]
@@ -45,11 +46,8 @@ CSP_STYLE_SRC = ("'self'", "https://cdn.jsdelivr.net", "'unsafe-inline'")
 CSP_SCRIPT_SRC = (
     "'self'",
     "https://cdn.jsdelivr.net",
-    "https://platform.linkedin.com",
-    "https://platform.twitter.com",
-    "'unsafe-inline'",
 )
-CSP_IMG_SRC = ("'self'", "https://syndication.twitter.com", "data:")
+CSP_IMG_SRC = ("'self'", "data:")
 CSP_FONT_SRC = ("'self'",)
 CSP_CONNECT_SRC = ("'self'",)
 CSP_FRAME_SRC = "*"
@@ -93,11 +91,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
     "captcha",
-    "ckeditor",
-    "ckeditor_uploader",
+    "django_ckeditor_5",
     "admin_honeypot",
     "robots",
-    "django_fastdev",
     "sri",
 ]
 
@@ -218,108 +214,160 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 # -----FASTDEV-----
 FASTDEV_STRICT_IF = True
 
-CKEDITOR_CONFIGS = {
+customColorPalette = [
+    {"color": "hsl(4, 90%, 58%)", "label": "Red"},
+    {"color": "hsl(340, 82%, 52%)", "label": "Pink"},
+    {"color": "hsl(291, 64%, 42%)", "label": "Purple"},
+    {"color": "hsl(262, 52%, 47%)", "label": "Deep Purple"},
+    {"color": "hsl(231, 48%, 48%)", "label": "Indigo"},
+    {"color": "hsl(207, 90%, 54%)", "label": "Blue"},
+]
+
+CKEDITOR_5_CONFIGS = {
     "default": {
-        "removePlugins": "exportpdf",
-        # name - Toolbar name
-        # items - The buttons enabled in the toolbar
-        "toolbar_DefaultToolbarConfig": [
-            {
-                "name": "basicstyles",
-                "items": [
-                    "Bold",
-                    "Italic",
-                    "Underline",
-                    "Strike",
-                    "Subscript",
-                    "Superscript",
-                    "RemoveFormat",
-                ],
-            },
-            {
-                "name": "clipboard",
-                "items": [
-                    "Undo",
-                    "Redo",
-                ],
-            },
-            {
-                "name": "paragraph",
-                "items": [
-                    "NumberedList",
-                    "BulletedList",
-                    "Outdent",
-                    "Indent",
-                    "HorizontalRule",
-                    "JustifyLeft",
-                    "JustifyCenter",
-                    "JustifyRight",
-                    "JustifyBlock",
-                ],
-            },
-            {
-                "name": "links",
-                "items": [
-                    "Link",
-                    "Unlink",
-                ],
-            },
-            {
-                "name": "extra",
-                "items": [
-                    "Blockquote",
-                    "Image",
-                    "Table",
-                    "CodeSnippet",
-                ],
-            },
-            {
-                "name": "source",
-                "items": [
-                    "Maximize",
-                    "Source",
-                ],
-            },
-            {
-                "name": "styles",
-                "items": ["Styles", "Format", "Font", "FontSize"],
-            },
-            {"name": "colors", "items": ["TextColor", "BGColor"]},
+        "toolbar": [
+            "heading",
+            "|",
+            "bold",
+            "italic",
+            "link",
+            "bulletedList",
+            "numberedList",
+            "blockQuote",
+            "imageUpload",
+            "RemoveFormat",
         ],
-        # This hides the default title provided by CKEditor
-        "title": False,
-        # Use this toolbar
-        "toolbar": "DefaultToolbarConfig",
-        # Which tags to allow in format tab
-        "format_tags": "p;h1;h2;h3;h4;h5;h6",
-        # Remove these dialog tabs (semicolon separated dialog:tab)
-        "removeDialogTabs": ";".join(
-            [
-                "image:advanced",
-                "image:Link",
-                "table:advanced",
-                "tableProperties:advanced",
+    },
+    "extends": {
+        "link": {"addTargetToExternalLinks": "true"},
+        "codeBlock": {
+            "languages": [
+                {"language": "python", "label": "Python"},
+                {"language": "css", "label": "CSS"},
+                {"language": "yaml", "label": "YAML"},
+                {"language": "json", "label": "JSON"},
+                {"language": "git", "label": "Git"},
+                {"language": "sql", "label": "SQL"},
+                {"language": "html", "label": "HTML"},
+                {"language": "bash", "label": "BASH"},
+                {"language": "javascript", "label": "JavaScript"},
+                {"language": "apacheconf", "label": "ApacheConf"},
             ]
-        ),
-        "linkShowTargetTab": True,
-        "linkShowAdvancedTab": False,
-        "allowedContent": True,
-        # CKEditor height and width settings
-        "height": "400px",
-        "width": "auto",
-        "forcePasteAsPlainText ": True,
-        # Tab = 4 spaces inside the editor
-        "tabSpaces": 4,
-        # Extra plugins to be used in the editor
-        "extraPlugins": ",".join(["codesnippet", "wordcount", "notification", "prism"]),
-        # Character count
-        "wordcount": {
-            "showWordCount": False,
-            "showCharCount": True,
-            "showParagraphs": False,
-            "countSpacesAsChars": True,
-            "countHTML": True,
-            "countLineBreaks": True,
         },
-    }
+        "blockToolbar": [
+            "paragraph",
+            "heading1",
+            "heading2",
+            "heading3",
+            "|",
+            "bulletedList",
+            "numberedList",
+            "|",
+            "blockQuote",
+            "imageUpload",
+        ],
+        "toolbar": [
+            "heading",
+            "|",
+            "outdent",
+            "indent",
+            "|",
+            "bold",
+            "italic",
+            "link",
+            "underline",
+            "strikethrough",
+            "code",
+            "subscript",
+            "superscript",
+            "highlight",
+            "|",
+            "codeBlock",
+            "bulletedList",
+            "numberedList",
+            "todoList",
+            "|",
+            "blockQuote",
+            "imageUpload",
+            "|",
+            "fontSize",
+            "fontFamily",
+            "fontColor",
+            "fontBackgroundColor",
+            "mediaEmbed",
+            "removeFormat",
+            "insertTable",
+        ],
+        "image": {
+            "toolbar": [
+                "imageTextAlternative",
+                "|",
+                "imageStyle:alignLeft",
+                "imageStyle:alignRight",
+                "imageStyle:alignCenter",
+                "imageStyle:side",
+                "|",
+            ],
+            "styles": [
+                "full",
+                "side",
+                "alignLeft",
+                "alignRight",
+                "alignCenter",
+            ],
+        },
+        "table": {
+            "contentToolbar": [
+                "tableColumn",
+                "tableRow",
+                "mergeTableCells",
+                "tableProperties",
+                "tableCellProperties",
+            ],
+            "tableProperties": {
+                "borderColors": customColorPalette,
+                "backgroundColors": customColorPalette,
+            },
+            "tableCellProperties": {
+                "borderColors": customColorPalette,
+                "backgroundColors": customColorPalette,
+            },
+        },
+        "heading": {
+            "options": [
+                {
+                    "model": "paragraph",
+                    "title": "Paragraph",
+                    "class": "ck-heading_paragraph",
+                },
+                {
+                    "model": "heading1",
+                    "view": "h1",
+                    "title": "Heading 1",
+                    "class": "ck-heading_heading1",
+                },
+                {
+                    "model": "heading2",
+                    "view": "h2",
+                    "title": "Heading 2",
+                    "class": "ck-heading_heading2",
+                },
+                {
+                    "model": "heading3",
+                    "view": "h3",
+                    "title": "Heading 3",
+                    "class": "ck-heading_heading3",
+                },
+            ]
+        },
+    },
+    "list": {
+        "properties": {
+            "styles": "true",
+            "startIndex": "true",
+            "reversed": "true",
+        }
+    },
 }
+
+CKEDITOR_5_FILE_STORAGE = "blog.storage.CustomStorage"
