@@ -50,12 +50,12 @@ CSP_SCRIPT_SRC = (
 CSP_IMG_SRC = ("'self'", "data:")
 CSP_FONT_SRC = ("'self'",)
 CSP_CONNECT_SRC = ("'self'",)
-CSP_FRAME_SRC = "*"
-CSP_FRAME_ANCESTORS = "'none'"
+CSP_FRAME_SRC = ("*",)
+CSP_FRAME_ANCESTORS = ("'none'",)
 CSP_BASE_URI = ("'none'",)
 CSP_FORM_ACTION = ("'self'", "https://blogthedata.us14.list-manage.com")
-CSP_OBJECT_SRC = "'none'"
-# CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",) # breaks ckeditor
+CSP_OBJECT_SRC = ("'none'",)
+CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
 if os.environ["DEBUG"] == "True":
     SITE_ID = 2
     DEBUG = True
