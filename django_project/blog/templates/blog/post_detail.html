@@ -28,7 +28,7 @@
 <meta name="twitter:image" content="{{ request.site.name }}{{ post.metaimg.url }}">
 <meta name="twitter:image1" content="{{ request.get_host }}{{ post.metaimg.url }}">
 <meta name="twitter:image2" content="{{ request.site.domain }}{{ post.metaimg.url }}">
-<meta name="twitter:image3" content="{{ request.scheme }}{{ request.get_host }}{{ post.metaimg.url }}">
+<meta name="twitter:image3" content="{{ request.scheme }}://{{ request.get_host }}{{ post.metaimg.url }}">
 {% endblock meta %}
 
 {% block content %}
