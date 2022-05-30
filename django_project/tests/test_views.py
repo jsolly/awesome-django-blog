@@ -36,6 +36,7 @@ class TestViews(SetUp):
             "draft": False,
             # "metaimg" : ""
             # "metaimg"_mimetype : ""
+            "metaimg_alt_txt": "Meta Image Alt-Text",
             "snippet": "Do the things",
             "content": "Do the things. All the things",
             # date_posted : ""
@@ -78,6 +79,7 @@ class TestViews(SetUp):
             # "metaimg"_mimetype : ""
             "snippet": "Long ago, the four nations lived together in harmony.",
             "content": "Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
+            "metaimg_alt_txt": "Meta Image Alt-Text Update",
             # date_posted : ""
             "author": self.super_user
             # "likes"
