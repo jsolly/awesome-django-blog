@@ -46,10 +46,8 @@ CSP_STYLE_SRC = ("'self'", "https://cdn.jsdelivr.net", "'unsafe-inline'")
 CSP_SCRIPT_SRC = (
     "'self'",
     "https://cdn.jsdelivr.net",
-    "https://platform.linkedin.com",
-    "https://platform.twitter.com",
 )
-CSP_IMG_SRC = ("'self'", "https://syndication.twitter.com", "data:")
+CSP_IMG_SRC = ("'self'", "data:")
 CSP_FONT_SRC = ("'self'",)
 CSP_CONNECT_SRC = ("'self'",)
 CSP_FRAME_SRC = "*"
