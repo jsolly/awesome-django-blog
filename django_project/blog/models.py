@@ -33,6 +33,7 @@ class Post(models.Model):
 
     title = models.CharField(max_length=60)
     slug = models.SlugField(unique=True, blank=True, null=True)
+    # category = models.ForeignKey(Category, on_delete=models.CASCADE)
     category = models.CharField(max_length=100, default="uncategorized")
     metadesc = models.CharField(max_length=140, blank=True, null=True)
     draft = models.BooleanField(default=False)

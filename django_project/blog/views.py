@@ -27,11 +27,10 @@ class HomeView(ListView):
             return Post.objects.all()
         return Post.objects.active()
 
-    def get_context_data(self, *args, **kwargs):
+    def get_context_data(self, *args, **kwargs):  # Use a Context processor?
         context = super(HomeView, self).get_context_data(*args, **kwargs)
-        context["cat_list"] = Category.objects.all()
         my_user = User.objects.get(username="John_Solly")
-        context['my_profile'] = Profile.objects.get(user=my_user)
+        context["my_profile"] = Profile.objects.get(user=my_user)
         return context
 
 
@@ -45,11 +44,6 @@ class UserPostListView(ListView):  # Not actively worked on
         user = get_object_or_404(User, username=self.kwargs.get("username"))
         return Post.objects.filter(author=user).order_by("-date_posted")
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(UserPostListView, self).get_context_data(*args, **kwargs)
-        context["cat_list"] = Category.objects.all()
-        return context
-
 
 class PostDetailView(DetailView):
     """
@@ -58,12 +52,6 @@ class PostDetailView(DetailView):
 
     model = Post
     template_name = "blog/post_detail.html"
-
-    def get_context_data(self, *args, **kwargs):
-        """Need to re-generate context based on whether user has viewed post or not"""
-        context = super().get_context_data(*args, **kwargs)
-        context["cat_list"] = Category.objects.all()
-        return context
 
 
 class CreatePostView(UserPassesTestMixin, CreateView):
@@ -75,11 +63,6 @@ class CreatePostView(UserPassesTestMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-        context["cat_list"] = Category.objects.all()
-        return context
-
     def test_func(self):
         if self.request.user.is_staff:
             return True
@@ -89,11 +72,6 @@ class PostUpdateView(UserPassesTestMixin, UpdateView):
     model = Post
     form_class = PostForm
     template_name = "blog/edit_post.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["cat_list"] = Category.objects.all()
-        return context
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -108,11 +86,6 @@ class PostUpdateView(UserPassesTestMixin, UpdateView):
 class PostDeleteView(DeleteView):
     model = Post
     success_url = reverse_lazy("blog-home")
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["cat_list"] = Category.objects.all()
-        return context
 
     # def test_func(self):
     #     post = self.get_object()
@@ -135,7 +108,6 @@ class CategoryView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context["cat_list"] = Category.objects.all()
         context["cat"] = Category.objects.get(name=self.kwargs["cat"].replace("-", " "))
         return context
 
@@ -180,16 +152,18 @@ def road_map_view(request):
     next_sprint_issue_urls = [card["content_url"] for card in next_sprint_cards]
 
     inprog_issues = [issue for issue in all_issues if issue["url"] in inprog_issue_urls]
-    backlog_issues = [issue for issue in all_issues if issue["url"] in backlog_issue_urls]
-    next_sprint_issues = [issue for issue in all_issues if issue["url"] in next_sprint_issue_urls]
+    backlog_issues = [
+        issue for issue in all_issues if issue["url"] in backlog_issue_urls
+    ]
+    next_sprint_issues = [
+        issue for issue in all_issues if issue["url"] in next_sprint_issue_urls
+    ]
 
-    cat_list = Category.objects.all()
     sprint_number = date.today().isocalendar().week // 2  # Two week sprints
     return render(
         request,
         "blog/roadmap.html",
         {
-            "cat_list": cat_list,
             "backlog_issues": backlog_issues,
             "inprog_issues": inprog_issues,
             "next_sprint_issues": next_sprint_issues,
@@ -200,7 +174,6 @@ def road_map_view(request):
 
 def search_view(request):
     """Controls what is shown to a user when they search for a post. A note...I never bothered to make sure admins could see draft posts in this view"""
-    cat_list = Category.objects.all()
     if request.method == "POST":
         searched = request.POST["searched"]
         posts = Post.objects.active()
@@ -212,23 +185,21 @@ def search_view(request):
         return render(
             request,
             "blog/search_posts.html",
-            {"cat_list": cat_list, "searched": searched, "posts": filtered_posts},
+            {"searched": searched, "posts": filtered_posts},
         )
     return render(
         request,
         "blog/search_posts.html",
-        {"cat_list": cat_list, "searched": "", "posts": []},
+        {"searched": "", "posts": []},
     )
     # Seems to be the best approach for now
     # https://stackoverflow.com/questions/53146842/check-if-text-exists-in-django-template-context-variable
 
 
 def works_cited_view(request):
-    cat_list = Category.objects.all()
     return render(
         request,
         "blog/works_cited.html",
-        {"cat_list": cat_list},
     )
 
 

@@ -123,6 +123,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                'blog.custom_context_processor.category_renderer'
             ],
             "debug": True,
         },
@@ -283,6 +284,7 @@ CKEDITOR_5_CONFIGS = {
             "highlight",
             "|",
             "codeBlock",
+            "sourceEditing",
             "bulletedList",
             "numberedList",
             "todoList",
@@ -369,5 +371,6 @@ CKEDITOR_5_CONFIGS = {
         }
     },
 }
+
 
 CKEDITOR_5_FILE_STORAGE = "blog.storage.CustomStorage"

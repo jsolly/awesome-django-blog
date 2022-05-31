@@ -49,7 +49,6 @@ class TestViews(SetUp):
             username=self.super_user.username, password=self.general_password
         )
         response = self.client.get(reverse("post-create"), data=data)
-        self.assertTrue(len(response.context["cat_list"]) == 1)
         response = self.client.post(reverse("post-create"), data=data, follow=True)
         self.assertRedirects(
             response, expected_url=reverse("post-detail", args=["second-post"])
@@ -86,7 +85,6 @@ class TestViews(SetUp):
             # "views"
         }
         response = self.client.get(self.post1_update_url)
-        self.assertTrue(len(response.context["cat_list"]) == 1)
         response = self.client.post(self.post1_update_url, data=data, follow=True)
         self.assertRedirects(response, expected_url=self.post1_detail_url)
         self.post1.refresh_from_db()
