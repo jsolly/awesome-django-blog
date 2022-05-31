@@ -17,7 +17,8 @@ class TestForms(SetUp):
                 "snippet": "Do the things",
                 "content": "Do the things. All the things",
                 # date_posted : ""
-                "author": self.super_user
+                "author": self.super_user,
+                "metaimg_alt_txt": "Meta Image Alt-Text",
                 # "likes"
                 # "views"
             }
@@ -28,7 +29,7 @@ class TestForms(SetUp):
     def test_post_form_no_data(self):
         post_form = PostForm(data={})
         self.assertFalse(post_form.is_valid())
-        self.assertEqual(len(post_form.errors), 2)
+        self.assertEqual(len(post_form.errors), 3)
 
     # Users Forms
     def test_user_register_form_valid_data(self):
