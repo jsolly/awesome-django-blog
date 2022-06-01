@@ -1,5 +1,5 @@
-from .models import Category, Post
-from django.db.models import Count
+from .models import Category
+# from django.db.models import Count
 
 
 def category_renderer(request):

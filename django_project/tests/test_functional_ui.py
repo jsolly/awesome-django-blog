@@ -16,13 +16,13 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
 setup()
 from users.models import User
 from blog.models import Category, Post
-from unittest import skip
+# from unittest import skip
 
 # geckodriver_autoinstaller.install()
 chromedriver_autoinstaller.install()
 
 
-@skip("Tests take too long to run")
+# @skip("Tests take too long to run")
 class TestFunctionalUI(StaticLiveServerTestCase):
 
     def setUp(self):
@@ -135,7 +135,7 @@ class TestFunctionalUI(StaticLiveServerTestCase):
 
         # Author Clicks 'Edit Post' and changes the post's title
         self.browser.find_element(By.ID, value="post-edit-button").click()
-        self.browser.find_element(by=By.NAME, value="title").send_keys(" Edit")
+        self.browser.find_element(by=By.NAME, value="title").send_keys("Edit ")
 
         # Author scrolls down and clicks 'Create Post'
         actions.send_keys(Keys.PAGE_DOWN).perform()
@@ -145,7 +145,7 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         # Author is brought to the post details page and the title is updated
         self.assertEqual(
             self.browser.find_element(by=By.TAG_NAME, value="h2").text,
-            "Super User's Post Edit",
+            "Edit Super User's Post",
         )
 
         # Author clicks "Delete Post"
