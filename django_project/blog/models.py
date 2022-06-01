@@ -33,8 +33,7 @@ class Post(models.Model):
 
     title = models.CharField(max_length=60)
     slug = models.SlugField(unique=True, blank=True, null=True)
-    # category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    category = models.CharField(max_length=100, default="uncategorized")
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     metadesc = models.CharField(max_length=140, blank=True, null=True)
     draft = models.BooleanField(default=False)
     metaimg = models.ImageField(default="jsolly.jpeg", upload_to="post_metaimgs/")

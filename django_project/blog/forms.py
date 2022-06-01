@@ -1,12 +1,13 @@
 from django import forms
-from .models import Post
+from .models import Post, Category
 
-choices = [
-    ("life advice", "life advice"),
-    ("site updates", "site updates"),
-]
-# choices = Category.objects.all().values_list('name', 'name') # comment this if doing an initial DB migration or changing databases
-# I don't think I am doing
+# choices = [
+#     ("life advice", "life advice"),
+#     ("site updates", "site updates"),
+# ]
+choices = Category.objects.all().values_list(
+    "name", "name"
+)  # comment this if doing an initial DB migration or changing databases
 
 
 class PostForm(forms.ModelForm):
@@ -25,7 +26,9 @@ class PostForm(forms.ModelForm):
         )
 
         widgets = {
-            "title": forms.TextInput(attrs={"class": "form-control", 'autofocus': True}),
+            "title": forms.TextInput(
+                attrs={"class": "form-control", "autofocus": True}
+            ),
             "slug": forms.TextInput(attrs={"class": "form-control"}),
             "category": forms.Select(choices=choices, attrs={"class": "form-control"}),
             "metadesc": forms.TextInput(attrs={"class": "form-control"}),

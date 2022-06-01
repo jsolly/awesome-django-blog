@@ -101,10 +101,11 @@ class CategoryView(ListView):
 
     def get_queryset(self):
         cat = self.kwargs.get("cat").replace("-", " ")
+        category = Category.objects.get(name=cat)
         posts = Post.objects.active()
         if self.request.user.is_staff or self.request.user.is_superuser:
             posts = Post.objects.all()
-        return posts.filter(category=cat)
+        return posts.filter(category=category.id)
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
