@@ -5,7 +5,7 @@
   <a href="{% url 'blog-category' cat_item|slugify %}"
     class="list-group-item list-group-item-action {% if request.resolver_match.kwargs.cat == cat_item|slugify %}active{% endif %}"
     id="sidebar-{{ cat_item|slugify }}">{{cat_item|title}}
-    <span class="badge rounded-pill bg-danger float-end">20</span>
+    <span class="badge rounded-pill bg-danger float-end">{{ cat_item.posts_count }}</span>
   </a>
   {% endfor %}
 </div>
