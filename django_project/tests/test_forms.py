@@ -9,7 +9,7 @@ class TestForms(SetUp):
             data={
                 "title": "My Second Post",
                 "slug": "second-post",
-                "category": "productivity",
+                "category": self.category1,
                 "metadesc": "I can make you more productive!",
                 "draft": False,
                 # "metaimg" : ""

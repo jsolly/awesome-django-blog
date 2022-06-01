@@ -29,31 +29,31 @@ class TestViews(SetUp):
 
     def test_create_post_view(self):
         data = {
-            "title": "My Second Post",
-            "slug": "second-post",
-            "category": "productivity",
+            "title": "Test Post Create View",
+            "slug": "test-post-create-view",
+            "category": self.category1.id,
             "metadesc": "I can make you more productive!",
             "draft": False,
             # "metaimg" : ""
             # "metaimg"_mimetype : ""
-            "metaimg_alt_txt": "Meta Image Alt-Text",
             "snippet": "Do the things",
             "content": "Do the things. All the things",
             # date_posted : ""
-            "author": self.super_user
+            "author": self.super_user,
+            "metaimg_alt_txt": "Meta Image Alt-Text",
             # "likes"
             # "views"
         }
+
         # Admin can create posts
         self.client.login(
             username=self.super_user.username, password=self.general_password
         )
-        response = self.client.get(reverse("post-create"), data=data)
-        response = self.client.post(reverse("post-create"), data=data, follow=True)
+        response = self.client.post(reverse("post-create"), data=data)
         self.assertRedirects(
-            response, expected_url=reverse("post-detail", args=["second-post"])
+            response, expected_url=reverse("post-detail", args=["test-post-create-view"])
         )
-        self.assertEqual(Post.objects.last().title, "My Second Post")
+        self.assertEqual(Post.objects.last().title, "Test Post Create View")
 
         # Viewer cannot create posts (This throws an uncaught permissions error when tests are run in terminal)
         # self.client.login(username=self.basic_user.username,
@@ -71,7 +71,7 @@ class TestViews(SetUp):
         data = {
             "title": "My Updated First Post",
             "slug": "first-post",
-            "category": "productivity",
+            "category": self.category1.id,
             "metadesc": "Curious about your health? Look no further!",
             "draft": False,
             # "metaimg" : ""
@@ -84,8 +84,7 @@ class TestViews(SetUp):
             # "likes"
             # "views"
         }
-        response = self.client.get(self.post1_update_url)
-        response = self.client.post(self.post1_update_url, data=data, follow=True)
+        response = self.client.post(self.post1_update_url, data=data)
         self.assertRedirects(response, expected_url=self.post1_detail_url)
         self.post1.refresh_from_db()
         self.assertEqual(self.post1.title, "My Updated First Post")
@@ -119,7 +118,7 @@ class TestViews(SetUp):
         self.assertEqual(response.context["posts"].count(), 2)
 
         # Paginated list appears when there are many posts
-        create_several_posts(self.category1.name, self.super_user, 20)
+        create_several_posts(self.category1, self.super_user, 20)
         response = self.client.get(category_url)
         self.assertTrue(response.context["is_paginated"])
         self.assertEqual(response.context["posts"].count(), 5)  # 5 per page

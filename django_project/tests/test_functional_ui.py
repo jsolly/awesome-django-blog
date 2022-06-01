@@ -16,13 +16,13 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
 setup()
 from users.models import User
 from blog.models import Category, Post
-from unittest import skip
+# from unittest import skip
 
 # geckodriver_autoinstaller.install()
 chromedriver_autoinstaller.install()
 
 
-@skip("Tests take too long to run")
+# @skip("Tests take too long to run")
 class TestFunctionalUI(StaticLiveServerTestCase):
 
     def setUp(self):
@@ -62,7 +62,7 @@ class TestFunctionalUI(StaticLiveServerTestCase):
             self.post1 = Post.objects.create(
                 title="My First Post",
                 slug="first-post",
-                category=self.productivity_category.name,
+                category=self.productivity_category,
                 metadesc="Curious about your health? Look no further!",
                 draft=False,
                 # metaimg = ""
@@ -102,8 +102,8 @@ class TestFunctionalUI(StaticLiveServerTestCase):
             "Super User's Post"
         )
         self.browser.find_element(by=By.NAME, value="slug").send_keys("super-user-post")
-        Select(self.browser.find_element(by=By.NAME, value="category")).select_by_value(
-            "site updates"
+        Select(self.browser.find_element(by=By.NAME, value="category")).select_by_visible_text(
+            "Productivity"
         )
         actions = ActionChains(self.browser)
         actions.send_keys(Keys.TAB * 4).perform()
