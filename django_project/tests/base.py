@@ -20,12 +20,12 @@ def message_in_response(response, message: str):
     return False
 
 
-def create_several_posts(category_name, user, number_of_posts):
+def create_several_posts(category, user, number_of_posts):
     for i in range(number_of_posts):
         Post.objects.create(
             title="My First Post",
             slug=f"{i}",
-            category=category_name,
+            category=category,
             metadesc="Curious about your health? Look no further!",
             draft=False,
             # metaimg = ""
@@ -68,7 +68,7 @@ class SetUp(TestCase):
         self.post1 = Post.objects.create(
             title="My First Post",
             slug="first-post",
-            category=self.category1.name,
+            category=self.category1,
             metadesc="Curious about your health? Look no further!",
             draft=False,
             # metaimg = ""
@@ -83,7 +83,7 @@ class SetUp(TestCase):
         self.draft_post = Post.objects.create(
             title="Draft Post",
             slug="draft-post",
-            category=self.category1.name,
+            category=self.category1,
             metadesc="Curious about your health? Look no further!",
             draft=True,
             snippet="Long ago, the four nations lived together in harmony.",

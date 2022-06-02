@@ -62,7 +62,7 @@ class TestFunctionalUI(StaticLiveServerTestCase):
             self.post1 = Post.objects.create(
                 title="My First Post",
                 slug="first-post",
-                category=self.productivity_category.name,
+                category=self.productivity_category,
                 metadesc="Curious about your health? Look no further!",
                 draft=False,
                 # metaimg = ""
@@ -102,8 +102,8 @@ class TestFunctionalUI(StaticLiveServerTestCase):
             "Super User's Post"
         )
         self.browser.find_element(by=By.NAME, value="slug").send_keys("super-user-post")
-        Select(self.browser.find_element(by=By.NAME, value="category")).select_by_value(
-            "site updates"
+        Select(self.browser.find_element(by=By.NAME, value="category")).select_by_visible_text(
+            "Productivity"
         )
         actions = ActionChains(self.browser)
         actions.send_keys(Keys.TAB * 4).perform()
@@ -135,7 +135,7 @@ class TestFunctionalUI(StaticLiveServerTestCase):
 
         # Author Clicks 'Edit Post' and changes the post's title
         self.browser.find_element(By.ID, value="post-edit-button").click()
-        self.browser.find_element(by=By.NAME, value="title").send_keys(" Edit")
+        self.browser.find_element(by=By.NAME, value="title").send_keys("Edit ")
 
         # Author scrolls down and clicks 'Create Post'
         actions.send_keys(Keys.PAGE_DOWN).perform()
@@ -145,7 +145,7 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         # Author is brought to the post details page and the title is updated
         self.assertEqual(
             self.browser.find_element(by=By.TAG_NAME, value="h2").text,
-            "Super User's Post Edit",
+            "Edit Super User's Post",
         )
 
         # Author clicks "Delete Post"

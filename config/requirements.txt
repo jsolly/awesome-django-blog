@@ -7,6 +7,7 @@ django-ckeditor-5==0.1.2
 django-coverage-plugin==2.0.2
 django-csp==3.7
 django-fastdev==1.7.2
+django-non-dark-admin==2.0.2
 django-robots==5.0
 django-simple-captcha==0.5.14
 django-sri==0.3.0

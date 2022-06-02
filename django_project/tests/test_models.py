@@ -12,7 +12,7 @@ class TestModels(SetUp):
         Post.objects.create(
             title="My Second Post",
             slug="second-post",
-            category="health",
+            category=self.category1,
             metadesc="Curious about your health? Look no further!!",
             draft=False,
             # metaimg = ""
@@ -32,7 +32,7 @@ class TestModels(SetUp):
         post3 = Post.objects.create(
             title="My Second Post",
             slug="second-post",
-            category="health",
+            category=self.category1,
             metadesc="Curious about your health? Look no further!!",
             draft=False,
             # metaimg = ""
@@ -62,7 +62,7 @@ class TestModels(SetUp):
         post_no_slug = Post.objects.create(
             title="No slug given",
             # slug="first-post",
-            category="health",
+            category=self.category1,
             metadesc="Curious about your health? Look no further!",
             draft=False,
             # metaimg = ""

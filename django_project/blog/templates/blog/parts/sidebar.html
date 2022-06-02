@@ -4,10 +4,12 @@
   {% for cat_item in cat_list %}
   <a href="{% url 'blog-category' cat_item|slugify %}"
     class="list-group-item list-group-item-action {% if request.resolver_match.kwargs.cat == cat_item|slugify %}active{% endif %}"
-    id="sidebar-{{ cat_item|slugify }}">{{cat_item|title}}</a>
+    id="sidebar-{{ cat_item|slugify }}">{{cat_item|title}}
+    <span class="badge rounded-pill bg-danger float-end">{{ cat_item.posts_count }}</span>
+  </a>
   {% endfor %}
   <a href="{% url 'blog-home' %}" id="sidebar-blog-home"
-    class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'blog-home' %} active {% endif %}">
-    Blog Home
-  </a>
+  class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'blog-home' %} active {% endif %}">
+  Blog Home
+</a>
 </div>

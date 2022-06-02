@@ -6,6 +6,7 @@ uploads/
 django_ckeditor_5/
 backups/
 datadump.json
+db.sqlite3
 
 # Virtual Environments
 venv/
