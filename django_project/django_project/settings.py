@@ -79,7 +79,11 @@ if os.environ["DEBUG"] == "True":
 ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
 # Application definition
 
+DISABLE_DARK_MODE = True
+
+
 INSTALLED_APPS = [
+    "django_non_dark_admin",
     "blog.apps.BlogConfig",
     "users.apps.UsersConfig",
     "django.contrib.admin",
