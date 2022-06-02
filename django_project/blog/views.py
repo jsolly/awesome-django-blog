@@ -13,7 +13,8 @@ from django.views.generic import (
     DeleteView,
 )
 from users.models import Profile
-import requests
+import aiohttp
+import asyncio
 
 
 class HomeView(ListView):
@@ -117,36 +118,33 @@ def road_map_view(request):
     from django_project.settings import GIT_TOKEN
     from datetime import date
 
-    HEAD = {"Authorization": f"token {GIT_TOKEN}"}
     # project_url = "https://api.github.com/projects/14278916"
     in_progress_column_url = "https://api.github.com/projects/columns/18242400"
     backlog_column_url = "https://api.github.com/projects/columns/18271705"
     next_sprint_column_url = "https://api.github.com/projects/columns/18739295"
+    HEADERS = {"Authorization": f"token {GIT_TOKEN}"}
 
-    all_issues = requests.request(
-        method="GET",
-        url="https://api.github.com/repos/jsolly/blogthedata/issues",
-        params={"state": "open"},
-        headers=HEAD,
-    ).json()
+    async def make_request(session, url, params=None):
+        async with session.get(url, params=params) as resp:
+            return await resp.json()
 
-    inprog_cards = requests.request(
-        method="GET",
-        url=in_progress_column_url + "/cards",
-        headers=HEAD,
-    ).json()
+    async def main(urls):
+        async with aiohttp.ClientSession(headers=HEADERS) as session:
+            tasks = []
+            for url in urls:
+                tasks.append(asyncio.ensure_future(make_request(session, url)))
 
-    backlog_cards = requests.request(
-        method="GET",
-        url=backlog_column_url + "/cards",
-        headers=HEAD,
-    ).json()
+            tasks.append(asyncio.ensure_future(make_request(session, url="https://api.github.com/repos/jsolly/blogthedata/issues", params={"state": "open"})))
 
-    next_sprint_cards = requests.request(
-        method="GET",
-        url=next_sprint_column_url + "/cards",
-        headers=HEAD,
-    ).json()
+            return await asyncio.gather(*tasks)
+
+    urls = [
+        f"{in_progress_column_url}/cards",
+        f"{backlog_column_url}/cards",
+        f"{next_sprint_column_url}/cards",
+    ]
+
+    inprog_cards, backlog_cards, next_sprint_cards, all_issues = asyncio.run(main(urls))
 
     inprog_issue_urls = [card["content_url"] for card in inprog_cards]
     backlog_issue_urls = [card["content_url"] for card in backlog_cards]
