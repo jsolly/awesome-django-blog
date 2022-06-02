@@ -92,6 +92,10 @@ git checkout -b <local_branch_name> origin/<branch_name> # local_branch_name and
     python3 manage.py migrate blog 0011
     ```
 
+ ### Create empty migration 
+    ```
+    python3 manage.py migrate --empty --name changed_my_model your_app_label
+    ```
  ### Roll back a currupt db on production
     ```
     #### Log into postgres
