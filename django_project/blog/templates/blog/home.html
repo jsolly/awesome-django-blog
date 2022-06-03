@@ -1,6 +1,17 @@
 {% extends "blog/parts/base.html" %}
 
 {% block meta %}
+<meta name="description"
+content="Researched blog posts about everything from developing software to life advice. Learn things that you can apply immediately to improve your life and work.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="A blog about data-driven decisions">
+<meta property="og:image" content="media/logo.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
+<meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}/media/logo.png">
+<meta name="twitter:description"
+content="Researched blog posts about everything from developing software to life advice. Learn things that you can apply immediately to improve your life and work.">
 
 {% endblock meta %}
 {% block content %}
