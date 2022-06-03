@@ -255,3 +255,7 @@ class TestViews(SetUp):
     def test_security_pgp_key_view(self):
         response = self.client.get(reverse("security-pgp-key-txt"))
         self.assertEqual(response.status_code, 200)
+
+    def test_site_analytics_view(self):
+        response = self.client.get(reverse("blog-site-analytics"))
+        self.assertEqual(response.status_code, 200)

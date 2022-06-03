@@ -201,6 +201,12 @@ def works_cited_view(request):
         "blog/works_cited.html",
     )
 
+def site_analytics_view(request):
+    return render(
+        request,
+        "blog/site_analytics.html",
+    )
+
 
 def security_txt_view(request):
     return render(
