@@ -101,8 +101,8 @@ class CategoryView(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        cat = self.kwargs.get("cat").replace("-", " ")
-        category = Category.objects.get(name=cat)
+        category = self.kwargs.get("category").replace("-", " ")
+        category = Category.objects.get(name=category)
         posts = Post.objects.active()
         if self.request.user.is_staff or self.request.user.is_superuser:
             posts = Post.objects.all()
@@ -110,7 +110,9 @@ class CategoryView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context["cat"] = Category.objects.get(name=self.kwargs["cat"].replace("-", " "))
+        context["category"] = Category.objects.get(
+            name=self.kwargs["category"].replace("-", " ")
+        )
         return context
 
 
@@ -134,7 +136,15 @@ def road_map_view(request):
             for url in urls:
                 tasks.append(asyncio.ensure_future(make_request(session, url)))
 
-            tasks.append(asyncio.ensure_future(make_request(session, url="https://api.github.com/repos/jsolly/blogthedata/issues", params={"state": "open"})))
+            tasks.append(
+                asyncio.ensure_future(
+                    make_request(
+                        session,
+                        url="https://api.github.com/repos/jsolly/blogthedata/issues",
+                        params={"state": "open"},
+                    )
+                )
+            )
 
             return await asyncio.gather(*tasks)
 
@@ -200,6 +210,7 @@ def works_cited_view(request):
         request,
         "blog/works_cited.html",
     )
+
 
 def site_analytics_view(request):
     return render(

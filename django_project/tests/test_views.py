@@ -107,7 +107,7 @@ class TestViews(SetUp):
         response = self.client.get(category_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/categories.html")
-        self.assertEqual(response.context["cat"], self.category1)
+        self.assertEqual(response.context["category"], self.category1)
         self.assertEqual(response.context["posts"].count(), 1)
 
         # Admin can see posts in a category even if they are drafts

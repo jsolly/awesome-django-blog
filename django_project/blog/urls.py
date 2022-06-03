@@ -32,7 +32,7 @@ urlpatterns = [
             ]
         ),
     ),
-    path("category/<str:cat>/", CategoryView.as_view(), name="blog-category"),
+    path("category/<str:category>/", CategoryView.as_view(), name="blog-category"),
     path("roadmap/", road_map_view, name="blog-roadmap"),
     path("search/", search_view, name="blog-search"),
 ]

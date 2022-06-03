@@ -3,7 +3,7 @@
 <div class="list-group">
   {% for category_item in category_qs %}
   <a href="{% url 'blog-category' category_item|slugify %}"
-    class="list-group-item list-group-item-action {% if request.resolver_match.kwargs.cat == category_item|slugify %}active{% endif %}"
+    class="list-group-item list-group-item-action {% if request.resolver_match.kwargs.category == category_item|slugify %}active{% endif %}"
     id="sidebar-{{ category_item|slugify }}">{{category_item|title}}
     <span class="badge rounded-pill bg-danger float-end">{{ category_item.posts_count }}</span>
   </a>
