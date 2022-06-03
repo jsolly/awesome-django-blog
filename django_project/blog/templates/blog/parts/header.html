@@ -24,7 +24,7 @@
                 Categories
               </a>
               <ul class="dropdown-menu" id="nav-categories" aria-labelledby="navbarDropdown">
-                {% for cat in cat_list %}
+                {% for cat in category_qs %}
                 <li><a class="dropdown-item" href="{% url 'blog-category' cat|slugify %}">{{cat|title}}</a></li>
                 {% endfor %}
               </ul>
