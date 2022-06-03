@@ -25,7 +25,7 @@ class Category(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("blog-category", kwargs={"cat": self.name})
+        return reverse("blog-category", kwargs={"category": self.name})
 
 
 class Post(models.Model):
