@@ -18,7 +18,14 @@ from django.contrib.sitemaps.views import sitemap
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django_project.sitemaps import PostSitemap
+from django_project.sitemaps import (
+    PostSitemap,
+    HomeSitemap,
+    WorksCitedSiteMap,
+    RoadmapSitemap,
+    CategorySiteMap,
+    SiteAnalyticsSiteMap,
+)
 from users.views import (
     register_view,
     profile_view,
@@ -31,7 +38,14 @@ from users.views import (
 )
 from blog.views import security_txt_view, security_pgp_key_view
 
-sitemaps = {"posts": PostSitemap}
+sitemaps = {
+    "posts": PostSitemap,
+    "categories": CategorySiteMap,
+    "home page": HomeSitemap,
+    "Site Analytics": SiteAnalyticsSiteMap,
+    "Roadmap": RoadmapSitemap,
+    "Works Cited": WorksCitedSiteMap
+}
 
 urlpatterns = [
     path(
