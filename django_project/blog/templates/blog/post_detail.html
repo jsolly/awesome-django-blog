@@ -55,7 +55,7 @@
     <div class="article-metadata">
       <nobr>{{ post.author.first_name }} {{ post.author.last_name }} <small
           class="text-muted">{{post.date_posted|date:"F d, Y" }}</small>
-        {% if post.draft %}(Draft){% endif %}
+        {% if post.draft %}<nobr id="draft">(Draft)</nobr>{% endif %}
       </nobr>
       {% if post.author == user %}
       <div>
