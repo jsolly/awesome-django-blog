@@ -3,6 +3,11 @@
 
 {% block meta %}
 <meta name="description" content="Researched articles about {{ cat }}. Stay up-to-date and improve your knowledge.">
+{% include "blog/parts/logo_meta.html" %}
+<meta property="og:type" content="article:section">
+<meta property="og:title" content="{{ cat|title }}">
+<meta name="twitter:description"
+    content="Researched articles about {{ cat }}. Stay up-to-date and improve your knowledge.">
 {% endblock meta %}
 
 <!-- About Section-->
