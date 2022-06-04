@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 import chromedriver_autoinstaller
@@ -22,7 +23,7 @@ from unittest import skip
 chromedriver_autoinstaller.install()
 
 
-@skip("Tests take too long to run")
+# @skip("Tests take too long to run")
 class TestFunctionalUI(StaticLiveServerTestCase):
 
     def setUp(self):
@@ -44,7 +45,11 @@ class TestFunctionalUI(StaticLiveServerTestCase):
                 self.provided_username.save()
                 return User.objects.get(username=provided_username)
 
-        self.browser = webdriver.Chrome()
+        chrome_options = Options()
+        chrome_options.add_argument("--window-size=1920,1080")
+        chrome_options.add_argument("--start-maximized")
+        chrome_options.add_argument("--headless")
+        self.browser = webdriver.Chrome(chrome_options=chrome_options)
 
         self.super_user = create_user("John_Solly", super_user=True)
         self.basic_user = create_user("basic_user", super_user=False)
