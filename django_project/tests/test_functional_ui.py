@@ -17,7 +17,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
 setup()
 from users.models import User
 from blog.models import Category, Post
-from unittest import skip
+# from unittest import skip
 
 # geckodriver_autoinstaller.install()
 chromedriver_autoinstaller.install()
