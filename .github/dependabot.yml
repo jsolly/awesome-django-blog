@@ -18,6 +18,6 @@ updates:
 
   # Maintain dependencies for pip
   - package-ecosystem: "pip"
-    directory: "/config"
+    directory: "/config/requirements.txt"
     schedule:
       interval: "daily"
