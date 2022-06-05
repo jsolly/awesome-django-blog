@@ -16,7 +16,7 @@ updates:
     schedule:
       interval: "daily"
 
-  # Maintain dependencies for pip
+  # Maintain dependencies for pip package manager
   - package-ecosystem: "pip"
     directory: "/config/requirements.txt"
     schedule:
