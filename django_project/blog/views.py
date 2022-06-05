@@ -154,18 +154,22 @@ def road_map_view(request):
         f"{next_sprint_column_url}/cards",
     ]
 
-    inprog_cards, backlog_cards, next_sprint_cards, all_issues = asyncio.run(main(urls))
+    inprog_cards, backlog_cards, next_sprint_cards, all_open_issues = asyncio.run(
+        main(urls)
+    )
 
     inprog_issue_urls = [card["content_url"] for card in inprog_cards]
     backlog_issue_urls = [card["content_url"] for card in backlog_cards]
     next_sprint_issue_urls = [card["content_url"] for card in next_sprint_cards]
 
-    inprog_issues = [issue for issue in all_issues if issue["url"] in inprog_issue_urls]
+    inprog_issues = [
+        issue for issue in all_open_issues if issue["url"] in inprog_issue_urls
+    ]
     backlog_issues = [
-        issue for issue in all_issues if issue["url"] in backlog_issue_urls
+        issue for issue in all_open_issues if issue["url"] in backlog_issue_urls
     ]
     next_sprint_issues = [
-        issue for issue in all_issues if issue["url"] in next_sprint_issue_urls
+        issue for issue in all_open_issues if issue["url"] in next_sprint_issue_urls
     ]
 
     sprint_number = date.today().isocalendar().week // 2  # Two week sprints
@@ -173,6 +177,7 @@ def road_map_view(request):
         request,
         "blog/roadmap.html",
         {
+            "all_open_issues": all_open_issues,
             "backlog_issues": backlog_issues,
             "inprog_issues": inprog_issues,
             "next_sprint_issues": next_sprint_issues,
