@@ -2,7 +2,7 @@ asgiref==3.5.1
 async-generator==1.10
 attrs==21.4.0
 black==22.3.0
-certifi==2021.10.8
+certifi==2022.5.18.1
 cffi==1.15.0
 charset-normalizer==2.0.12
 chromedriver-autoinstaller==0.3.1
