@@ -20,7 +20,7 @@ django-robots==5.0
 django-simple-captcha==0.5.14
 django-sri==0.3.0
 filetype==1.0.10
-flake8==3.9.2
+flake8==4.0.1
 geckodriver-autoinstaller==0.1.0
 h11==0.13.0
 idna==3.3
