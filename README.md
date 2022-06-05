@@ -37,7 +37,7 @@ A django blog about data-driven decisions
 - Create posts filtered by category or author
 - Create Comments (Removed in https://github.com/jsolly/blogthedata/pull/77)
 - User profile with avatar (automatic sizing and compression using Pillow)
-- Ckeditor for rich text (also includes spell check, code snippets, character counter, and more!)
+- Ckeditor 5 for rich text (also includes spell check, code snippets, character counter, and more!)
 - Multiple categoires to organize posts
 - Post views and likes (Removed in https://github.com/jsolly/blogthedata/pull/77)  
 - Newsletter Sign up
@@ -57,10 +57,12 @@ A django blog about data-driven decisions
 - Optimized for Performance, SEO, and A11Y
 - Latest Django 3.x
 - Fully PEP 8 compliant (with some exceptions*)
-- 100% code coverage
+- 100% unit code coverage
 - 100% linted with flake8
 - Content Security Policy
 - Subresource Integrity
+- [A+ Score on Mozilla Observatory]([url](https://observatory.mozilla.org/analyze/blogthedata.com))
+- Excellent scores on Google Lighthouse
 
 ## Coverage, Tests, Linting
 Contained within tests/
