@@ -5,16 +5,14 @@
 		}
 	],
 	"settings": {
+		"workbench.colorTheme": "Default Light+",
 		"python.analysis.autoImportCompletions": false,
 		"python.testing.unittestEnabled": true,
 		"python.linting.enabled": true,
 		"python.linting.flake8Enabled": true,
 		"python.formatting.provider": "black",
 		"python.formatting.autopep8Args": ["--ignore","E402"],
-		"python.terminal.activateEnvInCurrentTerminal": true,
-		"python.defaultInterpreterPath": "/Users/johnsolly/Documents/code/blogthedata/django_project/venv/bin/python3",
-		"liveServer.settings.NoBrowser": true,
-		"liveServer.settings.donotShowInfoMsg": true,
+		// "liveServer.settings.NoBrowser": true,
 		"editor.rulers": [
 			79,
 			120
@@ -27,10 +25,10 @@
 			}
 		},
 		"git.autofetch": true,
-		"explorer.confirmDragAndDrop": false,
-		"explorer.confirmDelete": false,
 		"git.confirmSync": false,
 		"git.enableSmartCommit": true,
+		"explorer.confirmDragAndDrop": false,
+		"explorer.confirmDelete": false,
 		"editor.minimap.enabled": false,
 		"window.autoDetectColorScheme": true,
 		"terminal.integrated.enableMultiLinePasteWarning": false,
@@ -41,12 +39,21 @@
 			"bootstrap"
 		],
 		"terminal.integrated.cwd": "/Users/johnsolly/Documents/code/blogthedata/django_project",
+		"liveServer.settings.port": 8000,
+		"liveServer.settings.donotShowInfoMsg": true,
+		"liveServer.settings.CustomBrowser": "chrome:PrivateMode",
+		"liveServer.settings.useBrowserPreview": true,
 		"python.testing.unittestArgs": [
 			"-v",
 			"-s",
 			"./django_project",
 			"-p",
 			"test*.py"
-		]
+		],
+		"terminal.integrated.enablePersistentSessions": false,
+		"terminal.integrated.shellIntegration.showWelcome": false,
+		"python.terminal.activateEnvInCurrentTerminal": true,
+		"python.defaultInterpreterPath": "/Users/johnsolly/Documents/code/blogthedata/django_project/venv/bin/python3",
+		"python.terminal.activateEnvironment": true
 	}
 }
