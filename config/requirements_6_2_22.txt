@@ -14,7 +14,7 @@ django-sri==0.3.0
 filetype==1.0.10
 flake8==3.9.2
 geckodriver-autoinstaller==0.1.0
-Pillow==8.3.2
+Pillow==9.1.1
 psycopg2==2.9.3
 python-dotenv==0.20.0
 requests==2.25.1
