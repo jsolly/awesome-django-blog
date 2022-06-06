@@ -13,6 +13,6 @@ updates:
 
   # Maintain dependencies for pip package manager
   - package-ecosystem: "pip"
-    directory: "/config/requirements.txt"
+    directory: "/django_project/requirements/requirements.txt"
     schedule:
       interval: "daily"
