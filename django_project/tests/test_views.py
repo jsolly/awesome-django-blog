@@ -5,6 +5,7 @@ from blog.forms import PostForm
 from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from users.models import Profile
 
+
 class TestViews(SetUp):
     """
     At a minimum, views should
