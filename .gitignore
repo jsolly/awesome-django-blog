@@ -24,5 +24,6 @@ __pycache__/
 
 # Misc
 temp*.py
-temp.html
+temp*.html
+temp*.yaml
 geckodriver.log
