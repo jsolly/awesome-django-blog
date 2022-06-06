@@ -1,15 +1,25 @@
 from .base import SetUp, message_in_response, create_several_posts
 from django.urls import reverse
 from blog.models import Post
+from blog.forms import PostForm
+from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 
 class TestViews(SetUp):
+    """
+    At a minimum, views should
+    1 - Check template used
+    2 - Verify any objects are the right ones and querysets contain the right items
+    3 - Any forms are of the right class
+    4 - Test relevant template logic
+    """
 
     def test_home_view(self):  # TODO add check for draft post
         # Anonymous user
         response = self.client.get(reverse("blog-home"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/home.html")
+        self.assertIsInstance(response.context["form"])
 
         # Access using super_user (should get posts in draft mode)
         self.client.login(
@@ -49,9 +59,16 @@ class TestViews(SetUp):
         self.client.login(
             username=self.super_user.username, password=self.general_password
         )
+
+        # Test GET route
+        response = self.client.get(reverse("post-create"))
+        self.assertTemplateUsed(response, "blog/add_post.html")
+        self.assertIsInstance(response.context["form"], PostForm)
+
         response = self.client.post(reverse("post-create"), data=data)
         self.assertRedirects(
-            response, expected_url=reverse("post-detail", args=["test-post-create-view"])
+            response,
+            expected_url=reverse("post-detail", args=["test-post-create-view"]),
         )
         self.assertEqual(Post.objects.last().title, "Test Post Create View")
 
@@ -84,6 +101,11 @@ class TestViews(SetUp):
             # "likes"
             # "views"
         }
+        # Test GET route
+        response = self.client.get(reverse("post-update", args=["first-post"]))
+        self.assertTemplateUsed(response, "blog/edit_post.html")
+        self.assertIsInstance(response.context["form"], PostForm)
+
         response = self.client.post(self.post1_update_url, data=data)
         self.assertRedirects(response, expected_url=self.post1_detail_url)
         self.post1.refresh_from_db()
@@ -108,6 +130,7 @@ class TestViews(SetUp):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/categories.html")
         self.assertEqual(response.context["category"], self.category1)
+        self.assertIsInstance(response.context["posts"][0], Post)
         self.assertEqual(response.context["posts"].count(), 1)
 
         # Admin can see posts in a category even if they are drafts
@@ -156,6 +179,8 @@ class TestViews(SetUp):
         response = self.client.get(reverse("register"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "users/register.html")
+        self.assertIsInstance(response.context["form"], UserRegisterForm)
+
         data = {
             "username": "test2",
             "email": "example2@test.com",
@@ -191,6 +216,8 @@ class TestViews(SetUp):
         response = self.client.get(reverse("profile"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "users/profile.html")
+        self.assertIsInstance(response.context["p_form"], ProfileUpdateForm)
+        self.assertIsInstance(response.context["u_form"], UserUpdateForm)
 
         # Edit profile
         response = self.client.post(
