@@ -3,7 +3,7 @@ from django.urls import reverse
 from blog.models import Post
 from blog.forms import PostForm
 from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
-
+from users.models import Profile
 
 class TestViews(SetUp):
     """
@@ -19,7 +19,9 @@ class TestViews(SetUp):
         response = self.client.get(reverse("blog-home"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/home.html")
-        self.assertIsInstance(response.context["form"])
+        self.assertIsInstance(response.context["my_profile"], Profile)
+        self.assertIsInstance(response.context["posts"][0], Post)
+        # self.assertIsInstance(response.context["form"])
 
         # Access using super_user (should get posts in draft mode)
         self.client.login(

@@ -29,7 +29,7 @@ class HomeView(ListView):
         return Post.objects.active()
 
     def get_context_data(self, *args, **kwargs):  # Use a Context processor?
-        context = super(HomeView, self).get_context_data(*args, **kwargs)
+        context = super().get_context_data(*args, **kwargs)
         my_user = User.objects.get(username="John_Solly")
         context["my_profile"] = Profile.objects.get(user=my_user)
         return context
