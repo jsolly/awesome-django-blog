@@ -162,3 +162,10 @@ django_project/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py
             'is_nav_sidebar_enabled': self.enable_nav_sidebar,
         }
 ```
+
+
+### Stop tracking local db.sqlite3 file 
+git update-index --assume-unchanged <file-to-ignore>
+
+tell Git to stop ignoring this file
+$ git update-index --no-assume-unchanged <file-to-ignore>

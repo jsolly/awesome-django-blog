@@ -10,27 +10,45 @@
       "justMyCode": true
     },
     {
-      "name": "BlogTheData",
+      "name": "Launch_Chrome",
+      "request": "launch",
+      "type": "pwa-chrome",
+      "url": "http://localhost:8000/",
+    },
+    {
+      "name": "Django_Start",
       "python": "/Users/johnsolly/Documents/code/blogthedata/django_project/venv/bin/python3",
       "type": "python",
       "request": "launch",
       "program": "/Users/johnsolly/Documents/code/blogthedata/django_project/manage.py",
       "console": "internalConsole",
       "django": true,
+      "cwd": "${workspaceFolder}/django_project",
       "env": {"MODE": "DEV"},
       "args": [
         "runserver"
-      ]
+      ],
+      "preLaunchTask": "RunServer",
+      "postDebugTask": "StopTasks"
     },
     {
       "name": "Python: Debug",
       "type": "python",
-      "purpose": ["debug-test"],
+      "purpose": [
+        "debug-test"
+      ],
       "console": "internalConsole",
       "request": "launch",
       "program": "${file}",
       "justMyCode": true,
       "django": true,
-  }
+    },
+  ],
+  "compounds": [
+    {
+      "name": "Server/Client",
+      "configurations": ["Django_Start", "Launch_Chrome"],
+      "stopAll": true
+    }
   ]
 }

@@ -12,6 +12,9 @@
 		"python.linting.flake8Enabled": true,
 		"python.formatting.provider": "black",
 		"python.formatting.autopep8Args": ["--ignore","E402"],
+		"python.terminal.activateEnvInCurrentTerminal": true,
+		"python.defaultInterpreterPath": "/Users/johnsolly/Documents/code/blogthedata/django_project/venv/bin/python3",
+		"python.terminal.activateEnvironment": true,
 		// "liveServer.settings.NoBrowser": true,
 		"editor.rulers": [
 			79,
@@ -38,11 +41,6 @@
 			"blog model",
 			"bootstrap"
 		],
-		"terminal.integrated.cwd": "/Users/johnsolly/Documents/code/blogthedata/django_project",
-		"liveServer.settings.port": 8000,
-		"liveServer.settings.donotShowInfoMsg": true,
-		"liveServer.settings.CustomBrowser": "chrome:PrivateMode",
-		"liveServer.settings.useBrowserPreview": true,
 		"python.testing.unittestArgs": [
 			"-v",
 			"-s",
@@ -50,10 +48,5 @@
 			"-p",
 			"test*.py"
 		],
-		"terminal.integrated.enablePersistentSessions": false,
-		"terminal.integrated.shellIntegration.showWelcome": false,
-		"python.terminal.activateEnvInCurrentTerminal": true,
-		"python.defaultInterpreterPath": "/Users/johnsolly/Documents/code/blogthedata/django_project/venv/bin/python3",
-		"python.terminal.activateEnvironment": true
 	}
 }
