@@ -13,7 +13,10 @@
       "name": "Launch_Chrome",
       "request": "launch",
       "type": "pwa-chrome",
-      "url": "http://localhost:8000/",
+      "runtimeArgs": [
+        "--incognito"
+      ],
+      "url": "http://127.0.0.1:8000/",
     },
     {
       "name": "Django_Start",
@@ -25,7 +28,9 @@
       "django": true,
       "justMyCode": true,
       "cwd": "${workspaceFolder}/django_project",
-      "env": {"MODE": "DEV"},
+      "env": {
+        "MODE": "DEV"
+      },
       "args": [
         "runserver"
       ],
@@ -48,7 +53,10 @@
   "compounds": [
     {
       "name": "Server/Client",
-      "configurations": ["Django_Start", "Launch_Chrome"],
+      "configurations": [
+        "Django_Start",
+        "Launch_Chrome"
+      ],
       "stopAll": true
     }
   ]
