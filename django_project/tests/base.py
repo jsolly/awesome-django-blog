@@ -6,7 +6,6 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
 setup()
 
 from django.test import TestCase, Client
-from django.urls import reverse
 from django.contrib.messages import get_messages
 from django.test.utils import setup_test_environment
 from blog.models import Post, Category
