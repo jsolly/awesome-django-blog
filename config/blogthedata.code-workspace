@@ -5,7 +5,7 @@
 		}
 	],
 	"settings": {
-		"workbench.colorTheme": "Default Light+",
+		"workbench.colorTheme": "Default Dark+",
 		"python.analysis.autoImportCompletions": false,
 		"python.testing.unittestEnabled": true,
 		"python.linting.enabled": true,

@@ -23,6 +23,7 @@
       "program": "/Users/johnsolly/Documents/code/blogthedata/django_project/manage.py",
       "console": "internalConsole",
       "django": true,
+      "justMyCode": true,
       "cwd": "${workspaceFolder}/django_project",
       "env": {"MODE": "DEV"},
       "args": [
