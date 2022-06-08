@@ -27,7 +27,7 @@ git checkout -b <local_branch_name> origin/<branch_name> # local_branch_name and
     ```
     $ sudo -u postgres pg_dump blogthedata > blogthedata_db_3_8_22.sql # do this inside prod
     #### The following steps are done on a local dev machine
-    $ scp jsolly@69.164.205.120:/home/jsolly/backups/blogthedata_db_3_8_22.sql .
+    $ scp jsolly@69.164.205.120:/home/jsolly/backups/blogthedata_db_3_8_22.sql /Users/johnsolly/Documents/code/blogthedata/backups
     $ psql -U postgres
     postgres=# DROP DATABASE blogthedata;
     postgres=# CREATE DATABASE blogthedata;
