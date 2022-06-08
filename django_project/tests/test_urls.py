@@ -44,7 +44,8 @@ class TestUrls(SetUp):
         self.assertEqual(resolve(reverse("blog-home")).func.view_class, HomeView)
 
     def test_user_posts_url_is_resolved(self):
-        self.assertEqual(resolve(self.user_posts_url).func.view_class, UserPostListView)
+        user_posts_url = reverse("user-posts", args=[self.super_user.username])
+        self.assertEqual(resolve(user_posts_url).func.view_class, UserPostListView)
 
     def test_create_post_url_is_resolved(self):
         self.assertEqual(
@@ -52,13 +53,16 @@ class TestUrls(SetUp):
         )
 
     def test_post_detail_url_is_resolved(self):
-        self.assertEqual(resolve(self.post1_detail_url).func.view_class, PostDetailView)
+        post1_detail_url = reverse("post-detail", args=[self.post1.slug])
+        self.assertEqual(resolve(post1_detail_url).func.view_class, PostDetailView)
 
     def test_post_update_url_is_resolved(self):
-        self.assertEqual(resolve(self.post1_update_url).func.view_class, PostUpdateView)
+        post1_update_url = reverse("post-update", args=[self.post1.slug])
+        self.assertEqual(resolve(post1_update_url).func.view_class, PostUpdateView)
 
     def test_post_delete_url_is_resolved(self):
-        self.assertEqual(resolve(self.post1_delete_url).func.view_class, PostDeleteView)
+        post1_delete_url = reverse("post-delete", args=[self.post1.slug])
+        self.assertEqual(resolve(post1_delete_url).func.view_class, PostDeleteView)
 
     def test_category_url_is_resolved(self):
         category_url = reverse("blog-category", args=[self.category1.name])

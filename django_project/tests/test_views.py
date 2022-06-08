@@ -31,16 +31,40 @@ class TestViews(SetUp):
         response = self.client.get(reverse("blog-home"))
 
     def test_user_post_list_view(self):
-        response = self.client.get(self.user_posts_url)
+        user_posts_url = reverse("user-posts", args=[self.super_user.username])
+        response = self.client.get(user_posts_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/user_posts.html")
 
-    def test_post_detail_view(self):
-        response = self.client.get(self.post1_detail_url)
+    def test_post_detail_view_anonymous_regular_post(self):
+        post1_detail_url = reverse("post-detail", args=[self.post1.slug])
+        response = self.client.get(post1_detail_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/post_detail.html")
 
-    def test_create_post_view(self):
+    def test_post_detail_view_anonymous_draft_post(self):
+        draft_post_detail_url = reverse("post-detail", args=[self.draft_post.slug])
+        response = self.client.get(draft_post_detail_url)
+        self.assertEqual(response.status_code, 404)
+
+    def test_post_detail_view_staff_sees_draft_post(self):
+        self.client.login(
+            username=self.super_user.username, password=self.general_password
+        )
+        draft_post_detail_url = reverse("post-detail", args=[self.draft_post.slug])
+        response = self.client.get(draft_post_detail_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "blog/post_detail.html")
+
+    def test_create_post_view_GET(self):
+        self.client.login(
+            username=self.super_user.username, password=self.general_password
+        )
+        response = self.client.get(reverse("post-create"))
+        self.assertTemplateUsed(response, "blog/add_post.html")
+        self.assertIsInstance(response.context["form"], PostForm)
+
+    def test_create_post_view_POST(self):
         data = {
             "title": "Test Post Create View",
             "slug": "test-post-create-view",
@@ -63,11 +87,6 @@ class TestViews(SetUp):
             username=self.super_user.username, password=self.general_password
         )
 
-        # Test GET route
-        response = self.client.get(reverse("post-create"))
-        self.assertTemplateUsed(response, "blog/add_post.html")
-        self.assertIsInstance(response.context["form"], PostForm)
-
         response = self.client.post(reverse("post-create"), data=data)
         self.assertRedirects(
             response,
@@ -75,19 +94,30 @@ class TestViews(SetUp):
         )
         self.assertEqual(Post.objects.last().title, "Test Post Create View")
 
-        # Viewer cannot create posts (This throws an uncaught permissions error when tests are run in terminal)
-        # self.client.login(username=self.basic_user.username,
-        #                   password=self.basic_user_password)
-        # data['author'] = self.basic_user
-        # data['slug'] = "i-shouldnt-exist"
-        # response = self.client.post(
-        #     reverse("post-create"), data=data)
-        # self.assertEqual(response.status_code, 403)
+    # def test_create_post_view_anonymous_blocked(self):
+    # Viewer cannot create posts (This throws an uncaught permissions error when tests are run in terminal)
+    # self.client.login(username=self.basic_user.username,
+    #                   password=self.basic_user_password)
+    # data['author'] = self.basic_user
+    # data['slug'] = "i-shouldnt-exist"
+    # response = self.client.post(
+    #     reverse("post-create"), data=data)
+    # self.assertEqual(response.status_code, 403)
 
-    def test_update_post_view(self):
+    def test_update_post_view_GET(self):
         self.client.login(
             username=self.super_user.username, password=self.general_password
         )
+        response = self.client.get(reverse("post-update", args=[self.post1.slug]))
+        self.assertTemplateUsed(response, "blog/edit_post.html")
+        self.assertIsInstance(response.context["form"], PostForm)
+
+    def test_update_post_view_POST(self):
+        self.client.login(
+            username=self.super_user.username, password=self.general_password
+        )
+        post1_detail_url = reverse("post-detail", args=[self.post1.slug])
+        post1_update_url = reverse("post-update", args=[self.post1.slug])
         data = {
             "title": "My Updated First Post",
             "slug": "first-post",
@@ -104,29 +134,27 @@ class TestViews(SetUp):
             # "likes"
             # "views"
         }
-        # Test GET route
-        response = self.client.get(reverse("post-update", args=["first-post"]))
-        self.assertTemplateUsed(response, "blog/edit_post.html")
-        self.assertIsInstance(response.context["form"], PostForm)
 
-        response = self.client.post(self.post1_update_url, data=data)
-        self.assertRedirects(response, expected_url=self.post1_detail_url)
+        response = self.client.post(post1_update_url, data=data)
+        self.assertRedirects(response, expected_url=post1_detail_url)
         self.post1.refresh_from_db()
         self.assertEqual(self.post1.title, "My Updated First Post")
 
     def test_post_delete_view(self):
+        post1_delete_url = reverse("post-delete", args=[self.post1.slug])
         self.assertTrue(Post.objects.filter(id=self.post1.id).exists())
         self.client.login(
             username=self.super_user.username, password=self.general_password
         )
 
-        response = self.client.get(self.post1_delete_url)
+        response = self.client.get(post1_delete_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/post_confirm_delete.html")
-        response = self.client.post(self.post1_delete_url, follow=True)
+        response = self.client.post(post1_delete_url, follow=True)
         self.assertRedirects(response, expected_url=reverse("blog-home"))
+        self.assertFalse(Post.objects.filter(id=self.post1.id).exists())
 
-    def test_category_view(self):
+    def test_category_view_anonymous(self):
         # anonymous user
         category_url = reverse("blog-category", args=[self.category1.name])
         response = self.client.get(category_url)
@@ -136,6 +164,8 @@ class TestViews(SetUp):
         self.assertIsInstance(response.context["posts"][0], Post)
         self.assertEqual(response.context["posts"].count(), 1)
 
+    def test_category_view_staff(self):
+        category_url = reverse("blog-category", args=[self.category1.name])
         # Admin can see posts in a category even if they are drafts
         self.client.login(
             username=self.super_user.username, password=self.general_password
@@ -143,12 +173,17 @@ class TestViews(SetUp):
         response = self.client.get(category_url)
         self.assertEqual(response.context["posts"].count(), 2)
 
+    def test_category_view_paginated(self):
+        category_url = reverse("blog-category", args=[self.category1.name])
         # Paginated list appears when there are many posts
         create_several_posts(self.category1, self.super_user, 20)
         response = self.client.get(category_url)
         self.assertTrue(response.context["is_paginated"])
         self.assertEqual(response.context["posts"].count(), 5)  # 5 per page
 
+    def test_category_view_paginated_second_page(self):
+        category_url = reverse("blog-category", args=[self.category1.name])
+        create_several_posts(self.category1, self.super_user, 20)
         # Paginated list works when user has moved forward at least one page
         response = self.client.get(category_url, {"page": 2})
         self.assertTrue(response.context["page_obj"].has_previous())
@@ -158,27 +193,30 @@ class TestViews(SetUp):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/roadmap.html")
 
-    def test_search_view(self):
+    def test_search_view_blank(self):
         # Empty page if user didn't search for anything and manually typed in the search url (get)
         response = self.client.get(reverse("blog-search"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/search_posts.html")
 
+    def test_search_view_anonymous(self):
         # If anonymous, should be able to find a post.
         data = {"searched": "Post"}
         response = self.client.post(reverse("blog-search"), data=data)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["posts"][0], self.post1)
-        anon_post_count = response.context["posts"].count()
 
+    def test_search_view_staff(self):
+        data = {"searched": "Post"}
         # If authenticated, can see drafts
         self.client.login(
             username=self.super_user.username, password=self.general_password
         )
         response = self.client.post(reverse("blog-search"), data=data)
+        anon_post_count = Post.objects.active().count()
         self.assertGreater(response.context["posts"].count(), anon_post_count)
 
-    def test_register_view(self):
+    def test_register_view_happy_path(self):
         response = self.client.get(reverse("register"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "users/register.html")
@@ -200,6 +238,19 @@ class TestViews(SetUp):
         self.assertRedirects(response, expected_url=reverse("login"))
         self.assertTemplateUsed(response, "users/login.html")
 
+    def test_register_view_wrong_secret_pass(self):
+        data = {
+            "username": "test2",
+            "email": "example2@test.com",
+            "first_name": "Tester2",
+            "last_name": "Smith",
+            "password1": "Coff33cak3s!",
+            "password2": "Coff33cak3s!",
+            "secret_password": "African Swallows",
+            "captcha_0": "dummy-value",
+            "captcha_1": "PASSED",
+        }
+
         data["secret_password"] = "Wrong Password"
         data["username"] = "test3"
 
@@ -212,7 +263,6 @@ class TestViews(SetUp):
         )
 
     def test_profile_view(self):
-        # View Profile
         self.client.login(
             username=self.super_user.username, password=self.general_password
         )
@@ -222,7 +272,10 @@ class TestViews(SetUp):
         self.assertIsInstance(response.context["p_form"], ProfileUpdateForm)
         self.assertIsInstance(response.context["u_form"], UserUpdateForm)
 
-        # Edit profile
+    def test_profile_view_edit(self):
+        self.client.login(
+            username=self.super_user.username, password=self.general_password
+        )
         response = self.client.post(
             reverse("profile"),
             data={"email": "test@modified.com", "username": "modified"},
@@ -231,7 +284,6 @@ class TestViews(SetUp):
         self.super_user.refresh_from_db()
         self.assertEqual(self.super_user.email, "test@modified.com")
         self.assertEqual(self.super_user.username, "modified")
-        # TODO Figure out how to change profile photo
 
     def test_login_view(self):
         response = self.client.get(reverse("login"))

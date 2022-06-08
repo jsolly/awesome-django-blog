@@ -90,18 +90,7 @@ class SetUp(TestCase):
             content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
             author=self.super_user,
         )
-        self.post1_detail_url = reverse("post-detail", args=[self.post1.slug])
         self.client = Client()
-        self.user_posts_url = reverse("user-posts", args=[self.super_user.username])
-        self.post1_update_url = reverse("post-update", args=[self.post1.slug])
-        self.post1_delete_url = reverse("post-delete", args=[self.post1.slug])
-
-        # Users/Admin urls
-        # self.password_reset_url = reverse("password_reset")
-        # self.password_reset_done_url = reverse("password_reset_done")
-        # self.password_reset_confirm = reverse("password_reset_confirm")
-        # self.password_reset_complete = reverse("password_reset_complete")
-        # self.captcha = reverse("captcha")
 
 
 # if __name__ == "__main__":
