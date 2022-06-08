@@ -45,11 +45,11 @@ class TestFunctionalUI(StaticLiveServerTestCase):
                 self.provided_username.save()
                 return User.objects.get(username=provided_username)
 
-        chrome_options = Options()
-        chrome_options.add_argument("--window-size=1920,1080")
-        chrome_options.add_argument("--start-maximized")
-        chrome_options.add_argument("--headless")
-        self.browser = webdriver.Chrome(chrome_options=chrome_options)
+        options = Options()
+        options.add_argument("--window-size=1920,1080")
+        options.add_argument("--start-maximized")
+        options.add_argument("--headless")
+        self.browser = webdriver.Chrome(options=options)
 
         self.super_user = create_user("John_Solly", super_user=True)
         self.basic_user = create_user("basic_user", super_user=False)
