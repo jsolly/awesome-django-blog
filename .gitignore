@@ -16,7 +16,7 @@ venv/
 .env
 
 # Coverage files
-#.coverage
+.coverage
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
