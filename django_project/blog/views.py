@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.db.models import Q
+from django.http import Http404
 from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
@@ -53,6 +54,15 @@ class PostDetailView(DetailView):
 
     model = Post
     template_name = "blog/post_detail.html"
+
+    def get_queryset(self):
+        post = Post.objects.get(slug=self.kwargs['slug'])
+        if post.draft:
+            user = get_object_or_404(User, username=self.request.user)
+            if not user.is_staff:
+                raise Http404
+
+        return Post.objects.filter(slug=self.kwargs['slug'])
 
 
 class CreatePostView(UserPassesTestMixin, CreateView):
