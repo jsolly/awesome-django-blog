@@ -1,42 +1,14 @@
 {
   "version": "0.2.0",
   "configurations": [
-    {
-      "name": "Python: Current File",
-      "type": "python",
-      "request": "launch",
-      "program": "${file}",
-      "console": "internalConsole",
-      "justMyCode": true
-    },
-    {
-      "name": "Launch_Chrome",
-      "request": "launch",
-      "type": "pwa-chrome",
-      "runtimeArgs": [
-        "--incognito",
-      ],
-      "url": "http://127.0.0.1:8000/",
-    },
-    {
-      "name": "Django_Start",
-      "python": "/Users/johnsolly/Documents/code/blogthedata/django_project/venv/bin/python3",
-      "type": "python",
-      "request": "launch",
-      "program": "/Users/johnsolly/Documents/code/blogthedata/django_project/manage.py",
-      "console": "internalConsole",
-      "django": true,
-      "justMyCode": true,
-      "cwd": "${workspaceFolder}/django_project",
-      "env": {
-        "MODE": "DEV"
-      },
-      "args": [
-        "runserver"
-      ],
-      "preLaunchTask": "RunServer",
-      "postDebugTask": "StopTasks"
-    },
+    // {
+    //   "name": "Python: Current File",
+    //   "type": "python",
+    //   "request": "launch",
+    //   "program": "${file}",
+    //   "console": "internalConsole",
+    //   "justMyCode": true
+    // },
     {
       "name": "Python: Debug",
       "type": "python",
@@ -48,6 +20,33 @@
       "program": "${file}",
       "justMyCode": true,
       "django": true,
+      "env": {
+        "MODE": "TEST"
+      },
+    },
+    {
+      "name": "Django_Start",
+      "python": "/Users/johnsolly/Documents/code/blogthedata/django_project/venv/bin/python3",
+      "type": "python",
+      "request": "launch",
+      "program": "/Users/johnsolly/Documents/code/blogthedata/django_project/manage.py",
+      "console": "internalConsole",
+      "django": true,
+      "justMyCode": true,
+      "args": [
+        "runserver"
+      ],
+      "preLaunchTask": "RunServer",
+      "postDebugTask": "StopTasks"
+    },
+    {
+      "name": "Launch_Chrome",
+      "request": "launch",
+      "type": "pwa-chrome",
+      "runtimeArgs": [
+        "--incognito",
+      ],
+      "url": "http://127.0.0.1:8000/",
     },
   ],
   "compounds": [
