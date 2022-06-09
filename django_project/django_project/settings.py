@@ -99,7 +99,6 @@ INSTALLED_APPS = [
     "django.contrib.sitemaps",
     "captcha",
     "django_ckeditor_5",
-    "admin_honeypot",
     "robots",
     "sri",
 ]
