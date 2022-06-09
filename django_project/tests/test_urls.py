@@ -2,7 +2,6 @@ from .base import SetUp
 from django.urls import resolve, reverse
 from django.conf import settings
 from django.contrib.sitemaps.views import sitemap
-from admin_honeypot.views import AdminHoneypot
 from robots.views import RuleList
 from blog.views import (
     HomeView,
@@ -86,11 +85,6 @@ class TestUrls(SetUp):
 
     def test_logout_url_is_resolved(self):
         self.assertEqual(resolve(reverse("logout")).func.view_class, MyLogoutView)
-
-    def test_admin_honey_pot_url_is_resolved(self):
-        self.assertEqual(
-            resolve(reverse("admin_honeypot:index")).func.view_class, AdminHoneypot
-        )
 
     def test_sitemap_url_is_resolved(self):
         self.assertEqual(

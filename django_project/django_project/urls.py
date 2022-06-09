@@ -54,12 +54,11 @@ urlpatterns = [
         {"sitemaps": sitemaps},
         name="django.contrib.sitemaps.views.sitemap",
     ),
+    path("admin/", admin.site.urls),
     path(".well-known/security.txt", security_txt_view, name="security-txt"),
     path("pgp-key.txt", security_pgp_key_view, name="security-pgp-key-txt"),
     path("robots.txt", include("robots.urls")),
     path("", include("blog.urls")),
-    path("admin/", include("admin_honeypot.urls", namespace="admin_honeypot")),
-    path("config/", admin.site.urls),
     path("register/", register_view, name="register"),
     path("profile/", profile_view, name="profile"),
     path(
