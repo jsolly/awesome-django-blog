@@ -49,7 +49,7 @@ A django blog about data-driven decisions
 
 #### Non-Functional Features
 - Robots.txt, security.txt, and sitemap.xml
-- Honeypot Admin page
+- Honeypot Admin page (Removed in https://github.com/jsolly/blogthedata/pull/105)
 - Git hooks for automatic static file generation
 - GitActions CI integration with coverage, linting, and testing
 - Bootstrap 5
@@ -58,7 +58,8 @@ A django blog about data-driven decisions
 - Latest Django 3.x
 - Fully PEP 8 compliant (with some exceptions*)
 - 100% unit code coverage
-- 100% linted with flake8
+- 100% linted with [flake8]([url](https://pypi.org/project/flake8/))
+- Formatted with [Black]([url](https://pypi.org/project/black/))
 - Content Security Policy
 - Subresource Integrity
 - [A+ Score on Mozilla Observatory]([url](https://observatory.mozilla.org/analyze/blogthedata.com))
