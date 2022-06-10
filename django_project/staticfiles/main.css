@@ -242,6 +242,9 @@ th {
 
 }
 
+#map{ 
+  height: 500px;
+}
 
 
 .resp-sharing-button__link,

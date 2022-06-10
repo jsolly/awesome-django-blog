@@ -42,12 +42,14 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 # Content Security Policy
 CSP_DEFAULT_SRC = ("'none'",)
-CSP_STYLE_SRC = ("'self'", "https://cdn.jsdelivr.net", "'unsafe-inline'")
+CSP_STYLE_SRC = ("'self'", "https://cdn.jsdelivr.net", "https://unpkg.com/", "'unsafe-inline'")
 CSP_SCRIPT_SRC = (
     "'self'",
     "https://cdn.jsdelivr.net",
+    "https://unpkg.com/",
+    "'unsafe-inline'"
 )
-CSP_IMG_SRC = ("'self'", "data:")
+CSP_IMG_SRC = ("'self'", "data:", "https://unpkg.com/", "*.openstreetmap.org")
 CSP_FONT_SRC = ("'self'",)
 CSP_CONNECT_SRC = ("'self'",)
 CSP_FRAME_SRC = ("*",)

@@ -6,7 +6,6 @@
     //   "type": "python",
     //   "request": "launch",
     //   "program": "${file}",
-    //   "console": "internalConsole",
     //   "justMyCode": true
     // },
     {
@@ -15,7 +14,6 @@
       "purpose": [
         "debug-test"
       ],
-      "console": "internalConsole",
       "request": "launch",
       "program": "${file}",
       "justMyCode": true,
@@ -30,13 +28,12 @@
       "type": "python",
       "request": "launch",
       "program": "/Users/johnsolly/Documents/code/blogthedata/django_project/manage.py",
-      "console": "internalConsole",
       "django": true,
       "justMyCode": true,
       "args": [
         "runserver"
       ],
-      "preLaunchTask": "RunServer",
+      "preLaunchTask": "LiveReload",
       "postDebugTask": "StopTasks"
     },
     {
