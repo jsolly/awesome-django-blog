@@ -243,7 +243,8 @@ th {
 }
 
 #map{ 
-  height: 500px;
+  height: 40vh;
+  width : 100%;
 }
 
 #inline-attribution{ 

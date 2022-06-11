@@ -1,12 +1,14 @@
 {% extends "blog/parts/base.html" %}
 {% block title %}Site Analytics{% endblock title %}
 {% load static %}
+{% load sri %}
 {% block meta %}
 <meta name="description" content="Analytics for blogthedata.com.">
 {% include "blog/parts/logo_meta.html" %}
 {% endblock meta %}
 
 {% block head %}
+<!-- Leaflet -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
   integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
   crossorigin="" />
@@ -14,7 +16,9 @@
   integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
   crossorigin=""></script>
 
-  
+<!-- Leaflet Plugins -->
+{% sri_static 'leaflet_plugins/leaflet.textpath.js' %}
+
 {% endblock head %}
 
 <!-- About Section-->
@@ -53,23 +57,13 @@ Analytics for blogthedata.com
   var LaLatLng = { lon: -118.2, lat: 34.1 }
   var DallasLatLng = { lon: -96.8, lat: 32.8 }
   var NYCLatLng = { lon: -73.9, lat: 40.7 }
-  // var LaToDallasPlyLyn = L.polyline()
 
   //LA
-
   var LAMarkerOptions = {
-    title: "Los Angeles",
+    title: "The City of Angels",
     alt: "The city of Los Angels, California. USA",
   }
-  L.marker(LaLatLng, LAMarkerOptions).bindPopup("City of Angels").addTo(map);
-
-
-  // NYC
-  var NYCMarkerOptions = {
-    title: "New York City",
-    alt: "The city of New York, New York. USA",
-  }
-  L.marker(NYCLatLng, NYCMarkerOptions).bindPopup('The Big Apple').addTo(map);
+  L.marker(LaLatLng, LAMarkerOptions).addTo(map);
 
   // Dallas
   var IPAddressIcon = L.icon({
@@ -78,19 +72,43 @@ Analytics for blogthedata.com
   });
 
   var DallasMarkerOptions = {
-    title: "Dallas, TX",
+    title: "Blogthedata.com Server",
     alt: "The city of Dallas, Texas. USA",
     icon: IPAddressIcon
   }
-  L.marker(DallasLatLng, DallasMarkerOptions).bindPopup('Blogthedata.com server').addTo(map);
+  L.marker(DallasLatLng, DallasMarkerOptions).bindPopup('Blogthedata.com server <br> Dallas, TX').addTo(map);
 
-  // Polyline 1
-  L.polyline([LaLatLng, DallasLatLng]).addTo(map)
-  L.polyline([DallasLatLng, NYCLatLng], {color: 'orange'}).addTo(map)
+  // NYC
+  var NYCMarkerOptions = {
+    title: "The Big Apple",
+    alt: "The city of New York, New York. USA",
+  }
+  L.marker(NYCLatLng, NYCMarkerOptions).addTo(map);
 
-  map.on("click", function (e) {
-    console.log(e);
+  // LA to Dallas Polyline
+  var LaToDallasPlyLyn = L.polyline([LaLatLng, DallasLatLng], { interactive: false })
+  var LaToDallasDistance = (Math.floor(map.distance(LaLatLng, DallasLatLng)/1000)).toString()
+  
+  console.log
+  LaToDallasPlyLyn.setText(LaToDallasDistance.concat(' km'), {
+    center: true,
+    offset: -5,
+    attributes: { 'font-size': '24', 'font-weight': 'bold', fill: '#007DEF' }
   })
+  LaToDallasPlyLyn.addTo(map)
+  
+
+  // Dallas to NYC Polyline
+  var DallasToNYC = L.polyline([DallasLatLng, NYCLatLng], { color: 'orange', interactive: false })
+  var DallasToNYCDistance = (Math.floor(map.distance(DallasLatLng, NYCLatLng)/1000)).toString()
+
+  DallasToNYC.setText(DallasToNYCDistance.concat(' km'), {
+    center: true,
+    offset: -5,
+    attributes: { 'font-size': '24', 'font-weight': 'bold', fill: 'orange' }
+  })
+
+  DallasToNYC.addTo(map)
 
 </script>
 <a id="inline-attribution" href="https://www.flaticon.com/free-icons/ip-address" title="ip address icons">Ip address
