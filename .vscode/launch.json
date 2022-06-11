@@ -48,7 +48,7 @@
   ],
   "compounds": [
     {
-      "name": "Server/Client",
+      "name": "Runserver + Livereload + Chrome",
       "configurations": [
         "Django_Start",
         "Launch_Chrome"

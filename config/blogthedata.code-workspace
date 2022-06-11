@@ -15,7 +15,6 @@
 		"python.terminal.activateEnvInCurrentTerminal": true,
 		"python.defaultInterpreterPath": "/Users/johnsolly/Documents/code/blogthedata/django_project/venv/bin/python3",
 		"python.terminal.activateEnvironment": true,
-		// "liveServer.settings.NoBrowser": true,
 		"editor.rulers": [
 			79,
 			120

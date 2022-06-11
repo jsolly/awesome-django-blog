@@ -13,6 +13,8 @@
 <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
   integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
   crossorigin=""></script>
+
+  
 {% endblock head %}
 
 <!-- About Section-->
@@ -21,9 +23,13 @@ Analytics for blogthedata.com
 {% endblock about %}
 
 {% block content %}
-<h3>This Page is a work in progress 🛠</h3>
+<h3>This page is a work in progress 🛠</h3>
 <div id="map"></div>
 <script>
+  // TODO - Open blogthedataserver popup on map load
+  // TOOD - Draw lines between cities
+  // TODO - Make lines great circle routes
+  // Change Map projection?
   // initialize Leaflet
   var map = L.map('map', {
     center: [39, -98],
@@ -34,6 +40,7 @@ Analytics for blogthedata.com
     maxZoom: 4,
   });
 
+
   // show the scale bar on the lower left corner
   L.control.scale({ imperial: true, metric: true }).addTo(map);
 
@@ -43,21 +50,28 @@ Analytics for blogthedata.com
     attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
   }).addTo(map);
 
-  // Los Angeles
+  var LaLatLng = { lon: -118.2, lat: 34.1 }
+  var DallasLatLng = { lon: -96.8, lat: 32.8 }
+  var NYCLatLng = { lon: -73.9, lat: 40.7 }
+  // var LaToDallasPlyLyn = L.polyline()
+
+  //LA
+
   var LAMarkerOptions = {
     title: "Los Angeles",
     alt: "The city of Los Angels, California. USA",
   }
-  L.marker({ lon: -118.2, lat: 34.1 }, LAMarkerOptions).bindPopup("City of Angels").addTo(map);
+  L.marker(LaLatLng, LAMarkerOptions).bindPopup("City of Angels").addTo(map);
+
 
   // NYC
   var NYCMarkerOptions = {
     title: "New York City",
     alt: "The city of New York, New York. USA",
   }
-  L.marker({ lon: -73.9, lat: 40.7 }, NYCMarkerOptions).bindPopup('The Big Apple').addTo(map);
+  L.marker(NYCLatLng, NYCMarkerOptions).bindPopup('The Big Apple').addTo(map);
 
-  // Dalls
+  // Dallas
   var IPAddressIcon = L.icon({
     iconUrl: "{% static 'icons/ip-address.png' %}",
     iconSize: [40, 40]
@@ -68,7 +82,11 @@ Analytics for blogthedata.com
     alt: "The city of Dallas, Texas. USA",
     icon: IPAddressIcon
   }
-  L.marker({ lon: -96.8, lat: 32.8 }, DallasMarkerOptions).bindPopup('Blogthedata.com server').addTo(map);
+  L.marker(DallasLatLng, DallasMarkerOptions).bindPopup('Blogthedata.com server').addTo(map);
+
+  // Polyline 1
+  L.polyline([LaLatLng, DallasLatLng]).addTo(map)
+  L.polyline([DallasLatLng, NYCLatLng], {color: 'orange'}).addTo(map)
 
   map.on("click", function (e) {
     console.log(e);
