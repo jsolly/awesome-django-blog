@@ -277,7 +277,7 @@ th {
   vertical-align: top
 }
 
-Non solid icons get a stroke
+/* Non solid icons get a stroke */
 .resp-sharing-button__icon {
   stroke: #fff;
   fill: none
