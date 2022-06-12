@@ -18,6 +18,7 @@
 
 <!-- Leaflet Plugins -->
 {% sri_static 'leaflet_plugins/leaflet.textpath.js' %}
+{% sri_static 'leaflet_plugins/leaflet-arc.min.js' %}
 
 {% endblock head %}
 
@@ -27,90 +28,20 @@ Analytics for blogthedata.com
 {% endblock about %}
 
 {% block content %}
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">Server Location</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'blog-works-cited' %}">Performance</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Site Traffic</a>
+  </li>
+</ul>
 <h3>This page is a work in progress 🛠</h3>
 <div id="map"></div>
-<script>
-  // TODO - Open blogthedataserver popup on map load
-  // TOOD - Draw lines between cities
-  // TODO - Make lines great circle routes
-  // Change Map projection?
-  // initialize Leaflet
-  var map = L.map('map', {
-    center: [39, -98],
-    zoom: 4,
-    zoomControl: false,
-    dragging: false,
-    minZoom: 4,
-    maxZoom: 4,
-  });
-
-
-  // show the scale bar on the lower left corner
-  L.control.scale({ imperial: true, metric: true }).addTo(map);
-
-  // add the OpenStreetMap tiles
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 20,
-    attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
-  }).addTo(map);
-
-  var LaLatLng = { lon: -118.2, lat: 34.1 }
-  var DallasLatLng = { lon: -96.8, lat: 32.8 }
-  var NYCLatLng = { lon: -73.9, lat: 40.7 }
-
-  //LA
-  var LAMarkerOptions = {
-    title: "The City of Angels",
-    alt: "The city of Los Angels, California. USA",
-  }
-  L.marker(LaLatLng, LAMarkerOptions).addTo(map);
-
-  // Dallas
-  var IPAddressIcon = L.icon({
-    iconUrl: "{% static 'icons/ip-address.png' %}",
-    iconSize: [40, 40]
-  });
-
-  var DallasMarkerOptions = {
-    title: "Blogthedata.com Server",
-    alt: "The city of Dallas, Texas. USA",
-    icon: IPAddressIcon
-  }
-  L.marker(DallasLatLng, DallasMarkerOptions).bindPopup('Blogthedata.com server <br> Dallas, TX').addTo(map);
-
-  // NYC
-  var NYCMarkerOptions = {
-    title: "The Big Apple",
-    alt: "The city of New York, New York. USA",
-  }
-  L.marker(NYCLatLng, NYCMarkerOptions).addTo(map);
-
-  // LA to Dallas Polyline
-  var LaToDallasPlyLyn = L.polyline([LaLatLng, DallasLatLng], { interactive: false })
-  var LaToDallasDistance = (Math.floor(map.distance(LaLatLng, DallasLatLng)/1000)).toString()
-  
-  console.log
-  LaToDallasPlyLyn.setText(LaToDallasDistance.concat(' km'), {
-    center: true,
-    offset: -5,
-    attributes: { 'font-size': '24', 'font-weight': 'bold', fill: '#007DEF' }
-  })
-  LaToDallasPlyLyn.addTo(map)
-  
-
-  // Dallas to NYC Polyline
-  var DallasToNYC = L.polyline([DallasLatLng, NYCLatLng], { color: 'orange', interactive: false })
-  var DallasToNYCDistance = (Math.floor(map.distance(DallasLatLng, NYCLatLng)/1000)).toString()
-
-  DallasToNYC.setText(DallasToNYCDistance.concat(' km'), {
-    center: true,
-    offset: -5,
-    attributes: { 'font-size': '24', 'font-weight': 'bold', fill: 'orange' }
-  })
-
-  DallasToNYC.addTo(map)
-
-</script>
+{% sri_static 'maps/leaflet_server_map.js' %}
 <a id="inline-attribution" href="https://www.flaticon.com/free-icons/ip-address" title="ip address icons">Ip address
   icons created by Freepik - Flaticon</a>
 {% endblock content %}

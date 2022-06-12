@@ -51,7 +51,6 @@ CSP_SCRIPT_SRC = (
     "'self'",
     "https://cdn.jsdelivr.net",
     "https://unpkg.com/",
-    "'sha256-s6XqqZZrlNYjz5HQJc+7QATxniEtZcBM3ir/pit4RjY='"
 )
 CSP_IMG_SRC = ("'self'", "data:", "https://unpkg.com/", "*.openstreetmap.org")
 CSP_FONT_SRC = ("'self'",)
@@ -63,9 +62,8 @@ CSP_FORM_ACTION = ("'self'", "https://blogthedata.us14.list-manage.com")
 CSP_OBJECT_SRC = ("'none'",)
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
 if os.environ["DEBUG"] == "True":
-    USE_SRI = True
+    USE_SRI = False
     # CSP_EXCLUDE_URL_PREFIXES = "/site-analytics"
-    # CSP_SCRIPT_SRC += ("'sha256-s6XqqZZrlNYjz5HQJc+7QATxniEtZcBM3ir/pit4RjY='",)
     CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js",)
     CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
     SITE_ID = 2
@@ -257,6 +255,7 @@ CKEDITOR_5_CONFIGS = {
     },
     "extends": {
         "link": {"addTargetToExternalLinks": "true"},
+        "mediaEmbed": {"previewsInData": "true"},
         "codeBlock": {
             "languages": [
                 {"language": "python", "label": "Python"},
