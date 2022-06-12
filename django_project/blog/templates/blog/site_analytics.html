@@ -1,9 +1,25 @@
 {% extends "blog/parts/base.html" %}
 {% block title %}Site Analytics{% endblock title %}
+{% load static %}
+{% load sri %}
 {% block meta %}
 <meta name="description" content="Analytics for blogthedata.com.">
 {% include "blog/parts/logo_meta.html" %}
 {% endblock meta %}
+
+{% block head %}
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+  integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+  crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+  integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+  crossorigin=""></script>
+
+<!-- Leaflet Plugins -->
+{% sri_static 'leaflet_plugins/leaflet.textpath.js' %}
+
+{% endblock head %}
 
 <!-- About Section-->
 {% block about %}
@@ -11,7 +27,90 @@ Analytics for blogthedata.com
 {% endblock about %}
 
 {% block content %}
-Under Construction!
-<img src="media/django_ckeditor_5/evergreen_ship.jpg" alt="A photo of the Ship, Evergreen in the water" width="499" height="333">
+<h3>This page is a work in progress 🛠</h3>
+<div id="map"></div>
+<script>
+  // TODO - Open blogthedataserver popup on map load
+  // TOOD - Draw lines between cities
+  // TODO - Make lines great circle routes
+  // Change Map projection?
+  // initialize Leaflet
+  var map = L.map('map', {
+    center: [39, -98],
+    zoom: 4,
+    zoomControl: false,
+    dragging: false,
+    minZoom: 4,
+    maxZoom: 4,
+  });
 
+
+  // show the scale bar on the lower left corner
+  L.control.scale({ imperial: true, metric: true }).addTo(map);
+
+  // add the OpenStreetMap tiles
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 20,
+    attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+  }).addTo(map);
+
+  var LaLatLng = { lon: -118.2, lat: 34.1 }
+  var DallasLatLng = { lon: -96.8, lat: 32.8 }
+  var NYCLatLng = { lon: -73.9, lat: 40.7 }
+
+  //LA
+  var LAMarkerOptions = {
+    title: "The City of Angels",
+    alt: "The city of Los Angels, California. USA",
+  }
+  L.marker(LaLatLng, LAMarkerOptions).addTo(map);
+
+  // Dallas
+  var IPAddressIcon = L.icon({
+    iconUrl: "{% static 'icons/ip-address.png' %}",
+    iconSize: [40, 40]
+  });
+
+  var DallasMarkerOptions = {
+    title: "Blogthedata.com Server",
+    alt: "The city of Dallas, Texas. USA",
+    icon: IPAddressIcon
+  }
+  L.marker(DallasLatLng, DallasMarkerOptions).bindPopup('Blogthedata.com server <br> Dallas, TX').addTo(map);
+
+  // NYC
+  var NYCMarkerOptions = {
+    title: "The Big Apple",
+    alt: "The city of New York, New York. USA",
+  }
+  L.marker(NYCLatLng, NYCMarkerOptions).addTo(map);
+
+  // LA to Dallas Polyline
+  var LaToDallasPlyLyn = L.polyline([LaLatLng, DallasLatLng], { interactive: false })
+  var LaToDallasDistance = (Math.floor(map.distance(LaLatLng, DallasLatLng)/1000)).toString()
+  
+  console.log
+  LaToDallasPlyLyn.setText(LaToDallasDistance.concat(' km'), {
+    center: true,
+    offset: -5,
+    attributes: { 'font-size': '24', 'font-weight': 'bold', fill: '#007DEF' }
+  })
+  LaToDallasPlyLyn.addTo(map)
+  
+
+  // Dallas to NYC Polyline
+  var DallasToNYC = L.polyline([DallasLatLng, NYCLatLng], { color: 'orange', interactive: false })
+  var DallasToNYCDistance = (Math.floor(map.distance(DallasLatLng, NYCLatLng)/1000)).toString()
+
+  DallasToNYC.setText(DallasToNYCDistance.concat(' km'), {
+    center: true,
+    offset: -5,
+    attributes: { 'font-size': '24', 'font-weight': 'bold', fill: 'orange' }
+  })
+
+  DallasToNYC.addTo(map)
+
+</script>
+<a id="inline-attribution" href="https://www.flaticon.com/free-icons/ip-address" title="ip address icons">Ip address
+  icons created by Freepik - Flaticon</a>
 {% endblock content %}

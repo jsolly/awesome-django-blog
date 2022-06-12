@@ -1,21 +1,19 @@
 {
   "version": "0.2.0",
   "configurations": [
-    // {
-    //   "name": "Python: Current File",
-    //   "type": "python",
-    //   "request": "launch",
-    //   "program": "${file}",
-    //   "console": "internalConsole",
-    //   "justMyCode": true
-    // },
+    {
+      "name": "Python: Current File",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "justMyCode": true
+    },
     {
       "name": "Python: Debug",
       "type": "python",
       "purpose": [
         "debug-test"
       ],
-      "console": "internalConsole",
       "request": "launch",
       "program": "${file}",
       "justMyCode": true,
@@ -30,13 +28,12 @@
       "type": "python",
       "request": "launch",
       "program": "/Users/johnsolly/Documents/code/blogthedata/django_project/manage.py",
-      "console": "internalConsole",
       "django": true,
       "justMyCode": true,
       "args": [
         "runserver"
       ],
-      "preLaunchTask": "RunServer",
+      "preLaunchTask": "LiveReload",
       "postDebugTask": "StopTasks"
     },
     {
@@ -51,7 +48,7 @@
   ],
   "compounds": [
     {
-      "name": "Server/Client",
+      "name": "Runserver + Livereload + Chrome",
       "configurations": [
         "Django_Start",
         "Launch_Chrome"

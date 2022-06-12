@@ -25,7 +25,6 @@ SITE_ID = 1  # blogthedata.com
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 CAPTCHA_TEST_MODE = False
-USE_SRI = True
 
 # HTTPS SETTINGS
 SESSION_COOKIE_SECURE = True
@@ -42,12 +41,19 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 # Content Security Policy
 CSP_DEFAULT_SRC = ("'none'",)
-CSP_STYLE_SRC = ("'self'", "https://cdn.jsdelivr.net", "'unsafe-inline'")
+CSP_STYLE_SRC = (
+    "'self'",
+    "https://cdn.jsdelivr.net",
+    "https://unpkg.com/",
+    "'unsafe-inline'",
+)
 CSP_SCRIPT_SRC = (
     "'self'",
     "https://cdn.jsdelivr.net",
+    "https://unpkg.com/",
+    "'sha256-s6XqqZZrlNYjz5HQJc+7QATxniEtZcBM3ir/pit4RjY='"
 )
-CSP_IMG_SRC = ("'self'", "data:")
+CSP_IMG_SRC = ("'self'", "data:", "https://unpkg.com/", "*.openstreetmap.org")
 CSP_FONT_SRC = ("'self'",)
 CSP_CONNECT_SRC = ("'self'",)
 CSP_FRAME_SRC = ("*",)
@@ -57,8 +63,11 @@ CSP_FORM_ACTION = ("'self'", "https://blogthedata.us14.list-manage.com")
 CSP_OBJECT_SRC = ("'none'",)
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
 if os.environ["DEBUG"] == "True":
-    CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + ("http://127.0.0.1:35729/livereload.js",)
-    CSP_CONNECT_SRC = CSP_CONNECT_SRC + ("ws://127.0.0.1:35729/livereload",)
+    USE_SRI = True
+    # CSP_EXCLUDE_URL_PREFIXES = "/site-analytics"
+    # CSP_SCRIPT_SRC += ("'sha256-s6XqqZZrlNYjz5HQJc+7QATxniEtZcBM3ir/pit4RjY='",)
+    CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js",)
+    CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
     SITE_ID = 2
     DEBUG = True
     CAPTCHA_TEST_MODE = True
@@ -114,7 +123,7 @@ MIDDLEWARE = [
     "django.utils.deprecation.MiddlewareMixin",
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
     "csp.middleware.CSPMiddleware",
-    'livereload.middleware.LiveReloadScript'
+    "livereload.middleware.LiveReloadScript",
 ]
 
 ROOT_URLCONF = "django_project.urls"
@@ -130,7 +139,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                'blog.custom_context_processor.category_renderer'
+                "blog.custom_context_processor.category_renderer",
             ],
             "debug": True,
         },

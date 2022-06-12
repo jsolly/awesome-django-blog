@@ -242,6 +242,14 @@ th {
 
 }
 
+#map{ 
+  height: 40vh;
+  width : 100%;
+}
+
+#inline-attribution{ 
+  font-size: 9px;
+}
 
 
 .resp-sharing-button__link,

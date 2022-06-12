@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "tasks": [
       {
-          "label": "RunServer",
+          "label": "LiveReload",
           "type": "shell",
           "command": "${config:python.defaultInterpreterPath}",
           "args": ["manage.py", "livereload"],

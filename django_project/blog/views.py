@@ -2,6 +2,7 @@ from .models import Post, Category
 from .forms import PostForm
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.http import Http404
@@ -56,13 +57,13 @@ class PostDetailView(DetailView):
     template_name = "blog/post_detail.html"
 
     def get_queryset(self):
-        post = Post.objects.get(slug=self.kwargs['slug'])
+        post = Post.objects.get(slug=self.kwargs["slug"])
         if post.draft:
             user = get_object_or_404(User, username=self.request.user)
             if not user.is_staff:
                 raise Http404
 
-        return Post.objects.filter(slug=self.kwargs['slug'])
+        return Post.objects.filter(slug=self.kwargs["slug"])
 
 
 class CreatePostView(UserPassesTestMixin, CreateView):
@@ -196,6 +197,7 @@ def road_map_view(request):
     )
 
 
+@csrf_exempt
 def search_view(request):
     """Controls what is shown to a user when they search for a post. A note...I never bothered to make sure admins could see draft posts in this view"""
     if request.method == "POST":

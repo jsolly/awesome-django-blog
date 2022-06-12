@@ -30,4 +30,4 @@ __pycache__/
 temp*.py
 temp*.html
 temp*.yaml
-geckodriver.log
+temp*.js
