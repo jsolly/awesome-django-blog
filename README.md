@@ -57,7 +57,7 @@ A django blog about data-driven decisions
 - Bootstrap 5
 - Compatible with Sqllite or postgres
 - Optimized for Performance, SEO, and A11Y
-- Latest Django 3.x
+- Latest Django 4.x
 - Fully PEP 8 compliant (with some exceptions*)
 - 100% unit code coverage
 - 100% linted with [flake8]([url](https://pypi.org/project/flake8/))
