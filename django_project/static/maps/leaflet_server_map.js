@@ -57,7 +57,6 @@ L.marker(NYCLatLng, NYCMarkerOptions).addTo(map);
 var LaToDallasPlyLyn = L.Polyline.Arc([LaLatLng.lat, LaLatLng.lon], [DallasLatLng.lat, DallasLatLng.lon], { interactive: false })
 var LaToDallasDistance = (Math.floor(map.distance(LaLatLng, DallasLatLng) / 1000)).toString()
 
-console.log
 LaToDallasPlyLyn.setText(LaToDallasDistance.concat(' km'), {
     center: true,
     offset: -5,
