@@ -51,7 +51,7 @@ class UserRegisterForm(UserCreationForm):
             ),
             "first_name": forms.TextInput(attrs={"class": "form-control"}),
             "last_name": forms.TextInput(attrs={"class": "form-control"}),
-            "email": forms.TextInput(attrs={"class": "form-control"}),
+            "email": forms.EmailInput(attrs={"class": "form-control"}),
         }
 
 
