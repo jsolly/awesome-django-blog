@@ -26,6 +26,7 @@ A django blog about data-driven decisions
 ### Setup
 - See commented out Database section in [django_project/settings.py](https://github.com/jsolly/blogthedata/blob/master/django_project/django_project/settings.py) to use sqllite database or postgres
 - $ python3 manage.py migrate
+- rename 'sample.env' to .env and change the values to match your setup (database passwords, secret keys, etc)
 - $ python3 manage.py runserver
 
 ---
@@ -40,12 +41,13 @@ A django blog about data-driven decisions
 - Ckeditor 5 for rich text (also includes spell check, code snippets, character counter, and more!)
 - Multiple categoires to organize posts
 - Post views and likes (Removed in https://github.com/jsolly/blogthedata/pull/77)  
-- Newsletter Sign up
+- Newsletter Sign up 🗞
 - Github Integration to show active issue backlog without leaving blog
 - Slugified URLs 
 - Open Graph protocol compliant social media sharing
 - Global search
-- Ko-Fi donation button
+- Ko-Fi donation button ☕️
+- Leaflet.js maps 🗺
 
 #### Non-Functional Features
 - Robots.txt, security.txt, and sitemap.xml
