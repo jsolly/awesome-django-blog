@@ -61,6 +61,7 @@ A django blog about data-driven decisions
 - Fully PEP 8 compliant (with some exceptions*)
 - 100% unit code coverage
 - 100% linted with [flake8]([url](https://pypi.org/project/flake8/))
+- Static scans with [CodeQL]([url](https://codeql.github.com/)) and pip dependency checks with [Dependabot]([url](https://github.com/dependabot))
 - Formatted with [Black]([url](https://pypi.org/project/black/))
 - Content Security Policy
 - Subresource Integrity
