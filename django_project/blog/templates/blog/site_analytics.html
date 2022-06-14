@@ -28,20 +28,28 @@ Analytics for blogthedata.com
 {% endblock about %}
 
 {% block content %}
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">Server Location</a>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button"
+      role="tab" aria-controls="home-tab-pane" aria-selected="true">Traffic</button>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Performance</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Site Traffic</a>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button"
+      role="tab" aria-controls="profile-tab-pane" aria-selected="false">Performance</button>
   </li>
 </ul>
-<h3>This page is a work in progress 🛠</h3>
-<div id="map"></div>
-{% sri_static 'maps/leaflet_server_map.js' %}
-<a id="inline-attribution" href="https://www.flaticon.com/free-icons/ip-address" title="ip address icons">Ip address
-  icons created by Freepik - Flaticon</a>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+    <div id="map"></div>
+    {% sri_static 'maps/leaflet_server_map.js' %}
+    <a id="inline-attribution" href="https://www.flaticon.com/free-icons/ip-address" title="ip address icons">Ip address
+      icons created by Freepik - Flaticon</a>
+  </div>
+  <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+    <h3>Work in Progress</h3>
+  </div>
+
+
+
+</div>
 {% endblock content %}
