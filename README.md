@@ -22,7 +22,15 @@ A django blog about data-driven decisions
 ## Installation
 
 - Clone repo https://github.com/jsolly/blogthedata.git
-- Install Python and dependencies using requirements stored in config/requirements.txt
+```bash
+    $ python3 -m pip install virtualenv
+    $ cd blogthedata/django_project
+    $ virtualenv venv
+    $ source venv/bin/activate
+    $ cd requirements/
+    $ pip install --upgrade pip
+    $ pip install -r requirements.txt
+```
 
 
 ### Setup
