@@ -4,6 +4,8 @@ A django blog about data-driven decisions
 
 [![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger) [![Coverage Status](http://img.shields.io/coveralls/badges/badgerbadgerbadger.svg?style=flat-square)](https://coveralls.io/r/badges/badgerbadgerbadger) [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
+![image](https://user-images.githubusercontent.com/9572232/173481553-ca7d1991-9d17-4bdf-b8f9-45d089d419fc.png)
+
 ---
 
 ## Table of Contents
