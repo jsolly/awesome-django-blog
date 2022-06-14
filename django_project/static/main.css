@@ -1,7 +1,11 @@
 body { padding-top: 70px; }
-@media screen and (max-width: 768px) {
-    body { padding-top: 0px; }
+/* @media screen and (max-width: 768px) {
+    body { padding-top: 70px; }
 }
+
+@media screen and (max-width: 576px) {
+  body { padding-top: 70px; }
+} */
 .bg-steel {
   background-color: #003366;
 }
