@@ -17,8 +17,8 @@
   crossorigin=""></script>
 
 <!-- Leaflet Plugins -->
-{% sri_static 'leaflet_plugins/leaflet.textpath.js' %}
 {% sri_static 'leaflet_plugins/leaflet-arc.min.js' %}
+{% sri_static 'leaflet_plugins/leaflet.textpath.js' %}
 
 {% endblock head %}
 
@@ -41,6 +41,8 @@ Analytics for blogthedata.com
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
     <div id="map"></div>
+    <script type="text/javascript" charset="utf-8">var ip_address_icon_url = "{% static 'icons/ip-address.png' %}"</script>
+    
     {% sri_static 'maps/leaflet_server_map.js' %}
     <a id="inline-attribution" href="https://www.flaticon.com/free-icons/ip-address" title="ip address icons">Ip address
       icons created by Freepik - Flaticon</a>
