@@ -82,7 +82,7 @@ A django blog about data-driven decisions
 Contained within tests/
 #### Coverage
 coverage run -m unittest discover django_project 
-coverage report -m --skip-empty --skip-covered
+coverage report -m --skip-covered
 #### Test
 unittest discover django_project
 #### Lint
