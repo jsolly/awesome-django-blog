@@ -94,7 +94,6 @@ DISABLE_DARK_MODE = True
 
 
 INSTALLED_APPS = [
-    "django_non_dark_admin",
     "blog.apps.BlogConfig",
     "users.apps.UsersConfig",
     "django.contrib.admin",
@@ -431,3 +430,4 @@ CKEDITOR_5_CONFIGS = {
 
 
 CKEDITOR_5_FILE_STORAGE = "blog.storage.CustomStorage"
+CKEDITOR_5_CUSTOM_CSS = os.path.join(STATIC_URL, "django_ckeditor_5/ckeditor_custom.css")
