@@ -64,6 +64,7 @@ CSP_OBJECT_SRC = ("'none'",)
 USE_SRI = False  # This is bad. Need to figure out why leaflet_plugins/leaflet-arc.min.js is violating its integrity hash.
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
 if os.environ["DEBUG"] == "True":
+    HTML_MINIFY = False
     # USE_SRI = True
     CSP_EXCLUDE_URL_PREFIXES = "/site-analytics"
     CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js",)
@@ -116,6 +117,8 @@ MIDDLEWARE = [
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
     "csp.middleware.CSPMiddleware",
     "livereload.middleware.LiveReloadScript",
+    "htmlmin.middleware.HtmlMinifyMiddleware",
+    "htmlmin.middleware.MarkRequestMiddleware",
 ]
 
 ROOT_URLCONF = "django_project.urls"
@@ -421,4 +424,6 @@ CKEDITOR_5_CONFIGS = {
 
 
 CKEDITOR_5_FILE_STORAGE = "blog.storage.CustomStorage"
-CKEDITOR_5_CUSTOM_CSS = os.path.join(STATIC_URL, "django_ckeditor_5/ckeditor_custom.css")
+CKEDITOR_5_CUSTOM_CSS = os.path.join(
+    STATIC_URL, "django_ckeditor_5/ckeditor_custom.css"
+)
