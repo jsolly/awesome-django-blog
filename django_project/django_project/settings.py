@@ -51,6 +51,7 @@ CSP_SCRIPT_SRC = (
     "'self'",
     "https://cdn.jsdelivr.net",
     "https://unpkg.com/",
+    "'sha256-yG1JB1yxrzpAy95bs6JV8OarO7Bx/Ytko+BlxaMoIrU='",
 )
 CSP_IMG_SRC = ("'self'", "data:", "https://unpkg.com/", "*.openstreetmap.org")
 CSP_FONT_SRC = ("'self'",)
@@ -60,10 +61,11 @@ CSP_FRAME_ANCESTORS = ("'none'",)
 CSP_BASE_URI = ("'none'",)
 CSP_FORM_ACTION = ("'self'", "https://blogthedata.us14.list-manage.com")
 CSP_OBJECT_SRC = ("'none'",)
-# USE_SRI = False
+USE_SRI = False  # This is bad. Need to figure out why leaflet_plugins/leaflet-arc.min.js is violating its integrity hash
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
 if os.environ["DEBUG"] == "True":
-    # CSP_EXCLUDE_URL_PREFIXES = "/site-analytics"
+    # USE_SRI = True
+    CSP_EXCLUDE_URL_PREFIXES = "/site-analytics"
     CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js",)
     CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
     SITE_ID = 2
@@ -108,10 +110,12 @@ INSTALLED_APPS = [
     "django_ckeditor_5",
     "robots",
     "sri",
+    "django_fastdev",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -188,6 +192,37 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            "datefmt": "%d/%b/%Y %H:%M:%S",
+        },
+        "simple": {"format": "%(levelname)s %(message)s"},
+    },
+    "handlers": {
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": "blogthedata.log",
+            "formatter": "verbose",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file"],
+            "propagate": True,
+            "level": "DEBUG",
+        },
+        "MYAPP": {
+            "handlers": ["file"],
+            "level": "DEBUG",
+        },
+    },
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
@@ -205,6 +240,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
 
 # Extra places for collectstatic to find static files.
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "staticfiles"),
 ]
@@ -227,7 +264,7 @@ DEFAULT_FROM_EMAIL = os.environ["FROM_EMAIL"]
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 # -----FASTDEV-----
-FASTDEV_STRICT_IF = True
+# FASTDEV_STRICT_IF = True
 
 customColorPalette = [
     {"color": "hsl(4, 90%, 58%)", "label": "Red"},
@@ -254,6 +291,11 @@ CKEDITOR_5_CONFIGS = {
         ],
     },
     "extends": {
+        # "htmlSupport": {
+        #     "allow": [
+        #         {"name": "/.*/", "attributes": True, "classes": True, "styles": True}
+        #     ]
+        # },
         "link": {"addTargetToExternalLinks": "true"},
         "mediaEmbed": {"previewsInData": "true"},
         "codeBlock": {
