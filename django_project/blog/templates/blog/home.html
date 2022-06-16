@@ -1,0 +1,46 @@
+{% extends "blog/parts/base.html" %}
+{% load static %}
+{% block meta %}
+<meta name="description"
+content="Researched blog posts about everything from developing software to life advice. Learn things that you can apply immediately to improve your life and work.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="A blog about data-driven decisions">
+{% include "blog/parts/logo_meta.html" %}
+<meta name="twitter:description"
+content="Researched blog posts about everything from developing software to life advice. Learn things that you can apply immediately to improve your life and work.">
+
+{% endblock meta %}
+{% block head %}
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home Page",
+          "item": "https://blogthedata.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Life Advice",
+          "item": "https://blogthedata.com/category/life-advice/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Site Updates",
+          "item": "https://blogthedata.com/category/site-updates/"
+        }
+      ]
+    }
+    </script>
+{% endblock head %}
+{% block content %}
+{% include "blog/parts/about_me.html" %}
+<h6 class="display-6">Latest Posts</h6>
+{% include "blog/parts/posts.html" %}
+{% include "blog/parts/pagination.html" %}
+{% endblock content %}

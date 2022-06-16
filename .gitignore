@@ -6,7 +6,6 @@ uploads/
 media/django_ckeditor_5/
 backups/
 datadump.json
-db.sqlite3
 db.sqlite3-journal
 
 # Virtual Environments
