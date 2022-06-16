@@ -31,3 +31,6 @@ temp*.py
 temp*.html
 temp*.yaml
 temp*.js
+
+# Logs
+blogthedata.log
