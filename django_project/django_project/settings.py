@@ -14,8 +14,8 @@ load_dotenv()
 GIT_TOKEN = os.environ["GIT_TOKEN"]
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
+LOG_DIR = f"{BASE_DIR}/logs"
+LOG_FILE = os.path.join(LOG_DIR, "blogthedata.log")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -27,10 +27,10 @@ DEBUG = False
 CAPTCHA_TEST_MODE = False
 
 # HTTPS SETTINGS
-SESSION_COOKIE_SECURE = True
-SESSION_COOKIE_HTTPONLY = True
-CSRF_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# SESSION_COOKIE_HTTPONLY = True
+# CSRF_COOKIE_SECURE = True
+# SECURE_SSL_REDIRECT = True
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 
@@ -51,6 +51,7 @@ CSP_SCRIPT_SRC = (
     "'self'",
     "https://cdn.jsdelivr.net",
     "https://unpkg.com/",
+    "'sha256-yG1JB1yxrzpAy95bs6JV8OarO7Bx/Ytko+BlxaMoIrU='",
 )
 CSP_IMG_SRC = ("'self'", "data:", "https://unpkg.com/", "*.openstreetmap.org")
 CSP_FONT_SRC = ("'self'",)
@@ -60,10 +61,12 @@ CSP_FRAME_ANCESTORS = ("'none'",)
 CSP_BASE_URI = ("'none'",)
 CSP_FORM_ACTION = ("'self'", "https://blogthedata.us14.list-manage.com")
 CSP_OBJECT_SRC = ("'none'",)
-# USE_SRI = False
+USE_SRI = False  # This is bad. Need to figure out why leaflet_plugins/leaflet-arc.min.js is violating its integrity hash.
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
 if os.environ["DEBUG"] == "True":
-    # CSP_EXCLUDE_URL_PREFIXES = "/site-analytics"
+    HTML_MINIFY = False
+    # USE_SRI = True
+    CSP_EXCLUDE_URL_PREFIXES = "/site-analytics"
     CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js",)
     CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
     SITE_ID = 2
@@ -72,17 +75,8 @@ if os.environ["DEBUG"] == "True":
 
     # HTTPS SETTINGS
     SESSION_COOKIE_SECURE = False
-    CSRF_COOKIE_SECURE = False
-    SECURE_SSL_REDIRECT = False
     SESSION_COOKIE_HTTPONLY = False
-    SECURE_BROWSER_XSS_FILTER = False
-    SECURE_CONTENT_TYPE_NOSNIFF = False
-    CSRF_COOKIE_HTTPONLY = True
-
-    # HSTS SETTINGS
-    SECURE_HSTS_SECONDS = 31557600
-    SECURE_HSTS_PRELOAD = False
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+    SECURE_SSL_REDIRECT = False
 
 
 ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
@@ -92,7 +86,6 @@ DISABLE_DARK_MODE = True
 
 
 INSTALLED_APPS = [
-    "django_non_dark_admin",
     "blog.apps.BlogConfig",
     "users.apps.UsersConfig",
     "django.contrib.admin",
@@ -108,10 +101,12 @@ INSTALLED_APPS = [
     "django_ckeditor_5",
     "robots",
     "sri",
+    "django_fastdev",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -122,6 +117,8 @@ MIDDLEWARE = [
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
     "csp.middleware.CSPMiddleware",
     "livereload.middleware.LiveReloadScript",
+    "htmlmin.middleware.HtmlMinifyMiddleware",
+    "htmlmin.middleware.MarkRequestMiddleware",
 ]
 
 ROOT_URLCONF = "django_project.urls"
@@ -162,7 +159,39 @@ DATABASES = {
     }
 }
 
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            "datefmt": "%d/%b/%Y %H:%M:%S",
+        },
+        "simple": {"format": "%(levelname)s %(message)s"},
+    },
+    "handlers": {
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": LOG_FILE,
+            "formatter": "verbose",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file"],
+            "propagate": True,
+            "level": "DEBUG",
+        },
+        "MYAPP": {
+            "handlers": ["file"],
+            "level": "DEBUG",
+        },
+    },
+}
+
 if os.environ["MODE"] in ("TEST", "GITACTIONS"):
+    LOGGING = None
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -205,6 +234,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
 
 # Extra places for collectstatic to find static files.
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "staticfiles"),
 ]
@@ -227,7 +258,7 @@ DEFAULT_FROM_EMAIL = os.environ["FROM_EMAIL"]
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 # -----FASTDEV-----
-FASTDEV_STRICT_IF = True
+# FASTDEV_STRICT_IF = True
 
 customColorPalette = [
     {"color": "hsl(4, 90%, 58%)", "label": "Red"},
@@ -254,6 +285,11 @@ CKEDITOR_5_CONFIGS = {
         ],
     },
     "extends": {
+        # "htmlSupport": {
+        #     "allow": [
+        #         {"name": "/.*/", "attributes": True, "classes": True, "styles": True}
+        #     ]
+        # },
         "link": {"addTargetToExternalLinks": "true"},
         "mediaEmbed": {"previewsInData": "true"},
         "codeBlock": {
@@ -389,3 +425,6 @@ CKEDITOR_5_CONFIGS = {
 
 
 CKEDITOR_5_FILE_STORAGE = "blog.storage.CustomStorage"
+CKEDITOR_5_CUSTOM_CSS = os.path.join(
+    STATIC_URL, "django_ckeditor_5/ckeditor_custom.css"
+)

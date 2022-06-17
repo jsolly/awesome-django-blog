@@ -1,6 +1,7 @@
+{% load static %}
 {% for post in posts %}
 <article class="media content-section shadow-sm">
-  <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="{{ post.author.first_name }} {{ post.author.last_name }} Profile Picture">
+  <img class="rounded-circle article-img" src="{% static 'jsolly.jpeg' %}" alt="{{ post.author.first_name }} {{ post.author.last_name }} Profile Picture">
   <div class="media-body">
     <div class="article-metadata">
       <h2 class="article-title"><a class="article-title" href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h2>

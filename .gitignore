@@ -3,10 +3,9 @@ profile_pics/
 post_metaimgs/
 profile_pics/
 uploads/
-django_ckeditor_5/
+django_project/media/django_ckeditor_5/
 backups/
 datadump.json
-db.sqlite3
 db.sqlite3-journal
 
 # Virtual Environments
@@ -31,3 +30,9 @@ temp*.py
 temp*.html
 temp*.yaml
 temp*.js
+
+# Logs
+blogthedata.log
+
+# migrations
+migration_backup

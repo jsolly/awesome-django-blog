@@ -6,10 +6,6 @@
 var map = L.map('map', {
     center: [39, -98],
     zoom: 4,
-    zoomControl: false,
-    dragging: false,
-    minZoom: 4,
-    maxZoom: 4,
 });
 
 
@@ -35,7 +31,7 @@ L.marker(LaLatLng, LAMarkerOptions).addTo(map);
 
 // Dallas
 var IPAddressIcon = L.icon({
-    iconUrl: "static/icons/ip-address.png",
+    iconUrl: ip_address_icon_url,
     iconSize: [40, 40]
 });
 
