@@ -115,7 +115,6 @@ MIDDLEWARE = [
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
     "csp.middleware.CSPMiddleware",
     "livereload.middleware.LiveReloadScript",
-
 ]
 
 ROOT_URLCONF = "django_project.urls"
@@ -172,34 +171,38 @@ LOG_DIR = f"{BASE_DIR}/logs"
 LOG_FILE = os.path.join(LOG_DIR, "blogthedata.log")
 
 HANDLERS = {
-    "console": {"class": "logging.StreamHandler", "formatter": "simple"},
-    "file": {
-        "level": "DEBUG",
+    "console_handler": {
+        "level": "INFO",
+        "class": "logging.StreamHandler",
+        "formatter": "simple",
+    },
+    "my_handler": {
+        "level": "WARNING",
         "class": "logging.handlers.RotatingFileHandler",
         "filename": f"{BASE_DIR}/logs/blogthedata.log",
         "maxBytes": 1024 * 1024 * 5,  # 5 MB
         "backupCount": 5,
         "formatter": "simple",
     },
-    "file_request_handler": {
-        "level": "DEBUG",
+    "my_handler_detailed": {
+        "level": "INFO",
         "class": "logging.handlers.RotatingFileHandler",
-        "filename": f"{BASE_DIR}/logs/blogthedata_request.log",
+        "filename": f"{BASE_DIR}/logs/blogthedata_detailed.log",
         "maxBytes": 1024 * 1024 * 5,  # 5 MB
         "backupCount": 5,
-        "formatter": "simple",
+        "formatter": "verbose",
     },
 }
 
 LOGGERS = (
     {
         "django": {
-            "handlers": ["console"],
+            "handlers": ["console_handler", "my_handler_detailed"],
             "level": "INFO",
             "propagate": False,
         },
         "django.request": {
-            "handlers": ["file_request_handler"],
+            "handlers": ["my_handler"],
             "level": "WARNING",
             "propagate": False,
         },

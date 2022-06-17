@@ -33,7 +33,7 @@ temp*.js
 
 # Logs
 blogthedata.log
-blogthedata_request.log
+blogthedata_detailed.log
 
 # migrations
 migration_backup
