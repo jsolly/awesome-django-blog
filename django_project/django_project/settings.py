@@ -14,8 +14,6 @@ load_dotenv()
 GIT_TOKEN = os.environ["GIT_TOKEN"]
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-LOG_DIR = f"{BASE_DIR}/logs"
-LOG_FILE = os.path.join(LOG_DIR, "blogthedata.log")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -64,7 +62,6 @@ CSP_OBJECT_SRC = ("'none'",)
 USE_SRI = False  # This is bad. Need to figure out why leaflet_plugins/leaflet-arc.min.js is violating its integrity hash.
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
 if os.environ["DEBUG"] == "True":
-    HTML_MINIFY = False
     # USE_SRI = True
     CSP_EXCLUDE_URL_PREFIXES = "/site-analytics"
     CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js",)
@@ -105,6 +102,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "django.middleware.gzip.GZipMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -117,8 +115,7 @@ MIDDLEWARE = [
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
     "csp.middleware.CSPMiddleware",
     "livereload.middleware.LiveReloadScript",
-    "htmlmin.middleware.HtmlMinifyMiddleware",
-    "htmlmin.middleware.MarkRequestMiddleware",
+
 ]
 
 ROOT_URLCONF = "django_project.urls"
@@ -158,36 +155,63 @@ DATABASES = {
         "PORT": "5432",
     }
 }
+FORMATTERS = (
+    {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+    },
+)
+
+LOG_DIR = f"{BASE_DIR}/logs"
+LOG_FILE = os.path.join(LOG_DIR, "blogthedata.log")
+
+HANDLERS = {
+    "console": {"class": "logging.StreamHandler", "formatter": "simple"},
+    "file": {
+        "level": "DEBUG",
+        "class": "logging.handlers.RotatingFileHandler",
+        "filename": f"{BASE_DIR}/logs/blogthedata.log",
+        "maxBytes": 1024 * 1024 * 5,  # 5 MB
+        "backupCount": 5,
+        "formatter": "simple",
+    },
+    "file_request_handler": {
+        "level": "DEBUG",
+        "class": "logging.handlers.RotatingFileHandler",
+        "filename": f"{BASE_DIR}/logs/blogthedata_request.log",
+        "maxBytes": 1024 * 1024 * 5,  # 5 MB
+        "backupCount": 5,
+        "formatter": "simple",
+    },
+}
+
+LOGGERS = (
+    {
+        "django": {
+            "handlers": ["console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "django.request": {
+            "handlers": ["file_request_handler"],
+            "level": "WARNING",
+            "propagate": False,
+        },
+    },
+)
 
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-    "formatters": {
-        "verbose": {
-            "format": "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-            "datefmt": "%d/%b/%Y %H:%M:%S",
-        },
-        "simple": {"format": "%(levelname)s %(message)s"},
-    },
-    "handlers": {
-        "file": {
-            "level": "DEBUG",
-            "class": "logging.FileHandler",
-            "filename": LOG_FILE,
-            "formatter": "verbose",
-        },
-    },
-    "loggers": {
-        "django": {
-            "handlers": ["file"],
-            "propagate": True,
-            "level": "DEBUG",
-        },
-        "MYAPP": {
-            "handlers": ["file"],
-            "level": "DEBUG",
-        },
-    },
+    "formatters": FORMATTERS[0],
+    "handlers": HANDLERS,
+    "loggers": LOGGERS[0],
 }
 
 if os.environ["MODE"] in ("TEST", "GITACTIONS"):
