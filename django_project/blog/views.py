@@ -5,7 +5,6 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.db.models import Q
-from django.http import Http404
 from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
