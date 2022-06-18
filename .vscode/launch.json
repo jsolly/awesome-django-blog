@@ -6,7 +6,7 @@
       "type": "python",
       "request": "launch",
       "program": "${file}",
-      "justMyCode": true
+      "justMyCode": true,
     },
     {
       "name": "Python: Debug",

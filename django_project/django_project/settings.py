@@ -194,34 +194,37 @@ LOGGERS = (
         },
     },
 )
-print(os.environ["MODE"])
-if os.environ["MODE"] in ("PROD", "DEV"):
-    LOGGING = {
-        "version": 1,
-        "disable_existing_loggers": False,
-        "formatters": FORMATTERS[0],
-        "handlers": HANDLERS,
-        "loggers": LOGGERS[0],
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": FORMATTERS[0],
+    "handlers": HANDLERS,
+    "loggers": LOGGERS[0],
+}
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "blogthedata",
+        "USER": "postgres",
+        "PASSWORD": os.environ["POSTGRES_PASS"],
+        "HOST": "localhost",
+        "PORT": "5432",
     }
+}
+import sys
+print(f"the args are {sys.argv}")
+if len({item for item in ["testFile", "discover"] if any(item in arg for arg in sys.argv)}) > 0:
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.postgresql_psycopg2",
-            "NAME": "blogthedata",
-            "USER": "postgres",
-            "PASSWORD": os.environ["POSTGRES_PASS"],
-            "HOST": "localhost",
-            "PORT": "5432",
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         }
     }
 
-# elif os.environ["MODE"] in ("TEST", "GITACTIONS"):
-#     LOGGING = None
-#     DATABASES = {
-#         "default": {
-#             "ENGINE": "django.db.backends.sqlite3",
-#             "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-#         }
-#     }
+if os.environ["LOGGING"] == "False":
+    LOGGING = None
 
 
 # Password validation
