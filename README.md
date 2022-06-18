@@ -81,12 +81,12 @@ A django blog about data-driven decisions
 ## Coverage, Tests, Linting
 Contained within tests/
 #### Coverage
-coverage run -m unittest discover django_project 
-coverage report -m --skip-covered
+$ coverage run -m unittest discover django_project 
+$ coverage report -m --skip-covered
 #### Test
-unittest discover django_project
+$ python3 -m unittest discover django_project
 #### Lint
-flake8 django_project
+$ flake8 django_project
 
 Also see the [actions tab]([url](https://github.com/jsolly/blogthedata/actions)) to see if everything is passing.
 
