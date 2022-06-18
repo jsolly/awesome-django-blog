@@ -59,9 +59,7 @@ class PostDetailView(DetailView):
     def get_queryset(self):
         post = Post.objects.get(slug=self.kwargs["slug"])
         if post.draft:
-            user = get_object_or_404(User, username=self.request.user)
-            if not user.is_staff:
-                raise Http404
+            get_object_or_404(User, username=self.request.user)
 
         return Post.objects.filter(slug=self.kwargs["slug"])
 
