@@ -214,8 +214,8 @@ DATABASES = {
     }
 }
 import sys
-print(sys.argv)
-if any("testFile" in arg for arg in sys.argv):
+print(f"the args are {sys.argv}")
+if len({item for item in ["testFile", "discover"] if any(item in arg for arg in sys.argv)}) > 0:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
