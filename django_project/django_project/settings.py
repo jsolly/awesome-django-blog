@@ -143,17 +143,6 @@ WSGI_APPLICATION = "django_project.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "blogthedata",
-        "USER": "postgres",
-        "PASSWORD": os.environ["POSTGRES_PASS"],
-        "HOST": "localhost",
-        "PORT": "5432",
-    }
-}
 FORMATTERS = (
     {
         "verbose": {
@@ -166,9 +155,6 @@ FORMATTERS = (
         },
     },
 )
-
-LOG_DIR = f"{BASE_DIR}/logs"
-LOG_FILE = os.path.join(LOG_DIR, "blogthedata.log")
 
 HANDLERS = {
     "console_handler": {
@@ -208,23 +194,35 @@ LOGGERS = (
         },
     },
 )
-
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": FORMATTERS[0],
-    "handlers": HANDLERS,
-    "loggers": LOGGERS[0],
-}
-
-if os.environ["MODE"] in ("TEST", "GITACTIONS"):
-    LOGGING = None
+print(os.environ["MODE"])
+if os.environ["MODE"] in ("PROD", "DEV"):
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "formatters": FORMATTERS[0],
+        "handlers": HANDLERS,
+        "loggers": LOGGERS[0],
+    }
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+            "ENGINE": "django.db.backends.postgresql_psycopg2",
+            "NAME": "blogthedata",
+            "USER": "postgres",
+            "PASSWORD": os.environ["POSTGRES_PASS"],
+            "HOST": "localhost",
+            "PORT": "5432",
         }
     }
+
+# elif os.environ["MODE"] in ("TEST", "GITACTIONS"):
+#     LOGGING = None
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.sqlite3",
+#             "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+#         }
+#     }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

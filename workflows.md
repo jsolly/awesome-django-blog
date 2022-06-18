@@ -32,7 +32,7 @@ git checkout -b <local_branch_name> origin/<branch_name> # local_branch_name and
     postgres=# DROP DATABASE blogthedata;
     postgres=# CREATE DATABASE blogthedata;
     postgres=# exit
-    $ psql blogthedata < blogthedata_db_5_6_22.sql
+    $ psql blogthedata < /Users/johnsolly/Documents/code/blogthedata/backups/blogthedata_db_5_6_22.sql
     $ scp -r jsolly@69.164.205.120:/home/jsolly/blogthedata/django_project/media /Users/johnsolly/Documents/code/blogthedata/django_project # Optionally copy media folder over (to get uploaded images)
     ```
 
