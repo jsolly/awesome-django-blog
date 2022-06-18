@@ -223,7 +223,7 @@ if any("testFile" in arg for arg in sys.argv):
         }
     }
 
-if os.environ["LOGGING"] is False:
+if os.environ["LOGGING"] == "False":
     LOGGING = None
 
 
