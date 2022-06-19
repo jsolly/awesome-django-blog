@@ -25,17 +25,17 @@ DEBUG = False
 CAPTCHA_TEST_MODE = False
 
 # HTTPS SETTINGS
-# SESSION_COOKIE_SECURE = True
-# SESSION_COOKIE_HTTPONLY = True
-# CSRF_COOKIE_SECURE = True
-# SECURE_SSL_REDIRECT = True
-# SECURE_BROWSER_XSS_FILTER = True
-# SECURE_CONTENT_TYPE_NOSNIFF = True
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # HSTS SETTINGS
-# SECURE_HSTS_SECONDS = 31557600
-# SECURE_HSTS_PRELOAD = True
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_SECONDS = 31557600
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 # Content Security Policy
 CSP_DEFAULT_SRC = ("'none'",)
@@ -73,6 +73,7 @@ if os.environ["DEBUG"] == "True":
     # HTTPS SETTINGS
     SESSION_COOKIE_SECURE = False
     SESSION_COOKIE_HTTPONLY = False
+    SESSION_COOKIE_SECURE = False
     SECURE_SSL_REDIRECT = False
 
 
@@ -221,7 +222,17 @@ DATABASES = {
     }
 }
 import sys
-if len({item for item in ["testFile", "discover"] if any(item in arg for arg in sys.argv)}) > 0:
+
+if (
+    len(
+        {
+            item
+            for item in ["testFile", "discover"]
+            if any(item in arg for arg in sys.argv)
+        }
+    )
+    > 0
+):
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
