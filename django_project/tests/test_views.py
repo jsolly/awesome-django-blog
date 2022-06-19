@@ -20,7 +20,6 @@ class TestViews(SetUp):
         response = self.client.get(reverse("blog-home"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/home.html")
-        self.assertIsInstance(response.context["my_profile"], Profile)
         self.assertIsInstance(response.context["posts"][0], Post)
         # self.assertIsInstance(response.context["form"])
 
