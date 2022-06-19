@@ -13,7 +13,6 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
-from users.models import Profile
 import aiohttp
 import asyncio
 
