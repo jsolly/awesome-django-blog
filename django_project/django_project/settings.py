@@ -223,16 +223,10 @@ DATABASES = {
 }
 import sys
 
-if (
-    len(
-        {
-            item
-            for item in ["testFile", "discover"]
-            if any(item in arg for arg in sys.argv)
-        }
-    )
-    > 0
-):
+found_count = len(
+    {item for item in ["testFile", "discover"] if any(item in arg for arg in sys.argv)}
+)
+if found_count > 0:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
