@@ -15,6 +15,7 @@ from django.views.generic import (
 )
 import aiohttp
 import asyncio
+import ssl
 
 
 class HomeView(ListView):
@@ -128,7 +129,7 @@ def road_map_view(request):
     HEADERS = {"Authorization": f"token {GIT_TOKEN}"}
 
     async def make_request(session, url, params=None):
-        async with session.get(url, params=params) as resp:
+        async with session.get(url, params=params, ssl=ssl.SSLContext()) as resp:
             return await resp.json()
 
     async def main(urls):
@@ -173,7 +174,7 @@ def road_map_view(request):
         issue for issue in all_open_issues if issue["url"] in next_sprint_issue_urls
     ]
 
-    sprint_number = date.today().isocalendar().week // 2  # Two week sprints
+    sprint_number = date.today().isocalendar()[1] // 2  # Two week sprints
     return render(
         request,
         "blog/roadmap.html",

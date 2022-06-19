@@ -38,7 +38,10 @@ git checkout -b <local_branch_name> origin/<branch_name> # local_branch_name and
 
 ### useful commands and paths
     ```
-    $ psql -U postgres # log into postgres
+    $ psql -U postgres # log into postgres (local)
+    $ sudo -u postgres psql # Log into postgres (remote)
+    $ psql -U postgres -h 127.0.0.1 # log into postgres (remote option 2)
+    $ \c DBNAME # Switch databases while in postgres shell
     $ ngrok http 8000 # Test on mobile locally
     $ sudo tail -f /var/log/apache2/access.log
     $ sudo tail -f /var/log/apache2/error.log
@@ -50,6 +53,7 @@ git checkout -b <local_branch_name> origin/<branch_name> # local_branch_name and
     $ sudo service postgresql restart
     $ sudo chmod -R XXX blogthedata
     $ sudo -i # become root user
+    $ sudo do-release-upgrade -c # Check for new Ubutu version
     
     ```
 
@@ -58,11 +62,11 @@ git checkout -b <local_branch_name> origin/<branch_name> # local_branch_name and
     make sure an up-to-date pip freeze has happened
     make sure you're using the right python version
 
-    $ python3 -m pip install virtualenv
-    $ virtualenv venv
-    $ source venv/bin/activate
-    $ pip install --upgrade pip
-    $ pip install -r requirements.txt
+    $ python3 -m venv ~/venv
+    $ source ~/venv/bin/activate
+    $ python3 -m pip install --upgrade pip
+    $ python3 -m pip install wheel
+    $ python3 -m pip install -r ~/blogthedata/django_project/requirements/requirements.txt
     ```
 
 ### Manually generated integrity hash values
@@ -80,10 +84,11 @@ git checkout -b <local_branch_name> origin/<branch_name> # local_branch_name and
     ```
     Install using the regular installer from python.org. Make sure to match the version that is on production.
     The file path should look like:
-    /Applications/"Python 3.9"/IDLE.app/Contents/MacOS/Python
+    /Applications/"Python 3.8"/IDLE.app/Contents/MacOS/Python
 
     Go into Applications/<Python Directory>
     Open 'Install Certificates.command'
+    Open Update Shell Profile.command
     ```
 
 
