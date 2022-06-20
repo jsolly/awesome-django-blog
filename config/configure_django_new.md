@@ -72,3 +72,15 @@ $ psql blogthedata -c "GRANT ALL ON ALL TABLES IN SCHEMA public to blogthedataus
 $ psql blogthedata -c "GRANT ALL ON ALL SEQUENCES IN SCHEMA public to blogthedatauser;"
 $ psql blogthedata -c "GRANT ALL ON ALL FUNCTIONS IN SCHEMA public to blogthedatauser;"
 ```
+
+### Restore existing DB (If needed)
+```
+# Copy db into server
+postgres=# exit
+$ sudo su postgres
+$ psql blogthedata < ~/blogthedata/backups/blogthedata_db_6_20_22.sql
+```
+### Continue working on Gunicorn and Nginx
+```
+# Follow a guide on Gunicorn/Nginx 
+$ sudo ufw delete allow 8000
