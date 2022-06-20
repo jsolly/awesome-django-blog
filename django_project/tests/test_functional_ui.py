@@ -17,15 +17,20 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
 setup()
 from users.models import User
 from blog.models import Category, Post
+
 # from unittest import skip
 
 # geckodriver_autoinstaller.install()
+import ssl
+if not os.environ.get("PYTHONHTTPSVERIFY", "") and getattr(
+    ssl, "_create_unverified_context", None
+):
+    ssl._create_default_https_context = ssl._create_unverified_context
 chromedriver_autoinstaller.install()
 
 
 # @skip("Tests take too long to run")
 class TestFunctionalUI(StaticLiveServerTestCase):
-
     def setUp(self):
         self.general_password = "T3stingIsFun!"
 
@@ -75,7 +80,7 @@ class TestFunctionalUI(StaticLiveServerTestCase):
                 snippet="Long ago, the four nations lived together in harmony.",
                 content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
                 # date_posted = ""
-                author=self.super_user
+                author=self.super_user,
             )
 
         # URLs
@@ -107,9 +112,9 @@ class TestFunctionalUI(StaticLiveServerTestCase):
             "Super User's Post"
         )
         self.browser.find_element(by=By.NAME, value="slug").send_keys("super-user-post")
-        Select(self.browser.find_element(by=By.NAME, value="category")).select_by_visible_text(
-            "Productivity"
-        )
+        Select(
+            self.browser.find_element(by=By.NAME, value="category")
+        ).select_by_visible_text("Productivity")
         actions = ActionChains(self.browser)
         actions.send_keys(Keys.TAB * 4).perform()
         actions.send_keys("Some Content").perform()
@@ -174,12 +179,8 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         self.browser.find_element(by=By.NAME, value="username").send_keys(
             "selenium_user"
         )
-        self.browser.find_element(by=By.NAME, value="first_name").send_keys(
-            "Michael"
-        )
-        self.browser.find_element(by=By.NAME, value="last_name").send_keys(
-            "Jenkins"
-        )
+        self.browser.find_element(by=By.NAME, value="first_name").send_keys("Michael")
+        self.browser.find_element(by=By.NAME, value="last_name").send_keys("Jenkins")
         self.browser.find_element(by=By.NAME, value="email").send_keys(
             "selenium_user@invalid.com"
         )
