@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 import os
 from dotenv import load_dotenv
+import psycopg2
 
 load_dotenv()
 
@@ -204,23 +205,26 @@ LOGGING = {
     "loggers": LOGGERS[0],
 }
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql_psycopg2",
-#         "NAME": "blogthedata",
-#         "USER": "postgres",
-#         "PASSWORD": os.environ["POSTGRES_PASS"],
-#         "HOST": "localhost",
-#         "PORT": "5432",
-#     }
-# }
-
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "blogthedata",
+        "USER": os.environ["POSTGRES_USER"],
+        "PASSWORD": os.environ["POSTGRES_PASS"],
+        "HOST": "localhost",
+        "PORT": "5432",
+        "OPTIONS": {
+            "isolation_level": psycopg2.extensions.ISOLATION_LEVEL_SERIALIZABLE,
+        },
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+#     }
+# }
 import sys
 
 found_count = len(

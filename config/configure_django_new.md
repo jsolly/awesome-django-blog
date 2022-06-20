@@ -46,14 +46,29 @@ $ source ~/venv/bin/activate
 $ python3 -m pip install --upgrade pip
 $ python3 -m pip install wheel
 $ python3 -m pip install -r ~/blogthedata/django_project/requirements/requirements.txt
-$ touch ~/blogthedata/.env
 $ nano ~/blogthedata/.env
 # copy over parameters from blogthedata/sample.env and set them as needed
+$ sudo ufw allow 8000 # We will turn this off later. It's just for testing.
 $ python3 ~/blogthedata/django_project/manage.py runserver 0.0.0.0:8000
 # in a browser navigate to <ip_address>:8000
-# You should see an error in the console that the server cannot be accesed via HTTP (but this means we were able to connect to it)
+# App should be loading
 ```
 
 ### Install dependencies
+```bash
+$ sudo apt-get install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx
+$ sudo -u postgres psql
+postgres=# CREATE DATABASE blogthedata;
+postgres=# CREATE USER blogthedatauser WITH PASSWORD 'password';
+postgres=# ALTER ROLE blogthedatauser SET client_encoding TO 'utf8';
+postgres=# ALTER ROLE blogthedatauser SET default_transaction_isolation TO 'read committed';
+postgres=# ALTER ROLE blogthedatauser SET timezone TO 'UTC';
+postgres=# GRANT ALL PRIVILEGES ON DATABASE blogthedata TO blogthedatauser;
 ```
-$ 
+### A note on an existing database being imported. You may need to run these commands:
+```
+$ sudo su postgres
+$ psql blogthedata -c "GRANT ALL ON ALL TABLES IN SCHEMA public to blogthedatauser;"
+$ psql blogthedata -c "GRANT ALL ON ALL SEQUENCES IN SCHEMA public to blogthedatauser;"
+$ psql blogthedata -c "GRANT ALL ON ALL FUNCTIONS IN SCHEMA public to blogthedatauser;"
+```
