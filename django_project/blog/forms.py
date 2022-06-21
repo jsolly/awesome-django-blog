@@ -8,7 +8,7 @@ from .models import Post, Category
 choices = Category.objects.all().values_list(
     "name", "name"
 )
-# comment this if doing an initial DB migration or changing databases
+# comment this if doing an initial DB migration or changing databases.
 
 
 class PostForm(forms.ModelForm):
