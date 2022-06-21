@@ -60,7 +60,7 @@ CSP_FRAME_ANCESTORS = ("'none'",)
 CSP_BASE_URI = ("'none'",)
 CSP_FORM_ACTION = ("'self'", "https://blogthedata.us14.list-manage.com")
 CSP_OBJECT_SRC = ("'none'",)
-USE_SRI = False  # This is bad. Need to figure out why leaflet_plugins/leaflet-arc.min.js is violating its integrity hash.
+# USE_SRI = False  # This is bad. Need to figure out why leaflet_plugins/leaflet-arc.min.js is violating its integrity hash.
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
 if os.environ["DEBUG"] == "True":
     # USE_SRI = True
