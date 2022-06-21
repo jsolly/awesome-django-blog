@@ -4,7 +4,6 @@ post_metaimgs/
 profile_pics/
 uploads/
 django_project/media/django_ckeditor_5/
-backups/
 datadump.json
 db.sqlite3-journal
 
@@ -37,3 +36,7 @@ blogthedata_detailed.log
 
 # migrations
 migration_backup
+
+# backups
+blogthedata*.sql
+linode*.img

@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 import os
 from dotenv import load_dotenv
+import psycopg2
 
 load_dotenv()
 
@@ -24,7 +25,7 @@ SITE_ID = 1  # blogthedata.com
 DEBUG = False
 CAPTCHA_TEST_MODE = False
 
-# HTTPS SETTINGS
+# # HTTPS SETTINGS
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SECURE = True
@@ -32,7 +33,7 @@ SECURE_SSL_REDIRECT = True
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 
-# HSTS SETTINGS
+# # HSTS SETTINGS
 SECURE_HSTS_SECONDS = 31557600
 SECURE_HSTS_PRELOAD = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
@@ -73,6 +74,7 @@ if os.environ["DEBUG"] == "True":
     # HTTPS SETTINGS
     SESSION_COOKIE_SECURE = False
     SESSION_COOKIE_HTTPONLY = False
+    SESSION_COOKIE_SECURE = False
     SECURE_SSL_REDIRECT = False
 
 
@@ -211,10 +213,24 @@ DATABASES = {
         "PASSWORD": os.environ["POSTGRES_PASS"],
         "HOST": "localhost",
         "PORT": "5432",
+        "OPTIONS": {
+            "isolation_level": psycopg2.extensions.ISOLATION_LEVEL_SERIALIZABLE,
+        },
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+#     }
+# }
 import sys
-if len({item for item in ["testFile", "discover"] if any(item in arg for arg in sys.argv)}) > 0:
+
+found_count = len(
+    {item for item in ["testFile", "discover"] if any(item in arg for arg in sys.argv)}
+)
+if found_count > 0:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",

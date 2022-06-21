@@ -28,6 +28,7 @@ jobs:
       EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
       FROM_EMAIL: ${{secrets.FROM_EMAIL}}
       ALLOWED_HOSTS: ${{secrets.ALLOWED_HOSTS}}
+      POSTGRES_USER: $${{secrets.POSTGRES_USER}}
       POSTGRES_PASS: $${{secrets.POSTGRES_PASS}}
       GIT_TOKEN: ${{secrets.GIT_TOKEN}}
       DEBUG: ${{secrets.DEBUG}}
