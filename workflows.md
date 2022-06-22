@@ -38,6 +38,8 @@ git checkout -b <local_branch_name> origin/<branch_name> # local_branch_name and
 
 ### useful commands and paths
     ```
+    $ sudo nginx -t # Check Nginx configuration
+    $ sudo systemctl restart nginx # Restart Nginx
     $ psql -U postgres # log into postgres (local)
     $ sudo -u postgres psql # Log into postgres (remote)
     $ psql -U postgres -h 127.0.0.1 # log into postgres (remote option 2)
