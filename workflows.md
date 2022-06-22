@@ -43,13 +43,12 @@ git checkout -b <local_branch_name> origin/<branch_name> # local_branch_name and
     $ psql -U postgres -h 127.0.0.1 # log into postgres (remote option 2)
     $ \c DBNAME # Switch databases while in postgres shell
     $ ngrok http 8000 # Test on mobile locally
-    $ sudo tail -f /var/log/apache2/access.log
-    $ sudo tail -f /var/log/apache2/error.log
-    $ sudo nano /etc/django_config.json 
-    $ sudo nano -c /etc/apache2/sites-available/django_project.conf
-    $ sudo nano /var/log/postgresql/postgresql-13-main.log
-    $ sudo nano /etc/postgresql-common/createcluster.conf 
-    $ sudo nano /etc/apache2/apache2.conf
+    $ sudo journalctl -u nginx # Check the Nginx process logs
+    $ sudo less /var/log/nginx/access.log # Check the Nginx access logs 
+    $ sudo less /var/log/nginx/error.log # Check the Nginx error logs 
+    $ sudo journalctl -u gunicorn # Check the Gunicorn application logs by typing:
+    $ sudo journalctl -u gunicorn.socket # Check the Gunicorn socket logs by typing: s
+    $ sudo nano /etc/nginx/sites-available/myproject # congigure Nginx
     $ sudo service postgresql restart
     $ sudo chmod -R XXX blogthedata
     $ sudo -i # become root user
