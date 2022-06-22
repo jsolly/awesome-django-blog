@@ -84,3 +84,7 @@ $ psql blogthedata < ~/blogthedata/backups/blogthedata_db_6_20_22.sql
 ```
 # Follow a guide on Gunicorn/Nginx 
 $ sudo ufw delete allow 8000
+```
+
+### Post Deployment
+Make sure ALLOWED_HOSTS is correct (remove localhost)
