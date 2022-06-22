@@ -101,6 +101,7 @@ INSTALLED_APPS = [
     "robots",
     "sri",
     "django_fastdev",
+    "django.contrib.gis",
 ]
 
 MIDDLEWARE = [
