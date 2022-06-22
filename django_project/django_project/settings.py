@@ -102,6 +102,7 @@ INSTALLED_APPS = [
     "sri",
     "django_fastdev",
     "django.contrib.gis",
+    "siteanalytics",
 ]
 
 MIDDLEWARE = [
