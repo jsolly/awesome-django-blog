@@ -86,5 +86,8 @@ $ psql blogthedata < ~/blogthedata/backups/blogthedata_db_6_20_22.sql
 $ sudo ufw delete allow 8000
 ```
 
-### Post Deployment
+### Pre-live
 Make sure ALLOWED_HOSTS is correct (remove localhost)
+```
+$ python3 manage.py check --deploy
+```
