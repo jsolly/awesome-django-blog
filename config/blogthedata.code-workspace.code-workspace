@@ -48,5 +48,6 @@
 			"-p",
 			"test*.py"
 		],
+		"python.testing.pytestEnabled": true,
 	}
 }

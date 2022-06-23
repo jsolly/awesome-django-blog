@@ -224,7 +224,7 @@ DATABASES = {
         },
     }
 }
-# SPATIALITE_LIBRARY_PATH = "/usr/local/lib/mod_spatialite.dylib"
+
 
 # DATABASES = {
 #     "default": {
@@ -232,12 +232,14 @@ DATABASES = {
 #         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
 #     }
 # }
+
 import sys
 
 found_count = len(
-    {item for item in ["testFile", "discover"] if any(item in arg for arg in sys.argv)}
+    {item for item in ["pytest", "discover"] if any(item in arg for arg in sys.argv)}
 )
 if found_count > 0:
+
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
