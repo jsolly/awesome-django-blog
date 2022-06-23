@@ -8,13 +8,13 @@ import chromedriver_autoinstaller
 
 # import geckodriver_autoinstaller
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from django import setup
+# from django import setup
 from django.urls import reverse
 import os
 import time
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
-setup()
+# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
+# setup()
 from users.models import User
 from blog.models import Category, Post
 
