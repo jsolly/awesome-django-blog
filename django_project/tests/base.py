@@ -9,7 +9,7 @@ from django.test import TestCase, Client
 from django.contrib.messages import get_messages
 from django.test.utils import setup_test_environment
 from blog.models import Post, Category
-from users.models import User, Profile
+from users.models import User
 
 
 def message_in_response(response, message: str):
@@ -60,8 +60,7 @@ class SetUp(TestCase):
 
         self.super_user = create_user("John_Solly", super_user=True)
         self.basic_user = create_user("basic_user", super_user=False)
-        self.profile1 = Profile.objects.get(user=self.super_user)
-
+        
         # Post Object
         self.category1 = Category.objects.create(name="TEST")
         self.post1 = Post.objects.create(
