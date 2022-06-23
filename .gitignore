@@ -29,6 +29,7 @@ temp*.py
 temp*.html
 temp*.yaml
 temp*.js
+django_project/siteanalytics/data/ip_info.csv
 
 # Logs
 blogthedata.log
