@@ -35,10 +35,10 @@ jobs:
       LOGGING: ${{secrets.LOGGING}}
     steps:
     - uses: actions/checkout@v2
-    - name: Setup Python 3.9.7
+    - name: Setup Python 3.8.10
       uses: actions/setup-python@v3
       with:
-        python-version: 3.9.7
+        python-version: 3.8.10
     - name: Install dependencies
       run: |
         pip install --upgrade pip

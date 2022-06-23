@@ -65,7 +65,10 @@ CSP_OBJECT_SRC = ("'none'",)
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
 if os.environ["DEBUG"] == "True":
     # USE_SRI = True
-    CSP_EXCLUDE_URL_PREFIXES = "/site-analytics"
+    CSP_EXCLUDE_URL_PREFIXES = (
+        "/site-analytics",
+        "/admin",
+    )
     CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js",)
     CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
     SITE_ID = 2
@@ -210,7 +213,7 @@ LOGGING = {
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "ENGINE": "django.contrib.gis.db.backends.postgis",
         "NAME": "blogthedata",
         "USER": os.environ["POSTGRES_USER"],
         "PASSWORD": os.environ["POSTGRES_PASS"],
@@ -221,6 +224,7 @@ DATABASES = {
         },
     }
 }
+# SPATIALITE_LIBRARY_PATH = "/usr/local/lib/mod_spatialite.dylib"
 
 # DATABASES = {
 #     "default": {
