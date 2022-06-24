@@ -60,7 +60,7 @@ class SetUp(TestCase):
 
         self.super_user = create_user("John_Solly", super_user=True)
         self.basic_user = create_user("basic_user", super_user=False)
-        
+
         # Post Object
         self.category1 = Category.objects.create(name="TEST")
         self.post1 = Post.objects.create(

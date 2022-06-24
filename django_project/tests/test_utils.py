@@ -3,8 +3,8 @@ from django.utils.deprecation import MiddlewareMixin
 from blog.utils import slugify_instance_title
 from siteanalytics.utils import get_IP_details, load_data
 from siteanalytics.models import Visitor
-from django.contrib.gis.geos import Point
 import os
+
 
 class TestUtils(SetUp, MiddlewareMixin):
     """Tests for helper functions"""
