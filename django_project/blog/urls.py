@@ -9,9 +9,7 @@ from .views import (
     PostUpdateView,
     PostDeleteView,
     CategoryView,
-    road_map_view,
     search_view,
-    works_cited_view,
 )
 
 urlpatterns = [
