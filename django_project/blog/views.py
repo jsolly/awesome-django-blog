@@ -114,6 +114,7 @@ class CategoryView(ListView):
         )
         return context
 
+
 @csrf_exempt
 def search_view(request):
     """Controls what is shown to a user when they search for a post. A note...I never bothered to make sure admins could see draft posts in this view"""
@@ -137,4 +138,3 @@ def search_view(request):
     )
     # Seems to be the best approach for now
     # https://stackoverflow.com/questions/53146842/check-if-text-exists-in-django-template-context-variable
-

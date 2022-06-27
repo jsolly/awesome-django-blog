@@ -1,7 +1,8 @@
 import aiohttp
 import asyncio
 import ssl
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
+
 
 def works_cited_view(request):
     return render(
@@ -22,6 +23,7 @@ def security_pgp_key_view(request):
         request,
         "blog/pgp-key.txt",
     )
+
 
 def road_map_view(request):
     from django_project.settings import GIT_TOKEN

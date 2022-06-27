@@ -11,12 +11,14 @@ from blog.views import (
     PostUpdateView,
     PostDeleteView,
     CategoryView,
-    road_map_view,
     search_view,
+)
+from django_project.views import (
     works_cited_view,
     security_txt_view,
     security_pgp_key_view,
-    site_analytics_view
+    site_analytics_view,
+    road_map_view,
 )
 from users.views import (
     register_view,
@@ -37,7 +39,9 @@ class TestUrls(SetUp):
     """Make sure urls are hooked up to the correct View"""
 
     def test_site_analytics_url_is_resolved(self):
-        self.assertEqual(resolve(reverse("blog-site-analytics")).func, site_analytics_view)
+        self.assertEqual(
+            resolve(reverse("blog-site-analytics")).func, site_analytics_view
+        )
 
     def test_home_url_is_resolved(self):
         self.assertEqual(resolve(reverse("blog-home")).func.view_class, HomeView)

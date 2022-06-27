@@ -4,6 +4,17 @@ from siteanalytics.utils import load_data
 
 
 class Migration(migrations.Migration):
+    def load_data():
+    with open("data/ip_info.csv") as datafile:
+        for line in datafile.readlines():
+            details = get_IP_details("a", "b")
+            location = Point(details.longitude, details.latitude, srid=4326)
+            Visitor(
+                ip_addr=details.ip,
+                country=details.country,
+                city=details.city,
+                location=location,
+            ).save()
     dependencies = [
         ("siteanalytics", "0001_initial"),
     ]
