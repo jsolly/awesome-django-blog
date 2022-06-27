@@ -27,11 +27,9 @@ from users.views import (
     MyPasswordResetView,
     MyPasswordResetDoneView,
     MyPasswordResetCompleteView,
+)
+from siteanalytics.views import site_analytics_view
 
-)
-from siteanalytics.views import (
-    site_analytics_view
-)
 
 def get_url(url_name):
     return resolve(reverse(url_name))
