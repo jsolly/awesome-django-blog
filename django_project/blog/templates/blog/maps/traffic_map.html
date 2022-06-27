@@ -1,0 +1,26 @@
+{% load static %}
+<div class="map" id="traffic_map"></div>
+<script>
+    var traffic_map = L.map('traffic_map', {
+      center: [39, -98],
+      zoom: 4,
+      trackResize: true
+    });
+
+    // show the scale bar on the lower left corner
+    L.control.scale({ imperial: true, metric: true }).addTo(traffic_map);
+
+    // add the OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 20,
+      attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+    }).addTo(traffic_map);
+
+//     for (var i = 0; i < locations.length; i++) {
+//     marker = new L.marker([locations[i][1], locations[i][2]])
+//              .bindPopup(locations[i][0])
+//              .addTo(mymap);
+// }
+
+
+  </script>

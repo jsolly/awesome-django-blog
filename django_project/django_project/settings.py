@@ -51,7 +51,6 @@ CSP_SCRIPT_SRC = (
     "'self'",
     "https://cdn.jsdelivr.net",
     "https://unpkg.com/",
-    "'sha256-yG1JB1yxrzpAy95bs6JV8OarO7Bx/Ytko+BlxaMoIrU='",
 )
 CSP_IMG_SRC = ("'self'", "data:", "https://unpkg.com/", "*.openstreetmap.org")
 CSP_FONT_SRC = ("'self'",)

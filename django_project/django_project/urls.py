@@ -62,7 +62,7 @@ urlpatterns = [
         name="django.contrib.sitemaps.views.sitemap",
     ),
     path("works-cited", works_cited_view, name="blog-works-cited"),
-    path("siteanalytics", site_analytics_view, name="blog-site-analytics"),
+    path("site-analytics", site_analytics_view, name="blog-site-analytics"),
     path("roadmap/", road_map_view, name="blog-roadmap"),
     path("admin/", admin.site.urls),
     path(".well-known/security.txt", security_txt_view, name="security-txt"),

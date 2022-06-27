@@ -20,6 +20,10 @@
 {% sri_static 'leaflet_plugins/leaflet-arc.min.js' %}
 {% sri_static 'leaflet_plugins/leaflet.textpath.js' %}
 
+<!-- OpenLayers -->
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
+
+
 {% endblock head %}
 
 <!-- About Section-->
@@ -30,25 +34,15 @@ Analytics for blogthedata.com
 {% block content %}
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
-    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button"
-      role="tab" aria-controls="home-tab-pane" aria-selected="true">Traffic</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button"
-      role="tab" aria-controls="profile-tab-pane" aria-selected="false">Performance</button>
+    <button class="nav-link active" id="location-tab" data-bs-toggle="tab" data-bs-target="#location-tab-pane" type="button"
+      role="tab" aria-controls="location-tab-pane" aria-selected="true">Visitors</button>
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-    <div id="map"></div>
-    <script type="text/javascript" charset="utf-8">var ip_address_icon_url = "{% static 'icons/ip-address.png' %}"</script>
-    
-    {% sri_static 'maps/leaflet_server_map.js' %}
+  <div class="tab-pane fade show active" id="location-tab-pane" role="tabpanel" aria-labelledby="location-tab" tabindex="0"> 
+    {% include "blog/maps/location_map.html" %}
     <a id="inline-attribution" href="https://www.flaticon.com/free-icons/ip-address" title="ip address icons">Ip address
       icons created by Freepik - Flaticon</a>
-  </div>
-  <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-    <h3>Work in Progress</h3>
   </div>
 
 
