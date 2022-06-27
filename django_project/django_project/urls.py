@@ -32,6 +32,16 @@ from .views import (
     security_txt_view,
     security_pgp_key_view,
 )
+from users.views import (
+    register_view,
+    profile_view,
+    MyLoginView,
+    MyLogoutView,
+    MyPasswordResetView,
+    MyPasswordResetDoneView,
+    MyPasswordResetConfirmView,
+    MyPasswordResetCompleteView,
+)
 from siteanalytics.views import site_analytics_view
 
 
@@ -59,6 +69,43 @@ urlpatterns = [
     path("pgp-key.txt", security_pgp_key_view, name="security-pgp-key-txt"),
     path("robots.txt", include("robots.urls")),
     path("", include("blog.urls")),
+    path("register/", register_view, name="register"),
+    path("profile/", profile_view, name="profile"),
+    path(
+        "login/",
+        MyLoginView.as_view(template_name="users/login.html"),
+        name="login",
+    ),
+    path(
+        "logout/",
+        MyLogoutView.as_view(template_name="users/logout.html"),
+        name="logout",
+    ),
+    path(
+        "password-reset/",
+        MyPasswordResetView.as_view(template_name="users/password_reset.html"),
+        name="password_reset",
+    ),
+    path(
+        "password-reset/done/",
+        MyPasswordResetDoneView.as_view(template_name="users/password_reset_done.html"),
+        name="password_reset_done",
+    ),
+    path(
+        "password-reset-confirm/<uidb64>/<token>/",
+        MyPasswordResetConfirmView.as_view(
+            template_name="users/password_reset_confirm.html"
+        ),
+        name="password_reset_confirm",
+    ),
+    path(
+        "password-reset-complete/",
+        MyPasswordResetCompleteView.as_view(
+            template_name="users/password_reset_complete.html"
+        ),
+        name="password_reset_complete",
+    ),
+    path("captcha", include("captcha.urls")),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
