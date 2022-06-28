@@ -51,6 +51,7 @@ CSP_SCRIPT_SRC = (
     "'self'",
     "https://cdn.jsdelivr.net",
     "https://unpkg.com/",
+    "'sha256-QMO8VDyAg/ILHMZK7Ss6lReGTDKC1lWsDEKsCoUDMNI='"
 )
 CSP_IMG_SRC = ("'self'", "data:", "https://unpkg.com/", "*.openstreetmap.org")
 CSP_FONT_SRC = ("'self'",)
@@ -64,10 +65,10 @@ CSP_OBJECT_SRC = ("'none'",)
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
 if os.environ["DEBUG"] == "True":
     # USE_SRI = True
-    CSP_EXCLUDE_URL_PREFIXES = (
-        "/site-analytics",
-        "/admin",
-    )
+    # CSP_EXCLUDE_URL_PREFIXES = (
+    #     "/site-analytics",
+    #     "/admin",
+    # )
     CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js",)
     CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
     SITE_ID = 2
@@ -77,8 +78,11 @@ if os.environ["DEBUG"] == "True":
     # HTTPS SETTINGS
     SESSION_COOKIE_SECURE = False
     SESSION_COOKIE_HTTPONLY = False
-    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_HTTPONLY = False
+    CSRF_COOKIE_SECURE = False
     SECURE_SSL_REDIRECT = False
+    SECURE_BROWSER_XSS_FILTER = False
+    SECURE_CONTENT_TYPE_NOSNIFF = False
 
 
 ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
