@@ -107,7 +107,6 @@ INSTALLED_APPS = [
     "django_ckeditor_5",
     "robots",
     "sri",
-    "django_fastdev",
     "django.contrib.gis",
     "siteanalytics",
 ]
