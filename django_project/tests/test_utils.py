@@ -22,5 +22,5 @@ class TestUtils(SetUp, MiddlewareMixin):
 
     @pytest.mark.skip(reason="Need to use test fixtures before this will pass")
     def test_load_data(self):
-        load_data()
+        load_data("django_project/siteanalytics/data/ip_info_small.csv")
         self.assertEqual(Visitor.objects.count(), 5)

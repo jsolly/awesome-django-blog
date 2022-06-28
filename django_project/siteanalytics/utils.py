@@ -1,4 +1,3 @@
-from django.db import IntegrityError
 import ipinfo
 from django.contrib.gis.geos import fromstr
 import csv
@@ -11,10 +10,15 @@ def get_IP_details(ip_addr, token):
     return handler.getDetails(ip_addr)
 
 
-def load_data():
-    with open("ip_info_small.csv") as csvfile:
+def load_data(file_path):
+    with open(file_path) as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
+            try:
+                Visitor.objects.get(ip_addr=row["ip"])
+                continue  # If it exists, go to the next one
+            except Visitor.DoesNotExist:
+                pass
             details = get_IP_details(row["ip"], os.environ["IP_INFO_TOKEN"])
             try:
                 location = fromstr(
@@ -24,15 +28,13 @@ def load_data():
                 print(f"I had trouble parsing row {row['id']}")
                 print(e)
                 continue
-            try:
-                Visitor(
-                    ip_addr=details.ip,
-                    country=details.country,
-                    city=details.city,
-                    location=location,
-                ).save()
-            except IntegrityError:  # happens with duplicate IPs
-                pass
+
+            Visitor(
+                ip_addr=details.ip,
+                country=details.country,
+                city=details.city,
+                location=location,
+            ).save()
 
 
 if __name__ == "__main__":
