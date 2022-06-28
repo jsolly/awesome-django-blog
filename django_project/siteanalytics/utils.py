@@ -35,14 +35,13 @@ def load_data(file_path):
 
 
 def get_client_ip(request):
-    return "66.249.65.111"
-    # x_forward_for = request.META.get("HTTP_X_FORWARD_FOR")
+    x_forward_for = request.META.get("HTTP_X_FORWARD_FOR")
 
-    # if x_forward_for:
-    #     ip_adrr = x_forward_for.split(",")[0]
-    # else:
-    #     ip_adrr = request.META.get("REMOTE_ADDR")
-    # return ip_adrr
+    if x_forward_for:
+        ip_adrr = x_forward_for.split(",")[0]
+    else:
+        ip_adrr = request.META.get("REMOTE_ADDR")
+    return ip_adrr
 
 
 def add_ip_person_if_not_exist(request):
