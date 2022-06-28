@@ -37,12 +37,11 @@ def load_data(file_path):
 
 
 def get_client_ip(request):
-    x_forward_for = request.META.get("HTTP_X_FORWARD_FOR")
-
-    if x_forward_for:
-        ip_adrr = x_forward_for.split(",")[0]
-    else:
-        ip_adrr = request.META.get("REMOTE_ADDR")
+    ip_addr = request.META.get('HTTP_CF_CONNECTING_IP')
+    if not ip_addr:
+        ip_addr = request.META.get("HTTP_X_FORWARD_FOR").split(",")[0]
+    if not ip_addr:
+        ip_adrr = request.META.get("REMOTE_ADDR")        
     return ip_adrr
 
 
