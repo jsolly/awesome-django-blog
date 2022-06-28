@@ -60,13 +60,9 @@ def add_ip_person_if_not_exist(request):
             return
             # print(f"I had trouble parsing row {row['id']}")
             # print(e) #TODO Add to logging
-        try:
-            return Visitor.objects.create(
-                ip_addr=details.ip,
-                country=details.country,
-                city=details.city,
-                location=location,
-            )
-        except IntegrityError:
-            # TODO Figure out why this is happening
-            pass
+        return Visitor.objects.create(
+            ip_addr=details.ip,
+            country=details.country,
+            city=details.city,
+            location=location,
+        )
