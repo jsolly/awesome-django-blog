@@ -41,3 +41,6 @@ migration_backup
 # backups
 blogthedata*.sql
 linode*.img
+
+#Data
+django_project/siteanalytics/data/ip_info*
