@@ -114,6 +114,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.gzip.GZipMiddleware",
+    "siteanalytics.middleware.requestTrackMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -126,7 +127,6 @@ MIDDLEWARE = [
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
     "csp.middleware.CSPMiddleware",
     "livereload.middleware.LiveReloadScript",
-    "siteanalytics.middleware.requestTrackMiddleware",
 ]
 
 ROOT_URLCONF = "django_project.urls"
