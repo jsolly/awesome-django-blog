@@ -48,6 +48,8 @@ def get_client_ip(request):
 
 def add_ip_person_if_not_exist(request):
     ip_addr = get_client_ip(request)
+    if not ip_addr:
+        return
     logger.warning(f"The ip address is {ip_addr}")
     try:
         a = Visitor.objects.get(ip_addr=ip_addr)
