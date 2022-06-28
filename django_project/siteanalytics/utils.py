@@ -3,9 +3,10 @@ from django.contrib.gis.geos import fromstr
 import csv
 import os
 from siteanalytics.models import Visitor
-from django.db.utils import IntegrityError
 import logging
-logger = logging.getLogger(__name__)
+
+logger = logging.getLogger("django")
+
 
 def load_data(file_path):
     with open(file_path) as csvfile:
