@@ -47,23 +47,26 @@ def get_client_ip(request):
 
 
 def add_ip_person_if_not_exist(request):
-    ip_adrr = get_client_ip(request)
-    logger.warning("Hello world!")
+    ip_addr = get_client_ip(request)
+    logger.warning(f"The ip address is {ip_addr}")
     try:
-        Visitor.objects.get(ip_addr=ip_adrr)
-        print()
+        a = Visitor.objects.get(ip_addr=ip_addr)
+        logger.warning(f"I got the object! {a}")
         return
     except Visitor.DoesNotExist:
+        logger.warning(f"IP address {ip_addr} does not exist!")
         handler = ipinfo.getHandler(os.environ["IP_INFO_TOKEN"])
-        details = handler.getDetails(ip_adrr)
+        details = handler.getDetails(ip_addr)
         try:
             location = fromstr(
                 f"POINT({details.longitude} {details.latitude})", srid=4326
             )
         except Exception:
+            logger.warning(f"I had trouble parsing {ip_addr}")
             return
             # print(f"I had trouble parsing row {row['id']}")
             # print(e) #TODO Add to logging
+        logger.warning(f"I am about to add {ip_addr}")
         return Visitor.objects.create(
             ip_addr=details.ip,
             country=details.country,
