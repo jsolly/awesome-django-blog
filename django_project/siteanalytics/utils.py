@@ -5,6 +5,7 @@ import os
 from siteanalytics.models import Visitor
 from django.db.utils import IntegrityError
 
+
 def load_data(file_path):
     with open(file_path) as csvfile:
         reader = csv.DictReader(csvfile)
@@ -67,5 +68,5 @@ def add_ip_person_if_not_exist(request):
                 location=location,
             )
         except IntegrityError:
-            #TODO Figure out why this is happening
+            # TODO Figure out why this is happening
             pass
