@@ -51,7 +51,7 @@ CSP_SCRIPT_SRC = (
     "'self'",
     "https://cdn.jsdelivr.net",
     "https://unpkg.com/",
-    "'sha256-ZekfmNMIUJgBZMbrVyV/R0groux8PEEiO3YRZhDFf9Q='"
+    "'sha256-ct6oXshFSCFz5S3jXyyr3FB2nLJEyZACJVifRE5VflA='"
 )
 CSP_IMG_SRC = ("'self'", "data:", "https://unpkg.com/", "*.openstreetmap.org")
 CSP_FONT_SRC = ("'self'",)
@@ -65,10 +65,10 @@ USE_SRI = False
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
 if os.environ["DEBUG"] == "True":
     USE_SRI = True
-    # CSP_EXCLUDE_URL_PREFIXES = (
-    #     "/site-analytics",
-    #     "/admin",
-    # )
+    CSP_EXCLUDE_URL_PREFIXES = (
+        "/site-analytics",
+        "/admin",
+    )
     CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js",)
     CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
     SITE_ID = 2
