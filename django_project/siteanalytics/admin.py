@@ -5,4 +5,4 @@ from .models import Visitor
 
 @admin.register(Visitor)
 class VisitorAdmin(OSMGeoAdmin):
-    list_display = ("ip_addr", "location")
+    list_display = ("ip_addr", "location", "city", "country")
