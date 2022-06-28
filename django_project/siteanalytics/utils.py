@@ -61,6 +61,7 @@ def add_ip_person_if_not_exist(request):
             # print(f"I had trouble parsing row {row['id']}")
             # print(e) #TODO Add to logging
         try:
+            raise Exception
             return Visitor.objects.create(
                 ip_addr=details.ip,
                 country=details.country,
