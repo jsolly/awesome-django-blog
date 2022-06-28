@@ -2,6 +2,7 @@ import warnings
 
 from django import setup
 import os
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
 setup()
 from dotenv import load_dotenv
@@ -42,6 +43,7 @@ def create_several_posts(category, user, number_of_posts):
 
 class SetUp(TestCase):
     """Create User and Post object to be shared by tests. Also create urls using reverse()"""
+
     setup_test_environment()
 
     def setUp(self):
@@ -76,7 +78,7 @@ class SetUp(TestCase):
             snippet="Long ago, the four nations lived together in harmony.",
             content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
             # date_posted = ""
-            author=self.super_user
+            author=self.super_user,
         )
 
         # draft post
@@ -91,7 +93,3 @@ class SetUp(TestCase):
             author=self.super_user,
         )
         self.client = Client()
-
-
-# if __name__ == "__main__":
-#     unittest.main()
