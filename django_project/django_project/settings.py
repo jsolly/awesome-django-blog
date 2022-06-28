@@ -122,6 +122,7 @@ MIDDLEWARE = [
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
     "csp.middleware.CSPMiddleware",
     "livereload.middleware.LiveReloadScript",
+    "siteanalytics.middleware.requestTrackMiddleware"
 ]
 
 ROOT_URLCONF = "django_project.urls"

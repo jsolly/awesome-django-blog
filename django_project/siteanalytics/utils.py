@@ -5,11 +5,6 @@ import os
 from siteanalytics.models import Visitor
 
 
-def get_IP_details(ip_addr, token):
-    handler = ipinfo.getHandler(token)
-    return handler.getDetails(ip_addr)
-
-
 def load_data(file_path):
     with open(file_path) as csvfile:
         reader = csv.DictReader(csvfile)
@@ -19,7 +14,8 @@ def load_data(file_path):
                 continue  # If it exists, go to the next one
             except Visitor.DoesNotExist:
                 pass
-            details = get_IP_details(row["ip"], os.environ["IP_INFO_TOKEN"])
+            handler = ipinfo.getHandler(os.environ["IP_INFO_TOKEN"])
+            details = handler.getDetails(row["ip"])
             try:
                 location = fromstr(
                     f"POINT({details.longitude} {details.latitude})", srid=4326
@@ -37,5 +33,35 @@ def load_data(file_path):
             ).save()
 
 
-if __name__ == "__main__":
-    load_data()
+def get_client_ip(request):
+    x_forward_for = request.META.get("HTTP_X_FORWARD_FOR")
+
+    if x_forward_for:
+        ip_adrr = x_forward_for.split(",")[0]
+    else:
+        ip_adrr = request.META.get("REMOTE_ADDR")
+    return ip_adrr
+
+
+def add_ip_person_if_not_exist(request):
+    ip_adrr = get_client_ip(request)
+    try:
+        Visitor.objects.get(ip_addr=ip_adrr)
+        return
+    except Visitor.DoesNotExist:
+        handler = ipinfo.getHandler(os.environ["IP_INFO_TOKEN"])
+        details = handler.getDetails(ip_adrr)
+        try:
+            location = fromstr(
+                f"POINT({details.longitude} {details.latitude})", srid=4326
+            )
+        except Exception:
+            return
+            # print(f"I had trouble parsing row {row['id']}")
+            # print(e) #TODO Add to logging
+        return Visitor.objects.create(
+            ip_addr=details.ip,
+            country=details.country,
+            city=details.city,
+            location=location,
+        )
