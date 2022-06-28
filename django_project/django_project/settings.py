@@ -51,7 +51,7 @@ CSP_SCRIPT_SRC = (
     "'self'",
     "https://cdn.jsdelivr.net",
     "https://unpkg.com/",
-    "'sha256-ct6oXshFSCFz5S3jXyyr3FB2nLJEyZACJVifRE5VflA='"
+    "'sha256-ct6oXshFSCFz5S3jXyyr3FB2nLJEyZACJVifRE5VflA='",
 )
 CSP_IMG_SRC = ("'self'", "data:", "https://unpkg.com/", "*.openstreetmap.org")
 CSP_FONT_SRC = ("'self'",)
@@ -62,6 +62,7 @@ CSP_BASE_URI = ("'none'",)
 CSP_FORM_ACTION = ("'self'", "https://blogthedata.us14.list-manage.com")
 CSP_OBJECT_SRC = ("'none'",)
 USE_SRI = False
+CSP_EXCLUDE_URL_PREFIXES = ("/admin",)
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
 if os.environ["DEBUG"] == "True":
     USE_SRI = True
@@ -125,7 +126,7 @@ MIDDLEWARE = [
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
     "csp.middleware.CSPMiddleware",
     "livereload.middleware.LiveReloadScript",
-    "siteanalytics.middleware.requestTrackMiddleware"
+    "siteanalytics.middleware.requestTrackMiddleware",
 ]
 
 ROOT_URLCONF = "django_project.urls"
