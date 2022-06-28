@@ -58,7 +58,7 @@ A django blog about data-driven decisions
 - Global search
 - Ko-Fi donation button ☕️
 - Leaflet.js maps 🗺
-
+- Log and display visitor IP addresses in a web map
 #### Non-Functional Features
 - Robots.txt, security.txt, and sitemap.xml
 - Honeypot Admin page (Removed in https://github.com/jsolly/blogthedata/pull/105)
