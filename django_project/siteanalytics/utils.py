@@ -4,7 +4,8 @@ import csv
 import os
 from siteanalytics.models import Visitor
 from django.db.utils import IntegrityError
-
+import logging
+logger = logging.getLogger(__name__)
 
 def load_data(file_path):
     with open(file_path) as csvfile:
@@ -46,8 +47,10 @@ def get_client_ip(request):
 
 def add_ip_person_if_not_exist(request):
     ip_adrr = get_client_ip(request)
+    logger.warning("Hello world!")
     try:
         Visitor.objects.get(ip_addr=ip_adrr)
+        print()
         return
     except Visitor.DoesNotExist:
         handler = ipinfo.getHandler(os.environ["IP_INFO_TOKEN"])
