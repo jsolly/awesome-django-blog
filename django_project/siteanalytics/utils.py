@@ -46,7 +46,6 @@ def get_client_ip(request):
 
 def add_ip_person_if_not_exist(request):
     ip_adrr = get_client_ip(request)
-    raise Exception
     try:
         Visitor.objects.get(ip_addr=ip_adrr)
         return
