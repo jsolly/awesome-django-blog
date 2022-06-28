@@ -16,6 +16,15 @@
   }).addTo(location_map);
 
 
+  {% for visitor in visitors %}
+  var VisitorLatLng = { lat: {{ visitor.location.y }}, lon: {{ visitor.location.x }} }
+  
+  var VisitorMarkerOptions = {
+    title: "{{visitor.city}}, {{visitor.country}}",
+    alt: "The city of {{visitor.city}} which is located in {{visitor.country}}",
+  }
+  L.marker(VisitorLatLng, VisitorMarkerOptions).addTo(location_map).bindPopup("{{visitor.city}}, {{visitor.country}}").addTo(location_map);
+  {% endfor %}
 
   var LaLatLng = { lat: 34.1, lon: -118.2 }
   var DallasLatLng = { lat: 32.8, lon: -96.8 }
