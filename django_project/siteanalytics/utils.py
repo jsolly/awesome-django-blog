@@ -3,7 +3,7 @@ from django.contrib.gis.geos import fromstr
 import csv
 import os
 from siteanalytics.models import Visitor
-
+from django.db.utils import IntegrityError
 
 def load_data(file_path):
     with open(file_path) as csvfile:
@@ -59,9 +59,13 @@ def add_ip_person_if_not_exist(request):
             return
             # print(f"I had trouble parsing row {row['id']}")
             # print(e) #TODO Add to logging
-        return Visitor.objects.create(
-            ip_addr=details.ip,
-            country=details.country,
-            city=details.city,
-            location=location,
-        )
+        try:
+            return Visitor.objects.create(
+                ip_addr=details.ip,
+                country=details.country,
+                city=details.city,
+                location=location,
+            )
+        except IntegrityError:
+            #TODO Figure out why this is happening
+            pass
