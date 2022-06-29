@@ -83,7 +83,7 @@ class PostUpdateView(UserPassesTestMixin, UpdateView):
             return True
 
 
-class PostDeleteView(DeleteView):
+class PostDeleteView(UserPassesTestMixin, DeleteView):
     model = Post
     success_url = reverse_lazy("blog-home")
 

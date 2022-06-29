@@ -153,6 +153,17 @@ class TestViews(SetUp):
         self.assertRedirects(response, expected_url=reverse("blog-home"))
         self.assertFalse(Post.objects.filter(id=self.post1.id).exists())
 
+    def test_post_delete_view_different_user(self):
+        post1_delete_url = reverse("post-delete", args=[self.post1.slug])
+        self.assertTrue(Post.objects.filter(id=self.post1.id).exists())
+        self.client.login(
+            username=self.basic_user.username, password=self.general_password
+        )
+
+        response = self.client.get(post1_delete_url)
+        self.assertEqual(response.status_code, 403)
+        self.assertTrue(Post.objects.filter(id=self.post1.id).exists())
+
     def test_category_view_anonymous(self):
         # anonymous user
         category_url = reverse("blog-category", args=[self.category1.name])

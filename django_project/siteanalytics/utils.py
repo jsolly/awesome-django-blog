@@ -44,9 +44,9 @@ def get_client_ip(request):
     if x_forward_for:
         return request.META.get("HTTP_X_FORWARD_FOR").split(",")[0]
 
-    ip_adrr = request.META.get("REMOTE_ADDR")
+    ip_addr = request.META.get("REMOTE_ADDR")
     if ip_addr:
-        return ip_adrr
+        return ip_addr
     else:
         return None
 
@@ -55,13 +55,12 @@ def add_ip_person_if_not_exist(request):
     ip_addr = get_client_ip(request)
     if not ip_addr:
         return
-    logger.warning(f"The ip address is {ip_addr}")
     try:
-        a = Visitor.objects.get(ip_addr=ip_addr)
-        logger.warning(f"I got the object! {a}")
+        Visitor.objects.get(ip_addr=ip_addr)
+        logger.info("Visitor already exists")
         return
     except Visitor.DoesNotExist:
-        logger.warning(f"IP address {ip_addr} does not exist!")
+        logger.info(f"IP address {ip_addr} is not an existing visitor")
         handler = ipinfo.getHandler(os.environ["IP_INFO_TOKEN"])
         details = handler.getDetails(ip_addr)
         try:
@@ -71,9 +70,7 @@ def add_ip_person_if_not_exist(request):
         except Exception:
             logger.warning(f"I had trouble parsing {ip_addr}")
             return
-            # print(f"I had trouble parsing row {row['id']}")
-            # print(e) #TODO Add to logging
-        logger.warning(f"I am about to add {ip_addr}")
+        logger.info(f"I am about to add {ip_addr} as a visitor")
         return Visitor.objects.create(
             ip_addr=details.ip,
             country=details.country,
