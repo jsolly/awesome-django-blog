@@ -27,17 +27,6 @@ class PostSitemap(Sitemap):
     # def location() Django uses get_absolute_url() by default
 
 
-class RoadmapSitemap(Sitemap):
-    changefreq = "daily"
-    priority = 0.7
-
-    def items(self):
-        return ["blog-roadmap"]
-
-    def location(self, item):
-        return reverse(item)
-
-
 class CategorySiteMap(Sitemap):
     changefreq = "daily"
     priority = 0.8

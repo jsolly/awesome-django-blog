@@ -4,7 +4,6 @@ from django.contrib.sitemaps import Sitemap
 from django_project.sitemaps import (
     HomeSitemap,
     PostSitemap,
-    RoadmapSitemap,
     CategorySiteMap,
     WorksCitedSiteMap,
     SiteAnalyticsSiteMap,
@@ -15,16 +14,10 @@ class TestModels(SetUp):
     def test_home_site_map(self):
         item = HomeSitemap.items(Sitemap)[0]
         self.assertTrue(reverse(item))
-        self.assertTrue(RoadmapSitemap.location(Sitemap, item))
 
     def test_post_site_map(self):
         item = PostSitemap.items(Sitemap)[0]
         self.assertTrue(reverse("post-detail", args=[item.slug]))
-
-    def test_road_site_map(self):
-        item = RoadmapSitemap.items(Sitemap)[0]
-        self.assertTrue(reverse(item))
-        self.assertTrue(RoadmapSitemap.location(Sitemap, item))
 
     def test_category_site_map(self):
         item = CategorySiteMap.items(Sitemap)[0]
