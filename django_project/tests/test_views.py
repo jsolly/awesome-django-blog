@@ -187,11 +187,6 @@ class TestViews(SetUp):
         response = self.client.get(category_url, {"page": 2})
         self.assertTrue(response.context["page_obj"].has_previous())
 
-    def test_roadmap_view(self):
-        response = self.client.get(reverse("blog-roadmap"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/roadmap.html")
-
     def test_search_view_blank(self):
         # Empty page if user didn't search for anything and manually typed in the search url (get)
         response = self.client.get(reverse("blog-search"))

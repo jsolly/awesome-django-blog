@@ -17,7 +17,6 @@ from django_project.views import (
     works_cited_view,
     security_txt_view,
     security_pgp_key_view,
-    road_map_view,
 )
 from users.views import (
     register_view,
@@ -70,9 +69,6 @@ class TestUrls(SetUp):
     def test_category_url_is_resolved(self):
         category_url = reverse("blog-category", args=[self.category1.name])
         self.assertEqual(resolve(category_url).func.view_class, CategoryView)
-
-    def test_roadmap_url_is_resolved(self):
-        self.assertEqual(resolve(reverse("blog-roadmap")).func, road_map_view)
 
     def test_search_url_is_resolved(self):
         self.assertEqual(resolve(reverse("blog-search")).func, search_view)
