@@ -1,13 +1,13 @@
 from django import forms
-from .models import Post, Category
+from .models import Post
 
-# choices = [
-#     ("life advice", "life advice"),
-#     ("site updates", "site updates"),
-# ]
-choices = Category.objects.all().values_list(
-    "name", "name"
-)
+choices = [
+    ("life advice", "life advice"),
+    ("site updates", "site updates"),
+]
+# choices = Category.objects.all().values_list(
+#     "name", "name"
+# )
 # comment this if doing an initial DB migration or changing databases.
 
 

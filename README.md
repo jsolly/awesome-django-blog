@@ -58,7 +58,7 @@ A django blog about data-driven decisions
 - Global search
 - Ko-Fi donation button ☕️
 - Leaflet.js maps 🗺
-
+- Log and display visitor IP addresses in a web map
 #### Non-Functional Features
 - Robots.txt, security.txt, and sitemap.xml
 - Honeypot Admin page (Removed in https://github.com/jsolly/blogthedata/pull/105)
@@ -81,10 +81,10 @@ A django blog about data-driven decisions
 ## Coverage, Tests, Linting
 Contained within tests/
 #### Coverage
-$ coverage run -m unittest discover django_project 
+$ coverage run -m pytest django_project 
 $ coverage report -m --skip-covered
 #### Test
-$ python3 -m unittest discover django_project
+$ python3 -m pytest django_project
 #### Lint
 $ flake8 django_project
 

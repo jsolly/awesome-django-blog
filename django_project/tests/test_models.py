@@ -2,6 +2,10 @@ from .base import SetUp
 from django.urls import reverse
 from PIL import Image
 from blog.models import Post, Category
+from users.models import Profile
+from siteanalytics.models import Visitor
+from django.contrib.gis.geos import Point
+import pytest
 
 
 class TestModels(SetUp):
@@ -20,7 +24,7 @@ class TestModels(SetUp):
             snippet="Long ago, the four nations lived together in harmony.",
             content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
             # date_posted = ""
-            author=self.super_user
+            author=self.super_user,
         )
         new_post_count = Post.objects.count()
         self.assertEqual(new_post_count, post_count + 1)
@@ -40,7 +44,7 @@ class TestModels(SetUp):
             snippet="Long ago, the four nations lived together in harmony.",
             content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
             # date_posted = ""
-            author=self.super_user
+            author=self.super_user,
         )
         new_active_post_count = Post.objects.active().count()
         self.assertEqual(new_active_post_count, active_posts_count + 1)
@@ -74,12 +78,28 @@ class TestModels(SetUp):
 
     # Users Models
     def test_profile(self):
-        self.assertEqual(str(self.profile1), f"{self.super_user.username} Profile")
-        self.assertEqual(self.profile1.get_absolute_url(), reverse("profile"))
+        profile1 = Profile.objects.get(user=self.super_user)
+        self.assertEqual(str(profile1), f"{self.super_user.username} Profile")
+        self.assertEqual(profile1.get_absolute_url(), reverse("profile"))
         width, height = 400, 400
         img = Image.new(mode="RGB", size=(width, height))
-        img.save(self.profile1.image.path)
-        self.profile1.save()
-        with Image.open(self.profile1.image.path) as img:
+        img.save(profile1.image.path)
+        profile1.save()
+        with Image.open(profile1.image.path) as img:
             self.assertEqual(img.height, 300)
             self.assertEqual(img.width, 300)
+
+    # SiteAnalytics Models
+    @pytest.mark.skip(reason="Need to use test fixtures before this will pass")
+    def test_visitor(self):
+        current_visitors = Visitor.objects.count()
+        ip = "156.74.181.208"
+        visitor = Visitor.objects.create(
+            ip_addr=ip,
+            country="United States",
+            city="Seattle",
+            location=Point(-122.333, 47.604, srid=4326),
+        )
+        self.assertEqual(str(visitor), ip)
+        self.assertGreater(Visitor.objects.count(), current_visitors)
+        self.assertIsInstance(Visitor.objects.all()[0], Visitor)

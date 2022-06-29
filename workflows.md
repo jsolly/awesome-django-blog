@@ -25,22 +25,19 @@ git checkout -b <local_branch_name> origin/<branch_name> # local_branch_name and
 
 ### Export prod database and restore locally
     ```
-    $ sudo -u postgres pg_dump blogthedata > blogthedata_db_3_8_22.sql # do this inside prod
+    $ sudo -u postgres pg_dump blogthedata > /home/john/blogthedata/backups/blogthedata_db_3_8_22.sql # do this inside prod
     #### The following steps are done on a local dev machine
-    $ scp jsolly@69.164.205.120:/home/jsolly/backups/blogthedata_db_3_8_22.sql /Users/johnsolly/Documents/code/blogthedata/backups
+    $ scp john@198.74.48.211:/home/john/blogthedata/backups/blogthedata_db_6_28_22.sql /Users/johnsolly/Documents/code/blogthedata/backups
     $ psql -U postgres
     postgres=# DROP DATABASE blogthedata;
     postgres=# CREATE DATABASE blogthedata;
     postgres=# exit
     $ psql blogthedata < /Users/johnsolly/Documents/code/blogthedata/backups/blogthedata_db_5_6_22.sql
-    $ scp -r jsolly@69.164.205.120:/home/jsolly/blogthedata/django_project/media /Users/johnsolly/Documents/code/blogthedata/django_project # Optionally copy media folder over (to get uploaded images)
+    $ scp -r john@69.164.205.120:/home/john/blogthedata/django_project/media /Users/johnsolly/Documents/code/blogthedata/django_project # Optionally copy media folder over (to get uploaded images)
     ```
 
 ### useful commands and paths
     ```
-    $ sudo nginx -t # Check Nginx configuration
-    $ sudo systemctl restart nginx # Restart Nginx
-    $ psql -U postgres # log into postgres (local)
     $ sudo -u postgres psql # Log into postgres (remote)
     $ psql -U postgres -h 127.0.0.1 # log into postgres (remote option 2)
     $ \c DBNAME # Switch databases while in postgres shell
@@ -58,6 +55,15 @@ git checkout -b <local_branch_name> origin/<branch_name> # local_branch_name and
     
     ```
 
+    ```
+    # Troubleshooting
+    $ sudo nginx -t # Check Nginx configuration
+    $ sudo systemctl restart nginx # Restart Nginx
+    ## Restart Gunicorn
+    $ sudo systemctl daemon-reload
+    $ sudo systemctl restart gunicorn
+    ```
+    
 ### Create new venv
     ```
     make sure an up-to-date pip freeze has happened

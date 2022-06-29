@@ -51,7 +51,7 @@ CSP_SCRIPT_SRC = (
     "'self'",
     "https://cdn.jsdelivr.net",
     "https://unpkg.com/",
-    "'sha256-yG1JB1yxrzpAy95bs6JV8OarO7Bx/Ytko+BlxaMoIrU='",
+    "'sha256-W5NZ11gn3UBqTes/hBv3qKT6MC1m5vN7emMaIUwVyzI='",
 )
 CSP_IMG_SRC = ("'self'", "data:", "https://unpkg.com/", "*.openstreetmap.org")
 CSP_FONT_SRC = ("'self'",)
@@ -61,11 +61,15 @@ CSP_FRAME_ANCESTORS = ("'none'",)
 CSP_BASE_URI = ("'none'",)
 CSP_FORM_ACTION = ("'self'", "https://blogthedata.us14.list-manage.com")
 CSP_OBJECT_SRC = ("'none'",)
-# USE_SRI = False
+CSP_EXCLUDE_URL_PREFIXES = ("/admin", "/site-analytics")
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
+USE_SRI = False
 if os.environ["DEBUG"] == "True":
     # USE_SRI = True
-    CSP_EXCLUDE_URL_PREFIXES = "/site-analytics"
+    CSP_EXCLUDE_URL_PREFIXES = (
+        "/site-analytics",
+        "/admin",
+    )
     CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js",)
     CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
     SITE_ID = 2
@@ -75,8 +79,11 @@ if os.environ["DEBUG"] == "True":
     # HTTPS SETTINGS
     SESSION_COOKIE_SECURE = False
     SESSION_COOKIE_HTTPONLY = False
-    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_HTTPONLY = False
+    CSRF_COOKIE_SECURE = False
     SECURE_SSL_REDIRECT = False
+    SECURE_BROWSER_XSS_FILTER = False
+    SECURE_CONTENT_TYPE_NOSNIFF = False
 
 
 ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
@@ -101,11 +108,13 @@ INSTALLED_APPS = [
     "django_ckeditor_5",
     "robots",
     "sri",
-    "django_fastdev",
+    "django.contrib.gis",
+    "siteanalytics",
 ]
 
 MIDDLEWARE = [
     "django.middleware.gzip.GZipMiddleware",
+    "siteanalytics.middleware.requestTrackMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -208,7 +217,7 @@ LOGGING = {
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "ENGINE": "django.contrib.gis.db.backends.postgis",
         "NAME": "blogthedata",
         "USER": os.environ["POSTGRES_USER"],
         "PASSWORD": os.environ["POSTGRES_PASS"],
@@ -220,18 +229,21 @@ DATABASES = {
     }
 }
 
+
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.sqlite3",
 #         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
 #     }
 # }
+
 import sys
 
 found_count = len(
-    {item for item in ["testFile", "discover"] if any(item in arg for arg in sys.argv)}
+    {item for item in ["pytest", "discover"] if any(item in arg for arg in sys.argv)}
 )
 if found_count > 0:
+
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
