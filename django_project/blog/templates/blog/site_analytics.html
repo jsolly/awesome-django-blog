@@ -17,8 +17,14 @@
   crossorigin=""></script>
 
 <!-- Leaflet Plugins -->
+<!-- ArcPolyLine-->
 {% sri_static 'leaflet_plugins/leaflet-arc.min.js' %}
 {% sri_static 'leaflet_plugins/leaflet.textpath.js' %}
+
+<!-- Marker Cluster-->
+{% sri_static 'leaflet_plugins/MarkerCluster.Default.css' %}
+{% sri_static 'leaflet_plugins/MarkerCluster.css' %}
+{% sri_static 'leaflet_plugins/leaflet.markercluster.js' %}
 
 
 {% endblock head %}
@@ -54,6 +60,7 @@ Analytics for blogthedata.com
         attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
       }).addTo(location_map);
 
+      var markerClusters = L.markerClusterGroup();
       {% for visitor in visitors %}
       var VisitorLatLng = { lat: {{ visitor.location.y }}, lon: {{ visitor.location.x }} }
 
@@ -61,9 +68,12 @@ Analytics for blogthedata.com
         title: "{{visitor.city}}, {{visitor.country}}",
         alt: "The city of {{visitor.city}} which is located in {{visitor.country}}",
       }
-      L.marker(VisitorLatLng, VisitorMarkerOptions).addTo(location_map).bindPopup("{{visitor.city}}, {{visitor.country}}").addTo(location_map);
-      {% endfor %}
+      var visitor_marker = L.marker(VisitorLatLng, VisitorMarkerOptions)
+      // L.marker(VisitorLatLng, VisitorMarkerOptions).addTo(location_map).bindPopup("{{visitor.city}}, {{visitor.country}}").addTo(location_map);
+      markerClusters.addLayer(visitor_marker)
 
+      {% endfor %}
+      location_map.addLayer(markerClusters)
 
 
       var LaLatLng = { lat: 34.1, lon: -118.2 }
