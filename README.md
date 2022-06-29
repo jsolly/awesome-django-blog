@@ -82,6 +82,7 @@ A django blog about data-driven decisions
 Contained within tests/
 #### Coverage
 $ coverage run -m pytest django_project 
+
 $ coverage report -m --skip-covered
 #### Test
 $ python3 -m pytest django_project
