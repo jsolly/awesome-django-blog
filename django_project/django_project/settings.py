@@ -158,11 +158,11 @@ WSGI_APPLICATION = "django_project.wsgi.application"
 FORMATTERS = (
     {
         "verbose": {
-            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "format": "{levelname} {asctime:s} {threadName} {thread:d} {module} {filename} {lineno:d} {name} {funcName} {process:d} {message}",
             "style": "{",
         },
         "simple": {
-            "format": "{levelname} {message}",
+            "format": "{levelname} {asctime:s} {module} {filename} {lineno:d} {funcName} {message}",
             "style": "{",
         },
     },
@@ -175,20 +175,23 @@ HANDLERS = {
         "formatter": "simple",
     },
     "my_handler": {
-        "level": "WARNING",
         "class": "logging.handlers.RotatingFileHandler",
+        "level": "WARNING",
         "filename": f"{BASE_DIR}/logs/blogthedata.log",
-        "maxBytes": 1024 * 1024 * 5,  # 5 MB
-        "backupCount": 5,
+        "mode": 'a',
+        "encoding": "utf-8",
         "formatter": "simple",
+        "backupCount": 5,
+        "maxBytes": 1024 * 1024 * 5,  # 5 MB
     },
     "my_handler_detailed": {
-        "level": "INFO",
         "class": "logging.handlers.RotatingFileHandler",
+        "level": "INFO",
         "filename": f"{BASE_DIR}/logs/blogthedata_detailed.log",
-        "maxBytes": 1024 * 1024 * 5,  # 5 MB
-        "backupCount": 5,
+        "mode": 'a',
         "formatter": "verbose",
+        "backupCount": 5,
+        "maxBytes": 1024 * 1024 * 5,  # 5 MB
     },
 }
 
