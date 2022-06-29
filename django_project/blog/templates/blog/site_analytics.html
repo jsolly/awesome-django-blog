@@ -68,7 +68,7 @@ Analytics for blogthedata.com
         title: "{{visitor.city}}, {{visitor.country}}",
         alt: "The city of {{visitor.city}} which is located in {{visitor.country}}",
       }
-      var visitor_marker = L.marker(VisitorLatLng, VisitorMarkerOptions)
+      var visitor_marker = L.marker(VisitorLatLng, VisitorMarkerOptions).bindPopup("{{visitor.city}}, {{visitor.country}}")
       // L.marker(VisitorLatLng, VisitorMarkerOptions).addTo(location_map).bindPopup("{{visitor.city}}, {{visitor.country}}").addTo(location_map);
       markerClusters.addLayer(visitor_marker)
 
