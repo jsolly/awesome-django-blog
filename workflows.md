@@ -62,6 +62,10 @@ git checkout -b <local_branch_name> origin/<branch_name> # local_branch_name and
     ## Restart Gunicorn
     $ sudo systemctl daemon-reload
     $ sudo systemctl restart gunicorn
+
+    # Take a look at gunicorn configuration
+    $ cd ~/blogthedta/django_project
+    $ gunicorn --print-config django_project.wsgi:application
     ```
     
 ### Create new venv
