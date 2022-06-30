@@ -49,6 +49,7 @@ $ python3 -m pip install -r ~/blogthedata/django_project/requirements/requiremen
 $ nano ~/blogthedata/.env
 # copy over parameters from blogthedata/sample.env and set them as needed
 $ sudo ufw allow 8000 # We will turn this off later. It's just for testing.
+$ python3 manage.py check # Check for any issues
 $ python3 ~/blogthedata/django_project/manage.py runserver 0.0.0.0:8000
 # in a browser navigate to <ip_address>:8000
 # App should be loading

@@ -47,7 +47,7 @@ git checkout -b <local_branch_name> origin/<branch_name> # local_branch_name and
     $ sudo less /var/log/nginx/error.log # Check the Nginx error logs 
     $ sudo journalctl -u gunicorn # Check the Gunicorn application logs by typing:
     $ sudo journalctl -u gunicorn.socket # Check the Gunicorn socket logs by typing: s
-    $ sudo nano /etc/nginx/sites-available/myproject # congigure Nginx
+    $ sudo nano /etc/nginx/sites-available/django_project # congigure Nginx
     $ sudo service postgresql restart
     $ sudo chmod -R XXX blogthedata
     $ sudo -i # become root user
