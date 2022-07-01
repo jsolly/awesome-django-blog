@@ -52,13 +52,13 @@ A django blog about data-driven decisions
 - Multiple categoires to organize posts
 - Post views and likes (Removed in https://github.com/jsolly/blogthedata/pull/77)  
 - Newsletter Sign up 🗞
-- Github Integration to show active issue backlog without leaving blog
+- Github Integration to show active issue backlog without leaving blog (removed in https://github.com/jsolly/blogthedata/pull/121)
 - Slugified URLs 
 - Open Graph protocol compliant social media sharing
 - Global search
 - Ko-Fi donation button ☕️
-- Leaflet.js maps 🗺
-- Log and display visitor IP addresses in a web map
+- Leaflet.js and OpenLayers maps 🗺
+- Display site visitors in a web map
 #### Non-Functional Features
 - Robots.txt, security.txt, and sitemap.xml
 - Honeypot Admin page (Removed in https://github.com/jsolly/blogthedata/pull/105)
