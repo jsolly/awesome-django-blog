@@ -32,9 +32,7 @@ temp*.js
 django_project/siteanalytics/data/ip_info.csv
 
 # Logs
-blogthedata.log
-blogthedata_detailed.log
-
+blogthedata*.log
 # migrations
 migration_backup
 
