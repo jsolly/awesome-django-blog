@@ -169,17 +169,16 @@ FORMATTERS = (
     },
 )
 
+
 HANDLERS = {
     "console_handler": {
-        "level": "INFO",
         "class": "logging.StreamHandler",
         "formatter": "simple",
     },
     "my_handler": {
         "class": "logging.handlers.RotatingFileHandler",
-        "level": "WARNING",
         "filename": f"{BASE_DIR}/logs/blogthedata.log",
-        "mode": 'a',
+        "mode": "a",
         "encoding": "utf-8",
         "formatter": "simple",
         "backupCount": 5,
@@ -187,9 +186,8 @@ HANDLERS = {
     },
     "my_handler_detailed": {
         "class": "logging.handlers.RotatingFileHandler",
-        "level": "INFO",
         "filename": f"{BASE_DIR}/logs/blogthedata_detailed.log",
-        "mode": 'a',
+        "mode": "a",
         "formatter": "verbose",
         "backupCount": 5,
         "maxBytes": 1024 * 1024 * 5,  # 5 MB
@@ -210,6 +208,7 @@ LOGGERS = (
         },
     },
 )
+
 
 LOGGING = {
     "version": 1,
