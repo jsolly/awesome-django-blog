@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+  maximum-scale=5" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css">
+    <link rel="stylesheet" href="{% static '404.css' %}">
+
+    <title>Devchallenges</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <span class="title">404 NOT FOUND</span>
+        </header>
+        <main>
+            <section class="illustration">
+                <img src="{% static 'img/Scarecrow.png' %}" alt="scarecrow image">
+            </section>
+            <section class="content">
+                <h1 class="heading">I have bad news for you...</h1>
+                <p class="message">
+                    The page you are looking for might be removed or is temporarily unavailable
+                </p>
+                <a href="{% url 'blog-home' %}" class="btn-home">BACK TO HOMEPAGE</a>
+            </section>
+        </main>
+        <footer>
+            <p class="author">created by <a href="https://github.com/OnlyManu/">onlymanu</a>-devChallenge.io</p>
+        </footer>
+    </div>
+</body>
+
+</html>

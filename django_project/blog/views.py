@@ -47,7 +47,7 @@ class PostDetailView(DetailView):
     template_name = "blog/post_detail.html"
 
     def get_queryset(self):
-        post = Post.objects.get(slug=self.kwargs["slug"])
+        post = get_object_or_404(Post, slug=self.kwargs["slug"])
         if post.draft:
             get_object_or_404(User, username=self.request.user)
 
@@ -101,7 +101,7 @@ class CategoryView(ListView):
 
     def get_queryset(self):
         category = self.kwargs.get("category").replace("-", " ")
-        category = Category.objects.get(name=category)
+        category = get_object_or_404(Category, name=category)
         posts = Post.objects.active()
         if self.request.user.is_staff or self.request.user.is_superuser:
             posts = Post.objects.all()
