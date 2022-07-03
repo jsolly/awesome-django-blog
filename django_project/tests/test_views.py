@@ -4,10 +4,6 @@ from blog.models import Post
 from blog.forms import PostForm
 from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 import pytest
-# from django_project.views import handler_404
-# from django.http import HttpRequest
-# from django.urls.exceptions import Resolver404
-# from django.urls.exceptions import NoReverseMatch
 
 
 class TestViews(SetUp):
@@ -356,8 +352,7 @@ class TestViews(SetUp):
         response = self.client.get(reverse("geo-asteroids"))
         self.assertEqual(response.status_code, 200)
 
-
-# def test_handler_404(self):
-#     response = self.client.get(reverse("/doesnotexist"))
-#     self.assertEqual(response.status_code, 200)
-#     self.assertTemplateUsed(response, "blog/404_page.html")
+    # def test_handler_404(self):
+    #     response = self.client.get("doesnotexist")
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertTemplateUsed(response, "blog/404_page.html")
