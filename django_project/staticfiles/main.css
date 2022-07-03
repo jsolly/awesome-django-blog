@@ -324,4 +324,9 @@ th {
 .resp-sharing-button--twitter:active {
   background-color: #2795e9;
   border-color: #2795e9;
-} 
+}
+
+#geo-asteroids {
+  width: 100%;
+  height: 100%;
+}
