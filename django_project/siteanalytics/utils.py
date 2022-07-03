@@ -55,6 +55,8 @@ def add_ip_person_if_not_exist(request):
     ip_addr = get_client_ip(request)
     if not ip_addr:
         return
+    if ip_addr in ("127.0.0.1"):
+        return
     try:
         Visitor.objects.get(ip_addr=ip_addr)
         logger.info("Visitor already exists")

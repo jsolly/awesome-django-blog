@@ -11,6 +11,7 @@ def works_cited_view(request):
         "blog/works_cited.html",
     )
 
+
 def geo_asteroids_view(request):
     return render(
         request,
