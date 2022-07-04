@@ -77,6 +77,7 @@ A django blog about data-driven decisions
 - Subresource Integrity
 - [A+ Score on Mozilla Observatory]([url](https://observatory.mozilla.org/analyze/blogthedata.com))
 - Excellent scores on Google Lighthouse
+- Custom 404 page
 
 ## Coverage, Tests, Linting
 Contained within tests/
