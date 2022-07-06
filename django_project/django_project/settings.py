@@ -25,7 +25,7 @@ SITE_ID = 1  # blogthedata.com
 DEBUG = False
 CAPTCHA_TEST_MODE = False
 
-# # HTTPS SETTINGS
+# HTTPS SETTINGS
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_HTTPONLY = True
@@ -52,9 +52,8 @@ CSP_SCRIPT_SRC_ELEM = (
     "'self'",
     "https://unpkg.com",
     "https://cdn.jsdelivr.net",
-    "https://storage.ko-fi.com",
-    "'sha256-s7x33Jf2oFLyeigzrD2Jvivj1qABuT3xmV0rEk+kW/s='",  # Kofi script
     "'sha256-ATTS7DSEOK+l1k44Pmh1NmlNKH+d8TZefFKiiux6fJk='",  # Leaflet map
+    "'sha256-J+Gz2Kbr5mSzxgWL3RBiadevjPZxJtoRuRtxAjHq6Jo='",  # Leaflet map (dev)
 )
 CSP_SCRIPT_SRC = (
     "'self'",
