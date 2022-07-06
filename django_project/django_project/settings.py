@@ -45,13 +45,16 @@ CSP_DEFAULT_SRC = ("'none'",)
 CSP_STYLE_SRC = (
     "'self'",
     "https://cdn.jsdelivr.net",
-    "https://unpkg.com/",
+    "https://unpkg.com",
     "'unsafe-inline'",
 )
 CSP_SCRIPT_SRC_ELEM = (
+    "'self'",
+    "https://unpkg.com",
     "https://cdn.jsdelivr.net",
     "https://storage.ko-fi.com",
-    "'sha256-s7x33Jf2oFLyeigzrD2Jvivj1qABuT3xmV0rEk+kW/s='",  # Kofi script 1
+    "'sha256-s7x33Jf2oFLyeigzrD2Jvivj1qABuT3xmV0rEk+kW/s='",  # Kofi script
+    "'sha256-J+Gz2Kbr5mSzxgWL3RBiadevjPZxJtoRuRtxAjHq6Jo='",  # Leaflet map
 )
 CSP_SCRIPT_SRC = (
     "'self'",
@@ -71,10 +74,8 @@ CSP_FRAME_ANCESTORS = ("'none'",)
 CSP_BASE_URI = ("'none'",)
 CSP_FORM_ACTION = ("'self'", "https://blogthedata.us14.list-manage.com")
 CSP_OBJECT_SRC = ("'none'",)
-CSP_EXCLUDE_URL_PREFIXES = ("/admin", "/site-analytics")
+CSP_EXCLUDE_URL_PREFIXES = "/admin"
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
-CSP_SCRIPT_SRC_ELEM += ("http://127.0.0.1:35729/livereload.js",)
-CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
 if os.environ["DEBUG"] == "True":
     USE_SRI = True
     CSP_EXCLUDE_URL_PREFIXES = (

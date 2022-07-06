@@ -2,6 +2,7 @@
 {% block title %}Site Analytics{% endblock title %}
 {% load static %}
 {% load sri %}
+{% load static %}
 {% block meta %}
 <meta name="description" content="Analytics for blogthedata.com.">
 {% include "blog/parts/logo_meta.html" %}
@@ -18,14 +19,17 @@
 
 <!-- Leaflet Plugins -->
 <!-- ArcPolyLine-->
-{% sri_static 'leaflet_plugins/leaflet-arc.min.js' %}
+<script src="{% static 'leaflet_plugins/leaflet-arc.min.js' %}"
+  integrity="sha256-FIeRqWw/AxtMe2S9yxMGS+usm227SX/9XhJ1V5i5lWU="
+  crossorigin=""></script>
 {% sri_static 'leaflet_plugins/leaflet.textpath.js' %}
 
 <!-- Marker Cluster-->
 {% sri_static 'leaflet_plugins/MarkerCluster.Default.css' %}
 {% sri_static 'leaflet_plugins/MarkerCluster.css' %}
-{% sri_static 'leaflet_plugins/leaflet.markercluster.js' %}
-
+<script src="{% static 'leaflet_plugins/leaflet.markercluster.js' %}"
+  integrity="sha256-H26Ke4XmD69q0YLxgC5tRoehuUP5Ow3KPIeZ49sEZUQ="
+  crossorigin=""></script>
 
 {% endblock head %}
 
