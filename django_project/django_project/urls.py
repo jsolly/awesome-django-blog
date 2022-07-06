@@ -29,7 +29,6 @@ from .views import (
     works_cited_view,
     security_txt_view,
     security_pgp_key_view,
-    geo_asteroids_view
 )
 from users.views import (
     register_view,
@@ -61,7 +60,6 @@ urlpatterns = [
     ),
     path("works-cited", works_cited_view, name="blog-works-cited"),
     path("site-analytics", site_analytics_view, name="blog-site-analytics"),
-    path("geo-asteroids", geo_asteroids_view, name="geo-asteroids"),
     path("admin/", admin.site.urls),
     path(".well-known/security.txt", security_txt_view, name="security-txt"),
     path("pgp-key.txt", security_pgp_key_view, name="security-pgp-key-txt"),

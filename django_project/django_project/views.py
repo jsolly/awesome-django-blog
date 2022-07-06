@@ -12,13 +12,6 @@ def works_cited_view(request):
     )
 
 
-def geo_asteroids_view(request):
-    return render(
-        request,
-        "blog/geo_asteroids.html",
-    )
-
-
 def security_txt_view(request):
     return render(
         request,

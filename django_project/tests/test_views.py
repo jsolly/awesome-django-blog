@@ -348,10 +348,6 @@ class TestViews(SetUp):
         response = self.client.get(reverse("blog-site-analytics"))
         self.assertEqual(response.status_code, 200)
 
-    def test_geo_asteroids_view(self):
-        response = self.client.get(reverse("geo-asteroids"))
-        self.assertEqual(response.status_code, 200)
-
     # def test_handler_404(self):
     #     response = self.client.get("doesnotexist")
     #     self.assertEqual(response.status_code, 200)
