@@ -53,10 +53,15 @@ CSP_SCRIPT_SRC = (
     "https://cdn.jsdelivr.net",
     "https://unpkg.com/",
     "https://storage.ko-fi.com",
-    "'sha256-W5NZ11gn3UBqTes/hBv3qKT6MC1m5vN7emMaIUwVyzI='",  # Leaflet map
-    "'sha256-W5NZ11gn3UBqTes/hBv3qKT6MC1m5vN7emMaIUwVyzI='",  # kofi button
+    "'sha256-s7x33Jf2oFLyeigzrD2Jvivj1qABuT3xmV0rEk+kW/s='",  # Kofi
 )
-CSP_IMG_SRC = ("'self'", "data:", "https://unpkg.com/", "*.openstreetmap.org", "https://storage.ko-fi.com")
+CSP_IMG_SRC = (
+    "'self'",
+    "data:",
+    "https://unpkg.com/",
+    "*.openstreetmap.org",
+    "https://storage.ko-fi.com",
+)
 CSP_FONT_SRC = ("'self'",)
 CSP_CONNECT_SRC = ("'self'",)
 CSP_FRAME_SRC = ("*",)
@@ -66,7 +71,7 @@ CSP_FORM_ACTION = ("'self'", "https://blogthedata.us14.list-manage.com")
 CSP_OBJECT_SRC = ("'none'",)
 CSP_EXCLUDE_URL_PREFIXES = ("/admin", "/site-analytics")
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
-# USE_SRI = True
+USE_SRI = True
 if os.environ["DEBUG"] == "True":
     # USE_SRI = True
     CSP_EXCLUDE_URL_PREFIXES = (
