@@ -52,9 +52,11 @@ CSP_SCRIPT_SRC = (
     "'self'",
     "https://cdn.jsdelivr.net",
     "https://unpkg.com/",
-    "'sha256-W5NZ11gn3UBqTes/hBv3qKT6MC1m5vN7emMaIUwVyzI='",
+    "https://storage.ko-fi.com",
+    "'sha256-W5NZ11gn3UBqTes/hBv3qKT6MC1m5vN7emMaIUwVyzI='",  # Leaflet map
+    "'sha256-sg38YtmRCJqr3So/Cq7TB4hwY9ktsB4qJ6ZHVPfAXhs='",  # kofi button
 )
-CSP_IMG_SRC = ("'self'", "data:", "https://unpkg.com/", "*.openstreetmap.org")
+CSP_IMG_SRC = ("'self'", "data:", "https://unpkg.com/", "*.openstreetmap.org", "https://storage.ko-fi.com")
 CSP_FONT_SRC = ("'self'",)
 CSP_CONNECT_SRC = ("'self'",)
 CSP_FRAME_SRC = ("*",)
@@ -174,7 +176,7 @@ HANDLERS = {
     "console_handler": {
         "class": "logging.StreamHandler",
         "formatter": "simple",
-        "level": "DEBUG"
+        "level": "DEBUG",
     },
     "info_handler": {
         "class": "logging.handlers.RotatingFileHandler",

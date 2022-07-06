@@ -57,8 +57,9 @@
         {% block about %} Great decisions are informed by data. I present deeply researched articles to improve your
         life. {% endblock about %}</p>
         <!--Kofi Donation-->
-        <a href='https://ko-fi.com/S6S6CSR2Q' id="kofi" target='_blank'><img height='36' width="141"
-            src="{% static 'kofi/kofi2_v3.png' static %}" alt='Buy Me a Coffee at ko-fi.com' /></a>
+        <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+        <script
+          type='text/javascript'>kofiwidget2.init('Buy me a Coffee', '#4886ad', 'S6S6CSR2Q'); kofiwidget2.draw();</script>
       </div>
       <div class="col-lg-10">
         {% if messages %} {% for message in messages %}
