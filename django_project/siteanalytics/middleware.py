@@ -1,5 +1,4 @@
 from .utils import add_ip_person_if_not_exist
-import os
 
 
 def requestTrackMiddleware(get_response):
