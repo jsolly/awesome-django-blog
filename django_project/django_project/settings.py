@@ -54,7 +54,7 @@ CSP_SCRIPT_SRC_ELEM = (
     "https://cdn.jsdelivr.net",
     "https://storage.ko-fi.com",
     "'sha256-s7x33Jf2oFLyeigzrD2Jvivj1qABuT3xmV0rEk+kW/s='",  # Kofi script
-    "'sha256-J+Gz2Kbr5mSzxgWL3RBiadevjPZxJtoRuRtxAjHq6Jo='",  # Leaflet map
+    "'sha256-ATTS7DSEOK+l1k44Pmh1NmlNKH+d8TZefFKiiux6fJk='",  # Leaflet map
 )
 CSP_SCRIPT_SRC = (
     "'self'",
