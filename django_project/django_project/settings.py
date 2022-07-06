@@ -35,10 +35,10 @@ SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
-# # HSTS SETTINGS (Configured in CloudFlare)
-# SECURE_HSTS_SECONDS = 60
-# SECURE_HSTS_PRELOAD = True
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# HSTS SETTINGS (Configured in CloudFlare)
+SECURE_HSTS_SECONDS = 60
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 # Content Security Policy
 CSP_DEFAULT_SRC = ("'none'",)
@@ -48,12 +48,14 @@ CSP_STYLE_SRC = (
     "https://unpkg.com/",
     "'unsafe-inline'",
 )
+CSP_SCRIPT_SRC_ELEM = (
+    "https://cdn.jsdelivr.net",
+    "https://storage.ko-fi.com",
+    "'sha256-s7x33Jf2oFLyeigzrD2Jvivj1qABuT3xmV0rEk+kW/s='",  # Kofi script 1
+)
 CSP_SCRIPT_SRC = (
     "'self'",
-    "https://cdn.jsdelivr.net",
     "https://unpkg.com/",
-    "https://storage.ko-fi.com",
-    "'sha256-s7x33Jf2oFLyeigzrD2Jvivj1qABuT3xmV0rEk+kW/s='",  # Kofi
 )
 CSP_IMG_SRC = (
     "'self'",
@@ -71,13 +73,15 @@ CSP_FORM_ACTION = ("'self'", "https://blogthedata.us14.list-manage.com")
 CSP_OBJECT_SRC = ("'none'",)
 CSP_EXCLUDE_URL_PREFIXES = ("/admin", "/site-analytics")
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
+CSP_SCRIPT_SRC_ELEM += ("http://127.0.0.1:35729/livereload.js",)
+CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
 if os.environ["DEBUG"] == "True":
     USE_SRI = True
     CSP_EXCLUDE_URL_PREFIXES = (
         "/site-analytics",
         "/admin",
     )
-    CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js",)
+    CSP_SCRIPT_SRC_ELEM += ("http://127.0.0.1:35729/livereload.js",)
     CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
     SITE_ID = 2
     DEBUG = True
