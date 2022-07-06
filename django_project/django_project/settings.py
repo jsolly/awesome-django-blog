@@ -54,6 +54,7 @@ CSP_SCRIPT_SRC_ELEM = (
     "https://cdn.jsdelivr.net",
     "'sha256-h4R/0/l5F9L0F1rONynUCL17LdncaFB72PlbcfGd0q0='",  # Leaflet map
     "'sha256-J+Gz2Kbr5mSzxgWL3RBiadevjPZxJtoRuRtxAjHq6Jo='",  # Leaflet map (dev)
+    "'sha256-cUXFdoBJrFRXi7+ECv6bn3JwjO0aa49Ntnnp8NNTvso='"
 )
 CSP_SCRIPT_SRC = (
     "'self'",
