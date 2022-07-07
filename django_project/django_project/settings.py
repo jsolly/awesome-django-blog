@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ["SECRET_KEY"]
 SITE_ID = 1  # blogthedata.com
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ["DEBUG"]
+DEBUG = False
 CAPTCHA_TEST_MODE = False
 
 # HTTPS SETTINGS
@@ -76,6 +76,7 @@ CSP_OBJECT_SRC = ("'none'",)
 CSP_EXCLUDE_URL_PREFIXES = ("/admin", "/portfolio")
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
 if os.environ["DEBUG"] == "True":
+    DEBUG = True
     USE_SRI = True
     SITE_ID = 2
     DEBUG = True
