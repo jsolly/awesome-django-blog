@@ -269,6 +269,18 @@ th {
   font-size: 9px;
 }
 
+#overlayText {
+  position:absolute;
+   top:30%;
+   left:20%;
+   z-index:1;
+ }
+ 
+ #topText {
+   font-size: 20px;
+   align-self: center;
+ }
+
 
 .resp-sharing-button__link,
 .resp-sharing-button__icon {

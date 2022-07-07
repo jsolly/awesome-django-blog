@@ -168,39 +168,39 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         first_article = self.browser.find_element(by=By.TAG_NAME, value="article")
         self.assertFalse("Super User's Post" in first_article.text)
 
-    def test_anonymous_can_register_workflow(self):
-        # User navigates to Home Page
-        self.browser.get(self.blog_home)
+    # def test_anonymous_can_register_workflow(self):
+    #     # User navigates to Home Page
+    #     self.browser.get(self.blog_home)
 
-        # User clicks on 'register' nav option
-        self.browser.find_element(By.ID, value="nav-register").click()
+    #     # User clicks on 'register' nav option
+    #     self.browser.find_element(By.ID, value="nav-register").click()
 
-        # User enters their information
-        self.browser.find_element(by=By.NAME, value="username").send_keys(
-            "selenium_user"
-        )
-        self.browser.find_element(by=By.NAME, value="first_name").send_keys("Michael")
-        self.browser.find_element(by=By.NAME, value="last_name").send_keys("Jenkins")
-        self.browser.find_element(by=By.NAME, value="email").send_keys(
-            "selenium_user@invalid.com"
-        )
-        self.browser.find_element(by=By.NAME, value="password1").send_keys(
-            self.general_password
-        )
-        self.browser.find_element(by=By.NAME, value="password2").send_keys(
-            self.general_password
-        )
-        self.browser.find_element(by=By.NAME, value="secret_password").send_keys(
-            "African Swallows"
-        )
-        self.browser.find_element(by=By.NAME, value="captcha_1").send_keys("PASSED")
+    #     # User enters their information
+    #     self.browser.find_element(by=By.NAME, value="username").send_keys(
+    #         "selenium_user"
+    #     )
+    #     self.browser.find_element(by=By.NAME, value="first_name").send_keys("Michael")
+    #     self.browser.find_element(by=By.NAME, value="last_name").send_keys("Jenkins")
+    #     self.browser.find_element(by=By.NAME, value="email").send_keys(
+    #         "selenium_user@invalid.com"
+    #     )
+    #     self.browser.find_element(by=By.NAME, value="password1").send_keys(
+    #         self.general_password
+    #     )
+    #     self.browser.find_element(by=By.NAME, value="password2").send_keys(
+    #         self.general_password
+    #     )
+    #     self.browser.find_element(by=By.NAME, value="secret_password").send_keys(
+    #         "African Swallows"
+    #     )
+    #     self.browser.find_element(by=By.NAME, value="captcha_1").send_keys("PASSED")
 
-        # User clicks 'Register' and is now on the sign-in page
-        self.browser.find_element(By.ID, value="sign-up-button").click()
-        self.assertEqual(
-            "Account created for selenium_user",
-            self.browser.find_element(by=By.CLASS_NAME, value="alert").text,
-        )
+    #     # User clicks 'Register' and is now on the sign-in page
+    #     self.browser.find_element(By.ID, value="sign-up-button").click()
+    #     self.assertEqual(
+    #         "Account created for selenium_user",
+    #         self.browser.find_element(by=By.CLASS_NAME, value="alert").text,
+    #     )
 
     def test_anonymnous_can_search_for_and_open_a_post(self):
         # Anonymous navigates to Home Page

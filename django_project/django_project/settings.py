@@ -73,7 +73,7 @@ CSP_FRAME_ANCESTORS = ("'none'",)
 CSP_BASE_URI = ("'none'",)
 CSP_FORM_ACTION = ("'self'", "https://blogthedata.us14.list-manage.com")
 CSP_OBJECT_SRC = ("'none'",)
-CSP_EXCLUDE_URL_PREFIXES = ("/admin", "/site-analytics")
+CSP_EXCLUDE_URL_PREFIXES = ("/admin", "/portfolio")
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
 if os.environ["DEBUG"] == "True":
     USE_SRI = True

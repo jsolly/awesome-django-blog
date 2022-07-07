@@ -1,0 +1,46 @@
+{% extends "blog/parts/base.html" %}
+{% block title %}John's Portfolio{% endblock title %}
+{% load sri %}
+{% load static %}
+{% block meta %}
+<meta name="description" content="Projects I've worked on">
+{% include "blog/parts/logo_meta.html" %}
+{% endblock meta %}
+
+{% block head %}
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+  integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+  crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+  integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+  crossorigin=""></script>
+
+<!-- Leaflet Plugins -->
+<!-- ArcPolyLine-->
+{% sri_static 'leaflet_plugins/leaflet-arc.min.js' %}
+{% sri_static 'leaflet_plugins/leaflet.textpath.js' %}
+
+<!-- Marker Cluster-->
+{% sri_static 'leaflet_plugins/MarkerCluster.Default.css' %}
+{% sri_static 'leaflet_plugins/MarkerCluster.css' %}
+{% sri_static 'leaflet_plugins/leaflet.markercluster.js' %}
+{% endblock head %}
+
+<!-- About Section-->
+{% block about %}
+My projects
+{% endblock about %}
+
+{% block content %}
+<h3>Site Analytics for blogthedata.com</h3>
+{% include "blog/maps/site_analytics.html" %}
+
+<h3>GeoAsteroids</h3>
+<video src="{% static 'portfolio/GeoAsteroids_playthrough.mp4' %}" controls>
+  <p>Your browser doesn't support HTML5 video. Here is a <a href="rabbit320.webm">link to the video</a> instead.</p>
+</video>
+
+<div><a target="_blank" href="https://geoasteroids.com"> Open GeoAsteroids in a new tab 🚀 </a></div>
+<h2>More Projects coming soon!</h2>
+{% endblock content %}

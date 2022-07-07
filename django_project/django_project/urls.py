@@ -29,6 +29,7 @@ from .views import (
     works_cited_view,
     security_txt_view,
     security_pgp_key_view,
+    portfolio_view
 )
 from users.views import (
     register_view,
@@ -67,6 +68,7 @@ urlpatterns = [
     path("", include("blog.urls")),
     path("register/", register_view, name="register"),
     path("profile/", profile_view, name="profile"),
+    path("portfolio/", portfolio_view, name="portfolio"),
     path(
         "login/",
         MyLoginView.as_view(template_name="users/login.html"),
