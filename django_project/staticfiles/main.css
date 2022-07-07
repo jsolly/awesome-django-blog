@@ -1,4 +1,7 @@
-body { padding-top: 70px; }
+body {
+  padding-top: 70px;
+}
+
 /* @media screen and (max-width: 768px) {
     body { padding-top: 70px; }
 }
@@ -81,13 +84,19 @@ blockquote {
   color: red;
 }
 
-td, th {
+td,
+th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-tr:hover {background-color: #ddd;}
-tr:nth-child(even){background-color: #f2f2f2;}
+tr:hover {
+  background-color: #ddd;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
 th {
   padding-top: 12px;
@@ -250,12 +259,13 @@ th {
 
 }
 
-.map{ 
+
+.map {
   height: 400px;
-  width : 100%;
+  width: 100%;
 }
 
-#inline-attribution{ 
+#inline-attribution {
   font-size: 9px;
 }
 
@@ -275,7 +285,7 @@ th {
   border-radius: 5px;
   transition: 25ms ease-out;
   padding: 0.5em 0.75em;
-  font-family: Helvetica Neue,Helvetica,Arial,sans-serif
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif
 }
 
 .resp-sharing-button__icon svg {

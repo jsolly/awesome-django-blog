@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ["SECRET_KEY"]
 SITE_ID = 1  # blogthedata.com
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ["DEBUG"]
 CAPTCHA_TEST_MODE = False
 
 # HTTPS SETTINGS
@@ -52,9 +52,8 @@ CSP_SCRIPT_SRC_ELEM = (
     "'self'",
     "https://unpkg.com",
     "https://cdn.jsdelivr.net",
-    "'sha256-h4R/0/l5F9L0F1rONynUCL17LdncaFB72PlbcfGd0q0='",  # Leaflet map
-    "'sha256-J+Gz2Kbr5mSzxgWL3RBiadevjPZxJtoRuRtxAjHq6Jo='",  # Leaflet map (dev)
-    "'sha256-cUXFdoBJrFRXi7+ECv6bn3JwjO0aa49Ntnnp8NNTvso='"
+    "'sha256-s7x33Jf2oFLyeigzrD2Jvivj1qABuT3xmV0rEk+kW/s='",  # Kofi Script
+    "'sha256-FCcCezzLLwvnHEHP6yFolJnlDks5BckJjAaHFEACQNY='",  # Leaflet map
 )
 CSP_SCRIPT_SRC = (
     "'self'",
@@ -67,7 +66,7 @@ CSP_IMG_SRC = (
     "*.openstreetmap.org",
     "https://storage.ko-fi.com",
 )
-CSP_FONT_SRC = ("'self'",)
+CSP_FONT_SRC = "'self'"
 CSP_CONNECT_SRC = ("'self'",)
 CSP_FRAME_SRC = ("*",)
 CSP_FRAME_ANCESTORS = ("'none'",)
@@ -78,15 +77,11 @@ CSP_EXCLUDE_URL_PREFIXES = "/admin"
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
 if os.environ["DEBUG"] == "True":
     USE_SRI = True
-    CSP_EXCLUDE_URL_PREFIXES = (
-        "/site-analytics",
-        "/admin",
-    )
-    CSP_SCRIPT_SRC_ELEM += ("http://127.0.0.1:35729/livereload.js",)
-    CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
     SITE_ID = 2
     DEBUG = True
     CAPTCHA_TEST_MODE = True
+    CSP_SCRIPT_SRC_ELEM += ("http://127.0.0.1:35729/livereload.js",)
+    CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
 
     # HTTPS SETTINGS
     SESSION_COOKIE_SECURE = False
@@ -125,10 +120,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "django.middleware.gzip.GZipMiddleware",
     "siteanalytics.middleware.requestTrackMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.middleware.gzip.GZipMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",

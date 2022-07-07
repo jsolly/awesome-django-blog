@@ -19,18 +19,13 @@
 
 <!-- Leaflet Plugins -->
 <!-- ArcPolyLine-->
-<script src="{% static 'leaflet_plugins/leaflet-arc.min.js' %}"
-  integrity="sha256-FIeRqWw/AxtMe2S9yxMGS+usm227SX/9XhJ1V5i5lWU="
-  crossorigin=""></script>
+{% sri_static 'leaflet_plugins/leaflet-arc.min.js' %}
 {% sri_static 'leaflet_plugins/leaflet.textpath.js' %}
 
 <!-- Marker Cluster-->
 {% sri_static 'leaflet_plugins/MarkerCluster.Default.css' %}
 {% sri_static 'leaflet_plugins/MarkerCluster.css' %}
-<script src="{% static 'leaflet_plugins/leaflet.markercluster.js' %}"
-  integrity="sha256-H26Ke4XmD69q0YLxgC5tRoehuUP5Ow3KPIeZ49sEZUQ="
-  crossorigin=""></script>
-
+{% sri_static 'leaflet_plugins/leaflet.markercluster.js' %}
 {% endblock head %}
 
 <!-- About Section-->
