@@ -44,7 +44,7 @@ A django blog about data-driven decisions
 ## Features
 
 #### Functional Features
-- User login
+- User login (header links removed in https://github.com/jsolly/blogthedata/commit/5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b)
 - Create posts filtered by category or author
 - Create Comments (Removed in https://github.com/jsolly/blogthedata/pull/77)
 - User profile with avatar (automatic sizing and compression using Pillow)
