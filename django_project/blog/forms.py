@@ -3,7 +3,7 @@ from .models import Post
 
 choices = [
     ("life advice", "life advice"),
-    ("site updates", "site updates"),
+    ("software development", "software development"),
 ]
 # choices = Category.objects.all().values_list(
 #     "name", "name"
