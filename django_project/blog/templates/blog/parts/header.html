@@ -16,12 +16,6 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" id="nav-home" href="{% url 'blog-home' %}">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" id="nav-site-analytics" href="{% url 'blog-site-analytics' %}">Site Analytics</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" target="_blank" id="nav-site-analytics" href="https://geoasteroids.com/">GeoAsteroids</a>
-            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
@@ -32,6 +26,12 @@
                 <li><a class="dropdown-item" href="{% url 'blog-category' cat|slugify %}">{{cat|title}}</a></li>
                 {% endfor %}
               </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-site-analytics" href="{% url 'blog-site-analytics' %}">Site Analytics</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" id="nav-site-analytics" href="#">Portfolio</a>
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item">

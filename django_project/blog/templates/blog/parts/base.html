@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-  <title>{% block title %}A blog about data-driven decisions{% endblock %}</title>
+  <title>{% block title %}A blog about Python and JavaScript web development{% endblock %}</title>
   {% block head %}
 
   {% endblock head %}
@@ -54,8 +54,7 @@
         {% include "blog/parts/sidebar.html" %}
         <p>
         <h3>About this Page</h3>
-        {% block about %} Great decisions are informed by data. I present deeply researched articles to improve your
-        life. {% endblock about %}</p>
+        {% block about %} The latest posts in each category {% endblock about %}</p>
         <!--Kofi Donation-->
         {% sri_static "kofi/kofi_script1.js" %}
         <script>kofiwidget2.init('Buy me a Coffee', '#0d6efd', 'S6S6CSR2Q'); kofiwidget2.draw();</script>
