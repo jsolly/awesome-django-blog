@@ -28,24 +28,11 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="nav-site-analytics" href="{% url 'blog-site-analytics' %}">Site Analytics</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" target="_blank" id="nav-site-analytics" href="#">Portfolio</a>
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link" id="nav-profile" href="{% url 'profile' %}">Profile</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="nav-logout" href="{% url 'logout' %}">Logout</a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-              <a class="nav-link" id="nav-register" href="{% url 'register' %}">Register</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="nav-login" href="{% url 'login' %}">Login</a>
             </li>
             {% endif %}
             {% if user.is_staff %}
@@ -54,7 +41,6 @@
             </li>
             {% endif %}
           </ul>
-
           <form class="d-flex" method=POST action="{% url 'blog-search' %}">
             {% csrf_token %}
             <input class="form-control me-2" id="search-posts-input" type="search" placeholder="Search Posts" aria-label="Search"
