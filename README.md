@@ -23,9 +23,9 @@ A django blog about data-driven decisions
 
 - Clone repo https://github.com/jsolly/blogthedata.git
 ```bash
-    $ python3 -m pip install virtualenv
+    # first install Python 3.8.10 (have not tested newer versions, but they could work)
     $ cd blogthedata/django_project
-    $ virtualenv venv
+    $ python3 -m venv venv
     $ source venv/bin/activate
     $ cd requirements/
     $ pip install --upgrade pip
