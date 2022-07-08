@@ -55,10 +55,7 @@ CSP_SCRIPT_SRC_ELEM = (
     "'sha256-s7x33Jf2oFLyeigzrD2Jvivj1qABuT3xmV0rEk+kW/s='",  # Kofi Script
     "'sha256-FCcCezzLLwvnHEHP6yFolJnlDks5BckJjAaHFEACQNY='",  # Leaflet map
 )
-CSP_SCRIPT_SRC = (
-    "'self'",
-    "https://unpkg.com/",
-)
+CSP_SCRIPT_SRC = ("'self'", "https://unpkg.com/", "https://cdn.jsdelivr.net")
 CSP_IMG_SRC = (
     "'self'",
     "data:",
@@ -82,6 +79,7 @@ if os.environ["DEBUG"] == "True":
     DEBUG = True
     CAPTCHA_TEST_MODE = True
     CSP_SCRIPT_SRC_ELEM += ("http://127.0.0.1:35729/livereload.js",)
+    CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js",)
     CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
 
     # HTTPS SETTINGS
