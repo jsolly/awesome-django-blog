@@ -37,9 +37,11 @@ My projects
 {% include "blog/maps/site_analytics.html" %}
 
 <h3>GeoAsteroids.com</h3>
-<video src="{% static 'portfolio/GeoAsteroids_playthrough.mp4' %}" controls>
+<div "embed-responsive embed-responsive-1by1" width="100%">
+<video autoplay loop controls muted playsinline src="{% static 'portfolio/GeoAsteroids_playthrough.mp4' %}" type="video/mp4">
   <p>Your browser doesn't support HTML5 video. Here is a <a href="https://blogthedata.com/static/portfolio/GeoAsteroids_playthrough.mp4">link to the video</a> instead.</p>
 </video>
+</div>
 
 <div><a target="_blank" href="https://geoasteroids.com"> Open GeoAsteroids in a new tab 🚀 </a></div>
 <h2>More Projects coming soon!</h2>
