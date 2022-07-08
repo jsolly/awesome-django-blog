@@ -2,7 +2,7 @@ from django import forms
 from .models import Post
 
 choices = [
-    ("life advice", "life advice"),
+    ("productivity", "productivity"),
     ("web development", "web development"),
 ]
 # choices = Category.objects.all().values_list(
