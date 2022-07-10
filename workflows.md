@@ -72,12 +72,10 @@ git checkout -b <local_branch_name> origin/<branch_name> # local_branch_name and
     ```
     make sure an up-to-date pip freeze has happened
     make sure you're using the right python version
-
-    $ python3 -m venv ~/venv
-    $ source ~/venv/bin/activate
+    $ python3 -m venv venv blogthedata/django_project
+    $ source blogthedata/django_project/venv/bin/activate
     $ python3 -m pip install --upgrade pip
-    $ python3 -m pip install wheel
-    $ python3 -m pip install -r ~/blogthedata/django_project/requirements/requirements.txt
+    $ python3 -m pip install -r blogthedata/django_project/requirements/requirements.txt
     ```
 
 ### Manually generated integrity hash values
