@@ -20,10 +20,9 @@ A django blog about data-driven decisions
 
 
 ## Installation
-
-- Clone repo https://github.com/jsolly/blogthedata.git
 ```bash
     # first install Python 3.8.10 (have not tested newer versions, but they could work)
+    $ git clone https://github.com/jsolly/blogthedata.git
     $ python3 -m venv blogthedata/django_project/venv
     $ source blogthedata/django_project/venv/bin/activate
     $ pip install --upgrade pip
@@ -118,8 +117,8 @@ Want to work on this with me? DM me <a href="https://twitter.com/_jsolly" target
 
 | John Solly |
 | :---:
-| [![FVCproductions](https://avatars1.githubusercontent.com/u/9572232?v=3&s=200)](https://github.com/jsolly)
-| <a href="http://github.com/fvcproductions" target="_blank">`github.com/jsolly`</a> |
+| [![jsolly](https://avatars1.githubusercontent.com/u/9572232?v=3&s=200)](https://github.com/jsolly)
+| <a href="https://github.com/jsolly" target="_blank">`github.com/jsolly`</a> |
 
 ---
 
