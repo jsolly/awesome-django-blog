@@ -24,12 +24,10 @@ A django blog about data-driven decisions
 - Clone repo https://github.com/jsolly/blogthedata.git
 ```bash
     # first install Python 3.8.10 (have not tested newer versions, but they could work)
-    $ cd blogthedata/django_project
-    $ python3 -m venv venv
-    $ source venv/bin/activate
-    $ cd requirements/
+    $ python3 -m venv blogthedata/django_project/venv
+    $ source blogthedata/django_project/venv/bin/activate
     $ pip install --upgrade pip
-    $ pip install -r requirements.txt
+    $ python3 -m pip install -r blogthedata/django_project/requirements/requirements.txt -c blogthedata/django_project/requirements/constraints.txt
 ```
 
 
