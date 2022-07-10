@@ -96,7 +96,7 @@ Also see the [actions tab]([url](https://github.com/jsolly/blogthedata/actions))
 
 ## Contributing
 
-Want to work on this with me? DM me <a href="https://twitter.com/effortlessgis" target="_blank">`@effortlessgis`</a>
+Want to work on this with me? DM me <a href="https://twitter.com/_jsolly" target="_blank">`@_jsolly`</a>
 
 ### Step 1
 
@@ -129,7 +129,7 @@ Want to work on this with me? DM me <a href="https://twitter.com/effortlessgis" 
 
 Reach out to me at one of the following places!
 
-- Twitter at <a href="https://twitter.com/effortlessgis" target="_blank">`@effortlessgis`</a>
+- Twitter at <a href="https://twitter.com/_jsolly" target="_blank">`@_jsolly`</a>
 
 ---
 
