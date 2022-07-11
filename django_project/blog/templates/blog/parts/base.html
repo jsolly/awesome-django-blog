@@ -41,7 +41,10 @@
     crossorigin="anonymous"></script>
 
   <!-- My CSS -->
-  <link rel="stylesheet" href="{% static 'main.css' %}">
+  {% sri_static 'main.css' %}
+
+  <!-- Mailchimp -->
+  {% sri_static 'mailchimp.css' %}
 
 </head>
 
