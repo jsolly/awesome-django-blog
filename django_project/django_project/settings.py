@@ -361,11 +361,11 @@ CKEDITOR_5_CONFIGS = {
         ],
     },
     "extends": {
-        # "htmlSupport": {
-        #     "allow": [
-        #         {"name": "/.*/", "attributes": True, "classes": True, "styles": True}
-        #     ]
-        # },
+        "htmlSupport": {
+            "allow": [
+                {"name": "/.*/", "attributes": True, "classes": True, "styles": True}
+            ]
+        },
         "link": {"addTargetToExternalLinks": "true"},
         "mediaEmbed": {"previewsInData": "true"},
         "codeBlock": {
