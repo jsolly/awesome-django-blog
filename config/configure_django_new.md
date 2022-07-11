@@ -98,4 +98,6 @@ $ sudo ufw delete allow 8000
 Make sure ALLOWED_HOSTS is correct (remove localhost)
 ```
 $ python3 manage.py check --deploy
+
+# Check this issue for getting media uploads working https://github.com/hvlads/django-ckeditor-5/issues/63
 ```

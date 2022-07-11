@@ -8,7 +8,7 @@
 
 ### Access the production server
     ```
-    $ ssh <username>@69.164.205.120
+    $ ssh <username>@<ip_address>
     ```
 
 ### Pull changes from github in prod
