@@ -73,9 +73,10 @@ CSP_FORM_ACTION = ("'self'", "https://blogthedata.us14.list-manage.com")
 CSP_OBJECT_SRC = ("'none'",)
 CSP_EXCLUDE_URL_PREFIXES = ("/admin", "/portfolio")
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
+USE_SRI = False
 if os.environ["DEBUG"] == "True":
     DEBUG = True
-    USE_SRI = True
+    # USE_SRI = True
     SITE_ID = 2
     DEBUG = True
     CAPTCHA_TEST_MODE = True
