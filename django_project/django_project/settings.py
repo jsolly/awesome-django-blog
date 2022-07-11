@@ -56,6 +56,7 @@ CSP_SCRIPT_SRC_ELEM = (
     "'sha256-FCcCezzLLwvnHEHP6yFolJnlDks5BckJjAaHFEACQNY='",  # Leaflet map
 )
 CSP_SCRIPT_SRC = ("'self'", "https://unpkg.com/", "https://cdn.jsdelivr.net")
+CSP_MEDIA_SRC = "'self'"
 CSP_IMG_SRC = (
     "'self'",
     "data:",
