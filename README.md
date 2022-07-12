@@ -70,7 +70,7 @@ A blog about Python and JavaScript web development
 - 100% linted with [flake8]([url](https://pypi.org/project/flake8/))
 - Static scans with [CodeQL]([url](https://codeql.github.com/)) and pip dependency checks with [Dependabot]([url](https://github.com/dependabot))
 - Formatted with [Black]([url](https://pypi.org/project/black/))
-- Content Security Policy
+- Strict Content Security Policy preventing inline styles and scripts
 - Subresource Integrity
 - [A+ Score on Mozilla Observatory]([url](https://observatory.mozilla.org/analyze/blogthedata.com))
 - Excellent scores on Google Lighthouse
