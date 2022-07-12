@@ -12,4 +12,8 @@
     class="list-group-item d-flex justify-content-between align-items-center list-group-item-action {% if request.resolver_match.url_name == 'blog-home' %} active {% endif %}">
     Blog Home
   </a>
+  <a href="{% url 'portfolio' %}" id="sidebar-portfolio"
+  class="list-group-item d-flex justify-content-between align-items-center list-group-item-action {% if request.resolver_match.url_name == 'portfolio' %} active {% endif %}">
+  Portfolio
+</a>
 </div>
