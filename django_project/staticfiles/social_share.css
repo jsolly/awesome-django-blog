@@ -1,6 +1,6 @@
 .resp-sharing-button__link,
 .resp-sharing-button__icon {
-  display: inline-block
+  display: inline-block;
 }
 
 .resp-sharing-button__link {
@@ -20,24 +20,24 @@
   width: 1em;
   height: 1em;
   margin-right: 0.4em;
-  vertical-align: top
+  vertical-align: top;
 }
 
 /* Non solid icons get a stroke */
 .resp-sharing-button__icon {
   stroke: #fff;
-  fill: none
+  fill: none;;
 }
 
 /* Solid icons get a fill */
 .resp-sharing-button__icon--solid,
 .resp-sharing-button__icon--solidcircle {
   fill: #fff;
-  stroke: none
+  stroke: none;
 }
 
 .resp-sharing-button--reddit {
-  background-color: #5f99cf
+  background-color: #5f99cf;
 }
 
 .resp-sharing-button--reddit:hover {
@@ -50,7 +50,7 @@
 }
 
 .resp-sharing-button--linkedin:hover {
-  background-color: #046293
+  background-color: #046293;
 }
 
 .resp-sharing-button--twitter {
