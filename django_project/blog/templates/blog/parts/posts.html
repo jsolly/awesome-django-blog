@@ -1,16 +1,13 @@
 {% load static %}
 {% for post in posts %}
-<article class="media content-section shadow-sm">
-  <img class="rounded-circle article-img" src="{% static 'jsolly.jpeg' %}" alt="{{ post.author.first_name }} {{ post.author.last_name }} Profile Picture">
-  <div class="media-body">
-    <div class="article-metadata">
-      <h2 class="article-title"><a class="article-title" href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h2>
-      <nobr>{{ post.author.first_name }} {{ post.author.last_name }} <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
-        {% if post.draft %}<nobr id="draft">(Draft)</nobr>{% endif %}
-      </nobr>
-    </div>
-    <p class="article-content">{{ post.snippet|safe }} <a href="{% url 'post-detail' slug=post.slug %}">Open blog post</a></p>
-  </div>
-</article>
+<a class="article-block media content-section shadow-sm" href="{% url 'post-detail' post.slug %}">
+    <img class="rounded-circle article-img" src="{% static 'jsolly.jpeg' %}"
+      alt="{{ post.author.first_name }} {{ post.author.last_name }} Profile Picture">
+        <h2 class="article-title">{{ post.title }}</h2>
+        <nobr>{{ post.author.first_name }} {{ post.author.last_name }} <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+          {% if post.draft %}<nobr id="draft">(Draft)</nobr>{% endif %}
+        </nobr>
+      <p>{{ post.snippet|safe }}</p>
+      </a>
 
 {% endfor %}
