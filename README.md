@@ -126,7 +126,7 @@ Want to work on this with me? DM me <a href="https://twitter.com/_jsolly" target
 
 Reach out to me at one of the following places!
 
-- Twitter at <a href="https://twitter.com/_jsolly" target="_blank">`@_jsolly`</a>
+- Twitter - <a href="https://twitter.com/_jsolly" target="_blank">`@_jsolly`</a>
 
 ---
 
