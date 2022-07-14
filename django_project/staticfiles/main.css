@@ -2,6 +2,10 @@ body {
   padding-top: 70px;
 }
 
+h6 {
+  letter-spacing: 2px;
+}
+
 a {
   text-decoration: none;
 }
@@ -16,11 +20,6 @@ blockquote {
   margin-inline-start: 40px;
   margin-inline-end: 40px;
   border-left: .25rem solid #ccc;
-}
-
-iframe {
-  width: 100%;
-  height: 100%;
 }
 
 td,
@@ -43,7 +42,7 @@ th {
   text-align: left;
   background-color: #04AA6D;
   color: white;
-} 
+}
 
 .bg-steel {
   background-color: #003366;
@@ -101,19 +100,12 @@ p.article-content {
   margin-bottom: 16px;
 }
 
-.card-img {
-  height: "83";
-  width: "100";
-}
-
-
 .errorlist {
   color: red;
 }
 
 div[class~="map"] {
-  height: 400px;
-  width: 100%;
+  height: 40vh;
 }
 
 #inline-attribution {
@@ -123,6 +115,10 @@ div[class~="map"] {
 #draft {
   color: red
 }
+
+/*
+Style blog post cards on the home page
+*/
 
 .article-block {
   display: block;
@@ -140,6 +136,9 @@ a nobr {
   background-color: #f8f9fa;
 }
 
+video {
+  max-width: 100%
+}
 /* @media screen and (max-width: 768px) {
     body { padding-top: 70px; }
 }
