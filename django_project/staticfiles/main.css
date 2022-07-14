@@ -106,6 +106,7 @@ p.article-content {
 
 div[class~="map"] {
   height: 40vh;
+  border-radius: 3px;
 }
 
 #inline-attribution {
@@ -138,6 +139,7 @@ a nobr {
 
 video {
   max-width: 100%;
+  border-radius: 3px;
 }
 
 /* @media screen and (max-width: 768px) {
