@@ -137,8 +137,9 @@ a nobr {
 }
 
 video {
-  max-width: 100%
+  max-width: 100%;
 }
+
 /* @media screen and (max-width: 768px) {
     body { padding-top: 70px; }
 }
