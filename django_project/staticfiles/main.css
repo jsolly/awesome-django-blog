@@ -52,7 +52,7 @@ th {
   margin-bottom: 10px;
 }
 
-div:not(.show)>ul>li:hover{
+.navbar-brand:hover, div:not(.show)>ul>li:hover{
   animation-name: button-shake;
   animation-duration: 0.3s;
 }
