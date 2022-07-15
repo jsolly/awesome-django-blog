@@ -135,13 +135,14 @@ class TestFunctionalUI(StaticLiveServerTestCase):
 
         # Author visits Blog Home to see that the post is the first one on the page
         self.browser.find_element(By.ID, value="post-back-to-home-button").click()
-        first_post = self.browser.find_element(by=By.TAG_NAME, value="article")
+        first_post = self.browser.find_element(by=By.CLASS_NAME, value="article-block")
         # Author checks the first article to make sure the created post is there
 
         self.assertTrue("Super User's Post" in first_post.text)
         # Author clicks on the post's title to get to its post details page
-        first_post.find_element(by=By.TAG_NAME, value="a").click()
+        #first_post.find_element(by=By.TAG_NAME, value="a").click()
         # self.browser.get(first_article_link.get_attribute("href"))
+        first_post.click()
 
         # Author Clicks 'Edit Post' and changes the post's title
         self.browser.find_element(By.ID, value="post-edit-button").click()
@@ -165,8 +166,8 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         self.browser.find_element(By.ID, value="confirm-delete-button").click()
 
         # Author is brought to blog Home and the post is not present
-        first_article = self.browser.find_element(by=By.TAG_NAME, value="article")
-        self.assertFalse("Super User's Post" in first_article.text)
+        first_post = self.browser.find_element(by=By.CLASS_NAME, value="article-block")
+        self.assertFalse("Super User's Post" in first_post.text)
 
     # def test_anonymous_can_register_workflow(self):
     #     # User navigates to Home Page
@@ -211,10 +212,10 @@ class TestFunctionalUI(StaticLiveServerTestCase):
         self.browser.find_element(By.ID, value="search-posts-button").click()
 
         # At least one post should be shown
-        first_post = self.browser.find_element(by=By.TAG_NAME, value="article")
+        first_post = self.browser.find_element(by=By.CLASS_NAME, value="article-block")
 
         # Anonymous clicks on post link
-        first_post.find_element(by=By.TAG_NAME, value="a").click()
+        first_post.click()
         self.assertEqual(
             self.browser.find_element(by=By.TAG_NAME, value="h2").text, "My First Post"
         )
