@@ -22,6 +22,7 @@ from blog.models import Category, Post
 
 # geckodriver_autoinstaller.install()
 import ssl
+
 if not os.environ.get("PYTHONHTTPSVERIFY", "") and getattr(
     ssl, "_create_unverified_context", None
 ):
@@ -140,8 +141,6 @@ class TestFunctionalUI(StaticLiveServerTestCase):
 
         self.assertTrue("Super User's Post" in first_post.text)
         # Author clicks on the post's title to get to its post details page
-        #first_post.find_element(by=By.TAG_NAME, value="a").click()
-        # self.browser.get(first_article_link.get_attribute("href"))
         first_post.click()
 
         # Author Clicks 'Edit Post' and changes the post's title
