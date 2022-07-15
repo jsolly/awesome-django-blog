@@ -52,7 +52,7 @@ th {
   margin-bottom: 10px;
 }
 
-.navbar-brand:hover, .nav-link:hover {
+div:not(.show)>ul>li:hover{
   animation-name: button-shake;
   animation-duration: 0.3s;
 }
@@ -158,7 +158,7 @@ video {
 /* Keyframes */
 @keyframes button-shake {
   from {
-  transform: rotate(2deg)
+    transform: rotate(2deg)
   }
 
   to {
