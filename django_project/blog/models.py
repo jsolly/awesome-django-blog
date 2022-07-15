@@ -56,7 +56,7 @@ class Post(models.Model):
         if not self.slug:
             slugify_instance_title(self, save=False)
         try:
-            self.metaimg_mimetype = filetype.guess(self.metaimg).MIME
+            self.metaimg_mimetype = filetype.guess(self.metaimg.path).MIME
         except AttributeError:
             pass
 
