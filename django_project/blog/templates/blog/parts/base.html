@@ -1,7 +1,7 @@
 {% load static %}
 {% load sri %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 
 <head>
   <title>{% block title %}A blog about Python and JavaScript web development{% endblock %}</title>
@@ -9,14 +9,14 @@
 
   {% endblock head %}
   <!-- Meta -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <meta name="author" content="John Solly">
   {% block meta %}
 
   {% endblock meta %}
 
-  <!-- Favicon-->
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}"
     integrity="sha384-IOUppspYTbISZchqpOQiUnyFxb6AhlvJqZRXFlU7RfII0ZdZXzIo3LU+KmiT1o3Z" crossorigin="anonymous">
   <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}"
@@ -49,6 +49,7 @@
 </head>
 
 <body>
+  <div class="spinner"></div>
   {% include "blog/parts/header.html" %}
   <main role="main" class="container">
     <div class="row">
