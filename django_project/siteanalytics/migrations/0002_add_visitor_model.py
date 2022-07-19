@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('siteanalytics', '0001_initial'),
+        ("siteanalytics", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='visitor',
-            name='ip_addr',
+            model_name="visitor",
+            name="ip_addr",
             field=models.CharField(max_length=100, unique=True),
         ),
     ]

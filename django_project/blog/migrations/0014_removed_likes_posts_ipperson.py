@@ -6,22 +6,22 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0013_add_desc_to_category'),
+        ("blog", "0013_add_desc_to_category"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='post',
-            name='likes',
+            model_name="post",
+            name="likes",
         ),
         migrations.RemoveField(
-            model_name='post',
-            name='views',
+            model_name="post",
+            name="views",
         ),
         migrations.DeleteModel(
-            name='Comment',
+            name="Comment",
         ),
         migrations.DeleteModel(
-            name='IpPerson',
+            name="IpPerson",
         ),
     ]

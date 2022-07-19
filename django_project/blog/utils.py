@@ -11,6 +11,7 @@ def slugify_instance_title(instance, save=False, new_slug=None):
     if save:
         instance.save()
 
+
 # def post_pre_save(sender, instance, *args, **kwargs):
 #     print("pre_save")
 #     if instance.slug is None:

@@ -7,18 +7,20 @@ import django_ckeditor_5.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0014_removed_likes_posts_ipperson'),
+        ("blog", "0014_removed_likes_posts_ipperson"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='post',
-            name='content',
+            model_name="post",
+            name="content",
             field=django_ckeditor_5.fields.CKEditor5Field(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='post',
-            name='snippet',
-            field=django_ckeditor_5.fields.CKEditor5Field(blank=True, max_length=300, null=True),
+            model_name="post",
+            name="snippet",
+            field=django_ckeditor_5.fields.CKEditor5Field(
+                blank=True, max_length=300, null=True
+            ),
         ),
     ]

@@ -6,19 +6,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0012_add_metaimg'),
+        ("blog", "0012_add_metaimg"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='category',
-            name='description',
-            field=models.CharField(default='Hello World', max_length=140),
+            model_name="category",
+            name="description",
+            field=models.CharField(default="Hello World", max_length=140),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='category',
-            name='name',
+            model_name="category",
+            name="name",
             field=models.CharField(max_length=50),
         ),
     ]

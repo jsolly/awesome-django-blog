@@ -261,9 +261,7 @@ DATABASES = {
 
 import sys
 
-found_count = len(
-    {item for item in ["pytest"] if any(item in arg for arg in sys.argv)}
-)
+found_count = len({item for item in ["pytest"] if any(item in arg for arg in sys.argv)})
 if found_count > 0:
 
     DATABASES = {

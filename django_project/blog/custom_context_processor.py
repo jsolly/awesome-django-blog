@@ -3,9 +3,9 @@ from django.db.models import Count
 
 
 def category_renderer(request):
-    category_qs = Category.objects.annotate(posts_count=Count('post'))
+    category_qs = Category.objects.annotate(posts_count=Count("post"))
     try:
-        current_category = request.resolver_match.kwargs['category']
+        current_category = request.resolver_match.kwargs["category"]
     except (KeyError, AttributeError):
         current_category = "None"
     return {

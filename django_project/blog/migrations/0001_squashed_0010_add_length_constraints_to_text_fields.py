@@ -10,7 +10,18 @@ import django.utils.timezone
 
 class Migration(migrations.Migration):
 
-    replaces = [('blog', '0001_initial'), ('blog', '0002_add_likes'), ('blog', '0003_add_views_to_Post'), ('blog', '0004_add_slug_field'), ('blog', '0005_add_images_to_post'), ('blog', '0006_change_content_field_to_richtextuploading'), ('blog', '0007_add_snippet_to_post_model'), ('blog', '0008_change_snippet_field_to_richtextfield'), ('blog', '0009_added_metadescription_to_post_model'), ('blog', '0010_add_length_constraints_to_text_fields')]
+    replaces = [
+        ("blog", "0001_initial"),
+        ("blog", "0002_add_likes"),
+        ("blog", "0003_add_views_to_Post"),
+        ("blog", "0004_add_slug_field"),
+        ("blog", "0005_add_images_to_post"),
+        ("blog", "0006_change_content_field_to_richtextuploading"),
+        ("blog", "0007_add_snippet_to_post_model"),
+        ("blog", "0008_change_snippet_field_to_richtextfield"),
+        ("blog", "0009_added_metadescription_to_post_model"),
+        ("blog", "0010_add_length_constraints_to_text_fields"),
+    ]
 
     initial = True
 
@@ -20,73 +31,136 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
             ],
         ),
         migrations.CreateModel(
-            name='Post',
+            name="Post",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=100)),
-                ('content', ckeditor.fields.RichTextField(blank=True, null=True)),
-                ('date_posted', models.DateTimeField(default=django.utils.timezone.now)),
-                ('category', models.CharField(default='uncategorized', max_length=100)),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=100)),
+                ("content", ckeditor.fields.RichTextField(blank=True, null=True)),
+                (
+                    "date_posted",
+                    models.DateTimeField(default=django.utils.timezone.now),
+                ),
+                ("category", models.CharField(default="uncategorized", max_length=100)),
+                (
+                    "author",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Comment',
+            name="Comment",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('content', ckeditor.fields.RichTextField(blank=True, null=True)),
-                ('date_posted', models.DateTimeField(default=django.utils.timezone.now)),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('post', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='comments', to='blog.post')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("content", ckeditor.fields.RichTextField(blank=True, null=True)),
+                (
+                    "date_posted",
+                    models.DateTimeField(default=django.utils.timezone.now),
+                ),
+                (
+                    "author",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "post",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="comments",
+                        to="blog.post",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='IpPerson',
+            name="IpPerson",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('ip', models.CharField(max_length=100)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("ip", models.CharField(max_length=100)),
             ],
         ),
         migrations.AddField(
-            model_name='post',
-            name='likes',
-            field=models.ManyToManyField(blank=True, related_name='post_likes', to='blog.ipperson'),
+            model_name="post",
+            name="likes",
+            field=models.ManyToManyField(
+                blank=True, related_name="post_likes", to="blog.ipperson"
+            ),
         ),
         migrations.AddField(
-            model_name='post',
-            name='views',
-            field=models.ManyToManyField(blank=True, related_name='post_views', to='blog.ipperson'),
+            model_name="post",
+            name="views",
+            field=models.ManyToManyField(
+                blank=True, related_name="post_views", to="blog.ipperson"
+            ),
         ),
         migrations.AddField(
-            model_name='post',
-            name='slug',
+            model_name="post",
+            name="slug",
             field=models.SlugField(blank=True, null=True, unique=True),
         ),
         migrations.AlterField(
-            model_name='post',
-            name='content',
-            field=ckeditor_uploader.fields.RichTextUploadingField(blank=True, null=True),
+            model_name="post",
+            name="content",
+            field=ckeditor_uploader.fields.RichTextUploadingField(
+                blank=True, null=True
+            ),
         ),
         migrations.AddField(
-            model_name='post',
-            name='metadesc',
+            model_name="post",
+            name="metadesc",
             field=models.CharField(blank=True, max_length=140, null=True),
         ),
         migrations.AddField(
-            model_name='post',
-            name='snippet',
+            model_name="post",
+            name="snippet",
             field=ckeditor.fields.RichTextField(blank=True, max_length=300, null=True),
         ),
         migrations.AlterField(
-            model_name='post',
-            name='title',
+            model_name="post",
+            name="title",
             field=models.CharField(max_length=60),
         ),
     ]

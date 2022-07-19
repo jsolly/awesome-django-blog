@@ -7,19 +7,23 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0019_remove_category_rename_category_link'),
+        ("blog", "0019_remove_category_rename_category_link"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='post',
-            name='category',
-            field=models.ForeignKey(default=999, on_delete=django.db.models.deletion.CASCADE, to='blog.category'),
+            model_name="post",
+            name="category",
+            field=models.ForeignKey(
+                default=999,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="blog.category",
+            ),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='post',
-            name='metaimg_alt_txt',
-            field=models.CharField(default='Meta Image', max_length=120),
+            model_name="post",
+            name="metaimg_alt_txt",
+            field=models.CharField(default="Meta Image", max_length=120),
         ),
     ]

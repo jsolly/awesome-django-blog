@@ -29,7 +29,7 @@ from .views import (
     works_cited_view,
     security_txt_view,
     security_pgp_key_view,
-    portfolio_view
+    portfolio_view,
 )
 from users.views import (
     register_view,
