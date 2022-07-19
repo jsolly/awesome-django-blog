@@ -1,57 +1,58 @@
 {% load static %}
 <header class="site-header">
-    <!-- Nav Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-steel fixed-top">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'blog-home' %}">
-          <img src="{% static 'logo_transparent_cropped.png' static %}" alt="blogthedata.com logo. A blue hexagon." width="26px" height="30" class="d-inline-block align-text-top">
-           Solly's Blog
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" id="nav-home" href="{% url 'blog-home' %}">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Categories
-              </a>
-              <ul class="dropdown-menu" id="nav-categories" aria-labelledby="navbarDropdown">
-                {% for cat in category_qs %}
-                <li><a class="dropdown-item" href="{% url 'blog-category' cat|slugify %}">{{cat|title}}</a></li>
-                {% endfor %}
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="nav-portfolio" href="{% url 'portfolio' %}">Portfolio</a>
-            </li>
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" id="nav-profile" href="{% url 'profile' %}">Profile</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="nav-logout" href="{% url 'logout' %}">Logout</a>
-            </li>
-            {% endif %}
-            {% if user.is_staff %}
-            <li class="nav-item">
-              <a class="nav-link" id="nav-new-post" href="{% url 'post-create' %}">New Post</a>
-            </li>
-            {% endif %}
-          </ul>
-          <form class="d-flex" method=POST action="{% url 'blog-search' %}">
-            {% csrf_token %}
-            <input class="form-control me-2" id="search-posts-input" type="search" placeholder="Search Posts" aria-label="Search"
-              name="searched">
-            <button class="btn btn-success" id="search-posts-button" type="submit">Search</button>
-          </form>
-        </div>
+  <!-- Nav Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-steel fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'blog-home' %}">
+        <img src="{% static 'logo_transparent_cropped.png' static %}" alt="blogthedata.com logo. A blue hexagon."
+          width="26px" height="30" class="d-inline-block align-text-top">
+        Solly's Blog
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" id="nav-home" href="{% url 'blog-home' %}">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Categories
+            </a>
+            <ul class="dropdown-menu" id="nav-categories" aria-labelledby="navbarDropdown">
+              {% for cat in category_qs %}
+              <li><a class="dropdown-item" href="{% url 'blog-category' cat|slugify %}">{{cat|title}}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="nav-portfolio" href="{% url 'blog-category' 'portfolio' %}">Portfolio</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" id="nav-profile" href="{% url 'profile' %}">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="nav-logout" href="{% url 'logout' %}">Logout</a>
+          </li>
+          {% endif %}
+          {% if user.is_staff %}
+          <li class="nav-item">
+            <a class="nav-link" id="nav-new-post" href="{% url 'post-create' %}">New Post</a>
+          </li>
+          {% endif %}
+        </ul>
+        <form class="d-flex" method=POST action="{% url 'blog-search' %}">
+          {% csrf_token %}
+          <input class="form-control me-2" id="search-posts-input" type="search" placeholder="Search Posts"
+            aria-label="Search" name="searched">
+          <button class="btn btn-success" id="search-posts-button" type="submit">Search</button>
+        </form>
       </div>
-    </nav>
-    <!-- End Nav Bar -->
-  </header>
+    </div>
+  </nav>
+  <!-- End Nav Bar -->
+</header>
