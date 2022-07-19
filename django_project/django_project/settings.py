@@ -24,6 +24,7 @@ SITE_ID = 1  # blogthedata.com
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 CAPTCHA_TEST_MODE = False
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # HTTPS SETTINGS
 SESSION_COOKIE_SECURE = True
@@ -71,7 +72,7 @@ CSP_FRAME_ANCESTORS = ("'none'",)
 CSP_BASE_URI = ("'none'",)
 CSP_FORM_ACTION = ("'self'", "https://blogthedata.us14.list-manage.com")
 CSP_OBJECT_SRC = ("'none'",)
-CSP_EXCLUDE_URL_PREFIXES = ("/admin", "/portfolio")
+CSP_EXCLUDE_URL_PREFIXES = ("/admin", "/portfolio", "/site-analytics")
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
 USE_SRI = False
 if os.environ["DEBUG"] == "True":
@@ -135,6 +136,7 @@ MIDDLEWARE = [
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
     "csp.middleware.CSPMiddleware",
     "livereload.middleware.LiveReloadScript",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware"
 ]
 
 ROOT_URLCONF = "django_project.urls"

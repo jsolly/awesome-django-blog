@@ -188,3 +188,8 @@ video {
   max-width: 100%;
   border-radius: 1.5px;
 }
+
+#portfolioMap {
+  width: 100%;
+  height: 550px;
+}
