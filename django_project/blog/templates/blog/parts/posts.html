@@ -8,10 +8,10 @@
       {{ post.author.first_name }} {{ post.author.last_name }}: {{ post.date_posted|date:"F d, Y" }}</small>
     {% if post.draft %}<nobr id="draft">(Draft)</nobr>{% endif %}
   </nobr>
-  {% if current_category == "portfolio" %}
-  <p>{{ post.content|safe }}</p>
+  {% if post.category.name == "portfolio" %}
+  {{ post.content|safe }}
   {% else %}
-  <p>{{ post.snippet|safe }}</p>
+  {{ post.snippet|safe }}
   {% endif %}
 </a>
 
