@@ -189,7 +189,7 @@ video {
   border-radius: 1.5px;
 }
 
-#portfolioMap {
+#leafletMap {
   width: 100%;
   height: 550px;
 }
