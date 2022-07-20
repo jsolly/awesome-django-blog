@@ -9,7 +9,7 @@
     {% if post.draft %}<nobr id="draft">(Draft)</nobr>{% endif %}
   </nobr>
   {% if post.category.name == "portfolio" %}
-  {{ post.content|safe }}
+  <object aria-label="A portfolio project">{{ post.content|safe }}</object>
   {% else %}
   {{ post.snippet|safe }}
   {% endif %}
