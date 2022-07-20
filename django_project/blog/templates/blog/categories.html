@@ -2,12 +2,11 @@
 {% block title %}{{ category|title }}{% endblock title %}
 
 {% block meta %}
-<meta name="description" content="Researched articles about {{ category }}. Stay up-to-date and improve your knowledge.">
+<meta name="description" content="{{ category }} Posts">
 {% include "blog/parts/logo_meta.html" %}
 <meta property="og:type" content="article:section">
 <meta property="og:title" content="{{ category|title }}">
-<meta name="twitter:description"
-    content="Researched articles about {{ category }}. Stay up-to-date and improve your knowledge.">
+<meta name="twitter:description" content="{{ category }} Posts">
 {% endblock meta %}
 
 <!-- About Section-->
