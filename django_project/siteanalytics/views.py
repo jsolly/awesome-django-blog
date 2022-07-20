@@ -33,4 +33,5 @@ def mapbox_map_view(request):
     return render(
         request,
         "siteanalytics/mapbox_map.html",
+        {"MAPBOX_TOKEN": os.environ["MAPBOX_TOKEN"]},
     )

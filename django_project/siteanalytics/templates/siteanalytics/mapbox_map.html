@@ -17,7 +17,7 @@ body { margin: 0; padding: 0; }
 	// TO MAKE THE MAP APPEAR YOU MUST
 	// ADD YOUR ACCESS TOKEN FROM
 	// https://account.mapbox.com
-	mapboxgl.accessToken = 'pk.eyJ1IjoianNvbGx5IiwiYSI6ImNsM2l2Z2ZjeTFscHMzanA2a2R3aGYzcngifQ.4qxhGbd0aN6vqv-ScPesGg';
+	mapboxgl.accessToken = "{{ MAPBOX_TOKEN }}";
     const map = new mapboxgl.Map({
         container: 'map', // container ID
         style: 'mapbox://styles/mapbox/streets-v11', // style URL
