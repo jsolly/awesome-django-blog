@@ -29,9 +29,9 @@ from users.views import (
 )
 from siteanalytics.views import (
     openlayers_map_view,
-    cesium_map_view,
     maplibre_map_view,
     leaflet_map_view,
+    mapbox_map_view
 )
 
 
@@ -48,11 +48,13 @@ class TestUrls(SetUp):
     def test_openlayers_map_url_is_resolved(self):
         self.assertEqual(resolve(reverse("openlayers-map")).func, openlayers_map_view)
 
-    def test_cesium_map_url_is_resolved(self):
-        self.assertEqual(resolve(reverse("cesium-map")).func, cesium_map_view)
-
     def test_maplibre_map_url_is_resolved(self):
         self.assertEqual(resolve(reverse("maplibre-map")).func, maplibre_map_view)
+
+    def test_mapbox_map_url_is_resolved(self):
+        self.assertEqual(resolve(reverse("mapbox-map")).func, mapbox_map_view)
+
+
 
     def test_home_url_is_resolved(self):
         self.assertEqual(resolve(reverse("blog-home")).func.view_class, HomeView)

@@ -47,12 +47,14 @@ CSP_STYLE_SRC = (
     "'self'",
     "https://cdn.jsdelivr.net",
     "https://unpkg.com",
+    "https://api.mapbox.com",
     "'unsafe-inline'",
 )
 CSP_SCRIPT_SRC_ELEM = (
     "'self'",
     "https://unpkg.com",
     "https://cdn.jsdelivr.net",
+    "https://api.mapbox.com",
     "'unsafe-inline'"
 )
 CSP_SCRIPT_SRC = ("'self'", "https://unpkg.com/", "https://cdn.jsdelivr.net")
@@ -65,7 +67,7 @@ CSP_IMG_SRC = (
     "https://storage.ko-fi.com",
 )
 CSP_FONT_SRC = "'self'"
-CSP_CONNECT_SRC = ("'self'", "https://demotiles.maplibre.org/")
+CSP_CONNECT_SRC = ("'self'", "https://demotiles.maplibre.org/", "https://api.mapbox.com", "https://events.mapbox.com")
 CSP_FRAME_SRC = ("*",)
 CSP_FRAME_ANCESTORS = ("'self'",)
 CSP_BASE_URI = ("'none'",)
