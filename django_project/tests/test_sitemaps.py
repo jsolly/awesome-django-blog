@@ -6,7 +6,6 @@ from django_project.sitemaps import (
     PostSitemap,
     CategorySiteMap,
     WorksCitedSiteMap,
-    SiteAnalyticsSiteMap,
 )
 
 
@@ -27,8 +26,3 @@ class TestModels(SetUp):
         item = WorksCitedSiteMap.items(Sitemap)[0]
         self.assertTrue(reverse(item))
         self.assertTrue(WorksCitedSiteMap.location(Sitemap, item))
-
-    def test_site_analytics_site_map(self):
-        item = SiteAnalyticsSiteMap.items(Sitemap)[0]
-        self.assertTrue(reverse(item))
-        self.assertTrue(SiteAnalyticsSiteMap.location(Sitemap, item))

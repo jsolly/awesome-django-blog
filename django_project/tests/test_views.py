@@ -344,8 +344,20 @@ class TestViews(SetUp):
         self.assertEqual(response.status_code, 200)
 
     @pytest.mark.skip(reason="Need to use test fixtures before this will pass")
-    def test_site_analytics_view(self):
-        response = self.client.get(reverse("blog-site-analytics"))
+    def test_leaflet_map_view(self):
+        response = self.client.get(reverse("leaflet_map"))
+        self.assertEqual(response.status_code, 200)
+
+    def test_openlayers_map_view(self):
+        response = self.client.get(reverse("openlayers-map"))
+        self.assertEqual(response.status_code, 200)
+
+    def test_cesium_map_view(self):
+        response = self.client.get(reverse("cesium-map"))
+        self.assertEqual(response.status_code, 200)
+
+    def test_maplibre_view(self):
+        response = self.client.get(reverse("maplibre-map"))
         self.assertEqual(response.status_code, 200)
 
     # def test_handler_404(self):

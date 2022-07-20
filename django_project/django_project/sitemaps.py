@@ -46,14 +46,3 @@ class WorksCitedSiteMap(Sitemap):
 
     def location(self, item):
         return reverse(item)
-
-
-class SiteAnalyticsSiteMap(Sitemap):
-    changefreq = "weekly"
-    priority = 0.1
-
-    def items(self):
-        return ["blog-site-analytics"]
-
-    def location(self, item):
-        return reverse(item)

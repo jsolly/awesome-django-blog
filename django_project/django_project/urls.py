@@ -23,7 +23,6 @@ from django_project.sitemaps import (
     HomeSitemap,
     WorksCitedSiteMap,
     CategorySiteMap,
-    SiteAnalyticsSiteMap,
 )
 from .views import (
     works_cited_view,
@@ -41,14 +40,18 @@ from users.views import (
     MyPasswordResetConfirmView,
     MyPasswordResetCompleteView,
 )
-from siteanalytics.views import site_analytics_view
+from siteanalytics.views import (
+    leaflet_map_view,
+    cesium_map_view,
+    openlayers_map_view,
+    maplibre_map_view,
+)
 
 
 sitemaps = {
     "posts": PostSitemap,
     "categories": CategorySiteMap,
     "home page": HomeSitemap,
-    "Site Analytics": SiteAnalyticsSiteMap,
     "Works Cited": WorksCitedSiteMap,
 }
 
@@ -60,7 +63,10 @@ urlpatterns = [
         name="django.contrib.sitemaps.views.sitemap",
     ),
     path("works-cited", works_cited_view, name="blog-works-cited"),
-    path("site-analytics", site_analytics_view, name="blog-site-analytics"),
+    path("leaflet-map", leaflet_map_view, name="leaflet-map"),
+    path("openlayers-map", openlayers_map_view, name="openlayers-map"),
+    path("mapbox-map", cesium_map_view, name="cesium-map"),
+    path("maplibre-map", maplibre_map_view, name="maplibre-map"),
     path("admin/", admin.site.urls),
     path(".well-known/security.txt", security_txt_view, name="security-txt"),
     path("pgp-key.txt", security_pgp_key_view, name="security-pgp-key-txt"),

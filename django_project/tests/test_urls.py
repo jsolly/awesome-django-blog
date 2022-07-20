@@ -27,7 +27,12 @@ from users.views import (
     MyPasswordResetDoneView,
     MyPasswordResetCompleteView,
 )
-from siteanalytics.views import site_analytics_view
+from siteanalytics.views import (
+    openlayers_map_view,
+    cesium_map_view,
+    maplibre_map_view,
+    leaflet_map_view,
+)
 
 
 def get_url(url_name):
@@ -37,10 +42,17 @@ def get_url(url_name):
 class TestUrls(SetUp):
     """Make sure urls are hooked up to the correct View"""
 
-    def test_site_analytics_url_is_resolved(self):
-        self.assertEqual(
-            resolve(reverse("blog-site-analytics")).func, site_analytics_view
-        )
+    def test_leaflet_map_url_is_resolved(self):
+        self.assertEqual(resolve(reverse("leaflet-map")).func, leaflet_map_view)
+
+    def test_openlayers_map_url_is_resolved(self):
+        self.assertEqual(resolve(reverse("openlayers-map")).func, openlayers_map_view)
+
+    def test_cesium_map_url_is_resolved(self):
+        self.assertEqual(resolve(reverse("cesium-map")).func, cesium_map_view)
+
+    def test_maplibre_map_url_is_resolved(self):
+        self.assertEqual(resolve(reverse("maplibre-map")).func, maplibre_map_view)
 
     def test_home_url_is_resolved(self):
         self.assertEqual(resolve(reverse("blog-home")).func.view_class, HomeView)

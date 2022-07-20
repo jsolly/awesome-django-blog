@@ -53,8 +53,7 @@ CSP_SCRIPT_SRC_ELEM = (
     "'self'",
     "https://unpkg.com",
     "https://cdn.jsdelivr.net",
-    "'sha256-s7x33Jf2oFLyeigzrD2Jvivj1qABuT3xmV0rEk+kW/s='",  # Kofi Script
-    "'sha256-FCcCezzLLwvnHEHP6yFolJnlDks5BckJjAaHFEACQNY='",  # Leaflet map
+    "'unsafe-inline'"
 )
 CSP_SCRIPT_SRC = ("'self'", "https://unpkg.com/", "https://cdn.jsdelivr.net")
 CSP_MEDIA_SRC = "'self'"
@@ -66,12 +65,13 @@ CSP_IMG_SRC = (
     "https://storage.ko-fi.com",
 )
 CSP_FONT_SRC = "'self'"
-CSP_CONNECT_SRC = ("'self'",)
+CSP_CONNECT_SRC = ("'self'", "https://demotiles.maplibre.org/")
 CSP_FRAME_SRC = ("*",)
-CSP_FRAME_ANCESTORS = ("'none'",)
+CSP_FRAME_ANCESTORS = ("'self'",)
 CSP_BASE_URI = ("'none'",)
 CSP_FORM_ACTION = ("'self'", "https://blogthedata.us14.list-manage.com")
 CSP_OBJECT_SRC = ("'none'",)
+CSP_WORKER_SRC = ("'self'", "blob:")
 CSP_EXCLUDE_URL_PREFIXES = ("/admin", "/portfolio", "/site-analytics")
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
 USE_SRI = False
