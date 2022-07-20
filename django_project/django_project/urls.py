@@ -65,7 +65,7 @@ urlpatterns = [
     path("works-cited", works_cited_view, name="blog-works-cited"),
     path("leaflet-map", leaflet_map_view, name="leaflet-map"),
     path("openlayers-map", openlayers_map_view, name="openlayers-map"),
-    path("mapbox-map", cesium_map_view, name="cesium-map"),
+    path("cesium-map", cesium_map_view, name="cesium-map"),
     path("maplibre-map", maplibre_map_view, name="maplibre-map"),
     path("admin/", admin.site.urls),
     path(".well-known/security.txt", security_txt_view, name="security-txt"),
