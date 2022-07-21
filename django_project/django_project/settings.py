@@ -57,7 +57,7 @@ CSP_SCRIPT_SRC_ELEM = (
     "https://api.mapbox.com",
     "'unsafe-inline'"
 )
-CSP_SCRIPT_SRC = ("'self'", "https://unpkg.com/", "https://cdn.jsdelivr.net")
+CSP_SCRIPT_SRC = ("'self'", "https://unpkg.com/", "https://cdn.jsdelivr.net", "https://api.mapbox.com")
 CSP_MEDIA_SRC = "'self'"
 CSP_IMG_SRC = (
     "'self'",
