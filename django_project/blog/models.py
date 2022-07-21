@@ -31,7 +31,7 @@ class Category(models.Model):
 class Post(models.Model):
     """Contains all the information that is relevant to a blog post"""
 
-    title = models.CharField(max_length=60)
+    title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True, blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     metadesc = models.CharField(max_length=140, blank=True, null=True)
