@@ -63,12 +63,11 @@ $ sudo apt update
 $ apt install postgis
 $ 
 $ sudo -u postgres psql
-postgres=# CREATE DATABASE blogthedata;
 postgres=# CREATE USER blogthedatauser WITH PASSWORD 'password';
 postgres=# ALTER ROLE blogthedatauser SET client_encoding TO 'utf8';
 postgres=# ALTER ROLE blogthedatauser SET default_transaction_isolation TO 'read committed';
 postgres=# ALTER ROLE blogthedatauser SET timezone TO 'UTC';
-postgres=# GRANT ALL PRIVILEGES ON DATABASE blogthedata TO blogthedatauser;
+postgres=# CREATE DATABASE blogthedata WITH OWNER blogthedatauser;
 postgres=# \c blogthedata
 postgres=# CREATE extension postgis;
 postgres=# SELECT PostGIS_version();

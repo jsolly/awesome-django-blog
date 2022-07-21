@@ -31,7 +31,7 @@ class Category(models.Model):
 class Post(models.Model):
     """Contains all the information that is relevant to a blog post"""
 
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=110)
     slug = models.SlugField(unique=True, blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     metadesc = models.CharField(max_length=140, blank=True, null=True)
@@ -40,9 +40,7 @@ class Post(models.Model):
     metaimg_mimetype = models.CharField(max_length=20, default="image/jpeg")
     metaimg_alt_txt = models.CharField(max_length=120, default="Meta Image")
     content = CKEditor5Field(blank=True, null=True, config_name="extends")
-    snippet = CKEditor5Field(
-        max_length=300, blank=True, null=True, config_name="extends"
-    )
+    snippet = CKEditor5Field(blank=True, null=True, config_name="extends")
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
