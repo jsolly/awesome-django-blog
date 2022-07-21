@@ -193,3 +193,23 @@ scp -r /Users/johnsolly/Documents/code/blogthedata/django_project/media john@198
 
 ### Send backup to remote server
 $ scp -r /Users/johnsolly/Documents/code/blogthedata/backups/blogthedata_db_6_20_22.sql john@198.74.48.211:~/blogthedata/backups
+
+### Resolve image upload issue (403 from rejected csrf token)
+I added the following to venv/lib/python3.8/site-packages/django_ckeditor_5/views.py
+
+from django.views.decorators.csrf import csrf_exempt
+
+```py
+@csrf_exempt
+def upload_file(request):
+    if request.method == "POST" and request.user.is_staff:
+        form = UploadFileForm(request.POST, request.FILES)
+        try:
+            image_verify(request.FILES["upload"])
+        except NoImageException as ex:
+            return JsonResponse({"error": {"message": "{}".format(str(ex))}})
+        if form.is_valid():
+            url = handle_uploaded_file(request.FILES["upload"])
+            return JsonResponse({"url": url})
+    raise Http404(_("Page not found."))
+```
