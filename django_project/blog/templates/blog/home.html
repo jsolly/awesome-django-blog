@@ -1,8 +1,7 @@
 {% extends "blog/parts/base.html" %}
 {% load static %}
 {% block meta %}
-<meta name="description"
-  content="Blog posts about everything from developing software to productivity">
+<meta name="description" content="Blog posts about everything from developing software to productivity">
 <meta property="og:type" content="website">
 <meta property="og:title" content="A blog about geospatial web development">
 {% include "blog/parts/logo_meta.html" %}
@@ -43,4 +42,6 @@
 <h1 class="display-6">Latest Posts!</h1>
 {% include "blog/parts/posts.html" %}
 {% include "blog/parts/pagination.html" %}
+<!--Mailchimp Embed-->
+{% include "blog/parts/mailchimp_embed.html" %}
 {% endblock content %}

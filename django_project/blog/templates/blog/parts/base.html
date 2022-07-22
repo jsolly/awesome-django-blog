@@ -53,15 +53,18 @@
   {% include "blog/parts/header.html" %}
   <main role="main" class="container">
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-lg-2">
         <!--Sidebar-->
         {% include "blog/parts/sidebar.html" %}
-        <p>
-        <h3>About this Page</h3>
-        {% block about %} The latest posts in each category {% endblock about %}</p>
+        <div class="centered-sidebar-content">
+        <h4>About this Page</h4>
+        {% block about %} The latest posts in each category {% endblock about %}
+      </div>
+      <div id="sidebar-kofi" class="centered-sidebar-content">
         <!--Kofi Donation-->
         {% sri_static "kofi/kofi_script1.js" %}
         <script>kofiwidget2.init('Buy me a Coffee', '#0d6efd', 'S6S6CSR2Q'); kofiwidget2.draw();</script>
+      </div>
 
       </div>
       <div id="content-area" class="col-lg-10">
@@ -69,8 +72,6 @@
         <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %} {% endif %}
         {% block content %} {% endblock %}
-        <!--Mailchimp Embed-->
-        {% include "blog/parts/mailchimp_embed.html" %}
         <!--Footer-->
         {% include "blog/parts/footer.html" %}
       </div>
