@@ -105,6 +105,7 @@ blockquote {
 .article-block:hover {
   background-color: #f8f9fa;
   box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+  transform: scale(1.005);
 }
 
 .account-img {
