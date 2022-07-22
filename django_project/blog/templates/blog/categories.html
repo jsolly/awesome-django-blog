@@ -15,8 +15,13 @@
 {% endblock about %}
 
 {% block content %}
+{% if category.name == "portfolio" %}
+{% include 'blog/portfolio_top.html' %}
+{% endif %}
 <h1 class="display-6">{{ category|title }}</h1>
 {% include "blog/parts/posts.html" %}
 {% include "blog/parts/pagination.html" %}
-
+{% if category.name == "portfolio" %}
+{% include 'blog/portfolio_bottom.html' %}
+{% endif %}
 {% endblock content %}

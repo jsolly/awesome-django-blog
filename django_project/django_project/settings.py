@@ -65,6 +65,7 @@ CSP_IMG_SRC = (
     "https://unpkg.com/",
     "*.openstreetmap.org",
     "https://storage.ko-fi.com",
+    "https://github-readme-twitter"
 )
 CSP_FONT_SRC = "'self'"
 CSP_CONNECT_SRC = ("'self'", "https://demotiles.maplibre.org/", "https://api.mapbox.com", "https://events.mapbox.com")
@@ -74,7 +75,7 @@ CSP_BASE_URI = ("'none'",)
 CSP_FORM_ACTION = ("'self'", "https://blogthedata.us14.list-manage.com")
 CSP_OBJECT_SRC = ("'none'",)
 CSP_WORKER_SRC = ("'self'", "blob:")
-CSP_EXCLUDE_URL_PREFIXES = ("/admin", "/portfolio", "/site-analytics")
+CSP_EXCLUDE_URL_PREFIXES = ("/admin", "/category/portfolio", "/site-analytics")
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
 USE_SRI = False
 if os.environ["DEBUG"] == "True":
