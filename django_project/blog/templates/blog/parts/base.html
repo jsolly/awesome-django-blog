@@ -64,7 +64,7 @@
         <script>kofiwidget2.init('Buy me a Coffee', '#0d6efd', 'S6S6CSR2Q'); kofiwidget2.draw();</script>
 
       </div>
-      <div class="col-lg-10">
+      <div id="content-area" class="col-lg-10">
         {% if messages %} {% for message in messages %}
         <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %} {% endif %}

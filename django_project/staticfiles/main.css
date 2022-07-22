@@ -15,7 +15,7 @@
 body {
   padding-top: 70px;
   font-family: "Helvetica", "Arial", sans-serif;
-
+  
 }
 
 .bg-steel {
@@ -104,6 +104,7 @@ blockquote {
 
 .article-block:hover {
   background-color: #f8f9fa;
+  box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
 }
 
 .account-img {
@@ -156,6 +157,15 @@ th {
   }
 }
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 /* =============
    Media Queries
 ============= */
@@ -192,4 +202,8 @@ video {
 #leafletMap, #openlayersMap, #maplibreMap, #mapboxMap {
   width: 100%;
   height: 550px;
+}
+
+#content-area {
+  animation: fade-in 0.8s;
 }
