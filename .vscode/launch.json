@@ -39,7 +39,7 @@
     {
       "name": "Launch_Chrome",
       "request": "launch",
-      "type": "pwa-chrome",
+      "type": "chrome",
       "runtimeArgs": [
         "--incognito",
       ],
