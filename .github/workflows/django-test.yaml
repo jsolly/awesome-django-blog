@@ -34,6 +34,7 @@ jobs:
       DEBUG: ${{secrets.DEBUG}}
       LOGGING: ${{secrets.LOGGING}}
       IP_INFO_TOKEN: ${{secrets.IP_INFO_TOKEN}}
+      MAPBOX_TOKEN: ${{secrets.MAPBOX_TOKEN}
     steps:
     - uses: actions/checkout@v2
     - name: Setup Python 3.8.10
