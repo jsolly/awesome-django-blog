@@ -16,7 +16,7 @@ class PostManager(models.Manager):
 
 
 class Category(models.Model):
-    """A category contains a subset of posts that are associated with a single category"""
+    """A category contains a subset of posts that are associated with a single category."""
 
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=140)
