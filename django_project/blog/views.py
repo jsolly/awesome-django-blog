@@ -29,7 +29,7 @@ class HomeView(ListView):
 
 class UserPostListView(ListView):  # Not actively worked on
     model = Post
-    template_name = "blog/user_posts.html"  # <app>/<model>_<viewtype>.html
+    template_name = "blog/post/user_posts.html"  # <app>/<model>_<viewtype>.html
     context_object_name = "posts"  # The default is object_list
     paginate_by = 5
 
@@ -44,7 +44,7 @@ class PostDetailView(DetailView):
     """
 
     model = Post
-    template_name = "blog/post_detail.html"
+    template_name = "blog/post/post_detail.html"
 
     def get_queryset(self):
         post = get_object_or_404(Post, slug=self.kwargs["slug"])
@@ -57,7 +57,7 @@ class PostDetailView(DetailView):
 class CreatePostView(UserPassesTestMixin, CreateView):
     model = Post
     form_class = PostForm
-    template_name = "blog/add_post.html"
+    template_name = "blog/post/add_post.html"
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -71,7 +71,7 @@ class CreatePostView(UserPassesTestMixin, CreateView):
 class PostUpdateView(UserPassesTestMixin, UpdateView):
     model = Post
     form_class = PostForm
-    template_name = "blog/edit_post.html"
+    template_name = "blog/post/edit_post.html"
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -85,7 +85,7 @@ class PostUpdateView(UserPassesTestMixin, UpdateView):
 
 class PostDeleteView(UserPassesTestMixin, DeleteView):
     model = Post
-    success_url = reverse_lazy("blog-home")
+    success_url = reverse_lazy("home")
 
     def test_func(self):
         post = self.get_object()
@@ -95,7 +95,7 @@ class PostDeleteView(UserPassesTestMixin, DeleteView):
 
 class CategoryView(ListView):
     model = Post
-    template_name = "blog/categories.html"  # <app>/<model>_<viewtype>.html
+    template_name = "blog/post/categories.html"  # <app>/<model>_<viewtype>.html
     context_object_name = "posts"  # The default is object_list
     paginate_by = 5
 
@@ -128,12 +128,12 @@ def search_view(request):
         )
         return render(
             request,
-            "blog/search_posts.html",
+            "blog/post/search_posts.html",
             {"searched": searched, "posts": filtered_posts},
         )
     return render(
         request,
-        "blog/search_posts.html",
+        "blog/post/search_posts.html",
         {"searched": "", "posts": []},
     )
     # Seems to be the best approach for now
