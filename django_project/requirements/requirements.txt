@@ -1,6 +1,5 @@
 black
 Brotli
-chromedriver-autoinstaller
 coverage
 Django
 django-ckeditor
@@ -21,5 +20,4 @@ psycopg2-binary
 pytest
 python-dotenv
 requests
-selenium
 whitenoise
