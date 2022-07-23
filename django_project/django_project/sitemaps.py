@@ -8,7 +8,7 @@ class HomeSitemap(Sitemap):
     priority = 0.8
 
     def items(self):
-        return ["blog-home"]
+        return ["home"]
 
     def location(self, item):
         return reverse(item)
@@ -42,7 +42,7 @@ class WorksCitedSiteMap(Sitemap):
     priority = 0.1
 
     def items(self):
-        return ["blog-works-cited"]
+        return ["works-cited"]
 
     def location(self, item):
         return reverse(item)

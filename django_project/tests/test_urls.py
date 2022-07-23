@@ -55,7 +55,7 @@ class TestUrls(SetUp):
         self.assertEqual(resolve(reverse("mapbox-map")).func, mapbox_map_view)
 
     def test_home_url_is_resolved(self):
-        self.assertEqual(resolve(reverse("blog-home")).func.view_class, HomeView)
+        self.assertEqual(resolve(reverse("home")).func.view_class, HomeView)
 
     def test_user_posts_url_is_resolved(self):
         user_posts_url = reverse("user-posts", args=[self.super_user.username])
@@ -107,7 +107,7 @@ class TestUrls(SetUp):
         self.assertEqual(resolve(reverse("robots_rule_list")).func.view_class, RuleList)
 
     def test_works_cited_url_is_resolved(self):
-        self.assertEqual(resolve(reverse("blog-works-cited")).func, works_cited_view)
+        self.assertEqual(resolve(reverse("works-cited")).func, works_cited_view)
 
     def test_security_txt_url_is_resolved(self):
         self.assertEqual(get_url("security-txt").func, security_txt_view)

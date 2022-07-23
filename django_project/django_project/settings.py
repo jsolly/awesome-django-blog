@@ -326,7 +326,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
-LOGIN_REDIRECT_URL = "blog-home"
+LOGIN_REDIRECT_URL = "home"
 LOGIN_URL = "login"
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

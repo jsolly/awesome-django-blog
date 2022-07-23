@@ -17,7 +17,7 @@ class TestViews(SetUp):
 
     def test_home_view(self):  # TODO add check for draft post
         # Anonymous user
-        response = self.client.get(reverse("blog-home"))
+        response = self.client.get(reverse("home"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/home.html")
         self.assertIsInstance(response.context["posts"][0], Post)
@@ -27,19 +27,19 @@ class TestViews(SetUp):
         self.client.login(
             username=self.super_user.username, password=self.general_password
         )
-        response = self.client.get(reverse("blog-home"))
+        response = self.client.get(reverse("home"))
 
     def test_user_post_list_view(self):
         user_posts_url = reverse("user-posts", args=[self.super_user.username])
         response = self.client.get(user_posts_url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/user_posts.html")
+        self.assertTemplateUsed(response, "blog/post/user_posts.html")
 
     def test_post_detail_view_anonymous_regular_post(self):
         post1_detail_url = reverse("post-detail", args=[self.post1.slug])
         response = self.client.get(post1_detail_url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/post_detail.html")
+        self.assertTemplateUsed(response, "blog/post/post_detail.html")
 
     def test_post_detail_view_anonymous_draft_post(self):
         draft_post_detail_url = reverse("post-detail", args=[self.draft_post.slug])
@@ -53,14 +53,14 @@ class TestViews(SetUp):
         draft_post_detail_url = reverse("post-detail", args=[self.draft_post.slug])
         response = self.client.get(draft_post_detail_url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/post_detail.html")
+        self.assertTemplateUsed(response, "blog/post/post_detail.html")
 
     def test_create_post_view_GET(self):
         self.client.login(
             username=self.super_user.username, password=self.general_password
         )
         response = self.client.get(reverse("post-create"))
-        self.assertTemplateUsed(response, "blog/add_post.html")
+        self.assertTemplateUsed(response, "blog/post/add_post.html")
         self.assertIsInstance(response.context["form"], PostForm)
 
     def test_create_post_view_POST(self):
@@ -108,7 +108,7 @@ class TestViews(SetUp):
             username=self.super_user.username, password=self.general_password
         )
         response = self.client.get(reverse("post-update", args=[self.post1.slug]))
-        self.assertTemplateUsed(response, "blog/edit_post.html")
+        self.assertTemplateUsed(response, "blog/post/edit_post.html")
         self.assertIsInstance(response.context["form"], PostForm)
 
     def test_update_post_view_POST(self):
@@ -150,7 +150,7 @@ class TestViews(SetUp):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/post_confirm_delete.html")
         response = self.client.post(post1_delete_url, follow=True)
-        self.assertRedirects(response, expected_url=reverse("blog-home"))
+        self.assertRedirects(response, expected_url=reverse("home"))
         self.assertFalse(Post.objects.filter(id=self.post1.id).exists())
 
     def test_post_delete_view_different_user(self):
@@ -169,7 +169,7 @@ class TestViews(SetUp):
         category_url = reverse("blog-category", args=[self.category1.name])
         response = self.client.get(category_url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/categories.html")
+        self.assertTemplateUsed(response, "blog/post/categories.html")
         self.assertEqual(response.context["category"], self.category1)
         self.assertIsInstance(response.context["posts"][0], Post)
         self.assertEqual(response.context["posts"].count(), 1)
@@ -202,7 +202,7 @@ class TestViews(SetUp):
         # Empty page if user didn't search for anything and manually typed in the search url (get)
         response = self.client.get(reverse("blog-search"))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/search_posts.html")
+        self.assertTemplateUsed(response, "blog/post/search_posts.html")
 
     def test_search_view_anonymous(self):
         # If anonymous, should be able to find a post.
@@ -332,7 +332,7 @@ class TestViews(SetUp):
         self.assertEqual(lines[0], "User-agent: *")
 
     def test_works_cited_view(self):
-        response = self.client.get(reverse("blog-works-cited"))
+        response = self.client.get(reverse("works-cited"))
         self.assertEqual(response.status_code, 200)
 
     def test_security_txt_view(self):
