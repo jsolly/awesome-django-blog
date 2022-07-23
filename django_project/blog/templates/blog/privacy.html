@@ -1,0 +1,40 @@
+{% extends "blog/parts/base.html" %}
+{% block title %}Privacy{% endblock title %}
+
+<!-- About Section-->
+{% block about %}
+How data is collected on blogthedata.com
+{% endblock about %}
+
+{% block meta %}
+<meta name="description" content="How data is collected on blogthedata.com">
+{% include "blog/parts/logo_meta.html" %}
+{% endblock meta %}
+
+{% block content %}
+<h3>Privacy</h3>
+<h4>How data is collected on this site</h4>
+<p>
+    I collect IP addresses via server logs when a request is made to any page on my domain. I then geocode
+    them using a service called IPinfo and place them on a map which is displayed in the <a href="https://blogthedata.com/post/web-mapping-gallery/">map gallery</a>. According to IPInfo's
+    <a target="_blank" rel="noopener noreferrer" href="https://ipinfo.io/blog/ip-geolocation-accuracy">geolocation
+        accuracy page</a>:
+
+<blockquote>While IP addresses can't be used to track individuals, they're very accurate when it comes to identifying
+    countries, regions (such as states), cities, or postal codes. As you might expect, broader areas, such as countries,
+    are easier to identify than specific cities.</blockquote>
+
+I don't use Google Analytics, but do use a CDN (Cloudflare) so check their <a target="_blank"
+    rel="noopener noreferrer" href="https://www.cloudflare.com/privacypolicy/">privacy policy</a> to see what
+information they collect.
+
+When you fill out the newsletter sign up, all that information is handled by Mailchimp. If you have previously signed up
+and want to be removed, use this <a target="_blank" rel="noopener noreferrer"
+    href="https://blogthedata.us14.list-manage.com/unsubscribe?u=3fb3f4adf8ab2cd1ebd6ff743&id=cfb05572d0">unsubscribe
+    form.</a>
+<br><br>
+If you have any concerns about how I am collecting data, please <a target="_blank" rel="noopener noreferrer"
+    href="https://us14.list-manage.com/contact-form?u=3fb3f4adf8ab2cd1ebd6ff743&form_id=7c78cd242677faaebfc3d4a2bc0d5fda">
+    contact me</a>. I will reply within 3 days.
+</p>
+    {% endblock content %}
