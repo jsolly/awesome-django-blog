@@ -271,8 +271,15 @@ DATABASES = {
 
 # DATABASES = {
 #     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+#         "ENGINE": "django.contrib.gis.db.backends.postgis",
+#         "NAME": "blogthedata_test",
+#         "USER": os.environ["POSTGRES_USER"],
+#         "PASSWORD": os.environ["POSTGRES_PASS"],
+#         "HOST": "localhost",
+#         "PORT": "5432",
+#         "OPTIONS": {
+#             "isolation_level": psycopg2.extensions.ISOLATION_LEVEL_SERIALIZABLE,
+#         },
 #     }
 # }
 
@@ -283,8 +290,15 @@ if found_count > 0:
 
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+            "ENGINE": "django.contrib.gis.db.backends.postgis",
+            "NAME": "blogthedata_test",
+            "USER": os.environ["POSTGRES_USER"],
+            "PASSWORD": os.environ["POSTGRES_PASS"],
+            "HOST": "localhost",
+            "PORT": "5432",
+            "OPTIONS": {
+                "isolation_level": psycopg2.extensions.ISOLATION_LEVEL_SERIALIZABLE,
+            },
         }
     }
 
