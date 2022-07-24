@@ -73,6 +73,8 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          script: git pull
+          script: |
+            cd blogthedata
+            git pull
 
 
