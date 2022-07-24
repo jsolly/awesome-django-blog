@@ -134,7 +134,7 @@ Want to work on this with me? DM me
 
 ### Step 3
 
-- 🔃 Create a new pull request using
+- 🔃 Create a new pull request using:
   <a href="https://github.com/jsolly/blogthedata/compare" rel="noopener noreferrer" target="_blank">
   `https://github.com/jsolly/blogthedata/compare`</a>.
 
