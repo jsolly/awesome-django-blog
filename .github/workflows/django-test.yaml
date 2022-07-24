@@ -1,4 +1,4 @@
-name: Blogthedata Tests!
+name: Blogthedata Tests
 on:
   push:
   pull_request:
@@ -7,65 +7,65 @@ on:
   schedule:
     - cron: "0 3 * * 0-6"
 jobs:
-  # build:
-  #   runs-on: ubuntu-latest
-  #   permissions:
-  #     actions: read
-  #     contents: read
-  #     security-events: write
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
 
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       language: ["javascript", "python"]
-  #       # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
-  #       # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ["javascript", "python"]
+        # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
+        # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
 
-  #   env:
-  #     DJANGO_SETTINGS_MODULE: ${{secrets.DJANGO_SETTINGS_MODULE}}
-  #     SECRET_KEY: ${{secrets.SECRET_KEY}}
-  #     EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
-  #     EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
-  #     FROM_EMAIL: ${{secrets.FROM_EMAIL}}
-  #     ALLOWED_HOSTS: ${{secrets.ALLOWED_HOSTS}}
-  #     POSTGRES_USER: $${{secrets.POSTGRES_USER}}
-  #     POSTGRES_PASS: $${{secrets.POSTGRES_PASS}}
-  #     GIT_TOKEN: ${{secrets.GIT_TOKEN}}
-  #     DEBUG: ${{secrets.DEBUG}}
-  #     LOGGING: ${{secrets.LOGGING}}
-  #     IP_INFO_TOKEN: ${{secrets.IP_INFO_TOKEN}}
-  #     MAPBOX_TOKEN: ${{secrets.MAPBOX_TOKEN}}
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - name: Setup Python 3.8.10
-  #       uses: actions/setup-python@v3
-  #       with:
-  #         python-version: 3.8.10
-  #     - name: Install dependencies
-  #       run: |
-  #         pip install --upgrade pip
-  #         pip install wheel
-  #         pip install -r django_project/requirements/requirements.txt
-  #         sudo apt-get install binutils libproj-dev gdal-bin
-  #     - name: Lint with Flake8
-  #       run: |
-  #         flake8 django_project
-  #     - name: Coverage report
-  #       run: |
-  #         coverage run -m pytest django_project
-  #         coverage report -m --skip-empty --skip-covered
-  #     - name: Run unit tests
-  #       run: |
-  #         python3 -m pytest django_project
+    env:
+      DJANGO_SETTINGS_MODULE: ${{secrets.DJANGO_SETTINGS_MODULE}}
+      SECRET_KEY: ${{secrets.SECRET_KEY}}
+      EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
+      EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
+      FROM_EMAIL: ${{secrets.FROM_EMAIL}}
+      ALLOWED_HOSTS: ${{secrets.ALLOWED_HOSTS}}
+      POSTGRES_USER: $${{secrets.POSTGRES_USER}}
+      POSTGRES_PASS: $${{secrets.POSTGRES_PASS}}
+      GIT_TOKEN: ${{secrets.GIT_TOKEN}}
+      DEBUG: ${{secrets.DEBUG}}
+      LOGGING: ${{secrets.LOGGING}}
+      IP_INFO_TOKEN: ${{secrets.IP_INFO_TOKEN}}
+      MAPBOX_TOKEN: ${{secrets.MAPBOX_TOKEN}}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python 3.8.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.8.10
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install wheel
+          pip install -r django_project/requirements/requirements.txt
+          sudo apt-get install binutils libproj-dev gdal-bin
+      - name: Lint with Flake8
+        run: |
+          flake8 django_project
+      - name: Coverage report
+        run: |
+          coverage run -m pytest django_project
+          coverage report -m --skip-empty --skip-covered
+      - name: Run unit tests
+        run: |
+          python3 -m pytest django_project
 
-  #     # Initializes the CodeQL tools for scanning.
-  #     - name: Initialize CodeQL
-  #       uses: github/codeql-action/init@v2
-  #       with:
-  #         languages: ${{ matrix.language }}
+      # Initializes the CodeQL tools for scanning.
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: ${{ matrix.language }}
 
-  #     - name: Perform CodeQL Analysis
-  #       uses: github/codeql-action/analyze@v2
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
 
   deploy:
     runs-on: ubuntu-latest
