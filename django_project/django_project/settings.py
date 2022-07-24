@@ -254,31 +254,31 @@ LOGGING = {
     "loggers": LOGGERS[0],
 }
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.contrib.gis.db.backends.postgis",
-#         "NAME": "blogthedata",
-#         "USER": os.environ["POSTGRES_USER"],
-#         "PASSWORD": os.environ["POSTGRES_PASS"],
-#         "HOST": "localhost",
-#         "PORT": "5432",
-#         "OPTIONS": {
-#             "isolation_level": psycopg2.extensions.ISOLATION_LEVEL_SERIALIZABLE,
-#         },
-#     }
-# }
-
-
 DATABASES = {
     "default": {
         "ENGINE": "django.contrib.gis.db.backends.postgis",
-        "NAME": "blogthedata_test",
+        "NAME": "blogthedata",
         "USER": os.environ["POSTGRES_USER"],
         "PASSWORD": os.environ["POSTGRES_PASS"],
         "HOST": "localhost",
         "PORT": "5432",
+        "OPTIONS": {
+            "isolation_level": psycopg2.extensions.ISOLATION_LEVEL_SERIALIZABLE,
+        },
     }
 }
+
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.contrib.gis.db.backends.postgis",
+#         "NAME": "blogthedata_test",
+#         "USER": os.environ["POSTGRES_USER"],
+#         "PASSWORD": os.environ["POSTGRES_PASS"],
+#         "HOST": "localhost",
+#         "PORT": "5432",
+#     }
+# }
 
 import sys
 
@@ -293,9 +293,6 @@ if found_count > 0:
             "PASSWORD": os.environ["POSTGRES_PASS"],
             "HOST": "localhost",
             "PORT": "5432",
-            "OPTIONS": {
-                "isolation_level": psycopg2.extensions.ISOLATION_LEVEL_SERIALIZABLE,
-            },
         }
     }
 
