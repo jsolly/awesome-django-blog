@@ -12,6 +12,12 @@
 /* =============
    Body, Navbar & Header
 ============= */
+a p,
+a nobr,
+body {
+  color: #555;
+}
+
 
 body {
   padding-top: 70px;
@@ -62,11 +68,6 @@ button a, button a:hover {
   color: inherit;
 }
 
-a p,
-a nobr,
-body {
-  color: #555;
-}
 
 blockquote {
   font-style: italic;
@@ -79,16 +80,15 @@ blockquote {
   margin-inline-end: 40px;
   border-left: .25rem solid #ccc;
 }
-
-
 /* =============
    Articles
 ============= */
-.content-section {
+.article-block {
   padding: 10px 20px;
   border: 1px solid #dddddd;
   border-radius: 3px;
   margin-bottom: 20px;
+  display: block;
 }
 
 .article-title {
@@ -101,8 +101,19 @@ blockquote {
   margin-right: 16px;
 }
 
-.article-block {
-  display: block;
+.article-meta-text {
+  margin-bottom: 20px;
+}
+.post-avatar {
+  float: left;
+}
+
+.article-meta-content {
+  margin-left: 81px;
+}
+
+.meta-text {
+  margin-block-end: 5px;
 }
 
 #accordion-wrapper:hover,
