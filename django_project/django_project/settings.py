@@ -24,7 +24,7 @@ SITE_ID = 1  # blogthedata.com
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 CAPTCHA_TEST_MODE = False
-X_FRAME_OPTIONS = 'SAMEORIGIN'
+X_FRAME_OPTIONS = "SAMEORIGIN"
 
 # HTTPS SETTINGS
 SESSION_COOKIE_SECURE = True
@@ -55,9 +55,14 @@ CSP_SCRIPT_SRC_ELEM = (
     "https://unpkg.com",
     "https://cdn.jsdelivr.net",
     "https://api.mapbox.com",
-    "'unsafe-inline'"
+    "'unsafe-inline'",
 )
-CSP_SCRIPT_SRC = ("'self'", "https://unpkg.com/", "https://cdn.jsdelivr.net", "https://api.mapbox.com")
+CSP_SCRIPT_SRC = (
+    "'self'",
+    "https://unpkg.com/",
+    "https://cdn.jsdelivr.net",
+    "https://api.mapbox.com",
+)
 CSP_MEDIA_SRC = "'self'"
 CSP_IMG_SRC = (
     "'self'",
@@ -65,10 +70,15 @@ CSP_IMG_SRC = (
     "https://unpkg.com/",
     "*.openstreetmap.org",
     "https://storage.ko-fi.com",
-    "https://github-readme-twitter"
+    "https://github-readme-twitter",
 )
 CSP_FONT_SRC = "'self'"
-CSP_CONNECT_SRC = ("'self'", "https://demotiles.maplibre.org/", "https://api.mapbox.com", "https://events.mapbox.com")
+CSP_CONNECT_SRC = (
+    "'self'",
+    "https://demotiles.maplibre.org/",
+    "https://api.mapbox.com",
+    "https://events.mapbox.com",
+)
 CSP_FRAME_SRC = ("*",)
 CSP_FRAME_ANCESTORS = ("'self'",)
 CSP_BASE_URI = ("'none'",)
@@ -141,7 +151,7 @@ MIDDLEWARE = [
     "csp.middleware.CSPMiddleware",
     "livereload.middleware.LiveReloadScript",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django.contrib.redirects.middleware.RedirectFallbackMiddleware"
+    "django.contrib.redirects.middleware.RedirectFallbackMiddleware",
 ]
 
 ROOT_URLCONF = "django_project.urls"
