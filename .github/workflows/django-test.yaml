@@ -3,7 +3,7 @@ on:
   push:
   pull_request:
     branches:
-      - main
+      - master
   schedule:
     - cron: "0 3 * * 0-6"
 jobs:
