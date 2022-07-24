@@ -125,7 +125,7 @@ Want to work on this with me? DM me
   - 🍴 Fork this repo!
 
 - **Option 2**
-  - 👯 Clone to your local machine using
+  - 👯 Clone to your local machine using:
     `https://github.com/jsolly/blogthedata.git`
 
 ### Step 2
