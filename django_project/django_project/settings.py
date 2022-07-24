@@ -116,11 +116,12 @@ INSTALLED_APPS = [
     "livereload",
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
+    "django.contrib.redirects",
+    "django.contrib.gis",
     "captcha",
     "django_ckeditor_5",
     "robots",
     "sri",
-    "django.contrib.gis",
     "siteanalytics",
 ]
 
@@ -139,7 +140,8 @@ MIDDLEWARE = [
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
     "csp.middleware.CSPMiddleware",
     "livereload.middleware.LiveReloadScript",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware"
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.contrib.redirects.middleware.RedirectFallbackMiddleware"
 ]
 
 ROOT_URLCONF = "django_project.urls"
