@@ -43,7 +43,7 @@ jobs:
         with:
           postgresql user: ${{secrets.POSTGRES_USER}}
           postgresql password: ${{ secrets.POSTGRES_PASS }}
-          postgresql db: 'blogthedata'
+          postgresql db: 'blogthedata_test'
 
       - name: Setup Python 3.8.10
         uses: actions/setup-python@v3
