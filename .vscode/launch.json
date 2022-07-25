@@ -30,9 +30,7 @@
       "program": "/Users/johnsolly/Documents/code/blogthedata/django_project/manage.py",
       "django": true,
       "justMyCode": true,
-      "args": [
-        "runserver"
-      ],
+      "args": ["runserver"],
       "preLaunchTask": "LiveReload",
       "postDebugTask": "StopTasks"
     },
