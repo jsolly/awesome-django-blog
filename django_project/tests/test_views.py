@@ -339,7 +339,7 @@ class TestViews(SetUp):
 
     def test_works_cited_view(self):
         response = self.client.get(reverse("works-cited"))
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 200)
 
     def test_privacy_view(self):
         response = self.client.get(reverse("privacy"))
