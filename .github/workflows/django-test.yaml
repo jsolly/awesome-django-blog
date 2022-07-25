@@ -80,6 +80,7 @@ jobs:
         uses: github/codeql-action/analyze@v2
 
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Deploy to Linode
