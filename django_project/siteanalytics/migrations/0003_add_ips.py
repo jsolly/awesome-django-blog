@@ -9,7 +9,7 @@ import ipinfo
 class Migration(migrations.Migration):
     def load_data(apps, schema_editor):
         Visitor = apps.get_model("siteanalytics", "Visitor")
-        with open("siteanalytics/data/ip_info.csv") as csvfile:
+        with open("django_project/siteanalytics/data/ip_info.csv") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 try:

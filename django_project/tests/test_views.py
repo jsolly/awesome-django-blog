@@ -1,9 +1,9 @@
 from .base import SetUp, message_in_response, create_several_posts
 from django.urls import reverse
 from blog.models import Post
+from siteanalytics.models import Visitor
 from blog.forms import PostForm
 from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
-import pytest
 
 
 class TestViews(SetUp):
@@ -44,7 +44,8 @@ class TestViews(SetUp):
     def test_post_detail_view_anonymous_draft_post(self):
         draft_post_detail_url = reverse("post-detail", args=[self.draft_post.slug])
         response = self.client.get(draft_post_detail_url)
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "blog/404_page.html")
 
     def test_post_detail_view_staff_sees_draft_post(self):
         self.client.login(
@@ -198,6 +199,11 @@ class TestViews(SetUp):
         response = self.client.get(category_url, {"page": 2})
         self.assertTrue(response.context["page_obj"].has_previous())
 
+    def test_category_view_portfolio(self):
+        portfolio_url = reverse("blog-category", args=["portfolio"])
+        response = self.client.get(portfolio_url)
+        self.assertEqual(response.status_code, 200)
+
     def test_search_view_blank(self):
         # Empty page if user didn't search for anything and manually typed in the search url (get)
         response = self.client.get(reverse("blog-search"))
@@ -335,6 +341,10 @@ class TestViews(SetUp):
         response = self.client.get(reverse("works-cited"))
         self.assertEqual(response.status_code, 200)
 
+    def test_privacy_view(self):
+        response = self.client.get(reverse("privacy"))
+        self.assertEqual(response.status_code, 200)
+
     def test_security_txt_view(self):
         response = self.client.get(reverse("security-txt"))
         self.assertEqual(response.status_code, 200)
@@ -343,22 +353,26 @@ class TestViews(SetUp):
         response = self.client.get(reverse("security-pgp-key-txt"))
         self.assertEqual(response.status_code, 200)
 
-    @pytest.mark.skip(reason="Need to use test fixtures before this will pass")
     def test_leaflet_map_view(self):
-        response = self.client.get(reverse("leaflet_map"))
+        response = self.client.get(reverse("leaflet-map"))
         self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "siteanalytics/leaflet_map.html")
+        self.assertIsInstance(response.context["visitors"][0], Visitor)
 
     def test_openlayers_map_view(self):
         response = self.client.get(reverse("openlayers-map"))
         self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "siteanalytics/openlayers_map.html")
 
     def test_maplibre_map_view(self):
         response = self.client.get(reverse("maplibre-map"))
         self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "siteanalytics/maplibre_map.html")
 
     def test_mapbox_map_view(self):
         response = self.client.get(reverse("mapbox-map"))
         self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "siteanalytics/mapbox_map.html")
 
     # def test_handler_404(self):
     #     response = self.client.get("doesnotexist")
