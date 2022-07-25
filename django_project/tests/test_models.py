@@ -5,7 +5,6 @@ from blog.models import Post, Category
 from users.models import Profile
 from siteanalytics.models import Visitor
 from django.contrib.gis.geos import Point
-import pytest
 
 
 class TestModels(SetUp):
@@ -90,7 +89,6 @@ class TestModels(SetUp):
             self.assertEqual(img.width, 300)
 
     # SiteAnalytics Models
-    @pytest.mark.skip(reason="Need to use test fixtures before this will pass")
     def test_visitor(self):
         current_visitors = Visitor.objects.count()
         ip = "156.74.181.208"

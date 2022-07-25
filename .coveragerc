@@ -4,5 +4,5 @@ omit =
     */tests/*
     */__init__.py
     django_project/blog/templates/blog/pgp-key.txt
-    django_project/django_project/settings.py
+    django_project/django_project/settings/*
     django_project/django_project/sitemaps.py

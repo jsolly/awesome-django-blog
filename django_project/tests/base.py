@@ -13,6 +13,7 @@ from django.contrib.messages import get_messages
 from django.test.utils import setup_test_environment
 from blog.models import Post, Category
 from users.models import User
+from siteanalytics.utils import load_data
 
 
 def message_in_response(response, message: str):
@@ -67,6 +68,7 @@ class SetUp(TestCase):
 
         # Post Object
         self.category1 = Category.objects.create(name="TEST")
+        Category.objects.create(name="portfolio")
         self.post1 = Post.objects.create(
             title="My First Post",
             slug="first-post",
@@ -93,3 +95,6 @@ class SetUp(TestCase):
             author=self.super_user,
         )
         self.client = Client()
+
+        # Create visitors
+        load_data("django_project/siteanalytics/data/ip_info_test.csv")

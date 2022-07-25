@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from siteanalytics.models import Visitor
 
 
 def handler_404(request, exception):
@@ -32,7 +31,3 @@ def security_pgp_key_view(request):
         request,
         "blog/pgp-key.txt",
     )
-
-
-def portfolio_view(request):
-    return render(request, "blog/portfolio.html", {"visitors": Visitor.objects.all()})
