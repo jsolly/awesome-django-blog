@@ -9,34 +9,31 @@ import ipinfo
 class Migration(migrations.Migration):
     def load_data(apps, schema_editor):
         Visitor = apps.get_model("siteanalytics", "Visitor")
-        try:
-            with open("siteanalytics/data/ip_info.csv") as csvfile:
-                reader = csv.DictReader(csvfile)
-                for row in reader:
-                    try:
-                        Visitor.objects.get(ip_addr=row["ip"])
-                        continue  # If it exists, go to the next one
-                    except Visitor.DoesNotExist:
-                        pass
-                    handler = ipinfo.getHandler(os.environ["IP_INFO_TOKEN"])
-                    details = handler.getDetails(row["ip"])
-                    try:
-                        location = fromstr(
-                            f"POINT({details.longitude} {details.latitude})", srid=4326
-                        )
-                    except Exception as e:
-                        print(f"I had trouble parsing row {row['id']}")
-                        print(e)
-                        continue
+        with open("django_project/siteanalytics/data/ip_info.csv") as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                try:
+                    Visitor.objects.get(ip_addr=row["ip"])
+                    continue  # If it exists, go to the next one
+                except Visitor.DoesNotExist:
+                    pass
+                handler = ipinfo.getHandler(os.environ["IP_INFO_TOKEN"])
+                details = handler.getDetails(row["ip"])
+                try:
+                    location = fromstr(
+                        f"POINT({details.longitude} {details.latitude})", srid=4326
+                    )
+                except Exception as e:
+                    print(f"I had trouble parsing row {row['id']}")
+                    print(e)
+                    continue
 
-                    Visitor(
-                        ip_addr=details.ip,
-                        country=details.country,
-                        city=details.city,
-                        location=location,
-                    ).save()
-        except FileNotFoundError:
-            raise (FileNotFoundError(os.getcwd()))
+                Visitor(
+                    ip_addr=details.ip,
+                    country=details.country,
+                    city=details.city,
+                    location=location,
+                ).save()
 
     dependencies = [
         ("siteanalytics", "0002_add_visitor_model"),
