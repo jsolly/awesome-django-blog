@@ -22,14 +22,13 @@ jobs:
         # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
 
     env:
-      DJANGO_SETTINGS_MODULE: ${{secrets.DJANGO_SETTINGS_MODULE}}
       SECRET_KEY: ${{secrets.SECRET_KEY}}
       EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
       EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
       FROM_EMAIL: ${{secrets.FROM_EMAIL}}
       ALLOWED_HOSTS: ${{secrets.ALLOWED_HOSTS}}
-      POSTGRES_USER: $${{secrets.POSTGRES_USER}}
-      POSTGRES_PASS: $${{secrets.POSTGRES_PASS}}
+      POSTGRES_USER: ${{secrets.POSTGRES_USER}}
+      POSTGRES_PASS: ${{secrets.POSTGRES_PASS}}
       GIT_TOKEN: ${{secrets.GIT_TOKEN}}
       DEBUG: ${{secrets.DEBUG}}
       LOGGING: ${{secrets.LOGGING}}
@@ -37,6 +36,14 @@ jobs:
       MAPBOX_TOKEN: ${{secrets.MAPBOX_TOKEN}}
     steps:
       - uses: actions/checkout@v2
+
+      - name: Set up Postgresql with Postgis
+        uses: huaxk/postgis-action@v1
+        with:
+          postgresql user: ${{secrets.POSTGRES_USER}}
+          postgresql password: ${{ secrets.POSTGRES_PASS }}
+          postgresql db: 'blogthedata_test'
+
       - name: Setup Python 3.8.10
         uses: actions/setup-python@v3
         with:
@@ -47,6 +54,10 @@ jobs:
           pip install wheel
           pip install -r django_project/requirements/requirements.txt
           sudo apt-get install binutils libproj-dev gdal-bin
+      - name: Run DB Migrations
+        run: |
+          python3 django_project/manage.py migrate --settings=django_project.settings.ci
+
       - name: Lint with Flake8
         run: |
           flake8 django_project
@@ -68,6 +79,7 @@ jobs:
         uses: github/codeql-action/analyze@v2
 
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Deploy to Linode
