@@ -22,7 +22,6 @@ jobs:
         # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
 
     env:
-      DJANGO_SETTINGS_MODULE: ${{secrets.DJANGO_SETTINGS_MODULE}}
       SECRET_KEY: ${{secrets.SECRET_KEY}}
       EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
       EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
@@ -58,7 +57,7 @@ jobs:
       - name: Run DB Migrations
         run: |
           ls
-          python3 django_project/manage.py migrate
+          python3 django_project/manage.py migrate --settings=django_project.settings.ci
 
       - name: Lint with Flake8
         run: |
