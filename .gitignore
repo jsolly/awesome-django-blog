@@ -29,7 +29,6 @@ temp*.py
 temp*.html
 temp*.yaml
 temp*.js
-django_project/siteanalytics/data/ip_info.csv
 
 # Logs
 blogthedata*.log
@@ -39,6 +38,3 @@ migration_backup
 # backups
 blogthedata*.sql
 linode*.img
-
-#Data
-django_project/siteanalytics/data/ip_info*
