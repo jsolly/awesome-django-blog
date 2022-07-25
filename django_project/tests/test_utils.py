@@ -43,9 +43,8 @@ class TestUtils(SetUp, MiddlewareMixin):
         self.assertFalse(add_visitor_if_not_exist(request))
         request.META["REMOTE_ADDR"] = "127.0.0.1"
         self.assertFalse(add_visitor_if_not_exist(request))
-    
+
     def test_add_visitor_if_not_exist_already_exisits(self):
         request = HttpRequest()
-        request.META["REMOTE_ADDR"] = "180.151.107.213" # This is in ip_info_test.csv
+        request.META["REMOTE_ADDR"] = "180.151.107.213"  # This is in ip_info_test.csv
         self.assertFalse(add_visitor_if_not_exist(request))
-
