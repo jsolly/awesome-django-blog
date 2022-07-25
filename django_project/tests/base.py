@@ -3,7 +3,7 @@ import warnings
 from django import setup
 import os
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings.ci")
 setup()
 from dotenv import load_dotenv
 
