@@ -12,6 +12,7 @@ django-robots
 django-simple-captcha
 django-sri
 flake8
+filetype
 gunicorn
 ipinfo
 Pillow
