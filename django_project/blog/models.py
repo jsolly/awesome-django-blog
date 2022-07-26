@@ -3,7 +3,6 @@ from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django_ckeditor_5.fields import CKEditor5Field
-import filetype
 from .utils import slugify_instance_title
 import logging
 

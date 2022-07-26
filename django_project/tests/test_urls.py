@@ -15,6 +15,7 @@ from blog.views import (
 )
 from django_project.views import (
     works_cited_view,
+    resume_view,
     security_txt_view,
     security_pgp_key_view,
 )
@@ -41,6 +42,9 @@ def get_url(url_name):
 
 class TestUrls(SetUp):
     """Make sure urls are hooked up to the correct View"""
+
+    def test_resume_url_is_resolved(self):
+        self.assertEqual(resolve(reverse("resume")).func, resume_view)
 
     def test_leaflet_map_url_is_resolved(self):
         self.assertEqual(resolve(reverse("leaflet-map")).func, leaflet_map_view)

@@ -29,6 +29,7 @@ from .views import (
     privacy_view,
     security_txt_view,
     security_pgp_key_view,
+    resume_view
 )
 from users.views import (
     register_view,
@@ -64,6 +65,7 @@ urlpatterns = [
     ),
     path("works-cited", works_cited_view, name="works-cited"),
     path("privacy", privacy_view, name="privacy"),
+    path("resume", resume_view, name="resume"),
     path("leaflet-map", leaflet_map_view, name="leaflet-map"),
     path("openlayers-map", openlayers_map_view, name="openlayers-map"),
     path("maplibre-map", maplibre_map_view, name="maplibre-map"),

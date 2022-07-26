@@ -4,7 +4,7 @@ import os
 SITE_ID = 2  # localhost
 CAPTCHA_TEST_MODE = True
 USE_SRI = False
-
+DEBUG = False
 # HTTPS SETTINGS
 SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_HTTPONLY = False
