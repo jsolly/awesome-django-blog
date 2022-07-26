@@ -19,7 +19,6 @@ class TestModels(SetUp):
             metadesc="Curious about your health? Look no further!!",
             draft=False,
             # metaimg = ""
-            # metaimg_mimetype = ""
             snippet="Long ago, the four nations lived together in harmony.",
             content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
             # date_posted = ""
@@ -39,7 +38,6 @@ class TestModels(SetUp):
             metadesc="Curious about your health? Look no further!!",
             draft=False,
             # metaimg = ""
-            # metaimg_mimetype = ""
             snippet="Long ago, the four nations lived together in harmony.",
             content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
             # date_posted = ""

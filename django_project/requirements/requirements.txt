@@ -11,7 +11,6 @@ django-livereload-server
 django-robots
 django-simple-captcha
 django-sri
-filetype
 flake8
 gunicorn
 ipinfo

@@ -32,7 +32,6 @@ def create_several_posts(category, user, number_of_posts):
             metadesc="Curious about your health? Look no further!",
             draft=False,
             # metaimg = ""
-            # metaimg_mimetype = ""
             snippet="ultrices dui sapien eget mi proin sed libero enim sed faucibus turpis in eu mi bibendum neque egestas congue quisque egestas diam in arcu cursus euismod quis viverra nibh cras pulvinar mattis nunc sed blandit libero volutpat sed cras ornare arcu dui vivamus arcu felis bibendum ut tristique et egestas",
             content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
             # date_posted = ""
@@ -76,7 +75,6 @@ class SetUp(TestCase):
             metadesc="Curious about your health? Look no further!",
             draft=False,
             # metaimg = ""
-            # metaimg_mimetype = ""
             snippet="Long ago, the four nations lived together in harmony.",
             content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
             # date_posted = ""

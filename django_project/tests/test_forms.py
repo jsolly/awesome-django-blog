@@ -13,7 +13,6 @@ class TestForms(SetUp):
                 "metadesc": "I can make you more productive!",
                 "draft": False,
                 # "metaimg" : ""
-                # "metaimg"_mimetype : ""
                 "snippet": "Do the things",
                 "content": "Do the things. All the things",
                 # date_posted : ""

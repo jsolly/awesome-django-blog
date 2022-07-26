@@ -40,7 +40,6 @@ class Post(models.Model):
     metadesc = models.CharField(max_length=140, blank=True, null=True)
     draft = models.BooleanField(default=False)
     metaimg = models.ImageField(default="jsolly.jpeg", upload_to="post_metaimgs/")
-    metaimg_mimetype = models.CharField(max_length=20, default="image/jpeg")
     metaimg_alt_txt = models.CharField(max_length=120, default="John Solly Headshot")
     content = CKEditor5Field(blank=True, null=True, config_name="extends")
     snippet = CKEditor5Field(blank=True, null=True, config_name="extends")
@@ -58,7 +57,5 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             slugify_instance_title(self, save=False)
-        self.metaimg_mimetype = filetype.guess_mime(self.metaimg)
-        logger.info(self.metaimg)
 
         super().save(*args, **kwargs)
