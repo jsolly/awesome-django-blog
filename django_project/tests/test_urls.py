@@ -12,10 +12,10 @@ from blog.views import (
     PostDeleteView,
     CategoryView,
     search_view,
-    resume_view
 )
 from django_project.views import (
     works_cited_view,
+    resume_view,
     security_txt_view,
     security_pgp_key_view,
 )
