@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 from django_ckeditor_5.fields import CKEditor5Field
 import filetype
 from .utils import slugify_instance_title
+import logging
+
+logger = logging.getLogger("django")
 
 
 class PostManager(models.Manager):
@@ -56,5 +59,6 @@ class Post(models.Model):
         if not self.slug:
             slugify_instance_title(self, save=False)
         self.metaimg_mimetype = filetype.guess_mime(self.metaimg)
+        logger.info(self.metaimg)
 
         super().save(*args, **kwargs)
