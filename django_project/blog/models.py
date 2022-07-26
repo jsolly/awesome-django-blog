@@ -55,6 +55,6 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             slugify_instance_title(self, save=False)
-        self.metaimg_mimetype = filetype.guess(self.metaimg).MIME
+        self.metaimg_mimetype = filetype.guess_mime(self.metaimg)
 
         super().save(*args, **kwargs)
