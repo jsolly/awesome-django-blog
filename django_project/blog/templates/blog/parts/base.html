@@ -56,14 +56,9 @@
       <div class="col-lg-2">
         <!--Sidebar-->
         {% include "blog/parts/sidebar.html" %}
-        <div class="centered-sidebar-content">
+        <div class="text-center mt-2">
         <h4>About this Page</h4>
         {% block about %} The latest posts in each category {% endblock about %}
-      </div>
-      <div id="sidebar-kofi" class="centered-sidebar-content">
-        <!--Kofi Donation-->
-        {% sri_static "kofi/kofi_script1.js" %}
-        <script>kofiwidget2.init('Buy me a Coffee', '#0d6efd', 'S6S6CSR2Q'); kofiwidget2.draw();</script>
       </div>
 
       </div>

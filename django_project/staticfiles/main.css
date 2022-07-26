@@ -1,19 +1,17 @@
 /* Table of Contents
 1. Body, Navbar, & Header
 2. Typeography
-2. Articles
-3. Tables
-4. Keyframes & Media Queries
-5. Portfolio Page
-6. Misc Styles
+3. Cards
+4. Tables
+5. Keyframes & Media Queries
+6. Portfolio Page
+7. Misc Styles
 */
 
 
 /* =============
    Body, Navbar & Header
 ============= */
-a p,
-a nobr,
 body {
   color: #555;
 }
@@ -29,12 +27,8 @@ body {
   background-color: #003366;
 }
 
-.navbar {
-  margin-bottom: 10px;
-}
 
-.navbar-brand:hover,
-div:not(.show)>ul>li:hover {
+nav a:hover {
   animation: button-shake 0.3s linear;
 }
 
@@ -81,18 +75,18 @@ blockquote {
   border-left: .25rem solid #ccc;
 }
 /* =============
-   Articles
+   Cards
 ============= */
-.article-block {
-  padding: 10px 20px;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
-  margin-bottom: 20px;
-  display: block;
+
+#accordion-wrapper:hover,
+.card:hover {
+  background-color: #f8f9fa;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
+  transform: scale(1.005);
 }
 
-.article-title {
-  margin-bottom: 0;
+#draft {
+  color: red
 }
 
 .article-img {
@@ -101,39 +95,9 @@ blockquote {
   margin-right: 16px;
 }
 
-.article-meta-text {
-  margin-bottom: 20px;
+.card-title {
+  margin-block-end: 0px;
 }
-.post-avatar {
-  float: left;
-}
-
-.article-meta-content {
-  margin-left: 81px;
-}
-
-.meta-text {
-  margin-block-end: 5px;
-}
-
-#accordion-wrapper:hover,
-.article-block:hover {
-  background-color: #f8f9fa;
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
-  transform: scale(1.005);
-}
-
-.account-img {
-  height: 104px;
-  width: 125px;
-  margin-right: 20px;
-  margin-bottom: 16px;
-}
-
-#draft {
-  color: red
-}
-
 /* =============
    Tables
 ============= */
@@ -223,16 +187,6 @@ th {
   font-size: 3em;
 }
 
-#contact-me {
-  text-align: center;
-  margin-top: 40px;
-
-}
-
-#portfolio-hello {
-  text-align: center;
-}
-
 /* =============
    Misc Styles
 ============= */
@@ -274,14 +228,4 @@ video {
 
 figure img {
   width: 100%;
-}
-
-.centered-sidebar-content {
- text-align: center;
- margin-top: 10px;
-}
-
-
-#sidebar-kofi {
-  margin-bottom: 20px;
 }
