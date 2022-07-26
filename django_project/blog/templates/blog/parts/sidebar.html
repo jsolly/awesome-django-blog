@@ -1,5 +1,5 @@
 <!-- Category Menu Code -->
-<h3>Navigate to a Category</h3>
+<h3 class="text-center">Navigate to a Category</h3>
 <div class="list-group">
   {% for category_item in category_qs %}
   <a href="{% url 'blog-category' category_item|slugify %}"

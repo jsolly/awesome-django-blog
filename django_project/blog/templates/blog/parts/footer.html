@@ -1,3 +1,4 @@
+{% load sri %}
 <footer class="py-3 my-4">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
         <li class="nav-item"><a href="{% url 'home' %}" class="nav-link px-2 text-muted">Home</a></li>
@@ -11,5 +12,10 @@
         <li class="nav-item"><a href="{% url 'works-cited' %}" class="nav-link px-2 text-muted">Works Cited</a></li>
     </ul>
     <p class="text-center text-muted">Designed & Built by John Solly</p>
+    <div class="text-center mt-2 mb-2">
+        <!--Kofi Donation-->
+        {% sri_static "kofi/kofi_script1.js" %}
+        <script>kofiwidget2.init('Buy me a Coffee', '#0d6efd', 'S6S6CSR2Q'); kofiwidget2.draw();</script>
+      </div>
 </footer>
 

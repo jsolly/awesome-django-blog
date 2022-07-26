@@ -1,16 +1,19 @@
-{% load static %}
 {% for post in posts %}
-<a class="article-block media content-section shadow-sm" href="{% url 'post-detail' post.slug %}">
-  <div class="post-avatar"> 
-    <img class="rounded-circle article-img" src="{% static 'jsolly.jpeg' %}" alt="{{ post.author.first_name }} {{ post.author.last_name }} Profile Picture"></img>
+
+<div class="card mb-3 shadow">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{ post.metaimg.url }}" class="card-img-top" alt="{{ post.metadesc }}">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ post.title }} {% if post.draft %}<nobr id="draft">(Draft)</nobr>{% endif %}</h5>
+        <p class="card-text"><small class="text-muted"> {{ post.author.first_name }} {{ post.author.last_name }}: {{ post.date_posted|date:"F d, Y" }}</small></p>
+        <p class="card-text">{{ post.snippet|safe }}</p>
+        <a href="{% url 'post-detail' post.slug %}" class="btn btn-primary">Open Post</a>
+      </div>
+    </div>
   </div>
-  <div class="article-meta-content">
-    <h2 class="article-title">{{ post.title }}</h2>
-    <p class="meta-text"><small class="text-muted">
-        {{ post.author.first_name }} {{ post.author.last_name }}: {{ post.date_posted|date:"F d, Y" }}</small>
-      {% if post.draft %}<nobr id="draft">(Draft)</nobr>{% endif %}</p>
-      <object aria-label="A portfolio project">{{ post.snippet|safe }}</object>
-  </div>
-</a>
+</div>
 
 {% endfor %}
