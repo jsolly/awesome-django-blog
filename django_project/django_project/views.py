@@ -19,6 +19,13 @@ def privacy_view(request):
     )
 
 
+def resume_view(request):
+    return render(
+        request,
+        "blog/resume.html",
+    )
+
+
 def security_txt_view(request):
     return render(
         request,

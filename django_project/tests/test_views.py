@@ -372,6 +372,11 @@ class TestViews(SetUp):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "siteanalytics/mapbox_map.html")
 
+    def test_resume_view(self):
+        response = self.client.get(reverse("resume"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "blog/resume.html")
+
     # def test_handler_404(self):
     #     response = self.client.get("doesnotexist")
     #     self.assertEqual(response.status_code, 200)

@@ -1,0 +1,25 @@
+{% extends "blog/parts/base.html" %}
+{% load static %}
+{% block title %}Works Cited{% endblock title %}
+<!-- About Section-->
+{% block about %}
+Attibutions to the resources and assets I've leveraged from other people/projects.
+{% endblock about %}
+
+{% block meta %}
+<meta name="description"
+  content="A page dedicated to attributing thanks to individuals that put out tutorials for free. I also want to thank the authors who created images and logos with open licenses so I can use them on this site.">
+{% include "blog/parts/logo_meta.html" %}
+{% endblock meta %}
+{% block content %}
+<button type="button" class="btn btn-outline-primary float-end mb-1">
+  <a href="{% url 'blog-category' 'portfolio' %}">
+    Back to Portfolio
+  </a>
+</button>
+<center>
+  <object data="{% static 'portfolio/Solly_John_Resume.pdf' %}" style="width:100%;height:100vh;">
+  </object>
+</center>
+</div>
+{% endblock content %}
