@@ -1,4 +1,3 @@
-DEBUG = True
 from .base_settings import *
 import os
 

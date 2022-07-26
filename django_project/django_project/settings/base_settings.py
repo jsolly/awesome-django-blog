@@ -1,11 +1,10 @@
 import os
 from dotenv import load_dotenv
-
 load_dotenv()
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__ + "/../")))
 SECRET_KEY = os.environ["SECRET_KEY"]
 ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
-
 # Content Security Policy
 CSP_DEFAULT_SRC = ("'none'",)
 CSP_STYLE_SRC = (
@@ -52,6 +51,14 @@ CSP_OBJECT_SRC = ("'none'",)
 CSP_WORKER_SRC = ("'self'", "blob:")
 CSP_EXCLUDE_URL_PREFIXES = ("/admin", "/category/portfolio", "/site-analytics")
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
+
+DEBUG = False
+if os.environ["DEBUG"] == "True":
+    DEBUG = True
+    CSP_SCRIPT_SRC_ELEM += ("http://127.0.0.1:35729/livereload.js",)
+    CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js",)
+    CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
+
 
 INSTALLED_APPS = [
     "blog.apps.BlogConfig",
@@ -233,14 +240,6 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 
 LOGIN_REDIRECT_URL = "home"
 LOGIN_URL = "login"
-
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.sendgrid.net"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ["EMAIL_HOST_USER"]
-EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]
-DEFAULT_FROM_EMAIL = os.environ["FROM_EMAIL"]
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 # -----FASTDEV-----
