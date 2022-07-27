@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "image",
-                    models.ImageField(default="default.png", upload_to="profile_pics"),
+                    models.ImageField(default="default.webp", upload_to="profile_pics"),
                 ),
                 (
                     "user",
