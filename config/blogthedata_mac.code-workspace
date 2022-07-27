@@ -50,6 +50,6 @@
 		],
 		"python.testing.pytestEnabled": true,
 		"editor.fontSize": 12,
-		"editor.formatOnSave": false,
+		"editor.formatOnSave": true,
 	}
 }
