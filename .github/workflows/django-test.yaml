@@ -42,7 +42,7 @@ jobs:
         with:
           postgresql user: ${{secrets.POSTGRES_USER}}
           postgresql password: ${{ secrets.POSTGRES_PASS }}
-          postgresql db: 'blogthedata_test'
+          postgresql db: "blogthedata_test"
 
       - name: Setup Python 3.8.10
         uses: actions/setup-python@v3
@@ -79,16 +79,14 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - name: Deploy to Linode
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
-        script: |
-          cd blogthedata
-          git pull
-          sudo systemctl daemon-reload
-          sudo systemctl restart gunicorn
-
-
+      - name: Deploy to Linode
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          script: |
+            cd blogthedata
+            git pull
+            python3 manage.py collectstatic --noinput
+            sudo systemctl restart gunicorn
