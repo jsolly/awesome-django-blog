@@ -23,6 +23,7 @@ class PostForm(forms.ModelForm):
             "draft",
             "metaimg",
             "metaimg_alt_txt",
+            "metaimg_attribution",
             "content",
             "snippet",
         )
@@ -40,4 +41,5 @@ class PostForm(forms.ModelForm):
             "category": forms.Select(choices=choices, attrs={"class": "form-control"}),
             "metadesc": forms.TextInput(attrs={"class": "form-control"}),
             "metaimg_alt_txt": forms.TextInput(attrs={"class": "form-control"}),
+            "metaimg_attribution": forms.TextInput(attrs={"class": "form-control"}),
         }
