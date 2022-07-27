@@ -94,5 +94,5 @@ jobs:
             cd blogthedata
             git pull
             source django_project/venv/bin/activate
-            python3 manage.py collectstatic --noinput
+            python3 django_project/manage.py collectstatic --noinput
             sudo systemctl restart gunicorn
