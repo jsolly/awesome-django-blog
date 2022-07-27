@@ -9,17 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-
-    strategy:
-      fail-fast: false
-      matrix:
-        language: ["javascript", "python"]
-        # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
-        # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
 
     env:
       SECRET_KEY: ${{secrets.SECRET_KEY}}
@@ -71,7 +60,21 @@ jobs:
           coverage run -m pytest django_project
           coverage report -m --skip-empty --skip-covered
 
-      # Initializes the CodeQL tools for scanning.
+  static_analysis:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ["javascript", "python"]
+        # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
+        # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
+
+    steps:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
