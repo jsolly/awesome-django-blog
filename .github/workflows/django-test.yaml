@@ -57,7 +57,7 @@ jobs:
 
       - name: Collect Static Files
         run: |
-          python3 django_project/manage.py collectstatic
+          python3 django_project/manage.py collectstatic --noinput
 
       - name: Run DB Migrations
         run: |
