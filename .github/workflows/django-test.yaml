@@ -75,6 +75,8 @@ jobs:
         # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
 
     steps:
+      - uses: actions/checkout@v2
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
@@ -84,7 +86,7 @@ jobs:
         uses: github/codeql-action/analyze@v2
 
   deploy:
-    needs: build
+    needs: [build, static_analysis]
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to Linode
