@@ -5,7 +5,6 @@ profile_pics/
 uploads/
 django_project/media/django_ckeditor_5/
 datadump.json
-db.sqlite3-journal
 
 # Virtual Environments
 venv/
@@ -38,3 +37,6 @@ migration_backup
 # backups
 blogthedata*.sql
 linode*.img
+
+# Static Files
+static/
