@@ -58,7 +58,8 @@ a {
   color: #0d6efd
 }
 
-button a, button a:hover {
+button a,
+button a:hover {
   color: inherit;
 }
 
@@ -74,6 +75,7 @@ blockquote {
   margin-inline-end: 40px;
   border-left: .25rem solid #ccc;
 }
+
 /* =============
    Cards
 ============= */
@@ -89,6 +91,7 @@ blockquote {
   color: red
 }
 
+/*Used in post-detail view*/
 .article-img {
   height: 54px;
   width: 65px;
@@ -98,6 +101,7 @@ blockquote {
 .card-title {
   margin-block-end: 0px;
 }
+
 /* =============
    Tables
 ============= */
@@ -228,4 +232,8 @@ video {
 
 figure img {
   width: 100%;
+}
+
+img {
+  max-width: 100%;
 }
