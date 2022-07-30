@@ -229,9 +229,11 @@ john@198.74.48.211:~/blogthedata/django_project
 
 ### Send backup to remote server
 
+```
 $ scp -r
 /Users/johnsolly/Documents/code/blogthedata/backups/blogthedata_db_6_20_22.sql
 john@198.74.48.211:~/blogthedata/backups
+```
 
 ### Resolve image upload issue (403 from rejected csrf token)
 
