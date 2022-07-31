@@ -237,3 +237,8 @@ figure img {
 img {
   max-width: 100%;
 }
+
+.bio-image {
+  height: auto;
+  max-width: 50%;
+}

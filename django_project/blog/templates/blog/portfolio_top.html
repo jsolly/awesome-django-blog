@@ -1,3 +1,4 @@
+{% load static %}
 <h3 class="text-center">
     Hello World, I'm John!
     <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="28">
@@ -37,21 +38,56 @@
         <h2 class="accordion-header" id="headingTwo">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                Tap or click to learn more about me
+                Tap or click to read my bio
             </button>
         </h2>
         <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingTwo"
             data-bs-parent="#accordion-wrapper">
             <div class="accordion-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur.
+                <img class="float-start m-2 bio-image" src="{% static 'portfolio/gisLecture.jpeg' %}" alt="A photo at 2015 AAG. Rebecca Rice on the left followed by Michael Goodchild and John Solly on the
+                right" />
+                <p> I strive to be the most well-rounded full-stack developer in the geo community. This
+                    journey began
+                    at UC
+                    Santa Barbara, where I studied GIS and remote sensing. I interned on several research teams,
+                    interacting
+                    with GIS thought leaders such as Michael Goodchild, Waldo Tobler, Krzysztof Janowicz, and Dan
+                    Montello.</p>
 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur.
+                <p>After graduating with honors, I traveled to the opposite coast to research team spatial cognition at
+                    George Mason University, a project funded partly by the Army Research Institute. I lectured
+                    undergraduate GIS courses as a TA, acted as president of the ASPRS Potomac Region Chapter, and
+                    presented
+                    my research at AAG's annual conference in San Francisco.</p>
+
+                <p> After completing an M.S. in Geoinformatics and Geospatial Intelligence, I started working at a
+                    leading
+                    GIS company, Esri. I was fortunate to be in the Washington D.C. regional office, where I interacted
+                    with
+                    members of Congress and many government organizations, including the NGA, NASA, and EPA. I then
+                    spent
+                    four years as a product engineer at Esri HQ in Redlands, CA, where I helped launch ArcGIS Dashboards
+                    out
+                    of beta to become the most viewed GIS web application in the world.</p>
+
+                <p>My next role exposed me to GIS' cousin, Business Intelligence. At YellowfinBI, I advised developers
+                    on
+                    Yellowfin's integration patterns using SOAP, REST, and JS APIs. After Idera Inc. acquired Yellowfin
+                    in
+                    February 2022, I took a year off work to dive deep into geospatial web development with Python and
+                    TypeScript. I built web experiences with Django, Node, and React that integrate web mapping
+                    libraries,
+                    tools, and applications. I combine my experience with a love of computer science, and a passion for
+                    writing secure, tested, and performant geospatial applications.</p>
+
+                <p>Do you have complex geo-problems that need a geospatial expert to solve? Drop me a message, and let's
+                    explore our fit together!</p>
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    Tap or click to Collapse
+                </button>
+
+
             </div>
         </div>
     </div>
