@@ -2,13 +2,18 @@
 <footer class="py-3 my-4">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
         <li class="nav-item"><a href="{% url 'home' %}" class="nav-link px-2 text-muted">Home</a></li>
-        <li class="nav-item"><a href="{% url 'blog-category' 'portfolio' %}" class="nav-link px-2 text-muted">Portfolio</a></li>
-        <li class="nav-item"><a rel="noopener noreferrer" target="_blank" href="https://us14.list-manage.com/contact-form?u=3fb3f4adf8ab2cd1ebd6ff743&form_id=7c78cd242677faaebfc3d4a2bc0d5fda" class="nav-link px-2 text-muted">Contact</a></li>
-        <li class="nav-item"><a rel="noopener noreferrer" target="_blank" href="https://twitter.com/_jsolly" class="nav-link px-2 text-muted">Twitter</a></li>
-        <li class="nav-item"><a rel="noopener noreferrer" target="_blank" href="https://github.com/jsolly" class="nav-link px-2 text-muted">Github</a></li>
-        <li class="nav-item"><a rel="noopener noreferrer" target="_blank" href="https://www.linkedin.com/in/jsolly/" class="nav-link px-2 text-muted">LinkedIn</a></li>
+        <li class="nav-item"><a href="{% url 'blog-category' 'portfolio' %}"
+                class="nav-link px-2 text-muted">Portfolio</a></li>
+        <li class="nav-item"><a rel="noopener noreferrer" target="_blank"
+                href="https://us14.list-manage.com/contact-form?u=3fb3f4adf8ab2cd1ebd6ff743&form_id=7c78cd242677faaebfc3d4a2bc0d5fda"
+                class="nav-link px-2 text-muted">Contact</a></li>
+        <li class="nav-item"><a rel="noopener noreferrer" target="_blank" href="https://twitter.com/_jsolly"
+                class="nav-link px-2 text-muted">Twitter</a></li>
+        <li class="nav-item"><a rel="noopener noreferrer" target="_blank" href="https://github.com/jsolly"
+                class="nav-link px-2 text-muted">Github</a></li>
+        <li class="nav-item"><a rel="noopener noreferrer" target="_blank" href="https://www.linkedin.com/in/jsolly/"
+                class="nav-link px-2 text-muted">LinkedIn</a></li>
         <li class="nav-item"><a href="{% url 'privacy' %}" class="nav-link px-2 text-muted">Privacy</a></li>
-        <li class="nav-item"><a href="{% url 'django.contrib.sitemaps.views.sitemap' %}" class="nav-link px-2 text-muted">Sitemap</a></li>
         <li class="nav-item"><a href="{% url 'works-cited' %}" class="nav-link px-2 text-muted">Works Cited</a></li>
     </ul>
     <p class="text-center text-muted">Designed & Built by John Solly</p>
@@ -16,6 +21,5 @@
         <!--Kofi Donation-->
         {% sri_static "kofi/kofi_script1.js" %}
         <script>kofiwidget2.init('Buy me a Coffee', '#0d6efd', 'S6S6CSR2Q'); kofiwidget2.draw();</script>
-      </div>
+    </div>
 </footer>
-
