@@ -289,6 +289,7 @@ CKEDITOR_5_CONFIGS = {
                 {"language": "html", "label": "HTML"},
                 {"language": "bash", "label": "BASH"},
                 {"language": "javascript", "label": "JavaScript"},
+                {"language": "typescript", "label": "TypeScript"},
                 {"language": "apacheconf", "label": "ApacheConf"},
             ]
         },
