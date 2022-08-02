@@ -18,7 +18,7 @@ body {
 
 
 body {
-  padding-top: 70px;
+  margin-top: 80px;
   font-family: "Helvetica", "Arial", sans-serif;
 
 }
@@ -191,6 +191,15 @@ th {
   font-size: 3em;
 }
 
+.bio-image {
+  height: auto;
+  max-width: 50%;
+}
+
+#used-languages {
+  display: inline;
+}
+
 /* =============
    Misc Styles
 ============= */
@@ -225,10 +234,6 @@ video {
   animation: fade-in 0.8s;
 }
 
-#used-languages {
-  display: inline;
-}
-
 
 figure img {
   max-width: 100%;
@@ -236,9 +241,4 @@ figure img {
 
 img {
   max-width: 100%;
-}
-
-.bio-image {
-  height: auto;
-  max-width: 50%;
 }

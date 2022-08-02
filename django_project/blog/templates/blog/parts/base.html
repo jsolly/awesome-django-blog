@@ -53,7 +53,7 @@
   {% include "blog/parts/header.html" %}
   <main role="main" class="container">
     <div class="row">
-      <div class="col-lg-2">
+      <div class="col-lg-3 fs-4">
         <!--Sidebar-->
         {% include "blog/parts/sidebar.html" %}
         <div class="text-center mt-2">
@@ -62,7 +62,7 @@
         </div>
 
       </div>
-      <div id="content-area" class="col-lg-10">
+      <div id="content-area" class="col-lg-9 fs-5">
         {% if messages %} {% for message in messages %}
         <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %} {% endif %}
