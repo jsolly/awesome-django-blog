@@ -12,6 +12,10 @@
 /* =============
    Body, Navbar & Header
 ============= */
+
+html {
+  scroll-behavior: smooth;
+}
 body {
   color: #555;
 }
