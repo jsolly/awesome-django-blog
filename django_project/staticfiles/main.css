@@ -12,6 +12,10 @@
 /* =============
    Body, Navbar & Header
 ============= */
+:root {
+  --main-bg-color: #0B3B8E;
+  --second-color: #378582;
+}
 
 html {
   scroll-behavior: smooth;
@@ -28,7 +32,7 @@ body {
 }
 
 .bg-steel {
-  background-color: #0B3B8E;
+  background-color: var(--main-bg-color);
 }
 
 
@@ -36,7 +40,8 @@ nav a:hover {
   animation: button-shake 0.3s linear;
 }
 
-.site-header .navbar-nav .nav-link {
+.site-header .navbar-nav .nav-link, 
+#solly-nav-brand  {
   color: white;
 }
 
@@ -44,9 +49,6 @@ nav a:hover {
   margin: auto 0.5em auto ;
 }
 
-#solly-nav-brand {
-  color:white
-}
 
 /* =============
    Typeography
@@ -103,20 +105,10 @@ blockquote {
   color: red
 }
 
-/*Used in post-detail view*/
-.article-img {
-  height: 54px;
-  width: 65px;
-  margin-right: 16px;
-}
-
 .card-title {
   margin-block-end: 0px;
 }
 
-/* p {
-  margin-block-end: 0.4em;
-} */
 /* =============
    Tables
 ============= */
@@ -207,12 +199,7 @@ th {
 }
 
 .bio-image {
-  height: auto;
   max-width: 50%;
-}
-
-#used-languages {
-  display: inline;
 }
 
 /* =============
@@ -223,20 +210,11 @@ th {
   color: red;
 }
 
-div.map {
-  height: 500px;
-  border-radius: 1.5px;
-}
-
-#inline-attribution {
-  font-size: 9px;
-}
-
 video {
   max-width: 100%;
-  border-radius: 1.5px;
+  border-radius: .25rem;
 }
-
+/* There is a 500px inline style inside the map html that is being placed into an iframe */
 #leafletMap,
 #openlayersMap,
 #maplibreMap,
@@ -249,19 +227,14 @@ video {
   animation: fade-in 0.8s;
 }
 
-
-figure img {
-  max-width: 100%;
-}
-
 img {
   max-width: 100%;
 }
 
 .list-group-item.active {
-  background-color: #0B3B8E;
+  background-color: var(--main-bg-color);
 }
 
 .badge {
-  background-color: #378582;
+  background-color: var(--second-color);
 }

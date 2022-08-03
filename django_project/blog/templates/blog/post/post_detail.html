@@ -55,13 +55,11 @@
 
 {% block content %}
 <article class="media content-section">
-  <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="" />
   <div class="media-body line-numbers">
     <div class="article-metadata">
-      <nobr>{{ post.author.first_name }} {{ post.author.last_name }} <small
-          class="text-muted">{{post.date_posted|date:"F d, Y" }}</small>
-        {% if post.draft %}<nobr id="draft">(Draft)</nobr>{% endif %}
-      </nobr>
+      <h2 class="card-title fw-bolder">{{ post.title }} {% if post.draft %}<nobr id="draft">(Draft)</nobr>{% endif %}</h2>
+      <p class="card-text fs-6"><small class="text-muted">
+          {{ post.date_posted|date:"F d, Y" }} in {{ post.category|title }}</small></p>
       {% if post.author == user %}
       <div>
         <a class="btn btn-secondary btn-sm mt-1 mb-1" id="post-edit-button" href="{% url 'post-update' post.slug %}">
@@ -71,7 +69,6 @@
       </div>
       {% endif %}
     </div>
-    <h2 class="article-title">{{ post.title }}</h2>
     <p>{{ post.content|safe }}</p>
     {% if post.metaimg_attribution %}
     <div class="mb-2">
