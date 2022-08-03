@@ -1,27 +1,17 @@
-{% extends "blog/parts/base.html" %}
-{% block title %}{{ category|title }}{% endblock title %}
-
-{% block meta %}
-<meta name="description" content="{{ category }} Posts">
+{% extends "blog/parts/base.html" %} {% block title %}{{ category|title }}{% endblock title %} {% block meta %}
+<meta name="description" content="{{ category }} Posts" />
 {% include "blog/parts/logo_meta.html" %}
-<meta property="og:type" content="article:section">
-<meta property="og:title" content="{{ category|title }}">
-<meta name="twitter:description" content="{{ category }} Posts">
+<meta property="og:type" content="article:section" />
+<meta property="og:title" content="{{ category|title }}" />
+<meta name="twitter:description" content="{{ category }} Posts" />
 {% endblock meta %}
 
 <!-- About Section-->
-{% block about %}
-{{ category.description }}
-{% endblock about %}
-
+{% block about %} {{ category.description }} {% endblock about %}
 {% block content %}
-{% if category.name == "portfolio" %}
-{% include 'blog/portfolio_top.html' %}
+{% if category.name == "portfolio" %} {% include 'blog/portfolio_top.html' %}
 {% endif %}
 <h1 class="display-6">{{ category|title }}</h1>
-{% include "blog/parts/posts.html" %}
-{% include "blog/parts/pagination.html" %}
-{% if category.name == "portfolio" %}
-{% include 'blog/portfolio_bottom.html' %}
-{% endif %}
-{% endblock content %}
+{% include "blog/parts/posts.html" %} {% include "blog/parts/pagination.html" %}
+{% if category.name == "portfolio" %} {% include 'blog/portfolio_bottom.html' %}
+{% endif %} {% endblock content %}

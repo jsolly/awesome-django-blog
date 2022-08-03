@@ -1,24 +1,18 @@
-{% extends "blog/parts/base.html" %}
-{% load static %}
-{% load sri %}
-{% block title %}Create A New Blog Post!{% endblock title %}
-
-{% block head %}
+{% extends "blog/parts/base.html" %} {% load static %} {% load sri %} {% block title %}Create A New Blog Post!{% endblock title %} {% block head %}
 <!-- django_ckeditor_5 -->
 {% sri_static 'django_ckeditor_5/prism.css' %}
 <script defer src="{% static 'django_ckeditor_5/prism.js' %}"></script>
 
-{% endblock head %}
-
-{% block content %}
+{% endblock head %} {% block content %}
 <h1>Add Post</h1>
-<br><br>
+<br />
+<br />
 <div class="form-group">
   <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.media }}
-    {{ form.as_p }}
-    <button class="btn btn-outline-info" id="post-create-button" type="submit">Post</button>
+    {% csrf_token %} {{ form.media }} {{ form.as_p }}
+    <button class="btn btn-outline-info" id="post-create-button" type="submit">
+      Post
+    </button>
+    {% endblock content %}
+  </form>
 </div>
-
-{% endblock content %}

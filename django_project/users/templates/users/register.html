@@ -1,15 +1,24 @@
-{% extends "blog/parts/base.html" %}
-{% block title %} Register {% endblock title %}
-{% block content %}
+{% extends "blog/parts/base.html" %} {% block title %} Register {% endblock title %} {% block content %}
 <div class="content-section">
   <form method="POST">
     {% csrf_token %}
     <fieldset class="form-group">
-      <legend class="boarder-bottom mb-4">Join Today (DM me <a rel="noopener noreferrer" target="_blank" href=https://twitter.com/_jsolly>@_jsolly</a> for the secret password!)</legend>
+      <legend class="boarder-bottom mb-4">
+        Join Today (DM me
+        <a
+          rel="noopener noreferrer"
+          target="_blank"
+          href="https://twitter.com/_jsolly">
+          @_jsolly
+        </a>
+        for the secret password!)
+      </legend>
       {{ form.as_p }}
     </fieldset>
     <div class="form-group">
-      <button class="btn btn-outline-info" id="sign-up-button" type="submit">Sign up</button>
+      <button class="btn btn-outline-info" id="sign-up-button" type="submit">
+        Sign up
+      </button>
     </div>
   </form>
   <div class="border-top pt-3">

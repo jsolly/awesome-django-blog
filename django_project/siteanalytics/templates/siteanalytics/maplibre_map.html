@@ -1,23 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://unpkg.com/maplibre-gl@2.1.9/dist/maplibre-gl.js"></script>
+    <link
+      href="https://unpkg.com/maplibre-gl@2.1.9/dist/maplibre-gl.css"
+      rel="stylesheet"
+    />
+  </head>
 
-<head>
-    <meta charset="utf-8">
-    <script src='https://unpkg.com/maplibre-gl@2.1.9/dist/maplibre-gl.js'></script>
-    <link href='https://unpkg.com/maplibre-gl@2.1.9/dist/maplibre-gl.css' rel='stylesheet' />
-</head>
-
-<body>
-
-    <div id='map' style='width: 100%; height: 500px; border-radius: .25rem;'></div>
+  <body>
+    <div
+      id="map"
+      style="width: 100%; height: 500px; border-radius: 0.25rem"
+    ></div>
     <script>
-        var map = new maplibregl.Map({
-            container: 'map',
-            style: 'https://demotiles.maplibre.org/style.json', // stylesheet location
-            center: [-74.5, 40], // starting position [lng, lat]
-            zoom: 3 // starting zoom
-        });
+      var map = new maplibregl.Map({
+        container: "map",
+        style: "https://demotiles.maplibre.org/style.json", // stylesheet location
+        center: [-74.5, 40], // starting position [lng, lat]
+        zoom: 3, // starting zoom
+      });
     </script>
-</body>
-
+  </body>
 </html>

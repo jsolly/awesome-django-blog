@@ -1,25 +1,18 @@
-{% extends "blog/parts/base.html" %}
-{% load static %}
-{% block title %}John Solly | Resume{% endblock title %}
+{% extends "blog/parts/base.html" %} {% load static %} {% block title %} John Solly | Resume {% endblock title %}
 <!-- About Section-->
-{% block about %}
-John Solly's Resume
-{% endblock about %}
-
-{% block meta %}
-<meta name="description"
-  content="John Solly's Resume. I am a Geospatial Developer who makes apps with maps">
-{% include "blog/parts/logo_meta.html" %}
-{% endblock meta %}
-{% block content %}
+{% block about %} John Solly's Resume {% endblock about %} {% block meta %}
+<meta
+  name="description"
+  content="John Solly's Resume. I am a Geospatial Developer who makes apps with maps"
+/>
+{% include "blog/parts/logo_meta.html" %} {% endblock meta %} {% block content %}
 <button type="button" class="btn btn-outline-primary float-end mb-1">
-  <a href="{% url 'blog-category' 'portfolio' %}">
-    Back to Portfolio
-  </a>
+  <a href="{% url 'blog-category' 'portfolio' %}"> Back to Portfolio </a>
 </button>
 <center>
-  <object data="{% static 'portfolio/Solly_John_Resume.pdf' %}" style="width:100%;height:100vh;">
-  </object>
+  <object
+    data="{% static 'portfolio/Solly_John_Resume.pdf' %}"
+    style="width: 100%; height: 100vh"
+  ></object>
 </center>
-</div>
 {% endblock content %}

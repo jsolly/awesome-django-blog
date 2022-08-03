@@ -20,8 +20,7 @@
         data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -32,8 +31,7 @@
               aria-current="page"
               id="nav-home"
               href="{% url 'home' %}"
-              >Home</a
-            >
+              >Home</a>
           </li>
           <li class="nav-item dropdown">
             <a
@@ -42,22 +40,19 @@
               id="navbarDropdown"
               role="button"
               data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
+              aria-expanded="false">
               Categories
             </a>
             <ul
               class="dropdown-menu"
               id="nav-categories"
-              aria-labelledby="navbarDropdown"
-            >
+              aria-labelledby="navbarDropdown">
               {% for cat in category_qs %}
               <li>
                 <a
                   class="dropdown-item"
                   href="{% url 'blog-category' cat|slugify %}"
-                  >{{cat|title}}</a
-                >
+                  >{{cat|title}}</a>
               </li>
               {% endfor %}
             </ul>
@@ -67,8 +62,7 @@
               class="nav-link"
               id="nav-portfolio"
               href="{% url 'blog-category' 'portfolio' %}"
-              >Portfolio</a
-            >
+              >Portfolio</a>
           </li>
           <li class="nav-item">
             <a
@@ -77,25 +71,21 @@
               rel="noopener noreferrer"
               target="_blank"
               href="https://us14.list-manage.com/contact-form?u=3fb3f4adf8ab2cd1ebd6ff743&form_id=7c78cd242677faaebfc3d4a2bc0d5fda"
-              >Contact Me</a
-            >
+              >Contact Me</a>
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" id="nav-profile" href="{% url 'profile' %}"
-              >Profile</a
-            >
+              >Profile</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="nav-logout" href="{% url 'logout' %}"
-              >Logout</a
-            >
+              >Logout</a>
           </li>
           {% endif %} {% if user.is_staff %}
           <li class="nav-item">
             <a class="nav-link" id="nav-new-post" href="{% url 'post-create' %}"
-              >New Post</a
-            >
+              >New Post</a>
           </li>
           {% endif %}
         </ul>
@@ -113,8 +103,7 @@
           <button
             class="btn btn-primary"
             id="search-posts-button"
-            type="submit"
-          >
+            type="submit">
             Search
           </button>
         </form>

@@ -1,47 +1,45 @@
-{% extends "blog/parts/base.html" %}
-{% load static %}
-{% block meta %}
-<meta name="description" content="Blog posts about everything from developing software to productivity">
-<meta property="og:type" content="website">
-<meta property="og:title" content="A blog about geospatial web development">
+{% extends "blog/parts/base.html" %} {% load static %} {% block meta %}
+<meta
+  name="description"
+  content="Blog posts about everything from developing software to productivity"
+/>
+<meta property="og:type" content="website" />
+<meta property="og:title" content="A blog about geospatial web development" />
 {% include "blog/parts/logo_meta.html" %}
-<meta name="twitter:description"
-  content="Blog posts about everything from developing software to productivity. Articles focus on geospatial web development, but also touch on tangential topics such as SEO and web security.">
+<meta
+  name="twitter:description"
+  content="Blog posts about everything from developing software to productivity. Articles focus on geospatial web development, but also touch on tangential topics such as SEO and web security."
+/>
 
-{% endblock meta %}
-{% block head %}
+{% endblock meta %} {% block head %}
 <script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home Page",
-          "item": "https://blogthedata.com"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Life Advice",
-          "item": "https://blogthedata.com/category/life-advice/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Site Updates",
-          "item": "https://blogthedata.com/category/site-updates/"
-        }
-      ]
-    }
-    </script>
-{% endblock head %}
-{% block content %}
-{% include "blog/parts/about_me.html" %}
+  {
+    "@context": "https://schema.org/",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home Page",
+        "item": "https://blogthedata.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Life Advice",
+        "item": "https://blogthedata.com/category/life-advice/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Site Updates",
+        "item": "https://blogthedata.com/category/site-updates/"
+      }
+    ]
+  }
+</script>
+{% endblock head %} {% block content %} {% include "blog/parts/about_me.html" %}
 <h1 class="display-6">Latest Posts!</h1>
-{% include "blog/parts/posts.html" %}
-{% include "blog/parts/pagination.html" %}
+{% include "blog/parts/posts.html" %} {% include "blog/parts/pagination.html" %}
 <!--Mailchimp Embed-->
-{% include "blog/parts/mailchimp_embed.html" %}
-{% endblock content %}
+{% include "blog/parts/mailchimp_embed.html" %} {% endblock content %}
