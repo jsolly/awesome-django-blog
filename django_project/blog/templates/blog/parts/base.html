@@ -53,11 +53,11 @@
   {% include "blog/parts/header.html" %}
   <main role="main" class="container">
     <div class="row">
-      <div class="col-lg-3 fs-4">
+      <div class="col-lg-3">
         <!--Sidebar-->
         {% include "blog/parts/sidebar.html" %}
-        <div class="text-center mt-2">
-          <h4>About this Page</h4>
+        <div class="text-center mt-4 fs-5">
+          <h4 class="mb-1 fs-3">About this Page</h4>
           {% block about %} The latest posts in each category {% endblock about %}
         </div>
 

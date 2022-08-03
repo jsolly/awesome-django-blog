@@ -7,9 +7,9 @@
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">{{ post.title }} {% if post.draft %}<nobr id="draft">(Draft)</nobr>{% endif %}</h5>
-        <p class="card-text"><small class="text-muted"> {{ post.author.first_name }} {{ post.author.last_name }}:
-            {{ post.date_posted|date:"F d, Y" }}</small></p>
+        <h5 class="card-title fw-bolder">{{ post.title }} {% if post.draft %}<nobr id="draft">(Draft)</nobr>{% endif %}</h5>
+        <p class="card-text fs-6"><small class="text-muted">
+            {{ post.date_posted|date:"F d, Y" }} in {{ post.category|title }}</small></p>
         <p class="card-text">{{ post.snippet|safe }}</p>
         <a href="{% url 'post-detail' post.slug %}" class="btn btn-primary">Open Post</a>
         {% if user.is_staff %}
