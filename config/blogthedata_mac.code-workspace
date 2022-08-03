@@ -50,8 +50,5 @@
 		],
 		"python.testing.pytestEnabled": true,
 		"editor.fontSize": 12,
-		"[html]": {
-			"editor.defaultFormatter": "esbenp.prettier-vscode"
-		}
 	}
 }
