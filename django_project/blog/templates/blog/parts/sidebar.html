@@ -5,7 +5,7 @@
   <a href="{% url 'blog-category' category_item|slugify %}"
     class="list-group-item d-flex justify-content-between align-items-center list-group-item-action {% if current_category == category_item|slugify %}active{% endif %}"
     id="sidebar-{{ category_item|slugify }}">{{category_item|title}}
-    <span class="badge rounded-pill bg-primary">{{ category_item.posts_count }}</span>
+    <span class="badge rounded-pill bg-danger">{{ category_item.posts_count }}</span>
   </a>
   {% endfor %}
   <a href="{% url 'home' %}" id="sidebar-home"

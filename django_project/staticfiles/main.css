@@ -72,7 +72,7 @@ a {
   position: relative;
 }
 
- a::before {
+ :not(#scroll-to-top) a::before {
   content: "";
   position: absolute;
   display: block;
@@ -85,7 +85,7 @@ a {
   transition: transform 0.3s ease;
 }
 
-a:hover::before {
+:not(#scroll-to-top) a:hover::before {
   transform: scaleX(1);
 }
 
@@ -115,7 +115,7 @@ blockquote {
 #accordion-wrapper:hover,
 .card:hover {
   background-color: #f8f9fa;
-  box-shadow: 0 1rem 3rem rgba(11, 59, 142, .175) !important;
+  box-shadow: 0 1rem 3rem rgba(255, 0, 0, .175) !important;
   transform: scale(1.005);
 }
 
@@ -253,6 +253,6 @@ img {
   background-color: var(--main-bg-color);
 }
 
-.badge {
-  background-color: var(--second-color);
+#scroll-to-top {
+  color:red;
 }
