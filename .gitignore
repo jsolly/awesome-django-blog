@@ -30,7 +30,7 @@ temp*.yaml
 temp*.js
 
 # Logs
-blogthedata*.log
+logs/
 # migrations
 migration_backup
 
