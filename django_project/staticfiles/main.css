@@ -72,7 +72,7 @@ a {
   position: relative;
 }
 
- :not(#scroll-to-top) a::before {
+a:not(#scroll-to-top)::before {
   content: "";
   position: absolute;
   display: block;
@@ -85,7 +85,7 @@ a {
   transition: transform 0.3s ease;
 }
 
-:not(#scroll-to-top) a:hover::before {
+a:not(#scroll-to-top):hover::before {
   transform: scaleX(1);
 }
 
