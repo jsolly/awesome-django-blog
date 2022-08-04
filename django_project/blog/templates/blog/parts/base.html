@@ -98,9 +98,10 @@
           {% include "blog/parts/sidebar.html" %}
         </div>
         <div id="content-area" class="col-lg-9 fs-5">
-          {% if messages %} {% for message in messages %}
+          <!-- {% if messages %} {% for message in messages %} Removed due to caching issue persisting message
           <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-          {% endfor %} {% endif %} {% block content %} {% endblock %}
+          {% endfor %} {% endif %}  -->
+          {% block content %} {% endblock %}
           <div class="float-end">
             <a id="scroll-to-top" href="#">
               <svg
