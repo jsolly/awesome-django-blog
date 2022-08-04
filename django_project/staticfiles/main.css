@@ -13,9 +13,9 @@
    Body, Navbar & Header
 ============= */
 :root {
-  --main-bg-color: hsl(218, 86%, 30%);
-  --second-color: hsl(178, 41%, 37%);
-  --third-color: hsl(0, 86%, 30%);
+  --main-bg-color: hsl(218, 86%, 30%); /* #0b3b8e */
+  --third-color: hsl(0, 86%, 30%); /* #8e0b0b */
+  --second-color: hsl(178, 41%, 37%); /* #388582 */
 }
 
 html {
