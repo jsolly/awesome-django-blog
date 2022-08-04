@@ -6,12 +6,11 @@
 <meta name="twitter:description" content="{{ category }} Posts" />
 {% endblock meta %}
 
-<!-- About Section-->
-{% block about %} {{ category.description }} {% endblock about %}
 {% block content %}
 {% if category.name == "portfolio" %} {% include 'blog/portfolio_top.html' %}
 {% endif %}
-<h1 class="display-6">{{ category|title }}</h1>
+<h1 class="display-6 lh-1 mt-4">{{ category|title }}</h1>
+<h4 class="mb-2">{{ category.description }}</h4>
 {% include "blog/parts/posts.html" %} {% include "blog/parts/pagination.html" %}
 {% if category.name == "portfolio" %} {% include 'blog/portfolio_bottom.html' %}
 {% endif %} {% endblock content %}

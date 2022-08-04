@@ -25,7 +25,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
+          <li class="nav-item nav-item-top">
             <a
               class="nav-link active"
               aria-current="page"
@@ -33,7 +33,7 @@
               href="{% url 'home' %}"
               >Home</a>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item nav-item-top dropdown">
             <a
               class="nav-link dropdown-toggle"
               href="#"
@@ -57,14 +57,14 @@
               {% endfor %}
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item nav-item-top">
             <a
               class="nav-link"
               id="nav-portfolio"
               href="{% url 'blog-category' 'portfolio' %}"
               >Portfolio</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item nav-item-top">
             <a
               class="nav-link"
               id="nav-portfolio"
@@ -74,16 +74,16 @@
               >Contact Me</a>
           </li>
           {% if user.is_authenticated %}
-          <li class="nav-item">
+          <li class="nav-item nav-item-top">
             <a class="nav-link" id="nav-profile" href="{% url 'profile' %}"
               >Profile</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item nav-item-top">
             <a class="nav-link" id="nav-logout" href="{% url 'logout' %}"
               >Logout</a>
           </li>
           {% endif %} {% if user.is_staff %}
-          <li class="nav-item">
+          <li class="nav-item nav-item-top">
             <a class="nav-link" id="nav-new-post" href="{% url 'post-create' %}"
               >New Post</a>
           </li>

@@ -13,8 +13,9 @@
    Body, Navbar & Header
 ============= */
 :root {
-  --main-bg-color: #0B3B8E;
-  --second-color: #378582;
+  --main-bg-color: hsl(218, 86%, 30%);
+  --second-color: hsl(178, 41%, 37%);
+  --third-color: hsl(0, 86%, 30%);
 }
 
 html {
@@ -45,7 +46,7 @@ nav a:hover {
   color: white;
 }
 
-.nav-item {
+.nav-item-top {
   margin: auto 1em auto ;
 }
 
@@ -115,10 +116,17 @@ blockquote {
    Cards
 ============= */
 
-#accordion-wrapper:hover,
-.card:hover {
+#accordion-wrapper:hover {
   background-color: #f8f9fa;
-  box-shadow: 0 1rem 3rem rgba(255, 0, 0, .175) !important;
+  box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.175) !important;
+  transform: scale(1.005);
+}
+
+
+.card:hover {
+  border: outset var(--main-bg-color);
+  background-color: #f8f9fa;
+  box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.175) !important;
   transform: scale(1.005);
 }
 
@@ -128,6 +136,10 @@ blockquote {
 
 .card-title {
   margin-block-end: 0px;
+}
+
+.card {
+  border: inset var(--main-bg-color);
 }
 
 /* =============
@@ -223,6 +235,10 @@ th {
   max-width: 50%;
 }
 
+#portfolioHello {
+  font-size: 2.8em;
+}
+
 /* =============
    Misc Styles
 ============= */
@@ -258,5 +274,8 @@ img {
 
 #scroll-to-top {
   color:red;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 }
 
