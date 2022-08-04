@@ -6,9 +6,11 @@
   content="John Solly's Resume. I am a Geospatial Developer who makes apps with maps"
 />
 {% include "blog/parts/logo_meta.html" %} {% endblock meta %} {% block content %}
-<button type="button" class="btn btn-outline-primary float-end mb-1">
+<div class="text-center mb-4">
+<button type="button" class="btn btn-outline-primary">
   <a href="{% url 'blog-category' 'portfolio' %}"> Back to Portfolio </a>
 </button>
+</div>
 <center>
   <object
     data="{% static 'portfolio/Solly_John_Resume.pdf' %}"
