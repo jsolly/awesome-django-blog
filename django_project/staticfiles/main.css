@@ -76,7 +76,7 @@ a {
   position: relative;
 }
 
-a:not(#scroll-to-top)::before {
+*:not(button) > a:not(#scroll-to-top, #mailchimp-logo-link)::before {
   content: "";
   position: absolute;
   display: block;

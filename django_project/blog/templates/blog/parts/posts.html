@@ -20,13 +20,17 @@
           >
         </p>
         <p class="card-text">{{ post.snippet|safe }}</p>
-        <a href="{% url 'post-detail' post.slug %}" class="btn btn-primary"
-          >Open Post</a
-        >
+        <button class="btn btn-primary">
+        <a href="{% url 'post-detail' post.slug %}">
+          Open Post
+        </a>
+        </button>
         {% if user.is_staff %}
-        <a href="{% url 'post-update' post.slug %}" class="btn btn-primary"
-          >Edit Post</a
-        >
+        <button class="btn btn-primary">
+        <a href="{% url 'post-update' post.slug %}">
+          Edit Post
+        </a>
+        </button>
         {% endif %}
       </div>
     </div>
