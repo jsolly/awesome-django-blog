@@ -1,36 +1,30 @@
 {% for post in posts %}
-<div class="card mb-5 shadow">
-  <div class="row g-0">
-    <div class="col-md-4 d-flex align-items-center p-1">
-      <img
-        src="{{ post.metaimg.url }}"
-        class="card-img-top"
-        alt="{{ post.metadesc }}"
-      />
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title fw-bolder">
-          {{ post.title }} {% if post.draft %}
-          <nobr id="draft">(Draft)</nobr>{% endif %}
-        </h5>
-        <p class="card-text fs-6">
-          <small class="text-muted">
-            {{ post.date_posted|date:"F d, Y" }} in {{ post.category|title }}</small
-          >
-        </p>
-        <p class="card-text">{{ post.snippet|safe }}</p>
-        <a href="{% url 'post-detail' post.slug %}" class="btn btn-primary">
-          Open Post
-        </a>
-        {% if user.is_staff %}
-        <a href="{% url 'post-update' post.slug %}" class="btn btn-primary">
-          Edit Post
-        </a>
-        {% endif %}
+<a href="{% url 'post-detail' post.slug %}">
+  <div class="card mb-5 shadow showhim">
+    <div class="row g-0">
+      <div class="col-md-4 d-flex align-items-center">
+        <img src="{{ post.metaimg.url }}" class="card-img-top" alt="{{ post.metadesc }}" />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <div id="openPostOnHover" class="position-absolute top-50 start-50 showme"><svg
+              xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+              <path fill="none" d="M0 0h24v24H0V0z" />
+              <path
+                d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
+            </svg> Open Post</div>
+          <h5 class="card-title fw-bolder">
+            {{ post.title }} {% if post.draft %}
+            <nobr id="draft">(Draft)</nobr>{% endif %}
+          </h5>
+          <p class="card-text fs-6">
+            <small class="text-muted">
+              {{ post.date_posted|date:"F d, Y" }} in {{ post.category|title }}</small>
+          </p>
+          <p class="card-text">{{ post.snippet|safe }}</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
+</a>
 {% endfor %}

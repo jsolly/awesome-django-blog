@@ -12,17 +12,21 @@
 /* =============
    Body, Navbar & Header
 ============= */
+ /* Logo color is #0b3b8e */
 :root {
-  --main-bg-color: hsl(218, 86%, 30%); /* #0b3b8e */
-  --third-color: hsl(0, 86%, 30%); /* #8e0b0b */
+  --main-bg-color: hsl(218, 50%, 30%); /* #264273 */
   --second-color: hsl(178, 41%, 37%); /* #388582 */
+  --third-color: hsl(0, 86%, 30%); /* #8e0b0b */
+  --text-color: hsl(0, 0%, 33%); /* #555 */
+  --bootstrap-primary: hsl(216, 98%, 52%);
+  --bootstrap-hover: #f8f9fa;
 }
 
 html {
   scroll-behavior: smooth;
 }
 body {
-  color: #555;
+  color: var(--text-color);
 }
 
 
@@ -36,10 +40,6 @@ body {
   background-color: var(--main-bg-color);
 }
 
-
-nav a:hover {
-  animation: button-shake 0.3s linear;
-}
 
 .site-header .navbar-nav .nav-link, 
 #solly-nav-brand  {
@@ -76,6 +76,10 @@ a {
   position: relative;
 }
 
+a * {
+  color: black;
+}
+
 a:not(.btn, #scroll-to-top, #mailchimp-logo-link)::before {
   content: "";
   position: absolute;
@@ -84,13 +88,9 @@ a:not(.btn, #scroll-to-top, #mailchimp-logo-link)::before {
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: var(--second-color);
+  background-color: var(--bootstrap-primary);
   transform: scaleX(0);
   transition: transform 0.3s ease;
-}
-
-a:not(#scroll-to-top):hover::before {
-  transform: scaleX(1);
 }
 
 
@@ -116,18 +116,14 @@ blockquote {
    Cards
 ============= */
 
-#accordion-wrapper:hover {
-  background-color: #f8f9fa;
-  box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.175) !important;
-  transform: scale(1.005);
-}
-
-
-.card:hover {
-  border: outset var(--main-bg-color);
-  background-color: #f8f9fa;
-  box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.175) !important;
-  transform: scale(1.005);
+.showme {
+  color: white;
+  fill: white;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 1.2s;
+  transition-delay: 0s;
+  letter-spacing: 2px;
 }
 
 #draft {
@@ -202,6 +198,38 @@ th {
   }
 }
 
+@media (hover: hover) {
+
+  nav a:hover {
+    animation: button-shake 0.3s linear;
+  }
+
+  a:not(#scroll-to-top):hover::before {
+    transform: scaleX(1);
+  }
+
+  .showhim:hover .showme {
+    opacity: 1;
+  }
+  
+  #accordion-wrapper:hover {
+    background-color: #f8f9fa;
+    box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.4) !important;
+    transform: scale(1.005);
+  }
+  
+  
+  .card:not(#aboutMe):hover {
+    border: outset blue;
+    background-color: hsl(0, 0%, 26%);
+    box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.4) !important;
+    transform: scale(1.005);
+  }
+  
+
+
+}
+
 
 /* =============
    Portfolio Page
@@ -273,7 +301,7 @@ img {
 }
 
 #scroll-to-top {
-  color:red;
+  color: var(--text-color);
   position: fixed;
   bottom: 20px;
   right: 20px;
