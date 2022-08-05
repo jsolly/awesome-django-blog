@@ -83,16 +83,6 @@
       {% endif %}
     </div>
     <p>{{ post.content|safe }}</p>
-    {% if post.metaimg_attribution %}
-    <div class="mb-2">
-      <a
-        class="fw-lighter text-muted fs-6"
-        target="_blank"
-        rel="noopener noreferrer"
-        href="{{ post.metaimg_attribution }}"
-        >Meta Image Attribution</a>
-    </div>
-    {% endif %}
   </div>
 </article>
 
