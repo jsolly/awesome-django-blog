@@ -301,7 +301,7 @@ img {
 }
 
 #scroll-to-top {
-  color: var(--text-color);
+  color: red;
   position: fixed;
   bottom: 20px;
   right: 20px;
