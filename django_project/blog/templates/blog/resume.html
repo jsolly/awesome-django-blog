@@ -1,18 +1,12 @@
 {% extends "blog/parts/base.html" %} {% load static %} {% block title %} John Solly | Resume {% endblock title %}
 <!-- About Section-->
 {% block about %} John Solly's Resume {% endblock about %} {% block meta %}
-<meta
-  name="description"
-  content="John Solly's Resume. I am a Geospatial Developer who makes apps with maps"
-/>
+<meta name="description" content="John Solly's Resume. I am a Geospatial Developer who makes apps with maps" />
 {% include "blog/parts/logo_meta.html" %} {% endblock meta %} {% block content %}
 <div class="text-center float-lg-end mb-4">
   <a href="{% url 'blog-category' 'portfolio' %}" class="btn btn-outline-primary"> Back to Portfolio </a>
 </div>
 <center>
-  <object
-    data="{% static 'portfolio/Solly_John_Resume.pdf' %}"
-    style="width: 100%; height: 100vh"
-  ></object>
+  <object data="{% static 'portfolio/Solly_John_Resume.pdf' %}" style="width: 100%; height: 100vh"></object>
 </center>
 {% endblock content %}

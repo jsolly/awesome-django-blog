@@ -1,10 +1,7 @@
 {% extends "blog/parts/base.html" %} {% block content %}
 <div class="content-section">
   <div class="media">
-    <img
-      class="rounded-circle account-img"
-      src="{{ user.profile.image.url }}"
-    />
+    <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" />
     <div class="media-body">
       <h2 class="account-heading">{{ user.username }}</h2>
       <p class="text-secondary">{{ user.email }}</p>
@@ -17,10 +14,7 @@
       {{ u_form.as_p }} {{ p_form.as_p }}
     </fieldset>
     <div class="form-group">
-      <button
-        class="btn btn-outline-info"
-        id="update-profile-button"
-        type="submit">
+      <button class="btn btn-outline-info" id="update-profile-button" type="submit">
         Update
       </button>
     </div>

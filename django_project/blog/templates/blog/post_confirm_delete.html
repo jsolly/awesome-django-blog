@@ -1,4 +1,5 @@
-{% extends "blog/parts/base.html" %} {% block title %} Delete - "{{ object.title}}"{% endblock title %} {% block content %}
+{% extends "blog/parts/base.html" %} {% block title %} Delete - "{{ object.title}}"{% endblock title %} {% block content
+%}
 <div class="content-section">
   <form method="POST">
     {% csrf_token %}
@@ -7,16 +8,10 @@
       <h3>Are you sure you want to delete the post "{{ object.title }}"?</h3>
     </fieldset>
     <div class="form-group">
-      <button
-        class="btn btn-outline-danger"
-        id="confirm-delete-button"
-        type="submit">
+      <button class="btn btn-outline-danger" id="confirm-delete-button" type="submit">
         Yes, delete
       </button>
-      <a
-        class="btn btn-outline-secondary"
-        href="{% url 'post-detail' slug=post.slug %}"
-        >Cancel</a>
+      <a class="btn btn-outline-secondary" href="{% url 'post-detail' slug=post.slug %}">Cancel</a>
     </div>
   </form>
 </div>

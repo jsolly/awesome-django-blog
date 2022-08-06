@@ -1,123 +1,120 @@
 {% load static %} {% load sri %} {% load static %}
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <!-- Leaflet -->
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
-      integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
-      crossorigin=""
-    />
-    <script
-      src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
-      integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
-      crossorigin=""
-    ></script>
 
-    <!-- Leaflet Plugins -->
-    <!-- ArcPolyLine-->
-    {% sri_static 'leaflet_plugins/leaflet-arc.min.js' %} {% sri_static 'leaflet_plugins/leaflet.textpath.js' %}
+<head>
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+    integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+    crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+    integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+    crossorigin=""></script>
 
-    <!-- Marker Cluster-->
-    {% sri_static 'leaflet_plugins/MarkerCluster.Default.css' %}
-    {% sri_static 'leaflet_plugins/MarkerCluster.css' %}
-    {% sri_static 'leaflet_plugins/leaflet.markercluster.js' %}
-  </head>
+  <!-- Leaflet Plugins -->
+  <!-- ArcPolyLine-->
+  {% sri_static 'leaflet_plugins/leaflet-arc.min.js' %} {% sri_static 'leaflet_plugins/leaflet.textpath.js' %}
 
-  <body>
-    <div style="height: 500px; border-radius: 0.25rem" id="location_map"></div>
-    <script>
-      var location_map = L.map('location_map', {
-        center: [39, -98],
-        zoom: 4,
-      });
+  <!-- Marker Cluster-->
+  {% sri_static 'leaflet_plugins/MarkerCluster.Default.css' %}
+  {% sri_static 'leaflet_plugins/MarkerCluster.css' %}
+  {% sri_static 'leaflet_plugins/leaflet.markercluster.js' %}
+</head>
 
-      // show the scale bar on the lower left corner
-      L.control.scale({ imperial: true, metric: true }).addTo(location_map);
+<body>
+  <div style="height: 500px; border-radius: 0.25rem" id="location_map"></div>
+  <script>
+    var location_map = L.map('location_map', {
+      center: [39, -98],
+      zoom: 4,
+    });
 
-      // add the OpenStreetMap tiles
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 20,
-        attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
-      }).addTo(location_map);
+    // show the scale bar on the lower left corner
+    L.control.scale({ imperial: true, metric: true }).addTo(location_map);
 
-      var markerClusters = L.markerClusterGroup();
-      {% for visitor in visitors %}
-      var VisitorLatLng = { lat: {{ visitor.location.y }}, lon: {{ visitor.location.x }} }
+    // add the OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 20,
+      attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+    }).addTo(location_map);
 
-      var VisitorMarkerOptions = {
-        title: "{{visitor.city}}, {{visitor.country}}",
-        alt: "The city of {{visitor.city}} which is located in {{visitor.country}}",
-      }
-      var visitor_marker = L.marker(VisitorLatLng, VisitorMarkerOptions).bindPopup("{{visitor.city}}, {{visitor.country}}")
-      // L.marker(VisitorLatLng, VisitorMarkerOptions).addTo(location_map).bindPopup("{{visitor.city}}, {{visitor.country}}").addTo(location_map);
-      markerClusters.addLayer(visitor_marker)
+    var markerClusters = L.markerClusterGroup();
+    {% for visitor in visitors %}
+    var VisitorLatLng = { lat: {{ visitor.location.y }}, lon: { { visitor.location.x } } }
 
-      {% endfor %}
-      location_map.addLayer(markerClusters)
+    var VisitorMarkerOptions = {
+      title: "{{visitor.city}}, {{visitor.country}}",
+      alt: "The city of {{visitor.city}} which is located in {{visitor.country}}",
+    }
+    var visitor_marker = L.marker(VisitorLatLng, VisitorMarkerOptions).bindPopup("{{visitor.city}}, {{visitor.country}}")
+    // L.marker(VisitorLatLng, VisitorMarkerOptions).addTo(location_map).bindPopup("{{visitor.city}}, {{visitor.country}}").addTo(location_map);
+    markerClusters.addLayer(visitor_marker)
+
+    {% endfor %}
+    location_map.addLayer(markerClusters)
 
 
-      var LaLatLng = { lat: 34.1, lon: -118.2 }
-      var DallasLatLng = { lat: 32.8, lon: -96.8 }
-      var NYCLatLng = { lat: 40.7, lon: -73.9 }
+    var LaLatLng = { lat: 34.1, lon: -118.2 }
+    var DallasLatLng = { lat: 32.8, lon: -96.8 }
+    var NYCLatLng = { lat: 40.7, lon: -73.9 }
 
-      //LA
-      var LAMarkerOptions = {
-        title: "The City of Angels",
-        alt: "The city of Los Angels, California. USA",
-      }
-      L.marker(LaLatLng, LAMarkerOptions).addTo(location_map);
+    //LA
+    var LAMarkerOptions = {
+      title: "The City of Angels",
+      alt: "The city of Los Angels, California. USA",
+    }
+    L.marker(LaLatLng, LAMarkerOptions).addTo(location_map);
 
-      // Dallas
-      var IPAddressIcon = L.icon({
-        iconUrl: "{% static 'icons/ip-address.png' %}",
-        iconSize: [40, 40]
-      });
+    // Dallas
+    var IPAddressIcon = L.icon({
+      iconUrl: "{% static 'icons/ip-address.png' %}",
+      iconSize: [40, 40]
+    });
 
-      var DallasMarkerOptions = {
-        title: "Blogthedata.com Server",
-        alt: "The city of Dallas, Texas. USA",
-        icon: IPAddressIcon,
-        zIndexOffset: 1000
-      }
-      L.marker(DallasLatLng, DallasMarkerOptions).bindPopup('Blogthedata.com server <br> Dallas, TX').addTo(location_map);
+    var DallasMarkerOptions = {
+      title: "Blogthedata.com Server",
+      alt: "The city of Dallas, Texas. USA",
+      icon: IPAddressIcon,
+      zIndexOffset: 1000
+    }
+    L.marker(DallasLatLng, DallasMarkerOptions).bindPopup('Blogthedata.com server <br> Dallas, TX').addTo(location_map);
 
-      // NYC
-      var NYCMarkerOptions = {
-        title: "The Big Apple",
-        alt: "The city of New York, New York. USA",
-      }
-      L.marker(NYCLatLng, NYCMarkerOptions).addTo(location_map);
+    // NYC
+    var NYCMarkerOptions = {
+      title: "The Big Apple",
+      alt: "The city of New York, New York. USA",
+    }
+    L.marker(NYCLatLng, NYCMarkerOptions).addTo(location_map);
 
-      // LA to Dallas Polyline
-      var LaToDallasPlyLyn = L.Polyline.Arc([LaLatLng.lat, LaLatLng.lon], [DallasLatLng.lat, DallasLatLng.lon], {
-        interactive: false,
-      })
-      var LaToDallasDistance = (Math.floor(location_map.distance(LaLatLng, DallasLatLng) / 1000)).toString()
+    // LA to Dallas Polyline
+    var LaToDallasPlyLyn = L.Polyline.Arc([LaLatLng.lat, LaLatLng.lon], [DallasLatLng.lat, DallasLatLng.lon], {
+      interactive: false,
+    })
+    var LaToDallasDistance = (Math.floor(location_map.distance(LaLatLng, DallasLatLng) / 1000)).toString()
 
-      LaToDallasPlyLyn.setText(LaToDallasDistance.concat(' km'), {
-        center: true,
-        offset: -5,
-        attributes: { 'font-size': '24', 'font-weight': 'bold', fill: '#007DEF' }
-      })
-      LaToDallasPlyLyn.addTo(location_map)
+    LaToDallasPlyLyn.setText(LaToDallasDistance.concat(' km'), {
+      center: true,
+      offset: -5,
+      attributes: { 'font-size': '24', 'font-weight': 'bold', fill: '#007DEF' }
+    })
+    LaToDallasPlyLyn.addTo(location_map)
 
 
-      // Dallas to NYC Polyline
-      var DallasToNYC = L.Polyline.Arc([DallasLatLng.lat, DallasLatLng.lon], [NYCLatLng.lat, NYCLatLng.lon], {
-        color:
-          'orange', interactive: false
-      })
-      var DallasToNYCDistance = (Math.floor(location_map.distance(DallasLatLng, NYCLatLng) / 1000)).toString()
+    // Dallas to NYC Polyline
+    var DallasToNYC = L.Polyline.Arc([DallasLatLng.lat, DallasLatLng.lon], [NYCLatLng.lat, NYCLatLng.lon], {
+      color:
+        'orange', interactive: false
+    })
+    var DallasToNYCDistance = (Math.floor(location_map.distance(DallasLatLng, NYCLatLng) / 1000)).toString()
 
-      DallasToNYC.setText(DallasToNYCDistance.concat(' km'), {
-        center: true,
-        offset: -5,
-        attributes: { 'font-size': '24', 'font-weight': 'bold', fill: 'orange' }
-      })
+    DallasToNYC.setText(DallasToNYCDistance.concat(' km'), {
+      center: true,
+      offset: -5,
+      attributes: { 'font-size': '24', 'font-weight': 'bold', fill: 'orange' }
+    })
 
-      DallasToNYC.addTo(location_map)
-    </script>
-  </body>
+    DallasToNYC.addTo(location_map)
+  </script>
+</body>
+
 </html>
