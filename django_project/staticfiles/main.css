@@ -27,7 +27,7 @@ html {
 }
 body {
   color: var(--text-color);
-  line-height: 1.6
+  line-height: 1.6;
 }
 
 
@@ -207,8 +207,7 @@ th {
 ============= */
 @media (prefers-reduced-motion: reduce) {
 
-  .navbar-brand:hover,
-  div:not(.show)>ul>li:hover {
+  .nav a:hover {
     animation: none
   }
 }
