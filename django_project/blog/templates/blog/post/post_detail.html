@@ -4,6 +4,7 @@
 {% block head %}
 <!-- django_ckeditor_5 -->
 {% sri_static 'django_ckeditor_5/prism.css' %}
+{% sri_static 'django_ckeditor_5/ckeditor.css' %}
 <script src="{% static 'django_ckeditor_5/prism.js' %}"
   integrity="sha384-SalsXYel3uSaWfJNrNNVCHlg6UQThS+bob6CQFmbN7UJVe1PiuszZhBOAiTI5+jf"></script>
 
@@ -47,7 +48,7 @@
 <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ post.metaimg.url }}" />
 {% endblock meta %} {% block content %}
 <article class="media content-section">
-  <div class="media-body line-numbers">
+  <div class="media-body line-numbers ck-content">
     <div class="article-metadata">
       <h2 class="card-title fw-bolder">
         {{ post.title }} {% if post.draft %}<nobr id="draft">(Draft)</nobr>{% endif %}
