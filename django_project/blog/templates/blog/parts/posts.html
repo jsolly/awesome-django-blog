@@ -21,7 +21,7 @@
             <small class="text-muted">
               {{ post.date_posted|date:"F d, Y" }} in {{ post.category|title }}</small>
           </p>
-          <p class="card-text">{{ post.snippet|safe }}</p>
+          {{ post.snippet|safe }}
         </div>
       </div>
     </div>
