@@ -14,21 +14,15 @@
   {% block meta %} {% endblock meta %}
 
   <!-- Favicons -->
-  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.webp' %}"
-    integrity="sha384-IOUppspYTbISZchqpOQiUnyFxb6AhlvJqZRXFlU7RfII0ZdZXzIo3LU+KmiT1o3Z" crossorigin="anonymous" />
-  <link rel="icon" type="image/webp" sizes="32x32" href="{% static 'favicon/favicon-32x32.webp' %}"
-    integrity="sha384-xe5sniKrv4+mwnK4QVnbxCgd0Ds0pE7Wux4rNMP6LjJz5NaEwnYDbXDtmH/VRAXY" crossorigin="anonymous" />
-  <link rel="icon" type="image/webp" sizes="16x16" href="{% static 'favicon/favicon-16x16.webp' %}"
-    integrity="sha384-sC3iLZk9YO3WAXAcay2D/eMTB56/6W9wJVMlk4AkcPVcEzaQ6+QB71/5mtspWyVf" crossorigin="anonymous" />
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.webp' %}"/>
+  <link rel="icon" type="image/webp" sizes="32x32" href="{% static 'favicon/favicon-32x32.webp' %}"/>
+  <link rel="icon" type="image/webp" sizes="16x16" href="{% static 'favicon/favicon-16x16.webp' %}"/>
 
-  <link rel="icon" type="image/webp" sizes="512x512" href="{% static 'favicon/android-chrome-512x512.webp' %}"
-    integrity="sha384-a5NpdTcTw+crh/PQbh++PiRI9V5PGN/GuHvo5tql2f+EaQWF0tMWlAdG1PaRH/g3" crossorigin="anonymous" />
+  <link rel="icon" type="image/webp" sizes="512x512" href="{% static 'favicon/android-chrome-512x512.webp' %}"/>
 
-  <link rel="icon" type="image/webp" sizes="512x512" href="{% static 'favicon/android-chrome-192x192.webp' %}"
-    integrity="sha384-yB41XbDdEj6WlLiR1x9Vs1+9+LJSS7b+c+me3x2jPReN6Zr58VfHvqH0zrmi7OBV" crossorigin="anonymous" />
+  <link rel="icon" type="image/webp" sizes="512x512" href="{% static 'favicon/android-chrome-192x192.webp' %}"/>
 
-  <link rel="icon" type="image/webp" sizes="48x48" href="{% static 'favicon/favicon.ico' %}"
-    integrity="sha384-A3PjKYwpKsnffqOV+psi6kfjhOvLjdiz+bOiB7TR6dB/J9u48hyynfQlYvpU7P02" crossorigin="anonymous" />
+  <link rel="icon" type="image/webp" sizes="48x48" href="{% static 'favicon/favicon.ico' %}"/>
 
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -47,7 +41,7 @@
 <body>
   <div class="spinner"></div>
   {% include "blog/parts/header.html" %}
-  <main role="main" class="container">
+  <main class="container">
     <div class="row">
       <div class="col-lg-3 mb-4">
         <!--Sidebar-->
@@ -68,11 +62,11 @@
             top
           </a>
         </div>
-        <!--Footer-->
-        {% include "blog/parts/footer.html" %}
       </div>
     </div>
   </main>
+  <!--Footer-->
+  {% include "blog/parts/footer.html" %}
 </body>
 
 </html>
