@@ -196,7 +196,7 @@ button a:hover {
   
   .card:not(#aboutMe):hover {
     border: outset blue;
-    background-color: hsl(0, 0%, 26%);
+    background-color: hsl(0, 0%, 40%);
     box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.4) !important;
     transform: scale(1.005);
   }
