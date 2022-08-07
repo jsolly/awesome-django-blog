@@ -207,7 +207,7 @@ th {
 ============= */
 @media (prefers-reduced-motion: reduce) {
 
-  .nav a:hover {
+  nav a:hover {
     animation: none
   }
 }
