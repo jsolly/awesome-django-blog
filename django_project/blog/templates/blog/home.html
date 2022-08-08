@@ -33,8 +33,20 @@
     ]
   }
 </script>
-{% endblock head %} {% block content %} {% include "blog/parts/about_me.html" %}
+{% endblock head %}
+
+{% block content %}
+
+<section>
+{% include "blog/parts/about_me.html" %}
+</section>
+
+<section>
 <h1 class="display-6">Latest Posts!</h1>
-{% include "blog/parts/posts.html" %} {% include "blog/parts/pagination.html" %}
+{% include "blog/parts/posts.html" %}
+</section>
+
+{% include "blog/parts/pagination.html" %}
 <!--Mailchimp Embed-->
-{% include "blog/parts/mailchimp_embed.html" %} {% endblock content %}
+{% include "blog/parts/mailchimp_embed.html" %}
+{% endblock content %}

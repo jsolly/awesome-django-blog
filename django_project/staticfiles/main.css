@@ -68,7 +68,6 @@ h3 {
   line-height: 1.1;
 }
 
-
 h1,
 h2,
 h3,
@@ -179,7 +178,7 @@ button a:hover {
 
 @media (hover: hover) {
 
-  nav a:hover {
+.navbar-nav a:hover {
     animation: button-shake 0.3s linear;
   }
 
@@ -290,3 +289,12 @@ img {
   right: 20px;
 }
 
+#mc-embedded-subscribe {
+  box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.9) !important; 
+}
+
+
+#mc-embedded-subscribe:hover {
+  transform: scale(1.1);
+
+}
