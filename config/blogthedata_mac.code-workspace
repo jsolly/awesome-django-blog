@@ -49,6 +49,6 @@
 			"test*.py"
 		],
 		"python.testing.pytestEnabled": true,
-		"editor.fontSize": 12,
+		"editor.fontSize": 18,
 	}
 }
