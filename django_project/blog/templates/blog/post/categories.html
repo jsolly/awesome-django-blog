@@ -10,7 +10,7 @@
 {% if category.name == "portfolio" %}
 {% include 'blog/portfolio_top.html' %}
 {% endif %}
-<h2 class="mb-0 display-6">{{ category|title }}</h2>
+<h1 class="mb-0 display-6">{{ category|title }}</h1>
 <p class="mb-2 fs-4">{{ category.description }}</p>
 {% include "blog/parts/posts.html" %}
 {% include "blog/parts/pagination.html" %}
