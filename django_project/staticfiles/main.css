@@ -9,17 +9,54 @@
 
 
 /* =============
-   Body, Navbar & Header
+   Body, Navbar, Header, Footer
 ============= */
  /* Logo color is #0b3b8e */
-:root {
-  --main-bg-color: hsl(218, 50%, 30%); /* #264273 */
-  --second-color: hsl(178, 41%, 37%); /* #388582 */
-  --third-color: hsl(0, 86%, 30%); /* #8e0b0b */
-  --text-color: hsl(0, 0%, 33%); /* #555 */
-  --bootstrap-primary: hsl(216, 98%, 52%);
-  --bootstrap-hover: #f8f9fa;
+ :root {
+   --main-bg-color: hsl(218, 50%, 30%); /* #264273 */
+   --second-color: hsl(178, 41%, 37%); /* #388582 */
+   --second-color-background: hsl(178, 28%, 55%); /* #388582 */
+   --third-color: hsl(0, 86%, 30%); /* #8e0b0b */
+   --text-color: hsl(0, 0%, 33%); /* #555 */
+   --bootstrap-primary: hsl(216, 98%, 52%);
+   --bootstrap-hover: #f8f9fa;
+   --footer-color: rgb(217,217,217);
+ }
+
+footer {
+  background-color:var(--footer-color);
+  position: relative;
+  display: grid;
 }
+
+footer:before {
+  content:"";
+  background-color:var(--footer-color);
+  position: absolute;
+  height: 100%;
+  width: 200vw;
+  left: -100vw;
+  z-index: -1;
+}
+
+.screenreader-text {
+  position: absolute;
+  left: -999px;
+  width:1px;
+  height: 1px;
+  top: auto;
+}
+
+.screenreader-text:focus {
+    color: var(--main-bg-color);
+    display: inline-block;
+    height: auto;
+    width: auto;
+    position: static;
+    margin: auto;
+  }
+
+
 
 html {
   scroll-behavior: smooth;

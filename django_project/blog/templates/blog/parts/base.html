@@ -36,6 +36,9 @@
 </head>
 
 <body>
+  <a id='skip-nav' class='screenreader-text' href='#main'>
+    Skip Navigation or Skip to blog posts
+  </a>
   <div class="spinner"></div>
   {% include "blog/parts/header.html" %}
   <div class="container">
@@ -48,7 +51,7 @@
         {% if messages %} {% for message in messages %} Removed due to caching issue persisting message
         <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %} {% endif %}
-        <main>
+        <main id="main">
           {% block content %}
           {% endblock %}
         </main>
@@ -70,7 +73,7 @@
           </a>
         </div>
         <!--Footer-->
-        <footer class="py-3 my-4">
+        <footer>
           {% include "blog/parts/footer.html" %}
         </footer>
       </div>
