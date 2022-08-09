@@ -1,4 +1,9 @@
-{% extends "blog/parts/base.html" %} {% block title %}{{ category|title }}{% endblock title %} {% block meta %}
+{% extends "blog/parts/base.html" %}
+
+{% block title %}
+{{ category|title }}
+{% endblock title %} 
+{% block meta %}
 <meta name="description" content="{{ category }} Posts" />
 {% include "blog/parts/logo_meta.html" %}
 <meta property="og:type" content="article:section" />
