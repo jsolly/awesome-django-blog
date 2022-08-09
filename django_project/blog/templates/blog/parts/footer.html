@@ -1,44 +1,44 @@
 {% load sri %}
 <ul class="nav justify-content-center border-bottom pb-3 mb-3 pt-5">
   <li class="nav-item">
-    <a href="{% url 'home' %}" class="nav-link px-2">Home</a>
+    <a href="{% url 'home' %}" class="footer-text px-2">Home</a>
   </li>
   <li class="nav-item">
-    <a href="{% url 'blog-category' 'portfolio' %}" class="nav-link px-2 ">
+    <a href="{% url 'blog-category' 'portfolio' %}" class="footer-text px-2 ">
       Portfolio
     </a>
   </li>
   <li class="nav-item">
     <a rel="noopener noreferrer" target="_blank"
       href="https://us14.list-manage.com/contact-form?u=3fb3f4adf8ab2cd1ebd6ff743&form_id=7c78cd242677faaebfc3d4a2bc0d5fda"
-      class="nav-link px-2 ">
+      class="footer-text px-2 ">
       Contact
     </a>
   </li>
   <li class="nav-item">
-    <a rel="noopener noreferrer" target="_blank" href="https://twitter.com/_jsolly" class="nav-link px-2 ">
+    <a rel="noopener noreferrer" target="_blank" href="https://twitter.com/_jsolly" class="footer-text px-2 ">
       Twitter
     </a>
   </li>
   <li class="nav-item">
-    <a rel="noopener noreferrer" target="_blank" href="https://github.com/jsolly" class="nav-link px-2 ">
+    <a rel="noopener noreferrer" target="_blank" href="https://github.com/jsolly" class="footer-text px-2 ">
       Github
     </a>
   </li>
   <li class="nav-item">
-    <a rel="noopener noreferrer" target="_blank" href="https://www.linkedin.com/in/jsolly/" class="nav-link px-2 ">
+    <a rel="noopener noreferrer" target="_blank" href="https://www.linkedin.com/in/jsolly/" class="footer-text px-2 ">
       LinkedIn
     </a>
   </li>
   <li class="nav-item">
-    <a href="{% url 'privacy' %}" class="nav-link px-2 ">Privacy</a>
+    <a href="{% url 'privacy' %}" class="footer-text px-2 ">Privacy</a>
   </li>
   <li class="nav-item">
-    <a href="{% url 'works-cited' %}" class="nav-link px-2 ">
+    <a href="{% url 'works-cited' %}" class="footer-text px-2 ">
       Works Cited</a>
   </li>
 </ul>
-<p id="footer" class="text-center ">Designed & Built by John Solly</p>
+<p id="footer" class="text-center footer-text">Designed & Built by John Solly</p>
 <div class="text-center mt-2 mb-2">
   <!--Kofi Donation-->
   {% sri_static "kofi/kofi_script1.js" %}
