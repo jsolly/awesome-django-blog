@@ -1,5 +1,10 @@
-{% extends "blog/parts/base.html" %} {% if searched %} {% block title %} {{
-searched }} - Solly's Blog {% endblock title %} {% endif %} {% block content %}
+{% extends "blog/parts/base.html" %}
+
+{% if searched %}
+{% block title %} {{searched }} - Solly's Blog {% endblock title %}
+{% endif %}
+
+{% block content %}
 <center>
   {% if searched %}
   <h1>You searched for '{{ searched }}'</h1>
