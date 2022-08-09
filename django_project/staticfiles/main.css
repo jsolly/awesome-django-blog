@@ -332,6 +332,7 @@ img {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  z-index: 1;
 }
 
 #mc-embedded-subscribe {
