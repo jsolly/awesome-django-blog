@@ -1,31 +1,57 @@
 /* Table of Contents
-1. Body, Navbar, & Header
-2. Typeography
-3. Cards
-4. Keyframes & Media Queries
-5. Portfolio Page
-6. Misc Styles
+1. Global Styles
+2. Body, Navbar, Header, Footer
+3. Typeography
+4. Cards
+5. Keyframes & Media Queries
+6. Portfolio Page
+7. Misc Styles
 */
 
+/* =============
+Global Styles
+============= */
+:root {
+  --main-bg-color: hsl(218, 50%, 30%); /* #264273 */
+  --second-color: hsl(178, 41%, 37%); /* #388582 */
+  --second-color-background: hsl(178, 28%, 55%); /*  */
+  --a11y-red: hsl(0, 100%, 30%); /* #990000 */
+  --text-color: hsl(0, 0%, 33%); /* #555 */
+  --bootstrap-primary: hsl(216, 98%, 52%);
+  --bootstrap-hover: #f8f9fa;
+  --footer-color: rgb(217,217,217);
+}
+
+.a11y-red {
+ background-color: var(--a11y-red)
+}
+
+img {
+  max-width: 100%;
+}
+
+.list-group-item.active {
+  background-color: var(--main-bg-color);
+}
+
+.errorlist {
+  color: red;
+}
+
+video {
+  max-width: 100%;
+  border-radius: .25rem;
+}
 
 /* =============
    Body, Navbar, Header, Footer
 ============= */
  /* Logo color is #0b3b8e */
- :root {
-   --main-bg-color: hsl(218, 50%, 30%); /* #264273 */
-   --second-color: hsl(178, 41%, 37%); /* #388582 */
-   --second-color-background: hsl(178, 28%, 55%); /*  */
-   --a11y-red: hsl(0, 100%, 30%); /* #990000 */
-   --text-color: hsl(0, 0%, 33%); /* #555 */
-   --bootstrap-primary: hsl(216, 98%, 52%);
-   --bootstrap-hover: #f8f9fa;
-   --footer-color: rgb(217,217,217);
- }
 
- .a11y-red {
-  background-color: var(--a11y-red)
- }
+#content-area {
+  animation: fade-in 0.8s;
+}
+
 
 footer {
   background-color:var(--footer-color);
@@ -43,38 +69,16 @@ footer:before {
   z-index: -1;
 }
 
-.screenreader-text {
-  position: absolute;
-  left: -999px;
-  width:1px;
-  height: 1px;
-  top: auto;
-}
-
-.screenreader-text:focus {
-    color: var(--main-bg-color);
-    display: inline-block;
-    height: auto;
-    width: auto;
-    position: static;
-    margin: auto;
-  }
-
-
 
 html {
   scroll-behavior: smooth;
 }
+
 body {
   color: var(--text-color);
   line-height: 1.6;
-}
-
-
-body {
   margin-top: 90px;
   font-family: "Helvetica", "Arial", sans-serif;
-
 }
 
 .bg-steel {
@@ -298,14 +302,6 @@ button a:hover {
    Misc Styles
 ============= */
 
-.errorlist {
-  color: red;
-}
-
-video {
-  max-width: 100%;
-  border-radius: .25rem;
-}
 /* There is a 500px inline style inside the map html that is being placed into an iframe */
 #leafletMap,
 #openlayersMap,
@@ -315,17 +311,7 @@ video {
   height: 550px;
 }
 
-#content-area {
-  animation: fade-in 0.8s;
-}
 
-img {
-  max-width: 100%;
-}
-
-.list-group-item.active {
-  background-color: var(--main-bg-color);
-}
 
 #scroll-to-top {
   color: #990000;
@@ -344,3 +330,20 @@ img {
 #mc-embedded-subscribe:hover {
   transform: scale(1.04);
 }
+
+.screenreader-text {
+  position: absolute;
+  left: -999px;
+  width:1px;
+  height: 1px;
+  top: auto;
+}
+
+.screenreader-text:focus {
+    color: var(--main-bg-color);
+    display: inline-block;
+    height: auto;
+    width: auto;
+    position: static;
+    margin: auto;
+  }
