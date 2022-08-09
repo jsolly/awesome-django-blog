@@ -2,11 +2,16 @@
 {% block title %} Works Cited {% endblock title %}
 <!-- About Section-->
 {% block about %} Attibutions to the resources and assets I've leveraged from
-other people/projects. {% endblock about %} {% block meta %}
+other people/projects. {% endblock about %}
+
+{% block meta %}
 <meta name="description"
   content="A page dedicated to attributing thanks to individuals that put out tutorials for free. I also want to thank the authors who created images and logos with open licenses so I can use them on this site." />
-{% include "blog/parts/logo_meta.html" %} {% endblock meta %} {% block content %}
+{% include "blog/parts/logo_meta.html" %}
+{% endblock meta %}
 
+{% block content %}
+<section>
 <h2>Inspirations</h2>
 <p>
   <a href="https://www.juliacodes.com/" target="_blank" rel="noopener noreferrer">Juliacodes.com
@@ -90,5 +95,5 @@ other people/projects. {% endblock about %} {% block meta %}
 </p>
 <a href="https://iconscout.com/icons/open-in-new" target="_blank">Open in new Icon</a> by <a
   href="https://iconscout.com/contributors/google-inc" target="_blank">Google Inc.</a>
-
+</section>
 {% endblock content %}
