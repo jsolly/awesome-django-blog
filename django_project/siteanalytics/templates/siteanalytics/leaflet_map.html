@@ -40,7 +40,7 @@
 
     var markerClusters = L.markerClusterGroup();
     {% for visitor in visitors %}
-    var VisitorLatLng = { lat: {{ visitor.location.y }}, lon: { { visitor.location.x } } }
+    var VisitorLatLng = { lat: {{ visitor.location.y }}, lon: {{ visitor.location.x }} }
 
     var VisitorMarkerOptions = {
       title: "{{visitor.city}}, {{visitor.country}}",
