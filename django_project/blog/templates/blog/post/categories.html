@@ -10,11 +10,15 @@
 {% if category.name == "portfolio" %}
 {% include 'blog/portfolio_top.html' %}
 {% endif %}
+<section>
 <h1 class="mb-0 display-6">{{ category|title }}</h1>
 <p class="mb-2 fs-4">{{ category.description }}</p>
 {% include "blog/parts/posts.html" %}
+</section>
 {% include "blog/parts/pagination.html" %}
 {% if category.name == "portfolio" %}
+<section>
 {% include 'blog/portfolio_bottom.html' %}
+</section>
 {% endif %}
 {% endblock content %}
