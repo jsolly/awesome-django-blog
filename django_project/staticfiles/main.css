@@ -53,6 +53,9 @@ video {
   animation: fade-in 0.8s;
 }
 
+.footer-text {
+  color: #424242;
+}
 
 footer {
   background-color:var(--footer-color);
@@ -347,9 +350,4 @@ button a:hover {
     width: auto;
     position: static;
     margin: auto;
-  }
-
-
-  .footer-link {
-    color: #424242;
   }
