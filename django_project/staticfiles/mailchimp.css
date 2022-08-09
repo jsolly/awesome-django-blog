@@ -39,7 +39,7 @@
 }
 
 #mc_embed_signup .asterisk {
-    color: #e85c41;
+    color: hsl(0, 100%, 30%);
     font-size: 150%;
     font-weight: normal;
     position: relative;
