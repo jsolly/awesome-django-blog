@@ -15,12 +15,16 @@
  :root {
    --main-bg-color: hsl(218, 50%, 30%); /* #264273 */
    --second-color: hsl(178, 41%, 37%); /* #388582 */
-   --second-color-background: hsl(178, 28%, 55%); /* #388582 */
-   --third-color: hsl(0, 86%, 30%); /* #8e0b0b */
+   --second-color-background: hsl(178, 28%, 55%); /*  */
+   --a11y-red: hsl(0, 100%, 30%); /* #990000 */
    --text-color: hsl(0, 0%, 33%); /* #555 */
    --bootstrap-primary: hsl(216, 98%, 52%);
    --bootstrap-hover: #f8f9fa;
    --footer-color: rgb(217,217,217);
+ }
+
+ .a11y-red {
+  background-color: var(--a11y-red)
  }
 
 footer {
@@ -324,7 +328,7 @@ img {
 }
 
 #scroll-to-top {
-  color: red;
+  color: #990000;
   position: fixed;
   bottom: 20px;
   right: 20px;
