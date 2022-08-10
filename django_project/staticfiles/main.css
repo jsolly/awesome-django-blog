@@ -198,11 +198,11 @@ button a:hover {
 ============= */
 @keyframes button-shake {
   from {
-    transform: rotate(2deg)
+    rotate:2deg
   }
 
   to {
-    transform: rotate(-2deg)
+    rotate:-2deg
   }
 }
 
@@ -243,7 +243,7 @@ button a:hover {
   #accordion-wrapper:hover {
     background-color: #f8f9fa;
     box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.4) !important;
-    transform: scale(1.005);
+    scale:1.005;
   }
   
   
@@ -251,7 +251,7 @@ button a:hover {
     border: outset blue;
     background-color: hsl(0, 0%, 40%);
     box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.4) !important;
-    transform: scale(1.005);
+    scale:1.005;
   }
 
   tr:hover {
