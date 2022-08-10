@@ -46,12 +46,17 @@
 <meta name="twitter:site" content="@_jsolly" />
 <meta name="twitter:description" content="{{ post.metadesc }}" />
 <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ post.metaimg.url }}" />
-{% endblock meta %} {% block content %}
+{% endblock meta %}
+
+{% block content %}
 <article class="media content-section">
   <div class="media-body line-numbers ck-content">
     <div class="article-metadata">
       <h1 class="card-title fw-bolder">
-        {{ post.title }} {% if post.draft %}<p id="draft">(Draft)</p>{% endif %}
+        {{ post.title }}
+        {% if post.draft %}
+        <p id="draft">(Draft)</p>
+        {% endif %}
       </h1>
       <p class="card-text fs-6">
         <small class="text-muted">
@@ -60,21 +65,21 @@
       {% if post.author == user %}
       <div>
         <a class="btn btn-secondary btn-sm mt-1 mb-1" id="post-edit-button" href="{% url 'post-update' post.slug %}">
-          Edit Post</a>
+          Edit Post
+        </a>
         <a class="btn btn-danger btn-sm mt-1 mb-1" id="post-delete-button" href="{% url 'post-delete' post.slug %}">
-          Delete Post</a>
+          Delete Post
+        </a>
       </div>
       {% endif %}
     </div>
-    <p>{{ post.content|safe }}</p>
+    {{ post.content|safe }}
   </div>
 </article>
 
 <a href="{% url 'home' %}" id="post-back-to-home-button" class="btn btn-secondary">
   Back to Home
 </a>
-
-
 <ul class="nav justify-content-center">
   <li class="nav-item">
     <!-- Sharingbutton Twitter -->
@@ -126,5 +131,4 @@
     </a>
   </li>
 </ul>
-
 {% endblock content %}

@@ -5,16 +5,16 @@
 {% endif %}
 
 {% block content %}
-<center>
-  {% if searched %}
+{% if searched %}
+<div class="text-center">
   <h1>You searched for '{{ searched }}'</h1>
   {% else %}
   <h1>You didn't search for anything!</h1>
   {% endif %}
-</center>
-<br />
-{% if posts %} {% include "blog/parts/posts.html" %} {% else %}
-<center>
-  <h3>I didn't find any posts matching that search 🤷‍♂️</h3>
-</center>
-{% endif %} {% endblock content %}
+  
+  {% if posts %}
+    {% include "blog/parts/posts.html" %} {% else %}
+  <h2>I didn't find any posts matching that search 🤷‍♂️</h2>
+  {% endif %}
+</div>
+{% endblock content %}

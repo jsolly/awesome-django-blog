@@ -323,13 +323,13 @@ button a:hover {
 }
 
 #mc-embedded-subscribe {
-  box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.9) !important; 
   transition: transform 0.5s;
 }
 
 
 #mc-embedded-subscribe:hover {
   transform: scale(1.04);
+  box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.4) !important; 
 }
 
 .screenreader-text {

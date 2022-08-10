@@ -45,7 +45,8 @@
           <li class="nav-item nav-item-top">
             <a class="nav-link" id="nav-logout" href="{% url 'logout' %}">Logout</a>
           </li>
-          {% endif %} {% if user.is_staff %}
+          {% endif %}
+          {% if user.is_staff %}
           <li class="nav-item nav-item-top">
             <a class="nav-link" id="nav-new-post" href="{% url 'post-create' %}">New Post</a>
           </li>
