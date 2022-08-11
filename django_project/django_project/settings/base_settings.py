@@ -329,7 +329,7 @@ CKEDITOR_5_CONFIGS = {
             "todoList",
             "|",
             "blockQuote",
-            "imageUpload",
+            "imageInsert",
             "|",
             "fontSize",
             "fontFamily",
