@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django_ckeditor_5.fields import CKEditor5Field
 from .utils import slugify_instance_title
 import logging
-
+from django_resized import ResizedImageField
 logger = logging.getLogger("django")
 
 
@@ -38,7 +38,7 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     metadesc = models.CharField(max_length=140, blank=True, null=True)
     draft = models.BooleanField(default=False)
-    metaimg = models.ImageField(default="jsolly.webp", upload_to="post_metaimgs/")
+    metaimg = ResizedImageField(force_format="WEBP", quality=75, upload_to="post_metaimgs/")
     metaimg_alt_txt = models.CharField(max_length=120, default="John Solly Headshot")
     metaimg_attribution = models.CharField(max_length=200, blank=True, null=True)
     content = CKEditor5Field(blank=True, null=True, config_name="extends")

@@ -8,6 +8,7 @@ django-coverage-plugin
 django-csp
 django-fastdev
 django-livereload-server
+django-resized
 django-robots
 django-simple-captcha
 django-sri
