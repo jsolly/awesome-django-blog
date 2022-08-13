@@ -4,6 +4,7 @@ from blog.models import Post
 from siteanalytics.models import Visitor
 from blog.forms import PostForm
 from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 
 class TestViews(SetUp):
@@ -71,7 +72,11 @@ class TestViews(SetUp):
             "category": self.category1.id,
             "metadesc": "I can make you more productive!",
             "draft": False,
-            # "metaimg" : ""
+            "metaimg": SimpleUploadedFile(
+                name="test_image.jpg",
+                content=open("django_project/media/jsolly.jpeg", "rb").read(),
+                content_type="image/jpeg",
+            ),
             "snippet": "Do the things",
             "content": "Do the things. All the things",
             # date_posted : ""
@@ -123,7 +128,11 @@ class TestViews(SetUp):
             "category": self.category1.id,
             "metadesc": "Curious about your health? Look no further!",
             "draft": False,
-            # "metaimg" : ""
+            "metaimg": SimpleUploadedFile(
+                name="test_image.jpg",
+                content=open("django_project/media/jsolly.jpeg", "rb").read(),
+                content_type="image/jpeg",
+            ),
             "snippet": "Long ago, the four nations lived together in harmony.",
             "content": "Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
             "metaimg_alt_txt": "Meta Image Alt-Text Update",

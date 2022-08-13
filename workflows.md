@@ -133,6 +133,12 @@ local_branch_name and branch_name can be the same
     python3 manage.py migrate blog 0011
     ```
 
+### Fake Migration
+
+```
+python manage.py migrate --fake blog 0011
+```
+
 ### Create empty migration
 
     ```
