@@ -413,6 +413,15 @@ button a:hover {
   left: -5000px;
 }
 
+#mc-embedded-subscribe {
+  transition: transform 0.5s;
+}
+
+#mc-embedded-subscribe:hover {
+  transform: scale(1.04);
+  box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.4) !important;
+}
+
 /* =============
    Misc Styles
 ============= */
@@ -432,15 +441,6 @@ button a:hover {
   bottom: 20px;
   right: 20px;
   z-index: 1;
-}
-
-#mc-embedded-subscribe {
-  transition: transform 0.5s;
-}
-
-#mc-embedded-subscribe:hover {
-  transform: scale(1.04);
-  box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.4) !important;
 }
 
 .screenreader-text {
