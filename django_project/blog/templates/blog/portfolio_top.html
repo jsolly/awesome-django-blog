@@ -1,4 +1,11 @@
 {% load static %}
+<!-- Github Green Streak -->
+<script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js">
+</script>
+<link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css" />
+
+
+
 <div class="float-lg-end text-center">
   <a href="{% url 'resume' %}" class="btn btn-outline-primary">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filetype-pdf"
@@ -23,8 +30,10 @@
 
 <div class="row row-no-margin">
   <div class="col-md-12 col-lg-6 col-no-padding">
-    <img alt="John Solly's Github Stats"width="100%" class="thumbnail img-responsive"
+    <img alt="John Solly's Github Stats" width="100%" class="thumbnail img-responsive"
       src="https://github-readme-stats.vercel.app/api?username=jsolly&show_icons=true&theme=default_repocard&title_color=0d6efd&icon_color=0d6efd" />
+      <a class="fs-6" target="_blank" href="https://github.com/anuraghazra/github-readme-stats#github-stats-card">How is the
+        A+ ranking calculated?</a>
   </div>
   <div class="col-md-12 col-lg-6 col-no-padding">
     <img alt="John Solly's code frequency streak stats" width="100%" class="thumbnail img-responsive"
@@ -32,9 +41,22 @@
   </div>
 </div>
 <div>
-<a class="fs-6" target="_blank" href="https://github.com/anuraghazra/github-readme-stats#github-stats-card">How is the A+ ranking calculated?</a>
+
 </div>
 
+<!-- Prepare a container for your calendar. -->
+<div class="calendar">
+<script>
+
+  // or enable responsive functionality:
+  GitHubCalendar(".calendar", "jsolly", {
+    global_stats: false,
+    responsive: true,
+
+  });
+
+</script>
+</div>
 <article class="accordion mt-5 mb-5" id="accordion-wrapper">
   <h2 class="display-6">My Bio</h2>
   <div class="accordion-item">
