@@ -4,6 +4,8 @@
     $ python3 manage.py makemigrations --name changed_my_model your_app_label
 
     $ python3 manage.py migrate
+
+    $ python3 manage.py migrate --settings=django_project.settings.ci
     ```
 
 ### Access the production server
