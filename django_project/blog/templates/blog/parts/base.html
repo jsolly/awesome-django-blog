@@ -30,9 +30,6 @@
 
   <!-- My CSS -->
   {% sri_static 'main.css' %}
-
-  <!-- Mailchimp -->
-  {% sri_static 'mailchimp.css' %}
 </head>
 
 <body>
@@ -55,6 +52,7 @@
           {% block content %}
           {% endblock %}
         </main>
+        {% include "blog/parts/mailchimp_embed.html" %}
         <div class="float-end">
           <a id="scroll-to-top" href="#">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:svgjs="http://svgjs.com/svgjs"
