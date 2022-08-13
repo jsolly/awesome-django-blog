@@ -102,13 +102,6 @@ local_branch_name and branch_name can be the same
     $ python3 -m pip install -r blogthedata/django_project/requirements/requirements.txt -c blogthedata/django_project/requirements/constraints.txt
     ```
 
-### Manually generated integrity hash values
-
-    ```
-        1 - mailchimp/local-mc-validate.js
-        2 - Everything in favicon/
-    ```
-
 # How to generate integrity hash values
 
     ```

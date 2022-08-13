@@ -5,8 +5,7 @@
 4. Cards
 5. Keyframes & Media Queries
 6. Portfolio Page
-7. Mailchimp Embed
-8. Misc Styles
+7. Misc Styles
 */
 
 /* =============
@@ -150,7 +149,7 @@ a * {
   color: black;
 }
 
-a:not(.btn, #scroll-to-top, #mailchimp-logo-link)::before {
+a:not(.btn, #scroll-to-top)::before {
   content: "";
   position: absolute;
   display: block;
@@ -290,136 +289,6 @@ button a:hover {
 
 #portfolioHello {
   font-size: 2.8em;
-}
-/* =============
-   Mailchimp Embed
-============= */
-#mc_embed_signup h2 {
-  font-weight: 700;
-  padding: 0;
-  margin: 10px 0;
-  font-size: 1.4em;
-}
-#mc_embed_signup form {
-  display: block;
-  position: relative;
-  text-align: left;
-  padding: 10px 0 10px 3%;
-}
-#mc_embed_signup input {
-  border: 1px solid #abb0b2;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-}
-#mc_embed_signup .mc-field-group label {
-  display: block;
-  margin-bottom: 3px;
-}
-#mc_embed_signup .mc-field-group input {
-  display: block;
-  width: 100%;
-  padding: 8px 0;
-  text-indent: 2%;
-}
-#mc_embed_signup .indicates-required {
-  text-align: right;
-  font-size: 11px;
-  margin-right: 4%;
-}
-#mc_embed_signup .asterisk {
-  color: #900;
-  font-size: 150%;
-  font-weight: 400;
-  position: relative;
-  top: 5px;
-}
-#mc_embed_signup .mc-field-group {
-  clear: left;
-  position: relative;
-  width: 96%;
-  padding-bottom: 3%;
-  min-height: 50px;
-}
-#mc_embed_signup .clear {
-  clear: both;
-}
-#mc_embed_signup .foot {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  width: 96%;
-  align-items: center;
-}
-#mc_embed_signup .brandingLogo {
-  justify-self: right;
-}
-#mc_embed_signup input:focus {
-  border-color: #333;
-}
-#mc_embed_signup div#mce-responses {
-  float: left;
-  top: -1.4em;
-  padding: 0 0.5em 0 0.5em;
-  overflow: hidden;
-  width: 90%;
-  margin: 0 5%;
-  clear: both;
-}
-#mc_embed_signup div.response {
-  margin: 1em 0;
-  padding: 1em 0.5em 0.5em 0;
-  font-weight: 700;
-  float: left;
-  top: -1.5em;
-  z-index: 1;
-  width: 80%;
-}
-#mc_embed_signup #mce-error-response {
-  display: none;
-}
-#mc_embed_signup #mce-success-response {
-  color: #529214;
-  display: none;
-}
-#mc_embed_signup label.error {
-  display: block;
-  float: none;
-  width: auto;
-  margin-left: 1.05em;
-  text-align: left;
-  padding: 0.5em 0;
-}
-#mc-embedded-subscribe {
-  clear: both;
-  width: auto;
-  display: block;
-  margin: 1em 0 1em 5%;
-}
-@media screen and (max-width: 400px) {
-  #mc_embed_signup .foot {
-    display: grid;
-    grid-template-columns: 1fr;
-    width: 100%;
-    align-items: center;
-  }
-}
-@media screen and (max-width: 400px) {
-  #mc_embed_signup .brandingLogo {
-    justify-self: left;
-  }
-}
-#hideme {
-  position: absolute;
-  left: -5000px;
-}
-
-#mc-embedded-subscribe {
-  transition: transform 0.5s;
-}
-
-#mc-embedded-subscribe:hover {
-  transform: scale(1.04);
-  box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.4) !important;
 }
 
 /* =============
