@@ -58,7 +58,7 @@ $ python3 -m pip install -r blogthedata/django_project/requirements/requirements
 - Multiple categoires to organize posts
 - Post views and likes (Removed in
   https://github.com/jsolly/blogthedata/pull/77)
-- Newsletter Sign up 🗞
+- Newsletter Sign up 🗞 (removed in https://github.com/jsolly/blogthedata/pull/140)
 - Github Integration to show active issue backlog without leaving blog (removed
   in https://github.com/jsolly/blogthedata/pull/121)
 - Slugified URLs
