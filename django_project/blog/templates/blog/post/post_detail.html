@@ -82,13 +82,13 @@
   </div>
 </article>
 
-<a href="{% url 'home' %}" id="post-back-to-home-button" class="btn btn-secondary">
+<a href="{% url 'home' %}" id="post-back-to-home-button" class="btn btn-secondary btn-lg mb-4">
   Back to Home
 </a>
-<ul class="nav justify-content-center">
+<ul class="nav justify-content-center mb-4">
   <li class="nav-item">
     <!-- Sharingbutton Twitter -->
-    <a class="resp-sharing-button__link btn btn-primary btn-lg"
+    <a class="resp-sharing-button__link btn btn-primary btn-sm"
       href="https://twitter.com/intent/tweet/?text={{ post.title }}&amp;url={{ request.build_absolute_uri }}"
       target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter">
       <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -102,7 +102,7 @@
   </li>
   <li class="nav-item">
     <!-- Sharingbutton Reddit -->
-    <a class="resp-sharing-button__link btn btn-primary btn-lg"
+    <a class="resp-sharing-button__link btn btn-primary btn-sm"
       href="https://reddit.com/submit/?url={{ request.build_absolute_uri }}&amp;resubmit=true&amp;title={{ post.title }}"
       target="_blank" rel="noopener" aria-label="Share on Reddit">
       <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
@@ -122,7 +122,7 @@
   </li>
   <li class="nav-item">
     <!-- Sharingbutton LinkedIn -->
-    <a class="resp-sharing-button__link btn btn-primary btn-lg"
+    <a class="resp-sharing-button__link btn btn-primary btn-sm"
       href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ request.build_absolute_uri }}&amp;title={{ post.title }}&amp;summary={{ post.metadesc }}&amp;source={{ request.build_absolute_uri }}"
       target="_blank" rel="noopener" aria-label="Share on LinkedIn">
       <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
