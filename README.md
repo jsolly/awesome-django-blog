@@ -69,7 +69,7 @@ $ python3 -m pip install -r blogthedata/django_project/requirements/requirements
 - Ko-Fi donation button ☕️
 - Leaflet.js and OpenLayers maps 🗺
 - Display site visitors in a web map
-- Portfolio page with testimonials, contact me, github stats, and more!
+- Portfolio page with testimonials, contact me, github stats, Web vitals, and more!
 
 #### Non-Functional Features
 
