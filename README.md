@@ -93,6 +93,7 @@ $ python3 -m pip install -r blogthedata/django_project/requirements/requirements
 - [A+ Score on Mozilla Observatory]([url](https://observatory.mozilla.org/analyze/blogthedata.com))
 - Excellent scores on Google Lighthouse
 - Custom 404 page
+- Automatic Conversion of images (.png, .jpeg, etc) to .webp
 
 ## Coverage, Tests, Linting
 
