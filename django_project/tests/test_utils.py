@@ -2,8 +2,10 @@ from .base import SetUp
 from django.utils.deprecation import MiddlewareMixin
 from django.http import HttpRequest
 from blog.utils import slugify_instance_title
-from siteanalytics.utils import load_data, get_client_ip, add_visitor_if_not_exist
-from siteanalytics.models import Visitor
+from siteanalytics.utils import get_client_ip
+
+# add_visitor_if_not_exist, load_data
+# from siteanalytics.models import Visitor
 
 
 class TestUtils(SetUp, MiddlewareMixin):
