@@ -1,10 +1,10 @@
 {% load static %}
+{% load sri %}
 <!-- Github Green Streak -->
 <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js">
 </script>
-<link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css" />
 
-
+{% sri_static 'github_calendar.css' %}
 
 <div class="float-lg-end text-center">
   <a href="{% url 'resume' %}" class="btn btn-outline-primary">
