@@ -105,6 +105,10 @@ body {
    Typeography
 ============= */
 
+.caption {
+  font-size: 0.6em;
+}
+
 .no-white-space {
   white-space: nowrap;
 }
