@@ -74,8 +74,8 @@ class TestViews(SetUp):
             "draft": False,
             "metaimg": SimpleUploadedFile(
                 name="test_image.jpg",
-                content=open("django_project/media/jsolly.jpeg", "rb").read(),
-                content_type="image/jpeg",
+                content=open("django_project/media/jsolly.webp", "rb").read(),
+                content_type="image/webp",
             ),
             "snippet": "Do the things",
             "content": "Do the things. All the things",
@@ -130,8 +130,8 @@ class TestViews(SetUp):
             "draft": False,
             "metaimg": SimpleUploadedFile(
                 name="test_image.jpg",
-                content=open("django_project/media/jsolly.jpeg", "rb").read(),
-                content_type="image/jpeg",
+                content=open("django_project/media/jsolly.webp", "rb").read(),
+                content_type="image/webp",
             ),
             "snippet": "Long ago, the four nations lived together in harmony.",
             "content": "Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
