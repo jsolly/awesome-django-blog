@@ -269,6 +269,7 @@ button a:hover {
   top: 15px;
   color: #c3ceff;
   font-size: 3em;
+  font-family: georgia, serif;
 }
 
 .testimonial-quote:after {
@@ -281,6 +282,7 @@ button a:hover {
   top: 18px;
   color: #c3ceff;
   font-size: 3em;
+  font-family: georgia, serif;
 }
 
 .bio-image {
