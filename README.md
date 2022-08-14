@@ -6,6 +6,8 @@ A blog about Python and JavaScript web development
 [![Coverage Status](http://img.shields.io/coveralls/badges/badgerbadgerbadger.svg?style=flat-square)](https://coveralls.io/r/badges/badgerbadgerbadger)
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
+![LighthouseScore](https://github.com/jsolly/jsolly/blob/main/assets/lighthouseStats.svg)
+
 ![desktopScreenshot](https://user-images.githubusercontent.com/9572232/183277781-adea9d73-6dc0-4971-ac3a-b14e2131d6f3.jpeg)
 
 
