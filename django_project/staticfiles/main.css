@@ -80,7 +80,6 @@ html {
 body {
   color: var(--text-color);
   line-height: 1.6;
-  margin-top: 90px;
   font-family: Helvetica, Arial, sans-serif;
 }
 
@@ -139,8 +138,7 @@ h3,
 h4,
 h5,
 h6,
-p:not(#footer)
- {
+p:not(#footer) {
   max-width: 70ch;
 }
 
