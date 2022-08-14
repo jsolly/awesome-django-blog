@@ -206,10 +206,10 @@ class TestViews(SetUp):
         response = self.client.get(category_url, {"page": 2})
         self.assertTrue(response.context["page_obj"].has_previous())
 
-    # def test_category_view_portfolio(self):
-    #     portfolio_url = reverse("blog-category", args=["portfolio"])
-    #     response = self.client.get(portfolio_url)
-    #     self.assertEqual(response.status_code, 200)
+    def test_category_view_portfolio(self):
+        portfolio_url = reverse("blog-category", args=["portfolio"])
+        response = self.client.get(portfolio_url)
+        self.assertEqual(response.status_code, 200)
 
     def test_search_view_blank(self):
         # Empty page if user didn't search for anything and manually typed in the search url (get)
