@@ -18,7 +18,7 @@ Global Styles
   --a11y-red: hsl(0, 100%, 30%); /* #990000 */
   --text-color: hsl(0, 0%, 33%); /* #555 */
   --bootstrap-primary: hsl(216, 98%, 52%);
-  --bootstrap-hover: #f8f9fa;
+  --bootstrap-hover: hsl(210, 20%, 98%);
   --footer-color: hsl(0, 0%, 85%); /* #d9d9d9 */
   --footer-text-color: hsl(0, 0%, 26%);
 }
@@ -331,4 +331,17 @@ button a:hover {
   width: auto;
   position: static;
   margin: auto;
+}
+
+::-webkit-scrollbar {
+  width: 1em;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 100vw;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--a11y-red);
+  border-radius: 100vw;
 }
