@@ -49,6 +49,13 @@ video {
 ============= */
 /* Logo color is #0b3b8e */
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  height: auto !important;
+}
+
 #content-area {
   animation: fade-in 0.8s;
 }
@@ -334,14 +341,20 @@ button a:hover {
 }
 
 ::-webkit-scrollbar {
+  height: 1em;
   width: 1em;
 }
-
 ::-webkit-scrollbar-track {
   border-radius: 100vw;
 }
 
 ::-webkit-scrollbar-thumb {
+  background: rgb(192, 192, 192);
+  border: 0.1em solid rgb(229, 229, 229);
+  border-radius: 100vw;
+}
+
+::-webkit-scrollbar-thumb:vertical {
   background: var(--a11y-red);
   border-radius: 100vw;
 }
