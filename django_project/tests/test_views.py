@@ -1,10 +1,11 @@
 from .base import SetUp, message_in_response, create_several_posts
 from django.urls import reverse
 from blog.models import Post
-from siteanalytics.models import Visitor
 from blog.forms import PostForm
 from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.core.files.uploadedfile import SimpleUploadedFile
+
+# from siteanalytics.models import Visitor
 
 
 class TestViews(SetUp):

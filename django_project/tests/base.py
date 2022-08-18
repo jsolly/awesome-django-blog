@@ -13,7 +13,8 @@ from django.contrib.messages import get_messages
 from django.test.utils import setup_test_environment
 from blog.models import Post, Category
 from users.models import User
-from siteanalytics.utils import load_data
+
+# from siteanalytics.utils import load_data
 
 
 def message_in_response(response, message: str):
