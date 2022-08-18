@@ -95,4 +95,4 @@ class SetUp(TestCase):
         self.client = Client()
 
         # Create visitors
-        load_data("django_project/siteanalytics/data/ip_info_test.csv")
+        # load_data("django_project/siteanalytics/data/ip_info_test.csv")
