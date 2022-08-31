@@ -25,7 +25,7 @@ A blog about Python and JavaScript web development
 
 ## Installation
 
-```bash
+```shell
 # first install Python 3.8.10 (have not tested newer versions, but they could work)
 $ git clone https://github.com/jsolly/blogthedata.git
 $ python3 -m venv blogthedata/django_project/venv
@@ -39,11 +39,14 @@ $ python3 -m pip install -r blogthedata/django_project/requirements/requirements
 - See commented out Database section in
   [django_project/settings.py](https://github.com/jsolly/blogthedata/blob/master/django_project/django_project/settings.py)
   to use sqllite database or postgres
-- $ python3 manage.py migrate
+  ```shell
+  $ python3 manage.py migrate
+  ```
 - rename 'sample.env' to .env and change the values to match your setup
   (database passwords, secret keys, etc)
-- $ python3 manage.py runserver
-
+  ```shell
+  $ python3 manage.py runserver
+  ```
 ---
 
 ## Features
@@ -100,19 +103,18 @@ $ python3 -m pip install -r blogthedata/django_project/requirements/requirements
 Contained within tests/
 
 #### Coverage
-
+```shell
 $ coverage run -m pytest django_project
-
 $ coverage report -m --skip-covered
-
+```
 #### Test
-
+```shell
 $ python3 -m pytest django_project
-
+```
 #### Lint
-
+```shell
 $ flake8 django_project
-
+```
 Also see the [actions tab]([url](https://github.com/jsolly/blogthedata/actions))
 to see if everything is passing.
 
