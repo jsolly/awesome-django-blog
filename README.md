@@ -83,7 +83,7 @@ $ python3 -m pip install -r blogthedata/django_project/requirements/requirements
 - Optimized for Performance, SEO, and A11Y
 - Latest Django 4.x
 - Fully PEP 8 compliant (with some exceptions*)
-- 100% unit code coverage
+- 95% or above unit code coverage
 - 100% linted with [flake8]([url](https://pypi.org/project/flake8/))
 - Static scans with [CodeQL]([url](https://codeql.github.com/)) and pip
   dependency checks with [Dependabot]([url](https://github.com/dependabot))
