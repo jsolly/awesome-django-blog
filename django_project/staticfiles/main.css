@@ -49,8 +49,7 @@ video {
 ============= */
 /* Logo color is #0b3b8e */
 
-html,
-body {
+:is(html, body) {
   max-width: 100%;
   overflow-x: hidden;
   height: auto !important;
@@ -94,8 +93,7 @@ body {
   background-color: var(--main-bg-color);
 }
 
-#solly-nav-brand,
-.site-header .navbar-nav .nav-link {
+:is(#solly-nav-brand, .site-header .navbar-nav .nav-link) {
   color: white;
 }
 
@@ -119,19 +117,11 @@ body {
   white-space: nowrap;
 }
 
-h1,
-h2,
-h3 {
+:is(h1, h2, h3) {
   line-height: 1.1;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-strong {
+:is(h1, h2, h3, h4, h5, h6, strong) {
   color: black;
 }
 
@@ -139,14 +129,7 @@ h1 {
   letter-spacing: 2px;
 }
 
-blockquote,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p:not(#footer) {
+:is(blockquote, h1, h2, h3, h4, h5, h6, ) p:not(#footer) {
   max-width: 70ch;
 }
 
@@ -308,10 +291,7 @@ button a:hover {
 ============= */
 
 /* There is a 500px inline style inside the map html that is being placed into an iframe */
-#leafletMap,
-#openlayersMap,
-#maplibreMap,
-#mapboxMap {
+:is(#leafletMap, #openlayersMap, #maplibreMap, #mapboxMap) {
   width: 100%;
   height: 550px;
 }
