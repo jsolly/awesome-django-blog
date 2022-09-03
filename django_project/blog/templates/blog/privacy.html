@@ -4,8 +4,11 @@
 {% block about %} How data is collected on blogthedata.com {% endblock about %}
 {% block meta %}
 <meta name="description" content="How data is collected on blogthedata.com" />
-{% include "blog/parts/logo_meta.html" %} {% endblock meta %} {% block content %}
-<section id="privacy policy">
+{% include "blog/parts/logo_meta.html" %}
+{% endblock meta %}
+
+{% block content %}
+<section id="privacy-policy">
   <h1>Privacy</h1>
   <p>How data is collected on this site</p>
   <p>
@@ -35,3 +38,4 @@
       contact me</a>. I will reply within 3 days. {% endblock content %}
   </p>
 </section>
+{% endblock content %}
