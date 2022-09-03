@@ -164,6 +164,11 @@ button a:hover {
    Cards
 ============= */
 
+.card-img-top {
+  height: 100%;
+  width: 100%;
+}
+
 .showme {
   color: white;
   fill: white;
