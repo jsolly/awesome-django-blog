@@ -1,6 +1,6 @@
 {% for post in posts %}
 <article>
-  <a href="{% url 'post-detail' post.slug %}#{{ post.title }}" aria-label='{{ post.title }}'>
+  <a href="{% url 'post-detail' post.slug %}" aria-label='{{ post.title }}'>
     <div class="card mb-5 shadow showhim">
       <div class="row g-0">
         <div class="col-md-4 d-flex align-items-center">
