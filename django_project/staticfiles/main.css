@@ -289,6 +289,10 @@ button a:hover {
 
 #portfolioHello {
   font-size: 2.8em;
+  color: black;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: 2px;
 }
 
 /* =============
