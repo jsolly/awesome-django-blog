@@ -138,7 +138,7 @@ a {
   position: relative;
 }
 
-a * {
+.card-body {
   color: black;
 }
 
@@ -210,46 +210,6 @@ img.card-img-top {
 
   100% {
     opacity: 1;
-  }
-}
-
-/* =============
-   Media Queries
-============= */
-@media (prefers-reduced-motion: reduce) {
-  nav a:hover {
-    animation: none;
-  }
-}
-
-@media (hover: hover) {
-  .navbar-nav a:hover {
-    animation: button-shake 0.3s linear;
-  }
-
-  a:not(#scroll-to-top):hover::before {
-    transform: scaleX(1);
-  }
-
-  .showhim:hover .showme {
-    opacity: 1;
-  }
-
-  #accordion-wrapper:hover {
-    background-color: #f8f9fa;
-    box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.4) !important;
-    scale: 1.005;
-  }
-
-  .card:not(#aboutMe):hover {
-    border: outset blue;
-    background-color: hsl(0, 0%, 40%);
-    box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.4) !important;
-    scale: 1.005;
-  }
-
-  tr:hover {
-    background-color: #ddd;
   }
 }
 
@@ -334,17 +294,90 @@ img.card-img-top {
   height: 1em;
   width: 1em;
 }
-::-webkit-scrollbar-track {
-  border-radius: 100vw;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgb(192, 192, 192);
-  border: 0.1em solid rgb(229, 229, 229);
-  border-radius: 100vw;
-}
 
 ::-webkit-scrollbar-thumb:vertical {
   background: var(--a11y-red);
   border-radius: 100vw;
+}
+
+/* =============
+   Media Queries
+============= */
+@media (prefers-reduced-motion: reduce) {
+  nav a:hover {
+    animation: none;
+  }
+}
+
+@media (hover: hover) {
+  .navbar-nav a:hover {
+    animation: button-shake 0.3s linear;
+  }
+
+  a:not(#scroll-to-top):hover::before {
+    transform: scaleX(1);
+  }
+
+  .showhim:hover .showme {
+    opacity: 1;
+  }
+
+  #accordion-wrapper:hover {
+    box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.4) !important;
+    scale: 1.005;
+  }
+
+  .card:not(#aboutMe):hover {
+    border: outset blue;
+    background-color: hsl(0, 0%, 40%);
+    box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.4) !important;
+    scale: 1.005;
+  }
+
+  tr:hover {
+    background-color: #ddd;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body,
+    .card,
+    .form-control,
+    .list-group-item,
+    .accordion-body {
+      background-color: rgb(18, 18, 18);
+      border-color: var(--bootstrap-primary);
+    }
+    :is(h1, h2, h3, p, strong, blockquote, .list-group-item, svg) {
+      color: white;
+    }
+    a {
+      color: #0d6efd;
+    }
+
+    footer,
+    footer:before {
+      background-color: rgb(53, 53, 57);
+    }
+    .footer-text {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    #portfolioHello {
+      color: white;
+    }
+    .testimonial-quote:before {
+      color: rgba(195, 206, 255, 0.6);
+    }
+
+    .testimonial-quote:after {
+      color: rgba(195, 206, 255, 0.6);
+    }
+
+    .card:not(#aboutMe):hover {
+      border: outset blue;
+      background-color: hsl(0, 0%, 10%);
+      box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.4) !important;
+      scale: 1.005;
+    }
+  }
 }
