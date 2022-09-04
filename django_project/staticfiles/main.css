@@ -338,54 +338,54 @@ img.card-img-top {
   tr:hover {
     background-color: #ddd;
   }
+}
 
-  @media (prefers-color-scheme: dark) {
-    body,
-    .card,
-    .form-control,
-    .list-group-item,
-    .accordion-body {
-      background-color: rgb(18, 18, 18);
-      border-color: var(--bootstrap-primary);
-    }
-    :is(h1, h2, h3, strong, .list-group-item, svg, table) {
-      color: white;
-    }
-    p,
-    blockquote,
-    li {
-      color: rgba(255, 255, 255, 0.75);
-    }
+@media (prefers-color-scheme: dark) {
+  body,
+  .card,
+  .form-control,
+  .list-group-item,
+  .accordion-body {
+    background-color: rgb(18, 18, 18);
+    border-color: var(--bootstrap-primary);
+  }
+  :is(h1, h2, h3, strong, .list-group-item, svg, table) {
+    color: white;
+  }
+  p,
+  blockquote,
+  li {
+    color: rgba(255, 255, 255, 0.75);
+  }
 
-    a {
-      color: #0d6efd;
-    }
+  a {
+    color: #0d6efd;
+  }
 
-    footer,
-    footer:before {
-      background-color: rgb(53, 53, 57);
-    }
-    .footer-text,
-    small {
-      color: rgba(255, 255, 255, 0.6);
-    }
+  footer,
+  footer:before {
+    background-color: rgb(53, 53, 57);
+  }
+  .footer-text,
+  small {
+    color: rgba(255, 255, 255, 0.6);
+  }
 
-    #portfolioHello {
-      color: white;
-    }
-    .testimonial-quote:before {
-      color: rgba(195, 206, 255, 0.6);
-    }
+  #portfolioHello {
+    color: white;
+  }
+  .testimonial-quote:before {
+    color: rgba(195, 206, 255, 0.6);
+  }
 
-    .testimonial-quote:after {
-      color: rgba(195, 206, 255, 0.6);
-    }
+  .testimonial-quote:after {
+    color: rgba(195, 206, 255, 0.6);
+  }
 
-    .card:not(#aboutMe):hover {
-      border: outset blue;
-      background-color: hsl(0, 0%, 10%);
-      box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.4) !important;
-      scale: 1.005;
-    }
+  .card:not(#aboutMe):hover {
+    border: outset blue;
+    background-color: hsl(0, 0%, 10%);
+    box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.4) !important;
+    scale: 1.005;
   }
 }
