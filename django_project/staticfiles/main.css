@@ -348,11 +348,12 @@ img.card-img-top {
       background-color: rgb(18, 18, 18);
       border-color: var(--bootstrap-primary);
     }
-    :is(h1, h2, h3, strong, .list-group-item, svg) {
+    :is(h1, h2, h3, strong, .list-group-item, svg, table) {
       color: white;
     }
     p,
-    blockquote {
+    blockquote,
+    li {
       color: rgba(255, 255, 255, 0.75);
     }
 
