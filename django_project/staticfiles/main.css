@@ -59,7 +59,8 @@ video {
   animation: fade-in 0.8s;
 }
 
-.footer-text {
+.footer-text,
+small {
   color: #424242;
 }
 
@@ -347,9 +348,14 @@ img.card-img-top {
       background-color: rgb(18, 18, 18);
       border-color: var(--bootstrap-primary);
     }
-    :is(h1, h2, h3, p, strong, blockquote, .list-group-item, svg) {
+    :is(h1, h2, h3, strong, .list-group-item, svg) {
       color: white;
     }
+    p,
+    blockquote {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
     a {
       color: #0d6efd;
     }
@@ -358,7 +364,8 @@ img.card-img-top {
     footer:before {
       background-color: rgb(53, 53, 57);
     }
-    .footer-text {
+    .footer-text,
+    small {
       color: rgba(255, 255, 255, 0.6);
     }
 
