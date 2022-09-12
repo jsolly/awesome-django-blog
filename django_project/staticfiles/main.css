@@ -12,7 +12,7 @@
 Global Styles
 ============= */
 :root {
-  --main-bg-color: hsl(218, 50%, 30%); /* #264273 */
+  --header-bg-color: hsl(218, 50%, 30%); /* #264273 */
   --second-color: hsl(178, 41%, 37%); /* #388582 */
   --second-color-background: hsl(178, 28%, 55%); /*  */
   --a11y-red: hsl(0, 100%, 30%); /* #990000 */
@@ -32,7 +32,7 @@ img {
 }
 
 .list-group-item.active {
-  background-color: var(--main-bg-color);
+  background-color: var(--bootstrap-primary);
 }
 
 .errorlist {
@@ -91,7 +91,7 @@ body {
 }
 
 .bg-steel {
-  background-color: var(--main-bg-color);
+  background-color: var(--header-bg-color);
 }
 
 :is(#solly-nav-brand, .site-header .navbar-nav .nav-link) {
@@ -187,7 +187,7 @@ img.card-img-top {
 }
 
 .card {
-  border: inset var(--main-bg-color);
+  border: inset var(--bootstrap-primary);
   transition: background-color 0.6s 0s;
 }
 
@@ -256,6 +256,10 @@ img.card-img-top {
   letter-spacing: 2px;
 }
 
+#github-calendar-title {
+  color: var(--bootstrap-primary);
+}
+
 /* =============
    Misc Styles
 ============= */
@@ -283,7 +287,7 @@ img.card-img-top {
 }
 
 .screenreader-text:focus {
-  color: var(--main-bg-color);
+  color: var(--bootstrap-primary);
   display: inline-block;
   height: auto;
   width: auto;
@@ -355,7 +359,7 @@ img.card-img-top {
   p,
   blockquote,
   li {
-    color: rgba(255, 255, 255, 0.75);
+    color: hsla(0, 0%, 100%, 0.75);
   }
 
   a {
@@ -364,22 +368,22 @@ img.card-img-top {
 
   footer,
   footer:before {
-    background-color: rgb(53, 53, 57);
+    background-color: hsl(240, 4%, 16%);
   }
   .footer-text,
   small {
-    color: rgba(255, 255, 255, 0.6);
+    color: hsla(0, 0%, 100%, 0.6);
   }
 
   #portfolioHello {
     color: white;
   }
   .testimonial-quote:before {
-    color: rgba(195, 206, 255, 0.6);
+    color: hsla(229, 100%, 88%, 0.6);
   }
 
   .testimonial-quote:after {
-    color: rgba(195, 206, 255, 0.6);
+    color: hsla(229, 100%, 88%, 0.6);
   }
 
   .card:not(#aboutMe):hover {
