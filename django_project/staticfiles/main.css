@@ -17,7 +17,7 @@ Global Styles
   --second-color-background: hsl(178, 28%, 55%); /*  */
   --a11y-red: hsl(0, 100%, 30%); /* #990000 */
   --text-color: hsl(0, 0%, 33%); /* #555 */
-  --bootstrap-primary: hsl(216, 98%, 52%);
+  --bootstrap-primary: hsl(216, 98%, 52%); /* #0d6dfd */
   --bootstrap-hover: hsl(210, 20%, 98%);
   --footer-color: hsl(0, 0%, 85%); /* #d9d9d9 */
   --footer-text-color: hsl(0, 0%, 26%);
@@ -391,5 +391,12 @@ img.card-img-top {
     background-color: hsl(0, 0%, 10%);
     box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.4) !important;
     scale: 1.005;
+  }
+  .carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%0d6dfd' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+  }
+
+  .carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%0d6dfd' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
   }
 }
