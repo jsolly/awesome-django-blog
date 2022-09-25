@@ -14,10 +14,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item nav-item-top">
+          <li class="nav-item px-3">
             <a class="nav-link active" aria-current="page" id="nav-home" href="{% url 'home' %}">Home</a>
           </li>
-          <li class="nav-item nav-item-top dropdown">
+          <li class="nav-item dropdown px-3">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               Categories
@@ -30,24 +30,24 @@
               {% endfor %}
             </ul>
           </li>
-          <li class="nav-item nav-item-top">
+          <li class="nav-item px-3">
             <a class="nav-link" id="nav-portfolio" href="{% url 'blog-category' 'portfolio' %}">Portfolio</a>
           </li>
-          <li class="nav-item nav-item-top">
+          <li class="nav-item px-3">
             <a class="nav-link" id="nav-contact-me" rel="noopener noreferrer" target="_blank"
               href="https://us14.list-manage.com/contact-form?u=3fb3f4adf8ab2cd1ebd6ff743&form_id=7c78cd242677faaebfc3d4a2bc0d5fda">Contact
               Me</a>
           </li>
           {% if user.is_authenticated %}
-          <li class="nav-item nav-item-top">
+          <li class="nav-item px-3">
             <a class="nav-link" id="nav-profile" href="{% url 'profile' %}">Profile</a>
           </li>
-          <li class="nav-item nav-item-top">
+          <li class="nav-item px-3">
             <a class="nav-link" id="nav-logout" href="{% url 'logout' %}">Logout</a>
           </li>
           {% endif %}
           {% if user.is_staff %}
-          <li class="nav-item nav-item-top">
+          <li class="nav-item px-3">
             <a class="nav-link" id="nav-new-post" href="{% url 'post-create' %}">New Post</a>
           </li>
           {% endif %}
