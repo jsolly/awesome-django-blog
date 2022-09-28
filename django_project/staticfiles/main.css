@@ -12,19 +12,11 @@
 Global Styles
 ============= */
 :root {
-  --header-bg-color: hsl(218, 50%, 30%); /* #264273 */
-  --second-color: hsl(178, 41%, 37%); /* #388582 */
-  --second-color-background: hsl(178, 28%, 55%); /*  */
-  --a11y-red: hsl(0, 100%, 30%); /* #990000 */
-  --text-color: hsl(0, 0%, 33%); /* #555 */
-  --bootstrap-primary: hsl(216, 98%, 52%); /* #0d6dfd */
+  --colorBlack: black;
+  --colorWhite: white;
+  --text-color: black;
+  --bootstrap-primary: black;
   --bootstrap-hover: hsl(210, 20%, 98%);
-  --footer-color: hsl(0, 0%, 85%); /* #d9d9d9 */
-  --footer-text-color: hsl(0, 0%, 26%);
-}
-
-.a11y-red {
-  background-color: var(--a11y-red);
 }
 
 img {
@@ -32,7 +24,7 @@ img {
 }
 
 .list-group-item.active {
-  background-color: var(--bootstrap-primary);
+  background-color: var(--colorBlack);
 }
 
 .errorlist {
@@ -61,18 +53,18 @@ video {
 
 .footer-text,
 small {
-  color: #424242;
+  color: var(--colorWhite);
 }
 
 footer {
-  background-color: var(--footer-color);
+  background-color: var(--colorBlack);
   position: relative;
   display: grid;
 }
 
 footer:before {
   content: "";
-  background-color: var(--footer-color);
+  background-color: var(--colorBlack);
   position: absolute;
   height: 100%;
   width: 200vw;
@@ -91,7 +83,7 @@ body {
 }
 
 .bg-steel {
-  background-color: var(--header-bg-color);
+  background-color: var(--colorBlack);
 }
 
 :is(#solly-nav-brand, .site-header .navbar-nav .nav-link) {
@@ -147,7 +139,7 @@ a:not(.btn, #scroll-to-top)::before {
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: var(--bootstrap-primary);
+  background-color: var(--colorBlack);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -183,7 +175,7 @@ img.card-img-top {
 }
 
 .card {
-  border: inset var(--bootstrap-primary);
+  border: inset var(--colorBlack);
   transition: background-color 0.6s 0s;
 }
 
@@ -253,7 +245,7 @@ img.card-img-top {
 }
 
 #github-calendar-title {
-  color: var(--bootstrap-primary);
+  color: var(--colorBlack);
 }
 
 /* =============
@@ -267,7 +259,7 @@ img.card-img-top {
 }
 
 #scroll-to-top {
-  color: #990000;
+  color: var(--colorBlack);
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -283,7 +275,7 @@ img.card-img-top {
 }
 
 .screenreader-text:focus {
-  color: var(--bootstrap-primary);
+  color: var(--colorBlack);
   display: inline-block;
   height: auto;
   width: auto;
@@ -297,7 +289,7 @@ img.card-img-top {
 }
 
 ::-webkit-scrollbar-thumb:vertical {
-  background: var(--a11y-red);
+  background: var(--colorBlack);
   border-radius: 100vw;
 }
 
@@ -324,14 +316,14 @@ img.card-img-top {
   }
 
   #accordion-wrapper:hover {
-    box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.4) !important;
+    box-shadow: 0 1rem 3rem var(--colorBlack) !important;
     scale: 1.005;
   }
 
   .card:not(#aboutMe):hover {
     border: outset blue;
     background-color: hsl(0, 0%, 40%);
-    box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.4) !important;
+    box-shadow: 0 1rem 3rem var(--colorBlack) !important;
     scale: 1.005;
   }
 
@@ -340,7 +332,7 @@ img.card-img-top {
   }
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   body,
   .card,
   .form-control,
@@ -368,7 +360,7 @@ img.card-img-top {
   }
   .footer-text,
   small {
-    color: hsla(0, 0%, 100%, 0.6);
+    color: var(--colorWhite);
   }
 
   #portfolioHello {
@@ -383,9 +375,9 @@ img.card-img-top {
   }
 
   .card:not(#aboutMe):hover {
-    border: outset blue;
+    border: outset var(--colorBlack);
     background-color: hsl(0, 0%, 10%);
-    box-shadow: 0 1rem 3rem hsla(218, 100%, 50%, 0.4) !important;
+    box-shadow: 0 1rem 3rem var(--colorBlack) !important;
     scale: 1.005;
   }
   .carousel-control-prev-icon {
@@ -395,4 +387,4 @@ img.card-img-top {
   .carousel-control-next-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%0d6dfd' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
   }
-}
+} */
