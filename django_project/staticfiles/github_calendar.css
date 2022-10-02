@@ -1,9 +1,9 @@
 :root {
-  --color-calendar-graph-day-bg: #f2f3f3;
-  --color-calendar-graph-day-L1-bg: #bdbebe;
-  --color-calendar-graph-day-L2-bg: #898989;
-  --color-calendar-graph-day-L3-bg: #545454;
-  --color-calendar-graph-day-L4-bg: #1f1f1f;
+  --color-calendar-graph-day-bg: #dddbdb;
+  --color-calendar-graph-day-L1-bg: #39dd34;
+  --color-calendar-graph-day-L2-bg: #45a045;
+  --color-calendar-graph-day-L3-bg: #047526;
+  --color-calendar-graph-day-L4-bg: #0a4208;
 }
 
 rect.ContributionCalendar-day[data-level="0"] {
