@@ -321,7 +321,6 @@ img.card-img-top {
   }
 
   .card:not(#aboutMe):hover {
-    border: outset blue;
     background-color: hsl(0, 0%, 40%);
     box-shadow: 0 1rem 3rem var(--colorBlack) !important;
     scale: 1.005;
