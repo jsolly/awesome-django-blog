@@ -50,8 +50,8 @@ local_branch_name and branch_name can be the same
     $ \c DBNAME # Switch databases while in postgres shell
     $ ngrok http 8000 # Test on mobile locally
     $ sudo journalctl -u nginx # Check the Nginx process logs
-    $ sudo less /var/log/nginx/access.log # Check the Nginx access logs 
-    $ sudo less /var/log/nginx/error.log # Check the Nginx error logs 
+    $ sudo less /var/log/nginx/access.log # Check the Nginx access logs
+    $ sudo less /var/log/nginx/error.log # Check the Nginx error logs
     $ sudo journalctl -u gunicorn # Check the Gunicorn application logs by typing:
     $ sudo journalctl -u gunicorn.socket # Check the Gunicorn socket logs by typing: s
     $ sudo nano /etc/nginx/sites-available/django_project # congigure Nginx
@@ -66,7 +66,7 @@ local_branch_name and branch_name can be the same
 
     ```
     $ sudo nginx -t
-    $ sudo systemctl restart nginx 
+    $ sudo systemctl restart nginx
     $ sudo systemctl restart gunicorn
 
     # If you If you change Gunicorn socket or service files, reload the daemon and restart the process by typing:
@@ -96,7 +96,7 @@ local_branch_name and branch_name can be the same
     ```
     make sure an up-to-date pip freeze has happened
     make sure you're using the right python version
-    $ python3 -m venv venv blogthedata/django_project
+    $ python3 -m venv venv blogthedata/django_project/venv
     $ source blogthedata/django_project/venv/bin/activate
     $ python3 -m pip install --upgrade pip
     $ python3 -m pip install -r blogthedata/django_project/requirements/requirements.txt -c blogthedata/django_project/requirements/constraints.txt
