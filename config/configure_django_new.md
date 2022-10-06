@@ -2,11 +2,12 @@
 - local$ ssh root@<ip_address> (from local)
 
 ### Initial Hardening
+
 ```sh
 $ apt update -y
 $ apt dist-upgrade -y
 $ reboot
-$ apt update -y 
+$ apt update -y
 $ apt install unattended-upgrades
 $ dpkg-reconfigure --priority=low unattended-upgrades
 $ useradd -m -s /bin/bash john && passwd john
@@ -35,6 +36,7 @@ $ nano /etc/hosts # add a line of <<ip_address> blogthedata.com django-server>
 ```
 
 ### Configuring App
+
 ```sh
 $ sudo apt update -y
 $ sudo apt-get install python3-venv -y
@@ -55,14 +57,14 @@ $ python3 ~/blogthedata/django_project/manage.py runserver 0.0.0.0:8000
 ```
 
 ### Install dependencies
+
 ```bash
 $ sudo apt-get install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx
 # Follow directions on https://launchpad.net/~ubuntugis/+archive/ubuntu/ppa?field.series_filter=focal to install postgis. I did:
 $ sudo add-apt-repository ppa:ubuntugis/ppa
 $ sudo apt update
 $ apt install postgis
-$ 
-$ sudo -u postgres psql
+$ sudo -U postgres psql
 postgres=# CREATE USER blogthedatauser WITH PASSWORD 'password';
 postgres=# ALTER ROLE blogthedatauser SET client_encoding TO 'utf8';
 postgres=# ALTER ROLE blogthedatauser SET default_transaction_isolation TO 'read committed';
@@ -72,7 +74,9 @@ postgres=# \c blogthedata
 postgres=# CREATE extension postgis;
 postgres=# SELECT PostGIS_version();
 ```
+
 ### A note on an existing database being imported. You may need to run these commands:
+
 ```
 $ sudo su postgres
 $ psql blogthedata -c "GRANT ALL ON ALL TABLES IN SCHEMA public to blogthedatauser;"
@@ -81,20 +85,25 @@ $ psql blogthedata -c "GRANT ALL ON ALL FUNCTIONS IN SCHEMA public to blogthedat
 ```
 
 ### Restore existing DB (If needed)
+
 ```
 # Copy db into server
 postgres=# exit
 $ sudo su postgres
 $ psql blogthedata < ~/blogthedata/backups/blogthedata_db_6_20_22.sql
 ```
+
 ### Continue working on Gunicorn and Nginx
+
 ```
-# Follow a guide on Gunicorn/Nginx 
+# Follow a guide on Gunicorn/Nginx
 $ sudo ufw delete allow 8000
 ```
 
 ### Pre-live
+
 Make sure ALLOWED_HOSTS is correct (remove localhost)
+
 ```
 $ python3 manage.py check --deploy
 
