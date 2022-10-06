@@ -82,7 +82,7 @@ $ python3 -m pip install -r blogthedata/django_project/requirements/requirements
 - Ko-Fi donation button ☕️ (removed in https://github.com/jsolly/blogthedata/commit/c857bb7599836c614aff523756bbf1381e0dd948)
 - Leaflet.js and OpenLayers maps 🗺
 - Display site visitors in a web map
-- Portfolio page with testimonials, contact me, github stats, Web vitals, and more!
+- Portfolio page with testimonials, contact me, Web vitals, and more!
 - Light and Dark Theme
 
 #### Non-Functional Features
