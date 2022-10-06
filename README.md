@@ -10,7 +10,6 @@ A blog about Python and JavaScript web development
 
 ![desktopScreenshot](https://user-images.githubusercontent.com/9572232/183277781-adea9d73-6dc0-4971-ac3a-b14e2131d6f3.jpeg)
 
-
 ---
 
 ## Table of Contents
@@ -34,12 +33,15 @@ $ pip install --upgrade pip
 $ python3 -m pip install -r blogthedata/django_project/requirements/requirements.txt -c blogthedata/django_project/requirements/constraints.txt
 ```
 
-### Setup
+### Set up database
 
 - See commented out Database section in
-  [django_project/settings.py](https://github.com/jsolly/blogthedata/blob/master/django_project/django_project/settings.py)
-  to use sqllite database or postgres
+  [django_project/settings/dev.py](https://github.com/jsolly/blogthedata/blob/master/django_project/django_project/settings/dev.py)
+  to use sqllite database or postgres. If you're on MacOS, there's a really handy app called [postgres.app](https://postgresapp.com/)
   ```shell
+  $ psql -U postgres
+  CREATE DATABASE blogthedata;
+  # type <exit> and hit enter to go back to the terminal
   $ python3 manage.py migrate
   ```
 - rename 'sample.env' to .env and change the values to match your setup
@@ -47,6 +49,7 @@ $ python3 -m pip install -r blogthedata/django_project/requirements/requirements
   ```shell
   $ python3 manage.py runserver
   ```
+
 ---
 
 ## Features
@@ -86,15 +89,15 @@ $ python3 -m pip install -r blogthedata/django_project/requirements/requirements
 - Compatible with Sqllite or postgres
 - Optimized for Performance, SEO, and A11Y
 - Latest Django 4.x
-- Fully PEP 8 compliant (with some exceptions*)
+- Fully PEP 8 compliant (with some exceptions)
 - 95% or above unit code coverage
-- 100% linted with [flake8]([url](https://pypi.org/project/flake8/))
-- Static scans with [CodeQL]([url](https://codeql.github.com/)) and pip
-  dependency checks with [Dependabot]([url](https://github.com/dependabot))
-- Formatted with [Black]([url](https://pypi.org/project/black/))
+- 100% linted with [flake8](<[url](https://pypi.org/project/flake8/)>)
+- Static scans with [CodeQL](<[url](https://codeql.github.com/)>) and pip
+  dependency checks with [Dependabot](<[url](https://github.com/dependabot)>)
+- Formatted with [Black](<[url](https://pypi.org/project/black/)>)
 - Strict Content Security Policy preventing inline styles and scripts
 - Subresource Integrity
-- [A+ Score on Mozilla Observatory]([url](https://observatory.mozilla.org/analyze/blogthedata.com))
+- [A+ Score on Mozilla Observatory](<[url](https://observatory.mozilla.org/analyze/blogthedata.com)>)
 - Excellent scores on Google Lighthouse
 - Custom 404 page
 - Automatic Conversion of images (.png, .jpeg, etc) to .webp
@@ -104,19 +107,25 @@ $ python3 -m pip install -r blogthedata/django_project/requirements/requirements
 Contained within tests/
 
 #### Coverage
+
 ```shell
 $ coverage run -m pytest django_project
 $ coverage report -m --skip-covered
 ```
+
 #### Test
+
 ```shell
 $ python3 -m pytest django_project
 ```
+
 #### Lint
+
 ```shell
 $ flake8 django_project
 ```
-Also see the [actions tab]([url](https://github.com/jsolly/blogthedata/actions))
+
+Also see the [actions tab](<[url](https://github.com/jsolly/blogthedata/actions)>)
 to see if everything is passing.
 
 ---
@@ -130,6 +139,7 @@ Want to work on this with me? DM me
 ### Step 1
 
 - **Option 1**
+
   - 🍴 Fork this repo!
 
 - **Option 2**
