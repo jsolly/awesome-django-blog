@@ -39,8 +39,15 @@ $ python3 -m pip install -r blogthedata/django_project/requirements/requirements
   [django_project/settings/dev.py](https://github.com/jsolly/blogthedata/blob/master/django_project/django_project/settings/dev.py)
   to use sqllite database or postgres. If you're on MacOS, there's a really handy app called [postgres.app](https://postgresapp.com/)
   ```shell
-  $ psql -U postgres
-  CREATE DATABASE blogthedata;
+  $ sudo -U postgres psql
+  postgres=# CREATE USER blogthedatauser WITH PASSWORD 'password';
+  postgres=# ALTER ROLE blogthedatauser SET client_encoding TO 'utf8';
+  postgres=# ALTER ROLE blogthedatauser SET default_transaction_isolation TO 'read committed';
+  postgres=# ALTER ROLE blogthedatauser SET timezone TO 'UTC';
+  postgres=# CREATE DATABASE blogthedata WITH OWNER blogthedatauser;
+  postgres=# \c blogthedata
+  postgres=# CREATE extension postgis;
+  postgres=# SELECT PostGIS_version();
   # type <exit> and hit enter to go back to the terminal
   $ python3 manage.py migrate
   ```
