@@ -30,23 +30,36 @@
     ]
   }
 </script>
+{% endblock head %}
 
-{% endblock head %} {% block meta %}
+{% block meta %}
+
+<!-- HTML Meta Tags -->
+<meta name="description" content="{{ post.metadesc }}">
+
+
 <!-- OpenGraph Tags -->
-<meta name="description" content="{{ post.metadesc }}" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="{{ post.title }}" />
-<meta property="article:published_time" content="{{ post.date_posted|date:'c' }}" />
-<meta name="author" content="{{ post.author.first_name }} {{ post.author.last_name }}" />
-<meta property="og:image" content="{{ post.metaimg.url }}" />
-<meta property="og:image:width" content="{{ post.metaimg.width }}" />
-<meta property="og:image:height" content="{{ post.metaimg.height }}" />
-<meta property="og:image:alt" content="{{ post.metaimg_alt_txt }}" />
-<!-- Twitter Cards Meta Tags -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@_jsolly" />
-<meta name="twitter:description" content="{{ post.metadesc }}" />
-<meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ post.metaimg.url }}" />
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ post.title }}">
+<meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+<meta property="article:published_time" content="{{ post.date_posted|date:'c' }}">
+<meta name="author" content="{{ post.author.first_name }} {{ post.author.last_name }}">
+<meta property="og:description" content="{{ post.metadesc }}">
+<meta property="og:image" content="{{ post.metaimg.url }}">
+<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ post.metaimg.url }}">
+<meta property="og:image:width" content="{{ post.metaimg.width }}">
+<meta property="og:image:height" content="{{ post.metaimg.height }}">
+<meta property="og:image:alt" content="{{ post.metaimg_alt_txt }}">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:title" content="{{ post.title }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@_jsolly">
+<meta property="twitter:domain" content="{{ request.get_host }}">
+<meta property="twitter:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+<meta name="twitter:description" content="{{ post.metadesc }}">
+<meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ post.metaimg.url }}">
+
 {% endblock meta %}
 
 {% block content %}
