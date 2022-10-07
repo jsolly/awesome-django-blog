@@ -3,7 +3,6 @@ aiosignal==1.2.0
 asgiref==3.5.2
 async-timeout==4.0.2
 attrs==22.1.0
-backports.zoneinfo==0.2.1
 beautifulsoup4==4.11.1
 black==22.10.0
 Brotli==1.0.9
@@ -53,7 +52,6 @@ soupsieve==2.3.2.post1
 sqlparse==0.4.2
 tomli==2.0.1
 tornado==6.2
-typing_extensions==4.3.0
 urllib3==1.26.11
 whitenoise==6.2.0
 yarl==1.8.1
