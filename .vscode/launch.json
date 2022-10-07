@@ -24,10 +24,9 @@
     },
     {
       "name": "Django_Start",
-      "python": "/Users/jsolly.admin/Documents/code/blogthedata/django_project/venv/bin/python3",
       "type": "python",
       "request": "launch",
-      "program": "/Users/jsolly.admin/Documents/code/blogthedata/django_project/manage.py",
+      "program": "~/Documents/code/blogthedata/django_project/manage.py",
       "django": true,
       "justMyCode": true,
       "args": ["runserver"],
