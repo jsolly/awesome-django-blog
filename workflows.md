@@ -257,3 +257,9 @@ def upload_file(request):
             return JsonResponse({"url": url})
     raise Http404(_("Page not found."))
 ```
+
+### Syntax highlighting link (Prism)
+
+<!--
+https://prismjs.com/download.html#themes=prism-dark&languages=markup+css+clike+javascript+apacheconf+bash+git+json+python+sql+typescript+yaml
+-->
