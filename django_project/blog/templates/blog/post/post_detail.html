@@ -3,12 +3,10 @@
 
 {% block head %}
 <!-- django_ckeditor_5 -->
-{% sri_static 'django_ckeditor_5/prism.css' %}
 {% sri_static 'django_ckeditor_5/ckeditor.css' %}
-
+{% sri_static 'django_ckeditor_5/prism.css' %}
+{% sri_static 'django_ckeditor_5/prism.js' %}
 {% sri_static 'social_share.css' %}
-<script src="{% static 'django_ckeditor_5/prism.js' %}"
-  integrity="sha384-SalsXYel3uSaWfJNrNNVCHlg6UQThS+bob6CQFmbN7UJVe1PiuszZhBOAiTI5+jf"></script>
 
 <script type="application/ld+json">
   {
