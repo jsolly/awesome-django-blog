@@ -46,7 +46,7 @@ class TestViews(SetUp):
     def test_post_detail_view_anonymous_draft_post(self):
         draft_post_detail_url = reverse("post-detail", args=[self.draft_post.slug])
         response = self.client.get(draft_post_detail_url)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 404)
         self.assertTemplateUsed(response, "blog/404_page.html")
 
     def test_post_detail_view_staff_sees_draft_post(self):
