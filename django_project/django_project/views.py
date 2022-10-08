@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 
 def handler_404(request, exception):
-    return render(request, "blog/404_page.html")
+    return render(request, "blog/404_page.html", status=404)
 
 
 def works_cited_view(request):
