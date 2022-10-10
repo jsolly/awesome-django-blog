@@ -47,7 +47,7 @@
 </section>
 
 <section id="Blog-Home-posts">
-  <h1 class="display-6">Latest Posts!</h1>
+  <h1 class="display-6">Latest Posts! {% if page_obj.number > 1 %} (Page {{ page_obj.number }}) {% endif %} </h1>
   {% include "blog/parts/posts.html" %}
 </section>
 

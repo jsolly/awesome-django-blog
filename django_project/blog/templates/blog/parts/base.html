@@ -4,7 +4,7 @@
 
 <head>
   <title>
-    {% block title %}Geospatial Web Development{% endblock title %}
+    {% block title %}Geospatial Web Development {% if page_obj.number > 1 %} (Page {{ page_obj.number }}) {% endif %}{% endblock title %}
   </title>
   {% block head %} {% endblock head %}
   <!-- Meta -->
