@@ -1,7 +1,7 @@
 {% extends "blog/parts/base.html" %}
 
 {% block title %}
-{{ category|title }}
+{{ category|title }} {% if page_obj.number > 1 %} | (Page {{ page_obj.number }}) {% endif %}
 {% endblock title %}
 {% block meta %}
 <meta name="description" content="{{ category }} Posts" />
