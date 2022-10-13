@@ -91,7 +91,7 @@ body {
 }
 
 #solly-nav-brand {
-  margin-right: 1em;
+  margin-right: 1rem;
 }
 
 /* =============
@@ -99,7 +99,7 @@ body {
 ============= */
 
 .caption {
-  font-size: 0.6em;
+  font-size: 0.6rem;
 }
 
 .no-white-space {
@@ -215,7 +215,7 @@ img.card-img-top {
   position: relative;
   top: 15px;
   color: #c3ceff;
-  font-size: 3em;
+  font-size: 3rem;
   font-family: georgia, serif;
 }
 
@@ -228,7 +228,7 @@ img.card-img-top {
   position: relative;
   top: 18px;
   color: #c3ceff;
-  font-size: 3em;
+  font-size: 3rem;
   font-family: georgia, serif;
 }
 
@@ -237,7 +237,7 @@ img.card-img-top {
 }
 
 #portfolioHello {
-  font-size: 2.8em;
+  font-size: 2.8rem;
   color: black;
   font-weight: 500;
   line-height: 1.1;
@@ -284,8 +284,8 @@ img.card-img-top {
 }
 
 ::-webkit-scrollbar {
-  height: 1em;
-  width: 1em;
+  height: 1rem;
+  width: 1rem;
 }
 
 ::-webkit-scrollbar-thumb:vertical {
