@@ -54,8 +54,7 @@ video {
   animation: fade-in 0.8s;
 }
 
-.footer-text,
-small {
+.footer-text {
   color: var(--colorWhite);
 }
 
