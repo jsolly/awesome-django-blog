@@ -376,21 +376,10 @@ img.card-img-top {
   #footer {
     color: var(--colorSecondary);
   }
-  /* a {
-    color: #0d6efd;
-  } */
-
-  /* .card:not(#aboutMe):hover {
-    border: outset var(--colorPrimary);
-    background-color: hsl(0, 0%, 10%);
+  img {
+    filter: brightness(0.8) contrast(1.2);
+  }
+  .card:not(#aboutMe):hover {
     box-shadow: 0 1rem 3rem var(--colorPrimary) !important;
-    scale: 1.005;
-  } */
-  /*
-
-
-
-
-
-*/
+  }
 }
