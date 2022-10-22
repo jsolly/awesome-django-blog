@@ -15,19 +15,13 @@ Global Styles
   font-family: system-ui, Helvetica, Arial, sans-serif;
 }
 :root {
-  --colorBlack: black;
-  --colorWhite: white;
-  --text-color: black;
-  --bootstrap-primary: black;
-  --bootstrap-hover: hsl(210, 20%, 98%);
+  --colorPrimary: white;
+  --colorSecondary: black;
+  --colorHoverBackground: hsl(0, 0%, 40%);
 }
 
 img {
   max-width: 100%;
-}
-
-.list-group-item.active {
-  background-color: var(--colorBlack);
 }
 
 .errorlist {
@@ -55,18 +49,21 @@ video {
 }
 
 .footer-text {
-  color: var(--colorWhite);
+  color: var(--colorPrimary);
+}
+#footer {
+  color: var(--colorPrimary);
 }
 
 footer {
-  background-color: var(--colorBlack);
+  background-color: var(--colorSecondary);
   position: relative;
   display: grid;
 }
 
 footer:before {
   content: "";
-  background-color: var(--colorBlack);
+  background-color: var(--colorSecondary);
   position: absolute;
   height: 100%;
   width: 200vw;
@@ -79,16 +76,16 @@ html {
 }
 
 body {
-  color: var(--text-color);
+  color: var(--colorPrimary);
   line-height: 1.6;
 }
 
 .bg-steel {
-  background-color: var(--colorBlack);
+  background-color: var(--colorSecondary);
 }
 
 :is(#solly-nav-brand, .site-header .navbar-nav .nav-link) {
-  color: white;
+  color: var(--colorPrimary);
 }
 
 #solly-nav-brand {
@@ -111,8 +108,8 @@ body {
   line-height: 1.1;
 }
 
-:is(h1, h2, h3, h4, h5, h6, strong) {
-  color: black;
+:is(h1, h2, h3, h4, h5, h6, strong, .list-group-item, svg, table, p, blockquote, li) {
+  color: var(--colorSecondary);
 }
 
 h1 {
@@ -129,7 +126,7 @@ a {
 }
 
 .card-body {
-  color: black;
+  color: var(--colorSecondary);
 }
 
 a:not(.btn, #scroll-to-top)::before {
@@ -140,7 +137,7 @@ a:not(.btn, #scroll-to-top)::before {
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: var(--colorBlack);
+  background-color: var(--colorSecondary);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -160,8 +157,7 @@ img.card-img-top {
 }
 
 .showme {
-  color: white;
-  fill: white;
+  color: var(--colorPrimary);
   opacity: 0;
   transition: opacity 1.2s 0s;
   letter-spacing: 2px;
@@ -176,7 +172,7 @@ img.card-img-top {
 }
 
 .card {
-  border: inset var(--colorBlack);
+  border: inset var(--colorSecondary);
   transition: background-color 0.6s 0s;
 }
 
@@ -239,14 +235,18 @@ img.card-img-top {
 
 #portfolioHello {
   font-size: 2.8rem;
-  color: black;
+  color: var(--colorSecondary);
   font-weight: 500;
   line-height: 1.1;
   letter-spacing: 2px;
 }
 
 #github-calendar-title {
-  color: var(--colorBlack);
+  color: var(--colorSecondary);
+}
+#accordion-wrapper {
+  padding: 1rem;
+  border-radius: 0.25rem;
 }
 
 /* =============
@@ -260,7 +260,7 @@ img.card-img-top {
 }
 
 #scroll-to-top {
-  color: var(--colorBlack);
+  color: var(--colorSecondary);
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -276,7 +276,7 @@ img.card-img-top {
 }
 
 .screenreader-text:focus {
-  color: var(--colorBlack);
+  color: var(--colorSecondary);
   display: inline-block;
   height: auto;
   width: auto;
@@ -290,7 +290,7 @@ img.card-img-top {
 }
 
 ::-webkit-scrollbar-thumb:vertical {
-  background: var(--colorBlack);
+  background: var(--colorSecondary);
   border-radius: 100vw;
 }
 
@@ -317,54 +317,36 @@ img.card-img-top {
   }
 
   #accordion-wrapper:hover {
-    box-shadow: 0 1rem 3rem var(--colorBlack) !important;
+    box-shadow: 0 1rem 3rem var(--colorSecondary) !important;
     scale: 1.005;
   }
 
   .card:not(#aboutMe):hover {
-    background-color: hsl(0, 0%, 40%);
-    box-shadow: 0 1rem 3rem var(--colorBlack) !important;
+    background-color: var(--colorHoverBackground);
+    box-shadow: 0 1rem 3rem var(--colorSecondary) !important;
     scale: 1.005;
   }
-
   tr:hover {
     background-color: #ddd;
   }
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
+  :root {
+    --colorPrimary: black;
+    --colorSecondary: hsl(0, 0%, 100%, 0.75);
+    --colorHoverBackground: hsl(0, 0%, 100%, 0.05);
+  }
+  .showme {
+    color: var(--colorSecondary);
+  }
   body,
   .card,
   .form-control,
   .list-group-item,
   .accordion-body {
     background-color: rgb(18, 18, 18);
-    border-color: var(--bootstrap-primary);
-  }
-  :is(h1, h2, h3, strong, .list-group-item, svg, table) {
-    color: white;
-  }
-  p,
-  blockquote,
-  li {
-    color: hsla(0, 0%, 100%, 0.75);
-  }
-
-  a {
-    color: #0d6efd;
-  }
-
-  footer,
-  footer:before {
-    background-color: hsl(240, 4%, 16%);
-  }
-  .footer-text,
-  small {
-    color: var(--colorWhite);
-  }
-
-  #portfolioHello {
-    color: white;
+    border-color: var(--colorPrimary);
   }
   .testimonial-quote:before {
     color: hsla(229, 100%, 88%, 0.6);
@@ -374,12 +356,6 @@ img.card-img-top {
     color: hsla(229, 100%, 88%, 0.6);
   }
 
-  .card:not(#aboutMe):hover {
-    border: outset var(--colorBlack);
-    background-color: hsl(0, 0%, 10%);
-    box-shadow: 0 1rem 3rem var(--colorBlack) !important;
-    scale: 1.005;
-  }
   .carousel-control-prev-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%0d6dfd' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
   }
@@ -387,4 +363,34 @@ img.card-img-top {
   .carousel-control-next-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%0d6dfd' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
   }
-} */
+
+  .footer-text,
+  small {
+    color: var(--colorSecondary);
+  }
+
+  footer,
+  footer:before {
+    background-color: hsl(240, 4%, 16%);
+  }
+  #footer {
+    color: var(--colorSecondary);
+  }
+  /* a {
+    color: #0d6efd;
+  } */
+
+  /* .card:not(#aboutMe):hover {
+    border: outset var(--colorPrimary);
+    background-color: hsl(0, 0%, 10%);
+    box-shadow: 0 1rem 3rem var(--colorPrimary) !important;
+    scale: 1.005;
+  } */
+  /*
+
+
+
+
+
+*/
+}
