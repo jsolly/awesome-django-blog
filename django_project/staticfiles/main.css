@@ -394,3 +394,9 @@ img.card-img-top {
     box-shadow: 0 1rem 3rem var(--colorPrimary) !important;
   }
 }
+
+@media print {
+  #scroll-to-top-container {
+    display: none !important;
+  }
+}
