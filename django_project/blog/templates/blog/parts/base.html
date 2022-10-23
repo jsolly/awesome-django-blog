@@ -9,26 +9,24 @@
   {% block head %} {% endblock head %}
   <!-- Meta -->
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-  <meta name="author" content="John Solly" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <meta name="author" content="John Solly">
   {% block meta %} {% endblock meta %}
 
   <!-- Favicons -->
-  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.webp' %}" />
-  <link rel="icon" type="image/webp" sizes="32x32" href="{% static 'favicon/favicon-32x32.webp' %}" />
-  <link rel="icon" type="image/webp" sizes="16x16" href="{% static 'favicon/favicon-16x16.webp' %}" />
-  <link rel="icon" type="image/webp" sizes="512x512" href="{% static 'favicon/android-chrome-512x512.webp' %}" />
-  <link rel="icon" type="image/webp" sizes="512x512" href="{% static 'favicon/android-chrome-192x192.webp' %}" />
-  <link rel="icon" type="image/webp" sizes="48x48" href="{% static 'favicon/favicon.ico' %}" />
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.webp' %}">
+  <link rel="icon" type="image/webp" sizes="32x32" href="{% static 'favicon/favicon-32x32.webp' %}">
+  <link rel="icon" type="image/webp" sizes="16x16" href="{% static 'favicon/favicon-16x16.webp' %}">
+  <link rel="icon" type="image/webp" sizes="512x512" href="{% static 'favicon/android-chrome-512x512.webp' %}">
+  <link rel="icon" type="image/webp" sizes="512x512" href="{% static 'favicon/android-chrome-192x192.webp' %}">
+  <link rel="icon" type="image/webp" sizes="48x48" href="{% static 'favicon/favicon.ico' %}">
 
   <!-- Bootstrap -->
-  {% sri_static 'bootstrap.min.css' %}
-  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-    crossorigin="anonymous"></script>
+  {% sri_static 'bootstrap/bootstrap.min.css' %}
+  {% sri_static 'bootstrap/bootstrap.bundle.min.js' %}
 
   <!-- My CSS -->
-  {% sri_static 'main.css' %}
+  {% sri_static 'css/main.css' %}
 </head>
 
 <body>
