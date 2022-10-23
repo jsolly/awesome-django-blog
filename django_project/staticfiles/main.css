@@ -389,7 +389,8 @@ img.card-img-top {
   img {
     filter: brightness(0.8) contrast(1.2);
   }
-  .card:not(#aboutMe):hover {
+  .card:not(#aboutMe):hover,
+  #accordion-wrapper:hover {
     box-shadow: 0 1rem 3rem var(--colorPrimary) !important;
   }
 }
