@@ -18,6 +18,7 @@ Global Styles
   --colorPrimary: white;
   --colorSecondary: black;
   --colorHoverBackground: hsl(0, 0%, 40%);
+  --bannerColor: #343a40;
 }
 
 img {
@@ -81,7 +82,7 @@ body {
 }
 
 .bg-steel {
-  background-color: var(--colorSecondary);
+  background-color: var(--bannerColor);
 }
 
 :is(#solly-nav-brand, .site-header .navbar-nav .nav-link) {
@@ -336,6 +337,7 @@ img.card-img-top {
     --colorPrimary: black;
     --colorSecondary: hsl(0, 0%, 100%, 0.75);
     --colorHoverBackground: hsl(0, 0%, 100%, 0.05);
+    --bannerColor: #f8f9fa;
   }
   .showme {
     color: var(--colorSecondary);
