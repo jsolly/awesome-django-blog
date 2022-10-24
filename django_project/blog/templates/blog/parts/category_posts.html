@@ -1,0 +1,43 @@
+{% load static %}
+{% for post in posts %}
+
+{% if forloop.last %}
+<div hx-get="{% url 'blog-category' category=current_category %}?page={{ page_obj.number|add:1 }}" hx-trigger="revealed" hx-swap="afterend" hx-target="this">
+  {% else %}
+  <div>
+    {% endif %}
+
+    <article>
+      <a href="{% url 'post-detail' post.slug %}" aria-label='{{ post.title }}'>
+        <div class="card mb-5 shadow showhim">
+          <div class="row g-0">
+            <div class="col-md-4 d-flex align-items-center">
+              {% if post.metaimg %}
+              <img src="{{ post.metaimg.url }}" class="card-img-top" alt="{{ post.metaimg_alt_txt }}" />
+              {% endif %}
+
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <div class="position-absolute top-50 start-50 showme">
+                  <img src="{% static 'svg/open-post-icon.svg' %}" alt="Open post">
+                  Open
+                </div>
+                <h2 class="card-title fw-bolder">
+                  {{ post.title }}
+                  {% if post.draft %}
+                  <p id="draft">(Draft)</p>
+                  {% endif %}
+                </h2>
+                <p class="card-text fs-6 mb-1">
+                  <small class="text-muted">
+                    {{ post.date_posted|date:"F d, Y" }} in {{ post.category|title }}</small>
+                </p>
+                {{ post.snippet|safe }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </article>
+    {% endfor %}

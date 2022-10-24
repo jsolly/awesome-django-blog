@@ -8,48 +8,15 @@
     <meta name="description"
     content="Blog posts about everything from developing software to productivity. Articles focus on geospatial web development, but also touch on tangential topics such as SEO and web security.">
 {% include "blog/parts/logo_meta.html" %}
-
 {% endblock meta %}
 
-{% block head %}
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org/",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home Page",
-        "item": "https://blogthedata.com"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Life Advice",
-        "item": "https://blogthedata.com/category/life-advice/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Site Updates",
-        "item": "https://blogthedata.com/category/site-updates/"
-      }
-    ]
-  }
-</script>
-{% endblock head %}
-
 {% block content %}
-
 <section id="about-me-home">
   {% include "blog/parts/about_me.html" %}
 </section>
 
 <section id="Blog-Home-posts">
-  <h1 class="display-6">Latest Posts! {% if page_obj.number > 1 %} (Page {{ page_obj.number }}) {% endif %} </h1>
-  {% include "blog/parts/posts.html" %}
+  <h1 class="display-6">Latest Posts!</h1>
+  {% include "blog/parts/home_posts.html" %}
 </section>
-
-{% include "blog/parts/pagination.html" %}
 {% endblock content %}

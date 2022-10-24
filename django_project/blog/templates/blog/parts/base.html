@@ -4,7 +4,7 @@
 
 <head>
   <title>
-    {% block title %}Geospatial Web Development {% if page_obj.number > 1 %} | (Page {{ page_obj.number }}) {% endif %}{% endblock title %}
+    {% block title %}Geospatial Web Development{% endblock title %}
   </title>
   {% block head %} {% endblock head %}
   <!-- Meta -->
@@ -27,6 +27,9 @@
 
   <!-- My CSS -->
   {% sri_static 'css/main.css' %}
+
+  <!-- HTMX -->
+  <script src="https://unpkg.com/htmx.org@1.8.2" integrity="sha384-+8ISc/waZcRdXCLxVgbsLzay31nCdyZXQxnsUy++HJzJliTzxKWr0m1cIEMyUzQu" crossorigin="anonymous"></script>
 </head>
 
 <body>

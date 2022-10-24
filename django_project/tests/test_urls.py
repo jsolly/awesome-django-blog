@@ -5,7 +5,6 @@ from django.contrib.sitemaps.views import sitemap
 from robots.views import RuleList
 from blog.views import (
     HomeView,
-    UserPostListView,
     CreatePostView,
     PostDetailView,
     PostUpdateView,
@@ -56,10 +55,6 @@ class TestUrls(SetUp):
 
     def test_home_url_is_resolved(self):
         self.assertEqual(resolve(reverse("home")).func.view_class, HomeView)
-
-    def test_user_posts_url_is_resolved(self):
-        user_posts_url = reverse("user-posts", args=[self.super_user.username])
-        self.assertEqual(resolve(user_posts_url).func.view_class, UserPostListView)
 
     def test_create_post_url_is_resolved(self):
         self.assertEqual(

@@ -80,6 +80,7 @@ INSTALLED_APPS = [
     "robots",
     "sri",
     "siteanalytics",
+    "django_htmx",
 ]
 
 MIDDLEWARE = [
@@ -99,6 +100,7 @@ MIDDLEWARE = [
     "livereload.middleware.LiveReloadScript",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.contrib.redirects.middleware.RedirectFallbackMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",
 ]
 
 ROOT_URLCONF = "django_project.urls"

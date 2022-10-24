@@ -1,7 +1,7 @@
 {% extends "blog/parts/base.html" %}
 
 {% block title %}
-{{ category|title }} {% if page_obj.number > 1 %} | (Page {{ page_obj.number }}) {% endif %}
+{{ category|title }}
 {% endblock title %}
 {% block meta %}
 <meta name="description" content="{{ category }} Posts" />
@@ -17,11 +17,10 @@
 {% include 'blog/portfolio_top.html' %}
 {% endif %}
 <section id="category-blog-posts">
-    <h1 class="mb-0 display-6">{{ category|title }} {% if page_obj.number > 1 %} (Page {{ page_obj.number }}) {% endif %}</h1>
+    <h1 class="mb-0 display-6">{{ category|title }}</h1>
     <p class="mb-2 fs-4">{{ category.description }}</p>
-    {% include "blog/parts/posts.html" %}
+    {% include "blog/parts/category_posts.html" %}
 </section>
-{% include "blog/parts/pagination.html" %}
 {% if category.name == "portfolio" %}
 <section id="portfolio-bottom-section">
     {% include 'blog/portfolio_bottom.html' %}
