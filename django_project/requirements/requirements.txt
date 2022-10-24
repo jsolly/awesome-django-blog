@@ -7,6 +7,7 @@ django-ckeditor-5
 django-coverage-plugin
 django-csp
 django-fastdev
+django-htmx
 django-livereload-server
 django-resized
 django-robots
