@@ -270,6 +270,7 @@ img.card-img-top {
   bottom: 20px;
   right: 20px;
   z-index: 1;
+  font-size: 2rem;
 }
 
 .screenreader-text {
