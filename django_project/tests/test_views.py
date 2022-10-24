@@ -31,12 +31,6 @@ class TestViews(SetUp):
         )
         response = self.client.get(reverse("home"))
 
-    def test_user_post_list_view(self):
-        user_posts_url = reverse("user-posts", args=[self.super_user.username])
-        response = self.client.get(user_posts_url)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/post/user_posts.html")
-
     def test_post_detail_view_anonymous_regular_post(self):
         post1_detail_url = reverse("post-detail", args=[self.post1.slug])
         response = self.client.get(post1_detail_url)

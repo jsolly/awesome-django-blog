@@ -34,7 +34,6 @@
 		"window.autoDetectColorScheme": true,
 		"terminal.integrated.enableMultiLinePasteWarning": false,
 		"diffEditor.ignoreTrimWhitespace": false,
-		"kite.showWelcomeNotifiåationOnStartup": false,
 		"conventionalCommits.scopes": [
 			"ckeditor",
 			"blog model",
@@ -50,7 +49,6 @@
 		"python.testing.pytestEnabled": true,
 		"editor.fontSize": 18,
 		"editor.formatOnSave": true,
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
 		"[xml]": {
 			"editor.defaultFormatter": "redhat.vscode-xml"
 		},

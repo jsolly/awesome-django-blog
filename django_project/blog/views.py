@@ -15,27 +15,95 @@ from django.views.generic import (
 )
 
 
+# def get_posts(request):
+#     return Post.objects.all()
+
+
+# class PostListView(ListView):
+#     model = Post
+#     template_name = "blog/home.html"  # <app>/<model>_<viewtype>.html
+#     context_object_name = "posts"
+#     ordering = ["-date_posted"]
+#     paginate_by = 5
+
+#     def get_queryset(self):
+#         query = self.request.GET.get("q")
+#         if query:
+#             object_list = self.model.objects.filter(
+#                 Q(title__icontains=query) | Q(content__icontains=query)
+#             )
+#         else:
+#             object_list = self.model.objects.all()
+#         return object_list
+
+
 class HomeView(ListView):
     model = Post
     template_name = "blog/home.html"  # <app>/<model>_<viewtype>.html
     context_object_name = "posts"  # The default is object_list
-    paginate_by = 10
+    paginate_by = 20
 
     def get_queryset(self):
         if self.request.user.is_staff or self.request.user.is_superuser:
             return Post.objects.all()
         return Post.objects.active()
 
+    def get_template_names(self):
+        if self.request.htmx:
+            return "blog/parts/home_posts.html"
+        return "blog/home.html"
 
-class UserPostListView(ListView):  # Not actively worked on
+
+class CategoryView(ListView):
     model = Post
-    template_name = "blog/post/user_posts.html"  # <app>/<model>_<viewtype>.html
+    template_name = "blog/post/categories.html"  # <app>/<model>_<viewtype>.html
     context_object_name = "posts"  # The default is object_list
     paginate_by = 10
 
     def get_queryset(self):
-        user = get_object_or_404(User, username=self.kwargs.get("username"))
-        return Post.objects.filter(author=user).order_by("-date_posted")
+        category = self.kwargs.get("category").replace("-", " ")
+        category = get_object_or_404(Category, name=category)
+        posts = Post.objects.active()
+        if self.request.user.is_staff or self.request.user.is_superuser:
+            posts = Post.objects.all()
+        return posts.filter(category=category.id)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["category"] = Category.objects.get(
+            name=self.kwargs["category"].replace("-", " ")
+        )
+        return context
+
+    def get_template_names(self):
+        if self.request.htmx:
+            return "blog/parts/category_posts.html"
+        return "blog/post/categories.html"
+
+
+@csrf_exempt
+def search_view(request):
+    """Controls what is shown to a user when they search for a post."""
+    if request.method == "POST":
+        searched = request.POST["searched"]
+        posts = Post.objects.active()
+        if request.user.is_staff or request.user.is_superuser:
+            posts = Post.objects.all()
+        filtered_posts = posts.filter(
+            Q(content__icontains=searched) | Q(title__icontains=searched)
+        )
+        return render(
+            request,
+            "blog/post/search_posts.html",
+            {"searched": searched, "posts": filtered_posts},
+        )
+    return render(
+        request,
+        "blog/post/search_posts.html",
+        {"searched": "", "posts": []},
+    )
+    # Seems to be the best approach for now
+    # https://stackoverflow.com/questions/53146842/check-if-text-exists-in-django-template-context-variable
 
 
 class PostDetailView(DetailView):
@@ -91,50 +159,3 @@ class PostDeleteView(UserPassesTestMixin, DeleteView):
         post = self.get_object()
         if self.request.user == post.author:
             return True
-
-
-class CategoryView(ListView):
-    model = Post
-    template_name = "blog/post/categories.html"  # <app>/<model>_<viewtype>.html
-    context_object_name = "posts"  # The default is object_list
-    paginate_by = 10
-
-    def get_queryset(self):
-        category = self.kwargs.get("category").replace("-", " ")
-        category = get_object_or_404(Category, name=category)
-        posts = Post.objects.active()
-        if self.request.user.is_staff or self.request.user.is_superuser:
-            posts = Post.objects.all()
-        return posts.filter(category=category.id)
-
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-        context["category"] = Category.objects.get(
-            name=self.kwargs["category"].replace("-", " ")
-        )
-        return context
-
-
-@csrf_exempt
-def search_view(request):
-    """Controls what is shown to a user when they search for a post.w"""
-    if request.method == "POST":
-        searched = request.POST["searched"]
-        posts = Post.objects.active()
-        if request.user.is_staff or request.user.is_superuser:
-            posts = Post.objects.all()
-        filtered_posts = posts.filter(
-            Q(content__icontains=searched) | Q(title__icontains=searched)
-        )
-        return render(
-            request,
-            "blog/post/search_posts.html",
-            {"searched": searched, "posts": filtered_posts},
-        )
-    return render(
-        request,
-        "blog/post/search_posts.html",
-        {"searched": "", "posts": []},
-    )
-    # Seems to be the best approach for now
-    # https://stackoverflow.com/questions/53146842/check-if-text-exists-in-django-template-context-variable
