@@ -7,27 +7,6 @@
 {% sri_static 'django_ckeditor_5/prism.css' %}
 {% sri_static 'django_ckeditor_5/prism.js' %}
 {% sri_static 'css/social_share.css' %}
-
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "{{ post.title }}",
-    {% if post.metaimg %}
-    "image": [
-      "{{ request.scheme }}://{{ request.get_host }}{{ post.metaimg.url }}"
-    ],
-    {% endif %}
-    "datePublished": "{{ post.date_posted|date:'c' }}",
-    "author": [
-      {
-        "@type": "Person",
-        "name": "John Solly",
-        "url": "https://blogthedata.com"
-      }
-    ]
-  }
-</script>
 {% endblock head %}
 
 {% block meta %}
