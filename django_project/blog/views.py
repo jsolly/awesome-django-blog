@@ -15,28 +15,6 @@ from django.views.generic import (
 )
 
 
-# def get_posts(request):
-#     return Post.objects.all()
-
-
-# class PostListView(ListView):
-#     model = Post
-#     template_name = "blog/home.html"  # <app>/<model>_<viewtype>.html
-#     context_object_name = "posts"
-#     ordering = ["-date_posted"]
-#     paginate_by = 5
-
-#     def get_queryset(self):
-#         query = self.request.GET.get("q")
-#         if query:
-#             object_list = self.model.objects.filter(
-#                 Q(title__icontains=query) | Q(content__icontains=query)
-#             )
-#         else:
-#             object_list = self.model.objects.all()
-#         return object_list
-
-
 class HomeView(ListView):
     model = Post
     template_name = "blog/home.html"  # <app>/<model>_<viewtype>.html
@@ -50,8 +28,14 @@ class HomeView(ListView):
 
     def get_template_names(self):
         if self.request.htmx:
-            return "blog/parts/home_posts.html"
+            return "blog/parts/posts.html"
         return "blog/home.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        if self.request.htmx:
+            context["url"] = self.request.path
+        return context
 
 
 class CategoryView(ListView):
@@ -73,11 +57,13 @@ class CategoryView(ListView):
         context["category"] = Category.objects.get(
             name=self.kwargs["category"].replace("-", " ")
         )
+        if self.request.htmx:
+            context["url"] = self.request.path
         return context
 
     def get_template_names(self):
         if self.request.htmx:
-            return "blog/parts/category_posts.html"
+            return "blog/parts/posts.html"
         return "blog/post/categories.html"
 
 

@@ -2,7 +2,7 @@
 {% for post in posts %}
 
 {% if forloop.last %}
-<div hx-get="{% url 'blog-category' category=current_category %}?page={{ page_obj.number|add:1 }}" hx-trigger="revealed" hx-swap="afterend" hx-target="this">
+<div hx-get="{{ url }}?page={{ page_obj.number|add:1 }}" hx-trigger="revealed" hx-swap="afterend" hx-target="this">
   {% else %}
   <div>
     {% endif %}

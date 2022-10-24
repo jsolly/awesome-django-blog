@@ -19,7 +19,7 @@
 <section id="category-blog-posts">
     <h1 class="mb-0 display-6">{{ category|title }}</h1>
     <p class="mb-2 fs-4">{{ category.description }}</p>
-    {% include "blog/parts/category_posts.html" %}
+    {% include "blog/parts/posts.html" %}
 </section>
 {% if category.name == "portfolio" %}
 <section id="portfolio-bottom-section">
