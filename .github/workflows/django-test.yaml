@@ -34,7 +34,7 @@ jobs:
           postgresql db: "blogthedata_test"
 
       - name: Setup Python 3.8.10
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
         with:
           python-version: 3.8.10
       - name: Install dependencies
