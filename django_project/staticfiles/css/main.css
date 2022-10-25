@@ -62,7 +62,7 @@ footer {
   display: grid;
 }
 
-footer:before {
+footer::before {
   content: "";
   background-color: var(--colorSecondary);
   position: absolute;
@@ -101,7 +101,7 @@ body {
    Typeography
 ============= */
 
-.post-content > p:first-of-type:first-letter {
+.post-content > p:first-of-type::first-letter {
   font-size: 2rem;
   font-weight: 700;
   margin: 0 0.1rem 0 0;
@@ -214,7 +214,7 @@ img.card-img-top {
    Portfolio Page
 ============= */
 
-.testimonial-quote:before {
+.testimonial-quote::before {
   content: open-quote;
   display: inline;
   height: 0;
@@ -227,7 +227,7 @@ img.card-img-top {
   font-family: georgia, serif;
 }
 
-.testimonial-quote:after {
+.testimonial-quote::after {
   content: close-quote;
   display: inline;
   height: 0;
@@ -365,11 +365,11 @@ img.card-img-top {
     background-color: rgb(18, 18, 18);
     border-color: var(--colorPrimary);
   }
-  .testimonial-quote:before {
+  .testimonial-quote::before {
     color: hsla(229, 100%, 88%, 0.6);
   }
 
-  .testimonial-quote:after {
+  .testimonial-quote::after {
     color: hsla(229, 100%, 88%, 0.6);
   }
 
@@ -387,7 +387,7 @@ img.card-img-top {
   }
 
   footer,
-  footer:before {
+  footer::before {
     background-color: hsl(240, 4%, 16%);
   }
   #footer {
