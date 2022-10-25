@@ -24,7 +24,7 @@ jobs:
       IP_INFO_TOKEN: ${{secrets.IP_INFO_TOKEN}}
       MAPBOX_TOKEN: ${{secrets.MAPBOX_TOKEN}}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up Postgresql with Postgis
         uses: huaxk/postgis-action@v1
@@ -75,7 +75,7 @@ jobs:
         # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
