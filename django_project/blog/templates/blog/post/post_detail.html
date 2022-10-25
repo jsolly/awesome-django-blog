@@ -52,6 +52,7 @@
         <small class="text-muted">
           {{ post.date_posted|date:"F d, Y" }} in {{ post.category|title }}</small>
       </p>
+    </div>
       {% if post.author == user %}
       <div>
         <a class="btn btn-secondary btn-sm mt-1 mb-1" id="post-edit-button" href="{% url 'post-update' post.slug %}">
@@ -62,9 +63,9 @@
         </a>
       </div>
       {% endif %}
-    </div>
+      <div class="post-content">
     {{ post.content|safe }}
-  </div>
+      </div>
 </article>
 
 <a href="{% url 'home' %}" id="post-back-to-home-button" class="btn btn-secondary btn-lg mb-5">
