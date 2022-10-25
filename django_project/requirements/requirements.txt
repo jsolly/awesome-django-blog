@@ -2,7 +2,7 @@ black
 Brotli
 coverage
 Django
-django-ckeditor
+django-ckeditor==6.4.2
 django-ckeditor-5
 django-coverage-plugin
 django-csp
