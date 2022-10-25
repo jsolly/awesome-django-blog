@@ -306,6 +306,13 @@ img.card-img-top {
   border-radius: 100vw;
 }
 
+a[href^="http"]::after {
+  content: "↗";
+  margin-left: 0.1rem;
+  font-size: 0.9rem;
+  font-weight: 900;
+} 
+
 /* =============
    Media Queries
 ============= */
