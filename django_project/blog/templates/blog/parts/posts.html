@@ -5,8 +5,7 @@
 <div hx-get="{{ url }}?page={{ page_obj.number|add:1 }}"
      hx-trigger="revealed"
      hx-swap="afterend"
-     hx-target="this"
-     hx-push-url="?page={{ page_obj.number|add:1 }}">
+     hx-target="this">
   {% else %}
   <div>
     {% endif %}
