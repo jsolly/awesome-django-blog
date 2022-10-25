@@ -33,8 +33,7 @@ class HomeView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        if self.request.htmx:
-            context["url"] = self.request.path
+        context["url"] = self.request.path
         return context
 
 
@@ -57,8 +56,7 @@ class CategoryView(ListView):
         context["category"] = Category.objects.get(
             name=self.kwargs["category"].replace("-", " ")
         )
-        if self.request.htmx:
-            context["url"] = self.request.path
+        context["url"] = self.request.path
         return context
 
     def get_template_names(self):
