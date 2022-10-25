@@ -2,10 +2,7 @@
 {% for post in posts %}
 
 {% if forloop.last %}
-<div hx-get="{{ url }}?page={{ page_obj.number|add:1 }}"
-     hx-trigger="revealed"
-     hx-swap="afterend"
-     hx-target="this">
+<div hx-get="{{ url }}?page={{ page_obj.number|add:1 }}" hx-trigger="revealed" hx-swap="afterend" hx-target="this">
   {% else %}
   <div>
     {% endif %}
@@ -23,7 +20,7 @@
             <div class="col-md-8">
               <div class="card-body">
                 <div class="position-absolute top-50 start-50 showme">
-                  <img src="{% static 'svg/open-post-icon.svg' %}" alt="Open post">
+                  <img src="{% static 'svg/open-post-icon.svg' %}" width="24" height="24" alt="Open post">
                   Open
                 </div>
                 <h2 class="card-title fw-bolder">
