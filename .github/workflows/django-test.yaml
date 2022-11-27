@@ -33,10 +33,10 @@ jobs:
           postgresql password: ${{ secrets.POSTGRES_PASS }}
           postgresql db: "blogthedata_test"
 
-      - name: Setup Python 3.8.10
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.8.10
+          python-version: 3.10.8
           cache: 'pip'
       - name: Install dependencies
         run: |
