@@ -1,6 +1,6 @@
 # blogthedata
 
-A blog about Python and JavaScript web development
+A blog about Python and JavaScript web development that also includes a portfolio page.
 
 [![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger)
 [![Coverage Status](http://img.shields.io/coveralls/badges/badgerbadgerbadger.svg?style=flat-square)](https://coveralls.io/r/badges/badgerbadgerbadger)
