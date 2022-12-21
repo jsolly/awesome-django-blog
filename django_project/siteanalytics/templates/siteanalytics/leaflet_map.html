@@ -14,7 +14,8 @@
 
   <!-- Leaflet Plugins -->
   <!-- ArcPolyLine-->
-  {% sri_static 'leaflet_plugins/leaflet-arc.min.js' %} {% sri_static 'leaflet_plugins/leaflet.textpath.js' %}
+  {% sri_static 'leaflet_plugins/leaflet-arc.min.js' %}
+  {% sri_static 'leaflet_plugins/leaflet.textpath.js' %}
 
   <!-- Marker Cluster-->
   {% sri_static 'leaflet_plugins/MarkerCluster.Default.css' %}
@@ -41,7 +42,7 @@
 
     var markerClusters = L.markerClusterGroup();
     {% for visitor in visitors %}
-    var VisitorLatLng = { lat: {{ visitor.location.y }}, lon: { { visitor.location.x } } }
+    var VisitorLatLng = { lat: {{ visitor.location.y }}, lon: {{ visitor.location.x }} }
 
     var VisitorMarkerOptions = {
       title: "{{visitor.city}}, {{visitor.country}}",
