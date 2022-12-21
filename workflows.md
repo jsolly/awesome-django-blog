@@ -39,7 +39,7 @@ local_branch_name and branch_name can be the same
     postgres=# CREATE DATABASE blogthedata;
     postgres=# exit
     $ psql blogthedata < /Users/johnsolly/Documents/code/blogthedata/backups/blogthedata_db_5_6_22.sql
-    $ scp -r john@198.48.211:/home/john/blogthedata/django_project/media /Users/johnsolly/Documents/code/blogthedata/django_project # Optionally copy media folder over (to get uploaded images)
+    $ scp -r john@198.74.48.211:/home/john/blogthedata/django_project/media /Users/johnsolly/Documents/code/blogthedata/django_project # Optionally copy media folder over (to get uploaded images)
     ```
 
 ### useful commands and paths
