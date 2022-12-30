@@ -53,6 +53,6 @@ soupsieve==2.3.2.post1
 sqlparse==0.4.3
 tomli==2.0.1
 tornado==6.2
-urllib3==1.26.12
+urllib3==1.26.13
 whitenoise==6.2.0
 yarl==1.8.2
