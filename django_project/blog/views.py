@@ -19,7 +19,7 @@ class HomeView(ListView):
     model = Post
     template_name = "blog/home.html"  # <app>/<model>_<viewtype>.html
     context_object_name = "posts"  # The default is object_list
-    paginate_by = 10
+    paginate_by = 3
 
     def get_queryset(self):
         if self.request.user.is_staff or self.request.user.is_superuser:
@@ -41,7 +41,7 @@ class CategoryView(ListView):
     model = Post
     template_name = "blog/post/categories.html"  # <app>/<model>_<viewtype>.html
     context_object_name = "posts"  # The default is object_list
-    paginate_by = 10
+    paginate_by = 3
 
     def get_queryset(self):
         category = self.kwargs.get("category").replace("-", " ")
