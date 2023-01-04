@@ -192,7 +192,7 @@ class TestViews(SetUp):
         create_several_posts(self.category1, self.super_user, 20)
         response = self.client.get(category_url)
         self.assertTrue(response.context["is_paginated"])
-        self.assertEqual(response.context["posts"].count(), 10)  # 10 per page
+        self.assertEqual(response.context["posts"].count(), 3)  # 3 per page
 
     def test_category_view_paginated_second_page(self):
         category_url = reverse("blog-category", args=[self.category1.name])
