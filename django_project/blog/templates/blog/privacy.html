@@ -1,8 +1,9 @@
-{% extends "blog/parts/base.html" %} {% block title %}Privacy{% endblock title %}
+{% extends "blog/parts/base.html" %} {% block title %}Privacy Policy for Data Collection on Blogthedata.com{% endblock title %}
 
 <!-- About Section-->
 {% block about %} How data is collected on blogthedata.com {% endblock about %}
 {% block meta %}
+<meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
 <meta name="description" content="Learn about how data is collected on this site. IP addresses are collected and geocoded for use on a map. No personal information is collected. Find out more about data collection and privacy policy on this site.">
 {% include "blog/parts/logo_meta.html" %}
 {% endblock meta %}

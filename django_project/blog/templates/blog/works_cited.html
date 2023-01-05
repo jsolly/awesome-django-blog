@@ -7,8 +7,9 @@ Attibutions to the resources and assets I've leveraged from other people/project
 {% endblock about %}
 
 {% block meta %}
+<meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
 <meta name="description"
-  content="A page dedicated to attributing thanks to individuals that put out tutorials for free. I also want to thank the authors who created images and logos with open licenses so I can use them on this site." />
+  content="Learn from the best with this curated list of inspirations and shoutouts from a geospatial software engineer. Find out what resources were used to create and maintain a successful blog and get valuable insights on the latest techniques in the industry." />
 {% include "blog/parts/logo_meta.html" %}
 {% endblock meta %}
 

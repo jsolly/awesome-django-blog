@@ -1,11 +1,16 @@
 {% extends "blog/parts/base.html" %}
 
 {% block title %}
-{{ category|title }}
+{% if category.name == "portfolio" %}
+John Solly: Geospatial Software Engineer Portfolio
+{% else %}
+{{ category|title }} Insights from a Geospatial Software Engineer
+{% endif %}
 {% endblock title %}
 {% block meta %}
+<meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
 {% if category.name == "portfolio" %}
-<meta name="description" content="John Solly's portfolio. A geospatial developer with a passion for creating beautiful and fast mapping applications." />
+<meta name="description" content="John Solly's portfolio. A geospatial software engineer with a passion for creating beautiful and fast mapping applications." />
 {% else %}
 <meta name="description" content="Get insights and tips on {{ category }} from a geospatial software engineer. Read the latest blog posts on {{ category }} and stay up-to-date on the latest trends in the industry." />
 {% endif %}

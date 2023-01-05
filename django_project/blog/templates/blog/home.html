@@ -1,12 +1,13 @@
 {% extends "blog/parts/base.html" %} {% load static %}
 
 {% block meta %}
+<meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
 <meta name="twitter:description"
-    content="Blog posts about everything from developing software to productivity. Articles focus on geospatial web development, but also touch on tangential topics such as SEO and web security.">
+    content="Improve your productivity and stay up-to-date on the latest geospatial web development techniques with these helpful blog posts from a geospatial software engineer. Read the latest posts and get valuable insights on these topics and more.">
     <meta name="og:description"
-    content="Blog posts about everything from developing software to productivity. Articles focus on geospatial web development, but also touch on tangential topics such as SEO and web security.">
+    content="Improve your productivity and stay up-to-date on the latest geospatial web development techniques with these helpful blog posts from a geospatial software engineer. Read the latest posts and get valuable insights on these topics and more.">
     <meta name="description"
-    content="Blog posts about everything from developing software to productivity. Articles focus on geospatial web development, but also touch on tangential topics such as SEO and web security.">
+    content="Improve your productivity and stay up-to-date on the latest geospatial web development techniques with these helpful blog posts from a geospatial software engineer. Read the latest posts and get valuable insights on these topics and more.">
 {% include "blog/parts/logo_meta.html" %}
 {% endblock meta %}
 
