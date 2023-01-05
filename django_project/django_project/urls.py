@@ -22,7 +22,6 @@ from django_project.sitemaps import (
     PostSitemap,
     HomeSitemap,
     WorksCitedSiteMap,
-    CategorySiteMap,
 )
 from .views import (
     works_cited_view,
@@ -50,7 +49,6 @@ from siteanalytics.views import (
 
 sitemaps = {
     "posts": PostSitemap,
-    "categories": CategorySiteMap,
     "home page": HomeSitemap,
     "Works Cited": WorksCitedSiteMap,
 }

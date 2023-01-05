@@ -26,17 +26,6 @@ class PostSitemap(Sitemap):
 
     # def location() Django uses get_absolute_url() by default
 
-
-class CategorySiteMap(Sitemap):
-    changefreq = "daily"
-    priority = 0.8
-
-    def items(self):
-        return Category.objects.all()
-
-    # def location() Django uses get_absolute_url() by defaul
-
-
 class WorksCitedSiteMap(Sitemap):
     changefreq = "monthly"
     priority = 0.1
