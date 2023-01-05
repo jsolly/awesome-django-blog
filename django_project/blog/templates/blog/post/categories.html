@@ -4,7 +4,11 @@
 {{ category|title }}
 {% endblock title %}
 {% block meta %}
-<meta name="description" content="{{ category }} Posts" />
+{% if category.name == "portfolio" %}
+<meta name="description" content="John Solly's portfolio. A geospatial developer with a passion for creating beautiful and fast mapping applications." />
+{% else %}
+<meta name="description" content="Get insights and tips on {{ category }} from a geospatial software engineer. Read the latest blog posts on {{ category }} and stay up-to-date on the latest trends in the industry." />
+{% endif %}
 {% include "blog/parts/logo_meta.html" %}
 <meta property="og:type" content="article:section" />
 <meta property="og:title" content="{{ category|title }}" />
