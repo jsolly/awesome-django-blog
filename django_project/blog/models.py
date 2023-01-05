@@ -33,14 +33,14 @@ class Category(models.Model):
 class Post(models.Model):
     """Contains all the information that is relevant to a blog post"""
 
-    title = models.CharField(max_length=110)
+    title = models.CharField(max_length=250)
     slug = models.SlugField(unique=True, blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    metadesc = models.CharField(max_length=140, blank=True, null=True)
+    metadesc = models.CharField(max_length=500, blank=True, null=True)
     draft = models.BooleanField(default=False)
     metaimg = ResizedImageField(force_format="WEBP", quality=75, upload_to="post_metaimgs/", default="jsolly.webp")
-    metaimg_alt_txt = models.CharField(max_length=120, default="John Solly Headshot")
-    metaimg_attribution = models.CharField(max_length=200, blank=True, null=True)
+    metaimg_alt_txt = models.CharField(max_length=500, default="John Solly Headshot")
+    metaimg_attribution = models.CharField(max_length=500, blank=True, null=True)
     content = CKEditor5Field(blank=True, null=True, config_name="extends")
     snippet = CKEditor5Field(blank=True, null=True, config_name="extends")
     date_posted = models.DateTimeField(default=timezone.now)
