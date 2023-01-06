@@ -5,6 +5,7 @@ choices = [
     ("productivity", "productivity"),
     ("geodev", "geodev"),
     ("portfolio", "portfolio"),
+    ("resources", "resources"),
 ]
 # choices = Category.objects.all().values_list(
 #     "name", "name"
