@@ -1,5 +1,6 @@
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
+from blog.models import Post
 
 
 class HomeSitemap(Sitemap):
