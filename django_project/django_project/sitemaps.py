@@ -1,5 +1,4 @@
 from django.contrib.sitemaps import Sitemap
-from blog.models import Post, Category
 from django.urls import reverse
 
 
@@ -25,6 +24,7 @@ class PostSitemap(Sitemap):
         return obj.date_posted
 
     # def location() Django uses get_absolute_url() by default
+
 
 class WorksCitedSiteMap(Sitemap):
     changefreq = "monthly"
