@@ -2,8 +2,8 @@
 {% load static %}
 
 {% block meta %}
+<link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}"/>
 <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}">
-<meta property="canonical" content="{{ request.scheme }}://{{ request.get_host }}">
 <meta name="twitter:description"
     content="Find valuable resources, productivity tips, and geodev insights on our blog. Browse through our wide range of posts and discover new ways to improve your skills and knowledge in these important areas.">
     <meta name="og:description"
