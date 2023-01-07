@@ -3,8 +3,7 @@ repos:
     rev: v2.4.0
     hooks:
     -   id: flake8
-        files: \.(py)$
-        exclude: '^venv/.*|^.*/migrations/.*|^apps\.py$|^.*/settings/.*'
+        config_file: .flake8
 -   repo: local
     hooks:
     -   id: run-tests
