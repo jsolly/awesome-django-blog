@@ -5,6 +5,7 @@ from django.contrib.sitemaps.views import sitemap
 from robots.views import RuleList
 from blog.views import (
     HomeView,
+    AllPostsView,
     CreatePostView,
     PostDetailView,
     PostUpdateView,
@@ -42,7 +43,7 @@ class TestUrls(SetUp):
     """Make sure urls are hooked up to the correct View"""
 
     def test_all_posts_url_is_resolved(self):
-        self.assertEqual(resolve(reverse("all-posts")).func.view_class, HomeView)
+        self.assertEqual(resolve(reverse("all-posts")).func.view_class, AllPostsView)
 
     def test_leaflet_map_url_is_resolved(self):
         self.assertEqual(resolve(reverse("leaflet-map")).func, leaflet_map_view)
