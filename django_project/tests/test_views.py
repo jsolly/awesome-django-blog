@@ -22,7 +22,6 @@ class TestViews(SetUp):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/all_posts.html")
         self.assertIsInstance(response.context["posts"][0], Post)
-
     def test_home_view(self):  # TODO add check for draft post
         # Anonymous user
         response = self.client.get(reverse("home"))
