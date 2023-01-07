@@ -1,0 +1,24 @@
+{% extends "blog/parts/base.html" %} 
+{% load static %}
+
+{% block meta %}
+<meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}">
+<meta property="canonical" content="{{ request.scheme }}://{{ request.get_host }}">
+<meta name="twitter:description"
+    content="Find valuable resources, productivity tips, and geodev insights on our blog. Browse through our wide range of posts and discover new ways to improve your skills and knowledge in these important areas.">
+    <meta name="og:description"
+    content="Find valuable resources, productivity tips, and geodev insights on our blog. Browse through our wide range of posts and discover new ways to improve your skills and knowledge in these important areas.">
+    <meta name="description"
+    content="Find valuable resources, productivity tips, and geodev insights on our blog. Browse through our wide range of posts and discover new ways to improve your skills and knowledge in these important areas.">
+{% include "blog/parts/logo_meta.html" %}
+{% endblock meta %}
+
+{% block content %}
+
+<section id="Blog-Home-posts">
+  <h1 class="display-6">Latest Posts! {% if page_obj.number > 1 %} (Page {{ page_obj.number }}) {% endif %} </h1>
+  {% include "blog/parts/posts_paginated.html" %}
+</section>
+
+{% include "blog/parts/pagination.html" %}
+{% endblock content %}

@@ -15,6 +15,24 @@ from django.views.generic import (
 )
 
 
+class AllPostsView(ListView):
+    model = Post
+    template_name = "blog/all_posts.html"  # <app>/<model>_<viewtype>.html
+    context_object_name = "posts"  # The default is object_list
+    paginate_by = 10
+
+    def get_queryset(self):
+        if self.request.user.is_staff or self.request.user.is_superuser:
+            return Post.objects.all()
+        return Post.objects.active()
+
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["url"] = self.request.path
+        return context
+
+
 class HomeView(ListView):
     model = Post
     template_name = "blog/home.html"  # <app>/<model>_<viewtype>.html

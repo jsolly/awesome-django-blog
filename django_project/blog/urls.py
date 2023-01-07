@@ -9,11 +9,13 @@ from .views import (
     PostDeleteView,
     CategoryView,
     search_view,
+    AllPostsView,
 )
 
 urlpatterns = [
     path("ckeditor5/", include("django_ckeditor_5.urls")),
     path("", HomeView.as_view(), name="home"),
+    path("all-posts/", AllPostsView.as_view(), name="all-posts"),
     path("post/<slug:slug>/", PostDetailView.as_view(), name="post-detail"),
     path("post/new", CreatePostView.as_view(), name="post-create"),
     path(
