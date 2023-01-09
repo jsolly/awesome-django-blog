@@ -3,7 +3,7 @@ repos:
     rev: v2.4.0
     hooks:
     -   id: flake8
-        config_file: .flake8
+        args: ["--config", ".flake8"]
 -   repo: local
     hooks:
     -   id: run-tests
