@@ -27,11 +27,13 @@
                     {% endif %}
                   </h2>
                 </div>
-                <p class="fs-6 d-flex align-items-center">
-                  {{ post.date_posted|date:"F d, Y" }} in {{ post.category|title }}&nbsp;  
-                  <img src="{% static 'svg/clock.svg' %}" width="16" height="16" class="clock-icon" alt="Clock icon"> &nbsp {{ post.content|readtime }}
-              </p>
-                  <p class="card-text">
+                <p class="fs-6 mb-0 d-flex align-items-center">
+                  {{ post.date_posted|date:"F d, Y" }} in {{ post.category|title }}
+                </p>
+                <p class="fs-6 mb-0">
+                <img src="{% static 'svg/clock.svg' %}" width="16" height="16" class="clock-icon" alt="Clock icon"> {{ post.content|readtime }}
+                </p>  
+                <p class="card-text">
                 {{ post.snippet|safe }}
               </p>
               </div>
