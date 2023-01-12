@@ -22,5 +22,6 @@ pre-commit
 psycopg2-binary
 pytest
 python-dotenv
+readtime
 requests
 whitenoise
