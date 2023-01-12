@@ -84,6 +84,7 @@ $ python3 -m pip install -r blogthedata/django_project/requirements/requirements
 - Display site visitors in a web map
 - Portfolio page with testimonials, contact me, Web vitals, and more!
 - Light and Dark Theme
+- Blog reading time
 
 #### Non-Functional Features
 
