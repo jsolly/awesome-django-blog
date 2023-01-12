@@ -14,6 +14,7 @@ Global Styles
 * {
   font-family: system-ui, Helvetica, Arial, sans-serif;
 }
+
 :root {
   --colorPrimary: white;
   --colorSecondary: black;
@@ -52,6 +53,7 @@ video {
 .footer-text {
   color: var(--colorPrimary);
 }
+
 #footer {
   color: var(--colorPrimary);
 }
@@ -101,7 +103,7 @@ body {
    Typeography
 ============= */
 
-.post-content > p:first-of-type::first-letter {
+.post-content>p:first-of-type::first-letter {
   font-size: 2rem;
   font-weight: 700;
 }
@@ -160,7 +162,6 @@ button a:hover {
 /* =============
    Cards
 ============= */
-
 
 img.card-img-top {
   height: 100%;
@@ -249,6 +250,7 @@ img.card-img-top {
 #github-calendar-title {
   color: var(--colorSecondary);
 }
+
 #accordion-wrapper {
   padding: 1rem;
   border-radius: 0.25rem;
@@ -305,7 +307,7 @@ a[href^="http"]::after {
   margin-left: 0.1rem;
   font-size: 0.9rem;
   font-weight: 900;
-} 
+}
 
 /* =============
    Media Queries
@@ -336,7 +338,6 @@ a[href^="http"]::after {
     box-shadow: 0 1rem 3rem var(--colorSecondary) !important;
     scale: 1.005;
   }
-}
 
   tr:hover {
     background-color: #ddd;
@@ -354,6 +355,7 @@ a[href^="http"]::after {
   .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
   }
+
   body,
   .card,
   .form-control,
@@ -362,6 +364,7 @@ a[href^="http"]::after {
     background-color: rgb(18, 18, 18);
     border-color: var(--colorPrimary);
   }
+
   .testimonial-quote::before {
     color: hsla(229, 100%, 88%, 0.6);
   }
@@ -387,12 +390,15 @@ a[href^="http"]::after {
   footer::before {
     background-color: hsl(240, 4%, 16%);
   }
+
   #footer {
     color: var(--colorSecondary);
   }
+
   img {
     filter: brightness(0.8) contrast(1.2);
   }
+
   .card:not(#aboutMe):hover,
   #accordion-wrapper:hover {
     box-shadow: 0 1rem 3rem var(--colorPrimary) !important;
