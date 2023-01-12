@@ -32,10 +32,11 @@ $ source blogthedata/django_project/venv/bin/activate
 $ pip install --upgrade pip
 $ python3 -m pip install -r blogthedata/django_project/requirements/requirements.txt -c blogthedata/django_project/requirements/constraints.txt
 ```
+## Setup
 
-### Set up database
+### Database
 
-- See commented out Database section in
+1. See commented out Database section in
   [django_project/settings/dev.py](https://github.com/jsolly/blogthedata/blob/master/django_project/django_project/settings/dev.py)
   to use sqllite database or postgres. If you're on MacOS, there's a really handy app called [postgres.app](https://postgresapp.com/)
   ```shell
@@ -51,17 +52,57 @@ $ python3 -m pip install -r blogthedata/django_project/requirements/requirements
   # type <exit> and hit enter to go back to the terminal
   $ python3 manage.py migrate
   ```
-- rename 'sample.env' to .env and change the values to match your setup
+2. rename 'sample.env' to .env and change the values to match your setup
   (database passwords, secret keys, etc)
   ```shell
   $ python3 manage.py runserver
   ```
+  
+  
+### Coverage
+
+```shell
+$ coverage run -m pytest django_project
+$ coverage report -m --skip-covered
+```
+
+### Test
+
+```shell
+$ psql -U postgres
+postgres=# CREATE DATABASE blogthedata_test WITH OWNER blogthedatauser;
+postgres=# \c blogthedata_test
+postgres=# CREATE extension postgis;
+postgres=# SELECT PostGIS_version();
+# type <exit> and hit enter to go back to the terminal
+$ python3 blogthedata/django_project/manage.py migrate
+$ python3 -m pytest django_project
+```
+
+### Lint
+
+```shell
+$ flake8 django_project
+```
+
+Also see the [actions tab](https://github.com/jsolly/blogthedata/actions)
+to see if everything is passing.
+
+### Pre-commit Hooks (Optional as the CI also takes care of it)
+```
+$ cd blogthedata
+$ chmod +x run_tests.sh
+$ pre-commit install
+```
+
+### Local server (For mobile testing)
+[Use Ngrok](https://ngrok.com/)
 
 ---
 
 ## Features
 
-#### Functional Features
+### Functional Features
 
 - User login (header links removed in
   [commit:5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b](https://github.com/jsolly/blogthedata/commit/5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b))
@@ -86,7 +127,7 @@ $ python3 -m pip install -r blogthedata/django_project/requirements/requirements
 - Light and Dark Theme
 - Blog reading time
 
-#### Non-Functional Features
+### Non-Functional Features
 
 - Robots.txt, security.txt, and sitemap.xml
 - Honeypot Admin page (Removed in
@@ -110,43 +151,6 @@ $ python3 -m pip install -r blogthedata/django_project/requirements/requirements
 - Custom 404 page
 - Automatic Conversion of images (.png, .jpeg, etc) to .webp
 
-## Coverage, Tests, Linting, Hooks
-
-#### Coverage
-
-```shell
-$ coverage run -m pytest django_project
-$ coverage report -m --skip-covered
-```
-
-#### Test
-
-```shell
-$ psql -U postgres
-postgres=# CREATE DATABASE blogthedata_test WITH OWNER blogthedatauser;
-postgres=# \c blogthedata_test
-postgres=# CREATE extension postgis;
-postgres=# SELECT PostGIS_version();
-# type <exit> and hit enter to go back to the terminal
-$ python3 blogthedata/django_project/manage.py migrate
-$ python3 -m pytest django_project
-```
-
-#### Lint
-
-```shell
-$ flake8 django_project
-```
-
-Also see the [actions tab](<[url](https://github.com/jsolly/blogthedata/actions)>)
-to see if everything is passing.
-
-#### Pre-commit Hooks (Optional as the CI also takes care of it)
-```
-$ cd blogthedata
-$ chmod +x run_tests.sh
-$ pre-commit install
-```
 ---
 
 ## Contributing
