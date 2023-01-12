@@ -25,6 +25,9 @@ jobs:
       MAPBOX_TOKEN: ${{secrets.MAPBOX_TOKEN}}
     steps:
       - uses: actions/checkout@v3
+      - name: Lint with Flake8
+        run: |
+          flake8 django_project
 
       - name: Set up Postgresql with Postgis
         uses: huaxk/postgis-action@v1
@@ -54,9 +57,6 @@ jobs:
         run: |
           python3 django_project/manage.py migrate --settings=django_project.settings.ci
 
-      - name: Lint with Flake8
-        run: |
-          flake8 django_project
       - name: Run unit tests with coverage
         run: |
           coverage run -m pytest django_project
