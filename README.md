@@ -111,8 +111,6 @@ $ python3 -m pip install -r blogthedata/django_project/requirements/requirements
 
 ## Coverage, Tests, Linting, Hooks
 
-Contained within tests/
-
 #### Coverage
 
 ```shell
@@ -142,7 +140,7 @@ $ flake8 django_project
 Also see the [actions tab](<[url](https://github.com/jsolly/blogthedata/actions)>)
 to see if everything is passing.
 
-#### Setup Pre-commit Hooks (Optional as the CI also takes care of it)
+#### Pre-commit Hooks (Optional as the CI also takes care of it)
 ```
 $ cd blogthedata
 $ chmod +x run_tests.sh
