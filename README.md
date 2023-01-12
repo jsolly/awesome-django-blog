@@ -109,7 +109,7 @@ $ python3 -m pip install -r blogthedata/django_project/requirements/requirements
 - Custom 404 page
 - Automatic Conversion of images (.png, .jpeg, etc) to .webp
 
-## Coverage, Tests, Linting
+## Coverage, Tests, Linting, Hooks
 
 Contained within tests/
 
@@ -142,6 +142,12 @@ $ flake8 django_project
 Also see the [actions tab](<[url](https://github.com/jsolly/blogthedata/actions)>)
 to see if everything is passing.
 
+#### Setup Pre-commit Hooks (Optional as the CI also takes care of it)
+```
+$ cd blogthedata
+$ chmod +x run_tests.sh
+$ pre-commit install
+```
 ---
 
 ## Contributing
