@@ -161,17 +161,12 @@ button a:hover {
    Cards
 ============= */
 
+
 img.card-img-top {
   height: 100%;
   width: 100%;
 }
 
-.showme {
-  color: var(--colorPrimary);
-  opacity: 0;
-  transition: opacity 1.2s 0s;
-  letter-spacing: 2px;
-}
 
 #draft {
   color: red;
@@ -330,9 +325,6 @@ a[href^="http"]::after {
     transform: scaleX(1);
   }
 
-  .showhim:hover .showme {
-    opacity: 1;
-  }
 
   #accordion-wrapper:hover {
     box-shadow: 0 1rem 3rem var(--colorSecondary) !important;
@@ -344,6 +336,8 @@ a[href^="http"]::after {
     box-shadow: 0 1rem 3rem var(--colorSecondary) !important;
     scale: 1.005;
   }
+}
+
   tr:hover {
     background-color: #ddd;
   }
@@ -359,9 +353,6 @@ a[href^="http"]::after {
 
   .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-  }
-  .showme {
-    color: var(--colorSecondary);
   }
   body,
   .card,
