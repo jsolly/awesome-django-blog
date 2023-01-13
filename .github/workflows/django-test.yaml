@@ -26,9 +26,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install system dependencies
-        uses: actions/apt@v2
-        with:
-            package: binutils libproj-dev gdal-bin
+        run: |
+          sudo apt update -y
+          sudo apt install --no-install-recommends -y binutils libproj-dev gdal-bin
 
       - name: Setup Python
         uses: actions/setup-python@v4
