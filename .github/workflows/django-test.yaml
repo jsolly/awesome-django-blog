@@ -25,26 +25,21 @@ jobs:
       MAPBOX_TOKEN: ${{secrets.MAPBOX_TOKEN}}
     steps:
       - uses: actions/checkout@v3
-
-      - name: Set up Postgresql with Postgis
-        uses: huaxk/postgis-action@v1
+      - name: Install system dependencies
+        uses: actions/apt@v2
         with:
-          postgresql user: ${{secrets.POSTGRES_USER}}
-          postgresql password: ${{ secrets.POSTGRES_PASS }}
-          postgresql db: "blogthedata_test"
+            package: binutils libproj-dev gdal-bin
 
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.10.8
           cache: "pip"
-      - name: Install dependencies
+      - name: Install Python + dependencies
         run: |
           pip install --upgrade pip
           pip install wheel
           pip install -r django_project/requirements/requirements.txt -c django_project/requirements/constraints.txt
-          sudo apt update -y
-          sudo apt-get install binutils libproj-dev gdal-bin -y
 
       - name: Lint with Flake8
         run: |
@@ -53,6 +48,13 @@ jobs:
       - name: Collect Static Files
         run: |
           python3 django_project/manage.py collectstatic --noinput
+
+      - name: Set up Postgresql with Postgis
+        uses: huaxk/postgis-action@v1
+        with:
+          postgresql user: ${{secrets.POSTGRES_USER}}
+          postgresql password: ${{ secrets.POSTGRES_PASS }}
+          postgresql db: "blogthedata_test"
 
       - name: Run DB Migrations
         run: |
