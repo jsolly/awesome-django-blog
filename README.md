@@ -148,7 +148,7 @@ $ pre-commit install
 - Strict Content Security Policy preventing inline styles and scripts
 - Subresource Integrity
 - [A+ Score on Mozilla Observatory](<[url](https://observatory.mozilla.org/analyze/blogthedata.com)>)
-- Excellent scores on Google Lighthouse
+- 100/100 for Performance, SEO, and Accessibility according to Google Lighthouse
 - Custom 404 page
 - Automatic Conversion of images (.png, .jpeg, etc) to .webp
 
