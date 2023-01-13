@@ -13,6 +13,7 @@ django-resized
 django-robots
 django-simple-captcha
 django-sri
+feedparser
 flake8
 filetype
 gunicorn
