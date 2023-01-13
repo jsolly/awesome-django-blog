@@ -126,6 +126,7 @@ $ pre-commit install
 - Portfolio page with testimonials, contact me, Web vitals, and more!
 - Light and Dark Theme
 - Blog reading time
+- Atom and RSS feed
 
 ### Non-Functional Features
 
