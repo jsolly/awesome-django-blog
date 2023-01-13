@@ -1,6 +1,7 @@
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from .feeds import blogFeed, atomFeed
 from .views import (
     HomeView,
     CreatePostView,
@@ -13,6 +14,8 @@ from .views import (
 )
 
 urlpatterns = [
+    path("rss/", blogFeed(), name="rss"),
+    path('atom/', atomFeed(), name='atom'),
     path("ckeditor5/", include("django_ckeditor_5.urls")),
     path("", HomeView.as_view(), name="home"),
     path("all-posts/", AllPostsView.as_view(), name="all-posts"),

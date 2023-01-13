@@ -29,6 +29,7 @@ django-robots==5.0
 django-simple-captcha==0.5.17
 django-sri==0.5.0
 exceptiongroup==1.0.4
+feedparser==6.0.10
 filelock==3.9.0
 filetype==1.2.0
 flake8==6.0.0
@@ -60,6 +61,7 @@ python-dotenv==0.21.0
 PyYAML==6.0
 readtime==2.0.0
 requests==2.28.1
+sgmllib3k==1.0.0
 six==1.16.0
 soupsieve==2.3.2.post1
 sqlparse==0.4.3
