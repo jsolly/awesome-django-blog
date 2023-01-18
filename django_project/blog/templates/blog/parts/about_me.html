@@ -2,7 +2,7 @@
 <div id="aboutMe" class="card mb-5 shadow">
   <div class="row g-0">
     <div class="col-md-4 d-flex align-items-center p-1">
-      <img src="{% static 'jsolly.webp' %}" max-width="100%" max-height="100%" class="card-img"
+      <img src="{% static 'jsolly.webp' %}" max-width="100%" max-height="100%" class="card-img" fetchpriority="high"
         alt="John Solly Profile Picture" />
     </div>
     <div class="col-md-8">
@@ -21,7 +21,8 @@
           <a rel="me noopener noreferrer" target="_blank" href="https://mapstodon.space/@jsolly">Mastodon</a>
         </p>
         <p class="card-text">
-          Hey there! I've been in the GIS space for the past 11 years. As a geospatial software engineer, I combine GIS domain
+          Hey there! I've been in the GIS space for the past 11 years. As a geospatial software engineer, I combine GIS
+          domain
           knowledge and full-stack web development to create beautiful (and fast) mapping applications. This site
           showcases my projects and is where I share useful articles with the
           GeoDev community. Check out my <a href="{% url 'blog-category' 'portfolio' %}">Portfolio</a> to see my latest
