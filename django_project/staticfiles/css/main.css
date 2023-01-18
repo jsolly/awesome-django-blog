@@ -13,6 +13,7 @@ Global Styles
 ============= */
 * {
   font-family: system-ui, Helvetica, Arial, sans-serif;
+  font-display: optional;
 }
 
 :root {
