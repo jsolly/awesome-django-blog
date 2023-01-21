@@ -127,6 +127,7 @@ $ pre-commit install
 - Light and Dark Theme
 - Blog reading time
 - Atom and RSS feed
+- GPT3 powered blog post title generator
 
 ### Non-Functional Features
 
