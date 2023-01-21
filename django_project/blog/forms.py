@@ -33,12 +33,14 @@ class PostForm(forms.ModelForm):
 
         widgets = {
             "title": forms.TextInput(
-                attrs={"class": "form-control", "autofocus": True}
+                attrs={
+                    "class": "form-control",
+                    "autofocus": True,
+                }
             ),
             "slug": forms.TextInput(
                 attrs={
                     "class": "form-control",
-                    "placeholder": "how-to-write-a-great-slug",
                 }
             ),
             "category": forms.Select(choices=choices, attrs={"class": "form-control"}),
