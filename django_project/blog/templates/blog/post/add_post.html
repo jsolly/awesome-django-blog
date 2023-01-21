@@ -6,12 +6,14 @@ Create A New Blog Post!
 {% block head %}
 <!-- django_ckeditor_5 -->
 {% sri_static 'django_ckeditor_5/prism.css' %}
-<script defer src="{% static 'django_ckeditor_5/prism.js' %}"></script>
+{% sri_static 'django_ckeditor_5/prism.js' %}
+{% sri_static 'characterCounter.js' %}
+
 {% endblock head %}
 
 {% block content %}
 <h1>Add Post</h1>
-<br />
+
 <br />
 <div class="form-group">
   <form method="POST" enctype="multipart/form-data">

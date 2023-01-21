@@ -1,10 +1,37 @@
 {% extends "blog/parts/base.html" %}
+{% load sri %}
 {% block title %}
 Edit Blog Post!
 {% endblock title %}
+{% load static %}
+
+{% block head %}
+<script defer src="{% static 'characterCounter.js' %}"></script>
+{% endblock head %}
+
+
 
 {% block content %}
 <h1>Update Post</h1>
+<p class="card-text">
+  <span class="text-success" id="title-count">Title Characters: <span class="char-count"></span></span>
+</p>
+<p class="card-text">
+  <span class="text-success" id="slug-count">Slug Characters: <span class="char-count"></span></span>
+</p>
+<p class="card-text">
+  <span class="text-success" id="metadesc-count">Metadesc Characters: <span class="char-count"></span></span>
+</p>
+
+
+<form>
+  {% csrf_token %}
+  <button id="generate-title" hx-post="/generate-with-gpt/{{ post.id }}/" hx-swap="outerHTML" hx-target="#id_gpt_input">Generate
+    Title</button>
+  <input autofocus="" class="form-control" id="id_gpt_input" maxlength="250" name="gpt_input" required="" type="text"
+    placeholder="Generate a title or slug with GPT!">
+</form>
+
 <br />
 <div class="form-group">
   <form method="POST" enctype="multipart/form-data">

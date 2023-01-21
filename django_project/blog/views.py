@@ -13,6 +13,8 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
+from django.http import HttpResponse
+import html
 
 
 class AllPostsView(ListView):
@@ -137,6 +139,35 @@ class CreatePostView(UserPassesTestMixin, CreateView):
             return True
 
 
+def generate_gpt_input_value(request, post_id):
+    import os
+    import openai
+
+    def get_safe_completion(prompt):
+        completion = (
+            openai.Completion.create(
+                model="text-davinci-003",
+                prompt=prompt,
+                max_tokens=17,  # 1 token is approximately 4 English characters. An SEO optimized title is usually 50-70 characters long.
+                temperature=0.5,
+            )["choices"][0]["text"]
+            .replace("\n", "")
+            .replace('"', "")
+        )
+        safe_completion = html.escape(completion)
+        return safe_completion
+
+    openai.api_key = os.environ.get("OPENAI_API_KEY")
+    if request.method == "POST":
+        blog_post = get_object_or_404(Post, id=post_id)
+
+        if request.htmx.trigger == "generate-title":
+            prompt = f"No pretext or explanations. Write a concise website blog post title for the following blog post:{blog_post.content}"
+            completion = get_safe_completion(prompt)
+            new_content = f"<input autofocus='' class='form-control' id='id_gpt_input' maxlength='250' name='gpt_input' required='' type='text' value='{completion}'>"
+            return HttpResponse(new_content)
+
+
 class PostUpdateView(UserPassesTestMixin, UpdateView):
     model = Post
     form_class = PostForm
@@ -150,6 +181,12 @@ class PostUpdateView(UserPassesTestMixin, UpdateView):
         post = self.get_object()
         if self.request.user == post.author:
             return True
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        post = self.get_object()
+        context["post"] = post
+        return context
 
 
 class PostDeleteView(UserPassesTestMixin, DeleteView):
