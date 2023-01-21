@@ -9,13 +9,15 @@ from .views import (
     PostUpdateView,
     PostDeleteView,
     CategoryView,
-    search_view,
     AllPostsView,
+    search_view,
+    generate_gpt_input_value,
 )
 
 urlpatterns = [
+    path("generate-with-gpt/<int:post_id>/", generate_gpt_input_value, name="generate-with-gpt"),
     path("rss/", blogFeed(), name="rss"),
-    path('atom/', atomFeed(), name='atom'),
+    path("atom/", atomFeed(), name="atom"),
     path("ckeditor5/", include("django_ckeditor_5.urls")),
     path("", HomeView.as_view(), name="home"),
     path("all-posts/", AllPostsView.as_view(), name="all-posts"),
