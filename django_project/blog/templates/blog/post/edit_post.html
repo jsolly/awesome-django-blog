@@ -26,10 +26,18 @@ Edit Blog Post!
 
 <form>
   {% csrf_token %}
-  <button id="generate-title" hx-post="/generate-with-gpt/{{ post.id }}/" hx-swap="outerHTML" hx-target="#id_gpt_input">Generate
+  <button id="generate-title" hx-post="/generate-with-gpt/{{ post.id }}/" hx-swap="outerHTML"
+    hx-target="#id_gpt_input">Generate
     Title</button>
-  <input autofocus="" class="form-control" id="id_gpt_input" maxlength="250" name="gpt_input" required="" type="text"
-    placeholder="Generate a title or slug with GPT!">
+  <button id="generate-slug" hx-post="/generate-with-gpt/{{ post.id }}/" hx-swap="outerHTML" hx-include="#id_gpt_input"
+    hx-target="#id_gpt_input">
+    Generate Slug
+  </button>
+  <button id="generate-metadesc" hx-post="/generate-with-gpt/{{ post.id }}/" hx-swap="outerHTML"
+    hx-target="#id_gpt_input">Generate
+    Meta Description</button>
+  <input autofocus="" class="form-control" name="gpt_input" id="id_gpt_input" maxlength="250" name="gpt_input"
+    required="" type="text" placeholder="Generate with GPT!">
 </form>
 
 <br />

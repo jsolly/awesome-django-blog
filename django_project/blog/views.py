@@ -14,6 +14,7 @@ from django.views.generic import (
     DeleteView,
 )
 from django.http import HttpResponse
+from django.utils.text import slugify
 import html
 
 
@@ -143,12 +144,12 @@ def generate_gpt_input_value(request, post_id):
     import os
     import openai
 
-    def get_safe_completion(prompt):
+    def get_safe_completion(prompt, max_tokens):
         completion = (
             openai.Completion.create(
                 model="text-davinci-003",
                 prompt=prompt,
-                max_tokens=17,  # 1 token is approximately 4 English characters. An SEO optimized title is usually 50-70 characters long.
+                max_tokens=max_tokens,  # 1 token is approximately 4 English characters.
                 temperature=0.5,
             )["choices"][0]["text"]
             .replace("\n", "")
@@ -162,9 +163,23 @@ def generate_gpt_input_value(request, post_id):
         blog_post = get_object_or_404(Post, id=post_id)
 
         if request.htmx.trigger == "generate-title":
-            prompt = f"No pretext or explanations. Write a concise website blog post title for the following blog post:{blog_post.content}"
-            completion = get_safe_completion(prompt)
-            new_content = f"<input autofocus='' class='form-control' id='id_gpt_input' maxlength='250' name='gpt_input' required='' type='text' value='{completion}'>"
+            prompt = f"No pretext or explanations. Write a concise website title for the following blog post:{blog_post.content}"
+            completion = get_safe_completion(prompt, max_tokens=17)  # ~70 characters
+            new_content = f"<input autofocus='' class='form-control' id='id_gpt_input' maxlength='250' name='gpt_input' required_type='text' value='{completion}'>"
+            return HttpResponse(new_content)
+
+        if request.htmx.trigger == "generate-slug":
+            prompt = f"No pretext or explanations. Write a concise website slug based off this blog post title:{request.POST['gpt_input']}"
+            completion = slugify(
+                get_safe_completion(prompt, max_tokens=17)
+            )  # ~70 characters
+            new_content = f"<input autofocus='' class='form-control' id='id_gpt_input' maxlength='250' name='gpt_input' required_type='text' value='{completion}'>"
+            return HttpResponse(new_content)
+
+        if request.htmx.trigger == "generate-metadesc":
+            prompt = f"No pretext or explanations. Write a concise website metadesc for the following blog post:{blog_post.content}"
+            completion = get_safe_completion(prompt, max_tokens=40)  # ~160 characters.
+            new_content = f"<input autofocus='' class='form-control' id='id_gpt_input' maxlength='250' name='gpt_input' required_type='text' value='{completion}'>"
             return HttpResponse(new_content)
 
 
