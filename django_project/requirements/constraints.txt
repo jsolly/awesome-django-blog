@@ -16,7 +16,7 @@ cssselect==1.2.0
 distlib==0.3.6
 Django==4.1.2
 django-ckeditor==6.4.2
-django-ckeditor-5==0.2.1
+django-ckeditor-5==0.2.3
 django-coverage-plugin==3.0.0
 django-csp==3.7
 django-fastdev==1.7.2
