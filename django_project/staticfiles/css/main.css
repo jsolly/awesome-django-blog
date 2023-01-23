@@ -261,6 +261,11 @@ img.card-img-top {
    Misc Styles
 ============= */
 
+#post-detail-meta-img {
+  height: 30vh;
+}
+
+
 /* There is a 500px inline style inside the map html that is being placed into an iframe */
 :is(#leafletMap, #openlayersMap, #maplibreMap, #mapboxMap) {
   width: 100%;

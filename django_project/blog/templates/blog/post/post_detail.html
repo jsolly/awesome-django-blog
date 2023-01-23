@@ -40,6 +40,9 @@
 
 {% block content %}
 <article class="media content-section">
+  <div class="mb-3">
+  <img id="post-detail-meta-img" src="{{ post.metaimg.url }}" alt="{{ post.metadesc }}" />
+</div>
   <div class="media-body line-numbers ck-content">
     <div class="article-metadata">
       <h1 id="{{ post.title }}" class="card-title fw-bolder">
@@ -53,19 +56,19 @@
           {{ post.date_posted|date:"F d, Y" }} in {{ post.category|title }}</small>
       </p>
     </div>
-      {% if post.author == user %}
-      <div>
-        <a class="btn btn-secondary btn-sm mt-1 mb-1" id="post-edit-button" href="{% url 'post-update' post.slug %}">
-          Edit Post
-        </a>
-        <a class="btn btn-danger btn-sm mt-1 mb-1" id="post-delete-button" href="{% url 'post-delete' post.slug %}">
-          Delete Post
-        </a>
-      </div>
-      {% endif %}
-      <div class="post-content">
-    {{ post.content|safe }}
-      </div>
+    {% if post.author == user %}
+    <div>
+      <a class="btn btn-secondary btn-sm mt-1 mb-1" id="post-edit-button" href="{% url 'post-update' post.slug %}">
+        Edit Post
+      </a>
+      <a class="btn btn-danger btn-sm mt-1 mb-1" id="post-delete-button" href="{% url 'post-delete' post.slug %}">
+        Delete Post
+      </a>
+    </div>
+    {% endif %}
+    <div class="post-content">
+      {{ post.content|safe }}
+    </div>
 </article>
 
 <a href="{% url 'home' %}" id="post-back-to-home-button" class="btn btn-secondary btn-lg mb-5">
