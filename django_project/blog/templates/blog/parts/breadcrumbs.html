@@ -1,0 +1,5 @@
+<p id="breadcrumbs" class="text-muted">
+  {% for link in breadcrumbs %}
+  <a href="{{ link.url }}">{{ link.name|title }}</a> ›
+  {% endfor %}
+</p>
