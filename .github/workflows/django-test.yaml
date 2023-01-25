@@ -25,7 +25,7 @@ jobs:
       MAPBOX_TOKEN: ${{secrets.MAPBOX_TOKEN}}
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Set up Postgresql with Postgis
         uses: huaxk/postgis-action@v1
         with:
@@ -55,7 +55,6 @@ jobs:
       - name: Collect Static Files
         run: |
           python3 django_project/manage.py collectstatic --noinput
-
 
       - name: Run DB Migrations
         run: |
