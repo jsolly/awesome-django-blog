@@ -109,50 +109,48 @@ $ pre-commit install
 - Create posts filtered by category or author
 - Create Comments (Removed in https://github.com/jsolly/blogthedata/pull/77)
 - User profile with avatar (automatic sizing and compression using Pillow)
-- Ckeditor 5 for rich text (also includes spell check, code snippets, character
+- Ckeditor 5 for authoring blog posts (also includes spell check, code snippets, character
   counter, and more!)
-- Multiple categoires to organize posts
 - Post views and likes (Removed in
   https://github.com/jsolly/blogthedata/pull/77)
 - Newsletter Sign up 🗞 (removed in https://github.com/jsolly/blogthedata/pull/140)
 - Github Integration to show active issue backlog without leaving blog (removed
   in https://github.com/jsolly/blogthedata/pull/121)
-- Slugified URLs
-- Open Graph protocol compliant social media sharing
-- Global search
+- Slugified URLs for more readable links
+- Open Graph protocol compliant social media sharing for beautiful share cards (LinkedIn, Twitter, Facebook, Instagram, Reddit, etc)
+- Global search so you can find any blog post with a keyword search
 - Ko-Fi donation button ☕️ (removed in https://github.com/jsolly/blogthedata/commit/c857bb7599836c614aff523756bbf1381e0dd948)
 - Leaflet.js and OpenLayers maps 🗺
 - Display site visitors in a web map
 - Portfolio page with testimonials, contact me, Web vitals, and more!
 - Light and Dark Theme
-- Blog reading time
-- Atom and RSS feed
-- GPT3 powered blog post title generator
+- Blog reading time so viewers can estimate how long it will take them to read a post.
+- Atom and RSS feed so users can subscribe to your latest blog posts.
+- GPT3 powered blog post title, slug, and metadesc generator so you can harness the power of AI in your blog post authoring workflow
+- Copy to clipboard links on every header within a blog post so you can share specific sections of a post.
 
 ### Non-Functional Features
 
-- Robots.txt, security.txt, and sitemap.xml
-- Honeypot Admin page (Removed in
+- Robots.txt, security.txt, and sitemap.xml for optimized SEO and security
+- Honeypot Admin page to automatically block IPs trying to login with an admin account (Removed in
   https://github.com/jsolly/blogthedata/pull/105)
-- Git hooks for automatic static file generation
-- GitActions CI integration with coverage, linting, and testing
-- Bootstrap 5
-- Compatible with Sqllite or postgres
+- Git hooks for automatic static file generation (manage.py collectstatic)
+- GitActions CI integration with coverage, linting, and testing. Push with confidence!
+- Latest Bootstrap 5.x
+- Compatible with Sqllite or postgres databases for fast protyping and production
 - Optimized for Performance, SEO, and A11Y
 - Latest Django 4.x
-- Fully PEP 8 compliant (with some exceptions)
-- 95% or above unit code coverage
-- 100% linted with [flake8](<[url](https://pypi.org/project/flake8/)>)
-- Static scans with [CodeQL](<[url](https://codeql.github.com/)>) and pip
-  dependency checks with [Dependabot](<[url](https://github.com/dependabot)>)
-- Formatted with [Black](<[url](https://pypi.org/project/black/)>)
-- Strict Content Security Policy preventing inline styles and scripts
-- Subresource Integrity
+- 95% or above unit code coverage for a maintainable codebase
+- 100% linted with [flake8](<[url](https://pypi.org/project/flake8/)>) and PEP8 compliant* for beautiful Python code.
+- Static scans with [CodeQL](<[url](https://codeql.github.com/)>) and pip 
+  dependency checks with [Dependabot](<[url](https://github.com/dependabot)>) for automated security and updates.
+- Formatted with [Black](<[url](https://pypi.org/project/black/)>) for beauty and readability
+- Strict Content Security Policy preventing inline styles and scripts for better security
+- Subresource Integrity for better security
 - [A+ Score on Mozilla Observatory](<[url](https://observatory.mozilla.org/analyze/blogthedata.com)>)
 - 100/100 for Performance, SEO, and Accessibility according to Google Lighthouse
-- Custom 404 page
-- Automatic Conversion of images (.png, .jpeg, etc) to .webp
-
+- Custom 404 page that looks really cool. So even if your users are lost, they are still having a good time.
+- Automatic Conversion of images (.png, .jpeg, etc) to .webp for blazingly fast image loads.
 ---
 
 ## Contributing
