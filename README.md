@@ -32,33 +32,36 @@ $ source blogthedata/django_project/venv/bin/activate
 $ pip install --upgrade pip
 $ python3 -m pip install -r blogthedata/django_project/requirements/requirements.txt -c blogthedata/django_project/requirements/constraints.txt
 ```
+
 ## Setup
 
 ### Database
 
 1. See commented out Database section in
-  [django_project/settings/dev.py](https://github.com/jsolly/blogthedata/blob/master/django_project/django_project/settings/dev.py)
-  to use sqllite database or postgres. If you're on MacOS, there's a really handy app called [postgres.app](https://postgresapp.com/)
-  ```shell
-  $ sudo -U postgres psql
-  postgres=# CREATE USER blogthedatauser WITH PASSWORD 'password';
-  postgres=# ALTER ROLE blogthedatauser SET client_encoding TO 'utf8';
-  postgres=# ALTER ROLE blogthedatauser SET default_transaction_isolation TO 'read committed';
-  postgres=# ALTER ROLE blogthedatauser SET timezone TO 'UTC';
-  postgres=# CREATE DATABASE blogthedata WITH OWNER blogthedatauser;
-  postgres=# \c blogthedata
-  postgres=# CREATE extension postgis;
-  postgres=# SELECT PostGIS_version();
-  # type <exit> and hit enter to go back to the terminal
-  $ python3 manage.py migrate
-  ```
+   [django_project/settings/dev.py](https://github.com/jsolly/blogthedata/blob/master/django_project/django_project/settings/dev.py)
+   to use sqllite database or postgres. If you're on MacOS, there's a really handy app called [postgres.app](https://postgresapp.com/)
+
+```shell
+$ sudo -U postgres psql
+postgres=# CREATE USER blogthedatauser WITH PASSWORD 'password';
+postgres=# ALTER ROLE blogthedatauser SET client_encoding TO 'utf8';
+postgres=# ALTER ROLE blogthedatauser SET default_transaction_isolation TO 'read committed';
+postgres=# ALTER ROLE blogthedatauser SET timezone TO 'UTC';
+postgres=# CREATE DATABASE blogthedata WITH OWNER blogthedatauser;
+postgres=# \c blogthedata
+postgres=# CREATE extension postgis;
+postgres=# SELECT PostGIS_version();
+# type <exit> and hit enter to go back to the terminal
+$ python3 manage.py migrate
+```
+
 2. rename 'sample.env' to .env and change the values to match your setup
-  (database passwords, secret keys, etc)
-  ```shell
-  $ python3 manage.py runserver
-  ```
-  
-  
+   (database passwords, secret keys, etc)
+
+```shell
+$ python3 manage.py runserver
+```
+
 ### Coverage
 
 ```shell
@@ -89,6 +92,7 @@ Also see the [actions tab](https://github.com/jsolly/blogthedata/actions)
 to see if everything is passing.
 
 ### Pre-commit Hooks (Optional as the CI also takes care of it)
+
 ```
 $ cd blogthedata
 $ chmod +x run_tests.sh
@@ -96,6 +100,7 @@ $ pre-commit install
 ```
 
 ### Local server (For mobile testing)
+
 [Use Ngrok](https://ngrok.com/)
 
 ---
@@ -141,8 +146,8 @@ $ pre-commit install
 - Optimized for Performance, SEO, and A11Y
 - Latest Django 4.x
 - 95% or above unit code coverage for a maintainable codebase
-- 100% linted with [flake8](<[url](https://pypi.org/project/flake8/)>) and PEP8 compliant* for beautiful Python code.
-- Static scans with [CodeQL](<[url](https://codeql.github.com/)>) and pip 
+- 100% linted with [flake8](<[url](https://pypi.org/project/flake8/)>) and PEP8 compliant\* for beautiful Python code.
+- Static scans with [CodeQL](<[url](https://codeql.github.com/)>) and pip
   dependency checks with [Dependabot](<[url](https://github.com/dependabot)>) for automated security and updates.
 - Formatted with [Black](<[url](https://pypi.org/project/black/)>) for beauty and readability
 - Strict Content Security Policy preventing inline styles and scripts for better security
@@ -151,6 +156,7 @@ $ pre-commit install
 - 100/100 for Performance, SEO, and Accessibility according to Google Lighthouse
 - Custom 404 page that looks really cool. So even if your users are lost, they are still having a good time.
 - Automatic Conversion of images (.png, .jpeg, etc) to .webp for blazingly fast image loads.
+
 ---
 
 ## Contributing
