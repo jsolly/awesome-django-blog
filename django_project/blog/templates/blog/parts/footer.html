@@ -16,33 +16,6 @@
     </a>
   </li>
   <li class="nav-item">
-    <a rel="noopener noreferrer" target="_blank" href="https://twitter.com/_jsolly" class="footer-text px-2 ">
-      Twitter
-    </a>
-  </li>
-  <li class="nav-item">
-    <a rel="noopener noreferrer" target="_blank" href="https://mapstodon.space/@jsolly" class="footer-text px-2 ">
-      Mastodon
-    </a>
-  </li>
-  <li class="nav-item">
-    <a rel="noopener noreferrer" target="_blank" href="https://www.linkedin.com/in/jsolly/" class="footer-text px-2 ">
-      LinkedIn
-    </a>
-  </li>
-  </li>
-  <li class="nav-item">
-    <a rel="noopener noreferrer" target="_blank" href="https://github.com/jsolly" class="footer-text px-2 ">
-      Github
-    </a>
-  </li>
-  <li class="nav-item">
-    <a rel="noopener noreferrer" target="_blank" href="https://www.youtube.com/channel/UCxsK9UorVj2F17DMSXLuSQw"
-      class="footer-text px-2 ">
-      Youtube
-    </a>
-  </li>
-  <li class="nav-item">
     <a href="{% url 'privacy' %}" class="footer-text px-2">Privacy</a>
   </li>
   <li class="nav-item">
@@ -51,10 +24,23 @@
   </li>
   <li class="nav-item">
     <a href="{% url 'all-posts' %}" class="footer-text px-2">
-      All Posts (Paginated)</a>
+      </a>
   </li>
   <li class="nav-item">
     <a href="{% url 'rss' %}" class="footer-text px-2">RSS Feed</a>
+  </li>
+  <li class="nav-item dropdown px-3">
+    <a class="nav-link dropdown-toggle footer-text px-2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+      aria-expanded="false">
+      Categories
+    </a>
+    <ul class="dropdown-menu" id="nav-categories" aria-labelledby="navbarDropdown">
+      {% for cat in category_qs %}
+      <li>
+        <a class="dropdown-item" href="{% url 'blog-category' cat|slugify %}">{{cat|title}}</a>
+      </li>
+      {% endfor %}
+    </ul>
   </li>
 </ul>
 <p id="footer" class="text-center footer-text">Designed & Built by John Solly</p>
