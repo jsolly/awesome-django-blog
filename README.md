@@ -133,6 +133,7 @@ $ pre-commit install
 - Atom and RSS feed so users can subscribe to your latest blog posts.
 - GPT3 powered blog post title, slug, and metadesc generator so you can harness the power of AI in your blog post authoring workflow
 - Copy to clipboard links on every header within a blog post so you can share specific sections of a post.
+- Site-wide 'breadcumbs' so your users can know exactly where they are and navigate with ease.
 
 ### Non-Functional Features
 
