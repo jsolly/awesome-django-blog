@@ -12,10 +12,8 @@
       <a href="{% url 'post-detail' post.slug %}#top" aria-label='{{ post.title }}'>
         <div class="card mb-5 shadow">
           <div class="row g-0">
-            <div class="col-md-4 d-flex align-items-center">
-              {% if post.metaimg %}
-                <img src="{{ post.metaimg.url }}" class="card-img-top" alt="{{ post.metaimg_alt_txt }}" />
-              {% endif %}
+            <div id="post-meta-img-container" class="col-md-4 d-flex align-items-center meta-img-container">
+              <img src="{{ post.metaimg.url }}" width="{{ post.metaimg.width }}" height="{{ post.metaimg.height }}" class="card-img-top img-rounded" alt="{{ post.metaimg_alt_txt }}" />
             </div>
             <div class="col-md-8">
               <div class="card-body d-flex flex-column justify-content-between">
@@ -42,5 +40,6 @@
         </div>
       </a>
     </article>
+    
     
     {% endfor %}

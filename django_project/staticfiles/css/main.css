@@ -23,10 +23,6 @@ Global Styles
   --bannerColor: #343a40;
 }
 
-img {
-  max-width: 100%;
-}
-
 .errorlist {
   color: red;
 }
@@ -163,12 +159,9 @@ button a:hover {
 /* =============
    Cards
 ============= */
-
-img.card-img-top {
-  height: 100%;
-  width: 100%;
+.img-rounded {
+  border-radius: 0.1rem
 }
-
 
 #draft {
   color: red;
@@ -415,4 +408,25 @@ a[href^="http"]::after {
   #scroll-to-top-container {
     display: none !important;
   }
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .card {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .meta-img-container img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: cover;
+  }
+}
+
+.card-img-top {
+  max-width: 100%;
+  height: auto;
+  
 }
