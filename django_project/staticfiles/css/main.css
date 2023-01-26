@@ -254,6 +254,11 @@ button a:hover {
    Misc Styles
 ============= */
 
+a.hidden-link {
+  position: absolute;
+  left: -9999px;
+}
+
 #post-detail-meta-img {
   height: 30vh;
 }

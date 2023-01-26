@@ -18,11 +18,11 @@
             <a class="nav-link active" aria-current="page" id="nav-home" href="{% url 'home' %}">Home</a>
           </li>
           <li class="nav-item dropdown px-3">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            <a class="nav-link dropdown-toggle" href="#" id="header-navbarDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               Categories
             </a>
-            <ul class="dropdown-menu" id="nav-categories" aria-labelledby="navbarDropdown">
+            <ul class="dropdown-menu" id="header-nav-categories" aria-labelledby="header-navbarDropdown">
               {% for cat in category_qs %}
               <li>
                 <a class="dropdown-item" href="{% url 'blog-category' cat|slugify %}">{{cat|title}}</a>

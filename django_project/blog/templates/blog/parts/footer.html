@@ -23,18 +23,14 @@
       Works Cited</a>
   </li>
   <li class="nav-item">
-    <a href="{% url 'all-posts' %}" class="footer-text px-2">
-      </a>
-  </li>
-  <li class="nav-item">
     <a href="{% url 'rss' %}" class="footer-text px-2">RSS Feed</a>
   </li>
   <li class="nav-item dropdown px-3">
-    <a class="nav-link dropdown-toggle footer-text px-2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-      aria-expanded="false">
+    <a class="nav-link dropdown-toggle footer-text px-2" href="#" id="footer-navbarDropdown" role="button"
+      data-bs-toggle="dropdown" aria-expanded="false">
       Categories
     </a>
-    <ul class="dropdown-menu" id="nav-categories" aria-labelledby="navbarDropdown">
+    <ul class="dropdown-menu" id="footer-nav-categories" aria-labelledby="footer-navbarDropdown">
       {% for cat in category_qs %}
       <li>
         <a class="dropdown-item" href="{% url 'blog-category' cat|slugify %}">{{cat|title}}</a>
@@ -46,3 +42,5 @@
 <p id="footer" class="text-center footer-text">Designed & Built by John Solly</p>
 <div class="text-center mt-2 mb-5">
 </div>
+<a aria-hidden="true" href="{% url 'all-posts' %}" class="hidden-link">
+</a>
