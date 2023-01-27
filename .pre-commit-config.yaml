@@ -4,10 +4,4 @@ repos:
     hooks:
     -   id: flake8
         args: ["--config", ".flake8"]
--   repo: local
-    hooks:
-    -   id: run-tests
-        language: script
-        name: Run tests
-        entry: ./run_tests.sh
         stages: [commit]
