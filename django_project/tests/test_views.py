@@ -1,6 +1,13 @@
-from .base import SetUp, message_in_response, create_several_posts
+from unittest.mock import patch
+from .base import (
+    SetUp,
+    message_in_response,
+    create_several_posts,
+    create_several_visitors,
+)
 from django.urls import reverse
 from blog.models import Post
+from siteanalytics.models import Visitor
 from blog.forms import PostForm
 from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -17,25 +24,61 @@ class TestViews(SetUp):
     4 - Test relevant template logic
     """
 
+    def test_all_posts_view_shows_correct_posts(self):
+        response = self.client.get("/all-posts/")
+        self.assertEqual(len(response.context["posts"]), 1)  # only 1 post is not draft
+        self.assertContains(response, "My First Post")
+
+    def test_all_posts_view_shows_pagination(self):
+        create_several_posts(self.category1, self.super_user, number_of_posts=20)
+        response = self.client.get("/all-posts/")
+        self.assertTrue(response.context["is_paginated"])
+        self.assertContains(response, "First")
+        self.assertContains(response, "Next")
+        self.assertContains(response, "Last")
+
+    def test_pagination_is_enabled(self):
+        # create 10 more posts
+        create_several_posts(self.category1, self.super_user, 10)
+        response = self.client.get(reverse("all-posts"))
+        self.assertTrue(response.context["is_paginated"])
+        self.assertEqual(len(response.context["posts"]), 10)
+
+    def test_all_posts_view_shows_correct_page_number(self):
+        create_several_posts(self.category1, self.super_user, number_of_posts=20)
+        response = self.client.get("/all-posts/")
+        self.assertEqual(response.context["page_obj"].number, 1)
+        self.assertEqual(len(response.context["page_obj"].object_list), 10)
+
+        response = self.client.get("/all-posts/?page=2")
+        self.assertEqual(response.context["page_obj"].number, 2)
+        self.assertEqual(len(response.context["page_obj"].object_list), 10)
+
     def test_all_posts_view(self):
         response = self.client.get(reverse("all-posts"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/all_posts.html")
         self.assertIsInstance(response.context["posts"][0], Post)
 
-    def test_home_view(self):  # TODO add check for draft post
-        # Anonymous user
+    def test_home_view_anonymous_user(self):  # TODO add check for draft post
         response = self.client.get(reverse("home"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/home.html")
         self.assertIsInstance(response.context["posts"][0], Post)
-        # self.assertIsInstance(response.context["form"])
 
+    def test_home_view_super_user(self):
         # Access using super_user (should get posts in draft mode)
         self.client.login(
             username=self.super_user.username, password=self.general_password
         )
         response = self.client.get(reverse("home"))
+        self.assertEqual(response.status_code, 200)
+
+    def test_home_view_htmx_request(self):
+        headers = {"HTTP_HX-Request": "true", "HTTP_HX-Trigger": "TEST"}
+        response = self.client.get(reverse("home"), **headers)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "blog/parts/posts.html")
 
     def test_post_detail_view_anonymous_regular_post(self):
         post1_detail_url = reverse("post-detail", args=[self.post1.slug])
@@ -182,6 +225,13 @@ class TestViews(SetUp):
         self.assertEqual(response.context["category"], self.category1)
         self.assertIsInstance(response.context["posts"][0], Post)
         self.assertEqual(response.context["posts"].count(), 1)
+
+    def test_category_view_htmx_request(self):
+        category_url = reverse("blog-category", args=[self.category1.name])
+        headers = {"HTTP_HX-Request": "true", "HTTP_HX-Trigger": "TEST"}
+        response = self.client.get(category_url, **headers)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "blog/parts/posts.html")
 
     def test_category_view_staff(self):
         category_url = reverse("blog-category", args=[self.category1.name])
@@ -365,7 +415,27 @@ class TestViews(SetUp):
         response = self.client.get(reverse("leaflet-map"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "siteanalytics/leaflet_map.html")
-        # self.assertIsInstance(response.context["visitors"][0], Visitor) # commented out do to API limits
+
+    def test_leaflet_map_view_shows_visitor_data(self):
+        create_several_visitors(number_of_visitors=5)
+        response = self.client.get(reverse("leaflet-map"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "siteanalytics/leaflet_map.html")
+
+        visitor_data = Visitor.objects.all()
+        for visitor in visitor_data:
+            self.assertContains(
+                response,
+                f"var VisitorLatLng = {{ lat: {visitor.location.y}, lon: {visitor.location.x} }}",
+            )
+            self.assertContains(response, f'title: "{visitor.city}, {visitor.country}"')
+            self.assertContains(
+                response,
+                f'alt: "The city of {visitor.city} which is located in {visitor.country}"',
+            )
+            self.assertContains(
+                response, f'bindPopup("{visitor.city}, {visitor.country}")'
+            )
 
     def test_openlayers_map_view(self):
         response = self.client.get(reverse("openlayers-map"))
@@ -382,7 +452,36 @@ class TestViews(SetUp):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "siteanalytics/mapbox_map.html")
 
-    # def test_handler_404(self):
-    #     response = self.client.get("doesnotexist")
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertTemplateUsed(response, "blog/404_page.html")
+    @patch("openai.Completion.create")
+    def test_generate_gpt_input_title(self, mock_create):
+        blog_post = self.post1
+        mock_create.return_value = {"choices": [{"text": "mocked response"}]}
+        headers = {"HTTP_HX-Trigger": "generate-title"}
+        response = self.client.post(f"/generate-with-gpt/{blog_post.id}/", **headers)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("mocked response", response.content.decode())
+
+    @patch("openai.Completion.create")
+    def test_generate_gpt_input_slug(self, mock_create):
+        blog_post = self.post1
+        mock_create.return_value = {"choices": [{"text": "mocked response"}]}
+        headers = {"HTTP_HX-Trigger": "generate-slug"}
+        response = self.client.post(
+            f"/generate-with-gpt/{blog_post.id}/",
+            data={"gpt_input": "my test blog title"},
+            **headers,
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("mocked-response", response.content.decode())
+
+    @patch("openai.Completion.create")
+    def test_generate_gpt_input_metadesc(self, mock_create):
+        blog_post = self.post1
+        mock_create.return_value = {"choices": [{"text": "mocked response"}]}
+        headers = {"HTTP_HX-Trigger": "generate-metadesc"}
+        response = self.client.post(
+            f"/generate-with-gpt/{blog_post.id}/",
+            **headers,
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("mocked response", response.content.decode())

@@ -1,5 +1,4 @@
 import warnings
-
 from django import setup
 import os
 
@@ -11,7 +10,9 @@ load_dotenv()
 from django.test import TestCase, Client
 from django.contrib.messages import get_messages
 from django.test.utils import setup_test_environment
+from django.contrib.gis.geos import Point
 from blog.models import Post, Category
+from siteanalytics.models import Visitor
 from users.models import User
 
 # from siteanalytics.utils import load_data
@@ -42,6 +43,16 @@ def create_several_posts(category, user, number_of_posts):
         )
 
 
+def create_several_visitors(number_of_visitors):
+    for i in range(number_of_visitors):
+        Visitor.objects.create(
+            ip_addr=f"192.168.{i}.{i}",
+            country="United States",
+            city="New York",
+            location=Point(x=40.730610 + i, y=-73.935242 + i),
+        )
+
+
 class SetUp(TestCase):
     """Create User and Post object to be shared by tests. Also create urls using reverse()"""
 
@@ -65,10 +76,10 @@ class SetUp(TestCase):
 
         self.super_user = create_user("John_Solly", super_user=True)
         self.basic_user = create_user("basic_user", super_user=False)
+        self.category1 = Category.objects.create(name="TEST")
 
         # Post Object
-        self.category1 = Category.objects.create(name="TEST")
-        Category.objects.create(name="portfolio")
+        Category.objects.create(name="portfolio")  # Needed for test_portfolio_page
         self.post1 = Post.objects.create(
             title="My First Post",
             slug="first-post",
@@ -94,6 +105,3 @@ class SetUp(TestCase):
             author=self.super_user,
         )
         self.client = Client()
-
-        # Create visitors
-        # load_data("django_project/siteanalytics/data/ip_info_test.csv")

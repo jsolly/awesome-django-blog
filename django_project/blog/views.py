@@ -25,8 +25,6 @@ class AllPostsView(ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        if self.request.user.is_staff or self.request.user.is_superuser:
-            return Post.objects.all()
         return Post.objects.active()
 
     def get_context_data(self, *args, **kwargs):
@@ -163,13 +161,13 @@ def generate_gpt_input_value(request, post_id):
         blog_post = get_object_or_404(Post, id=post_id)
 
         if request.htmx.trigger == "generate-title":
-            prompt = f"No pretext or explanations. Write a concise website title for the following blog post:{blog_post.content}"
+            prompt = f"No pretext or explanations. Write a concise website title for the following blog post: {blog_post.content}"
             completion = get_safe_completion(prompt, max_tokens=17)  # ~70 characters
             new_content = f"<input autofocus='' class='form-control' id='id_gpt_input' maxlength='250' name='gpt_input' required_type='text' value='{completion}'>"
             return HttpResponse(new_content)
 
         if request.htmx.trigger == "generate-slug":
-            prompt = f"No pretext or explanations. Write a concise website slug based off this blog post title:{request.POST['gpt_input']}"
+            prompt = f"No pretext or explanations. Write a concise website slug based off this blog post title: {request.POST['gpt_input']}"
             completion = slugify(
                 get_safe_completion(prompt, max_tokens=17)
             )  # ~70 characters
@@ -177,7 +175,7 @@ def generate_gpt_input_value(request, post_id):
             return HttpResponse(new_content)
 
         if request.htmx.trigger == "generate-metadesc":
-            prompt = f"No pretext or explanations. Write a concise website metadesc for the following blog post:{blog_post.content}"
+            prompt = f"No pretext or explanations. Write a concise website metadesc for the following blog post: {blog_post.content}"
             completion = get_safe_completion(prompt, max_tokens=40)  # ~160 characters.
             new_content = f"<input autofocus='' class='form-control' id='id_gpt_input' maxlength='250' name='gpt_input' required_type='text' value='{completion}'>"
             return HttpResponse(new_content)

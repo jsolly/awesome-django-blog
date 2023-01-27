@@ -9,7 +9,7 @@ from requests.exceptions import HTTPError
 logger = logging.getLogger("django")
 
 
-def load_data(file_path):
+def load_data(file_path):  # pragma: no cover
     with open(file_path) as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
