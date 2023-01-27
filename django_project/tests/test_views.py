@@ -12,8 +12,6 @@ from blog.forms import PostForm
 from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.core.files.uploadedfile import SimpleUploadedFile
 
-# from siteanalytics.models import Visitor
-
 
 class TestViews(SetUp):
     """
