@@ -1,13 +1,17 @@
 from .base import SetUp
 from django.urls import reverse
 from PIL import Image
-from blog.models import Post, Category
+from blog.models import Post, Category, slugify_instance
 from users.models import Profile
 from siteanalytics.models import Visitor
 from django.contrib.gis.geos import Point
 
 
 class TestModels(SetUp):
+    def test_slugify_instance(self):
+        slugify_instance(self.post1, new_slug="My-First-Post", save=True)
+        self.assertEqual(self.post1.slug, "My-First-Post")
+
     def test_post_manager_all(self):
         posts = Post.objects.all()
         self.assertIsInstance(posts[0], Post)
