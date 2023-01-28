@@ -3,17 +3,16 @@ from .models import Post
 from .models import Category
 from django.conf import settings
 
-if settings.SETTINGS_MODULE == "django_project.settings.ci":
-    choices = [
-        ("productivity", "productivity"),
-        ("geodev", "geodev"),
-        ("portfolio", "portfolio"),
-        ("resources", "resources"),
-        ("webdev", "webdev"),
-        ("devtools", "devtools"),
-    ]
-choices = Category.objects.all().values_list("name", "name")
-# comment this if doing an initial DB migration or changing databases.
+choices = [
+    ("productivity", "productivity"),
+    ("geodev", "geodev"),
+    ("portfolio", "portfolio"),
+    ("resources", "resources"),
+    ("webdev", "webdev"),
+    ("devtools", "devtools"),
+]
+if settings.SETTINGS_MODULE in ["django_project.settings.dev", "django_project.settings.prod"]:
+    choices = Category.objects.all().values_list("name", "name")
 
 
 class PostForm(forms.ModelForm):
