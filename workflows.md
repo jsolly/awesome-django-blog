@@ -31,15 +31,15 @@ local_branch_name and branch_name can be the same
 ### Export prod database and restore locally
 
     ```
-    $ sudo -u postgres pg_dump blogthedata > /home/john/blogthedata/backups/blogthedata_db_3_8_22.sql # do this inside prod
+    $ sudo -u postgres pg_dump blogthedata > ~/blogthedata/backups/blogthedata_db_DD_MM_YYYY.sql # do this inside prod
     #### The following steps are done on a local dev machine
-    $ scp john@198.74.48.211:/home/john/blogthedata/backups/blogthedata_db_6_28_22.sql /Users/johnsolly/Documents/code/blogthedata/backups
+    $ scp john@198.74.48.211:~/blogthedata/backups/blogthedata_db_DD_MM_YYYY.sql ~/Documents/code/blogthedata/backups
     $ psql -U postgres
     postgres=# DROP DATABASE blogthedata;
     postgres=# CREATE DATABASE blogthedata;
     postgres=# exit
-    $ psql blogthedata < /Users/johnsolly/Documents/code/blogthedata/backups/blogthedata_db_5_6_22.sql
-    $ scp -r john@198.74.48.211:/home/john/blogthedata/django_project/media /Users/johnsolly/Documents/code/blogthedata/django_project # Optionally copy media folder over (to get uploaded images)
+    $ psql blogthedata < ~/Documents/code/blogthedata/backups/blogthedata_db_DD_MM_YYYY.sql
+    $ scp -r john@198.74.48.211:~/blogthedata/django_project/media ~/Documents/code/blogthedata/django_project # Optionally copy media folder over (to get uploaded images)
     ```
 
 ### useful commands and paths
