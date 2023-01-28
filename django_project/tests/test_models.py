@@ -1,7 +1,7 @@
 from .base import SetUp
 from django.urls import reverse
 from PIL import Image
-from blog.models import Post, Category, slugify_instance
+from blog.models import Post, slugify_instance
 from users.models import Profile
 from siteanalytics.models import Visitor
 from django.contrib.gis.geos import Point
@@ -57,8 +57,7 @@ class TestModels(SetUp):
         self.assertEqual(active_posts_minus_draft, new_active_post_count - 1)
 
     def test_category(self):
-        Category.objects.create(name="TEST")
-        self.assertEqual(self.category1.get_absolute_url(), "/category/TEST/")
+        self.assertEqual(self.category1.get_absolute_url(), "/category/test/")
 
     def test_post(self):
         self.assertEqual(str(self.post1), f"My First Post | {self.super_user.username}")

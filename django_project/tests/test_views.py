@@ -216,7 +216,7 @@ class TestViews(SetUp):
 
     def test_category_view_anonymous(self):
         # anonymous user
-        category_url = reverse("blog-category", args=[self.category1.name])
+        category_url = reverse("blog-category", args=[self.category1.slug])
         response = self.client.get(category_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/post/categories.html")
@@ -225,14 +225,14 @@ class TestViews(SetUp):
         self.assertEqual(response.context["posts"].count(), 1)
 
     def test_category_view_htmx_request(self):
-        category_url = reverse("blog-category", args=[self.category1.name])
-        headers = {"HTTP_HX-Request": "true", "HTTP_HX-Trigger": "TEST"}
+        category_url = reverse("blog-category", args=[self.category1.slug])
+        headers = {"HTTP_HX-Request": "true", "HTTP_HX-Trigger": "test"}
         response = self.client.get(category_url, **headers)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/parts/posts.html")
 
     def test_category_view_staff(self):
-        category_url = reverse("blog-category", args=[self.category1.name])
+        category_url = reverse("blog-category", args=[self.category1.slug])
         # Admin can see posts in a category even if they are drafts
         self.client.login(
             username=self.super_user.username, password=self.general_password
@@ -241,7 +241,7 @@ class TestViews(SetUp):
         self.assertEqual(response.context["posts"].count(), 2)
 
     def test_category_view_paginated(self):
-        category_url = reverse("blog-category", args=[self.category1.name])
+        category_url = reverse("blog-category", args=[self.category1.slug])
         # Paginated list appears when there are many posts
         create_several_posts(self.category1, self.super_user, 20)
         response = self.client.get(category_url)
@@ -249,7 +249,7 @@ class TestViews(SetUp):
         self.assertEqual(response.context["posts"].count(), 3)  # 3 per page
 
     def test_category_view_paginated_second_page(self):
-        category_url = reverse("blog-category", args=[self.category1.name])
+        category_url = reverse("blog-category", args=[self.category1.slug])
         create_several_posts(self.category1, self.super_user, 20)
         # Paginated list works when user has moved forward at least one page
         response = self.client.get(category_url, {"page": 2})
