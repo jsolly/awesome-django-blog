@@ -1,5 +1,7 @@
 from django import forms
 from .models import Post
+from .models import Category
+from django.conf import settings
 
 choices = [
     ("productivity", "productivity"),
@@ -9,10 +11,8 @@ choices = [
     ("webdev", "webdev"),
     ("devtools", "devtools"),
 ]
-# choices = Category.objects.all().values_list(
-#     "name", "name"
-# )
-# comment this if doing an initial DB migration or changing databases.
+if settings.SETTINGS_MODULE in ["django_project.settings.dev", "django_project.settings.prod"]:
+    choices = Category.objects.all().values_list("name", "name")
 
 
 class PostForm(forms.ModelForm):

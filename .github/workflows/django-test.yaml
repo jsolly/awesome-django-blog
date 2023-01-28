@@ -58,7 +58,7 @@ jobs:
 
       - name: Run DB Migrations
         run: |
-          python3 django_project/manage.py migrate --settings=django_project.settings.ci
+          python3 django_project/manage.py migrate --noinput --settings=django_project.settings.ci
 
       - name: Run unit tests with coverage
         run: |

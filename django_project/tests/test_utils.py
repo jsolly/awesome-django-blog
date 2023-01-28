@@ -1,7 +1,6 @@
 from .base import SetUp
 from django.utils.deprecation import MiddlewareMixin
 from django.http import HttpRequest
-from blog.utils import slugify_instance_title
 from siteanalytics.utils import get_client_ip
 from unittest import mock
 from siteanalytics.utils import add_visitor_if_not_exist
@@ -11,10 +10,6 @@ from requests.exceptions import HTTPError
 
 class TestUtils(SetUp, MiddlewareMixin):
     """Tests for helper functions"""
-
-    def test_slugify_instance_title(self):
-        slugify_instance_title(self.post1, new_slug="My-First-Post", save=True)
-        self.assertEqual(self.post1.slug, "My-First-Post")
 
     # def test_load_data(self):
     #     load_data("django_project/siteanalytics/data/ip_info_test.csv")

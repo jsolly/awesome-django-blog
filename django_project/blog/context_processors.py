@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 def category_renderer(request):
     category_qs = Category.objects.annotate(posts_count=Count("post"))
     try:
-        current_category = request.resolver_match.kwargs["category"]
+        current_category = request.resolver_match.kwargs["slug"]
     except (KeyError, AttributeError):
         current_category = "None"
     return {
@@ -23,8 +23,8 @@ def breadcrumbs(request):
     if match.url_name == "blog-category":
         breadcrumbs.append(
             {
-                "name": match.kwargs["category"],
-                "url": reverse(match.url_name, args=[match.kwargs["category"]]),
+                "name": match.kwargs["slug"],
+                "url": reverse(match.url_name, args=[match.kwargs["slug"]]),
             }
         )
     elif match.url_name == "post-detail":

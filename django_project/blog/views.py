@@ -62,8 +62,7 @@ class CategoryView(ListView):
     paginate_by = 3
 
     def get_queryset(self):
-        category = self.kwargs.get("category").replace("-", " ")
-        category = get_object_or_404(Category, name=category)
+        category = get_object_or_404(Category, slug=self.kwargs.get("slug"))
         posts = Post.objects.active()
         if self.request.user.is_staff or self.request.user.is_superuser:
             posts = Post.objects.all()
@@ -71,9 +70,7 @@ class CategoryView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context["category"] = Category.objects.get(
-            name=self.kwargs["category"].replace("-", " ")
-        )
+        context["category"] = Category.objects.get(slug=self.kwargs["slug"])
         context["url"] = self.request.path
         return context
 
@@ -109,10 +106,6 @@ def search_view(request):
 
 
 class PostDetailView(DetailView):
-    """
-    Controls everything to do with what a user sees when viewing a single post.
-    """
-
     model = Post
     template_name = "blog/post/post_detail.html"
 
