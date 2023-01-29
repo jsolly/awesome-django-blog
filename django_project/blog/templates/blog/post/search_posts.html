@@ -1,20 +1,25 @@
 {% extends "blog/parts/base.html" %}
 
-{% if searched %}
-{% block title %} {{searched }} - Solly's Blog {% endblock title %}
-{% endif %}
+{% block title %} {{ searched }} - Solly's Blog {% endblock title %}
 
 {% block content %}
-{% if searched %}
-<div class="text-center">
-  <h1>You searched for '{{ searched }}'</h1>
-  {% else %}
-  <h1>You didn't search for anything!</h1>
-  {% endif %}
+
+<div>
+  <span class="text-center">
+    {% if searched %}
+    <h1>You searched for '{{ searched }}'</h1>
+    <p>{{ num_results }} results found</p>
+    {% else %}
+    <h1>You didn't search for anything!</h1>
+    {% endif %}
+  </span>
   
   {% if posts %}
-    {% include "blog/parts/posts.html" %} {% else %}
-  <h2>I didn't find any posts matching that search 🤷‍♂️</h2>
-  {% endif %}
+    {% include "blog/parts/posts_paginated.html" %} {% else %}
+    <span class="text-center">
+    <h2>I didn't find any posts matching that search 🤷‍♂️</h2>
+    {% endif %}
+  </span>
 </div>
+{% include "blog/parts/pagination.html" %}
 {% endblock content %}

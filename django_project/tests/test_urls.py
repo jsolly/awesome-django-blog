@@ -11,7 +11,7 @@ from blog.views import (
     PostUpdateView,
     PostDeleteView,
     CategoryView,
-    search_view,
+    SearchView,
 )
 from django_project.views import (
     works_cited_view,
@@ -82,7 +82,7 @@ class TestUrls(SetUp):
         self.assertEqual(resolve(category_url).func.view_class, CategoryView)
 
     def test_search_url_is_resolved(self):
-        self.assertEqual(resolve(reverse("blog-search")).func, search_view)
+        self.assertEqual(resolve(reverse("blog-search")).func.view_class, SearchView)
 
     def test_register_url_is_resolved(self):
         self.assertEqual(resolve(reverse("register")).func, register_view)

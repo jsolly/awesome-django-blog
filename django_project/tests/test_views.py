@@ -269,7 +269,7 @@ class TestViews(SetUp):
     def test_search_view_anonymous(self):
         # If anonymous, should be able to find a post.
         data = {"searched": "Post"}
-        response = self.client.post(reverse("blog-search"), data=data)
+        response = self.client.get(reverse("blog-search"), data=data)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["posts"][0], self.post1)
 
@@ -279,7 +279,7 @@ class TestViews(SetUp):
         self.client.login(
             username=self.super_user.username, password=self.general_password
         )
-        response = self.client.post(reverse("blog-search"), data=data)
+        response = self.client.get(reverse("blog-search"), data=data)
         anon_post_count = Post.objects.active().count()
         self.assertGreater(response.context["posts"].count(), anon_post_count)
 
