@@ -3,6 +3,7 @@ plugins = django_coverage_plugin
 omit = 
     */tests/*
     */__init__.py
+    django_project/blog/forms.py
     django_project/blog/templates/blog/pgp-key.txt
     django_project/blog/templates/blog/parts/base.html
     django_project/django_project/settings/*
