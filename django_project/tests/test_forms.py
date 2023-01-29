@@ -1,6 +1,8 @@
 from .base import SetUp
 from blog.forms import PostForm
+from blog.models import Category
 from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from django.test import override_settings
 
 
 class TestForms(SetUp):
@@ -56,3 +58,8 @@ class TestForms(SetUp):
     def test_profile_update_form_valid_data(self):
         form = ProfileUpdateForm(data={"image": "image1"})
         self.assertTrue(form.is_valid())
+
+    @override_settings(SETTINGS_MODULE="django_project.settings.prod")
+    def test_load_categories_in_post_form(self):
+        form = PostForm()
+        self.assertEqual(len(form.fields["category"].choices.queryset), Category.objects.count())
