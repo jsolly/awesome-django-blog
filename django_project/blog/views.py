@@ -113,29 +113,6 @@ class SearchView(ListView):
         return context
 
 
-# @csrf_exempt
-# def search_view(request):
-#     """Controls what is shown to a user when they search for a post."""
-#     if request.method == "POST":
-#         searched = request.POST["searched"]
-#         posts = Post.objects.active()
-#         if request.user.is_staff or request.user.is_superuser:
-#             posts = Post.objects.all()
-#         filtered_posts = posts.filter(
-#             Q(content__icontains=searched) | Q(title__icontains=searched)
-#         )
-#         return render(
-#             request,
-#             "blog/post/search_posts.html",
-#             {"searched": searched, "posts": filtered_posts},
-#         )
-#     return render(
-#         request,
-#         "blog/post/search_posts.html",
-#         {"searched": "", "posts": []},
-#     )
-
-
 class PostDetailView(DetailView):
     model = Post
     template_name = "blog/post/post_detail.html"
