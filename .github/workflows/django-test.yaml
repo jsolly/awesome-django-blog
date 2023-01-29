@@ -65,6 +65,13 @@ jobs:
           coverage run -m pytest django_project
           coverage report -m --skip-empty --skip-covered
 
+      - name: Save test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: pytest-results
+          path: .
+          artifact_type: pytest-results
+
   static_analysis:
     runs-on: ubuntu-latest
     permissions:
