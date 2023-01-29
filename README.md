@@ -123,7 +123,7 @@ $ pre-commit install
   in https://github.com/jsolly/blogthedata/pull/121)
 - Slugified URLs for more readable links
 - Open Graph protocol compliant social media sharing for beautiful share cards (LinkedIn, Twitter, Facebook, Instagram, Reddit, etc)
-- Global search so you can find any blog post with a keyword search
+- Smart and powerful Global search so you can find any blog post with a keyword search.
 - Ko-Fi donation button ☕️ (removed in https://github.com/jsolly/blogthedata/commit/c857bb7599836c614aff523756bbf1381e0dd948)
 - Leaflet.js and OpenLayers maps 🗺
 - Display site visitors in a web map
