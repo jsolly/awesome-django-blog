@@ -10,7 +10,7 @@ from .views import (
     PostDeleteView,
     CategoryView,
     AllPostsView,
-    search_view,
+    SearchView,
     generate_gpt_input_value,
 )
 
@@ -33,7 +33,7 @@ urlpatterns = [
         ),
     ),
     path("category/<slug:slug>/", CategoryView.as_view(), name="blog-category"),
-    path("search/", search_view, name="blog-search"),
+    path("search/", SearchView.as_view(), name="blog-search"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

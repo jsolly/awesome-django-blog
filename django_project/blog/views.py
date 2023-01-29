@@ -1,10 +1,9 @@
 from .models import Post, Category
 from .forms import PostForm
-from django.shortcuts import render, get_object_or_404
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
-from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
@@ -80,29 +79,61 @@ class CategoryView(ListView):
         return "blog/post/categories.html"
 
 
-@csrf_exempt
-def search_view(request):
-    """Controls what is shown to a user when they search for a post."""
-    if request.method == "POST":
-        searched = request.POST["searched"]
+class SearchView(ListView):
+    model = Post
+    template_name = "blog/post/search_posts.html"
+    context_object_name = "posts"
+    paginate_by = 10
+
+    def get_queryset(self):
+        searched = self.request.GET.get("searched")
         posts = Post.objects.active()
-        if request.user.is_staff or request.user.is_superuser:
+        if self.request.user.is_staff or self.request.user.is_superuser:
             posts = Post.objects.all()
-        filtered_posts = posts.filter(
-            Q(content__icontains=searched) | Q(title__icontains=searched)
+
+        # Create a SearchVector that combines the title and content fields of the Post model
+        search_vector = SearchVector("title", weight="A") + SearchVector(
+            "content", weight="D"
         )
-        return render(
-            request,
-            "blog/post/search_posts.html",
-            {"searched": searched, "posts": filtered_posts},
+        # Create a SearchQuery from the user's search input
+        search_query = SearchQuery(searched)
+        # Return the filtered queryset of Posts, ordered by relevance
+        return (
+            posts.annotate(
+                search=search_vector, rank=SearchRank(search_vector, search_query)
+            )
+            .filter(search=search_query)
+            .order_by("-rank")
         )
-    return render(
-        request,
-        "blog/post/search_posts.html",
-        {"searched": "", "posts": []},
-    )
-    # Seems to be the best approach for now
-    # https://stackoverflow.com/questions/53146842/check-if-text-exists-in-django-template-context-variable
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["searched"] = self.request.GET.get("searched")
+        context["num_results"] = self.get_queryset().count()
+        return context
+
+
+# @csrf_exempt
+# def search_view(request):
+#     """Controls what is shown to a user when they search for a post."""
+#     if request.method == "POST":
+#         searched = request.POST["searched"]
+#         posts = Post.objects.active()
+#         if request.user.is_staff or request.user.is_superuser:
+#             posts = Post.objects.all()
+#         filtered_posts = posts.filter(
+#             Q(content__icontains=searched) | Q(title__icontains=searched)
+#         )
+#         return render(
+#             request,
+#             "blog/post/search_posts.html",
+#             {"searched": searched, "posts": filtered_posts},
+#         )
+#     return render(
+#         request,
+#         "blog/post/search_posts.html",
+#         {"searched": "", "posts": []},
+#     )
 
 
 class PostDetailView(DetailView):
