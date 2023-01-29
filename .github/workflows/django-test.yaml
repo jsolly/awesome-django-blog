@@ -70,7 +70,6 @@ jobs:
         with:
           name: pytest-results
           path: .
-          artifact_type: pytest-results
 
   static_analysis:
     runs-on: ubuntu-latest
