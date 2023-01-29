@@ -41,8 +41,9 @@
 
 {% block content %}
 <article class="media content-section">
-  <div class="mb-3">
-    <img id="post-detail-meta-img" src="{{ post.metaimg.url }}" alt="{{ post.metadesc }}" />
+  <div class="col-md-4 d-flex align-items-center meta-img-container">
+    <img id="post-detail-meta-img" width="{{ post.metaimg.width }}" height="{{ post.metaimg.height }}"
+      src="{{ post.metaimg.url }}" alt="{{ post.metadesc }}" />
   </div>
   <div class="media-body line-numbers ck-content">
     <div class="article-metadata">
