@@ -6,6 +6,7 @@
 5. Portfolio Page
 6. Misc Styles
 7. Keyframes & Media Queries
+   7.1 Responsive Styles
 */
 
 /* =============
@@ -254,6 +255,10 @@ button a:hover {
    Misc Styles
 ============= */
 
+img {
+  max-width: 100%;
+}
+
 a.hidden-link {
   position: absolute;
   left: -9999px;
@@ -415,11 +420,12 @@ a[href^="http"]::after {
   }
 }
 
-/* Responsive */
+/* Responsive Styles*/
 @media (max-width: 992px) {
   img.img-responsive {
     width: 90%;
   }
+
   .card {
     flex-direction: column;
     align-items: center;
@@ -436,11 +442,4 @@ a[href^="http"]::after {
 .card-img-top {
   max-width: 100%;
   height: auto;
-  
-}
-
-img.img-responsive {
-  max-width: 100%;
-  height: auto;
-  display: block;
 }
