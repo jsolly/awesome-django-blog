@@ -69,7 +69,7 @@ jobs:
         run: |
           source django_project/venv/bin/activate
           coverage run -m pytest django_project
-          coverage lcov -o ./coverage/coverage.lcov
+          coverage lcov -o ./coverage/lcov.info
 
   static_analysis:
     runs-on: ubuntu-latest
