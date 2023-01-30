@@ -108,7 +108,7 @@ jobs:
             sudo systemctl restart gunicorn
 
   finish:
-    needs: test
+    needs: [build, static_analysis, deploy]
     runs-on: ubuntu-latest
     steps:
       - name: Coveralls Finished
