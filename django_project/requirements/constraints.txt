@@ -19,7 +19,7 @@ django-ckeditor==6.4.2
 django-ckeditor-5==0.2.3
 django-coverage-plugin==3.0.0
 django-csp==3.7
-django-fastdev==1.7.2
+django-fastdev==1.7.3
 django-htmx==1.13.0
 django-js-asset==2.0.0
 django-livereload-server==0.4
