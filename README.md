@@ -1,10 +1,11 @@
-# blogthedata
+[![blogthedata-tests](https://github.com/jsolly/blogthedata/actions/workflows/django-test.yaml/badge.svg)](https://github.com/jsolly/blogthedata/actions/workflows/django-test.yaml)
+![Coverage](https://img.shields.io/coverallsCoverage/github/jsolly/blogthedata)
+![CodeStyle](https://img.shields.io/badge/code%20style-black-000000.svg)
+[![Python Version](https://img.shields.io/badge/python-3.10-brightgreen.svg)](https://www.python.org/downloads/)
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+# blogthedata.com
 
 Welcome to my Django blog app! This app is a fully functional blogging platform that I built using the Django web framework. It includes features such as creating and managing blog posts, comments, and categories, as well as user authentication and authorization. The app is designed to be easily integrated into any existing Django project or can be used as a standalone app. In this readme, you will find instructions for installation, configuration, and usage that I have provided. I have also included information about the app's features and troubleshooting tips that I have gathered. I hope you find this app useful and I welcome any contributions or suggestions for improvement.
-
-[![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger)
-[![Coverage Status](http://img.shields.io/coveralls/badges/badgerbadgerbadger.svg?style=flat-square)](https://coveralls.io/r/badges/badgerbadgerbadger)
-[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 ![LighthouseScore](https://github.com/jsolly/jsolly/blob/main/assets/lighthouseStats.svg)
 
