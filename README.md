@@ -1,6 +1,7 @@
 # blogthedata
 ![Coverage](https://img.shields.io/coverallsCoverage/github/jsolly/blogthedata)
 ![CodeStyle](https://img.shields.io/badge/code%20style-black-000000.svg)
+
 Welcome to my Django blog app! This app is a fully functional blogging platform that I built using the Django web framework. It includes features such as creating and managing blog posts, comments, and categories, as well as user authentication and authorization. The app is designed to be easily integrated into any existing Django project or can be used as a standalone app. In this readme, you will find instructions for installation, configuration, and usage that I have provided. I have also included information about the app's features and troubleshooting tips that I have gathered. I hope you find this app useful and I welcome any contributions or suggestions for improvement.
 
 [![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger)
