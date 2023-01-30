@@ -68,8 +68,7 @@ jobs:
       - name: run-unit-tests-with-coverage
         run: |
           source django_project/venv/bin/activate
-          coverage run -m pytest django_project
-          coverage report -m --skip-empty --skip-covered
+          coverage run -m pytest django_project -d ./coverage/.coverage
 
   static_analysis:
     runs-on: ubuntu-latest
