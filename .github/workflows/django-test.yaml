@@ -70,6 +70,11 @@ jobs:
           source django_project/venv/bin/activate
           coverage run -m pytest django_project
           coverage lcov -o ./coverage/lcov.info
+      
+      - name: coveralls-finished
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.github_token }}
 
   static_analysis:
     runs-on: ubuntu-latest
@@ -112,13 +117,3 @@ jobs:
             source django_project/venv/bin/activate
             python3 django_project/manage.py collectstatic --noinput
             sudo systemctl restart gunicorn
-
-  coveralls:
-    needs: [build, static_analysis, deploy]
-    runs-on: ubuntu-latest
-    steps:
-      - name: coveralls-finished
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.github_token }}
-
