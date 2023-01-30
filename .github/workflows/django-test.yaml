@@ -107,7 +107,7 @@ jobs:
             python3 django_project/manage.py collectstatic --noinput
             sudo systemctl restart gunicorn
 
-  finish:
+  Coveralls:
     needs: [build, static_analysis, deploy]
     runs-on: ubuntu-latest
     steps:
@@ -115,4 +115,3 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.github_token }}
-          parallel-finished: true
