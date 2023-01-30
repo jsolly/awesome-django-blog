@@ -41,7 +41,7 @@ idna==3.4
 iniconfig==1.1.1
 ipinfo==4.4.2
 lxml==4.9.2
-markdown2==2.4.6
+markdown2==2.4.7
 mccabe==0.7.0
 multidict==6.0.2
 mypy-extensions==0.4.3
