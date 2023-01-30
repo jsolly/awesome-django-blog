@@ -1,5 +1,6 @@
 black
 Brotli
+coveralls
 coverage
 Django
 django-ckeditor==6.4.2
