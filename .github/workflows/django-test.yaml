@@ -46,8 +46,8 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install wheel
-          python3 -m venv venv blogthedata/django_project/venv
-          source blogthedata/django_project/venv/bin/activate
+          python3 -m venv venv django_project/venv
+          source django_project/venv/bin/activate
           pip install -r django_project/requirements/requirements.txt -c django_project/requirements/constraints.txt
 
       - name: lint-with-flake8
