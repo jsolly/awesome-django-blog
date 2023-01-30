@@ -52,6 +52,7 @@ jobs:
 
       - name: lint-with-flake8
         run: |
+          source django_project/venv/bin/activate
           flake8 django_project
 
       - name: collect-static-files
