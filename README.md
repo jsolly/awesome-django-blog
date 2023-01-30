@@ -1,4 +1,5 @@
 # blogthedata
+[![blogthedata-tests](https://github.com/jsolly/blogthedata/actions/workflows/django-test.yaml/badge.svg)](https://github.com/jsolly/blogthedata/actions/workflows/django-test.yaml)
 ![Coverage](https://img.shields.io/coverallsCoverage/github/jsolly/blogthedata)
 ![CodeStyle](https://img.shields.io/badge/code%20style-black-000000.svg)
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
