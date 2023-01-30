@@ -1,7 +1,6 @@
 black
 Brotli
 coverage
-coverage-lcov
 Django
 django-ckeditor==6.4.2
 django-ckeditor-5
