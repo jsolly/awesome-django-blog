@@ -2,7 +2,6 @@
 ![Coverage](https://img.shields.io/coverallsCoverage/github/jsolly/blogthedata)
 ![CodeStyle](https://img.shields.io/badge/code%20style-black-000000.svg)
 [![Python Version](https://img.shields.io/badge/python-3.10-brightgreen.svg)](https://www.python.org/downloads/)
-
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 # blogthedata
 
