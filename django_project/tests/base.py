@@ -54,8 +54,6 @@ def create_several_visitors(number_of_visitors):
 
 
 class SetUp(TestCase):
-    """Create User and Post object to be shared by tests. Also create urls using reverse()"""
-
     setup_test_environment()
 
     def setUp(self):

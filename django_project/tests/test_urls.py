@@ -40,8 +40,6 @@ def get_url(url_name):
 
 
 class TestUrls(SetUp):
-    """Make sure urls are hooked up to the correct View"""
-
     def test_all_posts_url_is_resolved(self):
         self.assertEqual(resolve(reverse("all-posts")).func.view_class, AllPostsView)
 

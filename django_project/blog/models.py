@@ -46,8 +46,6 @@ class PostManager(models.Manager):
 
 
 class Category(models.Model):
-    """A category contains a subset of posts that are associated with a single category."""
-
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50, unique=True)
     description = models.CharField(max_length=140)
@@ -66,8 +64,6 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    """Contains all the information that is relevant to a blog post"""
-
     title = models.CharField(max_length=250)
     slug = models.SlugField(unique=True, blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)

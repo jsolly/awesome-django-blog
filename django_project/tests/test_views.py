@@ -14,14 +14,6 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 
 
 class TestViews(SetUp):
-    """
-    At a minimum, views should
-    1 - Check template used
-    2 - Verify any objects are the right ones and querysets contain the right items
-    3 - Any forms are of the right class
-    4 - Test relevant template logic
-    """
-
     def test_all_posts_view_shows_correct_posts(self):
         response = self.client.get("/all-posts/")
         self.assertEqual(len(response.context["posts"]), 1)  # only 1 post is not draft

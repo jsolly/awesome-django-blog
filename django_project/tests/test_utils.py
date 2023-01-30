@@ -9,8 +9,6 @@ from requests.exceptions import HTTPError
 
 
 class TestUtils(SetUp, MiddlewareMixin):
-    """Tests for helper functions"""
-
     # def test_load_data(self):
     #     load_data("django_project/siteanalytics/data/ip_info_test.csv")
     #     self.assertEqual(Visitor.objects.count(), 3)
