@@ -158,6 +158,7 @@ $ pre-commit install
 - 100/100 for Performance, SEO, and Accessibility according to Google Lighthouse
 - Custom 404 page that looks really cool. So even if your users are lost, they are still having a good time.
 - Automatic Conversion of images (.png, .jpeg, etc) to .webp for blazingly fast image loads.
+- Badges for test coverage, passing builds, formatter, and linter
 
 ---
 
