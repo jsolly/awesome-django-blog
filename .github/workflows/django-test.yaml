@@ -119,5 +119,6 @@ jobs:
       - name: coveralls-finished
         uses: coverallsapp/github-action@master
         with:
-          github-token: ${{ secrets.github_token }}
           args: coverage-lcov --data_file_path coverage/.coverage --output_file_path coverage/lcov.info
+          github-token: ${{ secrets.github_token }}
+
