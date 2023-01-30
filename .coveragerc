@@ -1,5 +1,6 @@
 [run]
 plugins = django_coverage_plugin
+data_file = ./coverage/.coverage
 omit = 
     */tests/*
     */__init__.py

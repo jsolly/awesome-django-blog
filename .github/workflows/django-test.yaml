@@ -121,4 +121,4 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.github_token }}
-          path-to-lcov: ./coverage
+          args: coverage-lcov --data_file_path coverage/.coverage --output_file_path coverage/lcov.info
