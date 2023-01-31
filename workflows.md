@@ -263,3 +263,7 @@ def upload_file(request):
 <!--
 https://prismjs.com/download.html#themes=prism-dark&languages=markup+css+clike+javascript+apacheconf+bash+git+json+python+sql+typescript+yaml
 -->
+
+
+## Misc
+env EDITOR=nano crontab -e
