@@ -1,0 +1,3 @@
+0 0 * * * /path/to/script/cleanup_backups.sh
+0 1 * * * /bin/bash /path/to/script/backup.sh
+17 0 * * * /bin/bash ~/documents/blogthedata/backups/uploadToDropbox.sh
