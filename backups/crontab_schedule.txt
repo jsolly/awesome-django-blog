@@ -1,0 +1,2 @@
+0 0 * * * /path/to/script/cleanup_backups.sh
+0 0 * * * /bin/bash /path/to/script/backup.sh
