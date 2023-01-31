@@ -98,7 +98,6 @@ to see if everything is passing.
 
 ```
 $ cd blogthedata
-$ chmod +x run_tests.sh
 $ pre-commit install
 ```
 
