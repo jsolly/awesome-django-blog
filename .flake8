@@ -1,7 +1,0 @@
-[flake8]
-exclude =
-    */venv/*
-    */migrations/*
-    apps.py
-    */settings/*
-ignore = E501,E402
