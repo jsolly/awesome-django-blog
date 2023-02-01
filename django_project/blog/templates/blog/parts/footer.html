@@ -1,10 +1,10 @@
 {% load sri %}
 <ul class="nav justify-content-center border-bottom pb-3 mb-3 pt-5">
   <li class="nav-item">
-    <a href="{% url 'home' %}" class="footer-text px-2">Home</a>
+    <a href="{% url 'home' %}#top" class="footer-text px-2">Home</a>
   </li>
   <li class="nav-item">
-    <a href="{% url 'blog-category' 'portfolio' %}" class="footer-text px-2 ">
+    <a href="{% url 'blog-category' 'portfolio' %}#top" class="footer-text px-2 ">
       Portfolio
     </a>
   </li>
@@ -16,10 +16,10 @@
     </a>
   </li>
   <li class="nav-item">
-    <a href="{% url 'privacy' %}" class="footer-text px-2">Privacy</a>
+    <a href="{% url 'privacy' %}#top" class="footer-text px-2">Privacy</a>
   </li>
   <li class="nav-item">
-    <a href="{% url 'works-cited' %}" class="footer-text px-2">
+    <a href="{% url 'works-cited' %}#top" class="footer-text px-2">
       Works Cited</a>
   </li>
   <li class="nav-item">
@@ -33,7 +33,7 @@
     <ul class="dropdown-menu" id="footer-nav-categories" aria-labelledby="footer-navbarDropdown">
       {% for cat in category_qs %}
       <li>
-        <a class="dropdown-item" href="{% url 'blog-category' cat|slugify %}">{{cat|title}}</a>
+        <a class="dropdown-item" href="{% url 'blog-category' cat|slugify %}#top">{{cat|title}}</a>
       </li>
       {% endfor %}
     </ul>
