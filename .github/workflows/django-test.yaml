@@ -50,10 +50,10 @@ jobs:
           pip install wheel
           pip install -r django_project/requirements/requirements.txt -c django_project/requirements/constraints.txt
 
-      - name: lint-with-flake8
+      - name: lint-with-ruff
         run: |
           source django_project/venv/bin/activate
-          flake8 django_project
+          ruff django_project
 
       - name: collect-static-files
         run: |
