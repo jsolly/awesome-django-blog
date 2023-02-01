@@ -14,7 +14,6 @@ django-robots
 django-simple-captcha
 django-sri
 feedparser
-flake8
 filetype
 gunicorn
 ipinfo
@@ -26,4 +25,5 @@ pytest
 python-dotenv
 readtime
 requests
+ruff
 whitenoise
