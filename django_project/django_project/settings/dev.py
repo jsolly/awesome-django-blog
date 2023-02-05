@@ -14,12 +14,6 @@ SECURE_SSL_REDIRECT = False
 SECURE_BROWSER_XSS_FILTER = False
 SECURE_CONTENT_TYPE_NOSNIFF = False
 
-if os.environ["DEBUG"] == "True":
-    DEBUG = True
-    CSP_SCRIPT_SRC_ELEM += ("http://127.0.0.1:35729/livereload.js",)
-    CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js",)
-    CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
-
 
 DATABASES = {
     "default": {

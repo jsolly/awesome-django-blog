@@ -4,3 +4,4 @@ repos:
       rev: "v0.0.239"
       hooks:
           - id: ruff
+            args: ["--config", "config/pyproject.toml"]
