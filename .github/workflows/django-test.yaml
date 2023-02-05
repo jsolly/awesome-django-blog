@@ -53,7 +53,7 @@ jobs:
       - name: lint-with-ruff
         run: |
           source django_project/venv/bin/activate
-          ruff django_project
+          ruff --config ./config/pyproject.toml django_project
 
       - name: collect-static-files
         run: |
