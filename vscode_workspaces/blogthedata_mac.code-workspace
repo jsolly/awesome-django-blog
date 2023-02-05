@@ -7,8 +7,8 @@
 	"settings": {
 		"python.analysis.autoImportCompletions": false,
 		"python.testing.unittestEnabled": true,
-		"python.linting.enabled": true,
-		"python.linting.flake8Enabled": true,
+		"python.linting.enabled": false,
+		"python.linting.flake8Enabled": false,
 		"python.formatting.provider": "black",
 		"python.formatting.autopep8Args": ["--ignore","E402"],
 		"python.terminal.activateEnvInCurrentTerminal": true,
