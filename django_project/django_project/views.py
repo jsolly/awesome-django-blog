@@ -12,7 +12,7 @@ def works_cited_view(request):
     )
 
 
-def privacy_view(request ):
+def privacy_view(request):
     return render(
         request,
         "blog/privacy.html",
