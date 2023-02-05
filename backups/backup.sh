@@ -12,13 +12,14 @@ MONTHLY_DIR=~/Documents/code/blogthedata/backups/monthly
 ssh john@198.74.48.211 "sudo -u postgres pg_dump blogthedata" > $DAILY_DIR/blogthedata_db_$DATE.sql
 
 # Check if it's the 7th day of the month
-if [ $(date +\%d -d tomorrow) -eq 7 ]
+if [ "$(date '+%d')" = 07 ]
 then
   cp $DAILY_DIR/blogthedata_db_$DATE.sql $WEEKLY_DIR/blogthedata_db_$DATE.sql
 fi
 
 # Check if it's the 1st day of the month
-if [ $(date +\%d) -eq 1 ]
+if [ "$(date '+%d')" = 01 ]
 then
   cp $DAILY_DIR/blogthedata_db_$DATE.sql $MONTHLY_DIR/blogthedata_db_$DATE.sql
 fi
+
