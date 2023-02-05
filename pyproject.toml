@@ -1,8 +1,0 @@
-[tool.ruff]
-exclude = [
-    "*/venv/*",
-    "*/migrations/*",
-    "apps.py",
-    "*/settings/*",
-    ]
-ignore = ["E402", "E501"]

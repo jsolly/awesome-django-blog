@@ -54,6 +54,12 @@ CSP_EXCLUDE_URL_PREFIXES = ("/admin", "/category/portfolio", "/site-analytics")
 
 DEBUG = False
 
+if os.environ["DEBUG"] == "True":
+    DEBUG = True
+    CSP_SCRIPT_SRC_ELEM += ("http://127.0.0.1:35729/livereload.js",)
+    CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js",)
+    CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
+
 INSTALLED_APPS = [
     "blog.apps.BlogConfig",
     "users.apps.UsersConfig",
