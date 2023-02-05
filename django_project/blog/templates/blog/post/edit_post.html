@@ -10,6 +10,10 @@ Edit Blog Post!
 
 <script>
 window.addEventListener("beforeunload", function (e) {
+  if (document.activeElement.type === "submit") {
+    return null;
+  }
+
   e.preventDefault();
   e.returnValue = "Are you sure you want to leave this page?";
 });
