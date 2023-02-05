@@ -7,6 +7,13 @@ Edit Blog Post!
 
 {% block head %}
 <script defer src="{% static 'js/characterCounter.js' %}"></script>
+
+<script>
+window.addEventListener("beforeunload", function (e) {
+  e.preventDefault();
+  e.returnValue = "Are you sure you want to leave this page?";
+});
+</script>
 {% endblock head %}
 
 
