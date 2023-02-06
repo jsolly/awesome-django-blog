@@ -43,7 +43,7 @@ lxml==4.9.2
 markdown2==2.4.7
 mccabe==0.7.0
 multidict==6.0.4
-mypy-extensions==0.4.3
+mypy-extensions==1.0.0
 nodeenv==1.7.0
 openai==0.26.4
 packaging==23.0
