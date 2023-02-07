@@ -70,6 +70,6 @@ tomli==2.0.1
 tornado==6.2
 tqdm==4.64.1
 urllib3==1.26.14
-virtualenv==20.17.1
+virtualenv==20.18.0
 whitenoise==6.3.0
 yarl==1.8.2
