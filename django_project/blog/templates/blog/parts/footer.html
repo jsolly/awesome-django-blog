@@ -4,7 +4,7 @@
     <a href="{% url 'home' %}#top" class="footer-text px-2">Home</a>
   </li>
   <li class="nav-item">
-    <a href="{% url 'blog-category' 'portfolio' %}#top" class="footer-text px-2 ">
+    <a href="{% url 'portfolio' %}#top" class="footer-text px-2 ">
       Portfolio
     </a>
   </li>
@@ -32,9 +32,11 @@
     </a>
     <ul class="dropdown-menu" id="footer-nav-categories" aria-labelledby="footer-navbarDropdown">
       {% for cat in category_qs %}
+      {% if cat.slug != 'portfolio' %}
       <li>
         <a class="dropdown-item" href="{% url 'blog-category' cat|slugify %}#top">{{cat|title}}</a>
       </li>
+      {% endif %}
       {% endfor %}
     </ul>
   </li>
