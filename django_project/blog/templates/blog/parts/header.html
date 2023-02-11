@@ -24,14 +24,16 @@
             </a>
             <ul class="dropdown-menu" id="header-nav-categories" aria-labelledby="header-navbarDropdown">
               {% for cat in category_qs %}
+              {% if cat.name != 'portfolio' %}
               <li>
                 <a class="dropdown-item" href="{% url 'blog-category' cat|slugify %}">{{cat|title}}</a>
               </li>
+              {% endif %}
               {% endfor %}
             </ul>
           </li>
           <li class="nav-item px-3">
-            <a class="nav-link" id="nav-portfolio" href="{% url 'blog-category' 'portfolio' %}">Portfolio</a>
+            <a class="nav-link" id="nav-portfolio" href="{% url 'portfolio' %}">Portfolio</a>
           </li>
           <li class="nav-item px-3">
             <a class="nav-link" id="nav-contact-me" rel="noopener noreferrer" target="_blank"

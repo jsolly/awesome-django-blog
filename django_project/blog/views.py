@@ -78,7 +78,19 @@ class CategoryView(ListView):
             return "blog/parts/posts.html"
         return "blog/post/categories.html"
 
+class PortfolioView(ListView):
+    model = Post
+    template_name = "blog/portfolio.html"  # <app>/<model>_<viewtype>.html
+    context_object_name = "posts"  # The default is object_list
+    paginate_by = 10
 
+    def get_queryset(self):
+        return Post.objects.active().filter(category__name="portfolio")
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["url"] = self.request.path
+        return context
 class SearchView(ListView):
     model = Post
     template_name = "blog/post/search_posts.html"

@@ -1,42 +1,22 @@
 {% extends "blog/parts/base.html" %}
 
 {% block title %}
-{% if category.name == "portfolio" %}
-John Solly: Geospatial Software Engineer Portfolio
-{% else %}
 {{ category|title }} Insights from a Geospatial Software Engineer
-{% endif %}
 {% endblock title %}
 {% block meta %}
 <meta property="og:type" content="article:section" />
 <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}"/>
 <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}"/>
-
-{% if category.name == "portfolio" %}
-<meta name="twitter:description" content="Geospatial software engineer portfolio featuring experience and examples of work. Let's connect to discuss how I can assist with your projects."/>
-<meta name="description" content="John Solly's portfolio. A geospatial software engineer with a passion for creating beautiful and fast mapping applications." />
-<meta property="og:title " content="John Solly: Geospatial Software Engineer Portfolio" />
-{% else %}
 <meta name="twitter:description" content="Get tips and insights on {{ category }} from a geospatial engineer. Read the latest blog posts and stay up-to-date on the latest industry trends."/>
 <meta name="description" content="Get tips and insights on {{ category }} from a geospatial engineer. Read the latest blog posts and stay up-to-date on the latest industry trends." />
 <meta property="og:title" content="{{ category|title }} Insights from a Geospatial Software Engineer" />
-{% endif %}
 {% include "blog/parts/logo_meta.html" %}
 {% endblock meta %}
 
 {% block content %}
-{% if category.name == "portfolio" %}
-
-{% include 'blog/portfolio_top.html' %}
-{% endif %}
 <section id="category-blog-posts">
     <h1 class="mb-0 display-6">{{ category|title }}</h1>
     <p class="mb-2 fs-4">{{ category.description }}</p>
     {% include "blog/parts/posts.html" %}
 </section>
-{% if category.name == "portfolio" %}
-<section id="portfolio-bottom-section">
-    {% include 'blog/portfolio_bottom.html' %}
-</section>
-{% endif %}
 {% endblock content %}

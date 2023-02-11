@@ -247,8 +247,8 @@ class TestViews(SetUp):
         response = self.client.get(category_url, {"page": 2})
         self.assertTrue(response.context["page_obj"].has_previous())
 
-    def test_category_view_portfolio(self):
-        portfolio_url = reverse("blog-category", args=["portfolio"])
+    def test_portfolio_view(self):
+        portfolio_url = reverse("portfolio")
         response = self.client.get(portfolio_url)
         self.assertEqual(response.status_code, 200)
 
