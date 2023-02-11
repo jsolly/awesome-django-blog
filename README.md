@@ -64,27 +64,20 @@ $ python3 manage.py migrate
 $ python3 manage.py runserver
 ```
 
-### Coverage
+### Run Test Coverage
 
 ```shell
 $ coverage run -m pytest django_project
 $ coverage report -m --skip-covered --rcfile=config/.coveragerc
 ```
 
-### Test
+### Run Tests
 
 ```shell
-$ psql -U postgres
-postgres=# CREATE DATABASE blogthedata_test WITH OWNER blogthedatauser;
-postgres=# \c blogthedata_test
-postgres=# CREATE extension postgis;
-postgres=# SELECT PostGIS_version();
-# type <exit> and hit enter to go back to the terminal
-$ python3 blogthedata/django_project/manage.py migrate
-$ python3 -m pytest django_project
+$ pytest django_project
 ```
 
-### Lint
+### Lint Code
 
 ```shell
 $ ruff --config ./config/pyproject.toml django_project
