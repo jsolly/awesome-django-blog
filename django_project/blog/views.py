@@ -85,7 +85,7 @@ class PortfolioView(ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        return Post.objects.active().filter(category__name="portfolio")
+        return Post.objects.active().filter(category__slug="portfolio")
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
