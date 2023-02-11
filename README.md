@@ -87,7 +87,7 @@ $ python3 -m pytest django_project
 ### Lint
 
 ```shell
-$ flake8 django_project
+$ ruff --config ./config/pyproject.toml django_project
 ```
 
 Also see the [actions tab](https://github.com/jsolly/blogthedata/actions)
@@ -148,10 +148,10 @@ $ pre-commit install
 - Optimized for Performance, SEO, and A11Y
 - Latest Django 4.x
 - 95% or above unit code coverage for a maintainable codebase
-- 100% linted with [flake8](<[url](https://pypi.org/project/flake8/)>) and PEP8 compliant\* for beautiful Python code.
-- Static scans with [CodeQL](<[url](https://codeql.github.com/)>) and pip
-  dependency checks with [Dependabot](<[url](https://github.com/dependabot)>) for automated security and updates.
-- Formatted with [Black](<[url](https://pypi.org/project/black/)>) for beauty and readability
+- 100% linted with [ruff](https://pypi.org/project/ruff/) and PEP8 compliant\* for beautiful Python code.
+- Static scans with [CodeQL](https://codeql.github.com/) and pip
+  dependency checks with [Dependabot](https://github.com/dependabot) for automated security and updates.
+- Formatted with [Black](https://pypi.org/project/black/) for beauty and readability
 - Strict Content Security Policy preventing inline styles and scripts for better security
 - Subresource Integrity for better security
 - [A+ Score on Mozilla Observatory](<[url](https://observatory.mozilla.org/analyze/blogthedata.com)>)
