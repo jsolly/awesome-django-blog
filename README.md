@@ -68,7 +68,7 @@ $ python3 manage.py runserver
 
 ```shell
 $ coverage run -m pytest django_project
-$ coverage report -m --skip-covered
+$ coverage report -m --skip-covered --rcfile=config/.coveragerc
 ```
 
 ### Test
