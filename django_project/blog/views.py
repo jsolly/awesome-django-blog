@@ -151,6 +151,12 @@ class CreatePostView(UserPassesTestMixin, CreateView):
             return True
 
 
+def count_characters(request):
+    trigger = request.htmx.trigger_name
+    characters = request.POST[trigger]
+    character_count = len(characters)
+    return HttpResponse(character_count)
+
 def generate_gpt_input_value(request, post_id):
     import os
     import openai
