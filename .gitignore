@@ -40,3 +40,6 @@ linode*.img
 
 # Static Files
 static/
+
+# VS Code
+.vscode/
