@@ -412,6 +412,9 @@ a[href^="http"]::after {
   #accordion-wrapper:hover {
     box-shadow: 0 1rem 3rem var(--colorPrimary) !important;
   }
+  .form-control {
+    color: var(--colorSecondary);
+  }
 }
 
 @media print {

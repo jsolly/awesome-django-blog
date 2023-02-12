@@ -1,6 +1,8 @@
 @media (prefers-color-scheme: dark) {
-    .ck.ck-editor {
-        color: black;
+    .ck.ck-editor__main>.ck-editor__editable
+    {
+        color: #fff;
+        background-color: black;
     }
 
     :root {
