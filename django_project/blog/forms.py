@@ -36,15 +36,30 @@ class PostForm(forms.ModelForm):
                 attrs={
                     "class": "form-control",
                     "autofocus": True,
+                    "hx-post": "/count-characters/",
+                    "hx-include": "#id_title",
+                    "hx-target": "#title-count .char-count",
+                    "hx-trigger": "load, input"
                 }
             ),
             "slug": forms.TextInput(
-                attrs={
-                    "class": "form-control",
-                }
+            attrs={
+                "class": "form-control",
+                "hx-post": "/count-characters/",
+                "hx-include": "#id_slug",
+                "hx-target": "#slug-count .char-count",
+                "hx-trigger": "load, input",
+            }
             ),
             "category": forms.Select(choices=choices, attrs={"class": "form-control"}),
-            "metadesc": forms.TextInput(attrs={"class": "form-control"}),
+            "metadesc": forms.TextInput(
+                attrs={
+                "class": "form-control",
+                "hx-post": "/count-characters/",
+                "hx-include": "#id_metadesc",
+                "hx-target": "#metadesc-count .char-count",
+                "hx-trigger": "load, input",
+            }),
             "metaimg_alt_txt": forms.TextInput(attrs={"class": "form-control"}),
             "metaimg_attribution": forms.TextInput(attrs={"class": "form-control"}),
         }
