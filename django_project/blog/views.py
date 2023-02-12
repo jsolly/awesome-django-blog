@@ -78,6 +78,7 @@ class CategoryView(ListView):
             return "blog/parts/posts.html"
         return "blog/post/categories.html"
 
+
 class PortfolioView(ListView):
     model = Post
     template_name = "blog/portfolio.html"  # <app>/<model>_<viewtype>.html
@@ -91,6 +92,8 @@ class PortfolioView(ListView):
         context = super().get_context_data(*args, **kwargs)
         context["url"] = self.request.path
         return context
+
+
 class SearchView(ListView):
     model = Post
     template_name = "blog/post/search_posts.html"

@@ -11,7 +11,10 @@ choices = [
     ("webdev", "webdev"),
     ("devtools", "devtools"),
 ]
-if settings.SETTINGS_MODULE in ["django_project.settings.dev", "django_project.settings.prod"]:
+if settings.SETTINGS_MODULE in [
+    "django_project.settings.dev",
+    "django_project.settings.prod",
+]:
     choices = Category.objects.all().values_list("name", "name")
 
 
