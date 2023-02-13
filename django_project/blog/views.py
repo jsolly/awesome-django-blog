@@ -19,7 +19,7 @@ import html
 
 class AllPostsView(ListView):
     model = Post
-    template_name = "blog/all_posts.html"  # <app>/<model>_<viewtype>.html
+    template_name = "blog/all_posts.html"
     context_object_name = "posts"  # The default is object_list
     paginate_by = 10
 
@@ -159,6 +159,7 @@ def count_characters(request):
     characters = request.POST[trigger]
     character_count = len(characters)
     return HttpResponse(character_count)
+
 
 def generate_gpt_input_value(request, post_id):
     import os

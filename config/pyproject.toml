@@ -7,6 +7,9 @@ exclude = [
     ]
 ignore = ["E402", "E501", "F403"]
 
+[tool.black]
+exclude = ["*/migrations/*"]
+
 
 # F403 is ignored because I use * imports in settings files
 # E402 is ignored because If I change the order of imports, I get an error when running tests

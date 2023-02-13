@@ -84,8 +84,15 @@ $ pytest django_project
 $ ruff --config ./config/pyproject.toml django_project
 ```
 
+### Run Black
+
+```shell
+$ black --config ./config.pyproject.toml django_project
+```
+
 Also see the [actions tab](https://github.com/jsolly/blogthedata/actions)
 to see if everything is passing.
+
 
 ### Pre-commit Hooks (Optional as the CI also takes care of it)
 

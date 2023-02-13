@@ -82,7 +82,7 @@ class Post(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    objects = PostManager()  # Make sure objects only include active (not draft) posts..
+    objects = PostManager()  # Make sure objects only include active (not draft) posts.
 
     def __str__(self):
         return self.title + " | " + str(self.author)
