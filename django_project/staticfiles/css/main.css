@@ -371,7 +371,7 @@ a[href^="http"]::after {
   .list-group-item,
   .accordion-body {
     background-color: rgb(18, 18, 18);
-    border-color: var(--colorPrimary);
+    border-color: var(--colorSecondary);
   }
 
   .testimonial-quote::before {
