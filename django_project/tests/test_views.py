@@ -475,13 +475,3 @@ class TestViews(SetUp):
         )
         self.assertEqual(response.status_code, 200)
         self.assertIn("mocked response", response.content.decode())
-
-
-    def test_count_characters_view(self):
-            headers = {"HTTP_HX-Trigger_name": "title"}
-            response = self.client.post(
-                "/count-characters/",
-                data={"title": "Hello World!"},
-                **headers,
-            )
-            self.assertEqual(response.content, b'12')

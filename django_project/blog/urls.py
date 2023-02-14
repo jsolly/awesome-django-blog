@@ -13,12 +13,14 @@ from .views import (
     AllPostsView,
     SearchView,
     generate_gpt_input_value,
-    count_characters
 )
 
 urlpatterns = [
-    path("generate-with-gpt/<int:post_id>/", generate_gpt_input_value, name="generate-with-gpt"),
-    path("count-characters/", count_characters, name="count-characters"),
+    path(
+        "generate-with-gpt/<int:post_id>/",
+        generate_gpt_input_value,
+        name="generate-with-gpt",
+    ),
     path("rss/", blogFeed(), name="rss"),
     path("atom/", atomFeed(), name="atom"),
     path("ckeditor5/", include("django_ckeditor_5.urls")),
