@@ -19,7 +19,7 @@ Global Styles
 
 :root {
   --colorPrimary: white;
-  --colorSecondary: black;
+  --colorSecondary: rgb(18, 18, 18);
   --colorHoverBackground: hsl(0, 0%, 40%);
   --bannerColor: #343a40;
 }
@@ -79,6 +79,10 @@ html {
 body {
   color: var(--colorPrimary);
   line-height: 1.6;
+}
+
+hr {
+  border-color: rgb(224, 224, 224);
 }
 
 .bg-steel {
@@ -355,10 +359,14 @@ a[href^="http"]::after {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --colorPrimary: black;
+    --colorPrimary: rgb(18, 18, 18);
     --colorSecondary: hsl(0, 0%, 100%, 0.75);
     --colorHoverBackground: hsl(0, 0%, 100%, 0.05);
     --bannerColor: #f8f9fa;
+  }
+
+  hr {
+    border-color: rgb(128, 128, 128);
   }
 
   .navbar-toggler-icon {
