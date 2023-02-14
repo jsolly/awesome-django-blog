@@ -16,7 +16,6 @@ from django.http import HttpResponse
 import html
 import os
 import openai
-from django.http import HttpResponseBadRequest
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
@@ -159,9 +158,6 @@ class CreatePostView(UserPassesTestMixin, CreateView):
 
 
 def generate_gpt_input_value(request, post_id):
-    if request.method != "POST":
-        return HttpResponseBadRequest("Invalid request")
-
     blog_post = get_object_or_404(Post, id=post_id)
     prompt_dict = {
         "generate-title": {
@@ -197,8 +193,6 @@ def generate_gpt_input_value(request, post_id):
         return f"<input autofocus='' class='form-control' id='id_gpt_input' maxlength='250' name='gpt_input' required_type='text' value='{safe_completion}'>"
 
     trigger = request.htmx.trigger
-    if trigger not in prompt_dict:
-        return HttpResponseBadRequest("Invalid trigger")
 
     prompt = prompt_dict[trigger]["prompt"]
     max_tokens = prompt_dict[trigger]["max_tokens"]
