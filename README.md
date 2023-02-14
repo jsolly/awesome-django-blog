@@ -134,7 +134,7 @@ $ pre-commit install
 - Blog reading time so viewers can estimate how long it will take them to read a post.
 - Atom and RSS feed so users can subscribe to your latest blog posts.
 - GPT3 powered blog post title, slug, and metadesc generator so you can harness the power of AI in your blog post authoring workflow
-- Copy to clipboard links on every header within a blog post so you can share specific sections of a post.
+- Copy to clipboard anchor links on every header within a blog post so you can share specific sections of a post.
 - Site-wide 'breadcumbs' so your users can know exactly where they are and navigate with ease.
 - Custom Character counter using HTMX so you know how long your titles, slugs, and metadesc fields are as you edit them in the UI!
 - Each page is optimized for viewing (and printing) so break out those 8 1/2 by 11s and print out some content!
