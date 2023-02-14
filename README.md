@@ -58,7 +58,7 @@ postgres=# SELECT PostGIS_version();
 $ python3 manage.py migrate
 ```
 
-2. rename 'sample.env' to .env and change the values to match your setup
+2. rename 'blogthedata/config/sample.env' to .env and change the values to match your setup
    (database passwords, secret keys, etc)
 
 ```shell
