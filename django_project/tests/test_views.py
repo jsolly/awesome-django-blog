@@ -454,7 +454,7 @@ class TestViews(SetUp):
     @patch("openai.Completion.create")
     def test_generate_gpt_input_slug(self, mock_create):
         blog_post = self.post1
-        mock_create.return_value = {"choices": [{"text": "mocked response"}]}
+        mock_create.return_value = {"choices": [{"text": "mocked-response"}]}
         headers = {"HTTP_HX-Trigger": "generate-slug"}
         response = self.client.post(
             f"/generate-with-gpt/{blog_post.id}/",
