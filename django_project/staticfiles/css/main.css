@@ -426,9 +426,25 @@ a[href^="http"]::after {
 }
 
 @media print {
+  header {
+    display: none !important;
+  }
+  nav {
+    display: none !important;
+  }
+  .header-link {
+    display: none !important;
+  }
   #scroll-to-top-container {
     display: none !important;
   }
+  .btn {
+    display: none !important;
+  }
+  footer {
+    display: none !important;
+  }
+
 }
 
 /* Responsive Styles*/
