@@ -97,7 +97,7 @@ to see if everything is passing.
 ### Pre-commit Hooks (Optional as the CI also takes care of it)
 
 ```
-$ cd blogthedata
+$ cd blogthedata/config
 $ pre-commit install
 ```
 
