@@ -13,8 +13,12 @@ from django.views.generic import (
     DeleteView,
 )
 from django.http import HttpResponse
-from django.utils.text import slugify
 import html
+import os
+import openai
+from django.http import HttpResponseBadRequest
+
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 
 class AllPostsView(ListView):
@@ -155,46 +159,51 @@ class CreatePostView(UserPassesTestMixin, CreateView):
 
 
 def generate_gpt_input_value(request, post_id):
-    import os
-    import openai
+    if request.method != "POST":
+        return HttpResponseBadRequest("Invalid request")
+
+    blog_post = get_object_or_404(Post, id=post_id)
+    prompt_dict = {
+        "generate-title": {
+            "prompt": f"No pretext or explanations. Write a concise website title for the following blog post: {blog_post.content}",
+            "max_tokens": 17,  # ~70 characters
+        },
+        "generate-slug": {
+            "prompt": f"No pretext or explanations. Write a concise website slug based off this blog post title: {request.POST.get('gpt_input', '')}",
+            "max_tokens": 17,  # ~70 characters
+        },
+        "generate-metadesc": {
+            "prompt": f"No pretext or explanations. Write a concise website metadesc for the following blog post: {blog_post.content}",
+            "max_tokens": 40,  # ~160 characters
+        },
+    }
 
     def get_safe_completion(prompt, max_tokens):
         completion = (
             openai.Completion.create(
                 model="text-davinci-003",
                 prompt=prompt,
-                max_tokens=max_tokens,  # 1 token is approximately 4 English characters.
+                max_tokens=max_tokens,
                 temperature=0.5,
             )["choices"][0]["text"]
             .replace("\n", "")
             .replace('"', "")
         )
+        return html.escape(completion)
+
+    def generate_input_field(prompt, max_tokens):
+        completion = get_safe_completion(prompt, max_tokens)
         safe_completion = html.escape(completion)
-        return safe_completion
+        return f"<input autofocus='' class='form-control' id='id_gpt_input' maxlength='250' name='gpt_input' required_type='text' value='{safe_completion}'>"
 
-    openai.api_key = os.environ.get("OPENAI_API_KEY")
-    if request.method == "POST":
-        blog_post = get_object_or_404(Post, id=post_id)
+    trigger = request.htmx.trigger
+    if trigger not in prompt_dict:
+        return HttpResponseBadRequest("Invalid trigger")
 
-        if request.htmx.trigger == "generate-title":
-            prompt = f"No pretext or explanations. Write a concise website title for the following blog post: {blog_post.content}"
-            completion = get_safe_completion(prompt, max_tokens=17)  # ~70 characters
-            new_content = f"<input autofocus='' class='form-control' id='id_gpt_input' maxlength='250' name='gpt_input' required_type='text' value='{completion}'>"
-            return HttpResponse(new_content)
-
-        if request.htmx.trigger == "generate-slug":
-            prompt = f"No pretext or explanations. Write a concise website slug based off this blog post title: {request.POST['gpt_input']}"
-            completion = slugify(
-                get_safe_completion(prompt, max_tokens=17)
-            )  # ~70 characters
-            new_content = f"<input autofocus='' class='form-control' id='id_gpt_input' maxlength='250' name='gpt_input' required_type='text' value='{completion}'>"
-            return HttpResponse(new_content)
-
-        if request.htmx.trigger == "generate-metadesc":
-            prompt = f"No pretext or explanations. Write a concise website metadesc for the following blog post: {blog_post.content}"
-            completion = get_safe_completion(prompt, max_tokens=40)  # ~160 characters.
-            new_content = f"<input autofocus='' class='form-control' id='id_gpt_input' maxlength='250' name='gpt_input' required_type='text' value='{completion}'>"
-            return HttpResponse(new_content)
+    prompt = prompt_dict[trigger]["prompt"]
+    max_tokens = prompt_dict[trigger]["max_tokens"]
+    new_content = generate_input_field(prompt, max_tokens)
+    return HttpResponse(new_content)
 
 
 class PostUpdateView(UserPassesTestMixin, UpdateView):
