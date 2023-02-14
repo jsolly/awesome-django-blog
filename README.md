@@ -84,7 +84,7 @@ $ pytest django_project
 $ ruff --config ./config/pyproject.toml django_project
 ```
 
-### Run Black
+### Format Code
 
 ```shell
 $ black --config ./config.pyproject.toml django_project
