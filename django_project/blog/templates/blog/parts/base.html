@@ -30,7 +30,42 @@
 
   <!-- HTMX -->
   {% sri_static 'js/htmx.min.js' %}
+
+  <!-- ChatBox JS -->
+  {% sri_static 'js/chatbox.js' %}
+
+  <!-- My JS -->
+  {% sri_static 'js/utils.js' %}
 </head>
+
+<div class="container">
+  <div class="chatbox">
+      <div class="chatbox__support">
+          <div class="chatbox__header">
+              <div class="chatbox__image--header">
+                  <img src="{% static 'svg/man-avatar.svg' %}" alt="image">
+              </div>
+              <div class="chatbox__content--header">
+                  <h4 class="chatbox__heading--header">Ask a Question</h4>
+                  <p class="chatbox__description--header">Hi, I'm Ezra! How can I help you?</p>
+              </div>
+          </div>
+          <div class="chatbox__messages">
+              <div></div>
+          </div>
+          <div class="chatbox__footer">
+              <input name="question-input" id="question-input" type="text" placeholder="Write a message...">
+              <form>
+                {% csrf_token %}
+              <button class="chatbox__send--footer send__button" hx-post="/answer-with-gpt/" hx-include="#question-input" hx-target=".chatbox__messages" hx-swap="afterbegin">Send</button>
+              </form>
+          </div>
+      </div>
+      <div class="chatbox__button">
+          <button><img src="{% static 'svg/chatbox-icon.svg' %}" /></button>
+      </div>
+  </div>
+</div>
 
 <body>
   <a href="{% url 'all-posts' %}" class="hidden-link">All Posts (Paginated)</a>

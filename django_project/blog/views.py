@@ -200,6 +200,14 @@ def generate_gpt_input_value(request, post_id):
     return HttpResponse(new_content)
 
 
+def answer_question_with_GPT(request):
+    question = f"<div class='messages__item messages__item--operator'>{request.POST.get('question-input', '')}</div>"
+    response = "<div class='messages__item messages__item--visitor'>Hello World!</div>"
+    combined = response + question
+
+    return HttpResponse(combined)
+
+
 class PostUpdateView(UserPassesTestMixin, UpdateView):
     model = Post
     form_class = PostForm
