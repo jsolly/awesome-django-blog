@@ -27,6 +27,7 @@ CSP_SCRIPT_SRC = (
     "https://unpkg.com/",
     "https://cdn.jsdelivr.net",
     "https://api.mapbox.com",
+    "'unsafe-eval'",
 )
 CSP_MEDIA_SRC = "'self'"
 CSP_IMG_SRC = (

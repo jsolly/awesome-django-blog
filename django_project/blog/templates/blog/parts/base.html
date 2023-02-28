@@ -54,11 +54,11 @@
               <div></div>
           </div>
           <div class="chatbox__footer">
-              <input name="question-input" id="question-input" type="text" placeholder="Write a message...">
-              <form>
+              <form id="chatbox-submit">
                 {% csrf_token %}
-              <button class="chatbox__send--footer send__button" hx-post="/answer-with-gpt/" hx-include="#question-input" hx-target=".chatbox__messages" hx-swap="afterbegin">Send</button>
-              </form>
+                <input name="question-input" id="question-input" type="text" placeholder="Write a message...">
+                <button class="chatbox__send--footer send__button ml-4" hx-post="/answer-with-gpt/" hx-include="#question-input" hx-target=".chatbox__messages" hx-swap="afterbegin">Send</button>
+            </form>
           </div>
       </div>
       <div class="chatbox__button">
