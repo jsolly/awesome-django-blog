@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
       };
 
       this.state = false;
-      this.messages = [];
     }
 
     display() {
@@ -43,20 +42,15 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      let msg1 = { name: "User", message: text1 };
-      this.messages.push(msg1);
-      this.updateChatText(chatbox);
+      this.updateChatText(chatbox, text1);
     }
 
-    updateChatText(chatbox) {
+    updateChatText(chatbox, text) {
       const chatmessage = chatbox.querySelector('.chatbox__messages');
-  
-      this.messages.slice().reverse().forEach(function (item) {
         const message = document.createElement('div');
         message.className = 'messages__item messages__item--operator';
-        message.textContent = item.message;
-        chatmessage.appendChild(message);
-      });
+        message.textContent = text;
+        chatmessage.prepend(message);
     }
   }
   
