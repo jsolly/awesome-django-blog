@@ -18,6 +18,7 @@ filetype
 gunicorn
 ipinfo
 openai
+pandas
 Pillow
 pre-commit
 psycopg2-binary
