@@ -19,7 +19,11 @@ posts = []
 
 # Get all the JSON files in the exported_posts directory
 posts_path = os.path.join(BASE_DIR, "utilities/create_embeddings/exported_posts")
-filepaths = [os.path.join(posts_path, filename) for filename in os.listdir(posts_path)]
+filepaths = [
+    os.path.join(posts_path, filename)
+    for filename in os.listdir(posts_path)
+    if filename.endswith(".json")
+]
 
 # Loop through the list of file paths and read the JSON data
 for filepath in filepaths:

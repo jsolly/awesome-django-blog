@@ -8,15 +8,15 @@ from django.core.wsgi import get_wsgi_application
 # This is the blogthedata directory if you cloned the repo
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 
-# Set the DJANGO_SETTINGS_MODULE environment variable
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings.dev")
+# Add the parent directory of the Django project to the system path
+django_project_path = os.path.join(BASE_DIR, "django_project")
+sys.path.append(django_project_path)
+
+os.environ["DJANGO_SETTINGS_MODULE"] = "django_project.settings.dev"
 
 # Initialize the Django application
 application = get_wsgi_application()
 
-# Add the parent directory of the Django project to the system path
-django_project_path = os.path.join(BASE_DIR, "django_project")
-sys.path.append(django_project_path)
 
 # Connect to the database
 conn = psycopg2.connect(
@@ -36,7 +36,7 @@ with conn.cursor(cursor_factory=extras.DictCursor) as cur:
 
 # Export each post as a separate JSON file
 export_dir = os.path.join(BASE_DIR, "utilities/create_embeddings/exported_posts")
-os.makedirs(export_dir, exist_ok=True)
+
 for post in posts:
     post_dict = {
         "title": post["title"],
