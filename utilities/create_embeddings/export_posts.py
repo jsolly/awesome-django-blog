@@ -1,8 +1,5 @@
 import os
 import sys
-import json
-import psycopg2
-from psycopg2 import extras
 from django.core.wsgi import get_wsgi_application
 
 # This is the blogthedata directory if you cloned the repo
@@ -16,6 +13,12 @@ os.environ["DJANGO_SETTINGS_MODULE"] = "django_project.settings.dev"
 
 # Initialize the Django application
 application = get_wsgi_application()
+
+import json
+import psycopg2
+from psycopg2 import extras
+from blog.models import Category
+from django.contrib.auth.models import User
 
 
 # Connect to the database
@@ -41,7 +44,7 @@ for post in posts:
     post_dict = {
         "title": post["title"],
         "slug": post["slug"],
-        "category": post["category_id"],
+        "category": Category.objects.get(id=post["category_id"]).name,
         "metadesc": post["metadesc"],
         "draft": post["draft"],
         "metaimg": post["metaimg"],
@@ -50,7 +53,7 @@ for post in posts:
         "content": post["content"],
         "snippet": post["snippet"],
         "date_posted": str(post["date_posted"]),
-        "author": post["author_id"],
+        "author": User.objects.get(id=post["author_id"]).username,
     }
     filename = f"{post['slug']}.json"
     filepath = os.path.join(export_dir, filename)
