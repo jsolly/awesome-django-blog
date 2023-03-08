@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         message.className = 'messages__item messages__item--operator';
         message.textContent = text;
         chatmessage.prepend(message);
+        chatbox.querySelector("#question-input").value = "";
     }
   }
   

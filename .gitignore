@@ -8,7 +8,7 @@ static/
 
 ## Posts and embeddings
 exported_posts/
-processed_posts/
+processed/
 
 # Virtual Environments
 venv/

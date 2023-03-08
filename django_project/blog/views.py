@@ -1,5 +1,6 @@
 from .models import Post, Category
 from .forms import PostForm
+from .utils import answer_question
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import UserPassesTestMixin
@@ -201,8 +202,9 @@ def generate_gpt_input_value(request, post_id):
 
 
 def answer_question_with_GPT(request):
-    # question = f"<div class='messages__item messages__item--operator'>{request.POST.get('question-input', '')}</div>"
-    response = "<div class='messages__item messages__item--visitor'>Hello World!</div>"
+    question = request.POST.get("question-input", "")
+    completion = answer_question(question=question)
+    response = f"<div class='messages__item messages__item--visitor'>{completion}</div>"
 
     return HttpResponse(response)
 

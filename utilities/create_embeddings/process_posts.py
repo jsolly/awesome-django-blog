@@ -3,12 +3,12 @@ import os
 import json
 
 
-def remove_newlines(series):
-    series = series.str.replace("\n", " ")
-    series = series.str.replace("\\n", " ")
-    series = series.str.replace("  ", " ")
-    series = series.str.replace("  ", " ")
-    return series
+def remove_newlines(text):
+    text = text.replace("\n", " ")
+    text = text.replace("\\n", " ")
+    text = text.replace("  ", " ")
+    text = text.replace("  ", " ")
+    return text
 
 
 # This is the blogthedata directory if you cloned the repo
@@ -32,31 +32,31 @@ for filepath in filepaths:
 
         # Append the post fields to the list of posts
         posts.append(
-            (
-                data["title"],
-                data["category"],
-                data["date_posted"],
-                data["author"],
-                data["content"],
-            )
+            {
+                "title": data["title"],
+                "category": data["category"],
+                "date_posted": data["date_posted"],
+                "author": data["author"],
+                "content": data["content"],
+            }
         )
 
 # Create a dataframe from the list of posts
-df = pd.DataFrame(
-    posts, columns=["title", "category", "date_posted", "author", "content"]
-)
+df = pd.DataFrame(posts)
 
 """
 Set the content column to be the raw text with the newlines removed.
 We add the title to the content for additional context.
 """
-df["content"] = f"{df.title}. {remove_newlines(df.content)}"
-
-# Save the dataframe to a CSV file in the processed_posts directory
-csv_path = os.path.join(
-    BASE_DIR, "utilities/create_embeddings/processed_posts", "processed_posts.csv"
+df["content"] = df.apply(
+    lambda row: f"{row.title}. {remove_newlines(row.content)}", axis=1
 )
-df.to_csv(csv_path, index=False)
+
+# Save the dataframe to a JSON file in the processed directory
+json_path = os.path.join(
+    BASE_DIR, "utilities/create_embeddings/processed", "processed_posts.json"
+)
+df.to_json(json_path, orient="records")
 
 # Print the first few rows of the dataframe
 print(df.head())
