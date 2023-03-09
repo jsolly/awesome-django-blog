@@ -16,9 +16,14 @@ document.addEventListener("DOMContentLoaded", function () {
       openButton.addEventListener("click", () => this.toggleState(chatBox));
       sendButton.addEventListener("click", () => this.onSendButton(chatBox));
 
-      const node = chatBox.querySelector("input");
-      node.addEventListener("keyup", ({ key }) => {
-        if (key === "Enter") {
+      const node = chatBox.querySelector("textarea");
+      node.addEventListener("input", () => {
+        node.style.height = "auto";
+        node.style.height = `${node.scrollHeight}px`;
+      });
+
+      node.addEventListener("keyup", ({ key, shiftKey }) => {
+        if (key === "Enter" && !shiftKey) {
           this.onSendButton(chatBox);
         }
       });
@@ -36,9 +41,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     onSendButton(chatbox) {
-      var textField = chatbox.querySelector("#question-input");
-      let text1 = textField.value;
-      if (text1 === "") {
+      var textField = chatbox.querySelector("#question-text-area");
+      let text1 = textField.value.trim();
+      if (text1 === "" || text1 === "\n") {
         return;
       }
 
@@ -46,15 +51,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     updateChatText(chatbox, text) {
-      const chatmessage = chatbox.querySelector('.chatbox__messages');
-        const message = document.createElement('div');
-        message.className = 'messages__item messages__item--operator';
-        message.textContent = text;
-        chatmessage.prepend(message);
-        chatbox.querySelector("#question-input").value = "";
+      const chatmessage = chatbox.querySelector(".chatbox__messages");
+      const message = document.createElement("div");
+      message.className = "messages__item messages__item--operator";
+      message.textContent = text;
+      chatmessage.prepend(message);
+      chatbox.querySelector("#question-text-area").value = "";
     }
   }
-  
+
   const chatbox = new Chatbox();
   chatbox.display();
 });

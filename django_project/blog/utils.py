@@ -1,12 +1,20 @@
 from openai import Embedding, Completion
 from openai.embeddings_utils import distances_from_embeddings
 import pickle
+import os
 
-# Load the dataframe from a pickle file
-with open("django_project/blog/df.pkl", "rb") as f:
-    df = pickle.load(f)
 
-global_df = df
+def load_pickle_file():
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    file_path = os.path.join(base_dir, "blog", "df.pkl")
+
+    with open(file_path, "rb") as f:
+        df = pickle.load(f)
+
+    return df
+
+
+global_df = load_pickle_file()
 
 
 def create_context(question, df, max_len=1800, size="ada"):

@@ -202,7 +202,7 @@ def generate_gpt_input_value(request, post_id):
 
 
 def answer_question_with_GPT(request):
-    question = request.POST.get("question-input", "")
+    question = request.POST.get("question-text-area", "")
     completion = answer_question(question=question)
     response = f"<div class='messages__item messages__item--visitor'>{completion}</div>"
 

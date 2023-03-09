@@ -634,7 +634,7 @@ a[href^="http"]::after {
   margin-top: 20px;
 }
 
-.chatbox__footer input {
+.chatbox__footer textarea {
   width: 80%;
   border: none;
   padding: 10px 10px;
@@ -664,6 +664,6 @@ a[href^="http"]::after {
   display: inline-flex;
 }
 
-#question-input {
+#question-text-area {
   margin-right: 10px;
 }
