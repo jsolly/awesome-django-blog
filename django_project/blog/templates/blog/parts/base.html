@@ -34,6 +34,9 @@
   <!-- ChatBox JS -->
   {% sri_static 'js/chatbox.js' %}
 
+  <!-- My JS -->
+  {% sri_static 'js/utils.js' %}
+
 </head>
 
 <div class="container">
@@ -48,10 +51,7 @@
           <p class="chatbox__description--header">Hi, I'm Ezra! How can I help you?</p>
         </div>
       </div>
-      <div class="chatbox__messages">
-        <div>
-        </div>
-      </div>
+      <div class="chatbox__messages"></div>
       <div class="chatbox__footer">
         <form id="chatbox-submit">
           {% csrf_token %}

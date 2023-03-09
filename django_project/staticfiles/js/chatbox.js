@@ -51,11 +51,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     updateChatText(chatbox, text) {
-      const chatmessage = chatbox.querySelector(".chatbox__messages");
+      const chatmessages = chatbox.querySelector(".chatbox__messages");
       const message = document.createElement("div");
       message.className = "messages__item messages__item--operator";
       message.textContent = text;
-      chatmessage.prepend(message);
+      chatmessages.prepend(message);
       chatbox.querySelector("#question-text-area").value = "";
     }
   }
