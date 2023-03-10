@@ -475,3 +475,15 @@ class TestViews(SetUp):
         )
         self.assertEqual(response.status_code, 200)
         self.assertIn("mocked response", response.content.decode())
+
+    @patch("openai.Completion.create")
+    def test_answer_with_GPT(self, mock_create):
+        mock_create.return_value = {"choices": [{"text": "mocked response"}]}
+        headers = {"HTTP_HX-Trigger": "answer-question"}
+        response = self.client.post(
+            "/answer-with-gpt/",
+            data={"question": "What is the meaning of life?"},
+            **headers,
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("mocked response", response.content.decode())
