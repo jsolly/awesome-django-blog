@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
     updateChatText(chatbox, text) {
       const chatmessages = chatbox.querySelector(".chatbox__messages");
       const message = document.createElement("div");
-      message.className = "messages__item messages__item--operator";
+      message.className = "messages__item messages__item--user";
       message.textContent = text;
       chatmessages.prepend(message);
       chatbox.querySelector("#question-text-area").value = "";
