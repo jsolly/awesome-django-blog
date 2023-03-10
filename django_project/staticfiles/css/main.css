@@ -483,11 +483,11 @@ a[href^="http"]::after {
 .chatbox {
   position: fixed;
   bottom: 30px;
-  left: 30px;
+  left: 20px;
   z-index: 123456;
 }
 
-/* CONTENT IS CLOSE */
+/* CONTENT IS CLOSED */
 .chatbox__support {
   display: flex;
   flex-direction: column;
@@ -499,7 +499,7 @@ a[href^="http"]::after {
   transition: all .5s ease-in-out;
 }
 
-/* CONTENT ISOPEN */
+/* CONTENT IS OPEN */
 .chatbox--active {
   transform: translateY(-40px);
   z-index: 123456;
@@ -507,25 +507,11 @@ a[href^="http"]::after {
 
 }
 
-/* BUTTON */
-.chatbox__button {
-  text-align: right;
-}
-
 .send__button {
   padding: 6px;
   background: transparent;
   border: none;
   outline: none;
-  cursor: pointer;
-}
-
-
-/* HEADER */
-.chatbox__header {
-  position: sticky;
-  top: 0;
-  background: orange;
 }
 
 /* MESSAGES */
@@ -536,24 +522,12 @@ a[href^="http"]::after {
   flex-direction: column-reverse;
 }
 
-.messages__item {
-  background: orange;
-  max-width: 60.6%;
-  width: fit-content;
-}
-
-.messages__item--operator {
+.messages__item--user {
   margin-left: auto;
 }
 
-.messages__item--visitor {
+.messages__item--bot {
   margin-right: auto;
-}
-
-/* FOOTER */
-.chatbox__footer {
-  position: sticky;
-  bottom: 0;
 }
 
 .chatbox__support {
@@ -604,15 +578,14 @@ a[href^="http"]::after {
   max-width: 70%;
 }
 
-.messages__item--visitor,
-.messages__item--typing {
+.messages__item--bot {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   color: var(--colorSecondary)
 }
 
-.messages__item--operator {
+.messages__item--user{
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
