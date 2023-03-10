@@ -602,8 +602,6 @@ a[href^="http"]::after {
   padding: 20px 20px;
   background: var(--secondaryGradient);
   box-shadow: var(--secondaryBoxShadow);
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
   margin-top: 20px;
 }
 
