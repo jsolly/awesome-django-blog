@@ -371,6 +371,7 @@ a[href^="http"]::after {
 textarea {
   background-color: var(--colorPrimary);
   color: var(--colorSecondary);
+  resize: none;
 }
 
 textarea::placeholder {
