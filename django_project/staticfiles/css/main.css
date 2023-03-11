@@ -369,7 +369,7 @@ a[href^="http"]::after {
 /* MESSAGES */
 textarea {
   background-color: var(--colorPrimary);
-  color: white;
+  color: var(--colorSecondary);
 }
 
 textarea::placeholder {
