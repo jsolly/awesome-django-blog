@@ -1,5 +1,6 @@
 from .models import Post, Category
 from .forms import PostForm
+from .utils import answer_question
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import UserPassesTestMixin
@@ -198,6 +199,14 @@ def generate_gpt_input_value(request, post_id):
     max_tokens = prompt_dict[trigger]["max_tokens"]
     new_content = generate_input_field(prompt, max_tokens)
     return HttpResponse(new_content)
+
+
+def answer_question_with_GPT(request):
+    question = request.POST.get("question-text-area", "")
+    completion = answer_question(question=question)
+    response = f"<div class='messages__item messages__item--bot'>{completion}</div>"
+
+    return HttpResponse(response)
 
 
 class PostUpdateView(UserPassesTestMixin, UpdateView):

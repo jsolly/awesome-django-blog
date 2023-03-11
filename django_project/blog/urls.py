@@ -13,9 +13,11 @@ from .views import (
     AllPostsView,
     SearchView,
     generate_gpt_input_value,
+    answer_question_with_GPT,
 )
 
 urlpatterns = [
+    path("answer-with-gpt/", answer_question_with_GPT, name="answer-with-gpt"),
     path(
         "generate-with-gpt/<int:post_id>/",
         generate_gpt_input_value,

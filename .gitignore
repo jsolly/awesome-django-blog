@@ -1,45 +1,35 @@
-# Django stuff:
+# Blog Assets
 profile_pics/
 post_metaimgs/
 profile_pics/
 uploads/
 django_project/media/django_ckeditor_5/
-datadump.json
+static/
+
+## Posts and embeddings
+exported_posts/
+processed/
 
 # Virtual Environments
 venv/
 
-# Environ Varibles File
+# Environ Variables File
 .env
 
 # Coverage files
 .coverage
 
-# Byte-compiled / optimized / DLL files
+# Python Temp Files
 __pycache__/
 
 # MAC OSX
 .DS_Store
-.AppleDouble
-.LSOverride
-
-# Misc
-temp*.py
-temp*.html
-temp*.yaml
-temp*.js
-
-# Logs
-logs/
-# migrations
-migration_backup
 
 # backups
 blogthedata*.sql
 linode*.img
+migration_backup
 
-# Static Files
-static/
-
-# VS Code
+# Other
+logs/
 .vscode/

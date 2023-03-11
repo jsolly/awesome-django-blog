@@ -30,7 +30,16 @@
 
   <!-- HTMX -->
   {% sri_static 'js/htmx.min.js' %}
+
+  <!-- ChatBox JS -->
+  {% sri_static 'js/chatbox.js' %}
+
+  <!-- My JS -->
+  <!-- {% sri_static 'js/utils.js' %} -->
+
 </head>
+
+{% include "blog/parts/chatbox.html" %}
 
 <body>
   <a href="{% url 'all-posts' %}" class="hidden-link">All Posts (Paginated)</a>

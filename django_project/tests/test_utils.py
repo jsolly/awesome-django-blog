@@ -1,9 +1,10 @@
 from .base import SetUp
 from django.utils.deprecation import MiddlewareMixin
 from django.http import HttpRequest
-from siteanalytics.utils import get_client_ip
+from siteanalytics.utils import get_client_ip, add_visitor_if_not_exist
+from blog.utils import create_context, answer_question, load_pickle_file
+import pandas as pd
 from unittest import mock
-from siteanalytics.utils import add_visitor_if_not_exist
 from siteanalytics.models import Visitor
 from requests.exceptions import HTTPError
 
@@ -12,6 +13,28 @@ class TestUtils(SetUp, MiddlewareMixin):
     # def test_load_data(self):
     #     load_data("django_project/siteanalytics/data/ip_info_test.csv")
     #     self.assertEqual(Visitor.objects.count(), 3)
+
+    def test_load_pickle_file(self):
+        df = load_pickle_file()
+        self.assertIsInstance(df, pd.DataFrame)
+
+    def test_create_context(self):
+        df = load_pickle_file()
+        context = create_context(
+            "What is the capital of the United States of America?", df
+        )
+        self.assertIsInstance(context, str)
+
+    @mock.patch("blog.utils.load_pickle_file")
+    def test_answer_question(self, mock_load_pickle_file):
+        mock_load_pickle_file.return_value = pd.DataFrame(
+            {"text": ["The capital of the United States is Washington, D.C."]}
+        )
+
+        answer = answer_question(
+            question="What is the capital of the United States of America?"
+        )
+        self.assertEqual(answer, "Washington, D.C.")
 
     def test_get_client_ip_CF(self):
         request = HttpRequest()
