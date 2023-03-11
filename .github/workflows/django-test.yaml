@@ -23,7 +23,7 @@ jobs:
       LOGGING: ${{secrets.LOGGING}}
       IP_INFO_TOKEN: ${{secrets.IP_INFO_TOKEN}}
       MAPBOX_TOKEN: ${{secrets.MAPBOX_TOKEN}}
-      OPEN_API_KEY: ${{secrets.OPEN_API_KEY}}
+      OPENAI_API_KEY: ${{secrets.OPENAI_API_KEY}}
     steps:
       - uses: actions/checkout@v3
 
