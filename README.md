@@ -138,6 +138,7 @@ $ pre-commit install
 - Site-wide 'breadcumbs' so your users can know exactly where they are and navigate with ease.
 - Custom Character counter using HTMX so you know how long your titles, slugs, and metadesc fields are as you edit them in the UI!
 - Each page is optimized for viewing (and printing) so break out those 8 1/2 by 11s and print out some content!
+- GPT-powered Chatbot that can answer questions about your blog and help you find content.
 
 ### Non-Functional Features
 
