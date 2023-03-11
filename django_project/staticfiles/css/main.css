@@ -373,7 +373,7 @@ textarea {
 }
 
 textarea::placeholder {
-  color: white;
+  color: var(--colorSecondary);
 }
 
 .chatbox__messages {
