@@ -68,8 +68,8 @@ $ python3 manage.py runserver
 ### Run Test Coverage
 
 ```shell
-$ coverage run -m pytest django_project
-$ coverage report -m --skip-covered --rcfile=config/.coveragerc
+$ coverage run --data-file=coverage/.coverage -m pytest django_project
+$ coverage report --data-file=coverage/.coverage -m --rcfile=config/.coveragerc
 ```
 
 ### Run Tests
