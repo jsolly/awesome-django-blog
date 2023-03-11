@@ -341,23 +341,18 @@ a[href^="http"]::after {
 
 /* CONTENT IS CLOSED */
 .chatbox__support {
-  visibility: hidden;
+  display: none;
   flex-direction: column;
   background: #eee;
   width: 300px;
   height: 350px;
-  z-index: -123456;
-  opacity: 0;
-  transition: opacity .5s ease-in-out, visibility .5s ease-in-out;
 }
 
 /* CONTENT IS OPEN */
 .chatbox--active {
-  visibility: visible;
   display: flex;
   transform: translateY(-40px);
   z-index: 123456;
-  opacity: 1;
 }
 
 .send__button {
