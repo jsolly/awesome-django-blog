@@ -71,9 +71,9 @@ def answer_question(
         size=size,
     )
     # If debug, print the raw model response
-    if debug:
-        print("Context:\n" + context)
-        print("\n\n")
+    # if debug:
+    #     print("Context:\n" + context)
+    #     print("\n\n")
 
     try:
         # Create a completions using the question and context
