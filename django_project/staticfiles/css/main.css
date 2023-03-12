@@ -285,7 +285,7 @@ a.hidden-link {
 }
 
 #scroll-to-top {
-  color: var(--colorSecondary);
+  color: #990000;
   position: fixed;
   bottom: 20px;
   right: 20px;
