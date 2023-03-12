@@ -40,6 +40,11 @@
 {% endblock meta %}
 
 {% block content %}
+<div id="print-container" class="mb-3">
+  <a id="print" href="javascript:window.print()">
+    <img src="{% static 'svg/print-icon.svg' %}" width="32" height="32" alt="Print this blog post">
+    Print this post</a>
+</div>
 <article class="media content-section">
   <div class="col-md-4 d-flex align-items-center meta-img-container">
     <img id="post-detail-meta-img" width="{{ post.metaimg.width }}" height="{{ post.metaimg.height }}"

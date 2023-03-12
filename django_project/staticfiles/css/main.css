@@ -620,6 +620,12 @@ textarea::placeholder {
   #scroll-to-top-container {
     display: none !important;
   }
+  #print-container {
+    display: none !important;
+  }
+  #chatbox-container {
+    display: none !important;
+  }
   .btn {
     display: none !important;
   }
