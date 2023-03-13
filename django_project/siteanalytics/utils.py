@@ -54,6 +54,9 @@ def get_client_ip(request):
 
 def add_visitor_if_not_exist(request):
     ip_addr = get_client_ip(request)
+    if not ip_addr:
+        logger.info("Couldn't find IP address")
+        return
     if ip_addr in ("127.0.0.1"):
         return
     try:
