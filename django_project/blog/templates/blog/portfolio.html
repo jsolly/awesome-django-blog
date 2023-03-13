@@ -21,7 +21,6 @@
 <p id="portfolioHello" class="text-center mb-5">
   Hello World,<br>I'm John!
 </p>
-</section>
 <article class="accordion mb-5" id="accordion-wrapper">
   <h2 class="display-6">My Bio</h2>
   <div class="accordion-item">
@@ -77,25 +76,35 @@
 
 {% include "blog/parts/posts.html" %}
 
-<!-- Carousel wrapper -->
-<div id="carouselExampleControls" class="carousel slide text-center carousel-dark mb-5 mt-5" data-mdb-ride="carousel">
+<!-- Testimonial Carousel -->
+<div role="region" aria-roledescription="carousel" aria-label="Testimonials" id="carouselExampleControls" class="carousel slide text-center carousel-dark mb-5 mt-5" data-mdb-ride="carousel">
   <h2 class="display-5 text-center mt-5" id="carouselExampleCaptions">Testimonials</h2>
   <div class="carousel-inner">
     {% for item in carousel_items %}
-    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+    <div role="group" aria-roledescription="slide" class="carousel-item {% if forloop.first %}active{% endif %}">
       {% include 'blog/parts/carousel_item.html'%}
     </div>
     {% endfor %}
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+  <div role="group" aria-label="Slide controls">
+  <button aria-label="Previous slide" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+  <button aria-label="Next slide" class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
+  </div>
+  <!-- Indicators -->
+  <br>
+  <ol class="carousel-indicators">
+    {% for item in carousel_items %}
+    <li data-bs-target="#carouselExampleControls" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" {% endif %}></li>
+    {% endfor %}
+  </ol> 
 </div>
+
 
 
 
@@ -116,7 +125,7 @@
 <hr>
 <br>
 
-<div id="PageSpeed-Insights" class="container  mb-4 fs-6">
+<section id="PageSpeed-Insights" class="container  mb-4 fs-6">
   <div class="row justify-content-center">
     <div class="col-lg-8">
       <figure>
@@ -129,5 +138,5 @@
       </figure>
     </div>
   </div>
-</div>
+</section>
 {% endblock content %}

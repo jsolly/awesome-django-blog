@@ -260,6 +260,10 @@ button a:hover {
   border-radius: 0.25rem;
 }
 
+.carousel-dark .carousel-indicators [data-bs-target] {
+  background-color: var(--colorSecondary);
+}
+
 /* =============
    Misc Styles
 ============= */
