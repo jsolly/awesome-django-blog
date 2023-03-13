@@ -81,104 +81,11 @@
 <div id="carouselExampleControls" class="carousel slide text-center carousel-dark mb-5 mt-5" data-mdb-ride="carousel">
   <h2 class="display-5 text-center mt-5" id="carouselExampleCaptions">Testimonials</h2>
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="rounded-circle shadow-1-strong mb-4" src="{% static 'portfolio/AmyBrazil.webp' %}" alt="avatar"
-        style="width: 150px" />
-      <div class="row d-flex justify-content-center">
-        <div class="col-lg-8">
-          <div class="fs-6">
-            <h3 class="mb-2 fw-lighter">Amy Brazil</h3>
-            <p class="fw-bolder mb-0 fs-5">Direct Manager, Customer Success</p>
-            <p class="lh-1 mb-4">YellowfinBI - 2022</p>
-          </div>
-          <p class="testimonial-quote mb-2">
-            I had the pleasure to hire, onboard and manage John. I have nothing
-            but great things to say about him as both a professional employee
-            and direct report. He is so passionate about learning, collaborating
-            with other team members to make a better work environment and goes
-            above and beyond for our customers.
-          </p>
-          <p class="fw-semibold">
-            <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/jsolly/">Open review on
-              LinkedIn</a>
-          </p>
-        </div>
-      </div>
+    {% for item in carousel_items %}
+    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+      {% include 'blog/parts/carousel_item.html'%}
     </div>
-    <div class="carousel-item">
-      <img class="rounded-circle shadow-1-strong mb-4" src="{% static 'portfolio/CraigUtley.webp' %}" alt="avatar"
-        style="width: 150px" />
-      <div class="row d-flex justify-content-center">
-        <div class="col-lg-8">
-          <div class="fs-6">
-            <h3 class="mb-2 fw-lighter">Craig Utley</h3>
-            <p class="fw-bolder mb-0 fs-5">Direct Manager, Consulting</p>
-            <p class="lh-1">YellowfinBI - 2022</p>
-          </div>
-          <p class="testimonial-quote mb-2">
-            There is a right way to come into an organization and John did it
-            the right way. He jumped into the product and got up to speed
-            quickly. He reached out to many throughout the organization to learn
-            and grow. He delivered for customers, documented his findings to
-            benefit others, and earned the respect of his peers, both technical
-            and customer-facing.
-          </p>
-          <p class="fw-semibold">
-            <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/jsolly/">Open review on
-              LinkedIn</a>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img class="rounded-circle shadow-1-strong mb-4" src="{% static 'portfolio/MeredithBean.webp' %}" alt="avatar"
-        style="width: 150px" />
-      <div class="row d-flex justify-content-center">
-        <div class="col-lg-8">
-          <div class="fs-6">
-            <h3 class="mb-2 fw-lighter">Meredith Bean</h3>
-            <p class="fw-bolder mb-0 fs-5">Undergraduate Student</p>
-            <p class="lh-1">George Mason University - 2016</p>
-          </div>
-          <p class="testimonial-quote mb-2">
-            John was an extraordinary TA to me as a student in an introductory
-            GIS class. His enthusiasm for Geography and all things related is
-            palpable and contagious. He was always knowledgeable and excited to
-            help tackle difficult concepts, projects, or errors...He was, by
-            far, the best TA I have ever had.
-          </p>
-          <p class="fw-semibold">
-            <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/jsolly/">Open review on
-              LinkedIn</a>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img class="rounded-circle shadow-1-strong mb-4" src="{% static 'portfolio/KathrynThorpe.webp' %}" alt="avatar"
-        style="width: 150px" />
-      <div class="row d-flex justify-content-center">
-        <div class="col-lg-8">
-          <div class="fs-6">
-            <h3 class="mb-2 fw-lighter">Kathryn Thorpe</h3>
-            <p class="fw-bolder mb-0 fs-5">Coworker, Customer Success</p>
-            <p class="lh-1">YellowfinBI - 2022</p>
-          </div>
-          <p class="testimonial-quote mb-2">
-            Not only is John the kind of guy you'd trust with all things IT
-            based on his technical prowess, but he's genuinely a good person to
-            his core, leaving you trusting him on a multitude of levels. John is
-            amazingly bright, levelheaded, and goal-oriented, which translated
-            into him consistently delivering results internally and directly to
-            our customers.
-          </p>
-          <p class="fw-semibold">
-            <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/jsolly/">Open review on
-              LinkedIn</a>
-          </p>
-        </div>
-      </div>
-    </div>
+    {% endfor %}
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -189,6 +96,9 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+
+
+
 <hr>
 <br>
 <section id="Contact-Me" class="col-lg-6 mx-auto text-center mb-5">
