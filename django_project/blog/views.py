@@ -17,8 +17,10 @@ from django.http import HttpResponse
 import html
 import os
 import openai
+import logging
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
+ez_logger = logging.getLogger("ezra_logger")
 
 
 class AllPostsView(ListView):
@@ -242,6 +244,7 @@ def generate_gpt_input_value(request, post_id):
 
 def answer_question_with_GPT(request):
     question = request.POST.get("question-text-area", "")
+    ez_logger.info(f"Question: {question}")
     completion = answer_question(question=question)
     response = f"<div class='messages__item messages__item--bot'>{completion}</div>"
 

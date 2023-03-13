@@ -166,6 +166,15 @@ HANDLERS = {
         "backupCount": 5,
         "maxBytes": 1024 * 1024 * 5,  # 5 MB
     },
+    "ezra_handler": {
+        "class": "logging.handlers.RotatingFileHandler",
+        "filename": f"{BASE_DIR}/logs/ezra.log",
+        "mode": "a",
+        "formatter": "simple",
+        "level": "INFO",
+        "backupCount": 5,
+        "maxBytes": 1024 * 1024 * 5,  # 5 MB
+    },
 }
 
 LOGGERS = (
@@ -188,6 +197,11 @@ LOGGERS = (
             "handlers": ["error_handler"],
             "level": "INFO",
             "propagate": True,
+        },
+        "ezra_logger": {
+            "handlers": ["ezra_handler"],
+            "level": "INFO",
+            "propagate": False,
         },
     },
 )
