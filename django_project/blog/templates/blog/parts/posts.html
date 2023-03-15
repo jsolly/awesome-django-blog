@@ -1,52 +1,15 @@
-{% load static %} {% load post_utils %}
 {% for post in posts %}
-{% if forloop.last %}
-{% if not page_obj.number|divisibleby:"3" and page_obj.has_next %} <div
-  hx-get="{{ url }}?page={{ page_obj.number|add:1 }}" hx-trigger="revealed" hx-swap="afterend" hx-target="this"
-  rel="next">
-  {% else %}
-  {% if page_obj.has_next %}
-  <div class="text-center mb-5">
-    <button class="btn-primary btn" id="see-more-btn" hx-get="{{ url }}?page={{ page_obj.number|add:1 }}"
-      hx-trigger="click" hx-swap="outerHTML" hx-target="this" rel="next">Load More Posts</button>
-  </div>
-  {% endif %}
-  {% endif %}
-  {% endif %}
-  {% if not page_obj.number|divisibleby:"3" %}
-  <article>
-    <a href="{% url 'post-detail' post.slug %}#top" aria-label='{{ post.title }}'>
-      <div class="card mb-5 shadow">
-        <div class="row g-0">
-          <div id="post-meta-img-container" class="col-md-4 d-flex align-items-center meta-img-container">
-            <img src="{{ post.metaimg.url }}" width="{{ post.metaimg.width }}" height="{{ post.metaimg.height }}"
-              class="card-img-top img-rounded" alt="{{ post.metaimg_alt_txt }}" />
-          </div>
-          <div class="col-md-8">
-            <div class="card-body d-flex flex-column justify-content-between">
-              <div class="d-flex align-items-center mb-3">
-                <h2 class="card-title fw-bolder ml-3">
-                  {{ post.title }}
-                  {% if post.draft %}
-                  <p id="draft">(Draft)</p>
-                  {% endif %}
-                </h2>
-              </div>
-              <p class="fs-6 mb-0">
-                {{ post.date_posted|date:"F d, Y" }} in {{ post.category|title }}
-              </p>
-              <p class="fs-6 mb-0 d-flex align-items-center">
-                <img src="{% static 'svg/clock.svg' %}" width="16" height="16" class="clock-icon" alt="Clock icon">
-                &nbsp;{{ post.content|readtime }}
-              </p>
-              <p class="card-text">
-                {{ post.snippet|safe }}
-              </p>
-            </div>
-          </div>
+  {% include "blog/parts/post_card.html" %}
+  {% if forloop.last %}
+    {% if page_obj.has_next %}
+      {% if not page_obj.number|divisibleby:"3" %}
+        <div hx-get="{{ url }}?page={{ page_obj.number|add:1 }}" hx-trigger="revealed" hx-swap="afterend" hx-target="this" rel="next"></div>
+      {% endif %}
+      {% if page_obj.number|divisibleby:"3" %}
+        <div class="text-center mb-5">
+          <button class="btn-primary btn" id="see-more-btn" hx-get="{{ url }}?page={{ page_obj.number|add:1 }}" hx-trigger="click" hx-swap="outerHTML" hx-target="this" rel="next">Load More Posts</button>
         </div>
-      </div>
-    </a>
-  </article>
+      {% endif %}
+    {% endif %}
   {% endif %}
-  {% endfor %}
+{% endfor %}
