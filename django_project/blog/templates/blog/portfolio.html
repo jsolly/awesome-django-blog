@@ -77,7 +77,8 @@
 {% include "blog/parts/posts.html" %}
 
 <!-- Testimonial Carousel -->
-<div role="region" aria-roledescription="carousel" aria-label="Testimonials" id="carouselExampleControls" class="carousel slide text-center carousel-dark mb-5 mt-5" data-mdb-ride="carousel">
+<div role="region" aria-roledescription="carousel" aria-label="Testimonials" id="carouselExampleControls"
+  class="carousel slide text-center carousel-dark mb-5 mt-5" data-mdb-ride="carousel">
   <h2 class="display-5 text-center mt-5" id="carouselExampleCaptions">Testimonials</h2>
   <div class="carousel-inner">
     {% for item in carousel_items %}
@@ -87,22 +88,25 @@
     {% endfor %}
   </div>
   <div role="group" aria-label="Slide controls">
-  <button aria-label="Previous slide" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button aria-label="Next slide" class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+    <button aria-label="Previous slide" class="carousel-control-prev" type="button"
+      data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button aria-label="Next slide" class="carousel-control-next" type="button"
+      data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
   <!-- Indicators -->
   <br>
   <ol class="carousel-indicators">
     {% for item in carousel_items %}
-    <li data-bs-target="#carouselExampleControls" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" {% endif %}></li>
+    <li data-bs-target="#carouselExampleControls" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first
+      %}class="active" {% endif %}></li>
     {% endfor %}
-  </ol> 
+  </ol>
 </div>
 <hr>
 <br>

@@ -1,18 +1,23 @@
-<!-- Category Menu Code -->
-<div class="list-group fs-5">
-  <h2 class="text-center mb-3">Navigate to a Category</h2>
-  <a href="{% url 'home' %}" id="sidebar-home"
-    class="list-group-item d-flex justify-content-between align-items-center list-group-item-action {% if request.resolver_match.url_name == 'home' %} active {% endif %}">
-    Blog Home
-  </a>
-  {% for category_item in category_qs %}
-  {% if category_item.name != 'portfolio' %}
-  <a href="{% url 'blog-category' category_item|slugify %}#top"
-    class="list-group-item d-flex justify-content-between align-items-center list-group-item-action {% if current_category == category_item|slugify %}active{% endif %}"
-    id="sidebar-{{ category_item|slugify }}">{{category_item|title}}
-    <span class="badge rounded-pill bg-dark">{{ category_item.posts_count }}
-    </span>
-  </a>
-  {% endif %}
-  {% endfor %}
-</div>
+<aside class="col-lg-3 mb-5">
+  <nav role="navigation" aria-label="Sidebar Navigation">
+    <div class="list-group fs-5">
+      <h2 class="text-center mb-3">Navigate to a Category</h2>
+      <a href="{% url 'home' %}" id="sidebar-home"
+        class="list-group-item d-flex justify-content-between align-items-center list-group-item-action {% if request.resolver_match.url_name == 'home' %} active {% endif %}">
+        Blog Home
+      </a>
+      <div role="list" aria-label="Blog categories">
+        {% for category_item in category_qs %}
+        {% if category_item.name != 'portfolio' %}
+        <a href="{% url 'blog-category' category_item|slugify %}#top"
+          class="list-group-item d-flex justify-content-between align-items-center list-group-item-action {% if current_category == category_item|slugify %}active{% endif %}"
+          id="sidebar-{{ category_item|slugify }}" role="listitem">{{category_item|title}}
+          <span class="badge rounded-pill bg-dark">{{ category_item.posts_count }}
+          </span>
+        </a>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </nav>
+</aside>

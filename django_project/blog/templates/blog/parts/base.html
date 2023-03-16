@@ -49,10 +49,7 @@
   {% include "blog/parts/header.html" %}
   <div class="container">
     <div class="row">
-      <nav role="navigation" class="col-lg-3 mb-5" aria-label="Sidebar Navigation">
-        <!--Sidebar-->
         {% include "blog/parts/sidebar.html" %}
-      </nav>
       <div id="content-area" class="col-lg-9 fs-5">
         {% if messages %} {% for message in messages %} Removed due to caching issue persisting message
         <div class="alert alert-{{ message.tags }}">{{ message }}</div>
