@@ -1,5 +1,3 @@
-## Pull Request Template
-
 ### Description
 
 Please provide a description of the changes you have made in this pull request. Explain the problem you are trying to solve and how your changes address it. If this pull request closes any open issues, please link to them in the description.
