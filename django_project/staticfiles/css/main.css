@@ -28,6 +28,13 @@ Global Styles
   --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
   --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
 }
+:is(h1, h2, h3) {
+  line-height: 1.1;
+}
+
+:is(h1, h2, h3, h4, h5, h6, strong, .list-group-item, svg, table, p, blockquote, li, .chatbox__messages) {
+  color: var(--colorSecondary);
+}
 
 .errorlist {
   color: red;
@@ -51,20 +58,6 @@ video {
 
 #content-area {
   animation: fade-in 0.8s;
-}
-
-.footer-text {
-  color: var(--colorPrimary);
-}
-
-#footer {
-  color: var(--colorPrimary);
-}
-
-footer {
-  background-color: var(--colorSecondary);
-  position: relative;
-  display: grid;
 }
 
 footer::before {
@@ -106,6 +99,17 @@ hr {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
+.ft {
+  color: var(--colorPrimary);
+}
+
+footer {
+  background-color: var(--colorSecondary);
+  position: relative;
+  display: grid;
+}
+
+
 /* =============
    Typeography
 ============= */
@@ -123,13 +127,7 @@ hr {
   white-space: nowrap;
 }
 
-:is(h1, h2, h3) {
-  line-height: 1.1;
-}
 
-:is(h1, h2, h3, h4, h5, h6, strong, .list-group-item, svg, table, p, blockquote, li, .chatbox__messages) {
-  color: var(--colorSecondary);
-}
 
 h1 {
   letter-spacing: 2px;
@@ -169,6 +167,35 @@ button a:hover {
 /* =============
    Cards
 ============= */
+.about-me-image {
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+  max-height: 800px;
+}
+
+.social-links {
+  font-size: 0.875rem;
+  color: #6c757d;
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 1rem;
+}
+
+.social-links li {
+  display: inline;
+  margin-right: 0.5rem;
+}
+
+.social-links li::after {
+  content: '|';
+  margin-left: 0.5rem;
+}
+
+.social-links li:last-child::after {
+  content: '';
+}
+
 .img-rounded {
   border-radius: 0.1rem
 }
@@ -267,6 +294,10 @@ button a:hover {
 /* =============
    Misc Styles
 ============= */
+
+#breadcrumbs {
+  color: #6c757d;
+}
 
 img {
   max-width: 100%;
@@ -577,18 +608,13 @@ textarea::placeholder {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%0d6dfd' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
   }
 
-  .footer-text,
-  small {
+  .ft {
     color: var(--colorSecondary);
   }
 
   footer,
   footer::before {
     background-color: hsl(240, 4%, 16%);
-  }
-
-  #footer {
-    color: var(--colorSecondary);
   }
 
   img {

@@ -49,7 +49,7 @@
   {% include "blog/parts/header.html" %}
   <div class="container">
     <div class="row">
-      <nav class="col-lg-3 mb-5" aria-label="Sidebar Navigation">
+      <nav role="navigation" class="col-lg-3 mb-5" aria-label="Sidebar Navigation">
         <!--Sidebar-->
         {% include "blog/parts/sidebar.html" %}
       </nav>
@@ -66,15 +66,12 @@
           {% block content %}
           {% endblock content %}
         </main>
-        <div id="scroll-to-top-container" class="float-end">
+        <nav id="scroll-to-top-container" aria-label="Scroll to top" class="float-end">
           <a id="scroll-to-top" href="#">
-            <img src="{% static 'svg/scroll-to-top.svg' %}" width="45" height="45" alt="Scroll to top of page">
-            top</a>
-        </div>
-        <!--Footer-->
-        <footer>
+             <img src="{% static 'svg/scroll-to-top.svg' %}" width="45" height="45" alt="Scroll to top of page">
+             top</a>
+       </nav>        
           {% include "blog/parts/footer.html" %}
-        </footer>
       </div>
     </div>
   </div>

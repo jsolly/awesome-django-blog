@@ -1,25 +1,21 @@
 {% load static %}
 <div id="aboutMe" class="card mb-5 shadow">
   <div class="row g-0">
-    <div class="col-md-4 d-flex align-items-center meta-img-container">
-      <img id="about-me-image" width="800" height="800" src="{% static 'jsolly.webp' %}" class="card-img-top" fetchpriority="high"
-        alt="John Solly Profile Picture" />
-    </div>
+    <figure class="col-md-4 d-flex align-items-center meta-img-container">
+      <img id="about-me-image" src="{% static 'jsolly.webp' %}" class="card-img-top about-me-image" loading="lazy"
+           alt="John Solly Profile Picture" />
+      <figcaption class="visually-hidden">John Solly Profile Picture</figcaption>
+    </figure>
     <div class="col-md-8">
       <div class="card-body">
         <h2 class="card-title">John Solly</h2>
-        <p class="small text-muted mb-1">
-          <a href="https://twitter.com/_jsolly" rel="noopener noreferrer" target="_blank">Twitter</a>
-          |
-          <a href="https://www.linkedin.com/in/jsolly/" rel="noopener noreferrer" target="_blank">Linkedin</a>
-          |
-          <a href="https://github.com/jsolly" rel="noopener noreferrer" target="_blank">Github</a>
-          |
-          <a href="https://www.youtube.com/channel/UCxsK9UorVj2F17DMSXLuSQw" rel="noopener noreferrer"
-            target="_blank">Youtube</a>
-          |
-          <a rel="me noopener noreferrer" target="_blank" href="https://mapstodon.space/@jsolly">Mastodon</a>
-        </p>
+        <ul class="social-links">
+          <li><a href="https://twitter.com/_jsolly" rel="noopener noreferrer" target="_blank">Twitter</a></li>
+          <li><a href="https://www.linkedin.com/in/jsolly/" rel="noopener noreferrer" target="_blank">Linkedin</a></li>
+          <li><a href="https://github.com/jsolly" rel="noopener noreferrer" target="_blank">Github</a></li>
+          <li><a href="https://www.youtube.com/channel/UCxsK9UorVj2F17DMSXLuSQw" rel="noopener noreferrer" target="_blank">Youtube</a></li>
+          <li><a rel="me noopener noreferrer" target="_blank" href="https://mapstodon.space/@jsolly">Mastodon</a></li>
+        </ul>
         <p class="card-text">
           Hey there! I've been in the GIS space for the past 11 years. As a geospatial software engineer, I combine GIS
           domain
