@@ -36,20 +36,6 @@ Global Styles
   color: var(--colorSecondary);
 }
 
-.errorlist {
-  color: red;
-}
-
-video {
-  max-width: 100%;
-  border-radius: 0.25rem;
-}
-
-/* =============
-   Body, Navbar, Header, Footer
-============= */
-/* Logo color is #0b3b8e */
-
 :is(html, body) {
   max-width: 100%;
   overflow-x: hidden;
@@ -58,16 +44,6 @@ video {
 
 #content-area {
   animation: fade-in 0.8s;
-}
-
-footer::before {
-  content: "";
-  background-color: var(--colorSecondary);
-  position: absolute;
-  height: 100%;
-  width: 200vw;
-  left: -100vw;
-  z-index: -1;
 }
 
 html {
@@ -79,40 +55,32 @@ body {
   line-height: 1.6;
 }
 
-hr {
-  border-color: rgb(224, 224, 224);
+/* =============
+   Header
+============= */
+/* Logo color is #0b3b8e */
+
+.navbar-brand img {
+  width: 26px;
+  height: 30px;
 }
 
-.bg-steel {
-  background-color: var(--bannerColor);
-}
-
-:is(#solly-nav-brand, .site-header .navbar-nav .nav-link) {
-  color: var(--colorPrimary);
-}
-
-#solly-nav-brand {
-  margin-right: 1rem;
+header {
+  background-color:  #BDB2FF;
 }
 
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
-.ft {
-  color: var(--colorPrimary);
-}
-
-footer {
-  background-color: var(--colorSecondary);
-  position: relative;
-  display: grid;
-}
-
-
 /* =============
    Typeography
 ============= */
+
+
+hr {
+  border-color: rgb(224, 224, 224);
+}
 
 .post-content>p:first-of-type::first-letter {
   font-size: 2rem;
@@ -126,8 +94,6 @@ footer {
 .no-white-space {
   white-space: nowrap;
 }
-
-
 
 h1 {
   letter-spacing: 2px;
@@ -294,6 +260,14 @@ button a:hover {
 /* =============
    Misc Styles
 ============= */
+
+video {
+  max-width: 100%;
+  border-radius: 0.25rem;
+}
+.errorlist {
+  color: red;
+}
 
 #breadcrumbs {
   color: #6c757d;
@@ -575,6 +549,10 @@ textarea::placeholder {
     --bannerColor: #f8f9fa;
   }
 
+  header {
+    background-color: #9370DB;
+  }
+
   hr {
     border-color: rgb(128, 128, 128);
   }
@@ -687,4 +665,27 @@ textarea::placeholder {
 .card-img-top {
   max-width: 100%;
   height: auto;
+}
+
+/* =============
+   Footer
+============= */
+.ft {
+  color: var(--colorPrimary);
+}
+
+footer {
+  background-color: var(--colorSecondary);
+  position: relative;
+  display: grid;
+}
+
+footer::before {
+  content: "";
+  background-color: var(--colorSecondary);
+  position: absolute;
+  height: 100%;
+  width: 200vw;
+  left: -100vw;
+  z-index: -1;
 }

@@ -1,28 +1,26 @@
 {% load static %}
-<header class="site-header fs-5 mb-5">
+<header class="site-header mb-3">
   <!-- Nav Bar -->
-  <nav class="navbar navbar-expand-lg bg-steel shadow" aria-label="Top navbar navigation">
+  <nav class="navbar navbar-expand-lg bg-steel shadow">
     <div class="container">
-      <a id="solly-nav-brand" href="{% url 'home' %}">
-        <img src="{% static 'logo_transparent_cropped.webp' static %}" alt="BlogtheData"
-          width="26" height="30" />
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static 'logo_transparent_cropped.webp' %}" alt="BlogtheData" />
         Solly's Blog
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+        aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item px-3">
-            <a class="nav-link active" aria-current="page" id="nav-home" href="{% url 'home' %}">Home</a>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
           </li>
-          <li class="nav-item dropdown px-3">
-            <a class="nav-link dropdown-toggle" href="#" id="header-navbarDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
+          <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Categories
             </a>
-            <ul class="dropdown-menu" id="header-nav-categories" aria-labelledby="header-navbarDropdown">
+            <ul class="dropdown-menu" aria-labelledby="header-navbarDropdown">
               {% for cat in category_qs %}
               {% if cat.name != 'portfolio' %}
               <li>
@@ -32,37 +30,36 @@
               {% endfor %}
             </ul>
           </li>
-          <li class="nav-item px-3">
-            <a class="nav-link" id="nav-portfolio" href="{% url 'portfolio' %}#top">Portfolio</a>
+          <li class="nav-item ">
+            <a class="nav-link" href="{% url 'portfolio' %}#top">Portfolio</a>
           </li>
-          <li class="nav-item px-3">
-            <a class="nav-link" id="nav-contact-me" rel="noopener noreferrer" target="_blank"
+          <li class="nav-item ">
+            <a class="nav-link" rel="noopener noreferrer" target="_blank"
               href="https://us14.list-manage.com/contact-form?u=3fb3f4adf8ab2cd1ebd6ff743&form_id=7c78cd242677faaebfc3d4a2bc0d5fda">Contact
               Me</a>
           </li>
-          <li class="nav-item px-3">
-            <a class="nav-link" id="nav-rss" href="{% url 'rss' %}">RSS Feed</a> 
+          <li class="nav-item ">
+            <a class="nav-link" href="{% url 'rss' %}">RSS Feed</a>
           </li>
           {% if user.is_authenticated %}
-          <li class="nav-item px-3">
-            <a class="nav-link" id="nav-profile" href="{% url 'profile' %}">Profile</a>
+          <li class="nav-item ">
+            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
           </li>
-          <li class="nav-item px-3">
-            <a class="nav-link" id="nav-logout" href="{% url 'logout' %}">Logout</a>
+          <li class="nav-item ">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
           </li>
           {% endif %}
           {% if user.is_staff %}
-          <li class="nav-item px-3">
-            <a class="nav-link" id="nav-new-post" href="{% url 'post-create' %}">New Post</a>
+          <li class="nav-item ">
+            <a class="nav-link" href="{% url 'post-create' %}">New Post</a>
           </li>
           {% endif %}
         </ul>
         <form class="d-flex" method="GET" action="{% url 'blog-search' %}">
           {% csrf_token %}
-
-          <input class="form-control me-2" id="search-posts-input" type="search" placeholder="Search Posts..."
-            aria-label="Search" name="searched" />
-          <button class="btn btn-primary" id="search-posts-button" type="submit">
+          <input class="form-control me-2" type="search" placeholder="Search Posts..." aria-label="Search"
+            name="searched" />
+          <button class="btn btn-primary" type="submit">
             Search
           </button>
         </form>
