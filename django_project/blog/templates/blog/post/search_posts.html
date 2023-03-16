@@ -1,7 +1,4 @@
 {% extends "blog/parts/base.html" %}
-
-{% block title %} {{ searched }} - Solly's Blog {% endblock title %}
-
 {% block content %}
 
 <div>
@@ -13,10 +10,10 @@
     <h1>You didn't search for anything!</h1>
     {% endif %}
   </span>
-  
+
   {% if posts %}
-    {% include "blog/parts/posts_paginated.html" %} {% else %}
-    <span class="text-center">
+  {% include "blog/parts/posts_paginated.html" %} {% else %}
+  <span class="text-center">
     <h2>I didn't find any posts matching that search 🤷‍♂️</h2>
     {% endif %}
   </span>

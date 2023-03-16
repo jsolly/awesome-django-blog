@@ -1,17 +1,44 @@
-{% load static %} {% load sri %}
+{% load static %}
+{% load sri %}
+
 <!DOCTYPE html>
 <html lang="en-US">
 
 <head>
+  {% block head %}
+  <meta property="og:type" content="website">
+  <meta property="og:image"
+  content="{{ request.scheme }}://{{ request.get_host }}{% static 'iPhoneblogthedata.webp' %}">
+  <meta property="og:image:alt" content="An Iphone on a table with blogthedata.com on the screen">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  {% endblock head %}
   <title>
-    {% block title %}Geospatial Web Development{% endblock title %}
+    {{ title }}
   </title>
-  {% block head %} {% endblock head %}
+
   <!-- Meta -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <meta name="author" content="John Solly">
-  {% block meta %} {% endblock meta %}
+  <meta name="description" content="{{ description }}" />
+  
+
+  <!-- Open Graph Meta -->
+  <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+  <meta property="og:title" content="{{ title }}" />
+  <meta property="og:description" content="{{ description }}" />
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image"
+    content="{{ request.scheme }}://{{ request.get_host }}{% static 'iPhoneblogthedata.webp' %}">
+  <meta name="twitter:site" content="@_jsolly">
+  <meta property="twitter:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+  <meta property="twitter:domain" content="{{ request.get_host }}">
+  <meta name="twitter:title" content="{{ title }}">
+  <meta name="twitter:description" content="{{ description }}" />
 
   <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.webp' %}">
@@ -49,7 +76,7 @@
   {% include "blog/parts/header.html" %}
   <div class="container">
     <div class="row">
-        {% include "blog/parts/sidebar.html" %}
+      {% include "blog/parts/sidebar.html" %}
       <div id="content-area" class="col-lg-9 fs-5">
         {% if messages %} {% for message in messages %} Removed due to caching issue persisting message
         <div class="alert alert-{{ message.tags }}">{{ message }}</div>
@@ -65,10 +92,10 @@
         </main>
         <nav id="scroll-to-top-container" aria-label="Scroll to top" class="float-end">
           <a id="scroll-to-top" href="#">
-             <img src="{% static 'svg/scroll-to-top.svg' %}" width="45" height="45" alt="Scroll to top of page">
-             top</a>
-       </nav>        
-          {% include "blog/parts/footer.html" %}
+            <img src="{% static 'svg/scroll-to-top.svg' %}" width="45" height="45" alt="Scroll to top of page">
+            top</a>
+        </nav>
+        {% include "blog/parts/footer.html" %}
       </div>
     </div>
   </div>

@@ -1,17 +1,8 @@
 {% extends "blog/parts/base.html" %}
-
-{% block title %}
-{{ category|title }} Insights from a Geospatial Software Engineer
-{% endblock title %}
-{% block meta %}
+{% block head %}
 <meta property="og:type" content="article:section" />
 <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}"/>
-<meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}"/>
-<meta name="twitter:description" content="Get tips and insights on {{ category }} from a geospatial engineer. Read the latest blog posts and stay up-to-date on the latest industry trends."/>
-<meta name="description" content="Get tips and insights on {{ category }} from a geospatial engineer. Read the latest blog posts and stay up-to-date on the latest industry trends." />
-<meta property="og:title" content="{{ category|title }} Insights from a Geospatial Software Engineer" />
-{% include "blog/parts/logo_meta.html" %}
-{% endblock meta %}
+{% endblock head %}
 
 {% block content %}
 <section id="category-blog-posts">
