@@ -83,6 +83,9 @@ header {
 /* =============
    Typeography
 ============= */
+a {
+  color: #6C9FF2;
+}
 :is(h1, h2, h3) {
   line-height: 1.1;
 }
