@@ -8,14 +8,22 @@ def handler_404(request, exception):
 def works_cited_view(request):
     return render(
         request,
-        "blog/works_cited.html",
+        context={
+            "title": "Works Cited | Blogthedata.com",
+            "description": "Curated list of inspirations & resources from a geospatial software engineer. Get insights on the latest techniques & create a successful blog.",
+        },
+        template_name="blog/works_cited.html",
     )
 
 
 def privacy_view(request):
     return render(
         request,
-        "blog/privacy.html",
+        context={
+            "title": "Privacy Policy | Blogthedata.com",
+            "description": "This site collects IP addresses and geocodes them for use on a map. No personal information is collected. See the privacy policy for more information.",
+        },
+        template_name="blog/privacy.html",
     )
 
 

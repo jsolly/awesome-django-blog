@@ -1,15 +1,5 @@
 {% extends "blog/parts/base.html" %}
 {% load static %}
-{% block title %}Solly's Portfolio{% endblock title %}
-
-{% block meta %}
-<meta name="twitter:description"
-  content="Geospatial software engineer portfolio featuring experience and examples of work. Let's connect to discuss how I can assist with your projects." />
-<meta name="description"
-  content="John Solly's portfolio. A geospatial software engineer with a passion for creating beautiful and fast mapping applications." />
-<meta property="og:title " content="John Solly: Geospatial Software Engineer Portfolio" />
-{% include "blog/parts/logo_meta.html" %}
-{% endblock meta %}
 
 {% block content %}
 <div class="float-lg-end text-center">
@@ -103,8 +93,7 @@
   <br>
   <ol class="carousel-indicators">
     {% for item in carousel_items %}
-    <li data-bs-target="#carouselExampleControls" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first
-      %}class="active" {% endif %}></li>
+    <li data-bs-target="#carouselExampleControls" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" {% endif %}></li>
     {% endfor %}
   </ol>
 </div>

@@ -1,17 +1,9 @@
 {% extends "blog/parts/base.html" %} 
 {% load static %}
 
-{% block meta %}
+{% block head %}
 <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}"/>
-<meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}">
-<meta name="twitter:description"
-    content="Gain productivity and stay informed on the latest geospatial web dev techniques with blog posts from a geospatial software engineer. Get valuable insights.">
-    <meta name="og:description"
-    content="Gain productivity and stay informed on the latest geospatial web dev techniques with blog posts from a geospatial software engineer. Get valuable insights.">
-    <meta name="description"
-    content="Gain productivity and stay informed on the latest geospatial web dev techniques with blog posts from a geospatial software engineer. Get valuable insights.">
-{% include "blog/parts/logo_meta.html" %}
-{% endblock meta %}
+{% endblock head %}
 
 {% block content %}
 

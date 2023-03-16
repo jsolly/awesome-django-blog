@@ -57,6 +57,10 @@ class HomeView(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["url"] = self.request.path
+        context["title"] = "Solly's Blog | Blogthedata.com"
+        context[
+            "description"
+        ] = "Gain productivity and stay informed on the latest geospatial web dev techniques with blog posts from a geospatial software engineer. Get valuable insights."
         return context
 
 
@@ -75,8 +79,13 @@ class CategoryView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context["category"] = Category.objects.get(slug=self.kwargs["slug"])
+        category = get_object_or_404(Category, slug=self.kwargs.get("slug"))
+        context["category"] = category
         context["url"] = self.request.path
+        context["title"] = f"{category.name.title()} | Blogthedata.com"
+        context[
+            "description"
+        ] = f"Get tips and insights on {category.name.title()} from a geospatial engineer. Read the latest blog posts and stay up-to-date on the latest industry trends."
         return context
 
     def get_template_names(self):
@@ -136,6 +145,10 @@ class PortfolioView(ListView):
         context = super().get_context_data(*args, **kwargs)
         context["url"] = self.request.path
         context["carousel_items"] = carousel_items
+        context["title"] = "Solly's Portfolio | Blogthedata.com"
+        context[
+            "description"
+        ] = "John Solly's portfolio. A geospatial software engineer with a passion for creating beautiful and fast mapping applications."
         return context
 
 
@@ -170,6 +183,7 @@ class SearchView(ListView):
         context = super().get_context_data(**kwargs)
         context["searched"] = self.request.GET.get("searched")
         context["num_results"] = self.get_queryset().count()
+        context["title"] = f"Search Results for {self.request.GET.get('searched')}"
         return context
 
 
@@ -184,6 +198,12 @@ class PostDetailView(DetailView):
 
         return Post.objects.filter(slug=self.kwargs["slug"])
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = self.object.title
+        context["description"] = self.object.metadesc
+        return context
+
 
 class CreatePostView(UserPassesTestMixin, CreateView):
     model = Post
@@ -197,6 +217,11 @@ class CreatePostView(UserPassesTestMixin, CreateView):
     def test_func(self):
         if self.request.user.is_staff:
             return True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Create a New Post"
+        return context
 
 
 def generate_gpt_input_value(request, post_id):
@@ -269,6 +294,7 @@ class PostUpdateView(UserPassesTestMixin, UpdateView):
         context = super().get_context_data(*args, **kwargs)
         post = self.get_object()
         context["post"] = post
+        context["title"] = f"Edit {post.title}"
         return context
 
 
