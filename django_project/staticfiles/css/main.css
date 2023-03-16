@@ -28,13 +28,6 @@ Global Styles
   --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
   --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
 }
-:is(h1, h2, h3) {
-  line-height: 1.1;
-}
-
-:is(h1, h2, h3, h4, h5, h6, strong, .list-group-item, svg, table, p, blockquote, li, .chatbox__messages) {
-  color: var(--colorSecondary);
-}
 
 :is(html, body) {
   max-width: 100%;
@@ -59,8 +52,6 @@ body {
    Header + Navs
 ============= */
 /* Logo color is #0b3b8e */
-
-
 
 .navbar-brand img {
   width: 26px;
@@ -92,7 +83,13 @@ header {
 /* =============
    Typeography
 ============= */
+:is(h1, h2, h3) {
+  line-height: 1.1;
+}
 
+:is(h1, h2, h3, h4, h5, h6, strong, .list-group-item, svg, table, p, blockquote, li, .chatbox__messages) {
+  color: var(--colorSecondary);
+}
 
 hr {
   border-color: rgb(224, 224, 224);
@@ -276,6 +273,10 @@ button a:hover {
 /* =============
    Misc Styles
 ============= */
+input[type="search"] {
+  border: none;
+}
+
 
 video {
   max-width: 100%;
