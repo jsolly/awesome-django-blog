@@ -7,7 +7,7 @@
       {% endif %}
       {% if page_obj.number|divisibleby:"3" %}
         <div class="text-center mb-5">
-          <button class="btn-primary btn" id="see-more-btn" hx-get="{{ url }}?page={{ page_obj.number|add:1 }}" hx-trigger="click" hx-swap="outerHTML" hx-target="this" rel="next">Load More Posts</button>
+          <button class="btn-primary btn btn-lg" id="see-more-btn" hx-get="{{ url }}?page={{ page_obj.number|add:1 }}" hx-trigger="click" hx-swap="outerHTML" hx-target="this" rel="next">Load More Posts</button>
         </div>
       {% endif %}
     {% endif %}

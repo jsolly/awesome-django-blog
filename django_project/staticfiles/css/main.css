@@ -56,13 +56,29 @@ body {
 }
 
 /* =============
-   Header
+   Header + Navs
 ============= */
 /* Logo color is #0b3b8e */
+
+
 
 .navbar-brand img {
   width: 26px;
   height: 30px;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.list-group-item {
+  border: none;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 header {
