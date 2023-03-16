@@ -19,17 +19,23 @@ Global Styles
 }
 
 :root {
-  --colorPrimary: white;
-  --colorSecondary: rgb(18, 18, 18);
-  --colorHoverBackground: hsl(0, 0%, 40%);
-  --bannerColor: #343a40;
-  --primaryGradient: linear-gradient(93.12deg, #0d6efd 0.52%, #007bff 100%);
-  --secondaryGradient: linear-gradient(268.91deg, #0d6efd -2.14%, #007bff 99.69%);
-  --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
-  --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
+  --primary-color: white;
+  --secondary-color: rgb(18, 18, 18);
+  --secondary-color-rgb: 18, 18, 18;
+  --hover-background-color: hsl(0, 0%, 40%);
+  --primary-gradient: linear-gradient(93.12deg, #0d6efd 0.52%, #007bff 100%);
+  --secondary-gradient: linear-gradient(
+    268.91deg,
+    #0d6efd -2.14%,
+    #007bff 99.69%
+  );
+  --primary-box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+  --secondary-box-shadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
+  --a11-red: #990000;
 }
 
-:is(html, body) {
+html,
+body {
   max-width: 100%;
   overflow-x: hidden;
   height: auto !important;
@@ -44,8 +50,15 @@ html {
 }
 
 body {
-  color: var(--colorPrimary);
   line-height: 1.6;
+}
+
+body,
+.card,
+.form-control,
+.list-group-item,
+.accordion-body {
+  background-color: var(--primary-color);
 }
 
 /* =============
@@ -61,7 +74,7 @@ body {
 .navbar-brand {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--colorPrimary);
+  color: var(--primary-color);
 }
 
 .list-group-item {
@@ -71,11 +84,11 @@ body {
 .nav-link {
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--colorPrimary);
+  color: var(--primary-color);
 }
 
 header {
-  background-color:  var(--colorSecondary);
+  background-color: var(--secondary-color);
 }
 
 .navbar-toggler-icon {
@@ -85,19 +98,66 @@ header {
 /* =============
    Typeography
 ============= */
+
+a[href^="http"]::after {
+  content: "↗";
+  margin-left: 0.1rem;
+}
+
+.screenreader-text {
+  position: absolute;
+  left: -999px;
+  width: 1px;
+  height: 1px;
+  top: auto;
+}
+
+.screenreader-text:focus {
+  color: var(--secondary-color);
+  display: inline-block;
+  height: auto;
+  width: auto;
+  position: static;
+  margin: auto;
+}
+
+.errorlist {
+  color: var(--a11-red);
+}
+
+a.hidden-link {
+  position: absolute;
+  left: -9999px;
+}
+
 :is(h1, h2, h3) {
   line-height: 1.1;
 }
 
-:is(h1, h2, h3, h4, h5, h6, strong, .list-group-item, svg, table, p, blockquote, li, .chatbox__messages) {
-  color: var(--colorSecondary);
+:is(
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    strong,
+    .list-group-item,
+    svg,
+    table,
+    p,
+    blockquote,
+    li,
+    .chatbox__messages
+  ) {
+  color: var(--secondary-color);
 }
 
 hr {
   border-color: rgb(224, 224, 224);
 }
 
-.post-content>p:first-of-type::first-letter {
+.post-content > p:first-of-type::first-letter {
   font-size: 2rem;
   font-weight: 700;
 }
@@ -114,7 +174,7 @@ h1 {
   letter-spacing: 2px;
 }
 
-:is(blockquote, h1, h2, h3, h4, h5, h6, ) p:not(#footer) {
+:is(blockquote, h1, h2, h3, h4, h5, h6) p:not(#footer) {
   max-width: 70ch;
 }
 
@@ -124,10 +184,10 @@ a {
 }
 
 .card-body {
-  color: var(--colorSecondary);
+  color: var(--secondary-color);
 }
 
-a:not(.btn, #scroll-to-top)::before {
+a:not(.btn, #scroll-to-top, article a)::before {
   content: "";
   position: absolute;
   display: block;
@@ -135,7 +195,7 @@ a:not(.btn, #scroll-to-top)::before {
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: var(--colorSecondary);
+  background-color: var(--secondary-color);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -157,7 +217,6 @@ button a:hover {
 
 .social-links {
   font-size: 0.875rem;
-  color: #6c757d;
   list-style-type: none;
   padding-left: 0;
   margin-bottom: 1rem;
@@ -169,20 +228,20 @@ button a:hover {
 }
 
 .social-links li::after {
-  content: '|';
+  content: "|";
   margin-left: 0.5rem;
 }
 
 .social-links li:last-child::after {
-  content: '';
+  content: "";
 }
 
 .img-rounded {
-  border-radius: 0.1rem
+  border-radius: 0.1rem;
 }
 
 #draft {
-  color: red;
+  color: var(--a11-red);
 }
 
 .card-title {
@@ -190,7 +249,7 @@ button a:hover {
 }
 
 .card {
-  border: inset var(--colorSecondary);
+  border: 1px solid rgba(var(--secondary-color-rgb), 0.1);
   transition: background-color 0.6s 0s;
 }
 
@@ -220,7 +279,6 @@ button a:hover {
 /* =============
    Portfolio Page
 ============= */
-
 .testimonial-quote::before {
   content: open-quote;
   display: inline;
@@ -253,14 +311,10 @@ button a:hover {
 
 #portfolioHello {
   font-size: 3.5rem;
-  color: var(--colorSecondary);
+  color: var(--secondary-color);
   font-weight: 500;
   line-height: 1.1;
   letter-spacing: 2px;
-}
-
-#github-calendar-title {
-  color: var(--colorSecondary);
 }
 
 #accordion-wrapper {
@@ -269,7 +323,7 @@ button a:hover {
 }
 
 .carousel-dark .carousel-indicators [data-bs-target] {
-  background-color: var(--colorSecondary);
+  background-color: var(--secondary-color);
 }
 
 /* =============
@@ -279,13 +333,9 @@ input[type="search"] {
   border: none;
 }
 
-
 video {
   max-width: 100%;
   border-radius: 0.25rem;
-}
-.errorlist {
-  color: red;
 }
 
 #breadcrumbs {
@@ -295,16 +345,9 @@ video {
 img {
   max-width: 100%;
 }
-
-a.hidden-link {
-  position: absolute;
-  left: -9999px;
-}
-
 #post-detail-meta-img {
   height: 30vh;
 }
-
 
 /* There is a 500px inline style inside the map html that is being placed into an iframe */
 :is(#leafletMap, #openlayersMap, #maplibreMap, #mapboxMap) {
@@ -313,29 +356,12 @@ a.hidden-link {
 }
 
 #scroll-to-top {
-  color: #990000;
+  color: var(--a11-red);
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 1;
   font-size: 2rem;
-}
-
-.screenreader-text {
-  position: absolute;
-  left: -999px;
-  width: 1px;
-  height: 1px;
-  top: auto;
-}
-
-.screenreader-text:focus {
-  color: var(--colorSecondary);
-  display: inline-block;
-  height: auto;
-  width: auto;
-  position: static;
-  margin: auto;
 }
 
 ::-webkit-scrollbar {
@@ -344,21 +370,13 @@ a.hidden-link {
 }
 
 ::-webkit-scrollbar-thumb:vertical {
-  background: var(--colorSecondary);
+  background: var(--secondary-color);
   border-radius: 100vw;
-}
-
-a[href^="http"]::after {
-  content: "↗";
-  margin-left: 0.1rem;
-  font-size: 0.9rem;
-  font-weight: 900;
 }
 
 /* =============
    ChatBox
 ============= */
-
 
 .chatbox {
   position: fixed;
@@ -392,13 +410,13 @@ a[href^="http"]::after {
 
 /* MESSAGES */
 textarea {
-  background-color: var(--colorPrimary);
-  color: var(--colorSecondary);
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
   resize: none;
 }
 
 textarea::placeholder {
-  color: var(--colorSecondary);
+  color: var(--secondary-color);
 }
 
 .chatbox__messages {
@@ -417,7 +435,7 @@ textarea::placeholder {
 }
 
 .chatbox__support {
-  background: var(--colorPrimary);
+  background: var(--primary-color);
   height: 450px;
   width: 350px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
@@ -427,7 +445,7 @@ textarea::placeholder {
 
 /* HEADER */
 .chatbox__header {
-  background: var(--primaryGradient);
+  background: var(--primary-gradient);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -435,7 +453,7 @@ textarea::placeholder {
   padding: 15px 20px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  box-shadow: var(--primaryBoxShadow);
+  box-shadow: var(--primary-box-shadow);
 }
 
 .chatbox__image--header {
@@ -448,7 +466,7 @@ textarea::placeholder {
 }
 
 .chatbox__description--header {
-  font-size: .9rem;
+  font-size: 0.9rem;
   color: white;
 }
 
@@ -459,7 +477,7 @@ textarea::placeholder {
 
 .messages__item {
   margin-top: 10px;
-  background: #E6E6E8;
+  background: #e6e6e8;
   padding: 8px 12px;
   max-width: 70%;
 }
@@ -471,7 +489,7 @@ textarea::placeholder {
   color: black;
 }
 
-.messages__item--user{
+.messages__item--user {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
@@ -486,8 +504,8 @@ textarea::placeholder {
   align-items: center;
   justify-content: space-between;
   padding: 20px 20px;
-  background: var(--secondaryGradient);
-  box-shadow: var(--secondaryBoxShadow);
+  background: var(--secondary-gradient);
+  box-shadow: var(--secondary-box-shadow);
   margin-top: 20px;
 }
 
@@ -529,7 +547,7 @@ textarea::placeholder {
    Footer
 ============= */
 .ft {
-  color: var(--colorPrimary);
+  color: var(--primary-color);
 }
 
 footer {
@@ -539,7 +557,7 @@ footer {
 
 footer::before {
   content: "";
-  background-color: var(--colorSecondary);
+  background-color: var(--secondary-color);
   position: absolute;
   height: 100%;
   width: 200vw;
@@ -565,15 +583,14 @@ footer::before {
     transform: scaleX(1);
   }
 
-
   #accordion-wrapper:hover {
-    box-shadow: 0 1rem 3rem var(--colorSecondary) !important;
+    box-shadow: 0 1rem 3rem var(--secondary-color);
     scale: 1.005;
   }
 
   .card:not(#aboutMe):hover {
-    background-color: var(--colorHoverBackground);
-    box-shadow: 0 1rem 3rem var(--colorSecondary) !important;
+    background-color: var(--hover-background-color);
+    box-shadow: 0 1rem 3rem var(--secondary-color);
     scale: 1.005;
   }
 
@@ -584,33 +601,23 @@ footer::before {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --colorPrimary: rgb(18, 18, 18);
-    --colorSecondary: hsl(0, 0%, 100%, 0.75);
-    --colorHoverBackground: hsl(0, 0%, 100%, 0.05);
-    --bannerColor: #f8f9fa;
+    --primary-color: rgb(18, 18, 18);
+    --secondary-color: rgba(255, 255, 255, 0.75);
+    --secondary-color-rgb: 255, 255, 255;
+    --hover-background-color: hsl(0, 0%, 100%, 0.05);
   }
   a {
-    color: #6C9FF2;
+    color: #6c9ff2;
   }
   header {
     background-color: white;
   }
-
   hr {
     border-color: rgb(128, 128, 128);
   }
 
   .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-  }
-
-  body,
-  .card,
-  .form-control,
-  .list-group-item,
-  .accordion-body {
-    background-color: rgb(18, 18, 18);
-    border-color: var(--colorSecondary);
   }
 
   .testimonial-quote::before {
@@ -633,20 +640,15 @@ footer::before {
     filter: brightness(0.8) contrast(1.2);
   }
 
-  .card:not(#aboutMe):hover,
-  #accordion-wrapper:hover {
-    box-shadow: 0 1rem 3rem var(--colorPrimary) !important;
-  }
+
   .form-control {
-    color: var(--colorSecondary);
+    color: var(--secondary-color);
   }
 
   .messages__item--bot {
     background: #222125;
-    color:var(--colorSecondary)
+    color: var(--secondary-color);
   }
-
-  
 }
 
 @media print {
@@ -674,7 +676,6 @@ footer::before {
   footer {
     display: none !important;
   }
-
 }
 
 /* Responsive Styles*/
