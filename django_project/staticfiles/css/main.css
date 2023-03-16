@@ -507,6 +507,28 @@ textarea::placeholder {
 }
 
 /* =============
+   Footer
+============= */
+.ft {
+  color: var(--colorPrimary);
+}
+
+footer {
+  position: relative;
+  display: grid;
+}
+
+footer::before {
+  content: "";
+  background-color: var(--colorSecondary);
+  position: absolute;
+  height: 100%;
+  width: 200vw;
+  left: -100vw;
+  z-index: -1;
+}
+
+/* =============
    Media Queries
 ============= */
 @media (prefers-reduced-motion: reduce) {
@@ -552,6 +574,7 @@ textarea::placeholder {
   header {
     background-color: #9370DB;
   }
+  
 
   hr {
     border-color: rgb(128, 128, 128);
@@ -584,15 +607,6 @@ textarea::placeholder {
 
   .carousel-control-next-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%0d6dfd' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
-  }
-
-  .ft {
-    color: var(--colorSecondary);
-  }
-
-  footer,
-  footer::before {
-    background-color: hsl(240, 4%, 16%);
   }
 
   img {
@@ -665,27 +679,4 @@ textarea::placeholder {
 .card-img-top {
   max-width: 100%;
   height: auto;
-}
-
-/* =============
-   Footer
-============= */
-.ft {
-  color: var(--colorPrimary);
-}
-
-footer {
-  background-color: var(--colorSecondary);
-  position: relative;
-  display: grid;
-}
-
-footer::before {
-  content: "";
-  background-color: var(--colorSecondary);
-  position: absolute;
-  height: 100%;
-  width: 200vw;
-  left: -100vw;
-  z-index: -1;
 }
