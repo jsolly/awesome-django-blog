@@ -61,6 +61,7 @@ body {
 .navbar-brand {
   font-size: 1.5rem;
   font-weight: 600;
+  color: var(--colorPrimary);
 }
 
 .list-group-item {
@@ -70,10 +71,11 @@ body {
 .nav-link {
   font-size: 1.2rem;
   font-weight: 600;
+  color: var(--colorPrimary);
 }
 
 header {
-  background-color:  #A5B5C6;
+  background-color:  var(--colorSecondary);
 }
 
 .navbar-toggler-icon {
@@ -590,11 +592,9 @@ footer::before {
   a {
     color: #6C9FF2;
   }
-
   header {
-    background-color: #BAC5D0;
+    background-color: white;
   }
-  
 
   hr {
     border-color: rgb(128, 128, 128);
