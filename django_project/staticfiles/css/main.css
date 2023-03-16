@@ -83,9 +83,6 @@ header {
 /* =============
    Typeography
 ============= */
-a {
-  color: #6C9FF2;
-}
 :is(h1, h2, h3) {
   line-height: 1.1;
 }
@@ -589,6 +586,9 @@ footer::before {
     --colorSecondary: hsl(0, 0%, 100%, 0.75);
     --colorHoverBackground: hsl(0, 0%, 100%, 0.05);
     --bannerColor: #f8f9fa;
+  }
+  a {
+    color: #6C9FF2;
   }
 
   header {
