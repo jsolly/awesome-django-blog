@@ -4,7 +4,7 @@
 {% block content %}
 <div class="float-lg-end text-center">
   <a target="_blank" href="{% static 'portfolio/Solly_John_Resume.pdf' %}" class="btn btn-outline-primary mb-5">
-    <img src="{% static 'svg/resume-icon.svg' %}" alt="PDF">
+    <img src="{% static 'svg/resume-icon.svg' %}" alt="Resume Icon">
     View Resume ↗
   </a>
 </div>
@@ -23,8 +23,7 @@
     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingTwo"
       data-bs-parent="#accordion-wrapper">
       <div class="accordion-body">
-        <img class="float-start m-2 bio-image" src="{% static 'portfolio/gisLecture.webp' %}" alt="A photo of John at 2015 AAG conference. Rebecca Rice on the left followed by Michael Goodchild and John Solly on the
-                right" />
+        <img class="float-start m-2 bio-image" src="{% static 'portfolio/gisLecture.webp' %}" alt="John at 2015 AAG conference with Rebecca Rice and Michael Goodchild" loading="lazy" />
         {% include "blog/parts/long_solly_bio.html" %}
       </div>
     </div>
@@ -58,8 +57,7 @@
   <br>
   <ol class="carousel-indicators">
     {% for item in carousel_items %}
-    <li data-bs-target="#carouselExampleControls" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first
-      %}class="active" {% endif %}></li>
+    <li data-bs-target="#carouselExampleControls" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" {% endif %}></li>
     {% endfor %}
   </ol>
 </div>
