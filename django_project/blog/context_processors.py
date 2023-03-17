@@ -1,7 +1,7 @@
 from .models import Category, Post
 from django.db.models import Count
 from django.urls import resolve
-from django.urls import reverse
+from django.urls import reverse, Resolver404
 from django.shortcuts import get_object_or_404
 
 
@@ -19,7 +19,10 @@ def category_renderer(request):
 
 def breadcrumbs(request):
     breadcrumbs = [{"name": "Home", "url": reverse("home")}]
-    match = resolve(request.path_info)
+    try:
+        match = resolve(request.path_info)
+    except Resolver404:
+        return {"breadcrumbs": []}
     if match.url_name == "blog-category":
         breadcrumbs.append(
             {
