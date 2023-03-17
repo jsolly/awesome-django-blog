@@ -140,7 +140,6 @@ a.hidden-link {
     p,
     blockquote,
     li,
-    .chatbox__messages
   ) {
   color: var(--secondary-color);
 }
@@ -469,10 +468,7 @@ footer::before {
     color: var(--secondary-color);
   }
 
-  .messages__item--bot {
-    background: #222125;
-    color: var(--secondary-color);
-  }
+
 }
 
 @media print {
@@ -489,9 +485,6 @@ footer::before {
     display: none !important;
   }
   #print-container {
-    display: none !important;
-  }
-  #chatbox-container {
     display: none !important;
   }
   .btn {
