@@ -1,13 +1,14 @@
 /* Table of Contents
 1. Global Styles
-2. Body, Navbar, Header, Footer
+2. Header + Navs
 3. Typeography
 4. Cards
 5. Portfolio Page
 6. Misc Styles
-7. Chatbox Styles 
-7. Keyframes & Media Queries
-   7.1 Responsive Styles
+7. Footer
+7. Keyframes
+8. Media Queries 
+   8.1 Responsive Styles
 */
 
 /* =============
@@ -245,29 +246,6 @@ button a:hover {
 }
 
 /* =============
-   Keyframes
-============= */
-@keyframes button-shake {
-  from {
-    rotate: 2deg;
-  }
-
-  to {
-    rotate: -2deg;
-  }
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-/* =============
    Portfolio Page
 ============= */
 .testimonial-quote::before {
@@ -386,6 +364,29 @@ footer::before {
   width: 200vw;
   left: -100vw;
   z-index: -1;
+}
+
+/* =============
+   Keyframes
+============= */
+@keyframes button-shake {
+  from {
+    rotate: 2deg;
+  }
+
+  to {
+    rotate: -2deg;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 /* =============
