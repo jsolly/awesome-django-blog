@@ -501,6 +501,9 @@ footer::before {
   footer {
     display: none !important;
   }
+  #post-detail-meta-img {
+    display: none !important;
+  }
 }
 
 /* Responsive Styles*/
