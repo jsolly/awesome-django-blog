@@ -49,8 +49,7 @@ body {
 body,
 .card,
 .form-control,
-.list-group-item,
-.accordion-body {
+.list-group-item {
   background-color: var(--primary-color);
 }
 
@@ -141,6 +140,7 @@ a.hidden-link {
     p,
     blockquote,
     li,
+
   ) {
   color: var(--secondary-color);
 }
@@ -347,7 +347,6 @@ img {
   background-color: #0d6efd;
 }
 
-
 /* =============
    Footer
 ============= */
@@ -471,12 +470,9 @@ footer::before {
     filter: brightness(0.8) contrast(1.2);
   }
 
-
   .form-control {
     color: var(--secondary-color);
   }
-
-
 }
 
 @media print {
