@@ -1,35 +1,31 @@
-{% load static %}{% load post_utils %}
-<article>
+{% load post_utils %}
+{% load static %}
+
+<article class="post">
   <a href="{% url 'post-detail' post.slug %}#top" aria-label='{{ post.title }}'>
-    <div class="card mb-5 shadow">
-      <div class="row g-0">
-        <div id="post-meta-img-container" class="col-md-4 d-flex align-items-center meta-img-container">
+    <div class="post-card">
+      <div class="post-card-row">
+        <div class="post-card-meta-img-container">
           <figure>
-            <img src="{{ post.metaimg.url }}" width="{{ post.metaimg.width }}" height="{{ post.metaimg.height }}"
-              class="card-img-top img-rounded" alt="{{ post.metaimg_alt_txt }}" />
+            <img src="{{ post.metaimg.url }}" alt="{{ post.metaimg_alt_txt }}" class="post-card-img">
             <figcaption class="visually-hidden">{{ post.metaimg_alt_txt }}</figcaption>
           </figure>
         </div>
-        <div class="col-md-8">
-          <div class="card-body d-flex flex-column justify-content-between">
-            <div class="d-flex align-items-center mb-3">
-              <h2 class="card-title fw-bolder ml-3">
-                {{ post.title }}
-                {% if post.draft %}
-                <p id="draft">(Draft)</p>
-                {% endif %}
-              </h2>
+        <div class="post-card-content">
+          <div class="post-card-info">
+            <div class="post-body">
+              <div class="post-header">
+                <h2 class="post-title">{{ post.title }}{% if post.draft %}<span class="post-draft">(Draft)</span>{% endif %}</h2>
+              </div>
+              <p class="post-date">{{ post.date_posted|date:"F d, Y" }} in {{ post.category|title }}</p>
+              <div class="post-details">
+                <div class="post-readtime">
+                  <img src="{% static 'svg/clock.svg' %}" alt="Clock Icon" class="post-readtime-icon">
+                  <span class="post-readtime-text">{{ post.content|readtime }}</span>
+                </div>
+              </div>
+              <p class="post-text">{{ post.snippet|safe }}</p>
             </div>
-            <p class="fs-6 mb-0">
-              {{ post.date_posted|date:"F d, Y" }} in {{ post.category|title }}
-            </p>
-            <p class="fs-6 mb-0 d-flex align-items-center">
-              <img src="{% static 'svg/clock.svg' %}" width="16" height="16" class="clock-icon" alt="" aria-hidden="true">
-              &nbsp;{{ post.content|readtime }}
-            </p>
-            <p class="card-text">
-              {{ post.snippet|safe }}
-            </p>
           </div>
         </div>
       </div>

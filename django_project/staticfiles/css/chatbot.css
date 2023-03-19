@@ -11,6 +11,13 @@
   );
 }
 
+#chatbot-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 10px;
+}
+
 .chatbox {
   position: fixed;
   bottom: 30px;
