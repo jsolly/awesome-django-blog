@@ -77,8 +77,8 @@ class StatusView(TemplateView):
 
         # Calculate RAM usage
         virtual_memory = psutil.virtual_memory()
-        ram_used = int(virtual_memory.used / (1024**3))
-        ram_total = int(virtual_memory.total / (1024**3))
+        ram_used = int(virtual_memory.used / (1024**2))
+        ram_total = int(virtual_memory.total / (1024**2))
         ram_percentage = round(virtual_memory.percent)
 
         # Get the disk usage
