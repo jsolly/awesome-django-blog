@@ -87,6 +87,8 @@ class StatusView(TemplateView):
         disk_usage = f"{used // (2 ** 30)}GB / {total // (2 ** 30)}GB"
 
         context = {
+            "title": "Status | Blogthedata.com",
+            "description": "Uptime and performance status of blogthedata.com",
             "status": blog_status,
             "message": blog_message,
             "updated_at": blog_updated_at,
