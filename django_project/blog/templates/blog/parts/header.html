@@ -41,6 +41,9 @@
           <li class="nav-item ">
             <a class="nav-link" href="{% url 'rss' %}">RSS Feed</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'status' %}">Status</a>
+          </li>
           {% if user.is_authenticated %}
           <li class="nav-item ">
             <a class="nav-link" href="{% url 'profile' %}">Profile</a>
