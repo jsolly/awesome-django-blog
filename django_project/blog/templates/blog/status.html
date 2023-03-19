@@ -20,15 +20,21 @@
 {% block content %}
 <div class="container">
   <h1 class="text-center">Blogthedata.com Status Report</h1>
-  <hr>
-
-  <div class="row">
-    <div class="col-md-6">
+  <div class="row mt-5 mb-5">
+    <div class="col-md-12">
       <h2>Blog Status</h2>
-      <p>Status: Up 🟢</p>
+      <p>Status: {{ status }} {% if status == "up" %}🟢{% else %}🔴{% endif %}</p>
       <p>Message: {{ message }}</p>
       <p>Last Updated: {{ updated_at }}</p>
       <hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Postgres Metrics</h2>
+      <p>Active Connections: {{ postgres_active_connections }}</p>
+      <p>Slow Queries: {{ postgres_slow_queries }}</p>
+      <p>Disk Space Used: {{ postgres_disk_space_used }} MB</p>
     </div>
     <div class="col-md-6">
       <h2>System Metrics</h2>
