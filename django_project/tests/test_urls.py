@@ -13,6 +13,7 @@ from blog.views import (
     CategoryView,
     SearchView,
     PortfolioView,
+    StatusView,
 )
 from django_project.views import (
     works_cited_view,
@@ -41,6 +42,9 @@ def get_url(url_name):
 
 
 class TestUrls(SetUp):
+    def test_status_page_url_is_resolved(self):
+        self.assertEqual(resolve(reverse("status")).func.view_class, StatusView)
+
     def test_all_posts_url_is_resolved(self):
         self.assertEqual(resolve(reverse("all-posts")).func.view_class, AllPostsView)
 

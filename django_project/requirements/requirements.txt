@@ -9,6 +9,7 @@ filetype
 ipinfo
 Pillow
 psycopg2-binary
+psutil
 python-dotenv
 readtime
 requests
