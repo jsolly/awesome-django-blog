@@ -79,6 +79,10 @@ body,
   color: var(--primary-color);
 }
 
+.nav-link:hover {
+  color: var(--primary-color);
+}
+
 header {
   background-color: var(--secondary-color);
 }
