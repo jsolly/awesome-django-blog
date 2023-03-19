@@ -28,7 +28,6 @@ import shutil
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 ez_logger = logging.getLogger("ezra_logger")
-info_logger = logging.getLogger("info_logger")
 
 
 class StatusView(TemplateView):
