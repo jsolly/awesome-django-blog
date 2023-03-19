@@ -29,6 +29,7 @@ import shutil
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 ez_logger = logging.getLogger("ezra_logger")
+info_logger = logging.getLogger("info_logger")
 
 
 class StatusView(TemplateView):
@@ -45,6 +46,8 @@ class StatusView(TemplateView):
         nginx_status_url = "http://localhost/nginx_status"
         try:
             nginx_response = requests.get(nginx_status_url)
+            # Log the response
+            info_logger.info(nginx_response.text)
             nginx_active_connections = nginx_response.text.split("\n")[0].split()[2]
             nginx_requests_per_second = nginx_response.text.split("\n")[2].split()[1]
             nginx_response_time = nginx_response.text.split("\n")[3].split()[2]
