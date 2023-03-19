@@ -22,7 +22,6 @@ import logging
 from datetime import datetime
 from django.views.generic import TemplateView
 from django.conf import settings
-import requests
 import psycopg2
 import psutil
 import shutil
@@ -41,29 +40,6 @@ class StatusView(TemplateView):
         blog_message = "Blog is up and running"
         blog_updated_at = datetime.now().strftime("%B %d, %Y %I:%M %p")
         # You can replace the above values with your own logic to determine the status of your blog
-
-        # Get the status of NGINX
-        nginx_status_url = "http://localhost/nginx_status"
-        try:
-            nginx_response = requests.get(nginx_status_url)
-            # Log the response
-            info_logger.info(nginx_response.text)
-            nginx_response_lines = nginx_response.text.split("\n")
-            if len(nginx_response_lines) >= 2:
-                nginx_active_connections = nginx_response_lines[0].split()[2]
-                nginx_requests_per_second = nginx_response_lines[2].split()[1]
-                nginx_response_time = nginx_response_lines[3].split()[2]
-                nginx_total_requests = nginx_response_lines[2].split()[0]
-            else:
-                nginx_active_connections = "N/A"
-                nginx_requests_per_second = "N/A"
-                nginx_response_time = "N/A"
-                nginx_total_requests = "N/A"
-        except requests.exceptions.RequestException:
-            nginx_active_connections = "N/A"
-            nginx_requests_per_second = "N/A"
-            nginx_response_time = "N/A"
-            nginx_total_requests = "N/A"
 
         # Get the status of Postgres
         postgres_conn = psycopg2.connect(
@@ -111,18 +87,10 @@ class StatusView(TemplateView):
         total, used, free = disk_usage_info
         disk_usage = f"{used // (2 ** 30)}GB / {total // (2 ** 30)}GB"
 
-        # Calculate requests per hour
-        requests_per_hour = "N/A"
-        if nginx_total_requests != "N/A" and uptime_seconds > 0:
-            requests_per_hour = int(nginx_total_requests) / (uptime_seconds / 3600)
-
         context = {
             "status": blog_status,
             "message": blog_message,
             "updated_at": blog_updated_at,
-            "nginx_active_connections": nginx_active_connections,
-            "nginx_requests_per_second": nginx_requests_per_second,
-            "nginx_response_time": nginx_response_time,
             "postgres_active_connections": postgres_active_connections,
             "postgres_slow_queries": postgres_slow_queries,
             "postgres_disk_space_used": postgres_disk_space_used,
@@ -132,7 +100,6 @@ class StatusView(TemplateView):
             "ram_total": ram_total,
             "ram_percentage": ram_percentage,
             "disk_usage": disk_usage,
-            "requests_per_hour": requests_per_hour,
             "visitors": Visitor.objects.all(),
         }
 

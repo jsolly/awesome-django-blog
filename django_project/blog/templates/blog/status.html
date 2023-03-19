@@ -29,33 +29,21 @@
       <p>Message: {{ message }}</p>
       <p>Last Updated: {{ updated_at }}</p>
       <hr>
-      <h3>System Metrics</h3>
+    </div>
+    <div class="col-md-6">
+      <h2>System Metrics</h2>
       <p>Uptime: {{ server_uptime }}</p>
       <p>CPU Usage: {{ cpu_usage_percent }}% <span class="badge {% if cpu_usage_percent > 80 %}badge-danger{% else %}badge-success{% endif %}"> {% if cpu_usage_percent > 80 %}🔥{% else %}✅{% endif %}</span></p>
       <p>RAM Usage: {{ ram_used|intcomma }} MB / {{ ram_total|intcomma }} MB ({{ ram_percentage }}%)</p>
       <p>Disk Usage: {{ disk_usage }}</p>
-    </div>
-
-    <div class="col-md-6">
-      <h2>Server Metrics</h2>
-      <h3>NGINX</h3>
-      <p>Active Connections: {{ nginx_active_connections }}</p>
-      <p>Requests per Second: {{ nginx_requests_per_second }}</p>
-      <p>Average Response Time: {{ nginx_response_time }} seconds</p>
-      <p>Total Requests: {{ nginx_total_requests }}</p>
-      <p>Requests per Hour: <span class="badge {% if requests_per_hour < 100 %}badge-danger{% else %}badge-success{% endif %}">{{ requests_per_hour|intcomma }}</span></p>
-
-      <h3>Postgres</h3>
-      <p>Active Connections: {{ postgres_active_connections }}</p>
-      <p>Slow Queries: {{ postgres_slow_queries }}</p>
-      <p>Disk Space Used: {{ postgres_disk_space_used|intcomma }} MB</p>
     </div>
   </div>
 
   <div class="row mt-5 mb-5">
     <div class="col-md-12">
       <h2>Site Traffic Map</h2>
-    {% include 'siteanalytics/parts/site_traffic_map.html' %}
+      {% include 'siteanalytics/parts/site_traffic_map.html' %}
+    </div>
   </div>
 </div>
 {% endblock %}
