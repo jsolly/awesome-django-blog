@@ -1,6 +1,7 @@
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.decorators.cache import cache_page
 from .feeds import blogFeed, atomFeed
 from .views import (
     HomeView,
@@ -18,7 +19,7 @@ from .views import (
 )
 
 urlpatterns = [
-    path("status/", StatusView.as_view(), name="status"),
+    path("status/", cache_page(60)(StatusView.as_view()), name="status"),
     path("answer-with-gpt/", answer_question_with_GPT, name="answer-with-gpt"),
     path(
         "generate-with-gpt/<int:post_id>/",
