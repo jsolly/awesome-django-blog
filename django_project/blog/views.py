@@ -48,10 +48,17 @@ class StatusView(TemplateView):
             nginx_response = requests.get(nginx_status_url)
             # Log the response
             info_logger.info(nginx_response.text)
-            nginx_active_connections = nginx_response.text.split("\n")[0].split()[2]
-            nginx_requests_per_second = nginx_response.text.split("\n")[2].split()[1]
-            nginx_response_time = nginx_response.text.split("\n")[3].split()[2]
-            nginx_total_requests = nginx_response.text.split("\n")[2].split()[0]
+            nginx_response_lines = nginx_response.text.split("\n")
+            if len(nginx_response_lines) >= 2:
+                nginx_active_connections = nginx_response_lines[0].split()[2]
+                nginx_requests_per_second = nginx_response_lines[2].split()[1]
+                nginx_response_time = nginx_response_lines[3].split()[2]
+                nginx_total_requests = nginx_response_lines[2].split()[0]
+            else:
+                nginx_active_connections = "N/A"
+                nginx_requests_per_second = "N/A"
+                nginx_response_time = "N/A"
+                nginx_total_requests = "N/A"
         except requests.exceptions.RequestException:
             nginx_active_connections = "N/A"
             nginx_requests_per_second = "N/A"
