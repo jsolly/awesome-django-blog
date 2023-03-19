@@ -13,14 +13,120 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
+from siteanalytics.models import Visitor
 from django.http import HttpResponse
 import html
 import os
 import openai
 import logging
+from datetime import datetime
+from django.views.generic import TemplateView
+from django.conf import settings
+import requests
+import psycopg2
+import psutil
+import shutil
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 ez_logger = logging.getLogger("ezra_logger")
+
+
+class StatusView(TemplateView):
+    template_name = "blog/status.html"
+
+    def get_context_data(self, **kwargs):
+        # Get the status of your Django blog
+        blog_status = "up"
+        blog_message = "Blog is up and running"
+        blog_updated_at = datetime.now().strftime("%B %d, %Y %I:%M %p")
+        # You can replace the above values with your own logic to determine the status of your blog
+
+        # Get the status of NGINX
+        nginx_status_url = "http://localhost/nginx_status"
+        try:
+            nginx_response = requests.get(nginx_status_url)
+            nginx_active_connections = nginx_response.text.split("\n")[0].split()[2]
+            nginx_requests_per_second = nginx_response.text.split("\n")[2].split()[1]
+            nginx_response_time = nginx_response.text.split("\n")[3].split()[2]
+            nginx_total_requests = nginx_response.text.split("\n")[2].split()[0]
+        except requests.exceptions.RequestException:
+            nginx_active_connections = "N/A"
+            nginx_requests_per_second = "N/A"
+            nginx_response_time = "N/A"
+            nginx_total_requests = "N/A"
+
+        # Get the status of Postgres
+        postgres_conn = psycopg2.connect(
+            host=settings.DATABASES["default"]["HOST"],
+            port=settings.DATABASES["default"]["PORT"],
+            dbname=settings.DATABASES["default"]["NAME"],
+            user=settings.DATABASES["default"]["USER"],
+            password=settings.DATABASES["default"]["PASSWORD"],
+        )
+        with postgres_conn.cursor() as cursor:
+            cursor.execute("SELECT COUNT(*) FROM pg_stat_activity;")
+            postgres_active_connections = cursor.fetchone()[0]
+            cursor.execute(
+                "SELECT COUNT(*) FROM pg_stat_activity WHERE state = 'idle in transaction';"
+            )
+            postgres_slow_queries = cursor.fetchone()[0]
+            cursor.execute(
+                "SELECT pg_database_size('{}') / 1024 / 1024;".format(
+                    settings.DATABASES["default"]["NAME"]
+                )
+            )
+            postgres_disk_space_used = cursor.fetchone()[0]
+
+        # Calculate server uptime
+        boot_time = psutil.boot_time()
+        uptime_seconds = (
+            datetime.now() - datetime.fromtimestamp(boot_time)
+        ).total_seconds()
+        uptime_days, remainder = divmod(uptime_seconds, 86400)
+        uptime_hours, remainder = divmod(remainder, 3600)
+        uptime_minutes, _ = divmod(remainder, 60)
+        server_uptime = f"{int(uptime_days)} days, {int(uptime_hours)} hours, {int(uptime_minutes)} minutes"
+
+        # Calculate CPU usage
+        cpu_usage_percent = psutil.cpu_percent()
+
+        # Calculate RAM usage
+        virtual_memory = psutil.virtual_memory()
+        ram_used = int(virtual_memory.used / (1024**3))
+        ram_total = int(virtual_memory.total / (1024**3))
+        ram_percentage = round(virtual_memory.percent)
+
+        # Get the disk usage
+        disk_usage_info = shutil.disk_usage("/")
+        total, used, free = disk_usage_info
+        disk_usage = f"{used // (2 ** 30)}GB / {total // (2 ** 30)}GB"
+
+        # Calculate requests per hour
+        requests_per_hour = "N/A"
+        if nginx_total_requests != "N/A" and uptime_seconds > 0:
+            requests_per_hour = int(nginx_total_requests) / (uptime_seconds / 3600)
+
+        context = {
+            "status": blog_status,
+            "message": blog_message,
+            "updated_at": blog_updated_at,
+            "nginx_active_connections": nginx_active_connections,
+            "nginx_requests_per_second": nginx_requests_per_second,
+            "nginx_response_time": nginx_response_time,
+            "postgres_active_connections": postgres_active_connections,
+            "postgres_slow_queries": postgres_slow_queries,
+            "postgres_disk_space_used": postgres_disk_space_used,
+            "server_uptime": server_uptime,
+            "cpu_usage_percent": cpu_usage_percent,
+            "ram_used": ram_used,
+            "ram_total": ram_total,
+            "ram_percentage": ram_percentage,
+            "disk_usage": disk_usage,
+            "requests_per_hour": requests_per_hour,
+            "visitors": Visitor.objects.all(),
+        }
+
+        return context
 
 
 class AllPostsView(ListView):

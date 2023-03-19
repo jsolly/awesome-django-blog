@@ -81,6 +81,7 @@ INSTALLED_APPS = [
     "sri",
     "siteanalytics",
     "django_htmx",
+    "django.contrib.humanize",
 ]
 
 MIDDLEWARE = [
