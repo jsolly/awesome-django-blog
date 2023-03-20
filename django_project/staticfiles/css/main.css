@@ -183,15 +183,9 @@ aside {
    Footer
 ============= */
 
-/* main.css */
-
-/* ... your existing CSS ... */
-
 footer {
-  width: 100%;
   padding: 20px 0;
-  background-color: var(--footer-color); /* You can change this to your preferred background color */
-  border-top: 1px solid #e9ecef; /* You can change this to your preferred border color */
+  background-color: var(--footer-color);
 }
 
 footer .nav {
@@ -200,14 +194,13 @@ footer .nav {
   justify-content: center;
   gap: 10px;
   list-style: none;
-  padding-left: 0;
 }
 
 footer .nav-item {
   margin-bottom: 10px;
 }
 
-footer .nav-item a {
+footer .nav-item a, #credit {
   color: white;
 }
 
@@ -300,7 +293,7 @@ h1 {
   letter-spacing: 2px;
 }
 
-:is(blockquote, h1, h2, h3, h4, h5, h6, p) {
+:is(blockquote, h1, h2, h3, h4, h5, h6, p) :not(#credit){
   max-width: 70ch;
 }
 
