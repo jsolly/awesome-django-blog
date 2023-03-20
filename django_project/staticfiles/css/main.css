@@ -27,22 +27,16 @@ Global Styles
   --border-color: #777777;
   --a11-red: #990000;
   --action-color: #333333; /* Slightly darker than secondary color */
-  --link-color: #495057;
+  --link-color: var(--bootstrap-primary-color);
   --footer-color: rgb(50, 50, 50);
   --background-hover-color: #f7f7f7;
   --bootstrap-primary-color: #0d6efd;
   --dark-badge-background-color: rgb(33, 37, 41);
 }
 
-html,
-body {
-  max-width: 100%;
-  overflow-x: hidden;
-  height: auto !important;
-}
-
-#content-area {
+#body {
   animation: fade-in 0.8s;
+  margin: 0;
 }
 
 html {
@@ -66,6 +60,7 @@ body,
   display: grid;
   grid-template-columns: 0.25fr 0.5fr 2fr 0.25fr;
   grid-gap: 20px;
+  padding: 0 20px;
 }
 
 .sidebar {
@@ -188,8 +183,41 @@ aside {
    Footer
 ============= */
 
+/* main.css */
+
+/* ... your existing CSS ... */
+
 footer {
-  background-color: var(--footer-color);
+  width: 100%;
+  padding: 20px 0;
+  background-color: var(--footer-color); /* You can change this to your preferred background color */
+  border-top: 1px solid #e9ecef; /* You can change this to your preferred border color */
+}
+
+footer .nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  list-style: none;
+  padding-left: 0;
+}
+
+footer .nav-item {
+  margin-bottom: 10px;
+}
+
+footer .nav-item a {
+  color: white;
+}
+
+
+footer .nav-item a:hover {
+  color: var(--link-color);
+}
+
+#credit {
+  text-align: center;
 }
 
 
@@ -279,6 +307,7 @@ h1 {
 a {
   text-decoration: none;
   position: relative;
+  color: var(--link-color);
 }
 
 .card-body {
@@ -533,7 +562,7 @@ img {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #0d6efd;
+  background-color: var(--link-color)
 }
 
 
@@ -601,12 +630,7 @@ img {
     --post-card-hover-background-color: hsl(0, 0%, 100%, 0.05);
     --background-hover-color: hsl(0, 0%, 100%, 0.05);
     --footer-color: rgb(35, 35, 35);
-  }
-  a {
-    color: #6c9ff2;
-  }
-  ::-webkit-scrollbar-track {
-    background-color: #6c9ff2;
+    --link-color: #6c9ff2
   }
   header {
     background-color: white;
