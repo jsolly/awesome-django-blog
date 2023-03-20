@@ -23,8 +23,14 @@ Global Styles
   --primary-color: white;
   --secondary-color: rgb(18, 18, 18);
   --secondary-color-rgb: 18, 18, 18;
-  --hover-background-color: hsl(0, 0%, 40%);
+  --post-card-hover-background-color: hsl(0, 0%, 40%);
+  --border-color: #777777;
   --a11-red: #990000;
+  --action-color: #333333; /* Slightly darker than secondary color */
+  --link-color: #495057;
+  --background-hover-color: #f7f7f7;
+  --bootstrap-primary-color: #0d6efd;
+  --dark-badge-background-color: rgb(33, 37, 41);
 }
 
 html,
@@ -52,7 +58,22 @@ body,
 .list-group-item {
   background-color: var(--primary-color);
 }
+/* =============
+   Layout
+============= */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-gap: 20px;
+}
 
+.sidebar {
+  grid-column: 1;
+}
+
+.post-content {
+  grid-column: 2;
+}
 
 /* =============
    Header + Navs
@@ -91,6 +112,101 @@ header {
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
+
+/* =============
+   Sidebar
+============= */
+aside {
+  padding: 0 15px;
+}
+
+.list-group {
+  margin-bottom: 0;
+}
+
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-color);
+}
+
+.list-group-item:hover {
+  z-index: 1;
+  background-color: var(--background-hover-color);
+}
+
+.list-group-item.active {
+  z-index: 2;
+  color: white;
+  background-color: var(--bootstrap-primary-color);
+}
+
+.list-group-item span {
+  font-size: 0.8rem;
+}
+
+.list-group-item-action {
+  width: 100%;
+  color: var(--link-color);
+  text-align: inherit;
+}
+
+.list-group-item-action:hover,
+.list-group-item-action:focus {
+  z-index: 1;
+  color: var(--link-color);
+  text-decoration: none;
+  background-color: var(--background-hover-color);
+}
+
+.list-group-item-action.active {
+  z-index: 2;
+  color: var(--link-color);
+  background-color: var(--background-hover-color);
+}
+
+.list-group-item[data-badge]::after {
+  content: attr(data-badge);
+  display: inline-block;
+  padding: 0.35em 0.65em;
+  font-size: .75em;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  color: white;
+  background-color: var(--dark-badge-background-color);
+  border-radius: 1rem;
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+}
+
+@media (min-width: 992px) {
+  aside {
+    padding: 0;
+  }
+
+  .list-group {
+    width: 100%;
+  }
+
+  .list-group-item {
+    border-radius: 0;
+  }
+
+  .list-group-item:first-child {
+    border-top-right-radius: 0.25rem;
+    border-top-left-radius: 0.25rem;
+  }
+
+  .list-group-item:last-child {
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+  }
+}
+
 
 /* =============
    Typeography
@@ -504,7 +620,7 @@ footer::before {
   }
 
   .post-card:not(#aboutMe):hover {
-    background-color: var(--hover-background-color);
+    background-color: var(--post-card-hover-background-color);
     scale: 1.005;
   }
 
@@ -518,7 +634,8 @@ footer::before {
     --primary-color: rgb(18, 18, 18);
     --secondary-color: rgba(255, 255, 255, 0.75);
     --secondary-color-rgb: 255, 255, 255;
-    --hover-background-color: hsl(0, 0%, 100%, 0.05);
+    --post-card-hover-background-color: hsl(0, 0%, 100%, 0.05);
+    --background-hover-color: hsl(0, 0%, 100%, 0.05);
   }
   a {
     color: #6c9ff2;
@@ -614,5 +731,18 @@ footer::before {
     width: 100%;
     height: auto;
     object-fit: cover;
+  }
+  .container {
+    grid-template-columns: 1fr 2fr; /* Two column layout */
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr; /* One column layout */
+  }
+  
+  .sidebar, .post-content {
+    grid-column: auto; /* Reset column placement to default */
   }
 }

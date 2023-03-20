@@ -49,7 +49,6 @@
   <link rel="icon" type="image/webp" sizes="48x48" href="{% static 'favicon/favicon.ico' %}">
 
   <!-- Bootstrap -->
-  {% sri_static 'bootstrap/bootstrap.min.css' %}
   {% sri_static 'bootstrap/bootstrap.bundle.min.js' %}
 
   <!-- My CSS -->
@@ -77,9 +76,10 @@
   </a>
   {% include "blog/parts/header.html" %}
   <div class="container">
-    <div class="row">
+    <div class="sidebar">
       {% include "blog/parts/sidebar.html" %}
-      <div id="content-area" class="col-lg-9 fs-5">
+    </div>
+      <div id="content-area" class="post-content">
         {% if messages %} {% for message in messages %} Removed due to caching issue persisting message
         <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %} {% endif %}
@@ -100,7 +100,6 @@
         {% include "blog/parts/footer.html" %}
       </div>
     </div>
-  </div>
 </body>
 
 </html>
