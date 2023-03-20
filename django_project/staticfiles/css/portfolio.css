@@ -1,0 +1,46 @@
+.testimonial-quote::before {
+    content: open-quote;
+    display: inline;
+    height: 0;
+    line-height: 0;
+    left: 0;
+    position: relative;
+    top: 15px;
+    color: #c3ceff;
+    font-size: 3rem;
+    font-family: georgia, serif;
+  }
+  
+  .testimonial-quote::after {
+    content: close-quote;
+    display: inline;
+    height: 0;
+    line-height: 0;
+    left: 0;
+    position: relative;
+    top: 18px;
+    color: #c3ceff;
+    font-size: 3rem;
+    font-family: georgia, serif;
+  }
+  
+  .bio-image {
+    max-width: 50%;
+  }
+  
+  #portfolioHello {
+    font-size: 3.5rem;
+    color: var(--secondary-color);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: 2px;
+  }
+  
+  #accordion-wrapper {
+    padding: 1rem;
+    border-radius: 0.25rem;
+  }
+  
+  .carousel-dark .carousel-indicators [data-bs-target] {
+    background-color: var(--secondary-color);
+  }

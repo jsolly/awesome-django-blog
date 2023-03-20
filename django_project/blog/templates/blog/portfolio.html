@@ -1,5 +1,9 @@
 {% extends "blog/parts/base.html" %}
 {% load static %}
+{% load sri %}
+{% block head %}
+{% sri_static 'css/portfolio.css' %}
+{% endblock head %}
 
 {% block content %}
 <div class="float-lg-end text-center">

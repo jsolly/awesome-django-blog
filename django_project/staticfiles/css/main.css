@@ -1,14 +1,14 @@
 /* Table of Contents
 1. Global Styles
-2. Header + Navs
-3. Typeography
-4. Cards
-5. Portfolio Page
-6. Misc Styles
-7. Footer
-7. Keyframes
-8. Media Queries 
-   8.1 Responsive Styles
+2. Layout
+3. Header + Navs
+4. Sidebar
+5. Cards
+6. Buttons
+7. Typography
+8. Misc
+9. Keyframes
+10. Media Queries
 */
 
 /* =============
@@ -270,6 +270,131 @@ footer .nav-item a:hover {
   text-align: center;
 }
 
+/* =============
+   Cards
+============= */
+
+/* Post Cards */
+.post-card {
+  border: 1px solid rgba(var(--secondary-color-rgb), 0.1);
+  transition: background-color 0.6s 0s;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.post-card-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.post-card-meta-img-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post-card-img {
+  width: 100%;
+  height: auto;
+}
+
+.post-card-content {
+  padding: 1rem;
+}
+
+.post-header {
+  margin-bottom: 0.5rem;
+}
+
+.post-title {
+  font-size: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.post-draft {
+  font-weight: normal;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+.post-date {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.post-readtime {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--secondary-color)
+}
+
+.post-readtime-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.5rem;
+}
+
+.post-text {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+/* About Me Card */
+
+.about-me-image {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 800px;
+}
+
+.social-links {
+  font-size: 0.875rem;
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 1rem;
+}
+
+.social-links li {
+  display: inline;
+  margin-right: 0.5rem;
+}
+
+.social-links li::after {
+  content: "|";
+  margin-left: 0.5rem;
+}
+
+.social-links li:last-child::after {
+  content: "";
+}
+
+/* =============
+   Buttons
+============= */
+/* Load More Posts Button */
+.load-more {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.load-more__btn {
+  border: 2px solid var(--secondary-color);
+  color: var(--secondary-color);
+  background-color: transparent;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  font-size: 1.25rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.load-more__btn:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
 
 /* =============
    Typeography
@@ -382,180 +507,7 @@ button a:hover {
   color: inherit;
 }
 
-/* =============
-   Cards
-============= */
 
-/* Post Cards */
-.post-card {
-  border: 1px solid rgba(var(--secondary-color-rgb), 0.1);
-  transition: background-color 0.6s 0s;
-  margin-bottom: 30px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.post-card-row {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-}
-
-.post-card-meta-img-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.post-card-img {
-  width: 100%;
-  height: auto;
-}
-
-.post-card-content {
-  padding: 1rem;
-}
-
-.post-header {
-  margin-bottom: 0.5rem;
-}
-
-.post-title {
-  font-size: 1.5rem;
-  margin: 0;
-  padding: 0;
-}
-
-.post-draft {
-  font-weight: normal;
-  font-size: 1rem;
-  margin-left: 0.5rem;
-}
-
-.post-date {
-  font-size: 1rem;
-  margin-bottom: 0.25rem;
-}
-
-.post-readtime {
-  display: flex;
-  align-items: center;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  color: var(--secondary-color)
-}
-
-.post-readtime-icon {
-  width: 16px;
-  height: 16px;
-  margin-right: 0.5rem;
-}
-
-.post-text {
-  font-size: 1.5rem;
-  margin-bottom: 0;
-}
-/* About Me Card */
-
-.about-me-image {
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  max-height: 800px;
-}
-
-.social-links {
-  font-size: 0.875rem;
-  list-style-type: none;
-  padding-left: 0;
-  margin-bottom: 1rem;
-}
-
-.social-links li {
-  display: inline;
-  margin-right: 0.5rem;
-}
-
-.social-links li::after {
-  content: "|";
-  margin-left: 0.5rem;
-}
-
-.social-links li:last-child::after {
-  content: "";
-}
-
-/* =============
-   Portfolio Page
-============= */
-.testimonial-quote::before {
-  content: open-quote;
-  display: inline;
-  height: 0;
-  line-height: 0;
-  left: 0;
-  position: relative;
-  top: 15px;
-  color: #c3ceff;
-  font-size: 3rem;
-  font-family: georgia, serif;
-}
-
-.testimonial-quote::after {
-  content: close-quote;
-  display: inline;
-  height: 0;
-  line-height: 0;
-  left: 0;
-  position: relative;
-  top: 18px;
-  color: #c3ceff;
-  font-size: 3rem;
-  font-family: georgia, serif;
-}
-
-.bio-image {
-  max-width: 50%;
-}
-
-#portfolioHello {
-  font-size: 3.5rem;
-  color: var(--secondary-color);
-  font-weight: 500;
-  line-height: 1.1;
-  letter-spacing: 2px;
-}
-
-#accordion-wrapper {
-  padding: 1rem;
-  border-radius: 0.25rem;
-}
-
-.carousel-dark .carousel-indicators [data-bs-target] {
-  background-color: var(--secondary-color);
-}
-
-/* =============
-   Buttons
-============= */
-/* Load More Posts Button */
-.load-more {
-  text-align: center;
-  margin-bottom: 5rem;
-}
-
-.load-more__btn {
-  border: 2px solid var(--secondary-color);
-  color: var(--secondary-color);
-  background-color: transparent;
-  padding: 1rem 2rem;
-  border-radius: 2rem;
-  font-size: 1.25rem;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.load-more__btn:hover {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-  cursor: pointer;
-}
 
 
 
