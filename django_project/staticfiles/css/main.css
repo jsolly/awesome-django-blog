@@ -28,6 +28,7 @@ Global Styles
   --a11-red: #990000;
   --action-color: #333333; /* Slightly darker than secondary color */
   --link-color: #495057;
+  --footer-color: rgb(50, 50, 50);
   --background-hover-color: #f7f7f7;
   --bootstrap-primary-color: #0d6efd;
   --dark-badge-background-color: rgb(33, 37, 41);
@@ -183,28 +184,12 @@ aside {
   transform: translateY(-50%);
 }
 
-@media (min-width: 992px) {
-  aside {
-    padding: 0;
-  }
+/* =============
+   Footer
+============= */
 
-  .list-group {
-    width: 100%;
-  }
-
-  .list-group-item {
-    border-radius: 0;
-  }
-
-  .list-group-item:first-child {
-    border-top-right-radius: 0.25rem;
-    border-top-left-radius: 0.25rem;
-  }
-
-  .list-group-item:last-child {
-    border-bottom-right-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
-  }
+footer {
+  background-color: var(--footer-color);
 }
 
 
@@ -287,7 +272,7 @@ h1 {
   letter-spacing: 2px;
 }
 
-:is(blockquote, h1, h2, h3, h4, h5, h6) p:not(#footer) {
+:is(blockquote, h1, h2, h3, h4, h5, h6, p) {
   max-width: 70ch;
 }
 
@@ -551,27 +536,6 @@ img {
   background-color: #0d6efd;
 }
 
-/* =============
-   Footer
-============= */
-.ft {
-  color: var(--primary-color);
-}
-
-footer {
-  position: relative;
-  display: grid;
-}
-
-footer::before {
-  content: "";
-  background-color: var(--secondary-color);
-  position: absolute;
-  height: 100%;
-  width: 200vw;
-  left: -100vw;
-  z-index: -1;
-}
 
 /* =============
    Keyframes
@@ -636,6 +600,7 @@ footer::before {
     --secondary-color-rgb: 255, 255, 255;
     --post-card-hover-background-color: hsl(0, 0%, 100%, 0.05);
     --background-hover-color: hsl(0, 0%, 100%, 0.05);
+    --footer-color: rgb(35, 35, 35);
   }
   a {
     color: #6c9ff2;
@@ -734,6 +699,29 @@ footer::before {
   }
   .container {
     grid-template-columns: 1fr 2fr; /* Two column layout */
+  }
+
+  /* Sidebar */
+  aside {
+    padding: 0;
+  }
+
+  .list-group {
+    width: 100%;
+  }
+
+  .list-group-item {
+    border-radius: 0;
+  }
+
+  .list-group-item:first-child {
+    border-top-right-radius: 0.25rem;
+    border-top-left-radius: 0.25rem;
+  }
+
+  .list-group-item:last-child {
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
   }
 }
 

@@ -1,10 +1,10 @@
 {% load sri %}
 <footer>
-  <ul class="nav justify-content-center pb-3 mb-3 pt-3">
-    <li class="nav-item"><a href="{% url 'home' %}#top" class="ft px-2">Home</a></li>
+  <ul class="nav">
+    <li class="nav-item"><a href="{% url 'home' %}#top">Home</a></li>
     <li class="dropdown">
-      <a class="dropdown-toggle ft px-2" href="#" id="footer-navbarDropdown" role="button"
-        data-bs-toggle="dropdown" aria-expanded="false">
+      <a class="dropdown-toggle" href="#" id="footer-navbarDropdown" role="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
         Categories
       </a>
       <ul class="dropdown-menu" id="footer-nav-categories" aria-labelledby="footer-navbarDropdown">
@@ -17,16 +17,16 @@
         {% endfor %}
       </ul>
     </li>
-    <li class="nav-item"><a href="{% url 'portfolio' %}#top" class="ft px-2">Portfolio</a></li>
+    <li class="nav-item"><a href="{% url 'portfolio' %}#top">Portfolio</a></li>
     <li class="nav-item">
       <a rel="noopener noreferrer" target="_blank"
         href="https://us14.list-manage.com/contact-form?u=3fb3f4adf8ab2cd1ebd6ff743&form_id=7c78cd242677faaebfc3d4a2bc0d5fda"
         class="ft px-2">Contact</a>
     </li>
-    <li class="nav-item"><a href="{% url 'privacy' %}#top" class="ft px-2">Privacy</a></li>
-    <li class="nav-item"><a href="{% url 'works-cited' %}#top" class="ft px-2">Works Cited</a></li>
-    <li class="nav-item"><a href="{% url 'rss' %}" class="ft px-2">RSS Feed</a></li>
-        <li class="nav-item"><a href="{% url 'status' %}#top" class="ft px-2">Status</a></li>
+    <li class="nav-item"><a href="{% url 'privacy' %}#top">Privacy</a></li>
+    <li class="nav-item"><a href="{% url 'works-cited' %}#top">Works Cited</a></li>
+    <li class="nav-item"><a href="{% url 'rss' %}">RSS Feed</a></li>
+    <li class="nav-item"><a href="{% url 'status' %}#top">Status</a></li>
   </ul>
-  <p id="footer" class="text-center ft">Designed & Built by John Solly</p>
+  <p id="footer">Designed & Built by John Solly</p>
 </footer>
