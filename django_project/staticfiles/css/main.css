@@ -29,6 +29,7 @@ Global Styles
   --action-color: #333333; /* Slightly darker than secondary color */
   --link-color: var(--bootstrap-primary-color);
   --footer-color: rgb(50, 50, 50);
+  --footer-link-hover-color: rgb(107, 107, 107);
   --background-hover-color: #f7f7f7;
   --bootstrap-primary-color: #0d6efd;
   --dark-badge-background-color: rgb(33, 37, 41);
@@ -256,13 +257,13 @@ footer .nav-item {
   margin-bottom: 10px;
 }
 
-footer .nav-item a, #credit {
+footer :is(.nav-item a, .dropdown-toggle), #credit {
   color: white;
 }
 
 
 footer .nav-item a:hover {
-  color: var(--link-color);
+  color: var(--footer-link-hover-color);
 }
 
 #credit {
@@ -679,8 +680,11 @@ img {
     --post-card-hover-background-color: hsl(0, 0%, 100%, 0.05);
     --background-hover-color: hsl(0, 0%, 100%, 0.05);
     --footer-color: rgb(35, 35, 35);
+    --footer-link-hover-color: rgb(255, 255, 255);
     --link-color: #6c9ff2
   }
+
+
   header {
     background-color: white;
   }
