@@ -455,7 +455,8 @@ a.hidden-link {
 }
 
 hr {
-  border-color: rgb(224, 224, 224);
+  border-color: #e0e0e0;
+  opacity: 0.25;
 }
 
 .post-content > p:first-of-type::first-letter {

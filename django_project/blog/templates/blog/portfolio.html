@@ -50,13 +50,12 @@
 </div>
 
 <!-- Indicators -->
-<br>
 <ol class="carousel-indicators">
   {% for item in carousel_items %}
   <li data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" {% endif %} onclick="changeCarouselItemTo({{ forloop.counter0 }})"></li>
   {% endfor %}
 </ol>
-
+<br>
 <hr>
 <br>
 {% include "blog/parts/contact_me.html" %}
