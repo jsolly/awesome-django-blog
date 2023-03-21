@@ -44,18 +44,19 @@
       </div>
       {% endfor %}
     </div> 
-    <button class="carousel-control-prev" type="button" aria-label="Previous" onclick="changeCarouselItem(-1)">&#10094;</button>
-    <button class="carousel-control-next" type="button" aria-label="Next" onclick="changeCarouselItem(1)">&#10095;</button>
+    <button class="carousel-control-prev" type="button" aria-label="Previous">&#10094;</button>
+    <button class="carousel-control-next" type="button" aria-label="Next">&#10095;</button>    
   </div>
 </div>
 
 <!-- Indicators -->
 <br>
-  <ol class="carousel-indicators">
-    {% for item in carousel_items %}
-    <li data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" {% endif %}></li>
-    {% endfor %}
-  </ol>
+<ol class="carousel-indicators">
+  {% for item in carousel_items %}
+  <li data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" {% endif %} onclick="changeCarouselItemTo({{ forloop.counter0 }})"></li>
+  {% endfor %}
+</ol>
+
 <hr>
 <br>
 {% include "blog/parts/contact_me.html" %}

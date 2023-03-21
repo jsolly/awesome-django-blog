@@ -193,10 +193,6 @@
   display: block;
 }
 
-.carousel-item-content {
-  margin-bottom: 1.5rem;
-}
-
 .carousel-control-prev,
 .carousel-control-next {
   position: absolute;
@@ -216,6 +212,11 @@
 .carousel-control-next {
   right: 0;
 }
+
+.carousel-item-content {
+  margin-bottom: 1.5rem;
+}
+
 
 
 /* Contact me section */
