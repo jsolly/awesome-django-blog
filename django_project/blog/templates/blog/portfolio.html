@@ -56,9 +56,10 @@
     <li data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" {% endif %}></li>
     {% endfor %}
   </ol>
-</div>
 <hr>
 <br>
+{% include "blog/parts/contact_me.html" %}
 <hr>
 <br>
+{% include "blog/parts/page_speed_insights.html" %}
 {% endblock content %}
