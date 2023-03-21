@@ -53,7 +53,7 @@
 <!-- Indicators -->
 <ol class="carousel-indicators">
   {% for item in carousel_items %}
-  <li data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" {% endif %} onclick="changeCarouselItemTo({{ forloop.counter0 }})"></li>
+  <li {% if forloop.first %}class="active"{% endif %} data-carousel-index="{{ forloop.counter0 }}"></li>
   {% endfor %}
 </ol>
 <br>

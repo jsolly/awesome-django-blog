@@ -16,12 +16,63 @@
 }
 
 /* Solly Bio */
+.accordion-container {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 
 .bio-image {
+  width: 100%;
+  max-width: 400px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+
+.accordion-item {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 1em;
+}
+
+.accordion-header {
+  background-color: #f1f1f1;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.accordion-button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.2em;
+  text-align: left;
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+}
+
+.accordion-collapse {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.accordion-collapse.expanded {
+  max-height: 1000px;
+}
+
+
+.accordion-body {
+  padding: 1em;
+}
+/* .bio-image {
   max-width: 50%;
   float: left;
   margin: 0.5rem;
-}
+} */
 
 #portfolioHello {
   font-size: 3.5rem;
