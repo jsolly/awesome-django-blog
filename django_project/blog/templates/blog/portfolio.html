@@ -3,31 +3,30 @@
 {% load sri %}
 {% block head %}
 {% sri_static 'css/portfolio.css' %}
+{% sri_static 'js/carousel.js' %}
 {% endblock head %}
 
 {% block content %}
-<div class="float-lg-end text-center">
-  <a target="_blank" href="{% static 'portfolio/Solly_John_Resume.pdf' %}" class="btn btn-outline-primary mb-5">
+<div class="resume-container">
+  <a target="_blank" href="{% static 'portfolio/Solly_John_Resume.pdf' %}" class="resume-btn">
     <img src="{% static 'svg/resume-icon.svg' %}" alt="Resume Icon">
     View Resume ↗
   </a>
 </div>
-<p id="portfolioHello" class="text-center mb-5">
+<p id="portfolioHello" class="portfolio-hello">
   Hello World,<br>I'm John!
 </p>
-<article class="accordion mb-5" id="accordion-wrapper">
-  <h2 class="display-6">My Bio</h2>
+<article class="accordion-container">
+  <h2 class="section-title">My Bio</h2>
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-        aria-expanded="false" aria-controls="collapseOne">
+      <button class="accordion-button" type="button">
         Tap or click to read John Solly's Bio
       </button>
     </h2>
-    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-      data-bs-parent="#accordion-wrapper">
+    <div id="collapseOne" class="accordion-collapse">
       <div class="accordion-body">
-        <img class="float-start m-2 bio-image" src="{% static 'portfolio/gisLecture.webp' %}" alt="John at 2015 AAG conference with Rebecca Rice and Michael Goodchild" loading="lazy" />
+        <img class="bio-image" src="{% static 'portfolio/gisLecture.webp' %}" alt="John at 2015 AAG conference with Rebecca Rice and Michael Goodchild" loading="lazy" />
         {% include "blog/parts/long_solly_bio.html" %}
       </div>
     </div>
@@ -35,40 +34,31 @@
 </article>
 {% include "blog/parts/posts.html" %}
 <!-- Testimonial Carousel -->
-<div role="region" aria-roledescription="carousel" aria-label="Testimonials" id="carouselExampleControls"
-  class="carousel slide text-center carousel-dark mb-5 mt-5" data-mdb-ride="carousel">
-  <h2 class="display-5 text-center mt-5" id="carouselExampleCaptions">Testimonials</h2>
-  <div class="carousel-inner">
-    {% for item in carousel_items %}
-    <div role="group" aria-roledescription="slide" class="carousel-item {% if forloop.first %}active{% endif %}">
-      {% include 'blog/parts/carousel_item.html'%}
-    </div>
-    {% endfor %}
+<div class="testimonial-carousel">
+  <h2 class="section-title" id="carouselExampleCaptions">Testimonials</h2>
+  <div class="carousel-wrapper">
+    <div class="carousel-inner"> 
+      {% for item in carousel_items %}
+      <div class="carousel-item {% if forloop.first %}active{% endif %}" data-index="{{ forloop.counter0 }}">
+        {% include 'blog/parts/carousel_item.html' %}
+      </div>
+      {% endfor %}
+    </div> 
+    <button class="carousel-control-prev" type="button" aria-label="Previous" onclick="changeCarouselItem(-1)">&#10094;</button>
+    <button class="carousel-control-next" type="button" aria-label="Next" onclick="changeCarouselItem(1)">&#10095;</button>
   </div>
-  <div role="group" aria-label="Slide controls">
-    <button aria-label="Previous slide" class="carousel-control-prev" type="button"
-      data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button aria-label="Next slide" class="carousel-control-next" type="button"
-      data-bs-target="#carouselExampleControls" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-  <!-- Indicators -->
-  <br>
+</div>
+
+<!-- Indicators -->
+<br>
   <ol class="carousel-indicators">
     {% for item in carousel_items %}
-    <li data-bs-target="#carouselExampleControls" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" {% endif %}></li>
+    <li data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" {% endif %}></li>
     {% endfor %}
   </ol>
 </div>
 <hr>
 <br>
-{% include "blog/parts/contact_me.html" %}
 <hr>
 <br>
-{% include "blog/parts/page_speed_insights.html" %}
 {% endblock content %}

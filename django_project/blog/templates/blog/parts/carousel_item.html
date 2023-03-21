@@ -1,13 +1,13 @@
 {% load static %}
-<img class="rounded-circle shadow-1-strong mb-4" src="{% static item.avatar_url %}" alt="avatar" style="width: 150px" />
-<div class="row d-flex justify-content-center">
-  <div class="col-lg-8">
-    <div class="fs-6">
-      <h3 class="mb-2 fw-lighter">{{ item.name }}</h3>
-      <p class="fw-bolder mb-0 fs-5">{{ item.position }}</p>
-      <p class="lh-1">{{ item.company }} - {{ item.year }}</p>
+<div class="carousel-item-content">
+  <img class="avatar-img" src="{% static item.avatar_url %}" alt="avatar" />
+  <div class="carousel-content">
+    <div class="carousel-text">
+      <h3 class="carousel-name">{{ item.name }}</h3>
+      <p class="carousel-position">{{ item.position }}</p>
+      <p class="carousel-info">{{ item.company }} - {{ item.year }}</p>
     </div>
     <p class="testimonial-quote">{{ item.quote }}</p>
-    <p class="fw-semibold"><a target="_blank" rel="noopener noreferrer" href="{{ item.link }}">Open review on LinkedIn</a></p>
+    <p class="carousel-review-link"><a target="_blank" rel="noopener noreferrer" href="{{ item.link }}">Open review on LinkedIn</a></p>
   </div>
 </div>
