@@ -177,7 +177,6 @@ aside {
   margin-bottom: 0;
 }
 
-
 .list-group-item {
   border: none;
   position: relative;
@@ -224,7 +223,7 @@ aside {
   content: attr(data-badge);
   display: inline-block;
   padding: 0.35em 0.65em;
-  font-size: .75em;
+  font-size: 0.75em;
   font-weight: bold;
   line-height: 1;
   text-align: center;
@@ -258,10 +257,10 @@ footer .nav-item {
   margin-bottom: 10px;
 }
 
-footer :is(.nav-item a, .dropdown-toggle), #credit {
+footer :is(.nav-item a, .dropdown-toggle),
+#credit {
   color: white;
 }
-
 
 footer .nav-item a:hover {
   color: var(--footer-link-hover-color);
@@ -276,7 +275,6 @@ footer .dropdown-menu {
   top: auto;
   bottom: 100%;
 }
-
 
 /* =============
    Cards
@@ -339,7 +337,7 @@ figure {
   align-items: center;
   font-size: 1rem;
   margin-bottom: 1rem;
-  color: var(--secondary-color)
+  color: var(--secondary-color);
 }
 
 .post-readtime-icon {
@@ -413,6 +411,114 @@ figure {
   color: var(--primary-color);
   cursor: pointer;
 }
+
+/* Edit and Delete Buttons */
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.button-edit,
+.button-delete {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+}
+
+.button-edit {
+  color: #fff;
+  background-color: #6c757d;
+  border: 1px solid #6c757d;
+}
+
+.button-delete {
+  color: #fff;
+  background-color: #dc3545;
+  border: 1px solid #dc3545;
+}
+
+.button-edit:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.button-delete:hover {
+  background-color: #c82333;
+  border-color: #c82333;
+}
+
+.button-edit span,
+.button-delete span {
+  margin-left: 0.5rem;
+}
+
+.button-edit #button-edit-icon,
+.button-delete #button-delete-icon {
+  margin-right: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: #000;
+}
+
+/* print button */
+#print-container {
+  margin-bottom: 1.5rem;
+}
+
+#print-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  border: 1px solid #000;
+}
+
+#print-link:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+#print-icon {
+  margin-right: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: #000;
+}
+
+/* Post Submit Button */
+.post-submit-button {
+  display: inline-block;
+  border: 1px solid #17a2b8;
+  color: #17a2b8;
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.post-submit-button:hover {
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+  cursor: pointer;
+}
+
 
 
 /* =============
@@ -495,7 +601,7 @@ h1 {
   letter-spacing: 2px;
 }
 
-:is(blockquote, h1, h2, h3, h4, h5, h6, p) :not(#credit){
+:is(blockquote, h1, h2, h3, h4, h5, h6, p) :not(#credit) {
   max-width: 70ch;
 }
 
@@ -527,13 +633,24 @@ button a:hover {
   color: inherit;
 }
 
-
-
-
-
 /* =============
    Misc Styles
 ============= */
+
+/* Meta Image */
+.meta-img-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30vh;
+}
+
+#post-detail-meta-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 #draft {
   color: var(--a11-red);
 }
@@ -553,9 +670,6 @@ video {
 
 img {
   max-width: 100%;
-}
-#post-detail-meta-img {
-  height: 30vh;
 }
 
 /* There is a 500px inline style inside the map html that is being placed into an iframe */
@@ -584,9 +698,8 @@ img {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: var(--link-color)
+  background-color: var(--link-color);
 }
-
 
 /* =============
    Keyframes
@@ -653,9 +766,8 @@ img {
     --background-hover-color: hsl(0, 0%, 100%, 0.05);
     --footer-color: rgb(35, 35, 35);
     --footer-link-hover-color: rgb(255, 255, 255);
-    --link-color: #6c9ff2
+    --link-color: #6c9ff2;
   }
-
 
   header {
     background-color: white;
@@ -774,14 +886,13 @@ img {
   }
 }
 
-
-
 @media (max-width: 991px) {
   .container {
     grid-template-columns: 1fr; /* One column layout */
   }
-  
-  .sidebar, .post-content {
+
+  .sidebar,
+  .post-content {
     grid-column: auto; /* Reset column placement to default */
   }
 }
@@ -805,11 +916,11 @@ img {
     grid-gap: 20px;
     padding: 0 20px;
   }
-  
+
   .sidebar {
     grid-column: 2;
   }
-  
+
   .post-content {
     grid-column: 3;
   }
@@ -822,11 +933,11 @@ img {
     grid-gap: 20px;
     padding: 0 20px;
   }
-  
+
   .sidebar {
     grid-column: 2;
   }
-  
+
   .post-content {
     grid-column: 3;
   }

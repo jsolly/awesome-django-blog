@@ -51,7 +51,7 @@ window.addEventListener("beforeunload", function (e) {
 <div class="form-group">
   <form method="POST" enctype="multipart/form-data">
     {% csrf_token %} {{ form.media }} {{ form.as_p }}
-    <button class="btn btn-outline-info" id="post-update-button" type="submit">
+    <button class="post-submit-button" id="post-submit-update-button" type="submit">
       Update
     </button>
 
