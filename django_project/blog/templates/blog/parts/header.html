@@ -54,7 +54,7 @@
       </ul>
       <form class="d-flex search-form" method="GET" action="{% url 'blog-search' %}">
         {% csrf_token %}
-        <input class="form-control" type="search" placeholder="Search Posts..." aria-label="Search" name="searched" />
+        <input type="search" placeholder="Search Posts..." aria-label="Search" name="searched" />
         <button type="submit">
           Search
         </button>

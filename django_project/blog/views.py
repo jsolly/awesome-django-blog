@@ -341,7 +341,7 @@ def generate_gpt_input_value(request, post_id):
     def generate_input_field(prompt, max_tokens):
         completion = get_safe_completion(prompt, max_tokens)
         safe_completion = html.escape(completion)
-        return f"<input autofocus='' class='form-control' id='id_gpt_input' maxlength='250' name='gpt_input' required_type='text' value='{safe_completion}'>"
+        return f"<input autofocus='' id='id_gpt_input' maxlength='250' name='gpt_input' required_type='text' value='{safe_completion}'>"
 
     trigger = request.htmx.trigger
 

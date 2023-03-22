@@ -43,7 +43,7 @@ window.addEventListener("beforeunload", function (e) {
   <button id="generate-metadesc" hx-post="/generate-with-gpt/{{ post.id }}/" hx-swap="outerHTML"
     hx-target="#id_gpt_input">Generate
     Meta Description</button>
-  <input autofocus="" class="form-control" name="gpt_input" id="id_gpt_input" maxlength="250" name="gpt_input"
+  <input autofocus="" name="gpt_input" id="id_gpt_input" maxlength="250" name="gpt_input"
     required="" type="text" placeholder="Generate with GPT!">
 </form>
 

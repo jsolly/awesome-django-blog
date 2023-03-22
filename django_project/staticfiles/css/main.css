@@ -52,7 +52,6 @@ body {
 
 body,
 .post-card,
-.form-control,
 .list-group-item {
   background-color: var(--primary-color);
 }
@@ -158,12 +157,6 @@ body,
 .search-form {
   display: flex;
   margin-left: 15px;
-}
-
-.form-control {
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
 }
 
 /* =============
@@ -520,6 +513,80 @@ figure {
 }
 
 
+/* =============
+   Forms
+============= */
+input, select, textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  line-height: 1.5;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+input:focus, select:focus, textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+
+input:disabled, select:disabled, textarea:disabled {
+  opacity: 0.5;
+}
+
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+
+button {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+button:hover {
+  background-color: #0069d9;
+}
+
+label[for="id_draft"] {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+#id_draft {
+  -webkit-appearance: none; /* Remove default checkbox styling for Safari/Chrome */
+  -moz-appearance: none; /* Remove default checkbox styling for Firefox */
+  appearance: none; /* Remove default checkbox styling */
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  vertical-align: middle;
+  position: relative;
+}
+
+#id_draft:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
 
 /* =============
    Typeography
@@ -800,9 +867,6 @@ img {
     filter: brightness(0.8) contrast(1.2);
   }
 
-  .form-control {
-    color: var(--secondary-color);
-  }
 }
 
 @media print {
