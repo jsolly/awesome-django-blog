@@ -31,7 +31,7 @@ ez_logger = logging.getLogger("ezra_logger")
 
 
 class StatusView(TemplateView):
-    template_name = "blog/status.html"
+    template_name = "blog/status_page.html"
 
     def get_context_data(self, **kwargs):
         # Get the status of your Django blog
