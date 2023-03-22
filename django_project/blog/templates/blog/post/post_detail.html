@@ -58,38 +58,29 @@
 <a href="{% url 'home' %}" id="post-back-to-home-button" class="btn btn-secondary btn-lg mb-5">
   Back to Home
 </a>
-<ul class="nav justify-content-center mb-5">
-  <li class="nav-item">
-    <!-- Sharingbutton Twitter -->
-    <a class="resp-sharing-button__link btn btn-dark btn-sm"
-      href="https://twitter.com/intent/tweet/?text={{ post.title }}&amp;url={{ request.build_absolute_uri }}"
-      target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter">
+<ul class="social-share">
+  <li>
+    <a class="resp-sharing-button__link twitter" href="https://twitter.com/intent/tweet/?text={{ post.title }}&amp;url={{ request.build_absolute_uri }}" target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter">
       <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
         <img src="{% static 'svg/twitter-share-btn.svg' %}" width="24" height="24" alt="Twitter">
       </div>
-      Share on Twitter
+      <span>Share on Twitter</span>
     </a>
   </li>
-  <li class="nav-item">
-    <!-- Sharingbutton Reddit -->
-    <a class="resp-sharing-button__link btn btn-dark btn-sm"
-      href="https://reddit.com/submit/?url={{ request.build_absolute_uri }}&amp;resubmit=true&amp;title={{ post.title }}"
-      target="_blank" rel="noopener" aria-label="Share on Reddit">
+  <li>
+    <a class="resp-sharing-button__link reddit" href="https://reddit.com/submit/?url={{ request.build_absolute_uri }}&amp;resubmit=true&amp;title={{ post.title }}" target="_blank" rel="noopener" aria-label="Share on Reddit">
       <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
         <img src="{% static 'svg/reddit-share-btn.svg' %}" width="24" height="24" alt="Reddit">
       </div>
-      Share on Reddit
+      <span>Share on Reddit</span>
     </a>
   </li>
-  <li class="nav-item">
-    <!-- Sharingbutton LinkedIn -->
-    <a class="resp-sharing-button__link btn btn-dark btn-sm"
-      href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ request.build_absolute_uri }}&amp;title={{ post.title }}&amp;summary={{ post.metadesc }}&amp;source={{ request.build_absolute_uri }}"
-      target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+  <li>
+    <a class="resp-sharing-button__link linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ request.build_absolute_uri }}&amp;title={{ post.title }}&amp;summary={{ post.metadesc }}&amp;source={{ request.build_absolute_uri }}" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
       <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
         <img src="{% static 'svg/linkedin-share-btn.svg' %}" width="24" height="24" alt="LinkedIn">
       </div>
-      Share on LinkedIn
+      <span>Share on LinkedIn</span>
     </a>
   </li>
 </ul>
