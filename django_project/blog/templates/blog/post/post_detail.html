@@ -6,6 +6,7 @@
 {% sri_static 'django_ckeditor_5/prism.css' %}
 {% sri_static 'django_ckeditor_5/prism.js' %}
 {% sri_static 'css/social_share.css' %}
+{% sri_static 'css/post_detail.css' %}
 {% sri_static 'js/addHeaderIdsAndLinks.js' %}
 
 <meta property="og:type" content="article">
@@ -17,15 +18,15 @@
 {% endblock head %}
 
 {% block content %}
-<div id="print-container" class="mb-3">
-  <a id="print" href="javascript:window.print()">
-    <img src="{% static 'svg/print-icon.svg' %}" width="32" height="32" alt="Print this blog post">
-    Print this post</a>
+<div id="print-container">
+  <a id="print-link" href="javascript:window.print()">
+    <img id="print-icon" src="{% static 'svg/print-icon.svg' %}" alt="Print this blog post">
+    <span id="print-text">Print this post</span>
+  </a>
 </div>
 <article class="media content-section">
-  <div class="col-md-4 d-flex align-items-center meta-img-container">
-    <img id="post-detail-meta-img" width="{{ post.metaimg.width }}" height="{{ post.metaimg.height }}"
-      src="{{ post.metaimg.url }}" alt="{{ post.metadesc }}" />
+  <div class="meta-img-container">
+    <img id="post-detail-meta-img" src="{{ post.metaimg.url }}" alt="{{ post.metadesc }}">
   </div>
   <div class="media-body line-numbers ck-content">
     <div class="article-metadata">
