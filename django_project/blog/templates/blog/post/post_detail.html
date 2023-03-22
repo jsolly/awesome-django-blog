@@ -30,24 +30,22 @@
   </div>
   <div class="media-body line-numbers ck-content">
     <div class="article-metadata">
-      <h1 class="card-title fw-bolder">
+      <h1>
         {{ post.title }}
         {% if post.draft %}
         <p id="draft">(Draft)</p>
         {% endif %}
       </h1>
-      <p class="card-text fs-6">
-        <small class="text-muted">
-          {{ post.date_posted|date:"F d, Y" }} in {{ post.category|title }}</small>
-      </p>
+      <p class="post-date">
+        {{ post.date_posted|date:"F d, Y" }} in {{ post.category|title }}</p>
     </div>
     {% if post.author == user %}
-    <div>
-      <a class="btn btn-secondary btn-sm mt-1 mb-1" id="post-edit-button" href="{% url 'post-update' post.slug %}">
-        Edit Post
+    <div class="buttons-container">
+      <a id="post-edit-button" class="button-edit" href="{% url 'post-update' post.slug %}">
+        <span>Edit Post</span>
       </a>
-      <a class="btn btn-danger btn-sm mt-1 mb-1" id="post-delete-button" href="{% url 'post-delete' post.slug %}">
-        Delete Post
+      <a id="post-delete-button" class="button-delete" href="{% url 'post-delete' post.slug %}">
+        <span>Delete Post</span>
       </a>
     </div>
     {% endif %}
@@ -61,7 +59,9 @@
 </a>
 <ul class="social-share">
   <li>
-    <a class="resp-sharing-button__link twitter" href="https://twitter.com/intent/tweet/?text={{ post.title }}&amp;url={{ request.build_absolute_uri }}" target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter">
+    <a class="resp-sharing-button__link twitter"
+      href="https://twitter.com/intent/tweet/?text={{ post.title }}&amp;url={{ request.build_absolute_uri }}"
+      target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter">
       <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
         <img src="{% static 'svg/twitter-share-btn.svg' %}" width="24" height="24" alt="Twitter">
       </div>
@@ -69,7 +69,9 @@
     </a>
   </li>
   <li>
-    <a class="resp-sharing-button__link reddit" href="https://reddit.com/submit/?url={{ request.build_absolute_uri }}&amp;resubmit=true&amp;title={{ post.title }}" target="_blank" rel="noopener" aria-label="Share on Reddit">
+    <a class="resp-sharing-button__link reddit"
+      href="https://reddit.com/submit/?url={{ request.build_absolute_uri }}&amp;resubmit=true&amp;title={{ post.title }}"
+      target="_blank" rel="noopener" aria-label="Share on Reddit">
       <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
         <img src="{% static 'svg/reddit-share-btn.svg' %}" width="24" height="24" alt="Reddit">
       </div>
@@ -77,7 +79,9 @@
     </a>
   </li>
   <li>
-    <a class="resp-sharing-button__link linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ request.build_absolute_uri }}&amp;title={{ post.title }}&amp;summary={{ post.metadesc }}&amp;source={{ request.build_absolute_uri }}" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+    <a class="resp-sharing-button__link linkedin"
+      href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ request.build_absolute_uri }}&amp;title={{ post.title }}&amp;summary={{ post.metadesc }}&amp;source={{ request.build_absolute_uri }}"
+      target="_blank" rel="noopener" aria-label="Share on LinkedIn">
       <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
         <img src="{% static 'svg/linkedin-share-btn.svg' %}" width="24" height="24" alt="LinkedIn">
       </div>

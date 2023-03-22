@@ -41,3 +41,57 @@
     height: 100%;
     object-fit: cover;
   }
+
+/* Edit and Delete Buttons */
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.button-edit,
+.button-delete {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+}
+
+.button-edit {
+  color: #fff;
+  background-color: #6c757d;
+  border: 1px solid #6c757d;
+}
+
+.button-delete {
+  color: #fff;
+  background-color: #dc3545;
+  border: 1px solid #dc3545;
+}
+
+.button-edit:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.button-delete:hover {
+  background-color: #c82333;
+  border-color: #c82333;
+}
+
+.button-edit span,
+.button-delete span {
+  margin-left: 0.5rem;
+}
+
+.button-edit #button-edit-icon,
+.button-delete #button-delete-icon {
+  margin-right: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: #000;
+}
