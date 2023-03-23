@@ -4,6 +4,7 @@
   --header-background-color: #f7f7f7;
   --icon-color: #777777;
   --link-color: var(--bootstrap-primary-color);
+  --secondary-color-rgb: 18, 18, 18;
 }
 
 
@@ -78,12 +79,13 @@
 .accordion-button {
   background-color: transparent;
   padding: 0;
-  border: none;
+  border: 1px solid rgba(var(--secondary-color-rgb), 0.1);
   font-size: 1.2em;
   outline: none;
   cursor: pointer;
   color: var(--secondary-color);
   font-weight: inherit;
+  width: 100%;
 }
 
 .accordion-button:hover {
@@ -95,7 +97,8 @@
 .accordion-icon {
   font-size: 1em;
   transition: transform 0.3s ease;
-  color: var(--secondary-color)
+  color: var(--secondary-color);
+  float: right;
 }
 
 .accordion-collapse {
@@ -108,16 +111,24 @@
   padding: 1em;
 }
 
+#accordion-expand-collapse-arrow {
+  width: 20px;
+  height: 20px;
+}
 
 /* Expanded Accordion Styles */
 .expanded {
   height: auto;
 }
 
-.expanded .accordion-icon i {
+.accordion-button[aria-expanded="true"] .accordion-icon img {
   transform: rotate(180deg);
+  transition: transform 0.2s ease;
 }
-
+.accordion-button[aria-expanded="false"] .accordion-icon img {
+  transform: rotate(0deg);
+  transition: transform 0.2s ease;
+}
 
 /* Carousel */
 
