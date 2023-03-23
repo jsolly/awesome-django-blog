@@ -522,12 +522,16 @@ figure {
 ============= */
 input, select, textarea {
   padding: 0.5rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--primary-color);
   border-radius: 5px;
   font-size: 1rem;
   line-height: 1.5;
   width: 100%;
   box-sizing: border-box;
+}
+
+input[type="search"] {
+  margin-right: 0.5rem;
 }
 
 
@@ -725,9 +729,6 @@ button a:hover {
   color: var(--a11-red);
 }
 
-input[type="search"] {
-  border: none;
-}
 
 video {
   max-width: 100%;
