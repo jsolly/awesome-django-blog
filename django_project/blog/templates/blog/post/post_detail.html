@@ -40,10 +40,10 @@
     </div>
     {% if post.author == user %}
     <div class="buttons-container">
-      <a id="post-edit-button" class="btn-dark" href="{% url 'post-update' post.slug %}">
+      <a id="post-edit-button" class="btn-dark sml-margin" href="{% url 'post-update' post.slug %}">
         <span>Edit Post</span>
       </a>
-      <a id="post-delete-button" class="btn-red" href="{% url 'post-delete' post.slug %}">
+      <a id="post-delete-button" class="btn-red sml-margin" href="{% url 'post-delete' post.slug %}">
         <span>Delete Post</span>
       </a>
     </div>

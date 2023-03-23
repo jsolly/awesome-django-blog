@@ -73,6 +73,14 @@ body,
   grid-column: 3;
 }
 
+.sml-margin-left-right {
+  margin: 0 0.5rem;
+}
+
+.sml-margin-bottom {
+  margin-bottom: 0.5rem;
+}
+
 /* =============
    Header + Navs
 ============= */
@@ -412,8 +420,7 @@ figure {
   margin-bottom: 1.5rem;
 }
 
-.btn-dark,
-.btn-red {
+.btn {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
@@ -421,7 +428,6 @@ figure {
   line-height: 1.25rem;
   border-radius: 5px;
   padding: 0.5rem 1rem;
-  margin: 0 0.5rem;
 }
 
 .btn-dark {
@@ -439,6 +445,17 @@ figure {
 .btn-dark:hover {
   background-color: #000;
   border-color: #000;
+}
+
+.btn-dark-outline {
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #000;
+}
+
+.btn-dark-outline:hover {
+  background-color: #000;
+  color: #fff;
 }
 
 .btn-red:hover {
