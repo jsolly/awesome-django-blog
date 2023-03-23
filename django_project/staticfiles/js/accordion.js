@@ -1,9 +1,11 @@
 function toggleAccordion(accordionHeader) {
   const accordionItem = accordionHeader.parentElement;
   const accordionCollapse = accordionItem.querySelector('.accordion-collapse');
+  const accordionIcon = accordionHeader.querySelector('.accordion-icon');
 
   // Toggle the 'expanded' class
   accordionCollapse.classList.toggle('expanded');
+  accordionIcon.classList.toggle('expanded');
 }
 
 function initAccordion() {

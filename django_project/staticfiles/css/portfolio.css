@@ -1,3 +1,13 @@
+:root {
+  --background-color: #ffffff;
+  --border-color: #e0e0e0;
+  --header-background-color: #f7f7f7;
+  --secondary-color: #333333;
+  --icon-color: #777777;
+  --link-color: var(--bootstrap-primary-color);
+}
+
+
 /* General Layout */
 .row {
   display: flex;
@@ -16,7 +26,9 @@
 }
 
 .section-title {
-  font-size: 2rem;
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 1em;
 }
 
 /* Hello World + Resume */
@@ -51,34 +63,17 @@
 }
 
 /* Solly Bio */
-.accordion-container {
-  font-family: Arial, sans-serif;
-  max-width: 800px;
-  margin: 0 auto;
-  margin-bottom: 2.5rem;
-}
 
-.bio-image {
-  width: 100%;
-  max-width: 400px;
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 1em;
-}
 
-.accordion-item {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 1em;
-}
 
 .accordion-header {
-  background-color: #f1f1f1;
   padding: 0.5em 1em;
   cursor: pointer;
   user-select: none;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
 }
 
 .accordion-button {
@@ -89,6 +84,23 @@
   width: 100%;
   outline: none;
   cursor: pointer;
+  color: var(--secondary-color);
+  font-weight: inherit;
+}
+
+.accordion-button:hover {
+  background-color: var(--header-background-color);
+  color: var(--link-color);
+}
+
+.accordion-title {
+  flex: 1;
+}
+
+.accordion-icon {
+  font-size: 1em;
+  transition: transform 0.3s ease;
+  color: var(--secondary-color)
 }
 
 .accordion-collapse {
@@ -101,10 +113,23 @@
   padding: 1em;
 }
 
-#accordion-wrapper {
-  padding: 1rem;
-  border-radius: 0.25rem;
+.bio-image {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1em;
 }
+
+/* Expanded Accordion Styles */
+.expanded {
+  height: auto;
+}
+
+.expanded .accordion-icon i {
+  transform: rotate(180deg);
+}
+
 
 /* Carousel */
 
@@ -177,12 +202,9 @@
   align-items: center;
 }
 
-.carousel-text * {
-  font-size: 0.875rem;
-}
-
 .carousel-name {
   margin-bottom: 0.5rem;
+  margin-top: 0;
   font-weight: 300;
 }
 
@@ -194,6 +216,7 @@
 
 .carousel-info {
   line-height: 1;
+  margin: 0;
 }
 
 .carousel-review-link {
@@ -222,6 +245,11 @@
   font-size: 2rem;
   cursor: pointer;
   z-index: 1;
+  color: var(--secondary-color);
+}
+
+.carousel-control-prev:hover, .carousel-control-next:hover {
+  background-color: transparent;
 }
 
 .carousel-control-prev {
@@ -236,6 +264,20 @@
   margin-bottom: 1.5rem;
 }
 
+/* Testimonials */
+.testimonial-title {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.1rem;
+}
+.testimonial-quote {
+  font-size: 1.25rem;
+  font-weight: 300;
+  margin-bottom: 0rem;
+}
+.carousel-review-link {
+  margin-bottom: 0rem;
+}
 
 
 /* Contact me section */
@@ -295,5 +337,12 @@
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --header-background-color: #000;
+    --link-color: #6c9ff2;
   }
 }

@@ -21,7 +21,10 @@
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingTwo">
       <button class="accordion-button" type="button" aria-expanded="false">
-        Tap or click to read John Solly's Bio
+        <span class="accordion-title">Tap or click to read John Solly's Bio</span>
+        <span class="accordion-icon">
+          <i class="fas fa-caret-down"></i>
+        </span>
       </button>
     </h2>
     <div id="collapseOne" class="accordion-collapse">
@@ -32,10 +35,11 @@
     </div>
   </div>
 </article>
+
 {% include "blog/parts/posts.html" %}
 <!-- Testimonial Carousel -->
 <div class="testimonial-carousel">
-  <h2 class="section-title" id="carouselExampleCaptions">Testimonials</h2>
+  <h2 class="testimonial-title" id="carouselExampleCaptions">Testimonials</h2>
   <div class="carousel-wrapper">
     <div class="carousel-inner"> 
       {% for item in carousel_items %}
