@@ -25,11 +25,6 @@
   min-height: 1px;
 }
 
-.section-title {
-  text-align: center;
-  font-size: 1.5em;
-  margin-bottom: 1em;
-}
 
 /* Hello World + Resume */
 #portfolioHello {
@@ -63,25 +58,29 @@
 }
 
 /* Solly Bio */
-
-
+.bio-image {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1em;
+  margin-right: 1em;
+  float: left;
+}
 
 .accordion-header {
-  padding: 0.5em 1em;
   cursor: pointer;
   user-select: none;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   font-weight: 500;
 }
 
 .accordion-button {
   background-color: transparent;
+  padding: 0;
   border: none;
   font-size: 1.2em;
-  text-align: left;
-  width: 100%;
   outline: none;
   cursor: pointer;
   color: var(--secondary-color);
@@ -93,9 +92,6 @@
   color: var(--link-color);
 }
 
-.accordion-title {
-  flex: 1;
-}
 
 .accordion-icon {
   font-size: 1em;
@@ -113,13 +109,6 @@
   padding: 1em;
 }
 
-.bio-image {
-  width: 100%;
-  max-width: 300px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1em;
-}
 
 /* Expanded Accordion Styles */
 .expanded {
