@@ -1,9 +1,9 @@
 {% load sri %}
 <footer>
   <ul class="nav-footer">
-    <li class="nav-item"><a href="{% url 'home' %}#top">Home</a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}#top">Home</a></li>
     <li class="dropdown">
-      <a class="dropdown-toggle" href="#" id="footer-navbarDropdown" role="button" data-bs-toggle="dropdown"
+      <a class="dropdown-toggle nav-link" href="#" id="footer-navbarDropdown" role="button" data-bs-toggle="dropdown"
         aria-expanded="false">
         Categories
       </a>
@@ -17,16 +17,16 @@
         {% endfor %}
       </ul>
     </li>
-    <li class="nav-item"><a href="{% url 'portfolio' %}#top">Portfolio</a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'portfolio' %}#top">Portfolio</a></li>
     <li class="nav-item">
       <a rel="noopener noreferrer" target="_blank"
         href="https://us14.list-manage.com/contact-form?u=3fb3f4adf8ab2cd1ebd6ff743&form_id=7c78cd242677faaebfc3d4a2bc0d5fda"
-        class="ft px-2">Contact</a>
+        class="nav-link">Contact</a>
     </li>
-    <li class="nav-item"><a href="{% url 'privacy' %}#top">Privacy</a></li>
-    <li class="nav-item"><a href="{% url 'works-cited' %}#top">Works Cited</a></li>
-    <li class="nav-item"><a href="{% url 'rss' %}">RSS Feed</a></li>
-    <li class="nav-item"><a href="{% url 'status' %}#top">Status</a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'privacy' %}#top">Privacy</a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'works-cited' %}#top">Works Cited</a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'rss' %}">RSS Feed</a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'status' %}#top">Status</a></li>
   </ul>
   <p id="credit">Designed & Built by John Solly</p>
 </footer>
