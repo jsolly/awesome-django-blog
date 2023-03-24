@@ -87,12 +87,27 @@ body,
 /* Logo color is #0b3b8e */
 
 /* Navbar */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+  background-color: transparent;
+  border: none;
+  color: var(--primary-color);
+}
+
+.navbar-menu.show-menu {
+  display: flex ;
+  z-index: 1000;
+}
+
 .navbar {
   background-color: var(--secondary-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
+  position: relative;
 }
 
 .navbar-brand {
@@ -107,8 +122,11 @@ body,
 }
 
 .navbar-menu {
-  display: flex;
-  align-items: center;
+  display: none;
+  position: absolute; 
+  top: 100%; 
+  left: 0; 
+  flex-direction: column;
 }
 
 .navbar-nav {
@@ -947,7 +965,30 @@ img {
   }
 }
 
-@media (max-width: 991px) {
+@media screen and (max-width: 991px) {
+  .navbar-menu {
+    display: none;
+    background-color: var(--secondary-color);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    flex-direction: column;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    margin: 0; 
+    padding-left: 0;
+  }
+  .nav-item {
+    margin: 10px 0;
+  }
+
+  .hamburger {
+    display: block;
+  }
   .container {
     grid-template-columns: 1fr; /* One column layout */
   }
@@ -958,7 +999,10 @@ img {
   }
 }
 
-@media (min-width: 992px) {
+@media screen and (min-width: 992px) {
+  .navbar-menu {
+    display: flex;
+  }
   .container {
     grid-template-columns: 0.1fr 0.4fr 1fr 0.1fr; /* One column layout */
   }
