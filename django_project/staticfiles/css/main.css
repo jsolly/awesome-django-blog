@@ -261,7 +261,7 @@ footer {
   background-color: var(--footer-color);
 }
 
-footer .nav {
+footer .nav-footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
