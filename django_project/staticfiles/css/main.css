@@ -812,7 +812,7 @@ img {
    Media Queries
 ============= */
 @media (prefers-reduced-motion: reduce) {
-  nav a:hover {
+  .nav-item:hover :not(.dropdown-menu) {
     animation: none;
   }
 }
