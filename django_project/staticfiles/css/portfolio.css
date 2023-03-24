@@ -1,8 +1,7 @@
 :root {
-  --background-color: #ffffff;
-  --border-color: #e0e0e0;
+  --primary-color: white;
+  --secondary-color: rgb(18, 18, 18);
   --header-background-color: #f7f7f7;
-  --icon-color: #777777;
   --link-color: var(--bootstrap-primary-color);
   --secondary-color-rgb: 18, 18, 18;
 }
@@ -349,7 +348,9 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --header-background-color: #000;
+    --header-background-color: hsl(0, 0%, 100%, 0.05);
     --link-color: #6c9ff2;
+    --primary-color: rgb(18, 18, 18);
+    --secondary-color: rgba(255, 255, 255, 0.75);
   }
 }
