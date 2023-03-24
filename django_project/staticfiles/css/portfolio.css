@@ -78,7 +78,7 @@
   background-color: transparent;
   padding: 0;
   border: 1px solid rgba(var(--secondary-color-rgb), 0.1);
-  font-size: 1.2em;
+  font-size: 1.5rem;
   outline: none;
   cursor: pointer;
   color: var(--secondary-color);
@@ -96,7 +96,7 @@
 }
 
 .accordion-icon {
-  font-size: 1em;
+  font-size: 1rem;
   transition: transform 0.3s ease;
   color: var(--secondary-color);
   flex-shrink: 0;
@@ -115,7 +115,7 @@
 }
 
 .accordion-body {
-  padding: 1em;
+  padding: 1rem;
 }
 
 #accordion-expand-collapse-arrow {
