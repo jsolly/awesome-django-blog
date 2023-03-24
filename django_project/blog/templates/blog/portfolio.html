@@ -28,7 +28,8 @@
     </h2>
     <div id="collapseOne" class="accordion-collapse">
       <div class="accordion-body">
-        <img class="bio-image" src="{% static 'portfolio/gisLecture.webp' %}" alt="John at 2015 AAG conference with Rebecca Rice and Michael Goodchild" loading="lazy" />
+        <img class="bio-image" src="{% static 'portfolio/gisLecture.webp' %}"
+          alt="John at 2015 AAG conference with Rebecca Rice and Michael Goodchild" loading="lazy" />
         {% include "blog/parts/long_solly_bio.html" %}
       </div>
     </div>
@@ -40,22 +41,22 @@
 <div class="testimonial-carousel">
   <h2 class="testimonial-title" id="carouselExampleCaptions">Testimonials</h2>
   <div class="carousel-wrapper">
-    <div class="carousel-inner"> 
+    <div class="carousel-inner">
       {% for item in carousel_items %}
       <div class="carousel-item {% if forloop.first %}active{% endif %}" data-index="{{ forloop.counter0 }}">
         {% include 'blog/parts/carousel_item.html' %}
       </div>
       {% endfor %}
-    </div> 
+    </div>
     <button class="carousel-control-prev" type="button" aria-label="Previous">&#10094;</button>
-    <button class="carousel-control-next" type="button" aria-label="Next">&#10095;</button>    
+    <button class="carousel-control-next" type="button" aria-label="Next">&#10095;</button>
   </div>
 </div>
 
 <!-- Indicators -->
 <ol class="carousel-indicators">
   {% for item in carousel_items %}
-  <li {% if forloop.first %}class="active"{% endif %} data-carousel-index="{{ forloop.counter0 }}"></li>
+  <li {% if forloop.first %}class="active" {% endif %} data-carousel-index="{{ forloop.counter0 }}"></li>
   {% endfor %}
 </ol>
 <br>
@@ -68,35 +69,35 @@
 
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     initAccordion();
   });
-  
+
   function initAccordion() {
     const accordionHeaders = document.querySelectorAll('.accordion-header');
     accordionHeaders.forEach(header => {
-      header.addEventListener('click', function() {
+      header.addEventListener('click', function () {
         toggleAccordion(header);
       });
     });
   }
-  
+
   function toggleAccordion(accordionHeader) {
     const accordionItem = accordionHeader.parentElement;
     const accordionCollapse = accordionItem.querySelector('.accordion-collapse');
     const accordionButton = accordionHeader.querySelector('.accordion-button');
     console.log(accordionButton);
-  
+
     // Calculate the height of the accordion body
     const accordionBody = accordionCollapse.firstElementChild;
     const expandedHeight = accordionBody.scrollHeight;
-  
+
     // Toggle the 'expanded' class
     accordionCollapse.classList.toggle('expanded');
-  
+
     // Update aria-expanded attribute
     accordionButton.setAttribute('aria-expanded', accordionCollapse.classList.contains('expanded'));
-  
+
     // Set the height for the accordion collapse
     if (accordionCollapse.classList.contains('expanded')) {
       accordionCollapse.style.height = expandedHeight + 'px';
@@ -104,7 +105,5 @@
       accordionCollapse.style.height = '0';
     }
   }
-  </script>
-
-
+</script>
 {% endblock content %}
