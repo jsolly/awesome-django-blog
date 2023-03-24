@@ -812,16 +812,21 @@ img {
    Media Queries
 ============= */
 @media (prefers-reduced-motion: reduce) {
-  .nav-item:hover :not(.dropdown-menu) {
+  .navbar-nav > li:hover:not(.dropdown) {
+    animation: none;
+  }
+  .dropdown-item:hover {
     animation: none;
   }
 }
 
 @media (hover: hover) {
-  .nav-item:hover :not(.dropdown-menu) {
+  .navbar-nav > li:hover:not(.dropdown) {
     animation: button-shake 0.3s linear;
   }
-
+  .dropdown-item:hover {
+    animation: button-shake 0.3s linear;
+  }
   a:not(#scroll-to-top):hover::before {
     transform: scaleX(1);
   }
@@ -988,7 +993,7 @@ img {
     margin: 0; 
     padding-left: 0;
   }
-  .nav-item {
+  .nav-item, .dropdown {
     margin: 10px 0;
   }
 
