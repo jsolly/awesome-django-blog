@@ -122,11 +122,8 @@ body,
 }
 
 .navbar-menu {
-  display: none;
-  position: absolute; 
-  top: 100%; 
-  left: 0; 
-  flex-direction: column;
+  display: flex;
+  align-items: center;
 }
 
 .navbar-nav {
