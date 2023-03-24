@@ -134,6 +134,7 @@ body,
   display: flex;
   padding-left: 0;
   margin: 0;
+  list-style: none;
 }
 
 .nav-item {
@@ -859,11 +860,11 @@ img {
   }
 
   header {
-    background-color: white;
+    background-color: var(--secondary-color);
   }
 
   footer {
-    background-color: white;
+    background-color: var(--secondary-color)
   }
   hr {
     border-color: rgb(128, 128, 128);
@@ -1065,7 +1066,7 @@ img {
 
 @media (max-width: 991px) and (prefers-color-scheme: dark) {
   .navbar-menu {
-    background-color: white;
+    background-color: rgb(240,240,240)
   }
 
 }
