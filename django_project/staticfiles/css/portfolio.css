@@ -166,152 +166,150 @@
 }
 
 .testimonial-carousel {
-text-align: center;
-margin-bottom: 2.5rem;
-margin-top: 2.5rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  margin-top: 2.5rem;
 }
 
 .carousel-controls {
-display: flex;
-justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .carousel-indicators {
-display: flex;
-justify-content: center;
-gap: 0.5rem;
-list-style-type: none;
-padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  list-style-type: none;
+  padding: 0;
 }
 
 .carousel-indicators li {
-width: 10px;
-height: 10px;
-background-color: #ccc;
-cursor: pointer;
-transition: background-color 0.3s;
+  width: 10px;
+  height: 10px;
+  background-color: #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .carousel-indicators li.active {
-background-color: #007bff;
+  background-color: #007bff;
 }
 
 .avatar-img {
-border-radius: 50%;
-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-margin-bottom: 1rem;
-width: 150px;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  margin-bottom: 1rem;
+  width: 150px;
 }
 
 .carousel-content {
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .carousel-name {
-margin-bottom: 0.5rem;
-margin-top: 0;
-font-weight: 300;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+  font-weight: 300;
 }
 
 .carousel-position {
-font-weight: 700;
-margin-bottom: 0;
-font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0;
+  font-size: 1.25rem;
 }
 
 .carousel-info {
-line-height: 1;
-margin: 0;
+  line-height: 1;
+  margin: 0;
 }
 
 .carousel-review-link {
-font-weight: 600;
-margin-bottom: 0;
+  font-weight: 600;
+  margin-bottom: 0;
 }
 
 .carousel-wrapper {
-position: relative;
+  position: relative;
 }
 
 .carousel-item {
-display: none;
+  display: none;
 }
 
 .carousel-item.active {
-display: block;
+  display: block;
 }
 
 .carousel-control-prev,
 .carousel-control-next {
-position: absolute;
-top: 50%;
-transform: translateY(-50%);
-background-color: transparent;
-border: none;
-font-size: 2rem;
-cursor: pointer;
-z-index: 1;
-color: var(--secondary-color);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 1;
+  color: var(--secondary-color);
 }
 
 .carousel-control-prev:hover,
 .carousel-control-next:hover {
-background-color: transparent;
+  background-color: transparent;
 }
 
 .carousel-control-prev {
-left: 0;
+  left: 0;
 }
 
 .carousel-control-next {
-right: 0;
+  right: 0;
 }
 
 .carousel-item-content {
-margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 /* Testimonials */
 .testimonial-title {
-font-size: 2rem;
-font-weight: 300;
-letter-spacing: 0.1rem;
-margin-bottom: 1.5rem;
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.1rem;
+  margin-bottom: 1.5rem;
 }
 
 .testimonial-quote {
-font-size: 1.25rem;
-font-weight: 300;
-margin-bottom: 0;
+  font-size: 1.25rem;
+  font-weight: 300;
+  margin-bottom: 0;
 }
 
 /* Contact me section */
 #Contact-Me {
-margin-top: 2rem;
-margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
-
-
 
 #contact-me-heading {
   font-size: 2rem;
   margin-bottom: 1rem;
 }
 
-#Contact-Me p {
+Contact-Me p {
   font-size: 1.25rem;
   line-height: 1.5;
   margin-bottom: 2rem;
-}
-
-#Contact-Me .text-center {
+  }
+  
+  #Contact-Me .text-center {
   text-align: center;
-}
-
-#Contact-Me .btn {
+  }
+  
+  #Contact-Me .btn {
   display: inline-block;
   color: var(--secondary-color);
   border: 2px solid var(--secondary-color);
@@ -321,40 +319,38 @@ margin-bottom: 2rem;
   font-size: 1.25rem;
   border-radius: 2rem;
   transition: background-color 0.3s, color 0.3s;
-}
-
-#Contact-Me .btn:hover {
+  }
+  
+  #Contact-Me .btn:hover {
   background-color: var(--secondary-color);
   color: var(--primary-color);
-}
-
-/* Pagespeed Insights */
-
-.page-speed-insights-section {
+  }
+  
+  /* Pagespeed Insights */
+  .page-speed-insights-section {
   margin-bottom: 1.5rem;
   font-size: 0.875rem;
-}
-
-.figcaption-text {
+  }
+  
+  .figcaption-text {
   text-align: center;
   padding-bottom: 1rem;
-}
-
-
-/* Replace the following styles with Flexbox or CSS Grid according to your layout needs */
-@media (min-width: 992px) {
+  }
+  
+  /* Replace the following styles with Flexbox or CSS Grid according to your layout needs */
+  @media (min-width: 992px) {
   .resume-container {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
   }
-}
-
-@media (prefers-color-scheme: dark) {
+  }
+  
+  @media (prefers-color-scheme: dark) {
   :root {
-    --header-background-color: hsl(0, 0%, 100%, 0.05);
-    --link-color: #6c9ff2;
-    --primary-color: rgb(18, 18, 18);
-    --secondary-color: rgba(255, 255, 255, 0.75);
+  --header-background-color: hsl(0, 0%, 100%, 0.05);
+  --link-color: #6c9ff2;
+  --primary-color: rgb(18, 18, 18);
+  --secondary-color: rgba(255, 255, 255, 0.75);
   }
-}
+  }
