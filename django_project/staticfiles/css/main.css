@@ -1062,3 +1062,10 @@ img {
     grid-column: 3;
   }
 }
+
+@media (max-width: 991px) and (prefers-color-scheme: dark) {
+  .navbar-menu {
+    background-color: white;
+  }
+
+}
