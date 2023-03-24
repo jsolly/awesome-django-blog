@@ -102,7 +102,7 @@ body,
 
 .navbar-menu.show-menu {
   display: flex ;
-  z-index: 1000;
+  z-index: 1;
 }
 
 .navbar {
@@ -256,9 +256,14 @@ aside {
    Footer
 ============= */
 
+#credit {
+  font-size: 0.8rem;
+  color: var(--primary-color);
+}
+
 footer {
   padding: 20px 0;
-  background-color: var(--footer-color);
+  background-color: var(--secondary-color);
 }
 
 footer .nav-footer {
@@ -273,10 +278,6 @@ footer .nav-item {
   margin-bottom: 10px;
 }
 
-footer :is(.nav-item a, .dropdown-toggle),
-#credit {
-  color: white;
-}
 
 footer .nav-item a:hover {
   color: var(--footer-link-hover-color);
@@ -853,12 +854,15 @@ img {
     --secondary-color-rgb: 255, 255, 255;
     --post-card-hover-background-color: hsl(0, 0%, 100%, 0.05);
     --background-hover-color: hsl(0, 0%, 100%, 0.05);
-    --footer-color: rgb(35, 35, 35);
     --footer-link-hover-color: rgb(255, 255, 255);
     --link-color: #6c9ff2;
   }
 
   header {
+    background-color: white;
+  }
+
+  footer {
     background-color: white;
   }
   hr {
