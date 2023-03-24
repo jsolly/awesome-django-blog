@@ -818,7 +818,7 @@ img {
 }
 
 @media (hover: hover) {
-  .nav-item:hover {
+  .nav-item:hover :not(.dropdown-menu) {
     animation: button-shake 0.3s linear;
   }
 
