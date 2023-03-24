@@ -4,6 +4,7 @@
 {% block head %}
 {% sri_static 'css/portfolio.css' %}
 {% sri_static 'js/carousel.js' %}
+{% sri_static 'js/accordion.js' %}
 {% endblock head %}
 
 {% block content %}
@@ -66,44 +67,4 @@
 <hr>
 <br>
 {% include "blog/parts/page_speed_insights.html" %}
-
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    initAccordion();
-  });
-
-  function initAccordion() {
-    const accordionHeaders = document.querySelectorAll('.accordion-header');
-    accordionHeaders.forEach(header => {
-      header.addEventListener('click', function () {
-        toggleAccordion(header);
-      });
-    });
-  }
-
-  function toggleAccordion(accordionHeader) {
-    const accordionItem = accordionHeader.parentElement;
-    const accordionCollapse = accordionItem.querySelector('.accordion-collapse');
-    const accordionButton = accordionHeader.querySelector('.accordion-button');
-    console.log(accordionButton);
-
-    // Calculate the height of the accordion body
-    const accordionBody = accordionCollapse.firstElementChild;
-    const expandedHeight = accordionBody.scrollHeight;
-
-    // Toggle the 'expanded' class
-    accordionCollapse.classList.toggle('expanded');
-
-    // Update aria-expanded attribute
-    accordionButton.setAttribute('aria-expanded', accordionCollapse.classList.contains('expanded'));
-
-    // Set the height for the accordion collapse
-    if (accordionCollapse.classList.contains('expanded')) {
-      accordionCollapse.style.height = expandedHeight + 'px';
-    } else {
-      accordionCollapse.style.height = '0';
-    }
-  }
-</script>
 {% endblock content %}
