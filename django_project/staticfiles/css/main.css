@@ -87,6 +87,10 @@ body,
 /* Logo color is #0b3b8e */
 
 /* Navbar */
+.navbar-menu.show-menu .navbar-nav {
+  padding-left: 20px;
+}
+
 .hamburger {
   display: none;
   cursor: pointer;
@@ -963,6 +967,11 @@ img {
 }
 
 @media screen and (max-width: 991px) {
+  .navbar-menu.show-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* add this line to align items to left */
+  }
   .navbar-menu {
     display: none;
     background-color: var(--secondary-color);
