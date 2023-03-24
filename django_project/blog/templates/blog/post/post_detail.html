@@ -53,7 +53,7 @@
     </div>
 </article>
 
-<a href="{% url 'home' %}" id="post-back-to-home-button" class="btn btn-secondary btn-lg mb-5">
+<a href="{% url 'home' %}" id="post-back-to-home-button" class="btn btn-dark">
   Back to Home
 </a>
 <ul class="social-share">
@@ -62,7 +62,7 @@
       href="https://twitter.com/intent/tweet/?text={{ post.title }}&amp;url={{ request.build_absolute_uri }}"
       target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter">
       <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
-        <img src="{% static 'svg/twitter-share-btn.svg' %}" width="24" height="24" alt="Twitter">
+        <img class="social-share-btn" src="{% static 'svg/twitter-share-btn.svg' %}" alt="Twitter">
       </div>
       <span>Share on Twitter</span>
     </a>
@@ -72,7 +72,7 @@
       href="https://reddit.com/submit/?url={{ request.build_absolute_uri }}&amp;resubmit=true&amp;title={{ post.title }}"
       target="_blank" rel="noopener" aria-label="Share on Reddit">
       <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
-        <img src="{% static 'svg/reddit-share-btn.svg' %}" width="24" height="24" alt="Reddit">
+        <img class="social-share-btn" src="{% static 'svg/reddit-share-btn.svg' %}" alt="Reddit">
       </div>
       <span>Share on Reddit</span>
     </a>
@@ -82,7 +82,7 @@
       href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ request.build_absolute_uri }}&amp;title={{ post.title }}&amp;summary={{ post.metadesc }}&amp;source={{ request.build_absolute_uri }}"
       target="_blank" rel="noopener" aria-label="Share on LinkedIn">
       <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
-        <img src="{% static 'svg/linkedin-share-btn.svg' %}" width="24" height="24" alt="LinkedIn">
+        <img class="social-share-btn" src="{% static 'svg/linkedin-share-btn.svg' %}" alt="LinkedIn">
       </div>
       <span>Share on LinkedIn</span>
     </a>
