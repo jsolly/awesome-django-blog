@@ -200,6 +200,16 @@ footer {
   display: block;
 }
 
+.nav-link.dropdown-toggle:after {
+  content: "";
+  display: inline-block;
+  margin-left: 0.2rem;
+  vertical-align: 0.2rem;
+  border-top: 4px solid var(--primary-color);
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+
 /* Search form */
 .search-form {
   display: flex;
