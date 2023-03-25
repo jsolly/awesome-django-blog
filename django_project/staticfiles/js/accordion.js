@@ -15,7 +15,6 @@ function toggleAccordion(accordionHeader) {
   const accordionItem = accordionHeader.parentElement;
   const accordionCollapse = accordionItem.querySelector('.accordion-collapse');
   const accordionButton = accordionHeader.querySelector('.accordion-button');
-  console.log(accordionButton);
 
   // Calculate the height of the accordion body
   const accordionBody = accordionCollapse.firstElementChild;
