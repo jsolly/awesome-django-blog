@@ -264,10 +264,12 @@
 
 .carousel-control-prev {
   left: 0;
+  top: 100px;
 }
 
 .carousel-control-next {
   right: 0;
+  top: 100px;
 }
 
 .carousel-item-content {
