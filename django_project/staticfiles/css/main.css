@@ -60,7 +60,7 @@ body,
 ============= */
 .container {
   display: grid;
-  grid-template-columns: 2rem 0.75fr 2fr 2rem;
+  grid-template-columns: 0.5fr 1fr;
 }
 
 header {
@@ -69,13 +69,15 @@ header {
 }
 
 .sidebar {
-  grid-column: 2;
+  grid-column: 1;
   grid-row: 2;
+  margin: 20px;
 }
 
 .post-content {
-  grid-column: 3;
+  grid-column: 2;
   grid-row: 2;
+  margin: 20px;
 }
 
 footer {
@@ -737,11 +739,6 @@ button a:hover {
    Misc Styles
 ============= */
 
-pre {
-  display: inline-block;
-  width: 90%;
-}
-
 /* Meta Image */
 .meta-img-container {
   display: flex;
@@ -943,28 +940,28 @@ img {
 @media (max-width: 991px) {
   .container {
     display: grid;
-    grid-template-columns: 2rem 1fr 2rem;
+    grid-template-columns: 1fr;
   }
 
   header {
-    grid-column: 2;
+    grid-column: 1;
     grid-row: 1;
   }
 
   .sidebar {
     grid-row: 2;
-    grid-column: 2;
+    grid-column: 1;
 
   }
 
   .post-content {
     grid-row: 3;
-    grid-column: 2;
+    grid-column: 1;
   }
 
   .footer {
     grid-row: 4;
-    grid-column: 2;
+    grid-column: 1;
   }
 
   img.img-responsive {
@@ -993,10 +990,6 @@ img {
   }
 
   /* Sidebar */
-  aside {
-    padding: 0;
-  }
-
   .list-group {
     width: 100%;
   }
