@@ -923,7 +923,7 @@ img {
 }
 
 /* Responsive Styles*/
-@media (max-width: 992px) {
+@media (max-width: 991px) {
   img.img-responsive {
     width: 90%;
   }
@@ -974,9 +974,6 @@ img {
     border-bottom-right-radius: 0.25rem;
     border-bottom-left-radius: 0.25rem;
   }
-}
-
-@media screen and (max-width: 991px) {
   .navbar-menu.show-menu {
     display: flex;
     flex-direction: column;
