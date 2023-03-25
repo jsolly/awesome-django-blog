@@ -65,12 +65,23 @@ body,
   padding: 0 20px;
 }
 
+header {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
+
+footer {
+  grid-column: 1 / -1;
+  grid-row: 3;
+}
+
 .sidebar {
   grid-column: 2;
 }
 
 .post-content {
   grid-column: 3;
+  grid-row: 2;
 }
 
 .sml-margin-left-right {
@@ -726,6 +737,11 @@ button a:hover {
 /* =============
    Misc Styles
 ============= */
+
+pre {
+  display: inline-block;
+  white-space: pre-wrap;
+}
 
 /* Meta Image */
 .meta-img-container {
