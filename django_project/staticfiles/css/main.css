@@ -60,9 +60,7 @@ body,
 ============= */
 .container {
   display: grid;
-  grid-template-columns: 0.25 0.75fr 2fr 0.25;
-  grid-gap: 20px;
-  padding: 0 20px;
+  grid-template-columns: 0.25fr 0.75fr 2fr 0.25fr;
 }
 
 header {
@@ -70,18 +68,19 @@ header {
   grid-row: 1;
 }
 
-footer {
-  grid-column: 1 / -1;
-  grid-row: 3;
-}
-
 .sidebar {
   grid-column: 2;
+  grid-row: 2;
 }
 
 .post-content {
   grid-column: 3;
-  grid-row: 2;
+  grid-row: 3;
+}
+
+footer {
+  grid-column: 1 / -1;
+  grid-row: 4;
 }
 
 .sml-margin-left-right {
