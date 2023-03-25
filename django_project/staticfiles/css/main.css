@@ -936,3 +936,162 @@ img {
     display: none !important;
   }
 }
+
+/* Responsive Styles*/
+@media (max-width: 991px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  header {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .sidebar {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  .post-content {
+    grid-row: 3;
+    grid-column: 1;
+  }
+
+  .footer {
+    grid-row: 4;
+  }
+
+  img.img-responsive {
+    width: 90%;
+  }
+
+  .post-card-row {
+    grid-template-columns: 1fr;
+    justify-content: center;
+  }
+
+  .post-card-meta-img-container {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .post-card-img {
+    max-width: 100%;
+  }
+
+  .post-card-meta-img-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* Sidebar */
+  aside {
+    padding: 0;
+  }
+
+  .list-group {
+    width: 100%;
+  }
+
+  .list-group-item {
+    border-radius: 0;
+  }
+
+  .list-group-item:first-child {
+    border-top-right-radius: 0.25rem;
+    border-top-left-radius: 0.25rem;
+  }
+
+  .list-group-item:last-child {
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+  }
+  .navbar-menu.show-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .navbar-menu {
+    display: none;
+    background-color: var(--secondary-color);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    flex-direction: column;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    margin: 0; 
+    padding-left: 0;
+  }
+  .nav-item, .dropdown {
+    margin: 10px 0;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+/* @media screen and (min-width: 992px) {
+  .navbar-menu {
+    display: flex;
+  }
+  .container {
+    grid-template-columns: 0.1fr 0.4fr 1fr 0.1fr;
+  }
+  .post-content {
+    grid-column: 3;
+  }
+  .sidebar {
+    grid-column: 2;
+  }
+}
+
+@media screen and (min-width: 1700px) {
+  .container {
+    display: grid;
+    grid-template-columns: 0.25fr 0.4fr 1fr 0.25fr;
+    grid-gap: 20px;
+    padding: 0 20px;
+  }
+
+  .sidebar {
+    grid-column: 2;
+  }
+
+  .post-content {
+    grid-column: 3;
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  .container {
+    display: grid;
+    grid-template-columns: 0.5fr 0.4fr 1fr 0.5fr;
+    grid-gap: 20px;
+    padding: 0 20px;
+  }
+
+  .sidebar {
+    grid-column: 2;
+  }
+
+  .post-content {
+    grid-column: 3;
+  }
+}
+
+@media (max-width: 991px) and (prefers-color-scheme: dark) {
+  .navbar-menu {
+    background-color: rgb(240,240,240)
+  }
+
+} */
