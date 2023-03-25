@@ -163,7 +163,6 @@ footer {
 }
 
 .dropdown-menu {
-  display: none;
   position: absolute;
   top: 100%;
   left: 0;
@@ -175,6 +174,14 @@ footer {
   z-index: 1;
   list-style: none;
   margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
 }
 
 .dropdown-item {
@@ -189,7 +196,7 @@ footer {
   background-color: #f5f5f5;
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown:focus-within .dropdown-menu {
   display: block;
 }
 
