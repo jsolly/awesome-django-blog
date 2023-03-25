@@ -748,7 +748,7 @@ a:not(.btn, #scroll-to-top)::before {
   height: 2px;
   bottom: -4px;
   left: 0;
-  background-color: var(--secondary-color);
+  background-color: var(--link-color);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
