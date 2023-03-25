@@ -147,14 +147,18 @@ footer {
   padding-left: 0;
   margin: 0;
   list-style: none;
+  width: 100%;
 }
 
 .nav-item {
   margin: 0 15px;
+  display: flex;
 }
 
 .nav-link {
   color: var(--primary-color);
+  flex-grow: 1;
+  width: 100%;
 }
 
 /* Dropdown menu */
@@ -209,6 +213,8 @@ footer {
   border-right: 4px solid transparent;
   border-left: 4px solid transparent;
 }
+
+
 
 /* Search form */
 .search-form {
