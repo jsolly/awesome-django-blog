@@ -739,7 +739,18 @@ button a:hover {
    Misc Styles
 ============= */
 
-/* Meta Image */
+.post-text {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.post-text pre, .post-text code {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  max-width: 100%;
+}
+
 .meta-img-container {
   display: flex;
   align-items: center;
