@@ -871,9 +871,6 @@ img {
 }
 
 @media (hover: hover) {
-  .navbar-nav > li:hover:not(.dropdown) {
-    animation: button-shake 0.3s linear;
-  }
   .dropdown-item:hover {
     animation: button-shake 0.3s linear;
   }
@@ -1086,3 +1083,9 @@ img {
   }
 
 }
+@media (min-width: 992px) {
+  .navbar-nav > li:hover:not(.dropdown) {
+    animation: button-shake 0.3s linear;
+  }
+}
+
