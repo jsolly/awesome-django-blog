@@ -739,7 +739,7 @@ button a:hover {
 
 pre {
   display: inline-block;
-  white-space: pre-wrap;
+  width: 90%;
 }
 
 /* Meta Image */
@@ -748,6 +748,7 @@ pre {
   align-items: center;
   justify-content: center;
   height: 30vh;
+  width: 50%;
 }
 
 #post-detail-meta-img {
@@ -942,7 +943,7 @@ img {
 @media (max-width: 991px) {
   .container {
     display: grid;
-    grid-template-columns: 2rem auto 2rem;
+    grid-template-columns: 2rem 1fr 2rem;
   }
 
   header {
@@ -953,6 +954,7 @@ img {
   .sidebar {
     grid-row: 2;
     grid-column: 2;
+
   }
 
   .post-content {
