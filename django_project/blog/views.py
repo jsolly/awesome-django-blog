@@ -13,6 +13,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
+from django.views.decorators.csrf import csrf_exempt
 from siteanalytics.models import Visitor
 from django.http import HttpResponse
 import html
@@ -351,6 +352,7 @@ def generate_gpt_input_value(request, post_id):
     return HttpResponse(new_content)
 
 
+@csrf_exempt
 def answer_question_with_GPT(request):
     question = request.POST.get("question-text-area", "")
     ez_logger.info(f"Question: {question}")
