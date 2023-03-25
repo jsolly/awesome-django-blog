@@ -48,6 +48,11 @@
   outline: none;
 }
 
+.send__button:hover {
+  background-color: transparent;
+  color: black;
+}
+
 /* MESSAGES */
 textarea {
   background-color: var(--primary-color);
