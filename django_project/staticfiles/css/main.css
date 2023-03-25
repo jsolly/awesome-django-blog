@@ -948,12 +948,6 @@ img {
 }
 
 /* Responsive Styles*/
-@media (max-width: 991px) and (prefers-color-scheme: dark) {
-  .navbar-menu {
-    background-color: rgb(240,240,240)
-  }
-
-}
 
 @media (max-width: 991px) {
   .container {
@@ -1061,4 +1055,11 @@ img {
   .post-content {
     grid-column: 3;
   }
+}
+
+@media (max-width: 991px) and (prefers-color-scheme: dark) {
+  .navbar-menu {
+    background-color: rgb(240,240,240)
+  }
+
 }
