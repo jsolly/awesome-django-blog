@@ -60,7 +60,7 @@ body,
 ============= */
 .container {
   display: grid;
-  grid-template-columns: 0.25fr 0.75fr 2fr 0.25fr;
+  grid-template-columns: 2rem 0.75fr 2fr 2rem;
 }
 
 header {
@@ -701,7 +701,7 @@ h1 {
   letter-spacing: 2px;
 }
 
-:is(blockquote, h1, h2, h3, h4, h5, h6, p, pre):not(#credit) {
+:is(blockquote, h1, h2, h3, h4, h5, h6, p, pre, li):not(#credit) {
   max-width: 70ch;
 }
 
@@ -767,6 +767,7 @@ video {
 
 #breadcrumbs {
   color: #6c757d;
+  padding: 0.5rem 0;
 }
 
 img {
@@ -941,26 +942,27 @@ img {
 @media (max-width: 991px) {
   .container {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 2rem auto 2rem;
   }
 
   header {
-    grid-column: 1;
+    grid-column: 2;
     grid-row: 1;
   }
 
   .sidebar {
     grid-row: 2;
-    grid-column: 1;
+    grid-column: 2;
   }
 
   .post-content {
     grid-row: 3;
-    grid-column: 1;
+    grid-column: 2;
   }
 
   .footer {
     grid-row: 4;
+    grid-column: 2;
   }
 
   img.img-responsive {
