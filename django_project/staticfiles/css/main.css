@@ -1074,9 +1074,9 @@ img {
   }
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 992px) and (max-width: 1799px) {
   .container {
-    grid-template-columns: 0.1fr 0.5fr 1fr 0.1fr;
+    grid-template-columns: 0.1fr 0.4fr 1fr 0.1fr;
   }
   .sidebar {
     grid-column: 2;
@@ -1085,6 +1085,20 @@ img {
     grid-column: 3;
   }
 }
+
+@media screen and (min-width: 1800px) and (max-width: 2199px) {
+  .container {
+    grid-template-columns: 0.2fr 0.3fr 1fr 0.2fr;
+  }
+}
+
+@media screen and (min-width: 2200px) {
+  .container {
+    grid-template-columns: 0.3fr 0.3fr 0.75fr 0.3fr;
+  }
+}
+
+
 
 @media (max-width: 991px) and (prefers-color-scheme: dark) {
   .navbar-menu {
