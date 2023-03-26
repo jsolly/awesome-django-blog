@@ -348,6 +348,28 @@ Contact-Me p {
   }
 }
 
+@media (min-width: 1500px) {
+  .carousel-control-prev {
+    left: 150px;
+
+  }
+  
+  .carousel-control-next {
+    right: 150px;
+  }
+}
+
+@media (min-width: 2500px) {
+  .carousel-control-prev {
+    left: 300px;
+
+  }
+  
+  .carousel-control-next {
+    right: 300px;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --header-background-color: hsl(0, 0%, 100%, 0.05);
