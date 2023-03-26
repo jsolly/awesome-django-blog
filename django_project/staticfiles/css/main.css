@@ -117,7 +117,7 @@ footer {
 }
 
 .navbar-menu.show-menu {
-  display: flex ;
+  display: flex;
   z-index: 1;
 }
 
@@ -218,8 +218,6 @@ footer {
   border-left: 4px solid transparent;
 }
 
-
-
 /* Search form */
 .search-form {
   display: flex;
@@ -317,7 +315,6 @@ footer .nav-footer {
 footer .nav-item {
   margin-bottom: 10px;
 }
-
 
 footer .nav-item a:hover {
   color: var(--footer-link-hover-color);
@@ -778,7 +775,6 @@ a.hidden-link {
     legend,
     small,
     .word-count
-
   ) {
   color: var(--secondary-color);
 }
@@ -842,7 +838,8 @@ button a:hover {
   overflow-x: hidden;
 }
 
-.post-text pre, .post-text code {
+.post-text pre,
+.post-text code {
   white-space: pre-wrap;
   overflow-wrap: break-word;
   word-break: break-all;
@@ -980,7 +977,7 @@ img {
   }
 
   footer {
-    background-color: var(--secondary-color)
+    background-color: var(--secondary-color);
   }
   hr {
     border-color: rgb(128, 128, 128);
@@ -1041,20 +1038,24 @@ img {
 /* Responsive Styles*/
 
 @media (max-width: 999px) {
+  /* 
+  Changes the layout of the container to a single column grid
+  with the header, sidebar, post-content, and footer taking up
+  one row each
+  */
   .container {
     display: grid;
     grid-template-columns: 1fr;
   }
 
   header {
-    grid-column: 1;
     grid-row: 1;
+    grid-column: 1;
   }
 
   .sidebar {
     grid-row: 2;
     grid-column: 1;
-
   }
 
   .post-content {
@@ -1107,10 +1108,11 @@ img {
 
   .navbar-nav {
     flex-direction: column;
-    margin: 0; 
+    margin: 0;
     padding-left: 0;
   }
-  .nav-item, .dropdown {
+  .nav-item,
+  .dropdown {
     margin: 10px 0;
   }
 
@@ -1123,13 +1125,19 @@ img {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .social-share li {
     margin: 0.5rem 0;
-  } 
+  }
 }
 
 @media screen and (min-width: 1000px) {
+  /*
+  Changes the layout of the container to a 3 column grid.
+  The Sidebar and post-content still occupy one column each,
+  but the header and footer now span the entire width of the
+  container. The first and last columns are for padding.
+  */
   .container {
     grid-template-columns: 0.25fr 2.5fr 0.25fr;
   }
@@ -1142,7 +1150,6 @@ img {
   .sidebar {
     grid-row: 2;
     grid-column: 2;
-
   }
 
   .post-content {
@@ -1157,12 +1164,18 @@ img {
 }
 
 @media screen and (min-width: 1200px) {
+  /* 
+  Changes the layout of the container to a 4 column grid.
+  The Sidebar and post-content occupy the middle two columns,
+  and the header and footer now span the entire width of the
+  container. The first and last columns are for padding.
+  */
   .container {
     grid-template-columns: 0.25fr 1.25fr 2.25fr 0.25fr;
   }
   header {
     grid-column: 1 / 5;
-    grid-row:1
+    grid-row: 1;
   }
   .sidebar {
     grid-column: 2;
@@ -1176,7 +1189,6 @@ img {
     grid-column: 1 / 5;
     grid-row: 3;
   }
-
 }
 
 @media screen and (min-width: 1700px) {
@@ -1205,7 +1217,7 @@ img {
 
 @media screen and (min-width: 2500px) {
   .container {
-    grid-template-columns: 0.25fr 0.2fr 0.3fr 0.25fr;
+    grid-template-columns: 0.9fr 1fr 1.2fr 0.9fr;
   }
   .sidebar {
     grid-column: 2;
@@ -1215,16 +1227,13 @@ img {
   }
 }
 
-
 @media (max-width: 991px) and (prefers-color-scheme: dark) {
   .navbar-menu {
-    background-color: rgb(240,240,240)
+    background-color: rgb(240, 240, 240);
   }
-
 }
 @media (min-width: 992px) {
   .navbar-nav > li:hover:not(.dropdown) {
     animation: button-shake 0.3s linear;
   }
 }
-
