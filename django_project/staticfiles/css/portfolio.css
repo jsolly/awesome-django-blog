@@ -334,7 +334,6 @@ Contact-Me p {
   padding-bottom: 1rem;
 }
 
-/* Replace the following styles with Flexbox or CSS Grid according to your layout needs */
 @media (min-width: 992px) {
   .resume-container {
     display: grid;
