@@ -699,6 +699,8 @@ a.hidden-link {
     p,
     blockquote,
     li,
+    legend,
+    .word-count
 
   ) {
   color: var(--secondary-color);
@@ -761,10 +763,6 @@ button a:hover {
 /* =============
    Misc Styles
 ============= */
-.word-count {
-  color: var(--secondary-color)
-}
-
 .post-text {
   width: 100%;
   overflow-x: hidden;
