@@ -1088,24 +1088,7 @@ img {
     object-fit: cover;
   }
 
-  /* Sidebar */
-  .list-group {
-    width: 100%;
-  }
-
-  .list-group-item {
-    border-radius: 0;
-  }
-
-  .list-group-item:first-child {
-    border-top-right-radius: 0.25rem;
-    border-top-left-radius: 0.25rem;
-  }
-
-  .list-group-item:last-child {
-    border-bottom-right-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
-  }
+  /* Navbar */
   .navbar-menu.show-menu {
     display: flex;
     flex-direction: column;
