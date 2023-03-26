@@ -854,7 +854,6 @@ button a:hover {
 #post-detail-meta-img {
   max-width: 100%;
   max-height: 100%;
-  object-fit: cover;
 }
 
 #draft {
