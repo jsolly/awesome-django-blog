@@ -7,7 +7,7 @@
 {% block content %}
 <section id="category-blog-posts">
     <h1 class="category-title">{{ category|title }}</h1>
-    <p class="mb-2 fs-4 category-description">{{ category.description }}</p>
+    <p class="category-description">{{ category.description }}</p>
     {% include "blog/parts/posts.html" %}
 </section>
 {% endblock content %}
