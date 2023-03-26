@@ -41,18 +41,30 @@
 <div class="testimonial-carousel">
   <h2 class="testimonial-title" id="carouselExampleCaptions">Testimonials</h2>
   <div class="carousel-wrapper">
-    <div class="carousel-inner">
-      {% for item in carousel_items %}
-      <div class="carousel-item {% if forloop.first %}active{% endif %}" data-index="{{ forloop.counter0 }}">
-        {% include 'blog/parts/carousel_item.html' %}
+    <div class="carousel-container">
+      <button class="carousel-control-prev" type="button" aria-label="Previous">&#10094;</button>
+      <div class="carousel-inner">
+        {% for item in carousel_items %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}" data-index="{{ forloop.counter0 }}">
+          <div class="carousel-item-content">
+            <img class="avatar-img" src="{% static item.avatar_url %}" alt="avatar" />
+            <div class="carousel-content">
+              <div class="carousel-text">
+                <h3 class="carousel-name">{{ item.name }}</h3>
+                <p class="carousel-position">{{ item.position }}</p>
+                <p class="carousel-info">{{ item.company }} - {{ item.year }}</p>
+              </div>
+              <p class="testimonial-quote">{{ item.quote }}</p>
+              <p class="carousel-review-link"><a target="_blank" rel="noopener noreferrer" href="{{ item.link }}">Open review on LinkedIn</a></p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
       </div>
-      {% endfor %}
+      <button class="carousel-control-next" type="button" aria-label="Next">&#10095;</button>
     </div>
-    <button class="carousel-control-prev" type="button" aria-label="Previous">&#10094;</button>
-    <button class="carousel-control-next" type="button" aria-label="Next">&#10095;</button>
   </div>
 </div>
-
 <!-- Indicators -->
 <ol class="carousel-indicators">
   {% for item in carousel_items %}

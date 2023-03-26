@@ -236,6 +236,12 @@
   position: relative;
 }
 
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .carousel-item {
   display: none;
 }
@@ -246,15 +252,11 @@
 
 .carousel-control-prev,
 .carousel-control-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: transparent;
-  border: none;
   font-size: 2rem;
   cursor: pointer;
-  z-index: 1;
   color: var(--secondary-color);
+  background-color: transparent;
+  border: none;
 }
 
 .carousel-control-prev:hover,
@@ -262,19 +264,10 @@
   background-color: transparent;
 }
 
-.carousel-control-prev {
-  left: 0;
-  top: 100px;
-}
-
-.carousel-control-next {
-  right: 0;
-  top: 100px;
-}
-
 .carousel-item-content {
   margin-bottom: 1.5rem;
 }
+
 
 /* Testimonials */
 .testimonial-title {
@@ -288,6 +281,8 @@
   font-size: 1.25rem;
   font-weight: 300;
   margin-bottom: 0;
+  width: 450px;
+  word-wrap: break-word;
 }
 
 /* Contact me section */
@@ -345,28 +340,6 @@ Contact-Me p {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
-  }
-}
-
-@media (min-width: 1500px) {
-  .carousel-control-prev {
-    left: 150px;
-
-  }
-  
-  .carousel-control-next {
-    right: 150px;
-  }
-}
-
-@media (min-width: 2500px) {
-  .carousel-control-prev {
-    left: 300px;
-
-  }
-  
-  .carousel-control-next {
-    right: 300px;
   }
 }
 
