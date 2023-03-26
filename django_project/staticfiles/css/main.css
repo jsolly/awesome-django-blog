@@ -85,6 +85,10 @@ footer {
   grid-row: 4;
 }
 
+.sml-margin-top-bottom {
+  margin: 0.5rem 0;
+}
+
 .sml-margin-left-right {
   margin: 0 0.5rem;
 }
@@ -575,7 +579,6 @@ input,
 select,
 textarea {
   padding: 0.5rem;
-  border: 1px solid var(--primary-color);
   border-radius: 5px;
   font-size: 1rem;
   line-height: 1.5;
@@ -651,6 +654,17 @@ label[for="id_draft"] {
    Typeography
 ============= */
 
+.category-title {
+  font-weight: 300;
+  letter-spacing: 0.1rem;
+  margin-bottom: 0;
+}
+
+.category-description {
+  font-weight: 300;
+  margin-top: 0;
+}
+
 a[href^="http"]::after {
   content: "↗";
   margin-left: 0.1rem;
@@ -700,6 +714,7 @@ a.hidden-link {
     blockquote,
     li,
     legend,
+    small,
     .word-count
 
   ) {
@@ -753,6 +768,7 @@ a:not(.btn, #scroll-to-top)::before {
   background-color: var(--link-color);
   transform: scaleX(0);
   transition: transform 0.3s ease;
+  z-index: 1;
 }
 
 button a,
@@ -874,11 +890,6 @@ img {
   }
   a:not(#scroll-to-top):hover::before {
     transform: scaleX(1);
-  }
-
-  #accordion-wrapper:hover {
-    box-shadow: 0 1rem 3rem var(--secondary-color);
-    scale: 1.005;
   }
 
   .post-card:not(#aboutMe):hover {
