@@ -16,10 +16,6 @@ function toggleAccordion(accordionHeader) {
   const accordionCollapse = accordionItem.querySelector('.accordion-collapse');
   const accordionButton = accordionHeader.querySelector('.accordion-button');
 
-  // Calculate the height of the accordion body
-  const accordionBody = accordionCollapse.firstElementChild;
-  const expandedHeight = accordionBody.scrollHeight;
-
   // Toggle the 'expanded' class
   accordionCollapse.classList.toggle('expanded');
 
@@ -28,7 +24,12 @@ function toggleAccordion(accordionHeader) {
 
   // Set the height for the accordion collapse
   if (accordionCollapse.classList.contains('expanded')) {
-    accordionCollapse.style.height = expandedHeight + 'px';
+    // Add a small timeout to ensure the DOM is fully rendered before calculating the height
+    setTimeout(() => {
+      const accordionBody = accordionCollapse.firstElementChild;
+      const expandedHeight = accordionBody.scrollHeight;
+      accordionCollapse.style.height = expandedHeight + 'px';
+    }, 20);
   } else {
     accordionCollapse.style.height = '0';
   }
