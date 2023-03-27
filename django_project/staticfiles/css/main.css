@@ -30,10 +30,11 @@ Global Styles
   --border-color: #777777;
   --a11-red: #990000;
   --action-color: #333333; /* Slightly darker than secondary color */
-  --link-color: var(--bootstrap-primary-color);
+  --link-color: var(--primary-blue);
   --footer-color: rgb(50, 50, 50);
   --background-hover-color: #f7f7f7;
-  --bootstrap-primary-color: #0d6efd;
+  --primary-blue: #0063f0;
+  --primary-blue-hover: #0050d1;
   --dark-badge-background-color: rgb(33, 37, 41);
 
   /* Chatbot colors */
@@ -257,7 +258,7 @@ aside {
 
 .list-group-item.active {
   color: rgb(240, 240, 240);
-  background-color: var(--bootstrap-primary-color);
+  background-color: var(--primary-blue);
 }
 
 .list-group-item span {
@@ -626,7 +627,7 @@ input[type="search"] {
 input:focus,
 select:focus,
 textarea:focus {
-  border-color: #007bff;
+  border-color: var(--primary-blue);
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
@@ -644,7 +645,7 @@ label {
 
 button {
   display: inline-block;
-  background-color: #007bff;
+  background-color: var(--primary-blue);
   color: var(--muted-white);
   border: none;
   border-radius: 5px;
@@ -657,7 +658,7 @@ button {
 }
 
 button:hover {
-  background-color: #0069d9;
+  background-color: var(--primary-blue-hover);
 }
 
 label[for="id_draft"] {
@@ -679,8 +680,8 @@ label[for="id_draft"] {
 }
 
 #id_draft:checked {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: var(--primary-blue);
+  border-color: var(--primary-blue);
 }
 
 /* =============
