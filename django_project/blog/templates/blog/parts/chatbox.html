@@ -4,7 +4,7 @@
         <div class="chatbox__support">
             <div class="chatbox__header">
                 <div class="chatbox__image--header">
-                    <img src="{% static 'svg/man-avatar.svg' %}" alt="image">
+                    <img src="{% static 'svg/man-avatar.svg' %}" alt="Ezra's avatar">
                 </div>
                 <div class="chatbox__content--header">
                     <h4 class="chatbox__heading--header">Ask a Question</h4>
@@ -20,12 +20,12 @@
                         hx-include="#question-text-area" hx-target=".chatbox__messages" hx-swap="afterbegin"></textarea>
                     <button class="chatbox__send--footer send__button" hx-post="/answer-with-gpt/"
                         hx-include="#question-text-area" hx-target=".chatbox__messages"
-                        hx-swap="afterbegin">Send</button>
+                        hx-swap="afterbegin" aria-label="Send message">Send</button>
                 </form>
             </div>
         </div>
         <div class="chatbox__button">
-            <button><img src="{% static 'svg/chatbox-icon.svg' %}" /></button>
+            <button aria-label="Toggle chatbox"><img src="{% static 'svg/chatbox-icon.svg' %}" alt="Chatbox icon" /></button>
         </div>
     </div>
 </div>
