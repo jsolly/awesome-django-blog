@@ -30,7 +30,7 @@
     <div id="collapseOne" class="accordion-collapse">
       <div class="accordion-body">
         <img class="bio-image" src="{% static 'portfolio/gisLecture.webp' %}"
-          alt="John at 2015 AAG conference with Rebecca Rice and Michael Goodchild" loading="lazy" />
+          alt="John at 2015 AAG conference with Rebecca Rice and Michael Goodchild" />
         {% include "blog/parts/long_solly_bio.html" %}
       </div>
     </div>
@@ -55,7 +55,8 @@
                 <p class="carousel-info">{{ item.company }} - {{ item.year }}</p>
               </div>
               <p class="testimonial-quote">{{ item.quote }}</p>
-              <p class="carousel-review-link"><a target="_blank" rel="noopener noreferrer" href="{{ item.link }}">Open review on LinkedIn</a></p>
+              <p class="carousel-review-link"><a target="_blank" rel="noopener noreferrer" href="{{ item.link }}">Open
+                  review on LinkedIn</a></p>
             </div>
           </div>
         </div>
