@@ -483,27 +483,31 @@ figure {
   padding: 0.5rem 1rem;
 }
 
-.btn-dark {
-  color: #fff;
-  background-color: #6c757d;
-  border: 1px solid #6c757d;
-}
 
 .btn-red {
   color: #fff;
   background-color: #dc3545;
   border: 1px solid #dc3545;
 }
+.btn-red:hover {
+  background-color: #c82333;
+  border-color: #c82333;
+}
 
+.btn-dark {
+  color: #fff;
+  background-color: #6c757d;
+  border: 1px solid #6c757d;
+}
 .btn-dark:hover {
-  background-color: #000;
-  border-color: #000;
+  background-color: #5c636a;
+  border-color: #5c636a;
 }
 
 .btn-dark-outline {
   color: #000;
   background-color: #fff;
-  border: 1px solid #000;
+  border: 1px solid #6c757d;
 }
 
 .btn-dark-outline:hover {
@@ -511,39 +515,10 @@ figure {
   color: #fff;
 }
 
-.btn-red:hover {
-  background-color: #c82333;
-  border-color: #c82333;
-}
 
 /* print button */
-#print-container {
-  margin-bottom: 1.5rem;
-}
-
-#print-link {
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
-  color: #000;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  border-radius: 5px;
-  padding: 0.5rem 1rem;
-  background-color: #fff;
-  border: 1px solid #000;
-}
-
-#print-link:hover {
-  background-color: #000;
-  color: #fff;
-}
-
 #print-icon {
   margin-right: 0.5rem;
-  width: 1.5rem;
-  height: 1.5rem;
-  fill: #000;
 }
 
 /* Post Submit Button */
