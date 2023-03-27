@@ -6,8 +6,8 @@
         <div hx-get="{{ url }}?page={{ page_obj.number|add:1 }}" hx-trigger="revealed" hx-swap="afterend" hx-target="this" rel="next"></div>
       {% endif %}
       {% if page_obj.number|divisibleby:"3" %}
-        <div class="text-center mb-5">
-          <button class="btn-primary btn btn-lg" id="see-more-btn" hx-get="{{ url }}?page={{ page_obj.number|add:1 }}" hx-trigger="click" hx-swap="outerHTML" hx-target="this" rel="next">Load More Posts</button>
+        <div class="load-more">
+          <button class="load-more__btn" id="see-more-btn" hx-get="{{ url }}?page={{ page_obj.number|add:1 }}" hx-trigger="click" hx-swap="outerHTML" hx-target="this" rel="next">Load More Posts</button>
         </div>
       {% endif %}
     {% endif %}

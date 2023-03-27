@@ -17,7 +17,7 @@ class TestViews(SetUp):
     def test_status_view(self):
         response = self.client.get(reverse("status"))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/status.html")
+        self.assertTemplateUsed(response, "blog/status_page.html")
 
     def test_all_posts_view_shows_correct_posts(self):
         response = self.client.get("/all-posts/")

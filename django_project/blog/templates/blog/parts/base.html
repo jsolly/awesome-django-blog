@@ -48,9 +48,6 @@
   <link rel="icon" type="image/webp" sizes="512x512" href="{% static 'favicon/android-chrome-192x192.webp' %}">
   <link rel="icon" type="image/webp" sizes="48x48" href="{% static 'favicon/favicon.ico' %}">
 
-  <!-- Bootstrap -->
-  {% sri_static 'bootstrap/bootstrap.min.css' %}
-  {% sri_static 'bootstrap/bootstrap.bundle.min.js' %}
 
   <!-- My CSS -->
   {% sri_static 'css/main.css' %}
@@ -61,6 +58,9 @@
   <!-- ChatBox JS -->
   {% sri_static 'js/chatbox.js' %}
 
+  <!-- Header JS-->
+  {% sri_static 'js/header.js' %}
+
   <!-- Chatbot CSS-->
   {% sri_static 'css/chatbot.css' %}
   <!-- My JS -->
@@ -70,16 +70,17 @@
 
 {% include "blog/parts/chatbox.html" %}
 
-<body>
+<body id="body">
   <a href="{% url 'all-posts' %}" class="hidden-link">All Posts (Paginated)</a>
   <a id='skip-nav' class='screenreader-text' href='#main'>
     Skip to content
   </a>
-  {% include "blog/parts/header.html" %}
   <div class="container">
-    <div class="row">
+    {% include "blog/parts/header.html" %}
+    <div class="sidebar">
       {% include "blog/parts/sidebar.html" %}
-      <div id="content-area" class="col-lg-9 fs-5">
+    </div>
+      <div id="content-area" class="post-content">
         {% if messages %} {% for message in messages %} Removed due to caching issue persisting message
         <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %} {% endif %}
@@ -92,15 +93,14 @@
           {% block content %}
           {% endblock content %}
         </main>
-        <nav id="scroll-to-top-container" aria-label="Scroll to top" class="float-end">
+        <nav id="scroll-to-top-container" aria-label="Scroll to top">
           <a id="scroll-to-top" href="#">
             <img src="{% static 'svg/scroll-to-top.svg' %}" width="45" height="45" alt="Scroll to top of page">
             top</a>
-        </nav>
-        {% include "blog/parts/footer.html" %}
+          </nav>
+        </div>
       </div>
-    </div>
-  </div>
-</body>
+      {% include "blog/parts/footer.html" %}
+    </body>
 
 </html>

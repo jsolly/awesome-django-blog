@@ -1,22 +1,17 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   class Chatbox {
     constructor() {
-      this.args = {
-        openButton: document.querySelector(".chatbox__button"),
-        chatBox: document.querySelector(".chatbox__support"),
-        sendButton: document.querySelector(".send__button"),
-      };
-
+      this.openButton = document.querySelector(".chatbox__button");
+      this.chatBox = document.querySelector(".chatbox__support");
+      this.sendButton = document.querySelector(".send__button");
       this.state = false;
     }
 
     display() {
-      const { openButton, chatBox, sendButton } = this.args;
+      this.openButton.addEventListener("click", () => this.toggleState());
+      this.sendButton.addEventListener("click", () => this.onSendButton());
 
-      openButton.addEventListener("click", () => this.toggleState(chatBox));
-      sendButton.addEventListener("click", () => this.onSendButton(chatBox));
-
-      const node = chatBox.querySelector("textarea");
+      const node = this.chatBox.querySelector("textarea");
       node.addEventListener("input", () => {
         node.style.height = "auto";
         node.style.height = `${node.scrollHeight}px`;
@@ -24,39 +19,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
       node.addEventListener("keyup", ({ key, shiftKey }) => {
         if (key === "Enter" && !shiftKey) {
-          this.onSendButton(chatBox);
+          this.onSendButton();
         }
       });
     }
 
-    toggleState(chatbox) {
+    toggleState() {
       this.state = !this.state;
 
       // show or hides the box
-      if (this.state) {
-        chatbox.classList.add("chatbox--active");
-      } else {
-        chatbox.classList.remove("chatbox--active");
-      }
+      this.chatBox.classList.toggle("chatbox--active", this.state);
     }
 
-    onSendButton(chatbox) {
-      var textField = chatbox.querySelector("#question-text-area");
-      let text1 = textField.value.trim();
-      if (text1 === "" || text1 === "\n") {
+    onSendButton() {
+      const textField = this.chatBox.querySelector("#question-text-area");
+      const text = textField.value.trim();
+      if (text === "" || text === "\n") {
         return;
       }
 
-      this.updateChatText(chatbox, text1);
+      this.updateChatText(text);
     }
 
-    updateChatText(chatbox, text) {
-      const chatmessages = chatbox.querySelector(".chatbox__messages");
+    updateChatText(text) {
+      const chatmessages = this.chatBox.querySelector(".chatbox__messages");
       const message = document.createElement("div");
-      message.className = "messages__item messages__item--user";
+      message.classList.add("messages__item", "messages__item--user");
       message.textContent = text;
       chatmessages.prepend(message);
-      chatbox.querySelector("#question-text-area").value = "";
+      this.chatBox.querySelector("#question-text-area").value = "";
     }
   }
 

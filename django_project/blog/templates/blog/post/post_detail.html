@@ -5,7 +5,6 @@
 {% sri_static 'django_ckeditor_5/ckeditor.css' %}
 {% sri_static 'django_ckeditor_5/prism.css' %}
 {% sri_static 'django_ckeditor_5/prism.js' %}
-{% sri_static 'css/social_share.css' %}
 {% sri_static 'js/addHeaderIdsAndLinks.js' %}
 
 <meta property="og:type" content="article">
@@ -17,96 +16,78 @@
 {% endblock head %}
 
 {% block content %}
-<div id="print-container" class="mb-3">
-  <a id="print" href="javascript:window.print()">
-    <img src="{% static 'svg/print-icon.svg' %}" width="32" height="32" alt="Print this blog post">
-    Print this post</a>
+<div class="sml-margin-top-bottom" id="print-container">
+  <a class="btn btn-dark" href="javascript:window.print()">
+    <img id="print-icon" src="{% static 'svg/print-icon.svg' %}" alt="Print this blog post">
+    <span id="print-text">Print this post</span>
+  </a>
 </div>
 <article class="media content-section">
-  <div class="col-md-4 d-flex align-items-center meta-img-container">
-    <img id="post-detail-meta-img" width="{{ post.metaimg.width }}" height="{{ post.metaimg.height }}"
-      src="{{ post.metaimg.url }}" alt="{{ post.metadesc }}" />
+  <div class="meta-img-container">
+    <img id="post-detail-meta-img" src="{{ post.metaimg.url }}" alt="{{ post.metadesc }}">
   </div>
   <div class="media-body line-numbers ck-content">
     <div class="article-metadata">
-      <h1 class="card-title fw-bolder">
+      <h1>
         {{ post.title }}
         {% if post.draft %}
         <p id="draft">(Draft)</p>
         {% endif %}
       </h1>
-      <p class="card-text fs-6">
-        <small class="text-muted">
-          {{ post.date_posted|date:"F d, Y" }} in {{ post.category|title }}</small>
-      </p>
+      <p class="post-date">
+        {{ post.date_posted|date:"F d, Y" }} in {{ post.category|title }}</p>
     </div>
     {% if post.author == user %}
-    <div>
-      <a class="btn btn-secondary btn-sm mt-1 mb-1" id="post-edit-button" href="{% url 'post-update' post.slug %}">
-        Edit Post
+    <div class="buttons-container">
+      <a id="post-edit-button" class="btn btn-dark sml-margin-left-right" href="{% url 'post-update' post.slug %}">
+        <span>Edit Post</span>
       </a>
-      <a class="btn btn-danger btn-sm mt-1 mb-1" id="post-delete-button" href="{% url 'post-delete' post.slug %}">
-        Delete Post
+      <a id="post-delete-button" class="btn btn-red sml-margin-left-right" href="{% url 'post-delete' post.slug %}">
+        <span>Delete Post</span>
       </a>
     </div>
     {% endif %}
-    <div class="post-content">
+    <div class="post-text">
       {{ post.content|safe }}
     </div>
 </article>
 
-<a href="{% url 'home' %}" id="post-back-to-home-button" class="btn btn-secondary btn-lg mb-5">
+<a href="{% url 'home' %}" id="post-back-to-home-button" class="btn btn-dark">
   Back to Home
 </a>
-<ul class="nav justify-content-center mb-5">
-  <li class="nav-item">
-    <!-- Sharingbutton Twitter -->
-    <a class="resp-sharing-button__link btn btn-dark btn-sm"
+
+<div class="social-share-container">
+<ul class="social-share">
+  <li>
+    <a class="resp-sharing-button__link twitter"
       href="https://twitter.com/intent/tweet/?text={{ post.title }}&amp;url={{ request.build_absolute_uri }}"
       target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter">
       <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path
-            d="M23.44 4.83c-.8.37-1.5.38-2.22.02.93-.56.98-.96 1.32-2.02-.88.52-1.86.9-2.9 1.1-.82-.88-2-1.43-3.3-1.43-2.5 0-4.55 2.04-4.55 4.54 0 .36.03.7.1 1.04-3.77-.2-7.12-2-9.36-4.75-.4.67-.6 1.45-.6 2.3 0 1.56.8 2.95 2 3.77-.74-.03-1.44-.23-2.05-.57v.06c0 2.2 1.56 4.03 3.64 4.44-.67.2-1.37.2-2.06.08.58 1.8 2.26 3.12 4.25 3.16C5.78 18.1 3.37 18.74 1 18.46c2 1.3 4.4 2.04 6.97 2.04 8.35 0 12.92-6.92 12.92-12.93 0-.2 0-.4-.02-.6.9-.63 1.96-1.22 2.56-2.14z" />
-        </svg>
+        <img class="social-share-btn" src="{% static 'svg/twitter-share-btn.svg' %}" alt="Twitter">
       </div>
-      Share on Twitter
+      <span>Share on Twitter</span>
     </a>
   </li>
-  <li class="nav-item">
-    <!-- Sharingbutton Reddit -->
-    <a class="resp-sharing-button__link btn btn-dark btn-sm"
+  <li>
+    <a class="resp-sharing-button__link reddit"
       href="https://reddit.com/submit/?url={{ request.build_absolute_uri }}&amp;resubmit=true&amp;title={{ post.title }}"
       target="_blank" rel="noopener" aria-label="Share on Reddit">
       <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <circle cx="9.391" cy="13.392" r=".978" />
-          <path
-            d="M14.057 15.814c-1.14.66-2.987.655-4.122-.004-.238-.138-.545-.058-.684.182-.13.24-.05.545.19.685.72.417 1.63.646 2.568.646.93 0 1.84-.228 2.558-.642.24-.13.32-.44.185-.68-.14-.24-.445-.32-.683-.18zM5 12.086c0 .41.23.78.568.978.27-.662.735-1.264 1.353-1.774-.2-.207-.48-.334-.79-.334-.62 0-1.13.507-1.13 1.13z" />
-          <path
-            d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0zm6.673 14.055c.01.104.022.208.022.314 0 2.61-3.004 4.73-6.695 4.73s-6.695-2.126-6.695-4.74c0-.105.013-.21.022-.313C4.537 13.73 4 12.97 4 12.08c0-1.173.956-2.13 2.13-2.13.63 0 1.218.29 1.618.757 1.04-.607 2.345-.99 3.77-1.063.057-.803.308-2.33 1.388-2.95.633-.366 1.417-.323 2.322.085.302-.81 1.076-1.397 1.99-1.397 1.174 0 2.13.96 2.13 2.13 0 1.177-.956 2.133-2.13 2.133-1.065 0-1.942-.79-2.098-1.81-.734-.4-1.315-.506-1.716-.276-.6.346-.818 1.395-.88 2.087 1.407.08 2.697.46 3.728 1.065.4-.468.987-.756 1.617-.756 1.17 0 2.13.953 2.13 2.13 0 .89-.54 1.65-1.33 1.97z" />
-          <circle cx="14.609" cy="13.391" r=".978" />
-          <path
-            d="M17.87 10.956c-.302 0-.583.128-.79.334.616.51 1.082 1.112 1.352 1.774.34-.197.568-.566.568-.978 0-.623-.507-1.13-1.13-1.13z" />
-        </svg>
+        <img class="social-share-btn" src="{% static 'svg/reddit-share-btn.svg' %}" alt="Reddit">
       </div>
-      Share on Reddit
+      <span>Share on Reddit</span>
     </a>
   </li>
-  <li class="nav-item">
-    <!-- Sharingbutton LinkedIn -->
-    <a class="resp-sharing-button__link btn btn-dark btn-sm"
+  <li>
+    <a class="resp-sharing-button__link linkedin"
       href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ request.build_absolute_uri }}&amp;title={{ post.title }}&amp;summary={{ post.metadesc }}&amp;source={{ request.build_absolute_uri }}"
       target="_blank" rel="noopener" aria-label="Share on LinkedIn">
       <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
-        <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24"
-          enable-background="new 0 0 24 24" xml:space="preserve">
-          <path
-            d="M12,0C5.383,0,0,5.383,0,12s5.383,12,12,12s12-5.383,12-12S18.617,0,12,0z M9.5,16.5h-2v-7h2V16.5z M8.5,7.5 c-0.553,0-1-0.448-1-1c0-0.552,0.447-1,1-1s1,0.448,1,1C9.5,7.052,9.053,7.5,8.5,7.5z M18.5,16.5h-3V13c0-0.277-0.225-0.5-0.5-0.5 c-0.276,0-0.5,0.223-0.5,0.5v3.5h-3c0,0,0.031-6.478,0-7h3v0.835c0,0,0.457-0.753,1.707-0.753c1.55,0,2.293,1.12,2.293,3.296V16.5z" />
-        </svg>
+        <img class="social-share-btn" src="{% static 'svg/linkedin-share-btn.svg' %}" alt="LinkedIn">
       </div>
-      Share on LinkedIn
+      <span>Share on LinkedIn</span>
     </a>
   </li>
 </ul>
+</div>
 {% endblock content %}

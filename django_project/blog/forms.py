@@ -37,21 +37,12 @@ class PostForm(forms.ModelForm):
         widgets = {
             "title": forms.TextInput(
                 attrs={
-                    "class": "form-control",
                     "autofocus": True,
                 }
             ),
-            "slug": forms.TextInput(
-                attrs={
-                    "class": "form-control",
-                }
-            ),
-            "category": forms.Select(choices=choices, attrs={"class": "form-control"}),
-            "metadesc": forms.TextInput(
-                attrs={
-                    "class": "form-control",
-                }
-            ),
-            "metaimg_alt_txt": forms.TextInput(attrs={"class": "form-control"}),
-            "metaimg_attribution": forms.TextInput(attrs={"class": "form-control"}),
+            "slug": forms.TextInput(),
+            "category": forms.Select(choices=choices),
+            "metadesc": forms.TextInput(),
+            "metaimg_alt_txt": forms.TextInput(),
+            "metaimg_attribution": forms.TextInput(),
         }

@@ -141,13 +141,12 @@ $ pre-commit install
 - GPT-powered Chatbot that can answer questions about your blog and help you find content.
 
 ### Non-Functional Features
-
+- HTMX for dynamic page updates without a page refresh
 - Robots.txt, security.txt, and sitemap.xml for optimized SEO and security
 - Honeypot Admin page to automatically block IPs trying to login with an admin account (Removed in
   https://github.com/jsolly/blogthedata/pull/105)
 - Git hooks for automatic static file generation (manage.py collectstatic)
 - GitActions CI integration with coverage, linting, and testing. Push with confidence!
-- Latest Bootstrap 5.x
 - Compatible with Sqllite or postgres databases for fast protyping and production
 - Optimized for Performance, SEO, and A11Y
 - Latest Django 4.x

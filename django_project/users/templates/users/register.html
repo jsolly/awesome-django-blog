@@ -4,7 +4,7 @@
   <form method="POST">
     {% csrf_token %}
     <fieldset class="form-group">
-      <legend class="boarder-bottom mb-4">
+      <legend>
         Join Today (DM me
         <a rel="noopener noreferrer" target="_blank" href="https://twitter.com/_jsolly">
           @_jsolly
@@ -14,15 +14,16 @@
       {{ form.as_p }}
     </fieldset>
     <div class="form-group">
-      <button class="btn btn-outline-info" id="sign-up-button" type="submit">
+      <button id="sign-up-button" type="submit">
         Sign up
       </button>
     </div>
   </form>
-  <div class="border-top pt-3">
-    <small class="text-muted">
+  <hr>
+  <div>
+    <small>
       Already Have An Account?
-      <a class="ml-2" href="{% url 'login' %}"> Sign In</a>
+      <a class="sml-margin-left-right" href="{% url 'login' %}"> Sign In</a>
     </small>
   </div>
 </div>

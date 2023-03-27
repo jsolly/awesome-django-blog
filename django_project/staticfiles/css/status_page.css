@@ -1,0 +1,55 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1rem;
+    grid-template-areas:
+      "title title"
+      "status-section status-section"
+      "postgres-metrics system-metrics"
+      "site-traffic-map site-traffic-map";
+  }
+  
+  .title {
+    grid-area: title;
+    text-align: center;
+  }
+  
+  .status-section {
+    grid-area: status-section;
+  }
+  
+  .postgres-metrics {
+    grid-area: postgres-metrics;
+  }
+  
+  .system-metrics {
+    grid-area: system-metrics;
+  }
+  
+  .site-traffic-map {
+    grid-area: site-traffic-map;
+  }
+  
+  .badge {
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    border-radius: 0.25rem;
+    font-size: 75%;
+    font-weight: 700;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+  }
+  
+  @media (max-width: 768px) {
+    .grid-container {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "title"
+        "status-section"
+        "postgres-metrics"
+        "system-metrics"
+        "site-traffic-map";
+    }
+  }
+  

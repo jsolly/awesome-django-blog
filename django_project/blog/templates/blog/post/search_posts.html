@@ -2,21 +2,17 @@
 {% block content %}
 
 <div>
-  <span class="text-center">
-    {% if searched %}
-    <h1>You searched for '{{ searched }}'</h1>
-    <p>{{ num_results }} results found</p>
-    {% else %}
-    <h1>You didn't search for anything!</h1>
-    {% endif %}
-  </span>
+  {% if searched %}
+  <h1>You searched for '{{ searched }}'</h1>
+  <p>{{ num_results }} results found</p>
+  {% else %}
+  <h1>You didn't search for anything!</h1>
+  {% endif %}
 
   {% if posts %}
   {% include "blog/parts/posts_paginated.html" %} {% else %}
-  <span class="text-center">
-    <h2>I didn't find any posts matching that search 🤷‍♂️</h2>
-    {% endif %}
-  </span>
+  <h2>I didn't find any posts matching that search 🤷‍♂️</h2>
+  {% endif %}
 </div>
 {% include "blog/parts/pagination.html" %}
 {% endblock content %}
