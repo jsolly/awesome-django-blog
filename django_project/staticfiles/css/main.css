@@ -1216,7 +1216,7 @@ img {
 
 @media screen and (min-width: 2500px) {
   .container {
-    grid-template-columns: 0.9fr 1fr 1.2fr 0.9fr;
+    grid-template-columns: 1.1fr 0.6fr 1.2fr 1.1fr;
   }
   .sidebar {
     grid-column: 2;
