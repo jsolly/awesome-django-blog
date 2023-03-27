@@ -193,7 +193,7 @@ class PortfolioView(ListView):
             {
                 "avatar_url": "portfolio/AmyBrazil.webp",
                 "name": "Amy Brazil",
-                "position": "Direct Manager, Customer Success",
+                "position": "Direct Manager",
                 "company": "YellowfinBI",
                 "year": "2022",
                 "quote": "I had the pleasure to hire, onboard and manage John...",
@@ -202,7 +202,7 @@ class PortfolioView(ListView):
             {
                 "avatar_url": "portfolio/CraigUtley.webp",
                 "name": "Craig Utley",
-                "position": "Direct Manager, Consulting",
+                "position": "Direct Manager",
                 "company": "YellowfinBI",
                 "year": "2022",
                 "quote": "There is a right way to come into an organization and John did it the right way...",
@@ -212,7 +212,7 @@ class PortfolioView(ListView):
                 "avatar_url": "portfolio/MeredithBean.webp",
                 "name": "Meredith Bean",
                 "position": "Undergraduate Student",
-                "company": "George Mason University",
+                "company": "GMU",
                 "year": "2016",
                 "quote": "John was an extraordinary TA to me as a student in an introductory GIS class...",
                 "link": "https://www.linkedin.com/in/jsolly/",
@@ -220,7 +220,7 @@ class PortfolioView(ListView):
             {
                 "avatar_url": "portfolio/KathrynThorpe.webp",
                 "name": "Kathryn Thorpe",
-                "position": "Coworker, Customer Success",
+                "position": "Coworker",
                 "company": "YellowfinBI",
                 "year": "2022",
                 "quote": "Not only is John the kind of guy you'd trust with all things IT based on his technical prowess...",
