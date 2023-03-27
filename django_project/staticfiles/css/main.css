@@ -35,17 +35,13 @@ Global Styles
   --dark-badge-background-color: rgb(33, 37, 41);
 }
 
-#body {
-  animation: fade-in 0.8s;
-  margin: 0;
-  padding: 0;
-}
-
 html {
   scroll-behavior: smooth;
 }
 
 body {
+  padding: 0;
+  margin: 0;
   line-height: 1.6;
   font-size: 1.3rem;
 }
@@ -886,15 +882,6 @@ img {
   }
 }
 
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
 
 /* =============
    Media Queries
