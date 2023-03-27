@@ -20,7 +20,7 @@ Global Styles
 }
 
 :root {
-  --primary-color: white;
+  --primary-color: rgb(240,240,240);
   --secondary-color: rgb(18, 18, 18);
   --secondary-color-rgb: 18, 18, 18;
   --post-card-hover-background-color: hsl(0, 0%, 40%);
@@ -248,7 +248,7 @@ aside {
 }
 
 .list-group-item.active {
-  color: white;
+  color: rgb(240, 240, 240);
   background-color: var(--bootstrap-primary-color);
 }
 
@@ -281,7 +281,7 @@ aside {
   font-weight: bold;
   line-height: 1;
   text-align: center;
-  color: white;
+  color: rgb(240, 240, 240);
   background-color: var(--dark-badge-background-color);
   border-radius: 1rem;
   position: absolute;
@@ -612,9 +612,6 @@ select,
 textarea {
   padding: 0.5rem;
   border-radius: 5px;
-  font-size: 1rem;
-  line-height: 1.5;
-  width: 100%;
   box-sizing: border-box;
 }
 
@@ -936,8 +933,8 @@ img {
 @media (prefers-color-scheme: dark) {
   :root {
     --primary-color: rgb(18, 18, 18);
-    --secondary-color: rgba(255, 255, 255, 0.75);
-    --secondary-color-rgb: 255, 255, 255;
+    --secondary-color: rgb(240, 240, 240);
+    --secondary-color-rgb: 240, 240, 240;
     --post-card-hover-background-color: hsl(0, 0%, 100%, 0.05);
     --background-hover-color: hsl(0, 0%, 100%, 0.05);
     --footer-link-hover-color: rgb(255, 255, 255);
@@ -1199,11 +1196,6 @@ img {
   }
 }
 
-@media (max-width: 991px) and (prefers-color-scheme: dark) {
-  .navbar-menu {
-    background-color: rgb(240, 240, 240);
-  }
-}
 @media (min-width: 992px) {
   .navbar-nav > li:hover:not(.dropdown) {
     animation: button-shake 0.3s linear;
