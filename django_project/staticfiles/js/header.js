@@ -1,24 +1,24 @@
-document.addEventListener('DOMContentLoaded', function () {
-  var hamburger = document.querySelector('.hamburger');
+document.addEventListener('DOMContentLoaded', () => {
+  const hamburger = document.querySelector('.hamburger');
 
-  hamburger.addEventListener('click', function () {
+  hamburger.addEventListener('click', () => {
     console.log('click');
     toggleMenu();
   });
 
-  var dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+  const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 
-  dropdownToggles.forEach(function (toggle) {
-    toggle.addEventListener('click', function (event) {
+  dropdownToggles.forEach((toggle) => {
+    toggle.addEventListener('click', (event) => {
       event.preventDefault();
-      var dropdownMenu = toggle.nextElementSibling;
+      const dropdownMenu = toggle.nextElementSibling;
       dropdownMenu.classList.toggle('show');
     });
   });
 });
 
 function toggleMenu() {
-  var menu = document.querySelector('.navbar-menu');
+  const menu = document.querySelector('.navbar-menu');
   menu.classList.toggle('show-menu');
   console.log(menu.classList);
 }

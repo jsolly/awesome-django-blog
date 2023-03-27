@@ -1,50 +1,45 @@
-document.addEventListener('DOMContentLoaded', function () {
+// Wait for the DOM to finish loading before executing the code
+document.addEventListener('DOMContentLoaded', () => {
+  // Initialize the current index to 0 and get references to the carousel items and indicators
   let currentCarouselIndex = 0;
   const carouselItems = document.querySelectorAll('.carousel-item');
   const indicators = document.querySelectorAll('.carousel-indicators li');
 
-  function updateIndicators() {
-    indicators.forEach(function (indicator, index) {
-      if (index === currentCarouselIndex) {
-        indicator.classList.add('active');
-      } else {
-        indicator.classList.remove('active');
-      }
+  // Update the indicators to reflect the current index
+  const updateIndicators = () => {
+    indicators.forEach((indicator, index) => {
+      indicator.classList.toggle('active', index === currentCarouselIndex);
     });
-  }
+  };
 
-  function changeCarouselItem(step) {
+  // Change the active carousel item
+  const changeCarouselItem = (value) => {
     carouselItems[currentCarouselIndex].classList.remove('active');
-    currentCarouselIndex = (currentCarouselIndex + step + carouselItems.length) % carouselItems.length;
+
+    if (typeof value === 'number') {
+      currentCarouselIndex = value;
+    } else {
+      currentCarouselIndex = (currentCarouselIndex + value + carouselItems.length) % carouselItems.length;
+    }
+
     carouselItems[currentCarouselIndex].classList.add('active');
     updateIndicators();
-  }
+  };
 
-  function changeCarouselItemTo(index) {
-    if (index === currentCarouselIndex) return;
-    carouselItems[currentCarouselIndex].classList.remove('active');
-    currentCarouselIndex = index;
-    carouselItems[currentCarouselIndex].classList.add('active');
-    updateIndicators();
-  }
-
-  const prevControl = document.querySelector('.carousel-control-prev');
-  const nextControl = document.querySelector('.carousel-control-next');
-
-  prevControl.addEventListener('click', function () {
+  // Add click event listeners to the previous and next carousel controls
+  document.querySelector('.carousel-control-prev').addEventListener('click', () => {
     changeCarouselItem(-1);
   });
 
-  nextControl.addEventListener('click', function () {
+  document.querySelector('.carousel-control-next').addEventListener('click', () => {
     changeCarouselItem(1);
   });
 
-  const indicatorItems = document.querySelectorAll('[data-carousel-index]');
-
-  indicatorItems.forEach(item => {
-    item.addEventListener('click', function () {
-      const index = parseInt(this.getAttribute('data-carousel-index'));
-      changeCarouselItemTo(index);
+  // Add click event listeners to the carousel indicators
+  document.querySelectorAll('[data-carousel-index]').forEach((item) => {
+    item.addEventListener('click', () => {
+      const index = parseInt(item.dataset.carouselIndex);
+      changeCarouselItem(index);
     });
   });
 });
