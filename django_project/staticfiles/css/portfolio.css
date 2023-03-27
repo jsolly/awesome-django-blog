@@ -1,11 +1,3 @@
-:root {
-  --primary-color: #ffffff;
-  --secondary-color: #121212;
-  --header-background-color: #f7f7f7;
-  --link-color: var(--bootstrap-primary-color);
-  --secondary-color-rgb: 18, 18, 18;
-}
-
 /* General Layout */
 .row {
   display: flex;
@@ -52,7 +44,7 @@
 
 .resume-btn:hover {
   background-color: #007bff;
-  color: #fff;
+  color: var(--muted-white);
 }
 
 /* Solly Bio */
@@ -338,14 +330,5 @@ Contact-Me p {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --header-background-color: hsl(0, 0%, 100%, 0.05);
-    --link-color: #6c9ff2;
-    --primary-color: rgb(18, 18, 18);
-    --secondary-color: rgba(255, 255, 255, 0.75);
   }
 }

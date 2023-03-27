@@ -20,7 +20,8 @@ Global Styles
 }
 
 :root {
-  --primary-color: rgb(240,240,240);
+  --primary-color: rgb(240, 240, 240);
+  --muted-white: rgb(240, 240, 240);
   --secondary-color: rgb(18, 18, 18);
   --secondary-color-rgb: 18, 18, 18;
   --post-card-hover-background-color: hsl(0, 0%, 40%);
@@ -29,7 +30,6 @@ Global Styles
   --action-color: #333333; /* Slightly darker than secondary color */
   --link-color: var(--bootstrap-primary-color);
   --footer-color: rgb(50, 50, 50);
-  --footer-link-hover-color: rgb(107, 107, 107);
   --background-hover-color: #f7f7f7;
   --bootstrap-primary-color: #0d6efd;
   --dark-badge-background-color: rgb(33, 37, 41);
@@ -174,7 +174,7 @@ footer {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #fff;
+  background-color: var(--muted-white);
   min-width: 150px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border: 1px solid #ccc;
@@ -314,10 +314,6 @@ footer .nav-footer {
 
 footer .nav-item {
   margin-bottom: 10px;
-}
-
-footer .nav-item a:hover {
-  color: var(--footer-link-hover-color);
 }
 
 #credit {
@@ -483,7 +479,7 @@ figure {
 
 
 .btn-red {
-  color: #fff;
+  color: var(--muted-white);
   background-color: #dc3545;
   border: 1px solid #dc3545;
 }
@@ -493,7 +489,7 @@ figure {
 }
 
 .btn-dark {
-  color: #fff;
+  color: var(--muted-white);
   background-color: #6c757d;
   border: 1px solid #6c757d;
 }
@@ -504,13 +500,13 @@ figure {
 
 .btn-dark-outline {
   color: #000;
-  background-color: #fff;
+  background-color: var(--muted-white);
   border: 1px solid #6c757d;
 }
 
 .btn-dark-outline:hover {
   background-color: #000;
-  color: #fff;
+  color: var(--muted-white);
 }
 
 
@@ -536,7 +532,7 @@ figure {
 }
 
 .post-submit-button:hover {
-  color: #fff;
+  color: var(--muted-white);
   background-color: #17a2b8;
   border-color: #17a2b8;
   cursor: pointer;
@@ -563,7 +559,7 @@ figure {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #fff;
+  color: var(--muted-white);
   font-size: 0.875rem;
   line-height: 1.25rem;
   border-radius: 5px;
@@ -575,7 +571,7 @@ figure {
   margin-right: 0.5rem;
   width: 1.25rem;
   height: 1.25rem;
-  fill: #fff;
+  fill: var(--muted-white);
   transition: fill 0.25s ease-out;
 }
 
@@ -641,7 +637,7 @@ label {
 button {
   display: inline-block;
   background-color: #007bff;
-  color: #fff;
+  color: var(--muted-white);
   border: none;
   border-radius: 5px;
   padding: 0.5rem 1rem;
@@ -937,7 +933,6 @@ img {
     --secondary-color-rgb: 240, 240, 240;
     --post-card-hover-background-color: hsl(0, 0%, 100%, 0.05);
     --background-hover-color: hsl(0, 0%, 100%, 0.05);
-    --footer-link-hover-color: rgb(255, 255, 255);
     --link-color: #6c9ff2;
   }
 
