@@ -120,6 +120,8 @@ class AllPostsView(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["url"] = self.request.path
+        context["title"] = "All Posts | Blogthedata.com"
+        context["description"] = "All posts on blogthedata.com"
         return context
 
 

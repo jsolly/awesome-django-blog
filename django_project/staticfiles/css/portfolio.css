@@ -34,16 +34,16 @@
 
 .resume-btn {
   display: inline-block;
-  border: 1px solid #007bff;
+  border: 1px solid var(--primary-blue);
   padding: 0.5rem 1rem;
   margin-left: 1.5rem;
-  color: #007bff;
+  color: var(--primary-blue);
   text-decoration: none;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .resume-btn:hover {
-  background-color: #007bff;
+  background-color: var(--primary-blue-hover);
   color: var(--muted-white);
 }
 
