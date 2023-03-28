@@ -1,9 +1,8 @@
 {% extends "blog/parts/base.html" %}
 {% load sri %}
-{% load static %}
 
 {% block head %}
-
+{% sri_static 'js/characterCounter.js' %}
 <script>
 window.addEventListener("beforeunload", function (e) {
   if (document.activeElement.type === "submit") {
