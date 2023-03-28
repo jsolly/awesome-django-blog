@@ -996,9 +996,11 @@ textarea::placeholder {
    Misc Styles
 ============= */
 
-/* .ck-editor {
-  width: 500px !important;
-} */
+/* Override Ckeditor */
+.ck.ck-toolbar.ck-toolbar_grouping>.ck-toolbar__items {
+  flex-wrap: wrap !important;
+}
+
 .post-text {
   width: 100%;
   overflow-x: hidden;
