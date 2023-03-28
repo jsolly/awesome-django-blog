@@ -623,6 +623,7 @@ textarea {
   padding: 0.5rem;
   border-radius: 5px;
   box-sizing: border-box;
+  width: 100%;
 }
 
 input[type="search"] {
@@ -994,6 +995,10 @@ textarea::placeholder {
 /* =============
    Misc Styles
 ============= */
+
+/* .ck-editor {
+  width: 500px !important;
+} */
 .post-text {
   width: 100%;
   overflow-x: hidden;
