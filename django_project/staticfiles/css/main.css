@@ -110,7 +110,10 @@ footer {
    Header + Navs
 ============= */
 /* Logo color is #0b3b8e */
-
+#blogthedata-logo {
+  height: 35px;
+  width: 35px;
+}
 /* Navbar */
 .navbar-menu.show-menu .navbar-nav {
   padding-left: 20px;
@@ -814,6 +817,11 @@ button a:hover {
 /* =============
    Chatbot
 ============= */
+
+#chatbox-icon {
+  width: 35px;
+  height: 35px;
+}
 #chatbot-container {
   position: fixed;
   bottom: 0;
@@ -1055,6 +1063,11 @@ img {
   right: 20px;
   z-index: 999;
   font-size: 2rem;
+}
+
+#scroll-to-top-icon {
+  width: 45px;
+  height: 45px;
 }
 
 ::-webkit-scrollbar {
