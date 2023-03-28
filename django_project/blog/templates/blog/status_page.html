@@ -10,12 +10,12 @@
 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
   integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 
-<script src="{% static 'leaflet_plugins/leaflet-arc.min.js' %}" defer></script>
-<script src="{% static 'leaflet_plugins/leaflet.textpath.js' %}" defer></script>
-<script src="{% static 'leaflet_plugins/leaflet.markercluster.js' %}" defer></script>
-<script src="{% static 'leaflet_plugins/leaflet-arc.min.js' %}" defer></script>
-<script src="{% static 'leaflet_plugins/leaflet.textpath.js' %}" defer></script>
-<script src="{% static 'leaflet_plugins/leaflet.markercluster.js' %}" defer></script>
+  <script src="{% static 'leaflet_plugins/leaflet-arc.min.js' %}"></script>
+  <script src="{% static 'leaflet_plugins/leaflet.textpath.js' %}"></script>
+<link href="{% static 'leaflet_plugins/MarkerCluster.Default.css' %}" rel="stylesheet">
+<link href="{% static 'leaflet_plugins/MarkerCluster.css' %}" rel="stylesheet">
+<script src="{% static 'leaflet_plugins/leaflet.markercluster.js' %}"></script>
+<link href="{% static 'css/status_page.css' %}" rel="stylesheet">
 
 {% endblock head %}
 
