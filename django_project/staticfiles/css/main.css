@@ -786,7 +786,7 @@ a {
   color: var(--secondary-color);
 }
 
-a:not(.btn, #scroll-to-top)::before {
+a:not(.btn, .navbar-brand, #scroll-to-top)::before {
   content: "";
   position: absolute;
   display: block;
