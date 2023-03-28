@@ -1,9 +1,10 @@
-{% extends "blog/parts/base.html" %} {% load static %} {% load sri %}
+{% extends "blog/parts/base.html" %} {% load static %}
 
 {% block head %}
 <!-- django_ckeditor_5 -->
-{% sri_static 'django_ckeditor_5/prism.css' %}
-{% sri_static 'django_ckeditor_5/prism.js' %}
+<link href="{% static 'django_ckeditor_5/prism.css' %}" rel="stylesheet">
+<script src="{% static 'django_ckeditor_5/prism.js' %}" defer></script>
+
 
 {% endblock head %}
 

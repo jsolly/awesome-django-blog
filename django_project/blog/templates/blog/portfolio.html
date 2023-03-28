@@ -1,10 +1,10 @@
 {% extends "blog/parts/base.html" %}
 {% load static %}
-{% load sri %}
 {% block head %}
-{% sri_static 'css/portfolio.css' %}
-{% sri_static 'js/carousel.js' %}
-{% sri_static 'js/accordion.js' %}
+<link href="{% static 'css/portfolio.css' %}" rel="stylesheet">
+<script src="{% static 'js/carousel.js' %}" defer></script>
+<script src="{% static 'js/accordion.js' %}" defer></script>
+
 {% endblock head %}
 
 {% block content %}

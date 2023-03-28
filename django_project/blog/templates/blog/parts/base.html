@@ -1,5 +1,4 @@
 {% load static %}
-{% load sri %}
 
 <!DOCTYPE html>
 <html lang="en-US">
@@ -50,19 +49,16 @@
 
 
   <!-- My CSS -->
-  {% sri_static 'css/main.css' %}
+  <link href="{% static 'css/main.css' %}" rel="stylesheet" defer>
 
   <!-- HTMX -->
-  {% sri_static 'js/htmx.min.js' %}
+  <script src="{% static 'js/htmx.min.js' %}" defer></script>
 
   <!-- ChatBox JS -->
-  {% sri_static 'js/chatbox.js' %}
+  <script src="{% static 'js/chatbox.js' %}" defer></script>
 
   <!-- Header JS-->
-  {% sri_static 'js/header.js' %}
-
-  <!-- My JS -->
-  <!-- {% sri_static 'js/utils.js' %} -->
+  <script src="{% static 'js/header.js' %}" defer></script>
 
 </head>
 
