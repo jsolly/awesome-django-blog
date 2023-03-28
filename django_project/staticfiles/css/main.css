@@ -130,7 +130,7 @@ footer {
 
 .hamburger:hover {
   background-color: transparent;
-  color:var(--link-color);
+  color: var(--link-color);
 }
 
 .navbar-menu.show-menu {
@@ -239,6 +239,20 @@ footer {
 .search-form {
   display: flex;
   margin-left: 15px;
+}
+
+/* Github Stars */
+.github-icon {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+}
+
+.github-icon svg {
+  margin-right: 5px;
+}
+.github-icon::after {
+  content: none !important;
 }
 
 /* =============
@@ -494,7 +508,6 @@ figure {
   padding: 0.5rem 1rem;
 }
 
-
 .btn-red {
   color: var(--muted-white);
   background-color: #dc3545;
@@ -525,7 +538,6 @@ figure {
   background-color: #000;
   color: var(--muted-white);
 }
-
 
 /* print button */
 #print-icon {
@@ -1005,7 +1017,7 @@ textarea::placeholder {
 ============= */
 
 /* Override Ckeditor */
-.ck.ck-toolbar.ck-toolbar_grouping>.ck-toolbar__items {
+.ck.ck-toolbar.ck-toolbar_grouping > .ck-toolbar__items {
   flex-wrap: wrap !important;
 }
 
@@ -1104,7 +1116,6 @@ img {
   }
 }
 
-
 /* =============
    Media Queries
 ============= */
@@ -1143,6 +1154,10 @@ img {
     --post-card-hover-background-color: hsl(0, 0%, 100%, 0.05);
     --background-hover-color: hsl(0, 0%, 100%, 0.05);
     --link-color: #6c9ff2;
+  }
+
+  .github-icon svg {
+    fill: black;
   }
 
   header {
