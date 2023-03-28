@@ -1057,6 +1057,8 @@ img {
 }
 
 #scroll-to-top {
+  display: flex;
+  align-items: center;
   color: var(--a11-red);
   position: fixed;
   bottom: 20px;
@@ -1068,6 +1070,7 @@ img {
 #scroll-to-top-icon {
   width: 45px;
   height: 45px;
+  margin-right: 5px;
 }
 
 ::-webkit-scrollbar {
