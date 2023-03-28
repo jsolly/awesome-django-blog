@@ -4,14 +4,14 @@
 {% block head %}
 {% sri_static 'js/characterCounter.js' %}
 <script>
-window.addEventListener("beforeunload", function (e) {
-  if (document.activeElement.type === "submit") {
-    return null;
-  }
+  window.addEventListener("beforeunload", function (e) {
+    if (document.activeElement.type === "submit") {
+      return null;
+    }
 
-  e.preventDefault();
-  e.returnValue = "Are you sure you want to leave this page?";
-});
+    e.preventDefault();
+    e.returnValue = "Are you sure you want to leave this page?";
+  });
 </script>
 {% endblock head %}
 
@@ -20,18 +20,19 @@ window.addEventListener("beforeunload", function (e) {
 {% block content %}
 <h1>Update Post</h1>
 <p class="card-text">
-  <span class="text-success" id="title-count">Title Characters: <span class="char-count"></span></span>
+  <span id="title-count">Title Characters: <span class="char-count"></span></span>
 </p>
 <p class="card-text">
-  <span class="text-success" id="slug-count">Slug Characters: <span class="char-count"></span></span>
+  <span id="slug-count">Slug Characters: <span class="char-count"></span></span>
 </p>
 <p class="card-text">
-  <span class="text-success" id="metadesc-count">Metadesc Characters: <span class="char-count"></span></span>
+  <span id="metadesc-count">Metadesc Characters: <span class="char-count"></span></span>
 </p>
 
 
 <form>
   {% csrf_token %}
+  <div id="generate-with-gpt-btn-container" class="sml-margin-top-bottom">
   <button id="generate-title" hx-post="/generate-with-gpt/{{ post.id }}/" hx-swap="outerHTML"
     hx-target="#id_gpt_input">Generate
     Title</button>
@@ -42,8 +43,9 @@ window.addEventListener("beforeunload", function (e) {
   <button id="generate-metadesc" hx-post="/generate-with-gpt/{{ post.id }}/" hx-swap="outerHTML"
     hx-target="#id_gpt_input">Generate
     Meta Description</button>
-  <input autofocus="" name="gpt_input" id="id_gpt_input" maxlength="250" name="gpt_input"
-    required="" type="text" placeholder="Generate with GPT!">
+  </div>
+  <input autofocus="" name="gpt_input" id="id_gpt_input" maxlength="250" name="gpt_input" required="" type="text"
+    placeholder="Generate with GPT!">
 </form>
 
 <br />
