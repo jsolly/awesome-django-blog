@@ -125,6 +125,11 @@ footer {
   color: var(--primary-color);
 }
 
+.hamburger:hover {
+  background-color: transparent;
+  color:var(--link-color);
+}
+
 .navbar-menu.show-menu {
   display: flex;
   z-index: 1;
