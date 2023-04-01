@@ -4,17 +4,6 @@
 
 {% block head %}
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-<!-- Leaflet -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-  integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
-<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-  integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
-
-  <script src="{% static 'leaflet_plugins/leaflet-arc.min.js' %}"></script>
-  <script src="{% static 'leaflet_plugins/leaflet.textpath.js' %}"></script>
-<link href="{% static 'leaflet_plugins/MarkerCluster.Default.css' %}" rel="stylesheet">
-<link href="{% static 'leaflet_plugins/MarkerCluster.css' %}" rel="stylesheet">
-<script src="{% static 'leaflet_plugins/leaflet.markercluster.js' %}"></script>
 <link href="{% static 'css/status_page.css' %}" rel="stylesheet">
 
 {% endblock head %}
@@ -42,10 +31,6 @@
         class="badge {% if cpu_usage_percent > 80 %}badge-danger{% else %}badge-success{% endif %}"> {% if cpu_usage_percent > 80 %}🔥{% else %}✅{% endif %}</span></p>
     <p>RAM Usage: {{ ram_used|intcomma }} MB / {{ ram_total|intcomma }} MB ({{ ram_percentage }}%)</p>
     <p>Disk Usage: {{ disk_usage }}</p>
-  </div>
-  <div class="site-traffic-map">
-    <h2>Site Traffic Map</h2>
-    {% include 'siteanalytics/parts/site_traffic_map.html' %}
   </div>
 </div>
 {% endblock %}

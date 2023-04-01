@@ -29,12 +29,6 @@ from users.views import (
     MyPasswordResetDoneView,
     MyPasswordResetCompleteView,
 )
-from siteanalytics.views import (
-    openlayers_map_view,
-    maplibre_map_view,
-    leaflet_map_view,
-    mapbox_map_view,
-)
 
 
 def get_url(url_name):
@@ -47,18 +41,6 @@ class TestUrls(SetUp):
 
     def test_all_posts_url_is_resolved(self):
         self.assertEqual(resolve(reverse("all-posts")).func.view_class, AllPostsView)
-
-    def test_leaflet_map_url_is_resolved(self):
-        self.assertEqual(resolve(reverse("leaflet-map")).func, leaflet_map_view)
-
-    def test_openlayers_map_url_is_resolved(self):
-        self.assertEqual(resolve(reverse("openlayers-map")).func, openlayers_map_view)
-
-    def test_maplibre_map_url_is_resolved(self):
-        self.assertEqual(resolve(reverse("maplibre-map")).func, maplibre_map_view)
-
-    def test_mapbox_map_url_is_resolved(self):
-        self.assertEqual(resolve(reverse("mapbox-map")).func, mapbox_map_view)
 
     def test_home_url_is_resolved(self):
         self.assertEqual(resolve(reverse("home")).func.view_class, HomeView)

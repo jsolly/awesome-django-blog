@@ -10,12 +10,8 @@ load_dotenv()
 from django.test import TestCase, Client
 from django.contrib.messages import get_messages
 from django.test.utils import setup_test_environment
-from django.contrib.gis.geos import Point
 from blog.models import Post, Category
-from siteanalytics.models import Visitor
 from users.models import User
-
-# from siteanalytics.utils import load_data
 
 
 def message_in_response(response, message: str):
@@ -40,16 +36,6 @@ def create_several_posts(category, user, number_of_posts):
             author=user
             # likes
             # views
-        )
-
-
-def create_several_visitors(number_of_visitors):
-    for i in range(number_of_visitors):
-        Visitor.objects.create(
-            ip_addr=f"192.168.{i}.{i}",
-            country="United States",
-            city="New York",
-            location=Point(x=40.730610 + i, y=-73.935242 + i),
         )
 
 

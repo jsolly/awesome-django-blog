@@ -1062,12 +1062,6 @@ img {
   max-width: 100%;
 }
 
-/* There is a 500px inline style inside the map html that is being placed into an iframe */
-:is(#leafletMap, #openlayersMap, #maplibreMap, #mapboxMap) {
-  width: 100%;
-  height: 550px;
-}
-
 #scroll-to-top {
   display: flex;
   align-items: center;

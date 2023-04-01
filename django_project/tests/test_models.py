@@ -3,8 +3,6 @@ from django.urls import reverse
 from PIL import Image
 from blog.models import Post, slugify_instance
 from users.models import Profile
-from siteanalytics.models import Visitor
-from django.contrib.gis.geos import Point
 
 
 class TestModels(SetUp):
@@ -88,17 +86,3 @@ class TestModels(SetUp):
         with Image.open(profile1.image.path) as img:
             self.assertEqual(img.height, 300)
             self.assertEqual(img.width, 300)
-
-    # SiteAnalytics Models
-    def test_visitor(self):
-        current_visitors = Visitor.objects.count()
-        ip = "156.74.181.208"
-        visitor = Visitor.objects.create(
-            ip_addr=ip,
-            country="United States",
-            city="Seattle",
-            location=Point(-122.333, 47.604, srid=4326),
-        )
-        self.assertEqual(str(visitor), ip)
-        self.assertGreater(Visitor.objects.count(), current_visitors)
-        self.assertIsInstance(Visitor.objects.all()[0], Visitor)
