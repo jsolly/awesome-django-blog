@@ -88,7 +88,7 @@ class StatusView(TemplateView):
 
         context = {
             "title": "Status | Blogthedata.com",
-            "description": "Uptime and performance status of blogthedata.com",
+            "description": "Track the uptime and performance of blogthedata.com in real-time. Stay informed of any issues that may affect your browsing experience.",
             "status": blog_status,
             "message": blog_message,
             "updated_at": blog_updated_at,
