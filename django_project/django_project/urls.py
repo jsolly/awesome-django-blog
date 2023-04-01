@@ -24,13 +24,6 @@ from users.views import (
     MyPasswordResetConfirmView,
     MyPasswordResetCompleteView,
 )
-from siteanalytics.views import (
-    leaflet_map_view,
-    openlayers_map_view,
-    maplibre_map_view,
-    mapbox_map_view,
-)
-
 
 sitemaps = {
     "posts": PostSitemap,
@@ -47,10 +40,6 @@ urlpatterns = [
     ),
     path("works-cited", works_cited_view, name="works-cited"),
     path("privacy", privacy_view, name="privacy"),
-    path("leaflet-map", leaflet_map_view, name="leaflet-map"),
-    path("openlayers-map", openlayers_map_view, name="openlayers-map"),
-    path("maplibre-map", maplibre_map_view, name="maplibre-map"),
-    path("mapbox-map", mapbox_map_view, name="mapbox-map"),
     path("admin/", admin.site.urls),
     path(".well-known/security.txt", security_txt_view, name="security-txt"),
     path("pgp-key.txt", security_pgp_key_view, name="security-pgp-key-txt"),

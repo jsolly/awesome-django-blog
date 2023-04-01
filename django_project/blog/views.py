@@ -14,7 +14,6 @@ from django.views.generic import (
     DeleteView,
 )
 from django.views.decorators.csrf import csrf_exempt
-from siteanalytics.models import Visitor
 from django.http import HttpResponse
 import html
 import os
@@ -102,7 +101,6 @@ class StatusView(TemplateView):
             "ram_total": ram_total,
             "ram_percentage": ram_percentage,
             "disk_usage": disk_usage,
-            "visitors": Visitor.objects.all(),
         }
 
         return context

@@ -10,23 +10,14 @@ ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
 CSP_DEFAULT_SRC = ("'none'",)
 CSP_STYLE_SRC = (
     "'self'",
-    "https://cdn.jsdelivr.net",
-    "https://unpkg.com",
-    "https://api.mapbox.com",
     "'unsafe-inline'",
 )
 CSP_SCRIPT_SRC_ELEM = (
     "'self'",
-    "https://unpkg.com",
-    "https://cdn.jsdelivr.net",
-    "https://api.mapbox.com",
     "'unsafe-inline'",
 )
 CSP_SCRIPT_SRC = (
     "'self'",
-    "https://unpkg.com/",
-    "https://cdn.jsdelivr.net",
-    "https://api.mapbox.com",
     "'unsafe-eval'",
     "'unsafe-inline'",
 )
@@ -34,17 +25,11 @@ CSP_MEDIA_SRC = "'self'"
 CSP_IMG_SRC = (
     "'self'",
     "data:",
-    "https://unpkg.com/",
     "*.openstreetmap.org",
     "https://github-readme-twitter",
 )
 CSP_FONT_SRC = "'self'"
-CSP_CONNECT_SRC = (
-    "'self'",
-    "https://demotiles.maplibre.org/",
-    "https://api.mapbox.com",
-    "https://events.mapbox.com",
-)
+CSP_CONNECT_SRC = ("'self'",)
 CSP_FRAME_SRC = ("*",)
 CSP_FRAME_ANCESTORS = ("'self'",)
 CSP_BASE_URI = ("'none'",)
@@ -80,13 +65,11 @@ INSTALLED_APPS = [
     "django_ckeditor_5",
     "robots",
     "sri",
-    "siteanalytics",
     "django_htmx",
     "django.contrib.humanize",
 ]
 
 MIDDLEWARE = [
-    "siteanalytics.middleware.requestTrackMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.gzip.GZipMiddleware",

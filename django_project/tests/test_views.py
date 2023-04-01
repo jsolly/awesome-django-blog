@@ -3,11 +3,9 @@ from .base import (
     SetUp,
     message_in_response,
     create_several_posts,
-    create_several_visitors,
 )
 from django.urls import reverse
 from blog.models import Post
-from siteanalytics.models import Visitor
 from blog.forms import PostForm
 from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -405,47 +403,6 @@ class TestViews(SetUp):
     def test_security_pgp_key_view(self):
         response = self.client.get(reverse("security-pgp-key-txt"))
         self.assertEqual(response.status_code, 200)
-
-    def test_leaflet_map_view(self):
-        response = self.client.get(reverse("leaflet-map"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "siteanalytics/leaflet_map.html")
-
-    def test_leaflet_map_view_shows_visitor_data(self):
-        create_several_visitors(number_of_visitors=5)
-        response = self.client.get(reverse("leaflet-map"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "siteanalytics/leaflet_map.html")
-
-        visitor_data = Visitor.objects.all()
-        for visitor in visitor_data:
-            self.assertContains(
-                response,
-                f"var VisitorLatLng = {{ lat: {visitor.location.y}, lon: {visitor.location.x} }}",
-            )
-            self.assertContains(response, f'title: "{visitor.city}, {visitor.country}"')
-            self.assertContains(
-                response,
-                f'alt: "The city of {visitor.city} which is located in {visitor.country}"',
-            )
-            self.assertContains(
-                response, f'bindPopup("{visitor.city}, {visitor.country}")'
-            )
-
-    def test_openlayers_map_view(self):
-        response = self.client.get(reverse("openlayers-map"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "siteanalytics/openlayers_map.html")
-
-    def test_maplibre_map_view(self):
-        response = self.client.get(reverse("maplibre-map"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "siteanalytics/maplibre_map.html")
-
-    def test_mapbox_map_view(self):
-        response = self.client.get(reverse("mapbox-map"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "siteanalytics/mapbox_map.html")
 
     @patch("openai.Completion.create")
     def test_generate_gpt_input_title(self, mock_create):

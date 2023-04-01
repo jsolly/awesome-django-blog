@@ -110,24 +110,12 @@ $ pre-commit install
 ## Features
 
 ### Functional Features
-
-- User login (header links removed in
-  [commit:5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b](https://github.com/jsolly/blogthedata/commit/5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b))
-- Create posts filtered by category or author
-- Create Comments (Removed in https://github.com/jsolly/blogthedata/pull/77)
 - User profile with avatar (automatic sizing and compression using Pillow)
 - Ckeditor 5 for authoring blog posts (also includes spell check, code snippets, character
   counter, and more!)
-- Post views and likes (Removed in
-  https://github.com/jsolly/blogthedata/pull/77)
-- Newsletter Sign up 🗞 (removed in https://github.com/jsolly/blogthedata/pull/140)
-- Github Integration to show active issue backlog without leaving blog (removed
-  in https://github.com/jsolly/blogthedata/pull/121)
 - Slugified URLs for more readable links
 - Open Graph protocol compliant social media sharing for beautiful share cards (LinkedIn, Twitter, Facebook, Instagram, Reddit, etc)
 - Smart and powerful Global search so you can find any blog post with a keyword search.
-- Ko-Fi donation button ☕️ (removed in https://github.com/jsolly/blogthedata/commit/c857bb7599836c614aff523756bbf1381e0dd948)
-- Leaflet.js and OpenLayers maps 🗺
 - Display site visitors in a web map
 - Portfolio page with testimonials, contact me, Web vitals, and more!
 - Light and Dark Theme that automatically switch based on user's current system theme.
@@ -138,20 +126,17 @@ $ pre-commit install
 - Site-wide 'breadcumbs' so your users can know exactly where they are and navigate with ease.
 - Each page is optimized for viewing (and printing) so break out those 8 1/2 by 11s and print out some content!
 - GPT-powered Chatbot that can answer questions about your blog and help you find content.
-
 ### Non-Functional Features
 - No CSS/Layout frameworks (Bootstrap, Tailwind, etc). All CSS and components are custom and optimized for performance.
 - HTMX for dynamic page updates without a page refresh
 - Robots.txt, security.txt, and sitemap.xml for optimized SEO and security
-- Honeypot Admin page to automatically block IPs trying to login with an admin account (Removed in
-  https://github.com/jsolly/blogthedata/pull/105)
 - Git hooks for automatic static file generation (manage.py collectstatic)
 - GitActions CI integration with coverage, linting, and testing. Push with confidence!
 - Compatible with Sqllite or postgres databases for fast protyping and production
 - Optimized for Performance, SEO, and A11Y
 - Latest Django 4.x
 - 95% or above unit code coverage for a maintainable codebase
-- 100% linted with [ruff](https://pypi.org/project/ruff/) and PEP8 compliant\* for beautiful Python code.
+- 100% linted with [ruff](https://pypi.org/project/ruff/) and PEP8 compliant for beautiful Python code.
 - Static scans with [CodeQL](https://codeql.github.com/) and pip
   dependency checks with [Dependabot](https://github.com/dependabot) for automated security and updates.
 - Formatted with [Black](https://pypi.org/project/black/) for beauty and readability
@@ -165,8 +150,20 @@ $ pre-commit install
 - Automated, rotating backups of blog posts using local and cloud storage
 - Status page for monitoring uptime and performance of your blog at https://blogthedata.com/status
 
----
-
+## Depreciated Features
+- ~~Leaflet.js and OpenLayers maps 🗺~~ (Removed in https://github.com/jsolly/blogthedata/pull/246)
+- ~~Honeypot Admin page to automatically block IPs trying to login with an admin account~~ (Removed in
+  https://github.com/jsolly/blogthedata/pull/105)
+- ~~Ko-Fi donation button ☕️~~ (removed in https://github.com/jsolly/blogthedata/commit/c857bb7599836c614aff523756bbf1381e0dd948)
+- ~~Post views and likes~~ (Removed in
+  https://github.com/jsolly/blogthedata/pull/77)
+- ~~Newsletter Sign up 🗞~~ (removed in https://github.com/jsolly/blogthedata/pull/140)
+- ~~Github Integration to show active issue backlog without leaving blog~~ (removed
+  in https://github.com/jsolly/blogthedata/pull/121)
+- ~~User login~~ (header links removed in
+  [commit:5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b](https://github.com/jsolly/blogthedata/commit/5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b))
+- Create posts filtered by category or author
+- ~~Create Comments~~ (Removed in https://github.com/jsolly/blogthedata/pull/77)
 ## Team
 
 |                                               John Solly                                               |
