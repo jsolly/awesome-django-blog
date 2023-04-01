@@ -6,6 +6,7 @@ load_dotenv()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__ + "/../")))
 SECRET_KEY = os.environ["SECRET_KEY"]
 ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
+
 # Content Security Policy
 CSP_DEFAULT_SRC = ("'none'",)
 CSP_STYLE_SRC = (
@@ -26,17 +27,16 @@ CSP_IMG_SRC = (
     "'self'",
     "data:",
     "*.openstreetmap.org",
-    "https://github-readme-twitter",
 )
 CSP_FONT_SRC = "'self'"
 CSP_CONNECT_SRC = ("'self'",)
 CSP_FRAME_SRC = ("*",)
 CSP_FRAME_ANCESTORS = ("'self'",)
 CSP_BASE_URI = ("'none'",)
-CSP_FORM_ACTION = ("'self'", "https://blogthedata.us14.list-manage.com")
+CSP_FORM_ACTION = "'self'"
 CSP_OBJECT_SRC = ("'self'",)
 CSP_WORKER_SRC = ("'self'", "blob:")
-CSP_EXCLUDE_URL_PREFIXES = ("/admin", "/category/portfolio", "/site-analytics")
+CSP_EXCLUDE_URL_PREFIXES = "/admin"
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
 
 DEBUG = False
