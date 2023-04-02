@@ -144,7 +144,6 @@ $ pre-commit install
 - Subresource Integrity for better security
 - [A+ Score on Mozilla Observatory](<[url](https://observatory.mozilla.org/analyze/blogthedata.com)>)
 - 100/100 for Performance, SEO, and Accessibility according to Google Lighthouse
-- Custom 404 page that looks really cool. So even if your users are lost, they are still having a good time.
 - Automatic Conversion of images (.png, .jpeg, etc) to .webp for blazingly fast image loads.
 - Badges for test coverage, passing builds, formatter, and linting
 - Automated, rotating backups of blog posts using local and cloud storage
@@ -162,8 +161,8 @@ $ pre-commit install
   in https://github.com/jsolly/blogthedata/pull/121)
 - ~~User login~~ (header links removed in
   [commit:5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b](https://github.com/jsolly/blogthedata/commit/5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b))
-- Create posts filtered by category or author
 - ~~Create Comments~~ (Removed in https://github.com/jsolly/blogthedata/pull/77)
+- ~~Custom 404 page that looks really cool. So even if your users are lost, they are still having a good time.~~ Removed in (https://github.com/jsolly/blogthedata/commit/19b3d40cc6e8b231010b0f62656eb27e0104ffd7)
 ## Team
 
 |                                               John Solly                                               |
