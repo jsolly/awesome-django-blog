@@ -26,7 +26,7 @@ Global Styles
   --muted-white: rgb(240, 240, 240);
   --secondary-color: rgb(18, 18, 18);
   --secondary-color-rgb: 18, 18, 18;
-  --post-card-hover-background-color: hsl(0, 0%, 40%);
+  --post-card-hover-background-color: hsl(0, 0%, 90%);
   --border-color: #777777;
   --a11-red: #990000;
   --action-color: #333333; /* Slightly darker than secondary color */
