@@ -1064,6 +1064,10 @@ textarea::placeholder {
   flex-wrap: wrap !important;
 }
 
+iframe {
+  max-width: 100%;
+}
+
 .post-text {
   width: 100%;
   overflow-x: hidden;
