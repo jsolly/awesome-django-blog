@@ -31,17 +31,10 @@ urlpatterns = [
     path("ckeditor5/", include("django_ckeditor_5.urls")),
     path("", HomeView.as_view(), name="home"),
     path("all-posts/", AllPostsView.as_view(), name="all-posts"),
-    path("post/<slug:slug>/", PostDetailView.as_view(), name="post-detail"),
     path("post/new", CreatePostView.as_view(), name="post-create"),
-    path(
-        "post/<slug:slug>/",
-        include(
-            [
-                path("update", PostUpdateView.as_view(), name="post-update"),
-                path("delete", PostDeleteView.as_view(), name="post-delete"),
-            ]
-        ),
-    ),
+    path("post/<slug:slug>/", PostDetailView.as_view(), name="post-detail"),
+    path("post/<slug:slug>/update", PostUpdateView.as_view(), name="post-update"),
+    path("post/<slug:slug>/delete", PostDeleteView.as_view(), name="post-delete"),
     path("category/<slug:slug>/", CategoryView.as_view(), name="blog-category"),
     path("portfolio/", PortfolioView.as_view(), name="portfolio"),
     path("search/", SearchView.as_view(), name="blog-search"),
