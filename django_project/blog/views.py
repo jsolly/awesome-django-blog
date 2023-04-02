@@ -24,6 +24,7 @@ from django.conf import settings
 import psycopg2
 import psutil
 import shutil
+from users.models import User
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 ez_logger = logging.getLogger("ezra_logger")
@@ -276,8 +277,11 @@ class PostDetailView(DetailView):
     template_name = "blog/post/post_detail.html"
 
     def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(slug=self.kwargs["slug"], draft=False)
+        post = get_object_or_404(Post, slug=self.kwargs["slug"])
+        if post.draft:
+            get_object_or_404(User, username=self.request.user)
+
+        return Post.objects.filter(slug=self.kwargs["slug"])
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
