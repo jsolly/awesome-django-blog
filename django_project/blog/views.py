@@ -4,7 +4,6 @@ from .utils import answer_question
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
@@ -277,16 +276,14 @@ class PostDetailView(DetailView):
     template_name = "blog/post/post_detail.html"
 
     def get_queryset(self):
-        post = get_object_or_404(Post, slug=self.kwargs["slug"])
-        if post.draft:
-            get_object_or_404(User, username=self.request.user)
-
-        return Post.objects.filter(slug=self.kwargs["slug"])
+        queryset = super().get_queryset()
+        return queryset.filter(slug=self.kwargs["slug"], draft=False)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = self.object.title
         context["description"] = self.object.metadesc
+        print(f"Context: {context}")
         return context
 
 
