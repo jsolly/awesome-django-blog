@@ -21,3 +21,18 @@ class TestModels(SetUp):
         item = WorksCitedSiteMap.items(Sitemap)[0]
         self.assertTrue(reverse(item))
         self.assertTrue(WorksCitedSiteMap.location(Sitemap, item))
+
+    def test_privacy_policy_site_map(self):
+        item = WorksCitedSiteMap.items(Sitemap)[0]
+        self.assertTrue(reverse(item))
+        self.assertTrue(WorksCitedSiteMap.location(Sitemap, item))
+
+    def test_category_site_map(self):
+        item = WorksCitedSiteMap.items(Sitemap)[0]
+        self.assertTrue(reverse(item))
+        self.assertTrue(reverse("blog-category", args=[item]))
+
+    def test_status_page_site_map(self):
+        item = WorksCitedSiteMap.items(Sitemap)[0]
+        self.assertTrue(reverse(item))
+        self.assertTrue(WorksCitedSiteMap.location(Sitemap, item))

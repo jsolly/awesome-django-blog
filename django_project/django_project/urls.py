@@ -7,6 +7,10 @@ from django_project.sitemaps import (
     PostSitemap,
     HomeSitemap,
     WorksCitedSiteMap,
+    privacyPolicySiteMap,
+    CategorySitemap,
+    PortfolioSiteMap,
+    StatusPageSiteMap,
 )
 from .views import (
     works_cited_view,
@@ -29,6 +33,10 @@ sitemaps = {
     "posts": PostSitemap,
     "home page": HomeSitemap,
     "Works Cited": WorksCitedSiteMap,
+    "Privacy Policy": privacyPolicySiteMap,
+    "Categories": CategorySitemap,
+    "Portfolio": PortfolioSiteMap,
+    "Status Page": StatusPageSiteMap,
 }
 
 urlpatterns = [
