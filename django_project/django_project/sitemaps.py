@@ -84,7 +84,7 @@ class PortfolioSiteMap(Sitemap):
 
 class StatusPageSiteMap(Sitemap):
     changefreq = "monthly"
-    priority = 0.8
+    priority = 0.1
 
     def items(self):
         return ["status"]
