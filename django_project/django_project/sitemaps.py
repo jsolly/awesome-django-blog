@@ -2,6 +2,8 @@ from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 from blog.models import Post
 from blog.models import Category
+import pytz
+import datetime
 
 
 class HomeSitemap(Sitemap):
@@ -36,8 +38,15 @@ class CategorySitemap(Sitemap):
         return Category.objects.all()
 
     def lastmod(self, obj):
-        latest_post = obj.post_set.latest("date_posted")
-        return latest_post.date_posted
+        try:
+            latest_post = obj.post_set.latest("date_posted")
+            return latest_post.date_posted
+        # if there are no posts in the category
+        except Post.DoesNotExist:
+            timezone = pytz.timezone("America/Los_Angeles")
+            default_datetime = datetime.datetime(2023, 1, 1)
+            default_datetime = timezone.localize(default_datetime)
+            return default_datetime
 
 
 class WorksCitedSiteMap(Sitemap):
