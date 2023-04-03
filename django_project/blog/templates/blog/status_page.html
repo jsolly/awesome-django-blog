@@ -13,13 +13,13 @@
     <hr>
   </div>
   <div class="postgres-metrics">
-    <h2>Postgres Metrics</h2>
+    <h2>Postgres</h2>
     <p>Active Connections: {{ postgres_active_connections }}</p>
     <p>Slow Queries: {{ postgres_slow_queries }}</p>
     <p>Disk Space Used: {{ postgres_disk_space_used }} MB</p>
   </div>
   <div class="system-metrics">
-    <h2>System Metrics</h2>
+    <h2>System</h2>
     <p>Uptime: {{ server_uptime }}</p>
     <p>CPU Usage: {{ cpu_usage_percent }}% <span
         class="badge {% if cpu_usage_percent > 80 %}badge-danger{% else %}badge-success{% endif %}"> {% if cpu_usage_percent > 80 %}🔥{% else %}✅{% endif %}</span></p>
