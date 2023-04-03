@@ -654,8 +654,9 @@ textarea {
 }
 
 input[type="search"] {
-  margin-right: 0.5rem;
-}
+    margin-right: 0.5rem;
+    width: 200px;
+  }
 
 input:focus,
 select:focus,
