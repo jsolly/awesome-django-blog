@@ -60,7 +60,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
     "django.contrib.redirects",
-    "django.contrib.gis",
     "captcha",
     "django_ckeditor_5",
     "robots",
