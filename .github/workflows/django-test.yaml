@@ -6,6 +6,21 @@ on:
       - master
   schedule:
     - cron: "0 3 * * 0-6"
+
+env:
+  SECRET_KEY: ${{secrets.SECRET_KEY}}
+  EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
+  EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
+  FROM_EMAIL: ${{secrets.FROM_EMAIL}}
+  ALLOWED_HOSTS: ${{secrets.ALLOWED_HOSTS}}
+  GIT_TOKEN: ${{secrets.GIT_TOKEN}}
+  DEBUG: ${{secrets.DEBUG}}
+  LOGGING: ${{secrets.LOGGING}}
+  OPENAI_API_KEY: ${{secrets.OPENAI_API_KEY}}
+  POSTGRES_USER: ${{secrets.POSTGRES_USER}}
+  POSTGRES_PASS: ${{secrets.POSTGRES_PASS}}
+  POSTGRES_DB: "blogthedata_test"
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,10 +28,6 @@ jobs:
     services:
       postgres:
         image: postgres:14
-        env:
-          POSTGRES_USER: ${{secrets.POSTGRES_USER}}
-          POSTGRES_PASSWORD: ${{secrets.POSTGRES_PASS}}
-          POSTGRES_DB: "blogthedata_test"
         ports:
           - 5432:5432
         options: >-
@@ -24,16 +35,6 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-    env:
-      SECRET_KEY: ${{secrets.SECRET_KEY}}
-      EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
-      EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
-      FROM_EMAIL: ${{secrets.FROM_EMAIL}}
-      ALLOWED_HOSTS: ${{secrets.ALLOWED_HOSTS}}
-      GIT_TOKEN: ${{secrets.GIT_TOKEN}}
-      DEBUG: ${{secrets.DEBUG}}
-      LOGGING: ${{secrets.LOGGING}}
-      OPENAI_API_KEY: ${{secrets.OPENAI_API_KEY}}
 
     steps:
       - uses: actions/checkout@v3
