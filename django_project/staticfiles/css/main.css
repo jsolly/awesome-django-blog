@@ -783,7 +783,8 @@ a.hidden-link {
     li,
     legend,
     small,
-    .word-count
+    .word-count,
+    label,
   ) {
   color: var(--secondary-color);
 }
