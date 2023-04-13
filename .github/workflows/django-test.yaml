@@ -10,6 +10,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_USER: ${{secrets.POSTGRES_USER}}
+          POSTGRES_PASSWORD: ${{secrets.POSTGRES_PASS}}
+          POSTGRES_DB: "blogthedata_test"
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     env:
       SECRET_KEY: ${{secrets.SECRET_KEY}}
       EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
@@ -22,15 +37,11 @@ jobs:
       DEBUG: ${{secrets.DEBUG}}
       LOGGING: ${{secrets.LOGGING}}
       OPENAI_API_KEY: ${{secrets.OPENAI_API_KEY}}
+      DATABASE_URL: postgresql://${{secrets.POSTGRES_USER}}:${{secrets.POSTGRES_PASS}}@localhost:5432/blogthedata_test
+
     steps:
       - uses: actions/checkout@v3
 
-      - name: set-up-postgres
-        uses: postgresql-action@v1
-        with:
-          postgresql user: ${{secrets.POSTGRES_USER}}
-          postgresql password: ${{ secrets.POSTGRES_PASS }}
-          postgresql db: "blogthedata_test"
       - name: update-system-dependencies
         run: |
           sudo apt-get update -y
@@ -40,6 +51,7 @@ jobs:
         with:
           python-version: 3.10.8
           cache: "pip"
+
       - name: install-python-virtualenv
         run: |
           python3 -m venv venv django_project/venv
