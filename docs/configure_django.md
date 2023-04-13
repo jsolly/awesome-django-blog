@@ -59,11 +59,8 @@ $ python3 ~/blogthedata/django_project/manage.py runserver 0.0.0.0:8000
 ### Install dependencies
 
 ```bash
-$ sudo apt-get install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx
-# Follow directions on https://launchpad.net/~ubuntugis/+archive/ubuntu/ppa?field.series_filter=focal to install postgis. I did:
-$ sudo add-apt-repository ppa:ubuntugis/ppa
+$ sudo apt-get install python3-pip python3-dev postgresql postgresql-contrib nginx
 $ sudo apt update
-$ apt install postgis
 $ sudo -U postgres psql
 postgres=# CREATE USER blogthedatauser WITH PASSWORD 'password';
 postgres=# ALTER ROLE blogthedatauser SET client_encoding TO 'utf8';
@@ -71,8 +68,6 @@ postgres=# ALTER ROLE blogthedatauser SET default_transaction_isolation TO 'read
 postgres=# ALTER ROLE blogthedatauser SET timezone TO 'UTC';
 postgres=# CREATE DATABASE blogthedata WITH OWNER blogthedatauser;
 postgres=# \c blogthedata
-postgres=# CREATE extension postgis;
-postgres=# SELECT PostGIS_version();
 ```
 
 ### A note on an existing database being imported. You may need to run these commands:

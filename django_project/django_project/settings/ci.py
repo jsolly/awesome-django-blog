@@ -16,7 +16,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = False
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.contrib.gis.db.backends.postgis",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "blogthedata_test",
         "USER": os.environ["POSTGRES_USER"],
         "PASSWORD": os.environ["POSTGRES_PASS"],

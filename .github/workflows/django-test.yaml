@@ -21,18 +21,17 @@ jobs:
       GIT_TOKEN: ${{secrets.GIT_TOKEN}}
       DEBUG: ${{secrets.DEBUG}}
       LOGGING: ${{secrets.LOGGING}}
-      MAPBOX_TOKEN: ${{secrets.MAPBOX_TOKEN}}
       OPENAI_API_KEY: ${{secrets.OPENAI_API_KEY}}
     steps:
       - uses: actions/checkout@v3
 
-      - name: set-up-postgresql-with-postgis
-        uses: huaxk/postgis-action@v1
+      - name: set-up-postgres
+        uses: postgresql-action@v1
         with:
           postgresql user: ${{secrets.POSTGRES_USER}}
           postgresql password: ${{ secrets.POSTGRES_PASS }}
           postgresql db: "blogthedata_test"
-      - name: install-system-dependencies
+      - name: update-system-dependencies
         run: |
           sudo apt-get update -y
 
