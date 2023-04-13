@@ -21,7 +21,6 @@ jobs:
       GIT_TOKEN: ${{secrets.GIT_TOKEN}}
       DEBUG: ${{secrets.DEBUG}}
       LOGGING: ${{secrets.LOGGING}}
-      IP_INFO_TOKEN: ${{secrets.IP_INFO_TOKEN}}
       MAPBOX_TOKEN: ${{secrets.MAPBOX_TOKEN}}
       OPENAI_API_KEY: ${{secrets.OPENAI_API_KEY}}
     steps:
@@ -36,7 +35,6 @@ jobs:
       - name: install-system-dependencies
         run: |
           sudo apt-get update -y
-          sudo apt-get install --no-install-recommends -y binutils libproj-dev gdal-bin
 
       - name: setup-python
         uses: actions/setup-python@v4

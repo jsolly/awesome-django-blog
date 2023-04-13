@@ -6,7 +6,6 @@ django-robots
 django-simple-captcha
 feedparser
 filetype
-ipinfo
 Pillow
 psycopg2-binary
 psutil

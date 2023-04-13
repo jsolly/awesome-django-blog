@@ -50,8 +50,6 @@ postgres=# ALTER ROLE blogthedatauser SET default_transaction_isolation TO 'read
 postgres=# ALTER ROLE blogthedatauser SET timezone TO 'UTC';
 postgres=# CREATE DATABASE blogthedata WITH OWNER blogthedatauser;
 postgres=# \c blogthedata
-postgres=# CREATE extension postgis;
-postgres=# SELECT PostGIS_version();
 # type <exit> and hit enter to go back to the terminal
 $ python3 manage.py migrate
 ```
