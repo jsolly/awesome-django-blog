@@ -24,13 +24,10 @@ jobs:
       EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
       FROM_EMAIL: ${{secrets.FROM_EMAIL}}
       ALLOWED_HOSTS: ${{secrets.ALLOWED_HOSTS}}
-      POSTGRES_USER: ${{secrets.POSTGRES_USER}}
-      POSTGRES_PASS: ${{secrets.POSTGRES_PASS}}
       GIT_TOKEN: ${{secrets.GIT_TOKEN}}
       DEBUG: ${{secrets.DEBUG}}
       LOGGING: ${{secrets.LOGGING}}
       OPENAI_API_KEY: ${{secrets.OPENAI_API_KEY}}
-      DATABASE_URL: postgresql://${{secrets.POSTGRES_USER}}:${{secrets.POSTGRES_PASS}}@localhost:5432/blogthedata_test
 
     steps:
       - uses: actions/checkout@v3
@@ -90,8 +87,6 @@ jobs:
       fail-fast: false
       matrix:
         language: ["javascript", "python"]
-        # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
-        # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
 
     steps:
       - uses: actions/checkout@v3
