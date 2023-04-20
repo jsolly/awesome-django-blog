@@ -919,7 +919,7 @@ textarea::placeholder {
 
 .chatbox__support {
   background: var(--primary-color);
-  height: 450px;
+  height: 500px;
   width: 350px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
   border-top-left-radius: 20px;
