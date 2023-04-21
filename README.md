@@ -43,6 +43,7 @@ $ python3 -m pip install -r blogthedata/django_project/requirements/requirements
    to use sqllite database or postgres. If you're on MacOS, there's a really handy app called [postgres.app](https://postgresapp.com/)
 
 ```shell
+$ sudo service postgreSQL start # If you're on Linux (Open postgres.app if you're on MacOS)
 $ sudo -U postgres psql
 postgres=# CREATE USER blogthedatauser WITH PASSWORD 'password';
 postgres=# ALTER ROLE blogthedatauser SET client_encoding TO 'utf8';
