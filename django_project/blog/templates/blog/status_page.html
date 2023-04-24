@@ -2,6 +2,8 @@
 {% load static %}
 {% load humanize %}
 
+
+
 {% block content %}
 <div class="status-page-container">
   <h1 class="title">Blogthedata.com Status Report</h1>
@@ -27,4 +29,9 @@
     <p>Disk Usage: {{ disk_usage }}</p>
   </div>
 </div>
+<div id="hello" style="width: 600px; height: 400px;"></div>
+
+<script src="{% static 'js/charts/echarts.js' %}" defer></script>
+<script src="{% static 'js/charts/CPU_gauge.js' %}" defer></script>
+
 {% endblock %}
