@@ -37,7 +37,7 @@ class StatusView(TemplateView):
         # Get the status of your Django blog
         blog_status = "up"
         blog_message = "Blog is up and running"
-        blog_updated_at = datetime.now().strftime("%B %d, %Y %I:%M %p")
+        blog_updated_at = datetime.utcnow().strftime("%B %d, %Y %I:%M %p")
         # You can replace the above values with your own logic to determine the status of your blog
 
         # Get the status of Postgres

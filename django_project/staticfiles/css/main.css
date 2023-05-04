@@ -108,15 +108,6 @@ footer {
 
 
 /* Status Page */
-.status-page-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 1rem;
-  grid-template-areas:
-    "title title"
-    "status-section status-section"
-    "postgres-metrics system-metrics"
-}
 
 /* =============
    Header + Navs
@@ -1368,15 +1359,6 @@ img {
     margin: 0.5rem 0;
   }
 
-  /* Status Page */
-  .status-page-container {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "title"
-      "status-section"
-      "postgres-metrics"
-      "system-metrics"
-  }
 }
 
 @media screen and (min-width: 1000px) {

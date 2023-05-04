@@ -2,7 +2,8 @@
 {% load static %}
 {% load humanize %}
 
-
+{% block head %}
+{% endblock head%}
 
 {% block content %}
 <div class="status-page-container">
@@ -11,27 +12,193 @@
     <h2>Blog Status</h2>
     <p>Status: {{ status }} {% if status == "up" %}🟢{% else %}🔴{% endif %}</p>
     <p>Message: {{ message }}</p>
-    <p>Last Updated: {{ updated_at }}</p>
+    <p>Last Updated: {{ updated_at }} UTC</p>
+    <p>Uptime: {{ server_uptime }}</p>
     <hr>
-  </div>
-  <div class="postgres-metrics">
-    <h2>Postgres</h2>
-    <p>Active Connections: {{ postgres_active_connections }}</p>
-    <p>Slow Queries: {{ postgres_slow_queries }}</p>
-    <p>Disk Space Used: {{ postgres_disk_space_used }} MB</p>
   </div>
   <div class="system-metrics">
     <h2>System</h2>
-    <p>Uptime: {{ server_uptime }}</p>
-    <p>CPU Usage: {{ cpu_usage_percent }}% <span
-        class="badge {% if cpu_usage_percent > 80 %}badge-danger{% else %}badge-success{% endif %}"> {% if cpu_usage_percent > 80 %}🔥{% else %}✅{% endif %}</span></p>
-    <p>RAM Usage: {{ ram_used|intcomma }} MB / {{ ram_total|intcomma }} MB ({{ ram_percentage }}%)</p>
-    <p>Disk Usage: {{ disk_usage }}</p>
+    <div class="chart-container" style="display: block;">
+    </div>
   </div>
-</div>
-<div id="hello" style="width: 600px; height: 400px;"></div>
 
-<script src="{% static 'js/charts/echarts.js' %}" defer></script>
-<script src="{% static 'js/charts/CPU_gauge.js' %}" defer></script>
+  <script src="{% static 'js/charts/echarts.min.js' %}"></script>
+  <script defer>
+    function createChartDiv(id, width, height) {
+      const chartDiv = document.createElement('div');
+      chartDiv.setAttribute('id', id);
+      chartDiv.style.width = width;
+      chartDiv.style.height = height;
+      return chartDiv;
+    }
 
+    function generateCpuUsageChartOption(cpuUsagePercent) {
+  return {
+    title: {
+      text: 'CPU Usage',
+      left: 'center',
+      textStyle: {
+        fontSize: 24,
+      },
+    },
+    series: [
+      {
+        type: 'gauge',
+        min: 0,
+        max: 100,
+        splitNumber: 4,
+        axisLine: {
+          lineStyle: {
+            width: 30,
+            color: [
+              [0.3, '#67e0e3'],
+              [0.7, '#37a2da'],
+              [1, '#fd666d']
+            ]
+          }
+        },
+        axisTick: {
+          distance: -30,
+          length: 8,
+          lineStyle: {
+            color: '#fff',
+            width: 2
+          }
+        },
+        splitLine: {
+          distance: -30,
+          length: 30,
+          lineStyle: {
+            color: '#fff',
+            width: 4
+          }
+        },
+        axisLabel: {
+          color: 'inherit',
+          distance: 40,
+          fontSize: 20,
+          formatter: '{value}%'
+        },
+        detail: {
+          valueAnimation: true,
+          formatter: '{value}%',
+          color: 'inherit'
+        },
+        data: [
+          {
+            value: cpuUsagePercent,
+          }
+        ]
+      }
+    ]
+  };
+}
+
+function generateRamUsageChartOption(ramUsagePercent, ramUsed, ramTotal) {
+  return {
+    title: {
+      text: `RAM: ${ramUsed}MB / ${ramTotal}MB`,
+      left: 'center',
+      textStyle: {
+        fontSize: 24,
+      },
+    },
+    tooltip: {
+      formatter: '{b}: {c}%'
+    },
+    xAxis: {
+      data: ['RAM'],
+      axisLabel: {
+        fontSize: 16
+      }
+    },
+    yAxis: {
+      max: 100,
+      axisLabel: {
+        fontSize: 16,
+        formatter: '{value}%'
+      }
+    },
+    series: [
+      {
+        name: `RAM (${ramUsed}MB / ${ramTotal}MB)`,
+        type: 'bar',
+        data: [ramUsagePercent],
+        itemStyle: {
+          color: '#37a2da'
+        },
+        label: {
+          show: true,
+          position: 'inside',
+          formatter: '{c}%'
+        }
+      }
+    ]
+  };
+}
+
+function generateDiskUsageChartOption(usedGB, totalGB) {
+  const diskUsagePercent = (usedGB / totalGB) * 100;
+
+  return {
+    title: {
+      text: `Disk Usage: ${usedGB}GB / ${totalGB}GB`,
+      left: 'center',
+      textStyle: {
+        fontSize: 24,
+      },
+    },
+    tooltip: {
+      formatter: '{b}: {c}%'
+    },
+    xAxis: {
+      data: ['Disk'],
+      axisLabel: {
+        fontSize: 16
+      }
+    },
+    yAxis: {
+      max: 100,
+      axisLabel: {
+        fontSize: 16,
+        formatter: '{value}%'
+      }
+    },
+    series: [
+      {
+        name: `Disk Usage (${usedGB}GB / ${totalGB}GB)`,
+        type: 'bar',
+        data: [diskUsagePercent],
+        itemStyle: {
+          color: '#37a2da'
+        },
+        label: {
+          show: true,
+          position: 'inside',
+          formatter: (params) => `${Math.round(params.value)}%`
+        }
+      }
+    ]
+  };
+}
+
+
+    function initChart(chartId, chartOptionGenerator, ...data) {
+      const chartDiv = createChartDiv(chartId, '100%', '400px');
+      const parentElement = document.querySelector('.chart-container');
+      parentElement.appendChild(chartDiv);
+
+      const chartDom = document.getElementById(chartId);
+      const myChart = echarts.init(chartDom);
+      const option = chartOptionGenerator(...data);
+      myChart.setOption(option);
+    }
+
+
+
+    initChart('cpu-usage', generateCpuUsageChartOption, {{ cpu_usage_percent }});
+    initChart('ram-usage', generateRamUsageChartOption, {{ ram_percentage }}, {{ ram_used }}, {{ ram_total }});
+    const [usedGB, totalGB] = '{{ disk_usage }}'.split(" / ").map(x => parseInt(x));
+    initChart('disk-usage', generateDiskUsageChartOption, usedGB, totalGB);
+  </script>
 {% endblock %}
