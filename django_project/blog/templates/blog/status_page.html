@@ -138,7 +138,7 @@ function generateRamUsageChartOption(ramUsagePercent, ramUsed, ramTotal) {
 }
 
 function generateDiskUsageChartOption(usedGB, totalGB) {
-  const diskUsagePercent = (usedGB / totalGB) * 100;
+  const diskUsagePercent = Math.round((usedGB / totalGB) * 100);
 
   return {
     title: {
@@ -175,7 +175,7 @@ function generateDiskUsageChartOption(usedGB, totalGB) {
         label: {
           show: true,
           position: 'inside',
-          formatter: (params) => `${Math.round(params.value)}%`
+          formatter: '{c}%'
         }
       }
     ]
