@@ -144,7 +144,7 @@ $ pre-commit install
 - Automatic Conversion of images (.png, .jpeg, etc) to .webp for blazingly fast image loads.
 - Badges for test coverage, passing builds, formatter, and linting
 - Automated, rotating backups of blog posts using local and cloud storage
-- Status page for monitoring uptime and performance of your blog at https://blogthedata.com/status
+- Status page for monitoring uptime and performance of your blog at https://blogthedata.com/status using Apache Echarts.
 
 ## Depreciated Features
 - ~~Leaflet.js and OpenLayers maps 🗺~~ (Removed in https://github.com/jsolly/blogthedata/pull/246)
