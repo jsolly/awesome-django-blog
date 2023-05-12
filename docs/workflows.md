@@ -17,7 +17,7 @@
 ### Pull changes from github in prod
 
 ```bash
-$ source venv/bib/activate
+$ source venv/bin/activate
 $ python3 manage.py check --deploy
 $ python3 manage.py migrate # Don't need to makemigrations, because migrations are already in /migrations
 $ sudo service apache2 restart
