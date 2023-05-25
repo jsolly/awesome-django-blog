@@ -6,6 +6,7 @@
 <head>
   {% block head %}
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
   <meta property="og:image"
   content="{{ request.scheme }}://{{ request.get_host }}{% static 'iPhoneblogthedata.webp' %}">
   <meta property="og:image:alt" content="An Iphone on a table with blogthedata.com on the screen">
@@ -79,7 +80,7 @@
         <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %} {% endif %}
         <main id="main">
-          <div id="top">
+          <div>
             <div id="breadcrumbs-container">
               {% include "blog/parts/breadcrumbs.html" %}
             </div>

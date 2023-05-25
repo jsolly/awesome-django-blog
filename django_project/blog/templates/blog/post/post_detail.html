@@ -30,13 +30,13 @@
   </div>
   <div class="media-body line-numbers ck-content">
     <div class="article-metadata">
-      <h1>
+      <h1 class="sml-margin-top-bottom">
         {{ post.title }}
         {% if post.draft %}
         <p id="draft">(Draft)</p>
         {% endif %}
       </h1>
-      <p class="post-date">
+      <p class="post-date sml-margin-top-bottom">
         {{ post.date_posted|date:"F d, Y" }} in {{ post.category|title }}</p>
     </div>
     {% if post.author == user %}
