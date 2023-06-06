@@ -25,7 +25,7 @@ SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.contrib.gis.db.backends.postgis",
+        "ENGINE": "django.db.backends.postgresql",
         "NAME": "blogthedata",
         "USER": os.environ["POSTGRES_USER"],
         "PASSWORD": os.environ["POSTGRES_PASS"],
