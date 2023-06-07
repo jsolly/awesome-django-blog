@@ -307,7 +307,7 @@ class CreatePostView(UserPassesTestMixin, CreateView):
         context["title"] = "Create a New Post"
         return context
 
-class CreateCommentView(LoginRequiredMixin, CreateView):
+class CreateCommentView(UserPassesTestMixin, CreateView):
     model = Comment
     form_class = CommentForm
     template_name = "blog/post/add_comment.html"
