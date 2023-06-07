@@ -159,7 +159,7 @@ traitlets==5.9.0
 typing_extensions==4.5.0
 uri-template==1.2.0
 urllib3==1.26.14
-virtualenv==20.19.0
+virtualenv==20.23.0
 wcwidth==0.2.6
 webcolors==1.13
 webencodings==0.5.1
