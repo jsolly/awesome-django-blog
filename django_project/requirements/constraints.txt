@@ -60,7 +60,7 @@ idna==3.4
 iniconfig==2.0.0
 ipinfo==4.4.2
 ipykernel==6.22.0
-ipython==8.12.0
+ipython==8.14.0
 ipython-genutils==0.2.0
 ipywidgets==8.0.6
 isoduration==20.11.0
