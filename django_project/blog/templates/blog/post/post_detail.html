@@ -54,6 +54,27 @@
     </div>
 </article>
 
+<!-- Comments Section-->
+<section id="comments-section" class="content-section">
+  <h2>Comments</h2>
+  {% if comments %}
+  <ul class="comments-list">
+    {% for comment in comments %}
+    <li class="comment">
+      <div class="comment-meta">
+        <span class="comment-author">{{ comment.author }}</span>
+        <span class="comment-date">{{ comment.created_date|date:"F d, Y" }}</span>
+      </div>
+      <div class="comment-content">{{ comment.content }}</div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="post-date sml-margin-top-bottom">No comments yet.</p>
+  {% endif %}
+</section>
+<!-- End of Comments Section -->
+
 <a href="{% url 'home' %}" id="post-back-to-home-button" class="btn btn-dark">
   Back to Home
 </a>
