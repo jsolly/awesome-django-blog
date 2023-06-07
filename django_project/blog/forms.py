@@ -1,6 +1,7 @@
 from django import forms
 from .models import Post
 from .models import Category
+from .models import Comment
 from django.conf import settings
 
 choices = [
@@ -45,4 +46,12 @@ class PostForm(forms.ModelForm):
             "metadesc": forms.TextInput(),
             "metaimg_alt_txt": forms.TextInput(),
             "metaimg_attribution": forms.TextInput(),
+        }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content']
+        widgets = {
+            'content': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Leave a comment...'}),
         }
