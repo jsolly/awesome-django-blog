@@ -1,4 +1,4 @@
-from .models import Post, Category
+from .models import Post, Category, Comments
 from .forms import PostForm
 from .utils import answer_question
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
@@ -275,19 +275,17 @@ class SearchView(ListView):
 class PostDetailView(DetailView):
     model = Post
     template_name = "blog/post/post_detail.html"
+    context_object_name = "post"
 
     def get_queryset(self):
-        post = get_object_or_404(Post, slug=self.kwargs["slug"])
-        if post.draft:
-            get_object_or_404(User, username=self.request.user)
-
-        return Post.objects.filter(slug=self.kwargs["slug"])
+        return super().get_queryset().filter(slug=self.kwargs["slug"])
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = self.object.title
-        context["description"] = self.object.metadesc
-        print(f"Context: {context}")
+        post = context["post"]
+        comments = post.comments.all()  # Get all comments related to the post
+
+        context["comments"] = comments
         return context
 
 
