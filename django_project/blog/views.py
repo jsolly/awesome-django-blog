@@ -21,7 +21,7 @@ import logging
 from datetime import datetime
 from django.views.generic import TemplateView
 from django.conf import settings
-import psycopg2
+import psycopg
 import psutil
 import shutil
 from users.models import User
@@ -41,7 +41,7 @@ class StatusView(TemplateView):
         # You can replace the above values with your own logic to determine the status of your blog
 
         # Get the status of Postgres
-        postgres_conn = psycopg2.connect(
+        postgres_conn = psycopg.connect(
             host=settings.DATABASES["default"]["HOST"],
             port=settings.DATABASES["default"]["PORT"],
             dbname=settings.DATABASES["default"]["NAME"],

@@ -84,7 +84,7 @@ $ ruff --config ./config/pyproject.toml django_project
 ### Format Code
 
 ```shell
-$ black --config ./config.pyproject.toml django_project
+$ black --config ./config/pyproject.toml django_project
 ```
 
 Also see the [actions tab](https://github.com/jsolly/blogthedata/actions)
