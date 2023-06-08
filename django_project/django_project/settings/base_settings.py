@@ -205,9 +205,8 @@ LOGGING = {
     "loggers": LOGGERS[0],
 }
 
-
-# if os.environ["LOGGING"] == "False":
-#     LOGGING = None
+if os.environ["LOGGING"] == "False":
+    LOGGING = None
 
 AUTH_PASSWORD_VALIDATORS = [
     {
