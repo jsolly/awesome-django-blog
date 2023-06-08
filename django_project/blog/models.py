@@ -95,3 +95,16 @@ class Post(models.Model):
             slugify_instance(self, save=False)
 
         super().save(*args, **kwargs)
+
+# POST COMMENT MODEL
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = CKEditor5Field(blank=True, null=True, config_name="extends")
+    date_posted = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["date_posted"]
+
+    def __str__(self):
+        return "Comment \"{}\" {} by {}".format(self.content[3:20] , "... ",self.author)

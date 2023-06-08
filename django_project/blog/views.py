@@ -1,5 +1,5 @@
-from .models import Post, Category
-from .forms import PostForm
+from .models import Post, Category, Comment
+from .forms import PostForm, CommentForm
 from .utils import answer_question
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.shortcuts import get_object_or_404
@@ -275,19 +275,17 @@ class SearchView(ListView):
 class PostDetailView(DetailView):
     model = Post
     template_name = "blog/post/post_detail.html"
+    context_object_name = "post"
 
     def get_queryset(self):
-        post = get_object_or_404(Post, slug=self.kwargs["slug"])
-        if post.draft:
-            get_object_or_404(User, username=self.request.user)
-
-        return Post.objects.filter(slug=self.kwargs["slug"])
+        return super().get_queryset().filter(slug=self.kwargs["slug"])
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = self.object.title
-        context["description"] = self.object.metadesc
-        print(f"Context: {context}")
+        post = context["post"]
+        comments = post.comments.all()  # Get all comments related to the post
+
+        context["comments"] = comments
         return context
 
 
@@ -307,6 +305,23 @@ class CreatePostView(UserPassesTestMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Create a New Post"
+        return context
+
+class CreateCommentView(UserPassesTestMixin, CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = "blog/post/add_comment.html"
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.instance.post_id = self.kwargs["post_id"]
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        post = get_object_or_404(Post, id=self.kwargs["post_id"])
+        context["post"] = post
+        context["title"] = f"Add a Comment to {post.title}"
         return context
 
 
