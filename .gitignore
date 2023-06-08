@@ -35,3 +35,4 @@ logs/
 .vscode/
 
 db.sqlite3
+dev.py
