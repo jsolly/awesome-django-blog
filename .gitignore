@@ -1,0 +1,39 @@
+# Blog Assets
+profile_pics/
+post_metaimgs/
+profile_pics/
+uploads/
+django_project/media/django_ckeditor_5/
+static/
+
+## Posts and embeddings
+exported_posts/
+processed/
+
+# Virtual Environments
+venv/
+
+# Environ Variables File
+.env
+
+# Coverage files
+.coverage
+
+# Python Temp Files
+__pycache__/
+
+# MAC OSX
+.DS_Store
+
+# backups
+blogthedata*.sql
+linode*.img
+migration_backup
+
+# Other
+logs/
+.vscode/
+
+db.sqlite3
+dev.py
+base_settings.py
