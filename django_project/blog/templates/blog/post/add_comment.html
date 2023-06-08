@@ -4,7 +4,7 @@
 
 <br />
 <div class="form-group">
-  <form method="POST" enctype="multipart/form-data">
+  <form method="POST" action="{% url 'comment-create' %}" enctype="multipart/form-data">
     {% csrf_token %} {{ form.media }} {{ form }}
     <button class="post-submit-button" id="post-submit-button" type="submit">
       Comment
