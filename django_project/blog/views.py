@@ -327,22 +327,16 @@ class CreatePostView(UserPassesTestMixin, CreateView):
         context["title"] = "Create a New Post"
         return context
 
-class CreateCommentView(UserPassesTestMixin, CreateView):
-    model = Comment
-    form_class = CommentForm
-    template_name = "blog/post/add_comment.html"
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        form.instance.post_id = self.kwargs["post_id"]
-        return super().form_valid(form)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        post = get_object_or_404(Post, id=self.kwargs["post_id"])
-        context["post"] = post
-        context["title"] = f"Add a Comment to {post.title}"
-        return context
+def create_comment(request):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            post_slug = form.cleaned_data.get('post_slug')
+            post = get_object_or_404(Post, slug=post_slug)
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+    return redirect('post-detail', slug=post_slug)
 
 
 def generate_gpt_input_value(request, post_id):

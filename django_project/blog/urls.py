@@ -6,7 +6,7 @@ from .feeds import blogFeed, atomFeed
 from .views import (
     HomeView,
     CreatePostView,
-    CreateCommentView,
+    create_comment,
     PostDetailView,
     PostUpdateView,
     PostDeleteView,
@@ -39,7 +39,7 @@ urlpatterns = [
     path("category/<slug:slug>/", CategoryView.as_view(), name="blog-category"),
     path("portfolio/", PortfolioView.as_view(), name="portfolio"),
     path("search/", SearchView.as_view(), name="blog-search"),
-    path("comments/new", CreateCommentView.as_view(), name="comment-create"),
+    path("comments/new", create_comment, name="comment-create"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
