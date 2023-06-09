@@ -49,6 +49,8 @@ class PostForm(forms.ModelForm):
         }
 
 class CommentForm(forms.ModelForm):
+    post_slug = forms.CharField(widget=forms.HiddenInput())
+
     class Meta:
         model = Comment
         fields = ['content']
