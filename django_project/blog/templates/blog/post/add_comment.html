@@ -1,17 +1,15 @@
 
 {% block content %}
-<h3>Make a Comment</h3>
-
-<br />
-<div class="form-group">
+<section id="create-comments-section" class="content-section">
+  <h3>Make a Comment</h3>
   <form method="POST" action="{% url 'comment-create' %}" enctype="multipart/form-data">
-    {% csrf_token %} {{ form.media }} {{ form }}
-    <button class="post-submit-button" id="post-submit-button" type="submit">
-      Comment
-    </button>
-
-    {% endblock content %}
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form }}
+    <button class="post-submit-button" id="post-submit-button" type="submit">Comment</button>
   </form>
-  </div>
+</section>
+
+{% endblock content %}
  
   

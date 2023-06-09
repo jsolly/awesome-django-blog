@@ -12,6 +12,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
+from django.views.generic.edit import FormMixin
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 import html
@@ -272,10 +273,11 @@ class SearchView(ListView):
         return context
 
 
-class PostDetailView(DetailView):
+class PostDetailView(FormMixin, DetailView):
     model = Post
     template_name = "blog/post/post_detail.html"
     context_object_name = "post"
+    form_class = CommentForm # to add comments to a post
 
     def get_queryset(self):
         return super().get_queryset().filter(slug=self.kwargs["slug"])
@@ -284,9 +286,27 @@ class PostDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         post = context["post"]
         comments = post.comments.all()  # Get all comments related to the post
-
         context["comments"] = comments
+        context["form"] = self.get_form() # to add the form to context
         return context
+
+    # comment submission
+    def post(self, request, *arggs, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            commment = form.save(commit=False)
+            comment.post = self.object
+            comment.save()
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        return super().form_invalid(form)
 
 
 class CreatePostView(UserPassesTestMixin, CreateView):
