@@ -16,6 +16,7 @@ from django.shortcuts import redirect
 from django.views.generic.edit import FormMixin
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 import html
 import os
 import openai
@@ -331,7 +332,7 @@ class CreatePostView(UserPassesTestMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context["title"] = "Create a New Post"
         return context
-
+@login_required(login_url='login')
 def create_comment(request):
     if request.method == 'POST':
         form = CommentForm(request.POST)
