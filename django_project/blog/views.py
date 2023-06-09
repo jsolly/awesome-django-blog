@@ -332,8 +332,10 @@ class CreatePostView(UserPassesTestMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context["title"] = "Create a New Post"
         return context
+
 @login_required(login_url='login')
 def create_comment(request):
+    post_slug = None
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -342,7 +344,8 @@ def create_comment(request):
             comment = form.save(commit=False)
             comment.post = post
             comment.save()
-    return redirect('post-detail', slug=post_slug)
+            return redirect('post-detail', slug=post_slug)
+    return redirect('home')
 
 
 def generate_gpt_input_value(request, post_id):
