@@ -287,7 +287,7 @@ class PostDetailView(FormMixin, DetailView):
         post = context["post"]
         comments = post.comments.all()  # Get all comments related to the post
         context["comments"] = comments
-        context["form"] = self.get_form() # to add the form to context
+        context["form"] = self.get_form(initial={'post_slug':post.slug}) # to add the form to context
         return context
 
     # comment submission
