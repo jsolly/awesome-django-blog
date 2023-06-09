@@ -12,6 +12,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
+from django.shortcuts import redirect
 from django.views.generic.edit import FormMixin
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
@@ -287,9 +288,13 @@ class PostDetailView(FormMixin, DetailView):
         post = context["post"]
         comments = post.comments.all()  # Get all comments related to the post
         context["comments"] = comments
-        context["form"] = self.get_form(initial={'post_slug':post.slug}) # to add the form to context
+        context["form"] = self.get_form() # to add the form to context
         return context
-
+# identify the post slug
+    def get_initial(self):
+        initial = super().get_initial()
+        initial['post_slug'] = self.object.slug
+        return initial
     # comment submission
     def post(self, request, *arggs, **kwargs):
         self.object = self.get_object()
