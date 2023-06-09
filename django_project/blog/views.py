@@ -343,6 +343,7 @@ def create_comment(request):
             post = get_object_or_404(Post, slug=post_slug)
             comment = form.save(commit=False)
             comment.post = post
+            comment.author = request.user
             comment.save()
             return redirect('post-detail', slug=post_slug)
     return redirect('home')
