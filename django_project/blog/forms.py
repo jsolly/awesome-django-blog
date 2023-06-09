@@ -53,7 +53,7 @@ class CommentForm(forms.ModelForm):
 
     class Meta:
         model = Comment
-        fields = ['content']
+        fields = ['content', 'post_slug']
         widgets = {
             'content': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Leave a comment...'}),
         }
