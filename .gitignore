@@ -33,7 +33,4 @@ migration_backup
 # Other
 logs/
 .vscode/
-
-db.sqlite3
-dev.py
-base_settings.py
+custom_settings.py
