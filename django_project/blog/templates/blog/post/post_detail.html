@@ -60,13 +60,14 @@
   {% if comments %}
   <ul class="comments-list">
     {% for comment in comments %}
-    <li class="comment">
+    <li class="comment" style="">
       <div class="comment-meta">
         <small>
         <span class="comment-author">{{ comment.author }}</span>
         <span class="comment-date"> 
-          {{ comment.date_posted|date:"F d, Y" }} </>
+          {{ comment.date_posted|date:"F d, Y" }}
         </span>
+        </small>
       </div>
       <div class="comment-content">{{ comment.content }}</div>
     </li>

@@ -1462,3 +1462,7 @@ img {
     animation: button-shake 0.3s linear;
   }
 }
+
+.comments-list {
+  list-style-type: none;
+}
