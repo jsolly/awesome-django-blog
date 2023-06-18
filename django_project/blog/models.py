@@ -107,4 +107,4 @@ class Comment(models.Model):
         ordering = ["date_posted"]
 
     def __str__(self):
-        return "Comment \"{}\" {} by {}".format(self.content[3:20] , "... ",self.author)
+        return f"Comment \"{self.content}\" by {self.author}"
