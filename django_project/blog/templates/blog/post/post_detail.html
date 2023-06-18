@@ -55,12 +55,12 @@
 </article>
 
 <!-- Comments Section-->
-<section id="comments-section" class="content-section">
+<section id="comments-section" class="content-section .sml-margin-top-bottom">
   <h2>Comments</h2>
   {% if comments %}
   <ul class="comments-list">
     {% for comment in comments %}
-    <li class="comment" style="">
+    <li class="comment">
       <div class="comment-meta">
         <small>
         <span class="comment-author">{{ comment.author }}</span>

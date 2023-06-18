@@ -1466,3 +1466,7 @@ img {
 .comments-list {
   list-style-type: none;
 }
+
+.content-section {
+  margin-bottom: 30px;
+}
