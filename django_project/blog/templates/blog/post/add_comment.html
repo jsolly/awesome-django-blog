@@ -1,7 +1,7 @@
 
 {% block content %}
 <section id="create-comments-section" class="content-section">
-  <h3>Make a Comment</h3>
+  <h3>Leave your thoughts here</h3>
   <form method="POST" action="{% url 'comment-create' %}" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.media }}
