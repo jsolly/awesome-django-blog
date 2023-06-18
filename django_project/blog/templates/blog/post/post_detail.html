@@ -62,8 +62,11 @@
     {% for comment in comments %}
     <li class="comment">
       <div class="comment-meta">
+        <small>
         <span class="comment-author">{{ comment.author }}</span>
-        <span class="comment-date">{{ comment.date_posted|date:"F d, Y" }}</span>
+        <span class="comment-date"> 
+          {{ comment.date_posted|date:"F d, Y" }} </>
+        </span>
       </div>
       <div class="comment-content">{{ comment.content }}</div>
     </li>
