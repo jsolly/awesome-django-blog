@@ -3,6 +3,7 @@
 from django.db import migrations
 from django.utils.text import slugify
 
+
 def create_slugs(apps, schema_editor):
     Category = apps.get_model("blog", "Category")
     for category in Category.objects.all():

@@ -108,5 +108,3 @@ class TestModels(SetUp):
         self.assertEqual(comment.post, post)
         self.assertEqual(comment.author, self.user)
         self.assertEqual(comment.content, "This is a test comment.")
-
-

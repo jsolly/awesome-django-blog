@@ -7,18 +7,18 @@ import django_ckeditor_5.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0021_increase_post_title_length'),
+        ("blog", "0021_increase_post_title_length"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='post',
-            name='snippet',
+            model_name="post",
+            name="snippet",
             field=django_ckeditor_5.fields.CKEditor5Field(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='post',
-            name='title',
+            model_name="post",
+            name="title",
             field=models.CharField(max_length=110),
         ),
     ]
