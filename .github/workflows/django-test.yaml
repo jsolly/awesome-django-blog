@@ -17,8 +17,8 @@ env:
   DEBUG: ${{secrets.DEBUG}}
   LOGGING: ${{secrets.LOGGING}}
   OPENAI_API_KEY: ${{secrets.OPENAI_API_KEY}}
-  POSTGRES_USER: ${{secrets.POSTGRES_USER}}
-  POSTGRES_PASS: ${{secrets.POSTGRES_PASS}}
+  POSTGRES_USER: $POSTGRES_USER
+  POSTGRES_PASS: $POSTGRES_PASS
   POSTGRES_DB: "blogthedata_test"
   
 jobs:
