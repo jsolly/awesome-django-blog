@@ -11,6 +11,7 @@ env:
   DEBUG: "False"
   LOGGING: "False"
   DJANGO_SETTINGS_MODULE: "django_project.settings.ci"
+  SECRET_KEY: "Not applicable for tests"
   
 jobs:
   build:
