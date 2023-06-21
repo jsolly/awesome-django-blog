@@ -44,7 +44,7 @@ $ python3 -m pip install -r blogthedata/django_project/requirements/requirements
 
 ```shell
 $ sudo service postgreSQL start # If you're on Linux (Open postgres.app if you're on MacOS)
-$ sudo -U postgres psql
+$ sudo -U postgres psql # On MacOS, try `psql -U postgres`
 postgres=# CREATE USER blogthedatauser WITH PASSWORD 'password';
 postgres=# ALTER ROLE blogthedatauser SET client_encoding TO 'utf8';
 postgres=# ALTER ROLE blogthedatauser SET default_transaction_isolation TO 'read committed';
