@@ -96,6 +96,7 @@ class Post(models.Model):
 
         super().save(*args, **kwargs)
 
+
 # POST COMMENT MODEL
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
@@ -107,4 +108,4 @@ class Comment(models.Model):
         ordering = ["date_posted"]
 
     def __str__(self):
-        return f"Comment \"{self.content}\" by {self.author}"
+        return f"Comment '{self.content}' by {self.author}"
