@@ -19,8 +19,8 @@
       "justMyCode": true,
       "django": true,
       "env": {
-        "MODE": "TEST"
-      },
+        "MODE": "DEV"
+      }
     },
     {
       "name": "Django_Start",

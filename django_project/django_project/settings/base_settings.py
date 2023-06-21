@@ -4,9 +4,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__ + "/../")))
-if os.environ["MODE"] in ["DEV", "PROD"]:
+if os.environ["MODE"] in ["PROD", "DEV"]:
     SECRET_KEY = os.environ["SECRET_KEY"]
     ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
+
 
 # Content Security Policy
 CSP_DEFAULT_SRC = ("'none'",)

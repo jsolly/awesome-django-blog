@@ -16,9 +16,9 @@ SECURE_CONTENT_TYPE_NOSNIFF = False
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "blogthedata_test",
-        "USER": "dummy-user",
-        "PASSWORD": "dummy-password",
+        "NAME": "dummy_db",
+        "USER": "dummy_user",
+        "PASSWORD": "dummy_password",
         "HOST": "localhost",
         "PORT": "5432",
     }

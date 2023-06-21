@@ -10,6 +10,8 @@ env:
   GIT_TOKEN: "Not applicable for tests" # For Coveralls test coverage
   DEBUG: "False"
   LOGGING: "False"
+  MODE: "CI"
+  DJANGO_SETTINGS_MODULE: "django_project.settings.ci"
   
 jobs:
   build:
@@ -19,9 +21,9 @@ jobs:
       postgres:
         image: postgres:14
         env:
-          POSTGRES_USER: "dummy-user"
-          POSTGRES_PASSWORD: "dummy-password"
-          POSTGRES_DB: "blogthedata_test"
+          POSTGRES_USER: "dummy_user"
+          POSTGRES_PASSWORD: "dummy_password"
+          POSTGRES_DB: "dummy_db"
         ports:
           - 5432:5432
         options: >-
