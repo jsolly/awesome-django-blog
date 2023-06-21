@@ -19,12 +19,13 @@ class TestUtils(SetUp, MiddlewareMixin):
 
     @patch("openai.Completion.create")
     @patch("blog.utils.load_pickle_file")
-    def test_answer_question(self, mock_load_pickle_file):
+    def test_answer_question(self, mock_load_pickle_file, mock_create):
         mock_load_pickle_file.return_value = pd.DataFrame(
             {"text": ["The capital of the United States is Washington, D.C."]}
         )
+        mock_create.return_value = {"choices": [{"text": "mocked response"}]}
 
         answer = answer_question(
             question="What is the capital of the United States of America?"
         )
-        self.assertEqual(answer, "Washington, D.C.")
+        self.assertEqual(answer, "mocked response")
