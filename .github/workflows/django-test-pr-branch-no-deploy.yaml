@@ -82,11 +82,6 @@ jobs:
           coverage run -m pytest django_project
           coverage lcov -o ./coverage/lcov.info
       
-      - name: coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.github_token }}
-
   static_analysis:
     runs-on: ubuntu-latest
     permissions:
