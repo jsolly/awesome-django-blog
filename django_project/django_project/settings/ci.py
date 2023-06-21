@@ -18,8 +18,8 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "blogthedata_test",
-        "USER": os.environ["POSTGRES_USER"],
-        "PASSWORD": os.environ["POSTGRES_PASS"],
+        "USER": "dummy-user",
+        "PASSWORD": "dummy-password",
         "HOST": "localhost",
         "PORT": "5432",
     }
