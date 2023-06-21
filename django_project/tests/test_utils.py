@@ -2,7 +2,7 @@ from .base import SetUp
 from django.utils.deprecation import MiddlewareMixin
 from blog.utils import create_context, answer_question, load_pickle_file
 import pandas as pd
-from unittest import mock
+from unittest.mock import patch
 
 
 class TestUtils(SetUp, MiddlewareMixin):
@@ -17,7 +17,8 @@ class TestUtils(SetUp, MiddlewareMixin):
         )
         self.assertIsInstance(context, str)
 
-    @mock.patch("blog.utils.load_pickle_file")
+    @patch("openai.Completion.create")
+    @patch("blog.utils.load_pickle_file")
     def test_answer_question(self, mock_load_pickle_file):
         mock_load_pickle_file.return_value = pd.DataFrame(
             {"text": ["The capital of the United States is Washington, D.C."]}
