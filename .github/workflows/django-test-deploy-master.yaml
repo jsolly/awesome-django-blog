@@ -7,18 +7,9 @@ on:
     - cron: "0 3 * * 0-6"
 
 env:
-  SECRET_KEY: "Not applicable for tests"
-  EMAIL_HOST_USER: "Not applicable for tests"
-  EMAIL_HOST_PASSWORD: "Not applicable for tests"
-  FROM_EMAIL: "Not applicable for tests"
-  ALLOWED_HOSTS: "Not applicable for tests"
-  GIT_TOKEN: "Not applicable for tests"
+  GIT_TOKEN: "Not applicable for tests" # For Coveralls test coverage
   DEBUG: "False"
   LOGGING: "False"
-  OPENAI_API_KEY: "Not applicable for tests"
-  POSTGRES_USER: "dummy-user"
-  POSTGRES_PASS: "dummy-password"
-  POSTGRES_DB: "blogthedata_test"
   
 jobs:
   build:
