@@ -1,4 +1,4 @@
-from .models import Post, Category, Comment
+from .models import Post, Category
 from .forms import PostForm, CommentForm
 from .utils import answer_question
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
@@ -27,7 +27,6 @@ from django.conf import settings
 import psycopg
 import psutil
 import shutil
-from users.models import User
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 ez_logger = logging.getLogger("ezra_logger")
@@ -303,7 +302,7 @@ class PostDetailView(FormMixin, DetailView):
         self.object = self.get_object()
         form = self.get_form()
         if form.is_valid():
-            commment = form.save(commit=False)
+            form.save(commit=False)
             comment.post = self.object
             comment.save()
             return self.form_valid(form)
