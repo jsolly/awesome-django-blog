@@ -17,8 +17,8 @@ env:
   DEBUG: "False"
   LOGGING: "False"
   OPENAI_API_KEY: "Not applicable for tests"
-  POSTGRES_USER: "dummy-user"
-  POSTGRES_PASS: "dummy-password"
+  POSTGRES_USER: $POSTGRES_USER # Using a var because django_project/settings/ci.py uses os.environ.get()
+  POSTGRES_PASS: $POSTGRES_PASS
   POSTGRES_DB: "blogthedata_test"
   
 jobs:
