@@ -10,6 +10,7 @@ on:
 env:
   DEBUG: "False"
   LOGGING: "False"
+  MODE: "CI"
 jobs:
   build:
     runs-on: ubuntu-latest
