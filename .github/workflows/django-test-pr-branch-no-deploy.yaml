@@ -1,0 +1,111 @@
+name: blogthedata-tests
+on:
+  push:
+    branches-ignore:
+      - master
+  pull_request:
+    branches:
+      - '*'
+
+env:
+  SECRET_KEY: "Not applicable for tests"
+  EMAIL_HOST_USER: "Not applicable for tests"
+  EMAIL_HOST_PASSWORD: "Not applicable for tests"
+  FROM_EMAIL: "Not applicable for tests"
+  ALLOWED_HOSTS: "Not applicable for tests"
+  GIT_TOKEN: "Not applicable for tests"
+  DEBUG: "False"
+  LOGGING: "False"
+  OPENAI_API_KEY: "Not applicable for tests"
+  POSTGRES_USER: "dummy-user"
+  POSTGRES_PASS: "dummy-password"
+  POSTGRES_DB: "blogthedata_test"
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_USER: "dummy-user"
+          POSTGRES_PASSWORD: "dummy-password"
+          POSTGRES_DB: "blogthedata_test"
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: update-system-dependencies
+        run: |
+          sudo apt-get update -y
+
+      - name: setup-python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.10.8
+          cache: "pip"
+
+      - name: install-python-virtualenv
+        run: |
+          python3 -m venv venv django_project/venv
+          source django_project/venv/bin/activate
+          pip install --upgrade pip
+          pip install wheel
+          pip install -r django_project/requirements/requirements.txt -c django_project/requirements/constraints.txt
+
+      - name: lint-with-ruff
+        run: |
+          source django_project/venv/bin/activate
+          ruff --config ./config/pyproject.toml django_project
+
+      - name: collect-static-files
+        run: |
+          source django_project/venv/bin/activate 
+          python3 django_project/manage.py collectstatic --noinput
+
+      - name: run-db-migrations
+        run: |
+          source django_project/venv/bin/activate
+          python3 django_project/manage.py migrate --noinput --settings=django_project.settings.ci
+
+      - name: run-unit-tests-with-coverage
+        run: |
+          source django_project/venv/bin/activate
+          coverage run -m pytest django_project
+          coverage lcov -o ./coverage/lcov.info
+      
+      - name: coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.github_token }}
+
+  static_analysis:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ["javascript", "python"]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: initialize-codeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: perform-codeQL Analysis
+        uses: github/codeql-action/analyze@v2
