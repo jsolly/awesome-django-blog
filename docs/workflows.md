@@ -211,18 +211,6 @@ django_project/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py
         }
 ```
 
-### Stop tracking local db.sqlite3 file
-
-```
-$ git update-index --assume-unchanged <file-to-ignore>
-```
-
-#### tell Git to stop ignoring this file
-
-```bash
-$ git update-index --no-assume-unchanged <file-to-ignore>
-```
-
 ### Send media files to remote server
 
 scp -r /Users/johnsolly/Documents/code/blogthedata/django_project/media

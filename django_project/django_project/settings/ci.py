@@ -1,5 +1,4 @@
 from .base_settings import *
-import os
 
 SITE_ID = 2  # localhost
 CAPTCHA_TEST_MODE = True
@@ -17,9 +16,9 @@ SECURE_CONTENT_TYPE_NOSNIFF = False
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "blogthedata_test",
-        "USER": os.environ["POSTGRES_USER"],
-        "PASSWORD": os.environ["POSTGRES_PASS"],
+        "NAME": "dummy_db",
+        "USER": "dummy_user",
+        "PASSWORD": "dummy_password",
         "HOST": "localhost",
         "PORT": "5432",
     }

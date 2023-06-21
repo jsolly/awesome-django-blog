@@ -36,7 +36,7 @@ $ python3 -m pip install -r blogthedata/django_project/requirements/requirements
 
 ## Setup
 
-### Database
+### Development/Production Database
 
 1. See commented out Database section in
    [django_project/settings/dev.py](https://github.com/jsolly/blogthedata/blob/master/django_project/django_project/settings/dev.py)
@@ -44,15 +44,15 @@ $ python3 -m pip install -r blogthedata/django_project/requirements/requirements
 
 ```shell
 $ sudo service postgreSQL start # If you're on Linux (Open postgres.app if you're on MacOS)
-$ sudo -U postgres psql # On MacOS, try `psql -U postgres`
-postgres=# CREATE USER blogthedatauser WITH PASSWORD 'password';
-postgres=# ALTER ROLE blogthedatauser SET client_encoding TO 'utf8';
-postgres=# ALTER ROLE blogthedatauser SET default_transaction_isolation TO 'read committed';
-postgres=# ALTER ROLE blogthedatauser SET timezone TO 'UTC';
-postgres=# CREATE DATABASE blogthedata WITH OWNER blogthedatauser;
-postgres=# \c blogthedata
+$ sudo -U postgres psql
+postgres=# CREATE USER <username> WITH PASSWORD '<password>;
+postgres=# ALTER ROLE <username> SET client_encoding TO 'utf8';
+postgres=# ALTER ROLE <username> SET default_transaction_isolation TO 'read committed';
+postgres=# ALTER ROLE <username> SET timezone TO 'UTC';
+postgres=# CREATE DATABASE <database_name> WITH OWNER <username>;
+postgres=# \c <database_name>
 # type <exit> and hit enter to go back to the terminal
-$ python3 manage.py migrate
+$ python3 manage.py migrate --settings=django_project.settings.prod # or dev
 ```
 
 2. rename 'blogthedata/config/sample.env' to .env and change the values to match your setup
@@ -62,6 +62,20 @@ $ python3 manage.py migrate
 $ python3 manage.py runserver
 ```
 
+### Local Testing Database
+```shell
+$ sudo service postgreSQL start # If you're on Linux (Open postgres.app if you're on MacOS)
+$ sudo -U postgres psql
+postgres=# CREATE USER dummy_user WITH PASSWORD 'dummy_password';
+postgres=# ALTER ROLE dummy_user SET client_encoding TO 'utf8';
+postgres=# ALTER ROLE dummy_user SET default_transaction_isolation TO 'read committed';
+postgres=# ALTER ROLE dummy_user SET timezone TO 'UTC';
+postgres=# CREATE DATABASE dummy_db WITH OWNER dummy_user;
+postgres=# \c dummy_db
+# type <exit> and hit enter to go back to the terminal
+$ python3 manage.py migrate --settings=django_project.settings.ci
+```
+```
 ### Run Test Coverage
 
 ```shell
