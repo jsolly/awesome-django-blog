@@ -10,7 +10,6 @@ on:
 env:
   DEBUG: "False"
   LOGGING: "False"
-  MODE: "CI"
   DJANGO_SETTINGS_MODULE: "django_project.settings.ci"
 jobs:
   build:

@@ -18,9 +18,6 @@
       "program": "${file}",
       "justMyCode": true,
       "django": true,
-      "env": {
-        "MODE": "DEV"
-      }
     },
     {
       "name": "Django_Start",

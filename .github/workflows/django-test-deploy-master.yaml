@@ -10,7 +10,6 @@ env:
   GIT_TOKEN: "Not applicable for tests" # For Coveralls test coverage
   DEBUG: "False"
   LOGGING: "False"
-  MODE: "CI"
   DJANGO_SETTINGS_MODULE: "django_project.settings.ci"
   
 jobs:
