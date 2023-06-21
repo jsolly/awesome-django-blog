@@ -91,7 +91,8 @@ Also see the [actions tab](https://github.com/jsolly/blogthedata/actions)
 to see if everything is passing.
 
 
-### Pre-commit Hooks (Optional as the CI also takes care of it)
+### Pre-commit Hooks
+If there are any Ruff failures (badly linted code), the build will fail, so ensure you have the pre-commit hook installed.
 
 ```
 $ cd blogthedata/config

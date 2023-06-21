@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0006_change_content_field_to_richtextuploading'),
+        ("blog", "0006_change_content_field_to_richtextuploading"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='post',
-            name='snippet',
+            model_name="post",
+            name="snippet",
             field=models.CharField(blank=True, max_length=500, null=True),
         ),
     ]

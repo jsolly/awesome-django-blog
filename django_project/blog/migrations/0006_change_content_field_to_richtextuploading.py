@@ -7,17 +7,19 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0005_add_images_to_post'),
+        ("blog", "0005_add_images_to_post"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='post',
-            name='images',
+            model_name="post",
+            name="images",
         ),
         migrations.AlterField(
-            model_name='post',
-            name='content',
-            field=ckeditor_uploader.fields.RichTextUploadingField(blank=True, null=True),
+            model_name="post",
+            name="content",
+            field=ckeditor_uploader.fields.RichTextUploadingField(
+                blank=True, null=True
+            ),
         ),
     ]

@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0024_remove_mime_type_from_post'),
+        ("blog", "0024_remove_mime_type_from_post"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='post',
-            name='metaimg_attribution',
+            model_name="post",
+            name="metaimg_attribution",
             field=models.CharField(blank=True, max_length=200, null=True),
         ),
     ]

@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0002_add_likes'),
+        ("blog", "0002_add_likes"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='post',
-            name='views',
-            field=models.ManyToManyField(blank=True, related_name='post_views', to='blog.IpPerson'),
+            model_name="post",
+            name="views",
+            field=models.ManyToManyField(
+                blank=True, related_name="post_views", to="blog.IpPerson"
+            ),
         ),
     ]

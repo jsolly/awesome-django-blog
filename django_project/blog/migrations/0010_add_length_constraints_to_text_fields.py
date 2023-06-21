@@ -7,23 +7,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0009_added_metadescription_to_post_model'),
+        ("blog", "0009_added_metadescription_to_post_model"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='post',
-            name='metadesc',
+            model_name="post",
+            name="metadesc",
             field=models.CharField(blank=True, max_length=140, null=True),
         ),
         migrations.AlterField(
-            model_name='post',
-            name='snippet',
+            model_name="post",
+            name="snippet",
             field=ckeditor.fields.RichTextField(blank=True, max_length=300, null=True),
         ),
         migrations.AlterField(
-            model_name='post',
-            name='title',
+            model_name="post",
+            name="title",
             field=models.CharField(max_length=60),
         ),
     ]

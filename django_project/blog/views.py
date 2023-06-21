@@ -1,4 +1,4 @@
-from .models import Post, Category, Comment
+from .models import Post, Category
 from .forms import PostForm, CommentForm
 from .utils import answer_question
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
@@ -27,7 +27,6 @@ from django.conf import settings
 import psycopg
 import psutil
 import shutil
-from users.models import User
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 ez_logger = logging.getLogger("ezra_logger")
@@ -279,7 +278,7 @@ class PostDetailView(FormMixin, DetailView):
     model = Post
     template_name = "blog/post/post_detail.html"
     context_object_name = "post"
-    form_class = CommentForm # to add comments to a post
+    form_class = CommentForm  # to add comments to a post
 
     def get_queryset(self):
         return super().get_queryset().filter(slug=self.kwargs["slug"])
@@ -289,19 +288,21 @@ class PostDetailView(FormMixin, DetailView):
         post = context["post"]
         comments = post.comments.all()  # Get all comments related to the post
         context["comments"] = comments
-        context["form"] = self.get_form() # to add the form to context
+        context["form"] = self.get_form()  # to add the form to context
         return context
-# identify the post slug
+
+    # identify the post slug
     def get_initial(self):
         initial = super().get_initial()
-        initial['post_slug'] = self.object.slug
+        initial["post_slug"] = self.object.slug
         return initial
+
     # comment submission
     def post(self, request, *arggs, **kwargs):
         self.object = self.get_object()
         form = self.get_form()
         if form.is_valid():
-            commment = form.save(commit=False)
+            form.save(commit=False)
             comment.post = self.object
             comment.save()
             return self.form_valid(form)
@@ -333,20 +334,21 @@ class CreatePostView(UserPassesTestMixin, CreateView):
         context["title"] = "Create a New Post"
         return context
 
-@login_required(login_url='login')
+
+@login_required(login_url="login")
 def create_comment(request):
     post_slug = None
-    if request.method == 'POST':
+    if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
-            post_slug = form.cleaned_data.get('post_slug')
+            post_slug = form.cleaned_data.get("post_slug")
             post = get_object_or_404(Post, slug=post_slug)
             comment = form.save(commit=False)
             comment.post = post
             comment.author = request.user
             comment.save()
-            return redirect('post-detail', slug=post_slug)
-    return redirect('home')
+            return redirect("post-detail", slug=post_slug)
+    return redirect("home")
 
 
 def generate_gpt_input_value(request, post_id):
