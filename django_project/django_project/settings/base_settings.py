@@ -7,6 +7,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__ + "/../")))
 SECRET_KEY = os.environ["SECRET_KEY"]
 ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
 
+
 # Content Security Policy
 CSP_DEFAULT_SRC = ("'none'",)
 CSP_STYLE_SRC = (

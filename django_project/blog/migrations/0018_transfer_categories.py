@@ -13,7 +13,6 @@ def link_categories(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("blog", "0017_add_temp_category_link_field"),
     ]

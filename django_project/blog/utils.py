@@ -59,11 +59,11 @@ def answer_question(
     debug=False,
     max_tokens=150,
     stop_sequence=None,
+    df=global_df,
 ):
     """
     Answer a question based on the most similar context from the dataframe texts
     """
-    df = global_df
     context = create_context(
         question,
         df,

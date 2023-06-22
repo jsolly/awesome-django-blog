@@ -5,7 +5,6 @@ import django_resized.forms
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("blog", "0025_add_metaimg_attribution"),
     ]

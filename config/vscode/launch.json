@@ -6,7 +6,7 @@
       "type": "python",
       "request": "launch",
       "program": "${file}",
-      "justMyCode": true,
+      "justMyCode": true
     },
     {
       "name": "Python: Debug",
@@ -17,10 +17,7 @@
       "request": "launch",
       "program": "${file}",
       "justMyCode": true,
-      "django": true,
-      "env": {
-        "MODE": "TEST"
-      },
+      "django": true
     },
     {
       "name": "Django_Start",
@@ -38,7 +35,7 @@
       "request": "launch",
       "type": "chrome",
       "runtimeArgs": [
-        "--incognito",
+        "--incognito"
       ],
       "url": "http://127.0.0.1:8000/",
     },
