@@ -8,17 +8,17 @@ on:
     - cron: "0 3 * * 0-6"
 
 env:
-  SECRET_KEY: "Not applicable for tests"
-  EMAIL_HOST_USER: "Not applicable for tests"
-  EMAIL_HOST_PASSWORD: "Not applicable for tests"
-  FROM_EMAIL: "Not applicable for tests"
-  ALLOWED_HOSTS: "Not applicable for tests"
-  GIT_TOKEN: "Not applicable for tests"
-  DEBUG: "False"
-  LOGGING: "False"
-  OPENAI_API_KEY: "Not applicable for tests"
-  POSTGRES_USER: "dummy-user"
-  POSTGRES_PASS: "dummy-password"
+  SECRET_KEY: ${{secrets.SECRET_KEY}}
+  EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
+  EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
+  FROM_EMAIL: ${{secrets.FROM_EMAIL}}
+  ALLOWED_HOSTS: ${{secrets.ALLOWED_HOSTS}}
+  GIT_TOKEN: ${{secrets.GIT_TOKEN}}
+  DEBUG: ${{secrets.DEBUG}}
+  LOGGING: ${{secrets.LOGGING}}
+  OPENAI_API_KEY: ${{secrets.OPENAI_API_KEY}}
+  POSTGRES_USER: ${{secrets.POSTGRES_USER}}
+  POSTGRES_PASS: ${{secrets.POSTGRES_PASS}}
   POSTGRES_DB: "blogthedata_test"
   
 jobs:
