@@ -4,7 +4,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: "0 3 * * 0-6"
+    - cron: "0 3 * * 0-6" # Every day at 3am UTC
 
 env:
   GIT_TOKEN: "Not applicable for tests" # For Coveralls test coverage
