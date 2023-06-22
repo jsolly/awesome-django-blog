@@ -5,7 +5,7 @@ on:
       - master
   pull_request:
     branches:
-      - '*'
+      - "*"
 
 env:
   DEBUG: "False"
@@ -73,7 +73,7 @@ jobs:
           source django_project/venv/bin/activate
           coverage run -m pytest django_project
           coverage lcov -o ./coverage/lcov.info
-      
+
   static_analysis:
     runs-on: ubuntu-latest
     permissions:
