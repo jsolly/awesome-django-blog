@@ -67,7 +67,7 @@ jobs:
       - name: run-db-migrations
         run: |
           source django_project/venv/bin/activate
-          python3 django_project/manage.py migrate --noinput --settings=django_project.settings.ci
+          python3 django_project/manage.py migrate --noinput
 
       - name: run-unit-tests-with-coverage
         run: |

@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 import sys
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
-# Make sure os.environ['DJANGO_SETTINGS_MODULE'] points to the correct settings file
+# Make sure DJANGO_SETTINGS_MODULE is is added to .env file
 def main():
     try:
         from django.core.management import execute_from_command_line
