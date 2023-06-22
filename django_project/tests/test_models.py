@@ -102,9 +102,9 @@ class TestModels(SetUp):
         )
         comment = Comment.objects.create(
             post=post,
-            author=self.user,
+            author=self.basic_user,
             content="This is a test comment.",
         )
         self.assertEqual(comment.post, post)
-        self.assertEqual(comment.author, self.user)
+        self.assertEqual(comment.author, self.basic_user)
         self.assertEqual(comment.content, "This is a test comment.")
