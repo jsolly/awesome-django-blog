@@ -86,3 +86,25 @@ class TestModels(SetUp):
         with Image.open(profile1.image.path) as img:
             self.assertEqual(img.height, 300)
             self.assertEqual(img.width, 300)
+
+    def test_create_comment(self):
+        post = Post.objects.create(
+            title="My Second Post",
+            slug="second-post",
+            category=self.category1,
+            metadesc="Curious about your health? Look no further!!",
+            draft=False,
+            # metaimg = ""
+            snippet="Long ago, the four nations lived together in harmony.",
+            content="Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
+            # date_posted = ""
+            author=self.super_user,
+        )
+        comment = Comment.objects.create(
+            post=post,
+            author=self.user,
+            content="This is a test comment.",
+        )
+        self.assertEqual(comment.post, post)
+        self.assertEqual(comment.author, self.user)
+        self.assertEqual(comment.content, "This is a test comment.")
