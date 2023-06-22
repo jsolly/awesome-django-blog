@@ -1,4 +1,4 @@
-name: blogthedata-tests
+name: Django Test PR Branch No Deploy
 on:
   push:
     branches-ignore:
