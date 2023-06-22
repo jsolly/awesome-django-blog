@@ -1,7 +1,7 @@
 from .base import SetUp
 from django.urls import reverse
 from PIL import Image
-from blog.models import Post, slugify_instance
+from blog.models import Post, Comment, slugify_instance
 from users.models import Profile
 
 

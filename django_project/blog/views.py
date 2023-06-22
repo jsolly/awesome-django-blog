@@ -27,6 +27,7 @@ from django.conf import settings
 import psycopg
 import psutil
 import shutil
+from users.models import User
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 ez_logger = logging.getLogger("ezra_logger")
@@ -281,10 +282,16 @@ class PostDetailView(FormMixin, DetailView):
     form_class = CommentForm  # to add comments to a post
 
     def get_queryset(self):
-        return super().get_queryset().filter(slug=self.kwargs["slug"])
+        post = get_object_or_404(Post, slug=self.kwargs["slug"])
+        if post.draft:
+            get_object_or_404(User, username=self.request.user)
+
+        return Post.objects.filter(slug=self.kwargs["slug"])
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["title"] = self.object.title
+        context["description"] = self.object.metadesc
         post = context["post"]
         comments = post.comments.all()  # Get all comments related to the post
         context["comments"] = comments
@@ -302,7 +309,7 @@ class PostDetailView(FormMixin, DetailView):
         self.object = self.get_object()
         form = self.get_form()
         if form.is_valid():
-            form.save(commit=False)
+            comment = form.save(commit=False)
             comment.post = self.object
             comment.save()
             return self.form_valid(form)
