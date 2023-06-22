@@ -3,6 +3,7 @@
 from django.db import migrations
 from django.utils.text import slugify
 
+
 def create_slugs(apps, schema_editor):
     Category = apps.get_model("blog", "Category")
     for category in Category.objects.all():
@@ -11,7 +12,6 @@ def create_slugs(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("blog", "0028_add_slug_field_to_category"),
     ]

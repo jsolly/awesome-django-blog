@@ -5,20 +5,21 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('blog', '0004_add_slug_field'),
+        ("blog", "0004_add_slug_field"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='post',
-            name='images',
-            field=ckeditor_uploader.fields.RichTextUploadingField(blank=True, null=True),
+            model_name="post",
+            name="images",
+            field=ckeditor_uploader.fields.RichTextUploadingField(
+                blank=True, null=True
+            ),
         ),
         migrations.AlterField(
-            model_name='post',
-            name='slug',
+            model_name="post",
+            name="slug",
             field=models.SlugField(blank=True, null=True, unique=True),
         ),
     ]

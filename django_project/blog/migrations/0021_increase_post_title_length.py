@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('blog', '0020_changed_metaimg_alt_text_length'),
+        ("blog", "0020_changed_metaimg_alt_text_length"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='post',
-            name='title',
+            model_name="post",
+            name="title",
             field=models.CharField(max_length=100),
         ),
     ]

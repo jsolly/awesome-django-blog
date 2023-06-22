@@ -5,15 +5,14 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('blog', '0007_add_snippet_to_post_model'),
+        ("blog", "0007_add_snippet_to_post_model"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='post',
-            name='snippet',
+            model_name="post",
+            name="snippet",
             field=ckeditor.fields.RichTextField(blank=True, max_length=500, null=True),
         ),
     ]

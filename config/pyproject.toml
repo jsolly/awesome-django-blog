@@ -7,8 +7,6 @@ exclude = [
     ]
 ignore = ["E402", "E501", "F403"]
 
-[tool.black]
-exclude = ["*/migrations/*"]
 
 
 # F403 is ignored because I use * imports in settings files

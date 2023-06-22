@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('blog', '0008_change_snippet_field_to_richtextfield'),
+        ("blog", "0008_change_snippet_field_to_richtextfield"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='post',
-            name='metadesc',
+            model_name="post",
+            name="metadesc",
             field=models.CharField(blank=True, max_length=160, null=True),
         ),
     ]

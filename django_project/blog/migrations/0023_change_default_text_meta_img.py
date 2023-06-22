@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('blog', '0022_remove_length_limit_snippet'),
+        ("blog", "0022_remove_length_limit_snippet"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='post',
-            name='metaimg_alt_txt',
-            field=models.CharField(default='John Solly Headshot', max_length=120),
+            model_name="post",
+            name="metaimg_alt_txt",
+            field=models.CharField(default="John Solly Headshot", max_length=120),
         ),
     ]

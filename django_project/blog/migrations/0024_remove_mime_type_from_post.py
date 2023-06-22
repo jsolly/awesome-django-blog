@@ -4,14 +4,13 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('blog', '0023_change_default_text_meta_img'),
+        ("blog", "0023_change_default_text_meta_img"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='post',
-            name='metaimg_mimetype',
+            model_name="post",
+            name="metaimg_mimetype",
         ),
     ]
