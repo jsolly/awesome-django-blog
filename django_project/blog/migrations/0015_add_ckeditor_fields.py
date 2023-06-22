@@ -5,7 +5,6 @@ import django_ckeditor_5.fields
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("blog", "0014_removed_likes_posts_ipperson"),
     ]

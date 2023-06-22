@@ -1,25 +1,18 @@
 name: blogthedata-tests
 on:
   push:
-  pull_request:
     branches:
       - master
   schedule:
     - cron: "0 3 * * 0-6"
 
 env:
-  SECRET_KEY: ${{secrets.SECRET_KEY}}
-  EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
-  EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
-  FROM_EMAIL: ${{secrets.FROM_EMAIL}}
-  ALLOWED_HOSTS: ${{secrets.ALLOWED_HOSTS}}
-  GIT_TOKEN: ${{secrets.GIT_TOKEN}}
-  DEBUG: ${{secrets.DEBUG}}
-  LOGGING: ${{secrets.LOGGING}}
-  OPENAI_API_KEY: ${{secrets.OPENAI_API_KEY}}
-  POSTGRES_USER: ${{secrets.POSTGRES_USER}}
-  POSTGRES_PASS: ${{secrets.POSTGRES_PASS}}
-  POSTGRES_DB: "blogthedata_test"
+  GIT_TOKEN: "Not applicable for tests" # For Coveralls test coverage
+  DEBUG: "False"
+  LOGGING: "False"
+  DJANGO_SETTINGS_MODULE: "django_project.settings.ci"
+  SECRET_KEY: "Not applicable for tests"
+  ALLOWED_HOSTS: "127.0.0.1 localhost"
   
 jobs:
   build:
@@ -29,9 +22,9 @@ jobs:
       postgres:
         image: postgres:14
         env:
-          POSTGRES_USER: ${{secrets.POSTGRES_USER}}
-          POSTGRES_PASSWORD: ${{secrets.POSTGRES_PASS}}
-          POSTGRES_DB: "blogthedata_test"
+          POSTGRES_USER: "dummy_user"
+          POSTGRES_PASSWORD: "dummy_password"
+          POSTGRES_DB: "dummy_db"
         ports:
           - 5432:5432
         options: >-

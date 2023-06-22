@@ -12,7 +12,6 @@ def create_slugs(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("blog", "0028_add_slug_field_to_category"),
     ]

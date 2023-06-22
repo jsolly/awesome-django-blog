@@ -1,0 +1,98 @@
+name: blogthedata-tests
+on:
+  push:
+    branches-ignore:
+      - master
+  pull_request:
+    branches:
+      - '*'
+
+env:
+  DEBUG: "False"
+  LOGGING: "False"
+  DJANGO_SETTINGS_MODULE: "django_project.settings.ci"
+  SECRET_KEY: "Not applicable for tests"
+  ALLOWED_HOSTS: "127.0.0.1 localhost"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_USER: "dummy_user"
+          POSTGRES_PASSWORD: "dummy_password"
+          POSTGRES_DB: "dummy_db"
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: update-system-dependencies
+        run: |
+          sudo apt-get update -y
+
+      - name: setup-python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.10.8
+          cache: "pip"
+
+      - name: install-python-virtualenv
+        run: |
+          python3 -m venv venv django_project/venv
+          source django_project/venv/bin/activate
+          pip install --upgrade pip
+          pip install wheel
+          pip install -r django_project/requirements/requirements.txt -c django_project/requirements/constraints.txt
+
+      - name: lint-with-ruff
+        run: |
+          source django_project/venv/bin/activate
+          ruff --config ./config/pyproject.toml django_project
+
+      - name: collect-static-files
+        run: |
+          source django_project/venv/bin/activate 
+          python3 django_project/manage.py collectstatic --noinput
+
+      - name: run-db-migrations
+        run: |
+          source django_project/venv/bin/activate
+          python3 django_project/manage.py migrate --noinput --settings=django_project.settings.ci
+
+      - name: run-unit-tests-with-coverage
+        run: |
+          source django_project/venv/bin/activate
+          coverage run -m pytest django_project
+          coverage lcov -o ./coverage/lcov.info
+      
+  static_analysis:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ["javascript", "python"]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: initialize-codeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: perform-codeQL Analysis
+        uses: github/codeql-action/analyze@v2
