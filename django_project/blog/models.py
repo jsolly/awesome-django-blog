@@ -108,4 +108,4 @@ class Comment(models.Model):
         ordering = ["date_posted"]
 
     def __str__(self):
-        return f'Comment "{self.content}" by {self.author}'
+        return f"Comment '{self.content}' by {self.author}"
