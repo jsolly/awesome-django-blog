@@ -1,4 +1,4 @@
-[![blogthedata-tests](https://github.com/jsolly/blogthedata/actions/workflows/django-test.yaml/badge.svg)](https://github.com/jsolly/blogthedata/actions/workflows/django-test.yaml)
+[![blogthedata-tests](https://github.com/jsolly/blogthedata/actions/workflows/django-test-deploy-master.yaml/badge.svg)](https://github.com/jsolly/blogthedata/actions/workflows/django-test-deploy-master.yaml)
 ![Coverage](https://img.shields.io/coverallsCoverage/github/jsolly/blogthedata)
 ![CodeStyle](https://img.shields.io/badge/code%20style-black-000000.svg)
 ![Linting](https://img.shields.io/badge/linting-ruff-orange)
