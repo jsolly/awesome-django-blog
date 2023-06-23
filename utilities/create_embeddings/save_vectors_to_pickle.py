@@ -1,14 +1,14 @@
 import pandas as pd
 import numpy as np
 import json
-import os
 import pickle
 
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
-embeddings_path = os.path.join(
-    BASE_DIR, "utilities/create_embeddings/processed/embeddings.json"
-)
-df_pickle_path = os.path.join(BASE_DIR, "utilities/create_embeddings/processed/df.pkl")
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+embeddings_path = BASE_DIR / "utilities/create_embeddings/processed/embeddings.json"
+df_pickle_path = BASE_DIR / "utilities/create_embeddings/processed/df.pkl"
+
 
 # Load the JSON file as a list of dictionaries
 with open(embeddings_path, "r") as f:

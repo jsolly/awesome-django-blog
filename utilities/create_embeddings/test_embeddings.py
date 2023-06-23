@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import os
+from pathlib import Path
 import json
 from openai import Embedding, Completion
 from openai.embeddings_utils import distances_from_embeddings
@@ -25,7 +25,7 @@ def create_context(question, df, max_len=1800, size="ada"):
     cur_len = 0
 
     # Sort by distance and add the text to the context until the context is too long
-    for i, row in df.sort_values("distances", ascending=True).iterrows():
+    for _, row in df.sort_values("distances", ascending=True).iterrows():
         # Add the length of the text to the current length
         cur_len += row["n_tokens"] + 4
 
@@ -83,10 +83,8 @@ def answer_question(
 
 
 if __name__ == "__main__":
-    BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
-    embeddings_path = os.path.join(
-        BASE_DIR, "utilities/create_embeddings/processed/embeddings.json"
-    )
+    BASE_DIR = Path(__file__).resolve().parent.parent.parent  # Three levels up
+    embeddings_path = BASE_DIR / "utilities/create_embeddings/processed/embeddings.json"
 
     # Load the JSON file as a list of dictionaries
     with open(embeddings_path, "r") as f:
