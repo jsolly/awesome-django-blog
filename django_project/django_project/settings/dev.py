@@ -1,7 +1,6 @@
 from .base_settings import *
 import os
 
-SITE_ID = 2  # localhost
 CAPTCHA_TEST_MODE = True
 USE_SRI = False
 

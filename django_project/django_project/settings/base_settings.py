@@ -7,7 +7,7 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent.parent  # Three levels up
 SECRET_KEY = os.environ["SECRET_KEY"]
 ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
-
+SITE_ID = int(os.environ["SITE_ID"])
 
 # Content Security Policy
 CSP_DEFAULT_SRC = ("'none'",)

@@ -2,7 +2,6 @@ from .base_settings import *
 import os
 import psycopg2
 
-SITE_ID = 1  # blogthedata.com
 CAPTCHA_TEST_MODE = False
 X_FRAME_OPTIONS = "SAMEORIGIN"
 USE_SRI = False

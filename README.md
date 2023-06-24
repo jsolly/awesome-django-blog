@@ -75,7 +75,18 @@ postgres=# \c dummy_db
 # type <exit> and hit enter to go back to the terminal
 $ python3 manage.py migrate --settings=django_project.settings.ci
 ```
-```
+
+### Configure Django Sites Framework
+1 - Run the server and navigate to http://127.0.0.1:8000/admin/sites
+
+2 - Add a new site with the following values:
+    - Domain name: 127.0.0.1:8000
+    - Display name: 127.0.0.1:8000
+
+If you are running on production with a domain, you can add that, too. Here is a screenshot of my sites configuration:
+![Alt text](image.png)
+
+3 - Now go into your settings.dev file and change the SITE_ID to the ID of the site you just created. It should be 1 if you haven't created any other sites. The SITE_ID for settings.prod should be 2.
 ### Run Test Coverage
 
 ```shell
