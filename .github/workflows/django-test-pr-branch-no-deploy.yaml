@@ -8,11 +8,12 @@ on:
       - '*'
 
 env:
-  DEBUG: "False"
-  LOGGING: "False"
-  DJANGO_SETTINGS_MODULE: "django_project.settings.ci"
+  DEBUG: False
+  LOGGING: False
+  DJANGO_SETTINGS_MODULE: django_project.settings.ci
   SECRET_KEY: "Not applicable for tests"
   ALLOWED_HOSTS: "127.0.0.1 localhost"
+  SITE_ID: 1
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,9 +22,9 @@ jobs:
       postgres:
         image: postgres:14
         env:
-          POSTGRES_USER: "dummy_user"
-          POSTGRES_PASSWORD: "dummy_password"
-          POSTGRES_DB: "dummy_db"
+          POSTGRES_USER: dummy_user
+          POSTGRES_PASSWORD: dummy_password
+          POSTGRES_DB: dummy_db
         ports:
           - 5432:5432
         options: >-
