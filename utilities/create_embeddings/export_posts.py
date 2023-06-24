@@ -1,46 +1,39 @@
-import os
+from pathlib import Path
 import sys
-from django.core.wsgi import get_wsgi_application
-
-# This is the blogthedata directory if you cloned the repo
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
-
-# Add the parent directory of the Django project to the system path
-django_project_path = os.path.join(BASE_DIR, "django_project")
-sys.path.append(django_project_path)
-
-os.environ["DJANGO_SETTINGS_MODULE"] = "django_project.settings.dev"
-
-# Initialize the Django application
-application = get_wsgi_application()
-
+import os
 import json
-import psycopg2
-from psycopg2 import extras
+import psycopg
+from django.core.wsgi import get_wsgi_application
 from blog.models import Category
 from django.contrib.auth.models import User
 
 
-# Connect to the database
-conn = psycopg2.connect(
-    database="blogthedata",
-    user=os.environ["POSTGRES_USER"],
-    password=os.environ["POSTGRES_PASS"],
-    host="localhost",
-    port="5432",
-)
+BASE_DIR = Path(__file__).resolve().parents[2]
+django_project_path = BASE_DIR / "django_project"
+sys.path.append(str(django_project_path))
+os.environ["DJANGO_SETTINGS_MODULE"] = "django_project.settings.dev"
 
-# Query the Post table and retrieve all posts
-with conn.cursor(cursor_factory=extras.DictCursor) as cur:
-    cur.execute(
-        "SELECT title, slug, category_id, metadesc, draft, metaimg, metaimg_alt_txt, metaimg_attribution, content, snippet, date_posted, author_id FROM blog_post"
-    )
-    posts = cur.fetchall()
+application = get_wsgi_application()
 
-# Export each post as a separate JSON file
-export_dir = os.path.join(BASE_DIR, "utilities/create_embeddings/exported_posts")
+# Database connection details
+db_config = {
+    "dbname": "blogthedata",
+    "user": os.environ["POSTGRES_USER"],
+    "password": os.environ["POSTGRES_PASS"],
+    "host": "localhost",
+    "port": "5432",
+}
 
-for post in posts:
+
+def fetch_posts(conn):
+    with conn.cursor() as cur:
+        cur.execute(
+            "SELECT title, slug, category_id, metadesc, draft, metaimg, metaimg_alt_txt, metaimg_attribution, content, snippet, date_posted, author_id FROM blog_post"
+        )
+        return cur.fetchall()
+
+
+def write_post_to_json(post, export_dir):
     post_dict = {
         "title": post["title"],
         "slug": post["slug"],
@@ -56,9 +49,18 @@ for post in posts:
         "author": User.objects.get(id=post["author_id"]).username,
     }
     filename = f"{post['slug']}.json"
-    filepath = os.path.join(export_dir, filename)
-    with open(filepath, "w") as f:
+    filepath = export_dir / filename
+    with filepath.open("w") as f:
         json.dump(post_dict, f)
 
-# Close the database connection
-conn.close()
+
+def main():
+    with psycopg.connect(**db_config) as conn:
+        posts = fetch_posts(conn)
+        export_dir = BASE_DIR / "utilities/create_embeddings/exported_posts"
+        for post in posts:
+            write_post_to_json(post, export_dir)
+
+
+if __name__ == "__main__":
+    main()

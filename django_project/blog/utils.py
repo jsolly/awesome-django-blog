@@ -1,14 +1,14 @@
 from openai import Embedding, Completion
 from openai.embeddings_utils import distances_from_embeddings
 import pickle
-import os
+from pathlib import Path
 
 
 def load_pickle_file():
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    file_path = os.path.join(base_dir, "blog", "df.pkl")
+    base_dir = Path(__file__).resolve().parent.parent
+    file_path = base_dir / "blog" / "df.pkl"
 
-    with open(file_path, "rb") as f:
+    with file_path.open("rb") as f:
         df = pickle.load(f)
 
     return df

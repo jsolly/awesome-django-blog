@@ -1,9 +1,10 @@
+from pathlib import Path
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__ + "/../")))
+BASE_DIR = Path(__file__).resolve().parent.parent.parent  # Three levels up
 SECRET_KEY = os.environ["SECRET_KEY"]
 ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
 
@@ -140,7 +141,7 @@ HANDLERS = {
     },
     "info_handler": {
         "class": "logging.handlers.RotatingFileHandler",
-        "filename": f"{BASE_DIR}/logs/blogthedata_info.log",
+        "filename": BASE_DIR / "logs/blogthedata_info.log",
         "mode": "a",
         "encoding": "utf-8",
         "formatter": "verbose",
@@ -150,7 +151,7 @@ HANDLERS = {
     },
     "error_handler": {
         "class": "logging.handlers.RotatingFileHandler",
-        "filename": f"{BASE_DIR}/logs/blogthedata_error.log",
+        "filename": BASE_DIR / "logs/blogthedata_error.log",
         "mode": "a",
         "formatter": "verbose",
         "level": "WARNING",
@@ -159,7 +160,7 @@ HANDLERS = {
     },
     "ezra_handler": {
         "class": "logging.handlers.RotatingFileHandler",
-        "filename": f"{BASE_DIR}/logs/ezra.log",
+        "filename": BASE_DIR / "logs/ezra.log",
         "mode": "a",
         "formatter": "simple",
         "level": "INFO",
@@ -232,18 +233,16 @@ USE_L10N = True
 USE_TZ = True
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = BASE_DIR / "static"
 STATIC_URL = "/static/"
 
 # Extra places for collectstatic to find static files.
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "staticfiles"),
-]
+STATICFILES_DIRS = [str(BASE_DIR / "staticfiles")]
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = BASE_DIR / "media"
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
@@ -421,6 +420,4 @@ CKEDITOR_5_CONFIGS = {
 
 
 CKEDITOR_5_FILE_STORAGE = "blog.storage.CustomStorage"
-CKEDITOR_5_CUSTOM_CSS = os.path.join(
-    STATIC_URL, "django_ckeditor_5/ckeditor_custom.css"
-)
+CKEDITOR_5_CUSTOM_CSS = STATIC_URL + "django_ckeditor_5/ckeditor_custom.css"

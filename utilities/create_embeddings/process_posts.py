@@ -1,5 +1,5 @@
 import pandas as pd
-import os
+from pathlib import Path
 import json
 
 
@@ -12,22 +12,22 @@ def remove_newlines(text):
 
 
 # This is the blogthedata directory if you cloned the repo
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Create a list to store the posts
 posts = []
 
 # Get all the JSON files in the exported_posts directory
-posts_path = os.path.join(BASE_DIR, "utilities/create_embeddings/exported_posts")
+posts_path = BASE_DIR / "utilities/create_embeddings/exported_posts"
 filepaths = [
-    os.path.join(posts_path, filename)
-    for filename in os.listdir(posts_path)
-    if filename.endswith(".json")
+    path
+    for path in posts_path.iterdir()
+    if path.is_file() and path.name.endswith(".json")
 ]
 
 # Loop through the list of file paths and read the JSON data
 for filepath in filepaths:
-    with open(filepath, "r") as f:
+    with filepath.open("r") as f:
         data = json.load(f)
 
         # Append the post fields to the list of posts
@@ -53,9 +53,7 @@ df["content"] = df.apply(
 )
 
 # Save the dataframe to a JSON file in the processed directory
-json_path = os.path.join(
-    BASE_DIR, "utilities/create_embeddings/processed", "processed_posts.json"
-)
+json_path = BASE_DIR / "utilities/create_embeddings/processed/processed_posts.json"
 df.to_json(json_path, orient="records")
 
 # Print the first few rows of the dataframe
