@@ -1,0 +1,38 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+      {
+          "label": "LiveReload",
+          "type": "shell",
+          "command": "${config:python.defaultInterpreterPath}",
+          "args": ["manage.py", "livereload"],
+          "options": {
+            "cwd": "${workspaceFolder}/django_project",
+          },
+          "isBackground": true,
+          "problemMatcher": {
+              "pattern": {
+                  "regexp": "."
+              },
+              "background": {
+                  "activeOnStart": true,
+                  "beginsPattern": ".",
+                  "endsPattern": "."
+              }
+          }
+      },
+      {
+          "label": "StopTasks",
+          "command": "echo ${input:terminate}",
+          "type": "shell",
+      }
+  ],
+  "inputs": [
+      {
+        "id": "terminate",
+        "type": "command",
+        "command": "workbench.action.tasks.terminate",
+        "args": "terminateAll"
+      }
+  ]
+}
