@@ -4,6 +4,7 @@
 ![Linting](https://img.shields.io/badge/linting-ruff-orange)
 [![Python Version](https://img.shields.io/badge/python-3.10-brightgreen.svg)](https://www.python.org/downloads/)
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+
 # blogthedata.com
 
 Welcome to my Django blog app! This app is a fully functional blogging platform that I built using the Django web framework. It includes features such as creating and managing blog posts, comments, and categories, as well as user authentication and authorization. The app is designed to be easily integrated into any existing Django project or can be used as a standalone app. In this readme, you will find instructions for installation, configuration, and usage that I have provided. I have also included information about the app's features and troubleshooting tips that I have gathered. I hope you find this app useful and I welcome any contributions or suggestions for improvement.
@@ -31,7 +32,7 @@ $ git clone https://github.com/jsolly/blogthedata.git
 $ python3 -m venv blogthedata/django_project/venv
 $ source blogthedata/django_project/venv/bin/activate
 $ pip install --upgrade pip
-$ python3 -m pip install -r blogthedata/django_project/requirements/requirements.txt -c blogthedata/django_project/requirements/constraints.txt
+$ python3 -m pip install -r blogthedata/django_project/requirements/requirements.txt
 ```
 
 ## Setup
@@ -63,6 +64,7 @@ $ python3 manage.py runserver
 ```
 
 ### Local Testing Database
+
 ```shell
 $ sudo service postgreSQL start # If you're on Linux (Open postgres.app if you're on MacOS)
 $ sudo -U postgres psql
@@ -77,21 +79,21 @@ $ python3 manage.py migrate --settings=django_project.settings.ci
 ```
 
 ### Configure Django Sites Framework
+
 1 - Run the server and navigate to http://127.0.0.1:8000/admin/sites
 
-2 - Add a new site with the following values:
-    - Domain name: 127.0.0.1:8000
-    - Display name: 127.0.0.1:8000
+2 - Add a new site with the following values: - Domain name: 127.0.0.1:8000 - Display name: 127.0.0.1:8000
 
 If you are running on production with a domain, you can add that, too. Here is a screenshot of my sites configuration:
 ![Alt text](image.png)
 
 3 - Now go into your settings.dev file and change the SITE_ID to the ID of the site you just created. It should be 1 if you haven't created any other sites. The SITE_ID for settings.prod should be 2.
+
 ### Run Test Coverage
 
 ```shell
-$ coverage run --data-file=coverage/.coverage --rcfile=config/.coveragerc -m pytest django_project 
-$ coverage report --data-file=coverage/.coverage -m --skip-covered --rcfile=config/.coveragerc 
+$ coverage run --data-file=coverage/.coverage --rcfile=config/.coveragerc -m pytest django_project
+$ coverage report --data-file=coverage/.coverage -m --skip-covered --rcfile=config/.coveragerc
 ```
 
 ### Run Tests
@@ -115,8 +117,8 @@ $ black --config ./config/pyproject.toml django_project
 Also see the [actions tab](https://github.com/jsolly/blogthedata/actions)
 to see if everything is passing.
 
-
 ### Pre-commit Hooks
+
 If there are any Ruff failures (badly linted code), the build will fail, so ensure you have the pre-commit hook installed.
 
 ```
@@ -133,6 +135,7 @@ $ pre-commit install
 ## Features
 
 ### Functional Features
+
 - User profile with avatar (automatic sizing and compression using Pillow)
 - Ckeditor 5 for authoring blog posts (also includes spell check, code snippets, character
   counter, and more!)
@@ -149,7 +152,9 @@ $ pre-commit install
 - Site-wide 'breadcumbs' so your users can know exactly where they are and navigate with ease.
 - Each page is optimized for viewing (and printing) so break out those 8 1/2 by 11s and print out some content!
 - GPT-powered Chatbot that can answer questions about your blog and help you find content.
+
 ### Non-Functional Features
+
 - No CSS/Layout frameworks (Bootstrap, Tailwind, etc). All CSS and components are custom and optimized for performance.
 - HTMX for dynamic page updates without a page refresh
 - Robots.txt, security.txt, and sitemap.xml for optimized SEO and security
@@ -173,6 +178,7 @@ $ pre-commit install
 - Status page for monitoring uptime and performance of your blog at https://blogthedata.com/status using Apache Echarts.
 
 ## Depreciated Features
+
 - ~~Leaflet.js and OpenLayers maps 🗺~~ (Removed in https://github.com/jsolly/blogthedata/pull/246)
 - ~~Honeypot Admin page to automatically block IPs trying to login with an admin account~~ (Removed in
   https://github.com/jsolly/blogthedata/pull/105)
@@ -186,6 +192,7 @@ $ pre-commit install
   [commit:5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b](https://github.com/jsolly/blogthedata/commit/5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b))
 - ~~Create Comments~~ (Removed in https://github.com/jsolly/blogthedata/pull/77)
 - ~~Custom 404 page that looks really cool. So even if your users are lost, they are still having a good time.~~ Removed in (https://github.com/jsolly/blogthedata/commit/19b3d40cc6e8b231010b0f62656eb27e0104ffd7)
+
 ## Team
 
 |                                               John Solly                                               |

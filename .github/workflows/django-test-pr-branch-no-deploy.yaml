@@ -52,7 +52,7 @@ jobs:
           source django_project/venv/bin/activate
           pip install --upgrade pip
           pip install wheel
-          pip install -r django_project/requirements/requirements.txt -c django_project/requirements/constraints.txt
+          pip install -r django_project/requirements/requirements.txt
 
       - name: lint-with-ruff
         run: |
