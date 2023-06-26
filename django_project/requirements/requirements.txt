@@ -15,7 +15,7 @@ readtime==2.0.0
 requests==2.31.0
 
 # For OpenAI
-scipy==1.10.1
+scipy==1.11.0
 numpy==1.24.3
 plotly==5.15.0
 openai==0.27.8
