@@ -1,6 +1,6 @@
 import tiktoken
 import pandas as pd
-import os
+from pathlib import Path
 import json
 import openai
 
@@ -9,13 +9,11 @@ import openai
 # Load the cl100k_base tokenizer which is designed to work with the ada-002 model
 tokenizer = tiktoken.get_encoding("cl100k_base")
 
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+BASE_DIR = Path(__file__).resolve().parent.parent.parent  # Three levels up
 
 # Load the JSON file as a list of dictionaries
 with open(
-    os.path.join(
-        BASE_DIR, "utilities/create_embeddings/processed/processed_posts.json"
-    ),
+    BASE_DIR / "utilities/create_embeddings/processed/processed_posts.json",
     "r",
 ) as f:
     data = json.load(f)
@@ -106,7 +104,5 @@ for row in df_shortened.iterrows():
 df_shortened["embeddings"] = embeddings
 
 # Save the dataframe to a JSON file in the processed directory
-json_path = os.path.join(
-    BASE_DIR, "utilities/create_embeddings/processed/embeddings.json"
-)
+json_path = BASE_DIR / "utilities/create_embeddings/processed/embeddings.json"
 df_shortened.to_json(json_path, orient="records")

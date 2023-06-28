@@ -99,7 +99,7 @@ local_branch_name and branch_name can be the same
     $ python3 -m venv venv blogthedata/django_project/venv
     $ source blogthedata/django_project/venv/bin/activate
     $ python3 -m pip install --upgrade pip
-    $ python3 -m pip install -r blogthedata/django_project/requirements/requirements.txt -c blogthedata/django_project/requirements/constraints.txt
+    $ python3 -m pip install -r blogthedata/django_project/requirements/requirements.txt
     ```
 
 # How to generate integrity hash values
@@ -224,7 +224,8 @@ $ scp -r
 john@198.74.48.211:~/blogthedata/backups
 ```
 
-## Port mapping 
+## Port mapping
+
 ```shell
 ssh -N -L 10000:127.0.0.1:80 john@198.74.48.211
 ```
@@ -257,6 +258,6 @@ def upload_file(request):
 https://prismjs.com/download.html#themes=prism-dark&languages=markup+css+clike+javascript+apacheconf+bash+git+json+python+sql+typescript+yaml
 -->
 
-
 ## Misc
+
 env EDITOR=nano crontab -e

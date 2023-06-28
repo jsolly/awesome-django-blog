@@ -1,10 +1,8 @@
 from .base_settings import *
 import os
 
-SITE_ID = 2  # localhost
 CAPTCHA_TEST_MODE = True
 USE_SRI = False
-FASTDEV_STRICT_IF = True
 
 # HTTPS SETTINGS
 SESSION_COOKIE_SECURE = False
@@ -26,7 +24,3 @@ DATABASES = {
         "PORT": "5432",
     }
 }
-
-INSTALLED_APPS += [
-    "django_fastdev",
-]

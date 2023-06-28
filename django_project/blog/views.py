@@ -339,6 +339,7 @@ class CreatePostView(UserPassesTestMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Create a New Post"
+        context["description"] = "Create a new blog post."
         return context
 
 
@@ -441,3 +442,11 @@ class PostDeleteView(UserPassesTestMixin, DeleteView):
         post = self.get_object()
         if self.request.user == post.author:
             return True
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        post = self.get_object()
+        context["post"] = post
+        context["title"] = f"Delete {post.title}"
+        context["description"] = f"Delete {post.title} from the blog."
+        return context

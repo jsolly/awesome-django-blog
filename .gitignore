@@ -32,6 +32,10 @@ migration_backup
 
 # Other
 logs/
+<<<<<<< HEAD
 .vscode/
 db.sqlite3
 django_project/django_project/settings/custom_settings.py
+=======
+db.sqlite3
+>>>>>>> master
