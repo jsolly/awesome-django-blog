@@ -339,7 +339,6 @@ class CreatePostView(UserPassesTestMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Create a New Post"
-        context["description"] = "Create a new blog post."
         return context
 
 
@@ -357,6 +356,18 @@ def create_comment(request):
             comment.save()
             return redirect("post-detail", slug=post_slug)
     return redirect("home")
+
+
+def update_comment(UpdateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'blog/comment_update.html'
+
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        # Add any additional logic or checks here
+        comment.save()
+        return redirect('post-detail', slug=comment.post.slug)
 
 
 def generate_gpt_input_value(request, post_id):
@@ -442,11 +453,3 @@ class PostDeleteView(UserPassesTestMixin, DeleteView):
         post = self.get_object()
         if self.request.user == post.author:
             return True
-
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-        post = self.get_object()
-        context["post"] = post
-        context["title"] = f"Delete {post.title}"
-        context["description"] = f"Delete {post.title} from the blog."
-        return context
