@@ -370,6 +370,14 @@ def update_comment(UpdateView):
         return redirect('post-detail', slug=comment.post.slug)
 
 
+def delete_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    if request.method == "POST":
+        comment.delete()
+        return redirect("post-detail", slug=comment.post.slug)
+    return redirect("home")
+
+
 def generate_gpt_input_value(request, post_id):
     blog_post = get_object_or_404(Post, id=post_id)
     prompt_dict = {
