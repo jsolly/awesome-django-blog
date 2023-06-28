@@ -103,6 +103,7 @@ class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = CKEditor5Field(blank=True, null=True, config_name="extends")
     date_posted = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ["date_posted"]
