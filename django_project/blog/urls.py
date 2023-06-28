@@ -7,6 +7,8 @@ from .views import (
     HomeView,
     CreatePostView,
     create_comment,
+    update_comment,
+    delete_comment,
     PostDetailView,
     PostUpdateView,
     PostDeleteView,
@@ -40,6 +42,8 @@ urlpatterns = [
     path("portfolio/", PortfolioView.as_view(), name="portfolio"),
     path("search/", SearchView.as_view(), name="blog-search"),
     path("comments/new", create_comment, name="comment-create"),
+    path("comments/<int:pk>/update", update_comment, name="comment-update"),
+    path("comments/<int:pk>/delete", delete_comment, name="comment-delete"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
