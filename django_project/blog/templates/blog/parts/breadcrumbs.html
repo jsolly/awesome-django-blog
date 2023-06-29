@@ -1,5 +1,5 @@
 <p id="breadcrumbs">
   {% for link in breadcrumbs %}
-  <a href="{{ link.url }}">{{ link.name|title }}</a>{% if not forloop.last %} ›{% endif %}
+  <a href="{{ link.url }}">{{ link.name }}</a>{% if not forloop.last %} ›{% endif %}
   {% endfor %}
 </p>

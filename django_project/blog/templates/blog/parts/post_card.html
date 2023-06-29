@@ -17,7 +17,7 @@
               <div class="post-header">
                 <h2 class="post-title">{{ post.title }}{% if post.draft %}<span class="post-draft">(Draft)</span>{% endif %}</h2>
               </div>
-              <p class="post-date">{{ post.date_posted|date:"F d, Y" }} in {{ post.category|title }}</p>
+              <p class="post-date">{{ post.date_posted|date:"F d, Y" }} in {{ post.category.name }}</p>
               <div class="post-details">
                 <div class="post-readtime">
                   <img src="{% static 'svg/clock.svg' %}" alt="Clock Icon" class="post-readtime-icon">
