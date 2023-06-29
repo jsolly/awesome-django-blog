@@ -37,7 +37,7 @@
         {% endif %}
       </h1>
       <p class="post-date sml-margin-top-bottom">
-        {{ post.date_posted|date:"F d, Y" }} in {{ post.category|title }}</p>
+        {{ post.date_posted|date:"F d, Y" }} in {{ post.category.name }}</p>
     </div>
     {% if post.author == user %}
     <div class="buttons-container">

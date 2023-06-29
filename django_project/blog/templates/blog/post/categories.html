@@ -12,7 +12,7 @@ content="{{ request.scheme }}://{{ request.get_host }}{% static 'iPhoneblogtheda
 
 {% block content %}
 <section id="category-blog-posts">
-    <h1 class="category-title">{{ category|title }}</h1>
+    <h1 class="category-title">{{ category.name }}</h1>
     <p class="category-description">{{ category.description }}</p>
     {% include "blog/parts/posts.html" %}
 </section>

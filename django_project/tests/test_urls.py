@@ -63,7 +63,7 @@ class TestUrls(SetUp):
         self.assertEqual(resolve(post1_delete_url).func.view_class, PostDeleteView)
 
     def test_category_url_is_resolved(self):
-        category_url = reverse("blog-category", args=[self.category1.name])
+        category_url = reverse("blog-category", args=[self.category1.slug])
         self.assertEqual(resolve(category_url).func.view_class, CategoryView)
 
     def test_portfolio_url_is_resolved(self):

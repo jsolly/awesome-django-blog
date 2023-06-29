@@ -7,8 +7,8 @@
       </a>
       <div role="list" aria-label="Blog categories">
         {% for category_item in category_qs %}
-        {% if category_item.name != 'portfolio' %}
-        <a href="{% url 'blog-category' category_item|slugify %}" class="list-group-item {% if current_category == category_item|slugify %}active{% endif %}" id="sidebar-{{ category_item|slugify }}" role="listitem" data-badge="{{ category_item.posts_count }}">{{category_item|title}}</a>
+        {% if category_item.slug != 'portfolio' %}
+        <a href="{% url 'blog-category' category_item.slug %}" class="list-group-item {% if current_category == category_item.slug %}active{% endif %}" id="sidebar-{{ category_item.slug }}" role="listitem" data-badge="{{ category_item.posts_count }}">{{category_item.name}}</a>
         {% endif %}
         {% endfor %}
       </div>
