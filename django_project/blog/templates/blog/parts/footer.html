@@ -10,7 +10,7 @@
         {% for cat in category_qs %}
         {% if cat.slug != 'portfolio' %}
         <li>
-          <a class="dropdown-item" href="{% url 'blog-category' cat|slugify %}">{{cat|title}}</a>
+          <a class="dropdown-item" href="{% url 'blog-category' cat.slug %}">{{cat|title}}</a>
         </li>
         {% endif %}
         {% endfor %}

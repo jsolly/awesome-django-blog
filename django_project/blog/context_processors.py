@@ -24,9 +24,10 @@ def breadcrumbs(request):
     except Resolver404:
         return {"breadcrumbs": []}
     if match.url_name == "blog-category":
+        category = get_object_or_404(Category, slug=match.kwargs["slug"])
         breadcrumbs.append(
             {
-                "name": match.kwargs["slug"],
+                "name": category.name,
                 "url": reverse(match.url_name, args=[match.kwargs["slug"]]),
             }
         )
@@ -35,7 +36,7 @@ def breadcrumbs(request):
         breadcrumbs.append(
             {
                 "name": post.category.name,
-                "url": reverse("blog-category", args=[post.category.name]),
+                "url": reverse("blog-category", args=[post.category.slug]),
             }
         )
         breadcrumbs.append(
