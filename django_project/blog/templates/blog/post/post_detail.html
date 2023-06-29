@@ -70,6 +70,17 @@
         </small>
       </div>
       <div class="comment-content">{{ comment.content }}</div>
+      
+      {% if comment.author == request.user %}
+      <span class="comment-actions">
+        <button class="comment-update comment-btn" data-comment-id="{{ comment.id }}">Edit</button>
+        <form action="{% url 'comment-delete' comment.id %}" method="POST" style="display: inline;">
+          {% csrf_token %}
+          <button type="submit" class="comment-delete comment-btn">Delete</button>
+        </form>
+      </span>
+      {% endif %}
+
     </li>
     {% endfor %}
   </ul>
@@ -77,11 +88,12 @@
   <p class="post-date sml-margin-top-bottom">No comments yet.</p>
   {% endif %}
 </section>
-<!-- End of Comments Section -->
 
 <!-- create comments section-->
 {% include 'blog/post/add_comment.html' %}
 <!-- End of Create Comments section-->
+<!-- End of Comments Section -->
+
 
 <a href="{% url 'home' %}" id="post-back-to-home-button" class="btn btn-dark">
   Back to Home
@@ -120,5 +132,49 @@
     </a>
   </li>
 </ul>
+
+<script>
+  $(document).on("click", ".comment-update", function(e) {
+    e.preventDefault();
+    var commentId = $(this).data("comment-id");
+    var commentContent = $(".comment-content[data-comment-id='" + commentId + "']").text();
+
+    // Replace the comment content with a textarea for editing
+    $(".comment-content[data-comment-id='" + commentId + "']").replaceWith("<textarea class='comment-edit-textarea' data-comment-id='" + commentId + "'>" + commentContent + "</textarea>");
+
+    // Show the save button for updating the comment
+    $(".comment-update[data-comment-id='" + commentId + "']").hide();
+    $(".comment-save[data-comment-id='" + commentId + "']").show();
+  });
+
+  $(document).on("click", ".comment-save", function(e) {
+    e.preventDefault();
+    var commentId = $(this).data("comment-id");
+    var updatedContent = $(".comment-edit-textarea[data-comment-id='" + commentId + "']").val();
+
+    // Send the AJAX request to update the comment
+    $.ajax({
+      url: "/comment/" + commentId + "/update/",
+      method: "POST",
+      data: {
+        content: updatedContent
+      },
+      success: function(response) {
+        // Replace the textarea with the updated comment content
+        $(".comment-edit-textarea[data-comment-id='" + commentId + "']").replaceWith("<div class='comment-content' data-comment-id='" + commentId + "'>" + updatedContent + "</div>");
+
+        // Show the edit button and hide the save button
+        $(".comment-update[data-comment-id='" + commentId + "']").show();
+        $(".comment-save[data-comment-id='" + commentId + "']").hide();
+      },
+      error: function(xhr, status, error) {
+        // Handle any error that occurs during the AJAX request
+        console.error(error);
+      }
+    });
+  });
+</script>
+
+
 </div>
 {% endblock content %}
