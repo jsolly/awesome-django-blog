@@ -1,4 +1,4 @@
-from .models import Post, Category
+from .models import Post, Category, Comment
 from .forms import PostForm, CommentForm
 from .utils import answer_question
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
