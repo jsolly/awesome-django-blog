@@ -317,8 +317,8 @@ class PostDetailView(FormMixin, DetailView):
             comment.post = self.object
             comment.author = request.user
             comment.save()
-            success_url = '/'
-                        
+            success_url = "/"
+
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
@@ -352,11 +352,11 @@ class CreatePostView(UserPassesTestMixin, CreateView):
 class CommentUpdateView(UpdateView):
     model = Comment
     form_class = CommentForm
-    template_name = 'blog/post/update_comment.html'  # Use the same template for creating and updating comments
-    context_object_name = 'comment'
+    template_name = "blog/post/update_comment.html"  # Use the same template for creating and updating comments
+    context_object_name = "comment"
 
     def get_success_url(self):
-        return reverse('post-detail', kwargs={'slug': self.object.post.slug})
+        return reverse("post-detail", kwargs={"slug": self.object.post.slug})
 
     def form_invalid(self, form):
         return super().form_invalid(form)
@@ -368,18 +368,18 @@ class CommentUpdateView(UpdateView):
 
     def get_initial(self):
         initial = super().get_initial()
-        initial['post_slug'] = self.object.post.slug
+        initial["post_slug"] = self.object.post.slug
         return initial
 
     def form_valid(self, form):
         comment = form.save(commit=False)
         comment.save()
         return redirect("post-detail", slug=comment.post.slug)
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         comment = self.get_object()
-        context['post'] = comment.post
+        context["post"] = comment.post
         return context
 
 
