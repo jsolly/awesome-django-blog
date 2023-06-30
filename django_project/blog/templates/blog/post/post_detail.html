@@ -73,7 +73,7 @@
       
       {% if comment.author == request.user %}
       <span class="comment-actions">
-        <button class="comment-update comment-btn" data-comment-id="{{ comment.id }}">Edit</button>
+        <a href="{% url 'comment-update' comment.id %}" class="comment-btn comment-edit">Edit</a>
         <form action="{% url 'comment-delete' comment.id %}" method="POST" style="display: inline;">
           {% csrf_token %}
           <button type="submit" class="comment-delete comment-btn">Delete</button>
@@ -90,7 +90,7 @@
 </section>
 
 <!-- create comments section-->
-{% include 'blog/post/comment.html' %}
+{% include 'blog/post/add_comment.html' %}
 <!-- End of Create Comments section-->
 <!-- End of Comments Section -->
 
