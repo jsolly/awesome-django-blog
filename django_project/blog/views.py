@@ -308,7 +308,7 @@ class PostDetailView(FormMixin, DetailView):
 
     def get_success_url(self):
         return self.object.get_absolute_url()
-        
+
     def post(self, request, *arggs, **kwargs):
         self.object = self.get_object()
         form = self.get_form()
@@ -349,20 +349,20 @@ class CreatePostView(UserPassesTestMixin, CreateView):
         return context
 
 
-@login_required(login_url="login")
-def create_comment(request):
-    post_slug = None
-    if request.method == "POST":
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            post_slug = form.cleaned_data.get("post_slug")
-            post = get_object_or_404(Post, slug=post_slug)
-            comment = form.save(commit=False)
-            comment.post = post
-            comment.author = request.user
-            comment.save()
-            return redirect("post-detail", slug=post_slug)
-    return redirect("home")
+# @login_required(login_url="login")
+# def create_comment(request):
+#     post_slug = None
+#     if request.method == "POST":
+#         form = CommentForm(request.POST)
+#         if form.is_valid():
+#             post_slug = form.cleaned_data.get("post_slug")
+#             post = get_object_or_404(Post, slug=post_slug)
+#             comment = form.save(commit=False)
+#             comment.post = post
+#             comment.author = request.user
+#             comment.save()
+#             return redirect("post-detail", slug=post_slug)
+#     return redirect("home")
 
 
 class CommentUpdateView(UpdateView):
