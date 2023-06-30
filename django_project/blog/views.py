@@ -305,6 +305,10 @@ class PostDetailView(FormMixin, DetailView):
         return initial
 
     # comment submission
+
+    def get_success_url(self):
+        return self.object.get_absolute_url()
+        
     def post(self, request, *arggs, **kwargs):
         self.object = self.get_object()
         form = self.get_form()
@@ -313,7 +317,8 @@ class PostDetailView(FormMixin, DetailView):
             comment.post = self.object
             comment.author = request.user
             comment.save()
-            
+            success_url = '/'
+                        
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
