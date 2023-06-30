@@ -311,7 +311,9 @@ class PostDetailView(FormMixin, DetailView):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = self.object
+            comment.author = request.user
             comment.save()
+            
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
@@ -358,10 +360,10 @@ def create_comment(request):
     return redirect("home")
 
 
-def update_comment(UpdateView):
+class CommentUpdateView(UpdateView):
     model = Comment
     form_class = CommentForm
-    template_name = 'blog/comment_update.html'
+    template_name = 'blog/post/comment.html'  # Use the same template for creating and updating comments
 
     def form_valid(self, form):
         comment = form.save(commit=False)

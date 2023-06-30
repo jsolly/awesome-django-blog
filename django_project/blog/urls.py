@@ -6,8 +6,8 @@ from .feeds import blogFeed, atomFeed
 from .views import (
     HomeView,
     CreatePostView,
+    CommentUpdateView,
     create_comment,
-    update_comment,
     delete_comment,
     PostDetailView,
     PostUpdateView,
@@ -42,7 +42,7 @@ urlpatterns = [
     path("portfolio/", PortfolioView.as_view(), name="portfolio"),
     path("search/", SearchView.as_view(), name="blog-search"),
     path("comment/new", create_comment, name="comment-create"),
-    path("comment/<int:pk>/update", update_comment, name="comment-update"),
+    path("comment/<int:pk>/update", CommentUpdateView.as_view(), name="comment-update"),
     path("comment/<int:pk>/delete", delete_comment, name="comment-delete"),
 ]
 if settings.DEBUG:
