@@ -352,13 +352,35 @@ class CreatePostView(UserPassesTestMixin, CreateView):
 class CommentUpdateView(UpdateView):
     model = Comment
     form_class = CommentForm
-    template_name = 'blog/post/comment.html'  # Use the same template for creating and updating comments
+    template_name = 'blog/post/update_comment.html'  # Use the same template for creating and updating comments
+    context_object_name = 'comment'
+
+    def get_success_url(self):
+        return reverse('post-detail', kwargs={'slug': self.object.post.slug})
+
+    def form_invalid(self, form):
+        return super().form_invalid(form)
+
+    def get_object(self, queryset=None):
+        comment_id = self.kwargs.get("comment_id")
+        comment = get_object_or_404(Comment, id=comment_id)
+        return comment
+
+    def get_initial(self):
+        initial = super().get_initial()
+        initial['post_slug'] = self.object.post.slug
+        return initial
 
     def form_valid(self, form):
         comment = form.save(commit=False)
-        # Add any additional logic or checks here
         comment.save()
-        return redirect('post-detail', slug=comment.post.slug)
+        return redirect("post-detail", slug=comment.post.slug)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        comment = self.get_object()
+        context['post'] = comment.post
+        return context
 
 
 def delete_comment(request, pk):

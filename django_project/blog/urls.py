@@ -40,7 +40,7 @@ urlpatterns = [
     path("category/<slug:slug>/", CategoryView.as_view(), name="blog-category"),
     path("portfolio/", PortfolioView.as_view(), name="portfolio"),
     path("search/", SearchView.as_view(), name="blog-search"),
-    path("comment/<int:pk>/update", CommentUpdateView.as_view(), name="comment-update"),
+    path("comment/<int:comment_id>/update", CommentUpdateView.as_view(), name="comment-update"),
     path("comment/<int:pk>/delete", delete_comment, name="comment-delete"),
 ]
 if settings.DEBUG:
