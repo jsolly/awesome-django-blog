@@ -1266,7 +1266,7 @@ img {
 }
 
 /* Responsive Styles*/
-@media (max-width: 999px) {
+@media (max-width: 1239px) {
   /* 
   Changes the layout of the container to a single column grid
   with the header, sidebar, post-content, and footer taking up
@@ -1358,42 +1358,18 @@ img {
   .social-share li {
     margin: 0.5rem 0;
   }
-
+  
 }
 
-@media screen and (min-width: 1000px) {
-  /*
-  Changes the layout of the container to a 3 column grid.
-  The Sidebar and post-content still occupy one column each,
-  but the header and footer now span the entire width of the
-  container. The first and last columns are for padding.
-  */
-  .container {
-    grid-template-columns: 0.25fr 2.5fr 0.25fr;
-  }
-
-  header {
-    grid-column: 1 / 4;
-    grid-row: 1;
-  }
-
-  .sidebar {
-    grid-row: 2;
-    grid-column: 2;
-  }
-
-  .post-content {
-    grid-row: 3;
-    grid-column: 2;
-  }
-
-  footer {
-    grid-row: 4;
-    grid-column: 2;
+@media (min-width: 800px) and (max-width: 1239px) {
+  .post-card-row {
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
   }
 }
 
-@media screen and (min-width: 1200px) {
+
+@media screen and (min-width: 1240px) {
   /* 
   Changes the layout of the container to a 4 column grid.
   The Sidebar and post-content occupy the middle two columns,

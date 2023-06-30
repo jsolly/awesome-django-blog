@@ -85,7 +85,6 @@ $ python3 manage.py migrate --settings=django_project.settings.ci
 2 - Add a new site with the following values: - Domain name: 127.0.0.1:8000 - Display name: 127.0.0.1:8000
 
 If you are running on production with a domain, you can add that, too. Here is a screenshot of my sites configuration:
-![Alt text](image.png)
 
 3 - Now go into your settings.dev file and change the SITE_ID to the ID of the site you just created. It should be 1 if you haven't created any other sites. The SITE_ID for settings.prod should be 2.
 
