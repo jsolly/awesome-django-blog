@@ -132,49 +132,5 @@
     </a>
   </li>
 </ul>
-
-<script>
-  $(document).on("click", ".comment-update", function(e) {
-    e.preventDefault();
-    var commentId = $(this).data("comment-id");
-    var commentContent = $(".comment-content[data-comment-id='" + commentId + "']").text();
-
-    // Replace the comment content with a textarea for editing
-    $(".comment-content[data-comment-id='" + commentId + "']").replaceWith("<textarea class='comment-edit-textarea' data-comment-id='" + commentId + "'>" + commentContent + "</textarea>");
-
-    // Show the save button for updating the comment
-    $(".comment-update[data-comment-id='" + commentId + "']").hide();
-    $(".comment-save[data-comment-id='" + commentId + "']").show();
-  });
-
-  $(document).on("click", ".comment-save", function(e) {
-    e.preventDefault();
-    var commentId = $(this).data("comment-id");
-    var updatedContent = $(".comment-edit-textarea[data-comment-id='" + commentId + "']").val();
-
-    // Send the AJAX request to update the comment
-    $.ajax({
-      url: "/comment/" + commentId + "/update/",
-      method: "POST",
-      data: {
-        content: updatedContent
-      },
-      success: function(response) {
-        // Replace the textarea with the updated comment content
-        $(".comment-edit-textarea[data-comment-id='" + commentId + "']").replaceWith("<div class='comment-content' data-comment-id='" + commentId + "'>" + updatedContent + "</div>");
-
-        // Show the edit button and hide the save button
-        $(".comment-update[data-comment-id='" + commentId + "']").show();
-        $(".comment-save[data-comment-id='" + commentId + "']").hide();
-      },
-      error: function(xhr, status, error) {
-        // Handle any error that occurs during the AJAX request
-        console.error(error);
-      }
-    });
-  });
-</script>
-
-
 </div>
 {% endblock content %}
