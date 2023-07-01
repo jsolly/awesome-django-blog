@@ -41,5 +41,5 @@ urlpatterns = [
     path("search/", SearchView.as_view(), name="blog-search"),
     path("comments/new", create_comment, name="comment-create"),
 ]
-if settings.DEBUG:
+if settings.DEBUG:  # pragma: no cover
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
