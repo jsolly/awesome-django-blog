@@ -16,7 +16,6 @@ from .utils import create_several_posts, create_user, create_post, message_in_re
 
 class TestViews(SetUp):
     def setUp(self):
-        super().setUp()
         self.test_user = create_user()  # Not a superuser
         self.super_user = create_user(super_user=True)
 

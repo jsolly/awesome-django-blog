@@ -8,16 +8,15 @@ from .utils import create_user, create_post
 
 class TestModels(SetUp):
     def setUp(self):
-        super().setUp()
         self.test_user = create_user()
-        self.test_post = create_post()
 
     def test_dummy(self):
         self.assertEqual(1, 1)
 
     def test_slugify_instance(self):
-        slugify_instance(self.test_post, new_slug="lorem-ipsum-post", save=True)
-        self.assertEqual(self.test_post.slug, "lorem-ipsum-post")
+        test_post = create_post()
+        slugify_instance(test_post, new_slug="lorem-ipsum-post", save=True)
+        self.assertEqual(test_post.slug, "lorem-ipsum-post")
 
     def test_post_manager_all(self):
         create_post()
@@ -29,6 +28,7 @@ class TestModels(SetUp):
         self.assertEqual(new_post_count, post_count + 1)
 
     def test_post_manager_active(self):
+        create_post()
         active_posts = Post.objects.active()
         self.assertIsInstance(active_posts[0], Post)
         active_posts_count = active_posts.count()
@@ -40,16 +40,15 @@ class TestModels(SetUp):
         active_posts_minus_draft = Post.objects.active().count()
         self.assertEqual(active_posts_minus_draft, new_active_post_count - 1)
 
-    def test_category(self):
+    def test_category_absolute_url(self):
         self.assertEqual(
             self.test_category.get_absolute_url(),
             f"/category/{self.test_category.slug}/",
         )
 
-    def test_post(self):
-        self.assertEqual(
-            self.test_post.get_absolute_url(), f"/post/{self.test_post.slug}/"
-        )
+    def test_post_absolute_url(self):
+        test_post = create_post()
+        self.assertEqual(test_post.get_absolute_url(), f"/post/{test_post.slug}/")
 
     # Users Models
     def test_profile(self):
@@ -65,12 +64,13 @@ class TestModels(SetUp):
             self.assertEqual(img.width, 300)
 
     def test_create_comment(self):
+        test_post = create_post()
         comment = Comment.objects.create(
-            post=self.test_post,
+            post=test_post,
             author=self.test_user,
             content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         )
-        self.assertEqual(comment.post, self.test_post)
+        self.assertEqual(comment.post, test_post)
         self.assertEqual(comment.author, self.test_user)
         self.assertEqual(
             comment.content, "Lorem ipsum dolor sit amet, consectetur adipiscing elit."

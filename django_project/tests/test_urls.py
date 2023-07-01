@@ -38,7 +38,6 @@ def get_url(url_name):
 
 class TestUrls(SetUp):
     def setUp(self):
-        super().setUp()
         self.test_user = create_user(super_user=True)
         self.test_post = create_post()
 

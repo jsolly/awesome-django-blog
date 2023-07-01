@@ -11,7 +11,6 @@ from .utils import create_several_posts
 
 class TestFeeds(SetUp):
     def setUp(self):
-        super().setUp()
         create_several_posts(20)
 
     def test_blog_feed_url_is_resolved(self):

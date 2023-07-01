@@ -18,11 +18,11 @@ from blog.models import Category
 class SetUp(TestCase):
     setup_test_environment()
 
-    def setUp(self):
+    @classmethod
+    def setUpTestData(cls):
         warnings.simplefilter("ignore", category=ResourceWarning)
+        cls.test_password = "defaultpassword"
+        cls.test_category, _ = Category.objects.get_or_create(name="Test Category")
+
+    def setUp(self):
         self.client = Client()
-        self.test_password = "defaultpassword"
-        if len(Category.objects.all()) == 0:
-            self.test_category = Category.objects.create(name="Test Category")
-        else:
-            self.test_category = Category.objects.all()[0]

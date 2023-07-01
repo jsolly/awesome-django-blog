@@ -7,7 +7,6 @@ from .utils import create_user
 
 class TestForms(SetUp):
     def setUp(self):
-        super().setUp()
         self.test_user = create_user(super_user=True)
 
     def test_post_form_valid_data(self):
