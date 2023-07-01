@@ -9,4 +9,3 @@ omit =
     django_project/blog/templates/blog/parts/base.html
     django_project/django_project/settings/*
     django_project/django_project/sitemaps.py
-    */urls.py

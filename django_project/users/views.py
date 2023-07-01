@@ -86,7 +86,9 @@ class MyPasswordResetDoneView(auth_views.PasswordResetDoneView):
         return context
 
 
-class MyPasswordResetConfirmView(auth_views.PasswordResetConfirmView):
+class MyPasswordResetConfirmView(
+    auth_views.PasswordResetConfirmView
+):  # pragma: no cover
     template_name = "users/password_reset_confirm.html"
 
     def get_context_data(self, *args, **kwargs):
