@@ -4,19 +4,30 @@ from PIL import Image
 from blog.models import Post, Comment, slugify_instance
 from users.models import Profile
 from .utils import create_user, create_post
+from django.utils.text import slugify
 
 
 class TestModels(SetUp):
     def setUp(self):
         self.test_user = create_user()
 
-    def test_dummy(self):
-        self.assertEqual(1, 1)
-
-    def test_slugify_instance(self):
+    def test_slugify_instance_with_new_slug(self):
         test_post = create_post()
         slugify_instance(test_post, new_slug="lorem-ipsum-post", save=True)
         self.assertEqual(test_post.slug, "lorem-ipsum-post")
+
+    def test_slugify_instance_post_without_new_slug(self):
+        test_post = create_post()
+        slugify_instance(test_post, save=True)
+        self.assertEqual(test_post.slug, slugify(test_post.title))
+
+    def test_slugify_instance_category_with_new_slug(self):
+        slugify_instance(self.test_category, new_slug="test-category", save=True)
+        self.assertEqual(self.test_category.slug, "test-category")
+
+    def test_slugify_instance_category_without_new_slug(self):
+        slugify_instance(self.test_category, save=True)
+        self.assertEqual(self.test_category.slug, slugify(self.test_category.name))
 
     def test_post_manager_all(self):
         create_post()
