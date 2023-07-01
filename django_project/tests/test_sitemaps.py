@@ -4,7 +4,11 @@ from django.contrib.sitemaps import Sitemap
 from django_project.sitemaps import (
     HomeSitemap,
     PostSitemap,
+    CategorySitemap,
     WorksCitedSiteMap,
+    privacyPolicySiteMap,
+    PortfolioSiteMap,
+    StatusPageSiteMap,
 )
 from .utils import create_post
 
@@ -15,9 +19,16 @@ class TestSitemaps(SetUp):
         self.assertTrue(reverse(item))
 
     def test_post_site_map(self):
-        create_post()
-        item = PostSitemap.items(Sitemap)[0]
+        post = create_post()
+        sitemap = PostSitemap()
+        item = sitemap.items()[0]
+        self.assertEqual(sitemap.lastmod(item), post.date_posted)
         self.assertTrue(reverse("post-detail", args=[item.slug]))
+
+    def test_category_site_map(self):
+        item = CategorySitemap.items(Sitemap)[0]
+        self.assertTrue(reverse(item))
+        self.assertTrue(reverse("blog-category", args=[item]))
 
     def test_works_cited_site_map(self):
         item = WorksCitedSiteMap.items(Sitemap)[0]
@@ -25,16 +36,16 @@ class TestSitemaps(SetUp):
         self.assertTrue(WorksCitedSiteMap.location(Sitemap, item))
 
     def test_privacy_policy_site_map(self):
-        item = WorksCitedSiteMap.items(Sitemap)[0]
+        item = privacyPolicySiteMap.items(Sitemap)[0]
         self.assertTrue(reverse(item))
-        self.assertTrue(WorksCitedSiteMap.location(Sitemap, item))
+        self.assertTrue(privacyPolicySiteMap.location(Sitemap, item))
 
-    def test_category_site_map(self):
-        item = WorksCitedSiteMap.items(Sitemap)[0]
+    def test_portfolio_site_map(self):
+        item = PortfolioSiteMap.items(Sitemap)[0]
         self.assertTrue(reverse(item))
-        self.assertTrue(reverse("blog-category", args=[item]))
+        self.assertTrue(PortfolioSiteMap.location(Sitemap, item))
 
     def test_status_page_site_map(self):
-        item = WorksCitedSiteMap.items(Sitemap)[0]
+        item = StatusPageSiteMap.items(Sitemap)[0]
         self.assertTrue(reverse(item))
-        self.assertTrue(WorksCitedSiteMap.location(Sitemap, item))
+        self.assertTrue(StatusPageSiteMap.location(Sitemap, item))
