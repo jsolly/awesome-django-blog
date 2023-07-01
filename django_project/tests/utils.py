@@ -49,8 +49,6 @@ def create_post(
         category = Category.objects.get(name="Test Category")
     if not title:
         title = f"Default Title {post_count}"
-    if not slug:
-        slug = f"default-slug-{post_count}"
     post = Post.objects.create(
         title=title,
         slug=slug,
@@ -63,6 +61,12 @@ def create_post(
     )
     post_count += 1
     return post
+
+
+def create_comment(post, author=None, content="Lorem Ipsum"):
+    if not author:
+        author = create_user()
+    return post.comments.create(author=author, content=content)
 
 
 def create_several_posts(number_of_posts):

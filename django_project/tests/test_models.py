@@ -61,6 +61,11 @@ class TestModels(SetUp):
         test_post = create_post()
         self.assertEqual(test_post.get_absolute_url(), f"/post/{test_post.slug}/")
 
+    def test_post_model(self):
+        test_post = create_post(title="Test Post", slug=None)
+        self.assertEqual(test_post.title, "Test Post")
+        self.assertEqual(test_post.slug, slugify(test_post.title))
+
     # Users Models
     def test_profile(self):
         profile1 = Profile.objects.get(user=self.test_user)
@@ -85,4 +90,15 @@ class TestModels(SetUp):
         self.assertEqual(comment.author, self.test_user)
         self.assertEqual(
             comment.content, "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        )
+
+    def test_comment_print(self):
+        test_post = create_post()
+        comment = Comment.objects.create(
+            post=test_post,
+            author=self.test_user,
+            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        )
+        self.assertEqual(
+            str(comment), f"Comment '{comment.content}' by {self.test_user.username}"
         )

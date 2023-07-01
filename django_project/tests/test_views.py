@@ -11,7 +11,13 @@ from blog.forms import PostForm
 from blog.models import Post, Category
 from blog.views import AllPostsView, HomeView, CategoryView
 from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
-from .utils import create_several_posts, create_user, create_post, message_in_response
+from .utils import (
+    create_several_posts,
+    create_user,
+    create_post,
+    message_in_response,
+    create_comment,
+)
 
 
 class TestViews(SetUp):
@@ -103,6 +109,23 @@ class TestViews(SetUp):
         response = self.client.get(draft_post_detail_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/post/post_detail.html")
+
+    def test_post_detail_view_no_comments(self):
+        test_post = create_post()
+        test_post_detail_url = reverse("post-detail", args=[test_post.slug])
+        response = self.client.get(test_post_detail_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "blog/post/post_detail.html")
+        self.assertEqual(len(response.context["comments"]), 0)
+
+    def test_post_detail_view_with_comments(self):
+        test_post = create_post()
+        create_comment(test_post)
+        test_post_detail_url = reverse("post-detail", args=[test_post.slug])
+        response = self.client.get(test_post_detail_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "blog/post/post_detail.html")
+        self.assertEqual(len(response.context["comments"]), 1)
 
     def test_create_post_view_GET(self):
         self.client.login(
