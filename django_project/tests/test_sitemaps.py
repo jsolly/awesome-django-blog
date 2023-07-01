@@ -6,14 +6,16 @@ from django_project.sitemaps import (
     PostSitemap,
     WorksCitedSiteMap,
 )
+from .utils import create_post
 
 
-class TestModels(SetUp):
+class TestSitemaps(SetUp):
     def test_home_site_map(self):
         item = HomeSitemap.items(Sitemap)[0]
         self.assertTrue(reverse(item))
 
     def test_post_site_map(self):
+        create_post()
         item = PostSitemap.items(Sitemap)[0]
         self.assertTrue(reverse("post-detail", args=[item.slug]))
 
