@@ -8,7 +8,7 @@ setup()
 
 load_dotenv()
 
-from django.test import TestCase, Client
+from django.test import TestCase
 from django.test.utils import setup_test_environment
 
 # Local imports
@@ -23,6 +23,3 @@ class SetUp(TestCase):
         warnings.simplefilter("ignore", category=ResourceWarning)
         cls.test_password = "defaultpassword"
         cls.test_category, _ = Category.objects.get_or_create(name="Test Category")
-
-    def setUp(self):
-        self.client = Client()
