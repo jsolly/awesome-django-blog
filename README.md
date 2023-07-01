@@ -1,5 +1,5 @@
 [![blogthedata-tests](https://github.com/jsolly/blogthedata/actions/workflows/django-test-deploy-master.yaml/badge.svg)](https://github.com/jsolly/blogthedata/actions/workflows/django-test-deploy-master.yaml)
-![Coverage](https://img.shields.io/coverallsCoverage/github/jsolly/blogthedata)
+[![Coverage Status](https://coveralls.io/repos/github/jsolly/blogthedata/badge.svg?branch=master)](https://coveralls.io/github/jsolly/blogthedata?branch=master)
 ![CodeStyle](https://img.shields.io/badge/code%20style-black-000000.svg)
 ![Linting](https://img.shields.io/badge/linting-ruff-orange)
 [![Python Version](https://img.shields.io/badge/python-3.10-brightgreen.svg)](https://www.python.org/downloads/)

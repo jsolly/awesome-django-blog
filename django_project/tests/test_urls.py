@@ -29,6 +29,7 @@ from users.views import (
     MyPasswordResetDoneView,
     MyPasswordResetCompleteView,
 )
+from .utils import create_user, create_post
 
 
 def get_url(url_name):
@@ -36,6 +37,10 @@ def get_url(url_name):
 
 
 class TestUrls(SetUp):
+    def setUp(self):
+        self.test_user = create_user(super_user=True)
+        self.test_post = create_post()
+
     def test_status_page_url_is_resolved(self):
         self.assertEqual(resolve(reverse("status")).func.view_class, StatusView)
 
@@ -51,19 +56,19 @@ class TestUrls(SetUp):
         )
 
     def test_post_detail_url_is_resolved(self):
-        post1_detail_url = reverse("post-detail", args=[self.post1.slug])
-        self.assertEqual(resolve(post1_detail_url).func.view_class, PostDetailView)
+        test_post_detail_url = reverse("post-detail", args=[self.test_post.slug])
+        self.assertEqual(resolve(test_post_detail_url).func.view_class, PostDetailView)
 
     def test_post_update_url_is_resolved(self):
-        post1_update_url = reverse("post-update", args=[self.post1.slug])
-        self.assertEqual(resolve(post1_update_url).func.view_class, PostUpdateView)
+        test_post_update_url = reverse("post-update", args=[self.test_post.slug])
+        self.assertEqual(resolve(test_post_update_url).func.view_class, PostUpdateView)
 
     def test_post_delete_url_is_resolved(self):
-        post1_delete_url = reverse("post-delete", args=[self.post1.slug])
-        self.assertEqual(resolve(post1_delete_url).func.view_class, PostDeleteView)
+        test_post_delete_url = reverse("post-delete", args=[self.test_post.slug])
+        self.assertEqual(resolve(test_post_delete_url).func.view_class, PostDeleteView)
 
     def test_category_url_is_resolved(self):
-        category_url = reverse("blog-category", args=[self.category1.slug])
+        category_url = reverse("blog-category", args=[self.test_category.slug])
         self.assertEqual(resolve(category_url).func.view_class, CategoryView)
 
     def test_portfolio_url_is_resolved(self):

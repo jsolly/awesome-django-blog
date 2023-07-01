@@ -15,7 +15,7 @@ choices = [
 if settings.SETTINGS_MODULE in [
     "django_project.settings.dev",
     "django_project.settings.prod",
-]:
+]:  # pragma: no cover
     choices = Category.objects.all().values_list("name", "name")
 
 

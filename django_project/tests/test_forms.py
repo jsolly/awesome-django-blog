@@ -1,25 +1,26 @@
+# Local application/library specific imports
 from .base import SetUp
 from blog.forms import PostForm
 from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .utils import create_user
 
 
 class TestForms(SetUp):
+    def setUp(self):
+        self.test_user = create_user(super_user=True)
+
     def test_post_form_valid_data(self):
         form = PostForm(
             data={
-                "title": "My Second Post",
-                "slug": "second-post",
-                "category": self.category1,
-                "metadesc": "I can make you more productive!",
+                "title": "Lorem Ipsum Post",
+                "slug": "lorem-ipsum-post",
+                "category": self.test_category,
+                "metadesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "draft": False,
-                # "metaimg" : ""
-                "snippet": "Do the things",
-                "content": "Do the things. All the things",
-                # date_posted : ""
-                "author": self.super_user,
-                "metaimg_alt_txt": "Meta Image Alt-Text",
-                # "likes"
-                # "views"
+                "snippet": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                "author": self.test_user,
+                "metaimg_alt_txt": "Lorem ipsum",
             }
         )
 
