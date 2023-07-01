@@ -9,23 +9,9 @@ from django_resized import ResizedImageField
 
 logger = logging.getLogger("django")
 
-# def post_pre_save(sender, instance, *args, **kwargs):
-#     print("pre_save")
-#     if instance.slug is None:
-#         slugify_instance_title(instance)
-
-# pre_save.connect(post_pre_save, sender=Post)
-
-# def post_post_save(sender, instance, created, *args, **kwargs):
-#     print("post_save")
-#     if created:
-#         slugify_instance_title(instance, save=True)
-
-# post_save.connect(post_post_save, sender=Post)
-
 
 def slugify_instance(instance, save=False, new_slug=None):
-    if new_slug is not None:
+    if new_slug:
         instance.slug = new_slug
     else:
         if isinstance(instance, Post):
@@ -97,7 +83,6 @@ class Post(models.Model):
         super().save(*args, **kwargs)
 
 
-# POST COMMENT MODEL
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
     author = models.ForeignKey(User, on_delete=models.CASCADE)
