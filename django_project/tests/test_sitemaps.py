@@ -27,8 +27,7 @@ class TestSitemaps(SetUp):
 
     def test_category_site_map(self):
         item = CategorySitemap.items(Sitemap)[0]
-        self.assertTrue(reverse(item))
-        self.assertTrue(reverse("blog-category", args=[item]))
+        self.assertTrue(reverse("blog-category", args=[item.slug]))
 
     def test_works_cited_site_map(self):
         item = WorksCitedSiteMap.items(Sitemap)[0]
