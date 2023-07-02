@@ -118,6 +118,27 @@ class TestViews(SetUp):
         self.assertTemplateUsed(response, "blog/post/post_detail.html")
         self.assertEqual(len(response.context["comments"]), 0)
 
+    def test_post_detail_view_comment_submission_valid_form(self):
+        test_post = create_post()
+        self.client.login(
+            username=self.test_user.username, password=self.test_password
+        )  # Login to basic account to submit comment
+        test_post_detail_url = reverse("post-detail", args=[test_post.slug])
+
+        response = self.client.post(
+            test_post_detail_url,
+            {
+                "content": "Test comment",
+                "post_slug": test_post.slug,
+            },
+        )
+        self.assertEqual(
+            response.status_code, 302
+        )  # Ensure the comment was submitted and redirected to the post (Not ideal, prefer ajax)
+        self.assertEqual(
+            test_post.comments.count(), 1
+        )  # Ensure a comment was added to the post
+
     def test_post_detail_view_with_comments(self):
         test_post = create_post()
         create_comment(test_post)

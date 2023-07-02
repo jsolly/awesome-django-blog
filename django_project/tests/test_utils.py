@@ -17,21 +17,38 @@ class TestUtils(SetUp, MiddlewareMixin):
         mock_load_pickle_file.return_value = pd.DataFrame(
             {
                 "text": ["The capital of the United States is Washington, D.C."],
-                "embeddings": [
-                    np.random.random(512)
-                ],  # Assuming embeddings are 512-dimensional
-                "n_tokens": [10],  # Assuming the text has 10 tokens
+                "embeddings": [np.random.random(512)],
+                "n_tokens": [10],
                 "content": ["The capital of the United States is Washington, D.C."],
             }
         )
-        mock_create.return_value = {
-            "data": [{"embedding": np.random.random(512)}]
-        }  # Assuming embeddings are 512-dimensional
+        mock_create.return_value = {"data": [{"embedding": np.random.random(512)}]}
         context = create_context(
             "What is the capital of the United States of America?",
             mock_load_pickle_file.return_value,
         )
         self.assertIsInstance(context, str)
+
+    @patch("blog.utils.load_pickle_file")
+    @patch("openai.Embedding.create")
+    def test_create_context_exceed_max_len(self, mock_create, mock_load_pickle_file):
+        mock_load_pickle_file.return_value = pd.DataFrame(
+            {
+                "text": ["The capital of the United States is Washington, D.C."]
+                * 200,  # Multiply by 200 to exceed max_len
+                "embeddings": [np.random.random(512)] * 200,
+                "n_tokens": [10] * 200,
+                "content": ["The capital of the United States is Washington, D.C."]
+                * 200,
+            }
+        )
+        mock_create.return_value = {"data": [{"embedding": np.random.random(512)}]}
+        context = create_context(
+            "What is the capital of the United States of America?",
+            mock_load_pickle_file.return_value,
+        )
+        self.assertIsInstance(context, str)
+        self.assertTrue(len(context.split(" ")) <= 1800)
 
     @patch("openai.Embedding.create")
     @patch("openai.Completion.create")
