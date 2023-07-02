@@ -1,9 +1,9 @@
-from .models import Post, Category
+from .models import Post, Category, Comment
 from .forms import PostForm, CommentForm
 from .utils import answer_question
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.shortcuts import get_object_or_404
-from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
@@ -12,11 +12,8 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
-from django.shortcuts import redirect
-from django.views.generic.edit import FormMixin
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required
 import html
 import os
 import openai
@@ -275,11 +272,10 @@ class SearchView(ListView):
         return context
 
 
-class PostDetailView(FormMixin, DetailView):
+class PostDetailView(DetailView):
     model = Post
     template_name = "blog/post/post_detail.html"
     context_object_name = "post"
-    form_class = CommentForm  # to add comments to a post
 
     def get_queryset(self):
         post = get_object_or_404(Post, slug=self.kwargs["slug"])
@@ -292,35 +288,8 @@ class PostDetailView(FormMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context["title"] = self.object.title
         context["description"] = self.object.metadesc
-        post = context["post"]
-        comments = post.comments.all()  # Get all comments related to the post
-        context["comments"] = comments
-        context["form"] = self.get_form()  # to add the form to context
+        context["comment_form"] = CommentForm()
         return context
-
-    # identify the post slug
-    def get_initial(self):
-        initial = super().get_initial()
-        initial["post_slug"] = self.object.slug
-        return initial
-
-    # comment submission
-    def post(self, request, *arggs, **kwargs):
-        self.object = self.get_object()
-        form = self.get_form()
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.post = self.object
-            comment.save()
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
-
-    def form_valid(self, form):
-        return super().form_valid(form)
-
-    def form_invalid(self, form):
-        return super().form_invalid(form)
 
 
 class CreatePostView(UserPassesTestMixin, CreateView):
@@ -343,20 +312,20 @@ class CreatePostView(UserPassesTestMixin, CreateView):
         return context
 
 
-@login_required(login_url="login")
-def create_comment(request):
-    post_slug = None
-    if request.method == "POST":
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            post_slug = form.cleaned_data.get("post_slug")
-            post = get_object_or_404(Post, slug=post_slug)
-            comment = form.save(commit=False)
-            comment.post = post
-            comment.author = request.user
-            comment.save()
-            return redirect("post-detail", slug=post_slug)
-    return redirect("home")
+class CreateCommentView(LoginRequiredMixin, CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = "blog/add_comment.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["cat_list"] = Category.objects.all()
+        return context
+
+    def form_valid(self, form):
+        form.instance.post = Post.objects.get(slug=self.kwargs["slug"])
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 def generate_gpt_input_value(request, post_id):
