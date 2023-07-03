@@ -138,6 +138,7 @@ $ pre-commit install
 - User profile with avatar (automatic sizing and compression using Pillow)
 - Ckeditor 5 for authoring blog posts (also includes spell check, code snippets, character
   counter, and more!)
+- Add comments to blog posts for greater engagement
 - Slugified URLs for more readable links
 - Open Graph protocol compliant social media sharing for beautiful share cards (LinkedIn, Twitter, Facebook, Instagram, Reddit, etc)
 - Smart and powerful Global search so you can find any blog post with a keyword search.
@@ -189,7 +190,6 @@ $ pre-commit install
   in https://github.com/jsolly/blogthedata/pull/121)
 - ~~User login~~ (header links removed in
   [commit:5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b](https://github.com/jsolly/blogthedata/commit/5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b))
-- ~~Create Comments~~ (Removed in https://github.com/jsolly/blogthedata/pull/77)
 - ~~Custom 404 page that looks really cool. So even if your users are lost, they are still having a good time.~~ Removed in (https://github.com/jsolly/blogthedata/commit/19b3d40cc6e8b231010b0f62656eb27e0104ffd7)
 
 ## Team
