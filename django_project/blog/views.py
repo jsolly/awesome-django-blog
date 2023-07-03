@@ -317,11 +317,6 @@ class CreateCommentView(LoginRequiredMixin, CreateView):
     form_class = CommentForm
     template_name = "blog/add_comment.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["cat_list"] = Category.objects.all()
-        return context
-
     def form_valid(self, form):
         form.instance.post = Post.objects.get(slug=self.kwargs["slug"])
         form.instance.author = self.request.user
