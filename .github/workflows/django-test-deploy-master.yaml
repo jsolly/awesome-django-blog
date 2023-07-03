@@ -73,7 +73,7 @@ jobs:
       - name: run-unit-tests-with-coverage
         run: |
           source django_project/venv/bin/activate
-          coverage run -m pytest django_project --rcfile=config/.coveragerc
+          coverage run --data-file=coverage/.coverage --rcfile=config/.coveragerc -m pytest django_project
           coverage lcov -o ./coverage/lcov.info
       
       - name: coveralls
