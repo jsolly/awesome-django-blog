@@ -291,7 +291,6 @@ class PostDetailView(DetailView):
         context["comment_form"] = CommentForm()
         return context
 
-
 class CreatePostView(UserPassesTestMixin, CreateView):
     model = Post
     form_class = PostForm
@@ -308,7 +307,6 @@ class CreatePostView(UserPassesTestMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Create a New Post"
-        context["description"] = "Create a new blog post."
         return context
 
 
@@ -326,6 +324,47 @@ class CreateCommentView(LoginRequiredMixin, CreateView):
         form.instance.post = Post.objects.get(slug=self.kwargs["slug"])
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+class CommentUpdateView(LoginRequiredMixin, UpdateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = "blog/post/update_comment.html"  # Use the same template for creating and updating comments
+    context_object_name = "comment"
+
+    def get_success_url(self):
+        return reverse("post-detail", kwargs={"slug": self.object.post.slug})
+
+    def form_invalid(self, form):
+        return super().form_invalid(form)
+
+    def get_object(self, queryset=None):
+        comment_id = self.kwargs.get("comment_id")
+        comment = get_object_or_404(Comment, id=comment_id)
+        return comment
+
+    def get_initial(self):
+        initial = super().get_initial()
+        initial["post_slug"] = self.object.post.slug
+        return initial
+
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        comment.save()
+        return redirect("post-detail", slug=comment.post.slug)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        comment = self.get_object()
+        context["post"] = comment.post
+        return context
+
+# Let's use a class-based view instead so we can use the same LoginRequiredMixin?
+def delete_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    if request.method == "POST":
+        comment.delete()
+        return redirect("post-detail", slug=comment.post.slug)
+    return redirect("home")
 
 
 def generate_gpt_input_value(request, post_id):
@@ -411,11 +450,3 @@ class PostDeleteView(UserPassesTestMixin, DeleteView):
         post = self.get_object()
         if self.request.user == post.author:
             return True
-
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-        post = self.get_object()
-        context["post"] = post
-        context["title"] = f"Delete {post.title}"
-        context["description"] = f"Delete {post.title} from the blog."
-        return context

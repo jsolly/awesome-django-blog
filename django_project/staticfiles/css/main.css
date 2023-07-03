@@ -1445,3 +1445,8 @@ img {
 .content-section {
   margin-bottom: 30px;
 }
+
+.comment-btn {
+  padding: 5px 10px;
+  font-size: 10px;
+}

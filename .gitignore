@@ -32,4 +32,8 @@ migration_backup
 
 # Other
 logs/
+.vscode/
 db.sqlite3
+django_project/django_project/settings/custom_settings.py
+
+

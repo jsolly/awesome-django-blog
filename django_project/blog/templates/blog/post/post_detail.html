@@ -70,6 +70,15 @@
         </small>
       </div>
       <div class="comment-content">{{ comment.content|safe }}</div>
+      {% if comment.author == request.user %}
+      <span class="comment-actions">
+        <a href="{% url 'comment-update' comment.id %}" class="comment-btn comment-edit">Edit</a>
+        <form action="{% url 'comment-delete' comment.id %}" method="POST" style="display: inline;">
+          {% csrf_token %}
+          <button type="submit" class="comment-delete comment-btn">Delete</button>
+        </form>
+      </span>
+      {% endif %}
     </li>
   </ul>
   {% endfor %}
@@ -77,11 +86,12 @@
   <p class="post-date sml-margin-top-bottom">No comments yet.</p>
   {% endif %}
 </section>
-<!-- End of Comments Section -->
 
 <!-- create comments section-->
 {% include 'blog/post/add_comment.html' %}
 <!-- End of Create Comments section-->
+<!-- End of Comments Section -->
+
 
 <a href="{% url 'home' %}" id="post-back-to-home-button" class="btn btn-dark">
   Back to Home
