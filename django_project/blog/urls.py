@@ -6,7 +6,7 @@ from .feeds import blogFeed, atomFeed
 from .views import (
     HomeView,
     CreatePostView,
-    create_comment,
+    CreateCommentView,
     PostDetailView,
     PostUpdateView,
     PostDeleteView,
@@ -36,10 +36,14 @@ urlpatterns = [
     path("post/<slug:slug>/", PostDetailView.as_view(), name="post-detail"),
     path("post/<slug:slug>/update", PostUpdateView.as_view(), name="post-update"),
     path("post/<slug:slug>/delete", PostDeleteView.as_view(), name="post-delete"),
+    path(
+        "post/<slug:slug>/comment/new",
+        CreateCommentView.as_view(),
+        name="comment-create",
+    ),
     path("category/<slug:slug>/", CategoryView.as_view(), name="blog-category"),
     path("portfolio/", PortfolioView.as_view(), name="portfolio"),
     path("search/", SearchView.as_view(), name="blog-search"),
-    path("comments/new", create_comment, name="comment-create"),
 ]
 if settings.DEBUG:  # pragma: no cover
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
