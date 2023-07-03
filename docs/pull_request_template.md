@@ -21,7 +21,7 @@ Please include screenshots or images that demonstrate the changes you have made 
 
 - [ ] I have read the [contributing guidelines](link_to_contributing_guidelines)
 - [ ] I have added tests to cover my changes and they all pass in addition to the existing tests.
-- [ ] I have added documentation for my changes.
+- [ ] I have added documentation for my changes (if appropriate)
 
 ## Additional Information
 
