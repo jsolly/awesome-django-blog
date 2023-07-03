@@ -72,8 +72,8 @@ jobs:
       - name: run-unit-tests-with-coverage
         run: |
           source django_project/venv/bin/activate
-          coverage run -m pytest django_project
-          coverage lcov -o ./coverage/lcov.info
+          coverage run --rcfile=config/.coveragerc -m pytest django_project
+          coverage lcov --rcfile=config/.coveragerc
       
   static_analysis:
     runs-on: ubuntu-latest
