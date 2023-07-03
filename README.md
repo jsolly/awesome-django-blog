@@ -91,8 +91,8 @@ If you are running on production with a domain, you can add that, too. Here is a
 ### Run Test Coverage
 
 ```shell
-$ coverage run --data-file=coverage/.coverage --rcfile=config/.coveragerc -m pytest django_project
-$ coverage report --data-file=coverage/.coverage -m --skip-covered --rcfile=config/.coveragerc
+$ coverage run --rcfile=config/.coveragerc -m pytest django_project
+$ coverage report -m --skip-covered --rcfile=config/.coveragerc
 ```
 
 ### Run Tests
