@@ -8,3 +8,6 @@ omit =
     django_project/blog/templates/blog/pgp-key.txt
     django_project/blog/templates/blog/parts/posts.html
     django_project/blog/templates/blog/parts/base.html
+
+[lcov]
+output = ./coverage/lcov.info
