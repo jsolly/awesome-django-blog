@@ -16,7 +16,6 @@ from .utils import (
     create_user,
     create_post,
     message_in_response,
-    create_comment,
 )
 
 
@@ -102,30 +101,40 @@ class TestViews(SetUp):
         response = self.client.get(draft_post_detail_url)
         self.assertEqual(response.status_code, 404)
 
-    def test_post_detail_view_staff_sees_draft_post(self):
+    def test_post_detail_view_super_user_sees_draft_post(self):
         draft_post = create_post(draft=True)
-        self.client.login(username=self.test_user.username, password=self.test_password)
+        self.client.login(
+            username=self.super_user.username, password=self.test_password
+        )
         draft_post_detail_url = reverse("post-detail", args=[draft_post.slug])
         response = self.client.get(draft_post_detail_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/post/post_detail.html")
 
-    def test_post_detail_view_no_comments(self):
+    def test_post_detail_view_comment_submission_valid_form(self):
         test_post = create_post()
+        self.client.login(
+            username=self.test_user.username, password=self.test_password
+        )  # Login to basic account to submit comment
         test_post_detail_url = reverse("post-detail", args=[test_post.slug])
-        response = self.client.get(test_post_detail_url)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/post/post_detail.html")
-        self.assertEqual(len(response.context["comments"]), 0)
+        test_post_comment_url = reverse("comment-create", args=[test_post.slug])
 
-    def test_post_detail_view_with_comments(self):
-        test_post = create_post()
-        create_comment(test_post)
-        test_post_detail_url = reverse("post-detail", args=[test_post.slug])
-        response = self.client.get(test_post_detail_url)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/post/post_detail.html")
-        self.assertEqual(len(response.context["comments"]), 1)
+        response = self.client.post(
+            test_post_comment_url,
+            {
+                "content": "Test comment",
+                "post_slug": test_post.slug,
+            },
+        )
+        self.assertEqual(
+            response.status_code, 302
+        )  # Ensure the comment was submitted and redirected to the post (Not ideal, prefer ajax)
+        self.assertRedirects(
+            response, test_post_detail_url
+        )  # Ensure redirect to post after comment submission
+        self.assertEqual(
+            test_post.comments.count(), 1
+        )  # Ensure a comment was added to the post
 
     def test_create_post_view_GET(self):
         self.client.login(
