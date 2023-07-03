@@ -154,13 +154,6 @@ python manage.py migrate --fake blog 0011
     sudo -u postgres psql blogthedata < blogthedata_db_5_5_22.sql
     ```
 
-# Not needed anymore
-
-    ```
-    python3 manage.py collectstatic
-    scp jsolly@69.164.205.120:/home/jsolly/blogthedata/django_project/db.sqlite3 .
-    ```
-
 ### Upgrade django
 
     ```
@@ -261,3 +254,6 @@ https://prismjs.com/download.html#themes=prism-dark&languages=markup+css+clike+j
 ## Misc
 
 env EDITOR=nano crontab -e
+
+## Fix Coveralls Badge updating issue
+https://github.com/lemurheavy/coveralls-public/issues/971#issuecomment-693623226
