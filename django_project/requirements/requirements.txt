@@ -15,8 +15,8 @@ readtime==2.0.0
 requests==2.31.0
 
 # For OpenAI
-scipy==1.10.1
-numpy==1.24.3
+scipy==1.11.1
+numpy==1.25.0
 plotly==5.15.0
 openai==0.27.8
 pandas==2.0.2
@@ -33,13 +33,13 @@ coverage==7.2.7
 black==23.3.0
 django-fastdev==1.7.3
 pytest==7.3.2
-pre-commit==3.3.2
+pre-commit==3.3.3
 django-livereload-server==0.4
 ruff==0.0.272
 
 # Production dependencies
 gunicorn==20.1.0
-whitenoise==6.4.0
+whitenoise==6.5.0
 django-sri==0.6.0
 django-csp==3.7
 Brotli==1.0.9
