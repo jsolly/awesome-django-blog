@@ -1,45 +1,46 @@
-Django==4.2.2
-django-ckeditor-5==0.2.8
-django-htmx==1.15.0
-django-resized==1.0.2
-django-robots==5.0
-django-simple-captcha==0.5.17
-feedparser==6.0.10
-filetype==1.2.0
-Pillow==9.5.0
-psycopg[binary]==3.1.9
-psycopg==3.1.9
-psutil==5.9.5
-python-dotenv==1.0.0
-readtime==2.0.0
-requests==2.31.0
+Django
+django-ckeditor-5
+django-htmx
+django-resized
+django-robots
+django-simple-captcha
+feedparser
+filetype
+Pillow
+psycopg[binary]
+psycopg
+psutil
+python-dotenv
+readtime
+requests
 
 # For OpenAI
-scipy==1.10.1
-numpy==1.24.3
-plotly==5.15.0
-openai==0.27.8
-pandas==2.0.2
-scikit-learn==1.2.2
-matplotlib==3.7.1
-tiktoken==0.4.0
+scipy
+numpy
+plotly
+openai
+pandas
+scikit-learn
+matplotlib
+tiktoken
 
 # Legacy dependencies for migrations
 django-ckeditor==6.4.2
 
 # Development dependencies
-django-coverage-plugin==3.0.0
-coverage==7.2.7
-black==23.3.0
-django-fastdev==1.7.3
-pytest==7.3.2
-pre-commit==3.3.2
-django-livereload-server==0.4
-ruff==0.0.272
+django-coverage-plugin
+coverage
+black
+django-fastdev
+pytest
+pre-commit
+django-livereload-server
+ruff
 
 # Production dependencies
-gunicorn==20.1.0
-whitenoise==6.4.0
-django-sri==0.6.0
-django-csp==3.7
-Brotli==1.0.9
+gunicorn
+whitenoise
+django-sri
+django-csp
+Brotli
+
