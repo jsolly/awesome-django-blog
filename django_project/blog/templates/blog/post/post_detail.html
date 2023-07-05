@@ -44,9 +44,11 @@
       <a id="post-edit-button" class="btn btn-dark sml-margin-left-right" href="{% url 'post-update' post.slug %}">
         <span>Edit Post</span>
       </a>
-      <a id="post-delete-button" class="btn btn-red sml-margin-left-right" href="{% url 'post-delete' post.slug %}">
-        <span>Delete Post</span>
-      </a>
+      <form id="post-delete-button" class="btn btn-red sml-margin-left-right" method="POST"
+        action="{% url 'post-delete' post.slug %}">
+        {% csrf_token %}
+        <button type="submit">Delete Post</button>
+      </form>
     </div>
     {% endif %}
     <div class="post-text">
