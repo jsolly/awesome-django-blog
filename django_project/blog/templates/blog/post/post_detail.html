@@ -72,8 +72,8 @@
       <div class="comment-content">{{ comment.content|safe }}</div>
       {% if comment.author == request.user %}
       <span class="comment-actions">
-        <a href="{% url 'comment-update' comment.id %}" class="comment-btn comment-edit">Edit</a>
-        <form action="{% url 'comment-delete' comment.id %}" method="POST" style="display: inline;">
+        <a href="{% url 'comment-update' comment.post.slug comment.id %}" class="comment-btn comment-edit">Edit</a>
+        <form action="{% url 'comment-delete' comment.id  comment.id %}" method="POST" style="display: inline;">
           {% csrf_token %}
           <button type="submit" class="comment-delete comment-btn">Delete</button>
         </form>
