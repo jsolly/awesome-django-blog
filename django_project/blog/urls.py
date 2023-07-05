@@ -8,7 +8,7 @@ from .views import (
     CreatePostView,
     CreateCommentView,
     CommentUpdateView,
-    delete_comment,
+    CommentDeleteView,
     PostDetailView,
     PostUpdateView,
     PostDeleteView,
@@ -51,7 +51,10 @@ urlpatterns = [
         CommentUpdateView.as_view(),
         name="comment-update",
     ),
-    path("post/<slug:slug>/comment/<int:pk>/delete", delete_comment, name="comment-delete"),
+    path(
+        "post/<slug:slug>/comment/<int:pk>/delete", 
+        CommentDeleteView.as_view() , 
+        name="comment-delete"),
 ]
 if settings.DEBUG:  # pragma: no cover
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

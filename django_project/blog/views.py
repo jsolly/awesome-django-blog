@@ -2,7 +2,7 @@ from .models import Post, Category, Comment
 from .forms import PostForm, CommentForm
 from .utils import answer_question
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import (
@@ -11,6 +11,7 @@ from django.views.generic import (
     CreateView,
     UpdateView,
     DeleteView,
+    View
 )
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
@@ -325,7 +326,7 @@ class CreateCommentView(LoginRequiredMixin, CreateView):
 class CommentUpdateView(LoginRequiredMixin, UpdateView):
     model = Comment
     form_class = CommentForm
-    template_name = "blog/post/update_comment.html"  # Use the same template for creating and updating comments
+    template_name = "blog/post/update_comment.html"  
     context_object_name = "comment"
 
     def get_success_url(self):
@@ -355,13 +356,12 @@ class CommentUpdateView(LoginRequiredMixin, UpdateView):
         context["post"] = comment.post
         return context
 
-# Let's use a class-based view instead so we can use the same LoginRequiredMixin?
-def delete_comment(request, pk):
-    comment = get_object_or_404(Comment, pk=pk)
-    if request.method == "POST":
-        comment.delete()
+class CommentDeleteView(LoginRequiredMixin, View):
+    def post(self, request, slug, pk):
+        comment = get_object_or_404(Comment, pk=pk)
+        if comment.author == request.user:
+            comment.delete()
         return redirect("post-detail", slug=comment.post.slug)
-    return redirect("home")
 
 
 def generate_gpt_input_value(request, post_id):
