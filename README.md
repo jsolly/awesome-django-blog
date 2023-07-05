@@ -1,5 +1,5 @@
 [![blogthedata-tests](https://github.com/jsolly/blogthedata/actions/workflows/django-test-deploy-master.yaml/badge.svg)](https://github.com/jsolly/blogthedata/actions/workflows/django-test-deploy-master.yaml)
-[![Coverage Status](https://coveralls.io/repos/github/jsolly/blogthedata/badge.svg?branch=master)](https://coveralls.io/github/jsolly/blogthedata?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/jsolly/blogthedata/badge.svg?branch=master&service=github)](https://coveralls.io/github/jsolly/blogthedata?branch=master)
 ![CodeStyle](https://img.shields.io/badge/code%20style-black-000000.svg)
 ![Linting](https://img.shields.io/badge/linting-ruff-orange)
 [![Python Version](https://img.shields.io/badge/python-3.10-brightgreen.svg)](https://www.python.org/downloads/)
@@ -91,8 +91,8 @@ If you are running on production with a domain, you can add that, too. Here is a
 ### Run Test Coverage
 
 ```shell
-$ coverage run --data-file=coverage/.coverage --rcfile=config/.coveragerc -m pytest django_project
-$ coverage report --data-file=coverage/.coverage -m --skip-covered --rcfile=config/.coveragerc
+$ coverage run --rcfile=config/.coveragerc -m pytest django_project
+$ coverage report -m --skip-covered --rcfile=config/.coveragerc
 ```
 
 ### Run Tests

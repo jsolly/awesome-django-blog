@@ -490,3 +490,16 @@ class TestViews(SetUp):
         )
         self.assertEqual(response.status_code, 200)
         self.assertIn("mocked response", response.content.decode())
+
+    @patch("openai.Embedding.create")
+    @patch("openai.Completion.create")
+    def test_answer_question_with_gpt(
+        self, mock_completion_create, mock_embedding_create
+    ):
+        mock_embedding_create.return_value = {"data": [{"embedding": [0.1] * 1536}]}
+        mock_completion_create.return_value = {"choices": [{"text": "mocked response"}]}
+        response = self.client.post(
+            "/answer-with-gpt/", data={"question-text-area": "Test question?"}
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("mocked response", response.content.decode())
