@@ -14,6 +14,8 @@ from blog.views import (
     SearchView,
     PortfolioView,
     StatusView,
+    CommentUpdateView,
+    CommentDeleteView
 )
 from django_project.views import (
     works_cited_view,
@@ -137,4 +139,4 @@ class TestUrls(SetUp):
 
     def test_comment_delete_url_is_resolved(self):
         url = reverse("comment-delete", args=[1])
-        self.assertEqual(resolve(url).func.view_class, delete_comment)
+        self.assertEqual(resolve(url).func.view_class, CommentDeleteView)
