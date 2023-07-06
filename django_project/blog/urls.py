@@ -52,9 +52,10 @@ urlpatterns = [
         name="comment-update",
     ),
     path(
-        "post/<slug:slug>/comment/<int:pk>/delete", 
-        CommentDeleteView.as_view() , 
-        name="comment-delete"),
+        "post/<slug:slug>/comment/<int:pk>/delete",
+        CommentDeleteView.as_view(),
+        name="comment-delete",
+    ),
 ]
 if settings.DEBUG:  # pragma: no cover
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

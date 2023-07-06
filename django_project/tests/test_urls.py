@@ -138,4 +138,3 @@ class TestUrls(SetUp):
     def test_comment_delete_url_is_resolved(self):
         url = reverse("comment-delete", args=[1])
         self.assertEqual(resolve(url).func.view_class, delete_comment)
-

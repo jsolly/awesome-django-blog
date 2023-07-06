@@ -11,7 +11,7 @@ from django.views.generic import (
     CreateView,
     UpdateView,
     DeleteView,
-    View
+    View,
 )
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
@@ -326,7 +326,7 @@ class CreateCommentView(LoginRequiredMixin, CreateView):
 class CommentUpdateView(LoginRequiredMixin, UpdateView):
     model = Comment
     form_class = CommentForm
-    template_name = "blog/post/update_comment.html"  
+    template_name = "blog/post/update_comment.html"
     context_object_name = "comment"
 
     def get_success_url(self):
@@ -355,6 +355,7 @@ class CommentUpdateView(LoginRequiredMixin, UpdateView):
         comment = self.get_object()
         context["post"] = comment.post
         return context
+
 
 class CommentDeleteView(LoginRequiredMixin, View):
     def post(self, request, slug, pk):
