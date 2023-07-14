@@ -136,6 +136,7 @@ $ pre-commit install
 ### Functional Features
 
 - User profile with avatar (automatic sizing and compression using Pillow)
+- User Login
 - Ckeditor 5 for authoring blog posts (also includes spell check, code snippets, character
   counter, and more!)
 - Add comments to blog posts for greater engagement
@@ -188,7 +189,6 @@ $ pre-commit install
 - ~~Newsletter Sign up 🗞~~ (removed in https://github.com/jsolly/blogthedata/pull/140)
 - ~~Github Integration to show active issue backlog without leaving blog~~ (removed
   in https://github.com/jsolly/blogthedata/pull/121)
-- ~~User login~~ (header links removed in
   [commit:5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b](https://github.com/jsolly/blogthedata/commit/5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b))
 - ~~Custom 404 page that looks really cool. So even if your users are lost, they are still having a good time.~~ Removed in (https://github.com/jsolly/blogthedata/commit/19b3d40cc6e8b231010b0f62656eb27e0104ffd7)
 
