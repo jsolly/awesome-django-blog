@@ -58,7 +58,7 @@ jobs:
 
       - name: Debug DB Settings
         run: |
-            echo "DJANGO_DB_SETTINGS: ${{ env.DJANGO_DB_SETTINGS }}"
+            echo "DJANGO_DB_SETTINGS: $DJANGO_DB_SETTINGS"
 
       - name: lint-with-ruff
         run: |
