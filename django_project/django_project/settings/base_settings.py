@@ -12,6 +12,8 @@ ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
 SITE_ID = int(os.environ["SITE_ID"])
 DB_SETTINGS_STRING = os.getenv("DJANGO_DB_SETTINGS")
 
+print(f"DB_SETTINGS_STRING: {DB_SETTINGS_STRING}")  # debug print statement
+
 if not DB_SETTINGS_STRING:
     print("Database settings are not set. Please add them to your .env file.")
     print("Example:")
