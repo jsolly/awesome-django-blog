@@ -1,6 +1,5 @@
 from .base_settings import *
 import os
-import psycopg2
 
 CAPTCHA_TEST_MODE = False
 X_FRAME_OPTIONS = "SAMEORIGIN"
@@ -20,21 +19,6 @@ SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 # SECURE_HSTS_SECONDS = 60
 # SECURE_HSTS_PRELOAD = True
 # SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "blogthedata",
-        "USER": os.environ["POSTGRES_USER"],
-        "PASSWORD": os.environ["POSTGRES_PASS"],
-        "HOST": "localhost",
-        "PORT": "5432",
-        "OPTIONS": {
-            "isolation_level": psycopg2.extensions.ISOLATION_LEVEL_SERIALIZABLE,
-        },
-    }
-}
 
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
