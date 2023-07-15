@@ -56,6 +56,10 @@ jobs:
           pip install wheel
           pip install -r django_project/requirements/requirements.txt
 
+      - name: Debug DB Settings
+        run: |
+            echo "DJANGO_DB_SETTINGS: ${{ env.DJANGO_DB_SETTINGS }}"
+
       - name: lint-with-ruff
         run: |
           source django_project/venv/bin/activate
