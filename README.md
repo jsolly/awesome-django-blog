@@ -136,7 +136,7 @@ $ pre-commit install
 ### Functional Features
 
 - User profile with avatar (automatic sizing and compression using Pillow)
-- User Login
+- User Login with Django built-in auth to create posts and leave comments
 - Ckeditor 5 for authoring blog posts (also includes spell check, code snippets, character
   counter, and more!)
 - Add comments to blog posts for greater engagement
