@@ -64,22 +64,6 @@ $ python3 manage.py migrate --settings=django_project.settings.prod # or dev
 $ python3 manage.py runserver
 ```
 
-### Local Testing Database
-
-```shell
-$ sudo service postgreSQL start # If you're on Linux (Open postgres.app if you're on MacOS)
-$ sudo -U postgres psql
-postgres=# CREATE USER dummy_user WITH PASSWORD 'dummy_password';
-postgres=# ALTER ROLE dummy_user SET client_encoding TO 'utf8';
-postgres=# ALTER ROLE dummy_user SET default_transaction_isolation TO 'read committed';
-postgres=# ALTER ROLE dummy_user SET timezone TO 'UTC';
-postgres=# CREATE DATABASE dummy_db WITH OWNER dummy_user;
-postgres=# \c dummy_db
-# type <exit> and hit enter to go back to the terminal
-$ cd django_project
-$ python3 manage.py migrate --settings=django_project.settings.ci
-```
-
 ### Configure Django Sites Framework
 
 1 - Run the server and navigate to http://127.0.0.1:8000/admin/sites

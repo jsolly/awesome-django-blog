@@ -14,6 +14,8 @@ from django.views.generic import (
 )
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
+from django.db import connection
+from django.db.models import Q
 import html
 import os
 import openai
@@ -30,17 +32,8 @@ openai.api_key = os.environ.get("OPENAI_API_KEY")
 ez_logger = logging.getLogger("ezra_logger")
 
 
-class StatusView(TemplateView):
-    template_name = "blog/status_page.html"
-
-    def get_context_data(self, **kwargs):
-        # Get the status of your Django blog
-        blog_status = "up"
-        blog_message = "Blog is up and running"
-        blog_updated_at = datetime.utcnow().strftime("%B %d, %Y %I:%M %p")
-        # You can replace the above values with your own logic to determine the status of your blog
-
-        # Get the status of Postgres
+class DatabaseStatus:  # pragma: no cover
+    def get_status(self):
         postgres_conn = psycopg.connect(
             host=settings.DATABASES["default"]["HOST"],
             port=settings.DATABASES["default"]["PORT"],
@@ -61,6 +54,31 @@ class StatusView(TemplateView):
                 )
             )
             postgres_disk_space_used = cursor.fetchone()[0]
+
+        return (
+            postgres_active_connections,
+            postgres_slow_queries,
+            postgres_disk_space_used,
+        )
+
+
+class StatusView(TemplateView):
+    template_name = "blog/status_page.html"
+
+    def get_context_data(self, **kwargs):
+        # Get the status of your Django blog
+        blog_status = "up"
+        blog_message = "Blog is up and running"
+        blog_updated_at = datetime.utcnow().strftime("%B %d, %Y %I:%M %p")
+        # You can replace the above values with your own logic to determine the status of your blog
+
+        # Get the status of Postgres
+        database_status = DatabaseStatus()
+        (
+            postgres_active_connections,
+            postgres_slow_queries,
+            postgres_disk_space_used,
+        ) = database_status.get_status()
 
         # Calculate server uptime
         boot_time = psutil.boot_time()
@@ -245,30 +263,40 @@ class SearchView(ListView):
 
     def get_queryset(self):
         searched = self.request.GET.get("searched")
+        if not searched:
+            return Post.objects.none()
+
         posts = Post.objects.active()
         if self.request.user.is_staff or self.request.user.is_superuser:
             posts = Post.objects.all()
 
-        # Create a SearchVector that combines the title and content fields of the Post model
-        search_vector = SearchVector("title", weight="A") + SearchVector(
-            "content", weight="D"
-        )
-        # Create a SearchQuery from the user's search input
-        search_query = SearchQuery(searched)
-        # Return the filtered queryset of Posts, ordered by relevance
-        return (
-            posts.annotate(
-                search=search_vector, rank=SearchRank(search_vector, search_query)
+        if connection.vendor == "postgresql":  # pragma: no cover
+            # Use Postgres full-text search
+            search_vector = SearchVector("title", weight="A") + SearchVector(
+                "content", weight="D"
             )
-            .filter(search=search_query)
-            .order_by("-rank")
-        )
+            search_query = SearchQuery(searched)
+            return (
+                posts.annotate(
+                    search=search_vector, rank=SearchRank(search_vector, search_query)
+                )
+                .filter(search=search_query)
+                .order_by("-rank")
+            )
+        else:
+            # For other DBs (like SQLite), use simple case-insensitive search
+            return posts.filter(
+                Q(title__icontains=searched) | Q(content__icontains=searched)
+            )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["searched"] = self.request.GET.get("searched")
         context["num_results"] = self.get_queryset().count()
         context["title"] = f"Search Results for {self.request.GET.get('searched')}"
+        context[
+            "description"
+        ] = f"Search results for {self.request.GET.get('searched')}"
         return context
 
 

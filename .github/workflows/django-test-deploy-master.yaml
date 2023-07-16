@@ -7,33 +7,17 @@ on:
     - cron: "0 3 * * 0-6" # Every day at 3am UTC
 
 env:
-  GIT_TOKEN: "Not applicable for tests" # For Coveralls test coverage
   DEBUG: False
   LOGGING: False
   DJANGO_SETTINGS_MODULE: django_project.settings.ci
-  DJANGO_DB_SETTINGS: ${{ vars.DJANGO_DB_SETTINGS }}
+  USE_SQLITE: True
   SECRET_KEY: "Not applicable for tests"
   ALLOWED_HOSTS: "127.0.0.1 localhost"
   SITE_ID: 1
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres:14
-        env:
-          POSTGRES_USER: "dummy_user"
-          POSTGRES_PASSWORD: "dummy_password"
-          POSTGRES_DB: "dummy_db"
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
 
     steps:
       - uses: actions/checkout@v3
@@ -76,7 +60,7 @@ jobs:
           source django_project/venv/bin/activate
           coverage run --rcfile=config/.coveragerc -m pytest django_project
           coverage lcov --rcfile=config/.coveragerc
-      
+
       - name: coveralls
         uses: coverallsapp/github-action@master
         with:

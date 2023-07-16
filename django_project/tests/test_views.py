@@ -24,7 +24,9 @@ class TestViews(SetUp):
         self.test_user = create_user()  # Not a superuser
         self.super_user = create_user(super_user=True)
 
-    def test_status_view(self):
+    @patch("blog.views.DatabaseStatus")
+    def test_status_view(self, mock_db_status):
+        mock_db_status.return_value.get_status.return_value = (10, 2, 500)
         response = self.client.get(reverse("status"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/status_page.html")
