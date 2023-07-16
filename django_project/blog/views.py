@@ -32,7 +32,7 @@ openai.api_key = os.environ.get("OPENAI_API_KEY")
 ez_logger = logging.getLogger("ezra_logger")
 
 
-class DatabaseStatus:
+class DatabaseStatus:  # pragma: no cover
     def get_status(self):
         postgres_conn = psycopg.connect(
             host=settings.DATABASES["default"]["HOST"],
