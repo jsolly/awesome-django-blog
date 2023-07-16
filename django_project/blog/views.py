@@ -30,17 +30,8 @@ openai.api_key = os.environ.get("OPENAI_API_KEY")
 ez_logger = logging.getLogger("ezra_logger")
 
 
-class StatusView(TemplateView):
-    template_name = "blog/status_page.html"
-
-    def get_context_data(self, **kwargs):
-        # Get the status of your Django blog
-        blog_status = "up"
-        blog_message = "Blog is up and running"
-        blog_updated_at = datetime.utcnow().strftime("%B %d, %Y %I:%M %p")
-        # You can replace the above values with your own logic to determine the status of your blog
-
-        # Get the status of Postgres
+class DatabaseStatus:
+    def get_status(self):
         postgres_conn = psycopg.connect(
             host=settings.DATABASES["default"]["HOST"],
             port=settings.DATABASES["default"]["PORT"],
@@ -61,6 +52,31 @@ class StatusView(TemplateView):
                 )
             )
             postgres_disk_space_used = cursor.fetchone()[0]
+
+        return (
+            postgres_active_connections,
+            postgres_slow_queries,
+            postgres_disk_space_used,
+        )
+
+
+class StatusView(TemplateView):
+    template_name = "blog/status_page.html"
+
+    def get_context_data(self, **kwargs):
+        # Get the status of your Django blog
+        blog_status = "up"
+        blog_message = "Blog is up and running"
+        blog_updated_at = datetime.utcnow().strftime("%B %d, %Y %I:%M %p")
+        # You can replace the above values with your own logic to determine the status of your blog
+
+        # Get the status of Postgres
+        database_status = DatabaseStatus()
+        (
+            postgres_active_connections,
+            postgres_slow_queries,
+            postgres_disk_space_used,
+        ) = database_status.get_status()
 
         # Calculate server uptime
         boot_time = psutil.boot_time()

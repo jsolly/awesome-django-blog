@@ -4,10 +4,11 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 from django_ckeditor_5.fields import CKEditor5Field
-import logging
+
+# import logging
 from django_resized import ResizedImageField
 
-logger = logging.getLogger("django")
+# logger = logging.getLogger("django")
 
 
 def slugify_instance(instance, save=False, new_slug=None):
