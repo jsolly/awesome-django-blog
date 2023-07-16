@@ -3,7 +3,7 @@ from django import setup
 from dotenv import load_dotenv
 import os
 
-os.environ["DJANGO_SETTINGS_MODULE"] = "django_project.settings.dev"
+os.environ["DJANGO_SETTINGS_MODULE"] = "django_project.settings.ci"
 setup()
 
 load_dotenv()
