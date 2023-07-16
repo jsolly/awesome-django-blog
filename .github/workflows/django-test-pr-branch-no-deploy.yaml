@@ -11,7 +11,6 @@ env:
   DEBUG: False
   LOGGING: False
   DJANGO_SETTINGS_MODULE: django_project.settings.dev
-  DJANGO_DB_SETTINGS: ${{ vars.DJANGO_DB_SETTINGS }}
   USE_SQLITE: True
   SECRET_KEY: "Not applicable for tests"
   ALLOWED_HOSTS: "127.0.0.1 localhost"
