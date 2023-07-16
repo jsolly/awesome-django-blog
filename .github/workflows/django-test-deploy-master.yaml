@@ -14,7 +14,7 @@ env:
   SECRET_KEY: "Not applicable for tests"
   ALLOWED_HOSTS: "127.0.0.1 localhost"
   SITE_ID: 1
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -60,7 +60,7 @@ jobs:
           source django_project/venv/bin/activate
           coverage run --rcfile=config/.coveragerc -m pytest django_project
           coverage lcov --rcfile=config/.coveragerc
-      
+
       - name: coveralls
         uses: coverallsapp/github-action@master
         with:
