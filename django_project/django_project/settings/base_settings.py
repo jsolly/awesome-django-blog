@@ -12,7 +12,7 @@ ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
 SITE_ID = int(os.environ["SITE_ID"])
 DB_SETTINGS = os.getenv("DJANGO_DB_SETTINGS")
 
-if os.environ.get("USE_SQLITE") == "True":
+if str(os.environ.get("USE_SQLITE")).lower() == "true":
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -71,7 +71,7 @@ CSP_EXCLUDE_URL_PREFIXES = "/admin"
 
 DEBUG = False
 
-if os.environ["DEBUG"] == "True":
+if str(os.environ.get("DEBUG")).lower() == "true":
     DEBUG = True
     CSP_SCRIPT_SRC_ELEM += ("http://127.0.0.1:35729/livereload.js",)
     CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js",)
