@@ -5,7 +5,7 @@ on:
       - master
   pull_request:
     branches:
-      - '*'
+      - "*"
 
 env:
   DEBUG: False
@@ -59,7 +59,7 @@ jobs:
         run: |
           source django_project/venv/bin/activate
           coverage run --rcfile=config/.coveragerc -m pytest django_project
-      
+
   static_analysis:
     runs-on: ubuntu-latest
     permissions:
