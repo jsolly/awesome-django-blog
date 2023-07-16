@@ -294,6 +294,9 @@ class SearchView(ListView):
         context["searched"] = self.request.GET.get("searched")
         context["num_results"] = self.get_queryset().count()
         context["title"] = f"Search Results for {self.request.GET.get('searched')}"
+        context[
+            "description"
+        ] = f"Search results for {self.request.GET.get('searched')}"
         return context
 
 
