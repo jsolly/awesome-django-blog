@@ -14,8 +14,6 @@ from blog.views import (
     SearchView,
     PortfolioView,
     StatusView,
-    CommentUpdateView,
-    CommentDeleteView
 )
 from django_project.views import (
     works_cited_view,
