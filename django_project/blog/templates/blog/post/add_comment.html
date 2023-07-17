@@ -2,7 +2,7 @@
 {% block content %}
 <section id="create-comments-section" class="content-section">
   <h3>Comment</h3>
-  <form method="POST" action="{% url 'comment-create' slug=post.slug %}" enctype="multipart/form-data">
+  <form hx-target="#comments" hx-post="{% url 'comment-create' slug=post.slug %}" hx-swap="outerHTML" enctype="multipart/form-data">
     {% csrf_token %}
     {{ comment_form.media }}
     {{ comment_form }}
