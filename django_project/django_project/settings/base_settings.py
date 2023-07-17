@@ -10,24 +10,32 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent  # Three levels up
 SECRET_KEY = os.environ["SECRET_KEY"]
 ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
 SITE_ID = int(os.environ["SITE_ID"])
-DB_SETTINGS_STRING = os.getenv("DJANGO_DB_SETTINGS")
+DB_SETTINGS = os.getenv("DJANGO_DB_SETTINGS")
 
-print(f"DB_SETTINGS_STRING: {DB_SETTINGS_STRING}")  # debug print statement
+if str(os.environ.get("USE_SQLITE")).lower() == "true":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
-if not DB_SETTINGS_STRING:
+elif DB_SETTINGS:
+    db_settings = json.loads(DB_SETTINGS)
+
+    DATABASES = {"default": {}}
+
+    for key, value in db_settings.items():
+        DATABASES["default"][key] = value
+
+else:
     print("Database settings are not set. Please add them to your .env file.")
     print("Example:")
     print(
-        'DJANGO_DB_SETTINGS=\'{"ENGINE": "django.db.backends.postgresql_psycopg2", "NAME": "your_database", "USER": "your_user", "PASSWORD": "your_password", "HOST": "your_host", "PORT": "your_port"}\''
+        'DJANGO_DB_SETTINGS=\'{"ENGINE": "django.db.backends.postgresql", "NAME": "your_database", "USER": "your_user", "PASSWORD": "your_password", "HOST": "your_host", "PORT": "your_port", "OPTIONS": {"isolation_level": 4}}\''
     )
     sys.exit(1)
 
-db_settings = json.loads(DB_SETTINGS_STRING)
-
-DATABASES = {"default": {}}
-
-for key, value in db_settings.items():
-    DATABASES["default"][key] = value
 
 # Content Security Policy
 CSP_DEFAULT_SRC = ("'none'",)
@@ -63,7 +71,7 @@ CSP_EXCLUDE_URL_PREFIXES = "/admin"
 
 DEBUG = False
 
-if os.environ["DEBUG"] == "True":
+if str(os.environ.get("DEBUG")).lower() == "true":
     DEBUG = True
     CSP_SCRIPT_SRC_ELEM += ("http://127.0.0.1:35729/livereload.js",)
     CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js",)

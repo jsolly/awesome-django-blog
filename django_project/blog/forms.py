@@ -1,20 +1,5 @@
 from django import forms
-from django.conf import settings
 from .models import Post, Category, Comment
-
-choices = [
-    ("productivity", "productivity"),
-    ("geodev", "geodev"),
-    ("portfolio", "portfolio"),
-    ("resources", "resources"),
-    ("webdev", "webdev"),
-    ("devtools", "devtools"),
-]
-if settings.SETTINGS_MODULE in [
-    "django_project.settings.dev",
-    "django_project.settings.prod",
-]:  # pragma: no cover
-    choices = Category.objects.all().values_list("name", "name")
 
 
 class PostForm(forms.ModelForm):
@@ -40,11 +25,17 @@ class PostForm(forms.ModelForm):
                 }
             ),
             "slug": forms.TextInput(),
-            "category": forms.Select(choices=choices),
+            "category": forms.Select(),
             "metadesc": forms.TextInput(),
             "metaimg_alt_txt": forms.TextInput(),
             "metaimg_attribution": forms.TextInput(),
         }
+
+    def __init__(self, *args, **kwargs):
+        super(PostForm, self).__init__(*args, **kwargs)
+        self.fields["category"].choices = Category.objects.all().values_list(
+            "name", "name"
+        )
 
 
 class CommentForm(forms.ModelForm):
