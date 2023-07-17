@@ -1,5 +1,7 @@
 from pathlib import Path
 import os
+import json
+import sys
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -8,6 +10,24 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent  # Three levels up
 SECRET_KEY = os.environ["SECRET_KEY"]
 ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
 SITE_ID = int(os.environ["SITE_ID"])
+DB_SETTINGS_STRING = os.getenv("DJANGO_DB_SETTINGS")
+
+print(f"DB_SETTINGS_STRING: {DB_SETTINGS_STRING}")  # debug print statement
+
+if not DB_SETTINGS_STRING:
+    print("Database settings are not set. Please add them to your .env file.")
+    print("Example:")
+    print(
+        'DJANGO_DB_SETTINGS=\'{"ENGINE": "django.db.backends.postgresql_psycopg2", "NAME": "your_database", "USER": "your_user", "PASSWORD": "your_password", "HOST": "your_host", "PORT": "your_port"}\''
+    )
+    sys.exit(1)
+
+db_settings = json.loads(DB_SETTINGS_STRING)
+
+DATABASES = {"default": {}}
+
+for key, value in db_settings.items():
+    DATABASES["default"][key] = value
 
 # Content Security Policy
 CSP_DEFAULT_SRC = ("'none'",)
