@@ -348,6 +348,12 @@ class CreateCommentView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.post = Post.objects.get(slug=self.kwargs["slug"])
         form.instance.author = self.request.user
+        self.object = form.save()
+
+        if self.request.htmx:
+            return HttpResponse(
+                f"<div class='messages__item messages__item--user'>{self.object.content}</div>"
+            )
         return super().form_valid(form)
 
 
