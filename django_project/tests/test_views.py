@@ -284,7 +284,7 @@ class TestViews(SetUp):
             )
         response = self.client.get(reverse("comment-update", args=[test_post.slug, test_comment.id]))
         self.assertTemplateUsed(response, "blog/post/update_comment.html")
-        self.assertIsInstance(response.context["form", CommentForm])
+        self.assertIsInstance(response.context["form"], CommentForm)
 
     def test_update_comment_view_POST(self):
         test_post = create_post(title="Edit This Post", slug="edit-this-post")
