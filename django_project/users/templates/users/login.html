@@ -1,9 +1,9 @@
 {% extends "blog/parts/base.html" %}{% block content %}
+<h1>Login</h1>
 <div class="content-section">
   <form method="POST">
     {% csrf_token %}
     <fieldset class="form-group">
-      <legend>Login</legend>
       {{ form.as_p }}
     </fieldset>
     <div class="form-group">

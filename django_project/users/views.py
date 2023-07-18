@@ -17,7 +17,9 @@ class RegisterView(FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Register | Blogthedata.com"
-        context["description"] = "Register for an account"
+        context[
+            "description"
+        ] = "Register for an account on blogthedata.com. It's free!"
         return context
 
     def form_valid(self, form):
@@ -43,7 +45,7 @@ class ProfileView(TemplateView):
         context["u_form"] = UserUpdateForm(instance=self.request.user)
         context["p_form"] = ProfileUpdateForm(instance=self.request.user.profile)
         context["title"] = "Profile | Blogthedata.com"
-        context["description"] = "Update your profile"
+        context["description"] = "Update your profile information on Blogthedata.com"
         return context
 
     def post(self, request, *args, **kwargs):
@@ -55,7 +57,7 @@ class ProfileView(TemplateView):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            messages.success(request, "Your account has been updated")
+            messages.success(request, "Your account has been updated. Thanks!")
             return redirect("profile")
 
         return self.render_to_response(self.get_context_data())
@@ -67,7 +69,9 @@ class MyLoginView(auth_views.LoginView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["title"] = "Login | Blogthedata.com"
-        context["description"] = "Login to your account"
+        context[
+            "description"
+        ] = "Login to your account on blogthedata.com to access your profile and more!"
         return context
 
 
@@ -77,7 +81,7 @@ class MyLogoutView(auth_views.LogoutView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["title"] = "Logout | Blogthedata.com"
-        context["description"] = "Logout of your account"
+        context["description"] = "Logout of your account on blogthedata.com"
         return context
 
 
@@ -87,7 +91,7 @@ class MyPasswordResetView(auth_views.PasswordResetView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["title"] = "Reset Password | Blogthedata.com"
-        context["description"] = "Reset your password"
+        context["description"] = "Reset your password on blogthedata.com"
         return context
 
 
@@ -97,7 +101,9 @@ class MyPasswordResetDoneView(auth_views.PasswordResetDoneView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["title"] = "Reset Password Email Sent | Blogthedata.com"
-        context["description"] = "Your password reset email has been sent!"
+        context[
+            "description"
+        ] = "Your password reset email for blogthedata.com has been sent!"
         return context
 
 
@@ -109,7 +115,9 @@ class MyPasswordResetConfirmView(
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["title"] = "Reset Password Confirm | Blogthedata.com"
-        context["description"] = "Are you sure you want to reset your password?"
+        context[
+            "description"
+        ] = "Are you sure you want to reset your password for blogthedata.com?"
         return context
 
 
@@ -119,5 +127,5 @@ class MyPasswordResetCompleteView(auth_views.PasswordResetCompleteView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["title"] = "Reset Password Complete | Blogthedata.com"
-        context["description"] = "Your password has been reset!"
+        context["description"] = "Your password has been reset for blogthedata.com!"
         return context
