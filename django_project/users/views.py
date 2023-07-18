@@ -1,32 +1,52 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
+from django.utils.decorators import method_decorator
+from django.views.generic import TemplateView
+from django.views.generic.edit import FormView
+from django.urls import reverse_lazy
 
 
-def register_view(request):
-    if request.method == "POST":
-        form = UserRegisterForm(request.POST)
-        if form.is_valid():
-            secret_password = form.cleaned_data.get("secret_password")
-            if secret_password != "African Swallows":
-                messages.error(request, "Hmm, I don't think that is the right password")
-            else:
-                form.save()
-                username = form.cleaned_data.get("username")
-                messages.success(request, f"Account created for {username}")
-                return redirect("login")
+class RegisterView(FormView):
+    form_class = UserRegisterForm
+    success_url = reverse_lazy("login")
+    template_name = "users/register.html"
 
-    else:
-        form = UserRegisterForm()
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Register | Blogthedata.com"
+        context["description"] = "Register for an account"
+        return context
 
-    return render(request, "users/register.html", {"form": form})
+    def form_valid(self, form):
+        secret_password = form.cleaned_data.get("secret_password")
+        if secret_password != "African Swallows":
+            messages.error(
+                self.request, "Hmm, I don't think that is the right password"
+            )
+            return self.form_invalid(form)
+        else:
+            form.save()
+            username = form.cleaned_data.get("username")
+            messages.success(self.request, f"Account created for {username}!")
+            return super().form_valid(form)
 
 
-@login_required
-def profile_view(request):
-    if request.method == "POST":
+@method_decorator(login_required, name="dispatch")
+class ProfileView(TemplateView):
+    template_name = "users/profile.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["u_form"] = UserUpdateForm(instance=self.request.user)
+        context["p_form"] = ProfileUpdateForm(instance=self.request.user.profile)
+        context["title"] = "Profile | Blogthedata.com"
+        context["description"] = "Update your profile"
+        return context
+
+    def post(self, request, *args, **kwargs):
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(
             request.POST, request.FILES, instance=request.user.profile
@@ -38,12 +58,7 @@ def profile_view(request):
             messages.success(request, "Your account has been updated")
             return redirect("profile")
 
-    else:
-        u_form = UserUpdateForm(instance=request.user)
-        p_form = ProfileUpdateForm(instance=request.user.profile)
-
-    context = {"u_form": u_form, "p_form": p_form}
-    return render(request, "users/profile.html", context=context)
+        return self.render_to_response(self.get_context_data())
 
 
 class MyLoginView(auth_views.LoginView):
