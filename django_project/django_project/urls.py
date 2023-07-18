@@ -19,8 +19,8 @@ from .views import (
     security_pgp_key_view,
 )
 from users.views import (
-    register_view,
-    profile_view,
+    RegisterView,
+    ProfileView,
     MyLoginView,
     MyLogoutView,
     MyPasswordResetView,
@@ -53,8 +53,8 @@ urlpatterns = [
     path("pgp-key.txt", security_pgp_key_view, name="security-pgp-key-txt"),
     path("robots.txt", include("robots.urls")),
     path("", include("blog.urls")),
-    path("register/", register_view, name="register"),
-    path("profile/", profile_view, name="profile"),
+    path("register/", RegisterView.as_view(), name="register"),
+    path("profile/", ProfileView.as_view(), name="profile"),
     path(
         "login/",
         MyLoginView.as_view(template_name="users/login.html"),
