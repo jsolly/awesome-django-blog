@@ -296,12 +296,25 @@ class TestViews(SetUp):
             )
         updated_content = "Updated comment content"
 
-        # Update the comment
         response = self.client.post(reverse("comment-update", args=[test_post.slug, test_comment.id]), {"content": updated_content})
 
         self.assertRedirects(response, reverse("post-detail", args=[test_post.slug]))
         test_comment.refresh_from_db()
         self.assertEqual(test_comment.content, updated_content)
+
+        # DELETE COMMENTS
+        def test_comment_delete_view(self):
+            test_post = create_post(title="Delete This Post", slug="delete-this-post")
+            test_comment = create_comment(
+            post = test_post, author = self.comment_only_user
+            )
+            self.client.login(
+                username=self.comment_only_user.username, password=self.test_password
+                )
+        # Delete the comment
+            response = self.client.post(reverse("comment-delete", args=[test_post.slug, test_comment.id]))
+            self.assertRedirects(response, reverse("post-detail", args=[test_post.slug]))
+            self.assertFalse(Comment.objects.filter(id=test_comment.id).exists())
         
     def test_category_view_anonymous(self):
         # anonymous user
