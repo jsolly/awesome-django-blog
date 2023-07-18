@@ -7,7 +7,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 
 # Local Imports
 from .base import SetUp
-from blog.forms import PostForm
+from blog.forms import PostForm, CommentForm
 from blog.models import Post, Category
 from blog.views import AllPostsView, HomeView, CategoryView
 from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
@@ -15,6 +15,7 @@ from .utils import (
     create_several_posts,
     create_user,
     create_post,
+    create_comment,
     message_in_response,
 )
 
@@ -272,6 +273,36 @@ class TestViews(SetUp):
         self.assertEqual(response.status_code, 403)  # Should be forbidden
         self.assertTrue(Post.objects.filter(id=test_post.id).exists())
 
+    # EDIT COMMENTS
+    def test_update_comment_view_GET(self):
+        test_post = create_post(title="Edit This Post", slug="edit-this-post")
+        test_comment = create_comment(
+            post = test_post, author = self.comment_only_user
+            )
+        self.client.login(
+            username=self.comment_only_user.username, password = self.test_password
+            )
+        response = self.client.get(reverse("comment-update", args=[test_post.slug, test_comment.id]))
+        self.assertTemplateUsed(response, "blog/post/update_comment.html")
+        self.assertIsInstance(response.context["form", CommentForm])
+
+    def test_update_comment_view_POST(self):
+        test_post = create_post(title="Edit This Post", slug="edit-this-post")
+        test_comment = create_comment(
+            post = test_post, author = self.comment_only_user
+            )
+        self.client.login(
+            username=self.comment_only_user.username, password = self.test_password
+            )
+        updated_content = "Updated comment content"
+
+        # Update the comment
+        response = self.client.post(reverse("comment-update", args=[test_post.slug, test_comment.id]), {"content": updated_content})
+
+        self.assertRedirects(response, reverse("post-detail", args=[test_post.slug]))
+        test_comment.refresh_from_db()
+        self.assertEqual(test_comment.content, updated_content)
+        
     def test_category_view_anonymous(self):
         # anonymous user
         create_post()
