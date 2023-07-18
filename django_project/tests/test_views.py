@@ -7,8 +7,8 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 
 # Local Imports
 from .base import SetUp
-from blog.forms import PostForm, CommentForm
-from blog.models import Post, Category, Comment
+from blog.forms import PostForm
+from blog.models import Post, Category
 from blog.views import AllPostsView, HomeView, CategoryView
 from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from .utils import (
