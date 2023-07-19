@@ -10,7 +10,7 @@ from .base import SetUp
 from blog.forms import PostForm, CommentForm
 from blog.models import Post, Category, Comment
 from blog.views import AllPostsView, HomeView, CategoryView
-from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from users.forms import UserRegisterForm
 from .utils import (
     create_several_posts,
     create_user,
