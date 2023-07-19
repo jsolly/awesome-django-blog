@@ -276,27 +276,28 @@ class TestViews(SetUp):
     # EDIT COMMENTS
     def test_update_comment_view_GET(self):
         test_post = create_post(title="Edit This Post", slug="edit-this-post")
-        test_comment = create_comment(
-            post = test_post, author = self.comment_only_user
-            )
+        test_comment = create_comment(post=test_post, author=self.comment_only_user)
         self.client.login(
-            username=self.comment_only_user.username, password = self.test_password
-            )
-        response = self.client.get(reverse("comment-update", args=[test_post.slug, test_comment.id]))
+            username=self.comment_only_user.username, password=self.test_password
+        )
+        response = self.client.get(
+            reverse("comment-update", args=[test_post.slug, test_comment.id])
+        )
         self.assertTemplateUsed(response, "blog/post/update_comment.html")
         self.assertIsInstance(response.context["form"], CommentForm)
 
     def test_update_comment_view_POST(self):
         test_post = create_post(title="Edit This Post", slug="edit-this-post")
-        test_comment = create_comment(
-            post = test_post, author = self.comment_only_user
-            )
+        test_comment = create_comment(post=test_post, author=self.comment_only_user)
         self.client.login(
-            username=self.comment_only_user.username, password = self.test_password
-            )
+            username=self.comment_only_user.username, password=self.test_password
+        )
         updated_content = "Updated comment content"
 
-        response = self.client.post(reverse("comment-update", args=[test_post.slug, test_comment.id]), {"content": updated_content})
+        response = self.client.post(
+            reverse("comment-update", args=[test_post.slug, test_comment.id]),
+            {"content": updated_content},
+        )
 
         self.assertRedirects(response, reverse("post-detail", args=[test_post.slug]))
         test_comment.refresh_from_db()
@@ -305,17 +306,19 @@ class TestViews(SetUp):
         # DELETE COMMENTS
         def test_comment_delete_view(self):
             test_post = create_post(title="Delete This Post", slug="delete-this-post")
-            test_comment = create_comment(
-            post = test_post, author = self.comment_only_user
-            )
+            test_comment = create_comment(post=test_post, author=self.comment_only_user)
             self.client.login(
                 username=self.comment_only_user.username, password=self.test_password
-                )
-        # Delete the comment
-            response = self.client.post(reverse("comment-delete", args=[test_post.slug, test_comment.id]))
-            self.assertRedirects(response, reverse("post-detail", args=[test_post.slug]))
+            )
+            # Delete the comment
+            response = self.client.post(
+                reverse("comment-delete", args=[test_post.slug, test_comment.id])
+            )
+            self.assertRedirects(
+                response, reverse("post-detail", args=[test_post.slug])
+            )
             self.assertFalse(Comment.objects.filter(id=test_comment.id).exists())
-        
+
     def test_category_view_anonymous(self):
         # anonymous user
         create_post()
@@ -461,9 +464,9 @@ class TestViews(SetUp):
         self.assertTrue(
             message_in_response(response, "Your account has been updated. Thanks!")
         )
-        self.test_user.refresh_from_db()
-        self.assertEqual(self.test_user.email, "test@modified.com")
-        self.assertEqual(self.test_user.username, "modified")
+        self.comment_only_user.refresh_from_db()
+        self.assertEqual(self.comment_only_user.email, "test@modified.com")
+        self.assertEqual(self.comment_only_user.username, "modified")
 
     def test_login_view(self):
         response = self.client.get(reverse("login"))
