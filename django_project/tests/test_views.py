@@ -7,21 +7,22 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 
 # Local Imports
 from .base import SetUp
-from blog.forms import PostForm
-from blog.models import Post, Category
+from blog.forms import PostForm, CommentForm
+from blog.models import Post, Category, Comment
 from blog.views import AllPostsView, HomeView, CategoryView
-from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from users.forms import UserRegisterForm, ProfileUpdateForm, UserUpdateForm
 from .utils import (
     create_several_posts,
     create_user,
     create_post,
+    create_comment,
     message_in_response,
 )
 
 
 class TestViews(SetUp):
     def setUp(self):
-        self.test_user = create_user()  # Not a superuser
+        self.comment_only_user = create_user()  # Not a superuser
         self.super_user = create_user(super_user=True)
 
     @patch("blog.views.DatabaseStatus")
@@ -116,7 +117,7 @@ class TestViews(SetUp):
     def test_post_detail_view_comment_submission_valid_form(self):
         test_post = create_post()
         self.client.login(
-            username=self.test_user.username, password=self.test_password
+            username=self.comment_only_user.username, password=self.test_password
         )  # Login to basic account to submit comment
         test_post_detail_url = reverse("post-detail", args=[test_post.slug])
         test_post_comment_url = reverse("comment-create", args=[test_post.slug])
@@ -184,26 +185,35 @@ class TestViews(SetUp):
         self.assertEqual(Post.objects.last().author, self.super_user)
         self.assertEqual(Post.objects.last().metaimg_alt_txt, data["metaimg_alt_txt"])
 
-    # def test_create_post_view_anonymous_blocked(self):
-    # Viewer cannot create posts (This throws an uncaught permissions error when tests are run in terminal)
-    # self.client.login(username=self.basic_user.username,
-    #                   password=self.basic_user_password)
-    # data['author'] = self.basic_user
-    # data['slug'] = "i-shouldnt-exist"
-    # response = self.client.post(
-    #     reverse("post-create"), data=data)
-    # self.assertEqual(response.status_code, 403)
+    def test_create_post_view_comment_only_user_blocked(self):
+        self.client.login(
+            username=self.comment_only_user.username, password=self.test_password
+        )
+        data = {
+            "title": "Lorem Ipsum Post",
+            "slug": "lorem-ipsum-post",
+            "category": self.test_category.id,
+            "metadesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "draft": False,
+            "author": self.comment_only_user.id,
+        }
+        response = self.client.post(reverse("post-create"), data=data)
+        self.assertEqual(response.status_code, 403)
 
     def test_update_post_view_GET(self):
-        test_post = create_post(author=self.test_user)
-        self.client.login(username=self.test_user.username, password=self.test_password)
+        test_post = create_post(author=self.comment_only_user)
+        self.client.login(
+            username=self.comment_only_user.username, password=self.test_password
+        )
         response = self.client.get(reverse("post-update", args=[test_post.slug]))
         self.assertTemplateUsed(response, "blog/post/edit_post.html")
         self.assertIsInstance(response.context["form"], PostForm)
 
     def test_update_post_view_POST(self):
-        test_post = create_post(author=self.test_user)
-        self.client.login(username=self.test_user.username, password=self.test_password)
+        test_post = create_post(author=self.comment_only_user)
+        self.client.login(
+            username=self.comment_only_user.username, password=self.test_password
+        )
         post1_detail_url = reverse("post-detail", args=[test_post.slug])
         post1_update_url = reverse("post-update", args=[test_post.slug])
         new_category = Category.objects.create(name="New Category")
@@ -222,7 +232,7 @@ class TestViews(SetUp):
             "content": "Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
             "metaimg_alt_txt": "Meta Image Alt-Text Update",
             # date_posted : ""
-            "author": self.test_user
+            "author": self.comment_only_user
             # "likes"
             # "views"
         }
@@ -255,11 +265,59 @@ class TestViews(SetUp):
     def test_post_delete_view_different_user(self):
         test_post = create_post()
         post1_delete_url = reverse("post-delete", args=[test_post.slug])
-        self.client.login(username=self.test_user.username, password=self.test_password)
+        self.client.login(
+            username=self.comment_only_user.username, password=self.test_password
+        )
 
         response = self.client.get(post1_delete_url)  # Attempt to delete post
         self.assertEqual(response.status_code, 403)  # Should be forbidden
         self.assertTrue(Post.objects.filter(id=test_post.id).exists())
+
+    # EDIT COMMENTS
+    def test_update_comment_view_GET(self):
+        test_post = create_post(title="Edit This Post", slug="edit-this-post")
+        test_comment = create_comment(post=test_post, author=self.comment_only_user)
+        self.client.login(
+            username=self.comment_only_user.username, password=self.test_password
+        )
+        response = self.client.get(
+            reverse("comment-update", args=[test_post.slug, test_comment.id])
+        )
+        self.assertTemplateUsed(response, "blog/post/update_comment.html")
+        self.assertIsInstance(response.context["form"], CommentForm)
+
+    def test_update_comment_view_POST(self):
+        test_post = create_post(title="Edit This Post", slug="edit-this-post")
+        test_comment = create_comment(post=test_post, author=self.comment_only_user)
+        self.client.login(
+            username=self.comment_only_user.username, password=self.test_password
+        )
+        updated_content = "Updated comment content"
+
+        response = self.client.post(
+            reverse("comment-update", args=[test_post.slug, test_comment.id]),
+            {"content": updated_content},
+        )
+
+        self.assertRedirects(response, reverse("post-detail", args=[test_post.slug]))
+        test_comment.refresh_from_db()
+        self.assertEqual(test_comment.content, updated_content)
+
+        # DELETE COMMENTS
+        def test_comment_delete_view(self):
+            test_post = create_post(title="Delete This Post", slug="delete-this-post")
+            test_comment = create_comment(post=test_post, author=self.comment_only_user)
+            self.client.login(
+                username=self.comment_only_user.username, password=self.test_password
+            )
+            # Delete the comment
+            response = self.client.post(
+                reverse("comment-delete", args=[test_post.slug, test_comment.id])
+            )
+            self.assertRedirects(
+                response, reverse("post-detail", args=[test_post.slug])
+            )
+            self.assertFalse(Comment.objects.filter(id=test_comment.id).exists())
 
     def test_category_view_anonymous(self):
         # anonymous user
@@ -386,7 +444,9 @@ class TestViews(SetUp):
         )
 
     def test_profile_view(self):
-        self.client.login(username=self.test_user.username, password=self.test_password)
+        self.client.login(
+            username=self.comment_only_user.username, password=self.test_password
+        )
         response = self.client.get(reverse("profile"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "users/profile.html")
@@ -394,15 +454,19 @@ class TestViews(SetUp):
         self.assertIsInstance(response.context["u_form"], UserUpdateForm)
 
     def test_profile_view_edit(self):
-        self.client.login(username=self.test_user.username, password=self.test_password)
+        self.client.login(
+            username=self.comment_only_user.username, password=self.test_password
+        )
         response = self.client.post(
             reverse("profile"),
             data={"email": "test@modified.com", "username": "modified"},
         )
-        self.assertTrue(message_in_response(response, "Your account has been updated"))
-        self.test_user.refresh_from_db()
-        self.assertEqual(self.test_user.email, "test@modified.com")
-        self.assertEqual(self.test_user.username, "modified")
+        self.assertTrue(
+            message_in_response(response, "Your account has been updated. Thanks!")
+        )
+        self.comment_only_user.refresh_from_db()
+        self.assertEqual(self.comment_only_user.email, "test@modified.com")
+        self.assertEqual(self.comment_only_user.username, "modified")
 
     def test_login_view(self):
         response = self.client.get(reverse("login"))
@@ -410,7 +474,9 @@ class TestViews(SetUp):
         self.assertTemplateUsed(response, "users/login.html")
 
     def test_logout_view(self):
-        self.client.login(username=self.test_user.username, password=self.test_password)
+        self.client.login(
+            username=self.comment_only_user.username, password=self.test_password
+        )
         response = self.client.get(reverse("logout"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "users/logout.html")

@@ -14,6 +14,8 @@ from blog.views import (
     SearchView,
     PortfolioView,
     StatusView,
+    CommentUpdateView,
+    CommentDeleteView
 )
 from django_project.views import (
     works_cited_view,
@@ -21,8 +23,8 @@ from django_project.views import (
     security_pgp_key_view,
 )
 from users.views import (
-    register_view,
-    profile_view,
+    RegisterView,
+    ProfileView,
     MyLoginView,
     MyLogoutView,
     MyPasswordResetView,
@@ -78,10 +80,10 @@ class TestUrls(SetUp):
         self.assertEqual(resolve(reverse("blog-search")).func.view_class, SearchView)
 
     def test_register_url_is_resolved(self):
-        self.assertEqual(resolve(reverse("register")).func, register_view)
+        self.assertEqual(resolve(reverse("register")).func.view_class, RegisterView)
 
     def test_profile_url_is_resolved(self):
-        self.assertEqual(resolve(reverse("profile")).func, profile_view)
+        self.assertEqual(resolve(reverse("profile")).func.view_class, ProfileView)
 
     def test_login_url_is_resolved(self):
         self.assertEqual(resolve(reverse("login")).func.view_class, MyLoginView)
@@ -131,4 +133,10 @@ class TestUrls(SetUp):
     # def test_captcha_url_is_resolved(self):
     #     self.assertEqual(resolve(reverse("logout")).func.view_class, MyLogoutView)
 
+    def test_comment_update_url_is_resolved(self):
+        url = reverse("comment-update", args=[self.test_post.slug,1])
+        self.assertEqual(resolve(url).func.view_class, CommentUpdateView)
 
+    def test_comment_delete_url_is_resolved(self):
+        url = reverse("comment-delete", args=[self.test_post.slug, 1])
+        self.assertEqual(resolve(url).func.view_class, CommentDeleteView)
