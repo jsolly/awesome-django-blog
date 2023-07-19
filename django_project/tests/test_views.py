@@ -10,7 +10,7 @@ from .base import SetUp
 from blog.forms import PostForm, CommentForm
 from blog.models import Post, Category, Comment
 from blog.views import AllPostsView, HomeView, CategoryView
-from users.forms import UserRegisterForm
+from users.forms import UserRegisterForm, ProfileUpdateForm, UserUpdateForm
 from .utils import (
     create_several_posts,
     create_user,
@@ -440,24 +440,24 @@ class TestViews(SetUp):
             )
         )
 
-    # def test_profile_view(self):
-    #     self.client.login(
-    #         username=self.comment_only_user.username, password=self.test_password
-    #     )
-    #     response = self.client.get(reverse("profile"))
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertTemplateUsed(response, "users/profile.html")
-    #     self.assertIsInstance(response.context["p_form"], ProfileUpdateForm)
-    #     self.assertIsInstance(response.context["u_form"], UserUpdateForm)
+    def test_profile_view(self):
+        self.client.login(
+            username=self.comment_only_user.username, password=self.test_password
+        )
+        response = self.client.get(reverse("profile"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "users/profile.html")
+        self.assertIsInstance(response.context["p_form"], ProfileUpdateForm)
+        self.assertIsInstance(response.context["u_form"], UserUpdateForm)
 
-    # def test_profile_view_edit(self):
-    #     self.client.login(
-    #         username=self.comment_only_user.username, password=self.test_password
-    #     )
-    #     response = self.client.post(
-    #         reverse("profile"),
-    #         data={"email": "test@modified.com", "username": "modified"},
-    #     )
+    def test_profile_view_edit(self):
+        self.client.login(
+            username=self.comment_only_user.username, password=self.test_password
+        )
+        response = self.client.post(
+            reverse("profile"),
+            data={"email": "test@modified.com", "username": "modified"},
+        )
         self.assertTrue(message_in_response(response, "Your account has been updated"))
         self.comment_only_user.refresh_from_db()
         self.assertEqual(self.comment_only_user.email, "test@modified.com")
