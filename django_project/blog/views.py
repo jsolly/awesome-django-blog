@@ -382,7 +382,7 @@ class CommentUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         comment = form.save(commit=False)
         comment.save()
-        return redirect("post-detail", slug=comment.post.slug)
+        return redirect(reverse_lazy("post-detail", kwargs = {"slug" : self.kwargs["slug"]}) + "#comments-section")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
