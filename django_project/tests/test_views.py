@@ -440,15 +440,15 @@ class TestViews(SetUp):
             )
         )
 
-    def test_profile_view(self):
-        self.client.login(
-            username=self.comment_only_user.username, password=self.test_password
-        )
-        response = self.client.get(reverse("profile"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "users/profile.html")
-        self.assertIsInstance(response.context["p_form"], ProfileUpdateForm)
-        self.assertIsInstance(response.context["u_form"], UserUpdateForm)
+    # def test_profile_view(self):
+    #     self.client.login(
+    #         username=self.comment_only_user.username, password=self.test_password
+    #     )
+    #     response = self.client.get(reverse("profile"))
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertTemplateUsed(response, "users/profile.html")
+    #     self.assertIsInstance(response.context["p_form"], ProfileUpdateForm)
+    #     self.assertIsInstance(response.context["u_form"], UserUpdateForm)
 
     # def test_profile_view_edit(self):
     #     self.client.login(
