@@ -396,7 +396,7 @@ class CommentDeleteView(LoginRequiredMixin, View):
         comment = get_object_or_404(Comment, pk=pk)
         if comment.author == request.user:
             comment.delete()
-        return redirect("post-detail", slug=comment.post.slug)
+        return redirect(reverse_lazy("post-detail", kwargs = {"slug" : comment.post.slug}) + "#comments-section")
 
 
 def generate_gpt_input_value(request, post_id):
