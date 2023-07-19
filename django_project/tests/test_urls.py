@@ -21,8 +21,8 @@ from django_project.views import (
     security_pgp_key_view,
 )
 from users.views import (
-    register_view,
-    profile_view,
+    RegisterView,
+    ProfileView,
     MyLoginView,
     MyLogoutView,
     MyPasswordResetView,
@@ -78,10 +78,10 @@ class TestUrls(SetUp):
         self.assertEqual(resolve(reverse("blog-search")).func.view_class, SearchView)
 
     def test_register_url_is_resolved(self):
-        self.assertEqual(resolve(reverse("register")).func, register_view)
+        self.assertEqual(resolve(reverse("register")).func.view_class, RegisterView)
 
     def test_profile_url_is_resolved(self):
-        self.assertEqual(resolve(reverse("profile")).func, profile_view)
+        self.assertEqual(resolve(reverse("profile")).func.view_class, ProfileView)
 
     def test_login_url_is_resolved(self):
         self.assertEqual(resolve(reverse("login")).func.view_class, MyLoginView)
