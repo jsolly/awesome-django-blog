@@ -399,7 +399,9 @@ class TestViews(SetUp):
             reverse("profile"),
             data={"email": "test@modified.com", "username": "modified"},
         )
-        self.assertTrue(message_in_response(response, "Your account has been updated"))
+        self.assertTrue(
+            message_in_response(response, "Your account has been updated. Thanks!")
+        )
         self.test_user.refresh_from_db()
         self.assertEqual(self.test_user.email, "test@modified.com")
         self.assertEqual(self.test_user.username, "modified")
