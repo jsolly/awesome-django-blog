@@ -343,7 +343,6 @@ class CreatePostView(UserPassesTestMixin, CreateView):
 class CreateCommentView(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
-    podt = Post.objects.get()
     template_name = "blog/post/add_comment.html"
 
     def form_valid(self, form):
