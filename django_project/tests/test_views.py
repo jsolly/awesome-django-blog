@@ -7,7 +7,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 
 # Local Imports
 from .base import SetUp
-from blog.forms import PostForm, CommentForm
+from blog.forms import PostForm
 from blog.models import Post, Category, Comment
 from blog.views import AllPostsView, HomeView, CategoryView
 from users.forms import UserRegisterForm, ProfileUpdateForm, UserUpdateForm
@@ -273,20 +273,7 @@ class TestViews(SetUp):
         self.assertEqual(response.status_code, 403)  # Should be forbidden
         self.assertTrue(Post.objects.filter(id=test_post.id).exists())
 
-    # EDIT COMMENTS
-    def test_update_comment_view_GET(self):
-        test_post = create_post(title="Edit This Post", slug="edit-this-post")
-        test_comment = create_comment(post=test_post, author=self.comment_only_user)
-        self.client.login(
-            username=self.comment_only_user.username, password=self.test_password
-        )
-        response = self.client.get(
-            reverse("comment-update", args=[test_post.slug, test_comment.id])
-        )
-        self.assertTemplateUsed(response, "blog/post/update_comment.html")
-        self.assertIsInstance(response.context["form"], CommentForm)
-
-    def test_update_comment_view_POST(self):
+    def test_update_comment_view(self):
         test_post = create_post(title="Edit This Post", slug="edit-this-post")
         test_comment = create_comment(post=test_post, author=self.comment_only_user)
         self.client.login(
@@ -295,7 +282,7 @@ class TestViews(SetUp):
         updated_content = "Updated comment content"
 
         response = self.client.post(
-            reverse("comment-update", args=[test_post.slug, test_comment.id]),
+            reverse("comment-update", args=[test_comment.id]),
             {"content": updated_content},
         )
 
@@ -303,24 +290,18 @@ class TestViews(SetUp):
         test_comment.refresh_from_db()
         self.assertEqual(test_comment.content, updated_content)
 
-        # DELETE COMMENTS
-        def test_comment_delete_view(self):
-            test_post = create_post(title="Delete This Post", slug="delete-this-post")
-            test_comment = create_comment(post=test_post, author=self.comment_only_user)
-            self.client.login(
-                username=self.comment_only_user.username, password=self.test_password
-            )
-            # Delete the comment
-            response = self.client.post(
-                reverse("comment-delete", args=[test_post.slug, test_comment.id])
-            )
-            self.assertRedirects(
-                response, reverse("post-detail", args=[test_post.slug])
-            )
-            self.assertFalse(Comment.objects.filter(id=test_comment.id).exists())
+    def test_comment_delete_view(self):
+        test_post = create_post(title="Delete This Post", slug="delete-this-post")
+        test_comment = create_comment(post=test_post, author=self.comment_only_user)
+        self.client.login(
+            username=self.comment_only_user.username, password=self.test_password
+        )
+
+        response = self.client.post(reverse("comment-delete", args=[test_comment.id]))
+        self.assertRedirects(response, reverse("post-detail", args=[test_post.slug]))
+        self.assertFalse(Comment.objects.filter(id=test_comment.id).exists())
 
     def test_category_view_anonymous(self):
-        # anonymous user
         create_post()
         category_url = reverse("blog-category", args=[self.test_category.slug])
         response = self.client.get(category_url)
@@ -350,7 +331,7 @@ class TestViews(SetUp):
     def test_category_view_paginated(self):
         post_count = CategoryView.paginate_by
         category_url = reverse("blog-category", args=[self.test_category.slug])
-        # Paginated list appears when there are more than
+        # Paginated list appears when there are more than paginate_by posts
         create_several_posts(post_count + 1)
         response = self.client.get(category_url)
         self.assertTrue(response.context["is_paginated"])

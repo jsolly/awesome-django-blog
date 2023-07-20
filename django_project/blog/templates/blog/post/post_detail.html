@@ -44,11 +44,9 @@
       <a id="post-edit-button" class="btn btn-dark sml-margin-left-right" href="{% url 'post-update' post.slug %}">
         <span>Edit Post</span>
       </a>
-      <form id="post-delete-button" class="btn btn-red sml-margin-left-right" method="POST"
-        action="{% url 'post-delete' post.slug %}">
-        {% csrf_token %}
-        <button type="submit">Delete Post</button>
-      </form>
+      <a id="post-delete-button" class="btn btn-red sml-margin-left-right" href="{% url 'post-delete' post.slug %}">
+        <span>Delete Post</span>
+      </a>
     </div>
     {% endif %}
     <div class="post-text">
@@ -74,10 +72,10 @@
       <div class="comment-content">{{ comment.content|safe }}</div>
       {% if comment.author == request.user %}
       <span class="comment-actions">
-        <a href="{% url 'comment-update' comment.post.slug comment.id %}" class="btn btn-dark comment-btn comment-edit">Edit</a>
-        <form action="{% url 'comment-delete' comment.id  comment.id %}" method="POST" style="display: inline;">
+        <a href="{% url 'comment-update' comment.id %}" class="btn btn-dark comment-btn comment-edit">Edit</a>
+        <form class="comment-delete-form" method="POST" action="{% url 'comment-delete' comment.id %}" >
           {% csrf_token %}
-          <button type="submit" class="comment-delete comment-btn btn btn-red">Delete</button>
+          <button type="submit" class="btn btn-red comment-btn comment-delete">Delete</button>
         </form>
       </span>
       {% endif %}

@@ -15,7 +15,7 @@ from blog.views import (
     PortfolioView,
     StatusView,
     CommentUpdateView,
-    CommentDeleteView
+    CommentDeleteView,
 )
 from django_project.views import (
     works_cited_view,
@@ -31,7 +31,7 @@ from users.views import (
     MyPasswordResetDoneView,
     MyPasswordResetCompleteView,
 )
-from .utils import create_user, create_post
+from .utils import create_user, create_post, create_comment
 
 
 def get_url(url_name):
@@ -134,9 +134,11 @@ class TestUrls(SetUp):
     #     self.assertEqual(resolve(reverse("logout")).func.view_class, MyLogoutView)
 
     def test_comment_update_url_is_resolved(self):
-        url = reverse("comment-update", args=[self.test_post.slug,1])
+        comment_on_test_post = create_comment(self.test_post, self.test_user)
+        url = reverse("comment-update", args=[comment_on_test_post.id])
         self.assertEqual(resolve(url).func.view_class, CommentUpdateView)
 
     def test_comment_delete_url_is_resolved(self):
-        url = reverse("comment-delete", args=[self.test_post.slug, 1])
+        comment_on_test_post = create_comment(self.test_post, self.test_user)
+        url = reverse("comment-delete", args=[comment_on_test_post.id])
         self.assertEqual(resolve(url).func.view_class, CommentDeleteView)

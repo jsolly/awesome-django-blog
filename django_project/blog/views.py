@@ -340,6 +340,39 @@ class CreatePostView(UserPassesTestMixin, CreateView):
         return context
 
 
+class PostUpdateView(UserPassesTestMixin, UpdateView):
+    model = Post
+    form_class = PostForm
+    template_name = "blog/post/edit_post.html"
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        post = self.get_object()
+        context["post"] = post
+        context["title"] = f"Edit {post.title}"
+        return context
+
+
+class PostDeleteView(UserPassesTestMixin, DeleteView):
+    model = Post
+    success_url = reverse_lazy("home")
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+
 class CreateCommentView(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
@@ -360,34 +393,27 @@ class CommentUpdateView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy("post-detail", kwargs={"slug": self.object.post.slug})
 
-    def form_invalid(self, form):
-        return super().form_invalid(form)
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
-    def get_object(self, queryset=None):
+    def get_object(self):
         comment_id = self.kwargs.get("comment_id")
         comment = get_object_or_404(Comment, id=comment_id)
         return comment
-
-    def get_initial(self):
-        initial = super().get_initial()
-        initial["post_slug"] = self.object.post.slug
-        return initial
-
-    def form_valid(self, form):
-        comment = form.save(commit=False)
-        comment.save()
-        return redirect("post-detail", slug=comment.post.slug)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         comment = self.get_object()
         context["post"] = comment.post
+        context["title"] = f"Edit Comment #{comment.id}"
+        context["description"] = f"Edit Comment #{comment.id}"
         return context
 
 
 class CommentDeleteView(LoginRequiredMixin, View):
-    def post(self, request, slug, pk):
-        comment = get_object_or_404(Comment, pk=pk)
+    def post(self, request, comment_id):
+        comment = get_object_or_404(Comment, id=comment_id)
         if comment.author == request.user:
             comment.delete()
         return redirect("post-detail", slug=comment.post.slug)
@@ -444,35 +470,3 @@ def answer_question_with_GPT(request):
     response = f"<div class='messages__item messages__item--bot'>{completion}</div>"
 
     return HttpResponse(response)
-
-
-class PostUpdateView(UserPassesTestMixin, UpdateView):
-    model = Post
-    form_class = PostForm
-    template_name = "blog/post/edit_post.html"
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-    def test_func(self):
-        post = self.get_object()
-        if self.request.user == post.author:
-            return True
-
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-        post = self.get_object()
-        context["post"] = post
-        context["title"] = f"Edit {post.title}"
-        return context
-
-
-class PostDeleteView(UserPassesTestMixin, DeleteView):
-    model = Post
-    success_url = reverse_lazy("home")
-
-    def test_func(self):
-        post = self.get_object()
-        if self.request.user == post.author:
-            return True
