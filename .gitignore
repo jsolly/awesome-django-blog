@@ -32,5 +32,8 @@ migration_backup
 
 # Other
 logs/
+.vscode/
+
 db.sqlite3
 db.sqlite3-journal
+

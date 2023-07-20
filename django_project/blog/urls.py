@@ -7,6 +7,8 @@ from .views import (
     HomeView,
     CreatePostView,
     CreateCommentView,
+    CommentUpdateView,
+    CommentDeleteView,
     PostDetailView,
     PostUpdateView,
     PostDeleteView,
@@ -36,14 +38,24 @@ urlpatterns = [
     path("post/<slug:slug>/", PostDetailView.as_view(), name="post-detail"),
     path("post/<slug:slug>/update", PostUpdateView.as_view(), name="post-update"),
     path("post/<slug:slug>/delete", PostDeleteView.as_view(), name="post-delete"),
+    path("category/<slug:slug>/", CategoryView.as_view(), name="blog-category"),
+    path("portfolio/", PortfolioView.as_view(), name="portfolio"),
+    path("search/", SearchView.as_view(), name="blog-search"),
     path(
         "post/<slug:slug>/comment/new",
         CreateCommentView.as_view(),
         name="comment-create",
     ),
-    path("category/<slug:slug>/", CategoryView.as_view(), name="blog-category"),
-    path("portfolio/", PortfolioView.as_view(), name="portfolio"),
-    path("search/", SearchView.as_view(), name="blog-search"),
+    path(
+        "comment/<int:comment_id>/update",
+        CommentUpdateView.as_view(),
+        name="comment-update",
+    ),
+    path(
+        "comment/<int:comment_id>/delete",
+        CommentDeleteView.as_view(),
+        name="comment-delete",
+    ),
 ]
 if settings.DEBUG:  # pragma: no cover
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1442,6 +1442,15 @@ img {
 .comment {
   list-style-type: none;
 }
+
+.comment-delete-form {
+  display: inline;
+}
 .content-section {
   margin-bottom: 30px;
+}
+
+.comment-btn {
+  padding: 3px 8px;
+  font-size: 8px;
 }
