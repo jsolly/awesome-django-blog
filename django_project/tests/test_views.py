@@ -7,9 +7,9 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 
 # Local Imports
 from .base import SetUp
-from blog.forms import PostForm
 from blog.models import Post, Category, Comment
 from blog.views import AllPostsView, HomeView, CategoryView
+from blog.forms import PostForm, CommentForm
 from users.forms import UserRegisterForm, ProfileUpdateForm, UserUpdateForm
 from .utils import (
     create_several_posts,
@@ -114,40 +114,17 @@ class TestViews(SetUp):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/post/post_detail.html")
 
-    def test_post_detail_view_comment_submission_valid_form(self):
-        test_post = create_post()
-        self.client.login(
-            username=self.comment_only_user.username, password=self.test_password
-        )  # Login to basic account to submit comment
-        test_post_detail_url = reverse("post-detail", args=[test_post.slug])
-        test_post_comment_url = reverse("comment-create", args=[test_post.slug])
-
-        response = self.client.post(
-            test_post_comment_url,
-            {
-                "content": "Test comment",
-                "post_slug": test_post.slug,
-            },
-        )
-        self.assertEqual(
-            response.status_code, 302
-        )  # Ensure the comment was submitted and redirected to the post (Not ideal, prefer ajax)
-        self.assertRedirects(
-            response, test_post_detail_url
-        )  # Ensure redirect to post after comment submission
-        self.assertEqual(
-            test_post.comments.count(), 1
-        )  # Ensure a comment was added to the post
-
-    def test_create_post_view_GET(self):
+    def test_post_create_view_has_correct_context_template_and_form(self):
         self.client.login(
             username=self.super_user.username, password=self.test_password
         )
         response = self.client.get(reverse("post-create"))
+        self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/post/add_post.html")
         self.assertIsInstance(response.context["form"], PostForm)
+        self.assertEqual(response.context["title"], "Create a New Post")
 
-    def test_create_post_view_POST(self):
+    def test_create_post_view(self):
         data = {
             "title": "Lorem Ipsum Post",
             "slug": "lorem-ipsum-post",
@@ -200,16 +177,19 @@ class TestViews(SetUp):
         response = self.client.post(reverse("post-create"), data=data)
         self.assertEqual(response.status_code, 403)
 
-    def test_update_post_view_GET(self):
-        test_post = create_post(author=self.comment_only_user)
+    def test_update_post_view_has_correct_context_template_and_form(self):
+        test_post = create_post(author=self.super_user)
         self.client.login(
-            username=self.comment_only_user.username, password=self.test_password
+            username=self.super_user.username, password=self.test_password
         )
-        response = self.client.get(reverse("post-update", args=[test_post.slug]))
+        post1_update_url = reverse("post-update", args=[test_post.slug])
+        response = self.client.get(post1_update_url)
+        self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/post/edit_post.html")
         self.assertIsInstance(response.context["form"], PostForm)
+        self.assertEqual(response.context["title"], f"Edit {test_post.title}")
 
-    def test_update_post_view_POST(self):
+    def test_update_post_view(self):
         test_post = create_post(author=self.comment_only_user)
         self.client.login(
             username=self.comment_only_user.username, password=self.test_password
@@ -273,6 +253,47 @@ class TestViews(SetUp):
         self.assertEqual(response.status_code, 403)  # Should be forbidden
         self.assertTrue(Post.objects.filter(id=test_post.id).exists())
 
+    def test_create_comment_view(self):
+        test_post = create_post()
+        self.client.login(
+            username=self.comment_only_user.username, password=self.test_password
+        )  # Login to basic account to submit comment
+        test_post_detail_url = reverse("post-detail", args=[test_post.slug])
+        test_post_comment_url = reverse("comment-create", args=[test_post.slug])
+
+        response = self.client.post(
+            test_post_comment_url,
+            {
+                "content": "Test comment",
+                "post_slug": test_post.slug,
+            },
+        )
+        self.assertEqual(
+            response.status_code, 302
+        )  # Ensure the comment was submitted and redirected to the post (Not ideal, prefer ajax)
+        self.assertRedirects(
+            response, test_post_detail_url
+        )  # Ensure redirect to post after comment submission
+        self.assertEqual(
+            test_post.comments.count(), 1
+        )  # Ensure a comment was added to the post
+
+    def test_update_comment_view_has_correct_context_template_and_form(self):
+        test_post = create_post(title="Edit This Post", slug="edit-this-post")
+        test_comment = create_comment(post=test_post, author=self.comment_only_user)
+        self.client.login(
+            username=self.comment_only_user.username, password=self.test_password
+        )
+        response = self.client.get(reverse("comment-update", args=[test_comment.id]))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "blog/comment/update_comment.html")
+        self.assertIsInstance(response.context["form"], CommentForm)
+        self.assertEqual(response.context["title"], f"Edit Comment #{test_comment.id}")
+        self.assertEqual(
+            response.context["description"], f"Edit Comment #{test_comment.id}"
+        )
+        self.assertEqual(response.context["comment"], test_comment)
+
     def test_update_comment_view(self):
         test_post = create_post(title="Edit This Post", slug="edit-this-post")
         test_comment = create_comment(post=test_post, author=self.comment_only_user)
@@ -306,7 +327,7 @@ class TestViews(SetUp):
         category_url = reverse("blog-category", args=[self.test_category.slug])
         response = self.client.get(category_url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/post/categories.html")
+        self.assertTemplateUsed(response, "blog/categories.html")
         self.assertEqual(response.context["category"], self.test_category)
         self.assertIsInstance(response.context["posts"][0], Post)
         self.assertEqual(response.context["posts"].count(), 1)
@@ -356,7 +377,7 @@ class TestViews(SetUp):
         # Empty page if user didn't search for anything and manually typed in the search url (get)
         response = self.client.get(reverse("blog-search"))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/post/search_posts.html")
+        self.assertTemplateUsed(response, "blog/search_posts.html")
 
     def test_search_view_anonymous(self):
         test_post = create_post()

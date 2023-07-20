@@ -170,7 +170,7 @@ class HomeView(ListView):
 
 class CategoryView(ListView):
     model = Post
-    template_name = "blog/post/categories.html"  # <app>/<model>_<viewtype>.html
+    template_name = "blog/categories.html"  # <app>/<model>_<viewtype>.html
     context_object_name = "posts"  # The default is object_list
     paginate_by = 3
 
@@ -195,7 +195,7 @@ class CategoryView(ListView):
     def get_template_names(self):
         if self.request.htmx:
             return "blog/parts/posts.html"
-        return "blog/post/categories.html"
+        return "blog/categories.html"
 
 
 class PortfolioView(ListView):
@@ -258,7 +258,7 @@ class PortfolioView(ListView):
 
 class SearchView(ListView):
     model = Post
-    template_name = "blog/post/search_posts.html"
+    template_name = "blog/search_posts.html"
     context_object_name = "posts"
     paginate_by = 10
 
@@ -376,7 +376,7 @@ class PostDeleteView(UserPassesTestMixin, DeleteView):
 class CreateCommentView(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
-    template_name = "blog/add_comment.html"
+    template_name = "blog/comment/add_comment.html"
 
     def form_valid(self, form):
         form.instance.post = Post.objects.get(slug=self.kwargs["slug"])
@@ -387,7 +387,7 @@ class CreateCommentView(LoginRequiredMixin, CreateView):
 class CommentUpdateView(LoginRequiredMixin, UpdateView):
     model = Comment
     form_class = CommentForm
-    template_name = "blog/post/update_comment.html"
+    template_name = "blog/comment/update_comment.html"
     context_object_name = "comment"
 
     def get_success_url(self):

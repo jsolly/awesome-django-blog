@@ -102,3 +102,15 @@ class TestModels(SetUp):
         self.assertEqual(
             str(comment), f"Comment '{comment.content}' by {self.test_user.username}"
         )
+
+    def test_comment_absolute_url(self):
+        test_post = create_post()
+        comment = Comment.objects.create(
+            post=test_post,
+            author=self.test_user,
+            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        )
+        self.assertEqual(
+            comment.get_absolute_url(),
+            f"/post/{test_post.slug}/",
+        )
