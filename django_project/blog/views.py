@@ -348,8 +348,11 @@ class CreateCommentView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.post = Post.objects.get(slug=self.kwargs["slug"])
         form.instance.author = self.request.user
-        response = super().form_valid(form)
-        return redirect(reverse_lazy("post-detail", kwargs = {"slug" : self.kwargs["slug"]}) + "#comments-section")
+        super().form_valid(form)
+        return redirect(
+            reverse_lazy("post-detail", kwargs={"slug": self.kwargs["slug"]})
+            + "#comments-section"
+        )
 
 
 class CommentUpdateView(LoginRequiredMixin, UpdateView):
@@ -377,7 +380,10 @@ class CommentUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         comment = form.save(commit=False)
         comment.save()
-        return redirect(reverse_lazy("post-detail", kwargs = {"slug" : self.kwargs["slug"]}) + "#comments-section")
+        return redirect(
+            reverse_lazy("post-detail", kwargs={"slug": self.kwargs["slug"]})
+            + "#comments-section"
+        )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -391,7 +397,10 @@ class CommentDeleteView(LoginRequiredMixin, View):
         comment = get_object_or_404(Comment, pk=pk)
         if comment.author == request.user:
             comment.delete()
-        return redirect(reverse_lazy("post-detail", kwargs = {"slug" : comment.post.slug}) + "#comments-section")
+        return redirect(
+            reverse_lazy("post-detail", kwargs={"slug": comment.post.slug})
+            + "#comments-section"
+        )
 
 
 def generate_gpt_input_value(request, post_id):
