@@ -62,7 +62,7 @@
   {% if post.comments.count > 0 %}
   {% for comment in post.comments.all %}
   <ul class="comments-list">
-    <li class="comment">
+    <li class="comment" id="comment">
       <div class="comment-meta">
         <small>
           <span class="comment-author">{{ comment.author }}</span>
