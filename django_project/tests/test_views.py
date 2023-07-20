@@ -312,13 +312,15 @@ class TestViews(SetUp):
             self.client.login(
                 username=self.comment_only_user.username, password=self.test_password
             )
-            # Delete the comment
             response = self.client.post(
                 reverse("comment-delete", args=[test_post.slug, test_comment.id])
             )
+            
+            expected_url = reverse("post-detail", args=[test_post.slug]) + "#comments-section"
+
             self.assertRedirects(
-                response, reverse("post-detail", args=[test_post.slug])
-            )
+                response, expected_url
+            )  # Should redirect to post detail page
             self.assertFalse(Comment.objects.filter(id=test_comment.id).exists())
 
     def test_category_view_anonymous(self):
