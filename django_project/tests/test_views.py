@@ -470,6 +470,19 @@ class TestViews(SetUp):
         self.assertEqual(self.comment_only_user.email, "test@modified.com")
         self.assertEqual(self.comment_only_user.username, "modified")
 
+    def test_profile_view_edit_invalid(self):
+        self.client.login(
+            username=self.comment_only_user.username, password=self.test_password
+        )
+        response = self.client.post(
+            reverse("profile"),
+            data={"email": "invalid", "username": ""},
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "users/profile.html")
+        self.assertIsInstance(response.context["p_form"], ProfileUpdateForm)
+        self.assertIsInstance(response.context["u_form"], UserUpdateForm)
+
     def test_login_view(self):
         response = self.client.get(reverse("login"))
         self.assertEqual(response.status_code, 200)
