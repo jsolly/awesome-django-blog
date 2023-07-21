@@ -74,10 +74,10 @@
       <div class="comment-content">{{ comment.content|safe }}</div>
       {% if comment.author == request.user %}
       <span class="comment-actions">
-        <a href="{% url 'comment-update' comment.post.slug comment.id %}" class="comment-btn comment-edit">Edit</a>
-        <form action="{% url 'comment-delete' comment.id  comment.id %}" method="POST" style="display: inline;">
+        <a href="{% url 'comment-update' comment.id %}" class="btn btn-dark comment-btn comment-edit">Edit</a>
+        <form class="comment-delete-form" method="POST" action="{% url 'comment-delete' comment.id %}" >
           {% csrf_token %}
-          <button type="submit" class="comment-delete comment-btn">Delete</button>
+          <button type="submit" class="btn btn-red comment-btn comment-delete">Delete</button>
         </form>
       </span>
       {% endif %}
@@ -90,7 +90,7 @@
 </section>
 
 <!-- create comments section-->
-{% include 'blog/post/add_comment.html' %}
+{% include 'blog/comment/add_comment.html' %}
 <!-- End of Create Comments section-->
 <!-- End of Comments Section -->
 

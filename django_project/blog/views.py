@@ -170,7 +170,7 @@ class HomeView(ListView):
 
 class CategoryView(ListView):
     model = Post
-    template_name = "blog/post/categories.html"  # <app>/<model>_<viewtype>.html
+    template_name = "blog/categories.html"  # <app>/<model>_<viewtype>.html
     context_object_name = "posts"  # The default is object_list
     paginate_by = 3
 
@@ -195,7 +195,7 @@ class CategoryView(ListView):
     def get_template_names(self):
         if self.request.htmx:
             return "blog/parts/posts.html"
-        return "blog/post/categories.html"
+        return "blog/categories.html"
 
 
 class PortfolioView(ListView):
@@ -258,7 +258,7 @@ class PortfolioView(ListView):
 
 class SearchView(ListView):
     model = Post
-    template_name = "blog/post/search_posts.html"
+    template_name = "blog/search_posts.html"
     context_object_name = "posts"
     paginate_by = 10
 
@@ -337,13 +337,25 @@ class CreatePostView(UserPassesTestMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Create a New Post"
+        context["description"] = "Create a new blog post."
         return context
+
+
+class PostDeleteView(UserPassesTestMixin, DeleteView):
+    model = Post
+    success_url = reverse_lazy("home")
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
 
 
 class CreateCommentView(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
-    template_name = "blog/post/add_comment.html"
+    template_name = "blog/add_comment.html"
 
     def form_valid(self, form):
         form.instance.post = Post.objects.get(slug=self.kwargs["slug"])
@@ -401,6 +413,41 @@ class CommentDeleteView(LoginRequiredMixin, View):
             reverse_lazy("post-detail", kwargs={"slug": comment.post.slug})
             + "#comments-section"
         )
+
+
+class CommentUpdateView(LoginRequiredMixin, UpdateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = "blog/comment/update_comment.html"
+    context_object_name = "comment"
+
+    def get_success_url(self):
+        return reverse_lazy("post-detail", kwargs={"slug": self.object.post.slug})
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def get_object(self):
+        comment_id = self.kwargs.get("comment_id")
+        comment = get_object_or_404(Comment, id=comment_id)
+        return comment
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        comment = self.get_object()
+        context["post"] = comment.post
+        context["title"] = f"Edit Comment #{comment.id}"
+        context["description"] = f"Edit Comment #{comment.id}"
+        return context
+
+
+class CommentDeleteView(LoginRequiredMixin, View):
+    def post(self, request, comment_id):
+        comment = get_object_or_404(Comment, id=comment_id)
+        if comment.author == request.user:
+            comment.delete()
+        return redirect("post-detail", slug=comment.post.slug)
 
 
 def generate_gpt_input_value(request, post_id):
@@ -486,3 +533,11 @@ class PostDeleteView(UserPassesTestMixin, DeleteView):
         post = self.get_object()
         if self.request.user == post.author:
             return True
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        post = self.get_object()
+        context["post"] = post
+        context["title"] = f"Delete {post.title}"
+        context["description"] = f"Delete {post.title} from the blog."
+        return context
