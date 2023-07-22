@@ -14,8 +14,6 @@ from blog.views import (
     SearchView,
     PortfolioView,
     StatusView,
-    CommentUpdateView,
-    CommentDeleteView,
 )
 from django_project.views import (
     works_cited_view,
@@ -31,7 +29,7 @@ from users.views import (
     MyPasswordResetDoneView,
     MyPasswordResetCompleteView,
 )
-from .utils import create_user, create_post, create_comment
+from .utils import create_user, create_post
 
 
 def get_url(url_name):
