@@ -337,7 +337,29 @@ class CreatePostView(UserPassesTestMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Create a New Post"
-        context["description"] = "Create a new blog post."
+        return context
+
+
+class PostUpdateView(UserPassesTestMixin, UpdateView):
+    model = Post
+    form_class = PostForm
+    template_name = "blog/post/edit_post.html"
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        post = self.get_object()
+        context["post"] = post
+        context["title"] = f"Edit {post.title}"
+        context["description"] = f"Edit {post.title}"
         return context
 
 
