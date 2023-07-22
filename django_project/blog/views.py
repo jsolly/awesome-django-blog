@@ -359,6 +359,7 @@ class PostUpdateView(UserPassesTestMixin, UpdateView):
         post = self.get_object()
         context["post"] = post
         context["title"] = f"Edit {post.title}"
+        context["description"] = f"Edit {post.title}"
         return context
 
 
