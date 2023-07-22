@@ -415,8 +415,7 @@ class CommentUpdateView(LoginRequiredMixin, UpdateView):
         comment = form.save(commit=False)
         comment.save()
         return redirect(
-            reverse_lazy(
-                "post-detail", kwargs={"slug": self.kwargs["slug"]})
+            reverse_lazy("post-detail", kwargs={"slug": self.kwargs["slug"]})
         )
 
     def get_context_data(self, **kwargs):
@@ -431,9 +430,7 @@ class CommentDeleteView(LoginRequiredMixin, View):
         comment = get_object_or_404(Comment, pk=pk)
         if comment.author == request.user:
             comment.delete()
-        return redirect(
-            reverse_lazy("post-detail", kwargs={"slug": comment.post.slug})
-        )
+        return redirect(reverse_lazy("post-detail", kwargs={"slug": comment.post.slug}))
 
 
 class CommentUpdateView(LoginRequiredMixin, UpdateView):
