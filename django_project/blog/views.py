@@ -433,41 +433,6 @@ class CommentDeleteView(LoginRequiredMixin, View):
         return redirect(reverse_lazy("post-detail", kwargs={"slug": comment.post.slug}))
 
 
-class CommentUpdateView(LoginRequiredMixin, UpdateView):
-    model = Comment
-    form_class = CommentForm
-    template_name = "blog/comment/update_comment.html"
-    context_object_name = "comment"
-
-    def get_success_url(self):
-        return reverse_lazy("post-detail", kwargs={"slug": self.object.post.slug})
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-    def get_object(self):
-        comment_id = self.kwargs.get("comment_id")
-        comment = get_object_or_404(Comment, id=comment_id)
-        return comment
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        comment = self.get_object()
-        context["post"] = comment.post
-        context["title"] = f"Edit Comment #{comment.id}"
-        context["description"] = f"Edit Comment #{comment.id}"
-        return context
-
-
-class CommentDeleteView(LoginRequiredMixin, View):
-    def post(self, request, comment_id):
-        comment = get_object_or_404(Comment, id=comment_id)
-        if comment.author == request.user:
-            comment.delete()
-        return redirect("post-detail", slug=comment.post.slug)
-
-
 def generate_gpt_input_value(request, post_id):
     blog_post = get_object_or_404(Post, id=post_id)
     prompt_dict = {
