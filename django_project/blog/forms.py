@@ -34,7 +34,7 @@ class PostForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(PostForm, self).__init__(*args, **kwargs)
         self.fields["category"].choices = Category.objects.all().values_list(
-            "name", "name"
+            "id", "name"
         )
 
 

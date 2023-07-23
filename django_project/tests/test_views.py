@@ -258,7 +258,9 @@ class TestViews(SetUp):
         self.client.login(
             username=self.comment_only_user.username, password=self.test_password
         )  # Login to basic account to submit comment
-        test_post_detail_url = reverse("post-detail", args=[test_post.slug])
+        test_post_detail_url = (
+            reverse("post-detail", args=[test_post.slug]) + "#comments-section"
+        )
         test_post_comment_url = reverse("comment-create", args=[test_post.slug])
 
         response = self.client.post(
@@ -307,7 +309,10 @@ class TestViews(SetUp):
             {"content": updated_content},
         )
 
-        self.assertRedirects(response, reverse("post-detail", args=[test_post.slug]))
+        self.assertRedirects(
+            response,
+            reverse("post-detail", args=[test_post.slug]),
+        )
         test_comment.refresh_from_db()
         self.assertEqual(test_comment.content, updated_content)
 
