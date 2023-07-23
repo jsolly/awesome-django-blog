@@ -21,7 +21,7 @@ plotly==5.15.0
 openai==0.27.8
 pandas==2.0.2
 scikit-learn==1.2.2
-matplotlib==3.7.1
+matplotlib==3.7.2
 tiktoken==0.4.0
 
 # Legacy dependencies for migrations
