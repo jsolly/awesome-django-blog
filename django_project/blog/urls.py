@@ -52,7 +52,7 @@ urlpatterns = [
         name="comment-update",
     ),
     path(
-        "comment/<int:comment_id>/delete",
+        "comment/<int:pk>/delete",
         CommentDeleteView.as_view(),
         name="comment-delete",
     ),

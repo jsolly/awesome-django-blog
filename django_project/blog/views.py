@@ -425,12 +425,18 @@ class CommentUpdateView(LoginRequiredMixin, UpdateView):
         return context
 
 
-class CommentDeleteView(LoginRequiredMixin, View):
-    def post(self, request, slug, pk):
-        comment = get_object_or_404(Comment, pk=pk)
-        if comment.author == request.user:
-            comment.delete()
-        return redirect(reverse_lazy("post-detail", kwargs={"slug": comment.post.slug}))
+class CommentDeleteView(LoginRequiredMixin, DeleteView):
+    model = Comment
+    context_object_name = "comment"
+    template_name = "blog/comment_confirm_delete.html"
+
+    def get_success_url(self):
+        return reverse_lazy("post-detail", kwargs={"slug": self.object.post.slug})
+
+    def delete(self, request, *args, **kwargs):
+        comment = self.get_object()
+        comment.delete()
+        return redirect(self.get_success_url())
 
 
 def generate_gpt_input_value(request, post_id):

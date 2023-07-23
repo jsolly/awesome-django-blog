@@ -75,10 +75,7 @@
       {% if comment.author == request.user %}
       <span class="comment-actions">
         <a href="{% url 'comment-update' comment.id %}" class="btn btn-dark comment-btn comment-edit">Edit</a>
-        <form class="comment-delete-form" method="POST" action="{% url 'comment-delete' comment.id %}" >
-          {% csrf_token %}
-          <button type="submit" class="btn btn-red comment-btn comment-delete">Delete</button>
-        </form>
+        <a href="{% url 'comment-delete' comment.id %}" class="btn btn-red comment-btn comment-delete">Delete</a>
       </span>
       {% endif %}
     </li>
