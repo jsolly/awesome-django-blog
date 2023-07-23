@@ -79,7 +79,7 @@ local_branch_name and branch_name can be the same
 
     $ sudo nano /etc/systemd/system/gunicorn.socket
     $ sudo nano /etc/systemd/system/gunicorn.service
-    /home/john/blogthedata/django_project/venv/bin
+    /home/john/blogthedata/venv/bin
 
     The following logs may be helpful:
 
@@ -96,10 +96,10 @@ local_branch_name and branch_name can be the same
     ```
     make sure an up-to-date pip freeze has happened
     make sure you're using the right python version
-    $ python3 -m venv venv blogthedata/django_project/venv
-    $ source blogthedata/django_project/venv/bin/activate
+    $ python3 -m venv venv blogthedata/venv
+    $ source blogthedata/venv/bin/activate
     $ python3 -m pip install --upgrade pip
-    $ python3 -m pip install -r blogthedata/django_project/requirements/requirements.txt
+    $ python3 -m pip install -r blogthedata/requirements/requirements.txt
     ```
 
 # How to generate integrity hash values
@@ -179,7 +179,7 @@ python manage.py migrate --fake blog 0011
 
 Might be related to https://code.djangoproject.com/ticket/32681 I logged this
 one https://github.com/dmpayton/django-admin-honeypot/issues/90 Add this to
-django_project/venv/lib/python3.9/site-packages/django/contrib/admin/sites.py
+venv/lib/python3.9/site-packages/django/contrib/admin/sites.py
 
 ```py
     def each_context(self, request):
