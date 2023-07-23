@@ -178,7 +178,7 @@ $ pre-commit install
   [commit:5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b](https://github.com/jsolly/blogthedata/commit/5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b))
 - ~~Custom 404 page that looks really cool. So even if your users are lost, they are still having a good time.~~ Removed in (https://github.com/jsolly/blogthedata/commit/19b3d40cc6e8b231010b0f62656eb27e0104ffd7)
 
-## Team
+## Core Contributors
 
 |                                               John Solly                                               |
 | :----------------------------------------------------------------------------------------------------: |
