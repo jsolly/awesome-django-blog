@@ -391,11 +391,12 @@ class CreateCommentView(LoginRequiredMixin, CreateView):
 class CommentUpdateView(LoginRequiredMixin, UpdateView):
     model = Comment
     form_class = CommentForm
-    template_name = "blog/post/update_comment.html"
+    template_name = "blog/comment/update_comment.html"
     context_object_name = "comment"
 
     def get_success_url(self):
-        return reverse_lazy("post-detail", kwargs={"slug": self.object.post.slug})
+        # Use the post object's slug to construct the URL for redirection
+        return reverse_lazy("post-detail", args=[self.object.post.slug])
 
     def form_invalid(self, form):
         return super().form_invalid(form)
@@ -414,15 +415,16 @@ class CommentUpdateView(LoginRequiredMixin, UpdateView):
         comment = form.save(commit=False)
         comment.save()
         return redirect(
-            reverse_lazy("post-detail", kwargs={"slug": self.kwargs["slug"]})
+            reverse_lazy("post-detail", args=[self.object.post.slug])
         )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         comment = self.get_object()
         context["post"] = comment.post
+        context["title"] = f"Edit Comment #{comment.id}"
+        context["description"] = f"Edit Comment #{comment.id}"
         return context
-
 
 class CommentDeleteView(LoginRequiredMixin, DeleteView):
     model = Comment
