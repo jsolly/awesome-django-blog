@@ -1,6 +1,5 @@
 [tool.ruff]
 exclude = [
-    "*/venv/*",
     "apps.py",
     "*/settings/*",
     ]
