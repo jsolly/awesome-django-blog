@@ -6,12 +6,12 @@ django-robots==5.0
 django-simple-captcha==0.5.18
 feedparser==6.0.10
 filetype==1.2.0
-Pillow==9.5.0
+Pillow==10.0.0
 psycopg[binary]==3.1.9
 psycopg==3.1.9
 psutil==5.9.5
 python-dotenv==1.0.0
-readtime==2.0.0
+readtime==3.0.0
 requests==2.31.0
 
 # For OpenAI
@@ -28,17 +28,17 @@ tiktoken==0.4.0
 django-ckeditor==6.4.2
 
 # Development dependencies
-django-coverage-plugin==3.0.0
+django-coverage-plugin==3.1.0
 coverage==7.2.7
 black==23.3.0
 django-fastdev==1.7.3
 pytest==7.4.0
 pre-commit==3.3.3
 django-livereload-server==0.4
-ruff==0.0.278
+ruff==0.0.280
 
 # Production dependencies
-gunicorn==20.1.0
+gunicorn==21.2.0
 whitenoise==6.5.0
 django-sri==0.6.0
 django-csp==3.7
