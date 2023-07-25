@@ -28,7 +28,7 @@ tiktoken==0.4.0
 django-ckeditor==6.4.2
 
 # Development dependencies
-django-coverage-plugin==3.0.0
+django-coverage-plugin==3.1.0
 coverage==7.2.7
 black==23.3.0
 django-fastdev==1.7.3
