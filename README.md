@@ -180,10 +180,10 @@ $ pre-commit install
 
 ## Core Contributors
 
-|                                               John Solly                                               |
-| :----------------------------------------------------------------------------------------------------: |
-|   [![jsolly](https://avatars1.githubusercontent.com/u/9572232?v=3&s=200)](https://github.com/jsolly)   |
-| <a href="https://github.com/jsolly" rel="noopener noreferrer" target="_blank"> `github.com/jsolly`</a> |
+|                                               John Solly                                               |                                                Praise Dike                                                |
+| :----------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------: |
+|   [![jsolly](https://avatars1.githubusercontent.com/u/9572232?v=3&s=200)](https://github.com/jsolly)   | [![freedompraise](https://avatars1.githubusercontent.com/u/70984186?v=4&s=200)](https://github.com/freedompraise) |
+| <a href="https://github.com/jsolly" rel="noopener noreferrer" target="_blank"> `github.com/jsolly`</a> | <a href="https://github.com/freedompraise" rel="noopener noreferrer" target="_blank"> `github.com/freedompraise`</a> |
 
 ---
 
