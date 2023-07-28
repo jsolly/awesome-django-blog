@@ -25,7 +25,7 @@ matplotlib==3.7.2
 tiktoken==0.4.0
 
 # Legacy dependencies for migrations
-django-ckeditor==6.4.2
+django-ckeditor==6.7.0
 
 # Development dependencies
 django-coverage-plugin==3.1.0
