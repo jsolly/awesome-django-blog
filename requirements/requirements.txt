@@ -36,6 +36,7 @@ pytest==7.4.0
 pre-commit==3.3.3
 django-livereload-server==0.4
 ruff==0.0.280
+python-dotenv==1.0.0
 
 # Production dependencies
 gunicorn==21.2.0
