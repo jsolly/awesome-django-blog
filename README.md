@@ -1,13 +1,13 @@
-[![blogthedata-tests](https://github.com/jsolly/blogthedata/actions/workflows/django-test-deploy-master.yaml/badge.svg)](https://github.com/jsolly/blogthedata/actions/workflows/django-test-deploy-master.yaml)
-[![Coverage Status](https://coveralls.io/repos/github/jsolly/blogthedata/badge.svg?branch=master&service=github)](https://coveralls.io/github/jsolly/blogthedata?branch=master)
+[![awesome-django-blog-tests](https://github.com/jsolly/awesome-django-blog/actions/workflows/django-test-deploy-master.yaml/badge.svg)](https://github.com/jsolly/awesome-django-blog/actions/workflows/django-test-deploy-master.yaml)
+[![Coverage Status](https://coveralls.io/repos/github/jsolly/awesome-django-blog/badge.svg?branch=master&service=github)](https://coveralls.io/github/jsolly/awesome-django-blog?branch=master)
 ![CodeStyle](https://img.shields.io/badge/code%20style-black-000000.svg)
 ![Linting](https://img.shields.io/badge/linting-ruff-orange)
 [![Python Version](https://img.shields.io/badge/python-3.10-brightgreen.svg)](https://www.python.org/downloads/)
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
-# blogthedata.com
+# Awesome Django Blog
 
-Welcome to my Django blog app! This app is a fully functional blogging platform that I built using the Django web framework. It includes features such as creating and managing blog posts, comments, and categories, as well as user authentication and authorization. The app is designed to be easily integrated into any existing Django project or can be used as a standalone app. In this readme, you will find instructions for installation, configuration, and usage that I have provided. I have also included information about the app's features and troubleshooting tips that I have gathered. I hope you find this app useful and I welcome any contributions or suggestions for improvement.
+Welcome to my Django blog app! This app is a fully functional blogging platform I built using the Django web framework. It includes features such as creating and managing blog posts, comments, and categories, as well as user authentication and authorization. The app is designed to be easily integrated into any existing Django project or can be used as a standalone app. In this readme, you will find instructions for installation, configuration, and usage that I have provided. I have also included information about the app's features and troubleshooting tips that I have gathered. I hope you find this app useful, and I welcome any contributions or suggestions for improvement.
 
 ![LighthouseScore](https://github.com/jsolly/jsolly/blob/main/assets/lighthouseStats.svg)
 
@@ -28,16 +28,16 @@ Welcome to my Django blog app! This app is a fully functional blogging platform 
 
 ```shell
 # first install Python 3.10.x (have not tested newer versions, but they could work)
-git clone https://github.com/jsolly/blogthedata.git
-python3 -m venv blogthedata/venv
-source blogthedata/venv/bin/activate
+git clone https://github.com/jsolly/awesome-django-blog.git
+python3 -m venv awesome-django-blog/venv
+source awesome-django-blog/venv/bin/activate
 pip install --upgrade pip
-python3 -m pip install -r blogthedata/requirements.txt
+python3 -m pip install -r awesome-django-blog/requirements.txt
 ```
 
 ## Development
 
-First, rename 'blogthedata/sample.env' to .env and change the values to match your setup
+First, rename 'awesome-django-blog/sample.env' to .env and change the values to match your setup
    (database passwords, secret keys, etc)
 
 By default USE_SQLITE is set to `true` if you want to use something else like postgres, set this to False and modify the DJANGO_DB_SETTINGS variable in the file.
@@ -81,7 +81,7 @@ ruff --config ./config/pyproject.toml django_project
 black --config ./config/pyproject.toml django_project
 ```
 
-Also see the [actions tab](https://github.com/jsolly/blogthedata/actions)
+Also see the [actions tab](https://github.com/jsolly/awesome-django-blog/actions)
 to see if everything is passing.
 
 ### Pre-commit Hooks
@@ -89,7 +89,7 @@ to see if everything is passing.
 If there are any Ruff failures (badly linted code), the build will fail, so please make sure you have the pre-commit hook installed.
 
 ```
-$ cd blogthedata/config
+$ cd awesome-django-blog/config
 $ pre-commit install
 ```
 
@@ -148,17 +148,17 @@ $ pre-commit install
 
 ## Depreciated Features
 
-- ~~Leaflet.js and OpenLayers maps 🗺~~ (Removed in https://github.com/jsolly/blogthedata/pull/246)
+- ~~Leaflet.js and OpenLayers maps 🗺~~ (Removed in https://github.com/jsolly/awesome-django-blog/pull/246)
 - ~~Honeypot Admin page to automatically block IPs trying to login with an admin account~~ (Removed in
-  https://github.com/jsolly/blogthedata/pull/105)
-- ~~Ko-Fi donation button ☕️~~ (removed in https://github.com/jsolly/blogthedata/commit/c857bb7599836c614aff523756bbf1381e0dd948)
+  https://github.com/jsolly/awesome-django-blog/pull/105)
+- ~~Ko-Fi donation button ☕️~~ (removed in https://github.com/jsolly/awesome-django-blog/commit/c857bb7599836c614aff523756bbf1381e0dd948)
 - ~~Post views and likes~~ (Removed in
-  https://github.com/jsolly/blogthedata/pull/77)
-- ~~Newsletter Sign up 🗞~~ (removed in https://github.com/jsolly/blogthedata/pull/140)
+  https://github.com/jsolly/awesome-django-blog/pull/77)
+- ~~Newsletter Sign up 🗞~~ (removed in https://github.com/jsolly/awesome-django-blog/pull/140)
 - ~~Github Integration to show active issue backlog without leaving blog~~ (removed
-  in https://github.com/jsolly/blogthedata/pull/121)
-  [commit:5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b](https://github.com/jsolly/blogthedata/commit/5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b))
-- ~~Custom 404 page that looks really cool. So even if your users are lost, they are still having a good time.~~ Removed in (https://github.com/jsolly/blogthedata/commit/19b3d40cc6e8b231010b0f62656eb27e0104ffd7)
+  in https://github.com/jsolly/awesome-django-blog/pull/121)
+  [commit:5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b](https://github.com/jsolly/awesome-django-blog/commit/5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b))
+- ~~Custom 404 page that looks really cool. So even if your users are lost, they are still having a good time.~~ Removed in (https://github.com/jsolly/awesome-django-blog/commit/19b3d40cc6e8b231010b0f62656eb27e0104ffd7)
 
 ## Core Contributors
 
