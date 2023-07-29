@@ -18,9 +18,9 @@ Welcome to my Django blog app! This app is a fully functional blogging platform 
 ## Table of Contents
 
 - [Installation](#installation)
-- [Setup](#setup)
+- [Development](#development)
 - [Features](#features)
-- [Team](#team)
+- [Core Contributors](#core-contributors)
 - [Support](#support)
 - [License](#license)
 
