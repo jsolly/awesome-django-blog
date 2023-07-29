@@ -29,10 +29,11 @@ Welcome to my Django blog app! This app is a fully functional blogging platform 
 ```shell
 # first install Python 3.10.x (have not tested newer versions, but they could work)
 git clone https://github.com/jsolly/awesome-django-blog.git
-python3 -m venv awesome-django-blog/venv
-source awesome-django-blog/venv/bin/activate
+cd awesome-django-blog
+python3 -m venv venv
+source venv/bin/activate
 pip install --upgrade pip
-python3 -m pip install -r awesome-django-blog/requirements.txt
+python3 -m pip install -r requirements.txt
 ```
 
 ## Development
