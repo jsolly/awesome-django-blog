@@ -35,30 +35,12 @@ $ pip install --upgrade pip
 $ python3 -m pip install -r blogthedata/requirements.txt
 ```
 
-## Setup
+## Development
 
-### Development/Production Database
-
-1. See commented out Database section in
-   [django_project/settings/dev.py](https://github.com/jsolly/blogthedata/blob/master/django_project/django_project/settings/dev.py)
-   to use sqllite database or postgres. If you're on MacOS, there's a really handy app called [postgres.app](https://postgresapp.com/)
-
-```shell
-$ sudo service postgreSQL start # If you're on Linux (Open postgres.app if you're on MacOS)
-$ sudo -U postgres psql
-postgres=# CREATE USER <username> WITH PASSWORD '<password>;
-postgres=# ALTER ROLE <username> SET client_encoding TO 'utf8';
-postgres=# ALTER ROLE <username> SET default_transaction_isolation TO 'read committed';
-postgres=# ALTER ROLE <username> SET timezone TO 'UTC';
-postgres=# CREATE DATABASE <database_name> WITH OWNER <username>;
-postgres=# \c <database_name>
-# type <exit> and hit enter to go back to the terminal
-$ cd django_project
-$ python3 manage.py migrate --settings=django_project.settings.prod # or dev
-```
-
-2. rename 'blogthedata/config/sample.env' to .env and change the values to match your setup
+First, rename 'blogthedata/sample.env' to .env and change the values to match your setup
    (database passwords, secret keys, etc)
+
+By default USE_SQLITE is set to `true` if you want to use something else like postgres, set this to False and modify the DJANGO_DB_SETTINGS variable in the file.
 
 ```shell
 $ python3 manage.py runserver
@@ -70,30 +52,30 @@ $ python3 manage.py runserver
 
 2 - Add a new site with the following values: - Domain name: 127.0.0.1:8000 - Display name: 127.0.0.1:8000
 
-If you are running on production with a domain, you can add that, too. Here is a screenshot of my sites configuration:
+Here is a screenshot of my sites configuration:
 
-3 - Now go into your settings.dev file and change the SITE_ID to the ID of the site you just created. It should be 1 if you haven't created any other sites. The SITE_ID for settings.prod should be 2.
+3 - Now go into your settings.dev file and change the SITE_ID to the ID of the site you just created. It should be 1 if you have yet to create any other sites.
 
-### Run Test Coverage
+### Coverage
 
 ```shell
 $ coverage run --rcfile=config/.coveragerc -m pytest django_project
 $ coverage report -m --skip-covered --rcfile=config/.coveragerc
 ```
 
-### Run Tests
+### Tests
 
 ```shell
 $ pytest django_project
 ```
 
-### Lint Code
+### Linting
 
 ```shell
 $ ruff --config ./config/pyproject.toml django_project
 ```
 
-### Format Code
+### Formating
 
 ```shell
 $ black --config ./config/pyproject.toml django_project
@@ -104,7 +86,7 @@ to see if everything is passing.
 
 ### Pre-commit Hooks
 
-If there are any Ruff failures (badly linted code), the build will fail, so ensure you have the pre-commit hook installed.
+If there are any Ruff failures (badly linted code), the build will fail, so please make sure you have the pre-commit hook installed.
 
 ```
 $ cd blogthedata/config
