@@ -38,7 +38,7 @@ jobs:
           source venv/bin/activate
           pip install --upgrade pip
           pip install wheel
-          pip install -r requirements/requirements.txt
+          pip install -r requirements.txt
 
       - name: lint-with-ruff
         run: |
