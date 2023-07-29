@@ -28,11 +28,11 @@ Welcome to my Django blog app! This app is a fully functional blogging platform 
 
 ```shell
 # first install Python 3.10.x (have not tested newer versions, but they could work)
-$ git clone https://github.com/jsolly/blogthedata.git
-$ python3 -m venv blogthedata/venv
-$ source blogthedata/venv/bin/activate
-$ pip install --upgrade pip
-$ python3 -m pip install -r blogthedata/requirements.txt
+git clone https://github.com/jsolly/blogthedata.git
+python3 -m venv blogthedata/venv
+source blogthedata/venv/bin/activate
+pip install --upgrade pip
+python3 -m pip install -r blogthedata/requirements.txt
 ```
 
 ## Development
@@ -43,7 +43,7 @@ First, rename 'blogthedata/sample.env' to .env and change the values to match yo
 By default USE_SQLITE is set to `true` if you want to use something else like postgres, set this to False and modify the DJANGO_DB_SETTINGS variable in the file.
 
 ```shell
-$ python3 manage.py runserver
+python3 manage.py runserver
 ```
 
 ### Configure Django Sites Framework
@@ -59,26 +59,26 @@ Here is a screenshot of my sites configuration:
 ### Coverage
 
 ```shell
-$ coverage run --rcfile=config/.coveragerc -m pytest django_project
-$ coverage report -m --skip-covered --rcfile=config/.coveragerc
+coverage run --rcfile=config/.coveragerc -m pytest django_project
+coverage report -m --skip-covered --rcfile=config/.coveragerc
 ```
 
 ### Tests
 
 ```shell
-$ pytest django_project
+pytest django_project
 ```
 
 ### Linting
 
 ```shell
-$ ruff --config ./config/pyproject.toml django_project
+ruff --config ./config/pyproject.toml django_project
 ```
 
 ### Formating
 
 ```shell
-$ black --config ./config/pyproject.toml django_project
+black --config ./config/pyproject.toml django_project
 ```
 
 Also see the [actions tab](https://github.com/jsolly/blogthedata/actions)
