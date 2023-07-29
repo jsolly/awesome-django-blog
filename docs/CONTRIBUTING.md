@@ -39,7 +39,7 @@ Want to work on this with me? DM me
 
 - **Option 2**
   - 👯 Clone to your local machine using:
-    `https://github.com/jsolly/blogthedata.git`
+    `https://github.com/jsolly/awesome-django-blog.git`
 
 ## Step 2
 
@@ -48,5 +48,5 @@ Want to work on this with me? DM me
 ## Step 3
 
 - 🔃 Create a new pull request using:
-  <a href="https://github.com/jsolly/blogthedata/compare" rel="noopener noreferrer" target="_blank">
-  `https://github.com/jsolly/blogthedata/compare`</a>.
+  <a href="https://github.com/jsolly/awesome-django-blog/compare" rel="noopener noreferrer" target="_blank">
+  `https://github.com/jsolly/awesome-django-blog/compare`</a>.
