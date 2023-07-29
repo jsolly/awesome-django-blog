@@ -27,6 +27,7 @@ import psycopg
 import psutil
 import shutil
 from users.models import User
+from users.utils import handle_no_permission
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 ez_logger = logging.getLogger("ezra_logger")
@@ -386,6 +387,9 @@ class CreateCommentView(LoginRequiredMixin, CreateView):
             reverse_lazy("post-detail", kwargs={"slug": self.kwargs["slug"]})
             + "#comments-section"
         )
+
+    def handle_no_permission(self):
+        return handle_no_permission(self.request, slug=self.kwargs["slug"])
 
 
 class CommentUpdateView(LoginRequiredMixin, UpdateView):
