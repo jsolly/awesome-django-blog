@@ -20,6 +20,6 @@ data/
 # MacOS
 .DS_Store
 
-#Django
+# Application Files
 app/tests
 app/logs
