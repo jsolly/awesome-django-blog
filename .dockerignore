@@ -22,3 +22,4 @@ data/
 
 #Django
 app/tests
+app/logs
