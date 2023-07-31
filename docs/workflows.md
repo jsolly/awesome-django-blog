@@ -11,7 +11,7 @@
 ### Access the production server
 
     ```
-    $ ssh <username>@<ip_address>
+    ssh john@198.74.48.211
     ```
 
 ### Pull changes from github in prod
@@ -39,7 +39,8 @@ local_branch_name and branch_name can be the same
     postgres=# CREATE DATABASE blogthedata;
     postgres=# exit
     $ psql blogthedata < ~/Documents/code/blogthedata/backups/blogthedata_db_DD_MM_YYYY.sql
-    $ scp -r john@198.74.48.211:~/blogthedata/django_project/media ~/Documents/code/blogthedata/django_project # Optionally copy media folder over (to get uploaded images)
+    # Optionally copy media folder over (to get uploaded images)
+    $ scp -r john@198.74.48.211:~/blogthedata/django_project/media ~/Documents/code/blogthedata/django_project 
     ```
 
 ### useful commands and paths
@@ -89,17 +90,6 @@ local_branch_name and branch_name can be the same
     Check the Gunicorn application logs by typing: sudo journalctl -u gunicorn
     Check the Gunicorn socket logs by typing: sudo journalctl -u gunicorn.socket
 
-    ```
-
-### Create new venv
-
-    ```
-    make sure an up-to-date pip freeze has happened
-    make sure you're using the right python version
-    $ python3 -m venv venv blogthedata/venv
-    $ source blogthedata/venv/bin/activate
-    $ python3 -m pip install --upgrade pip
-    $ python3 -m pip install -r blogthedata/requirements/requirements.txt
     ```
 
 # How to generate integrity hash values
@@ -152,21 +142,6 @@ python manage.py migrate --fake blog 0011
     psql blogthedata < blogthedata_db_5_5_22.sql
     #### If that doesn't work, try
     sudo -u postgres psql blogthedata < blogthedata_db_5_5_22.sql
-    ```
-
-### Upgrade django
-
-    ```
-    - Check for depreciations and make sure unit tests are passing
-    python3 -Wa manage.py test
-    - Freeze dependencies
-    pip freeze > requirements_5_4_22.txt
-    - Upgrade
-    pip install Django==3.2.13
-    - Re-run unit tests
-    - commit dependencies to source control
-    - use dependencies to upgrade prod
-    pip install -r requirements_5_4_22.txt
     ```
 
 ### Backup Prod
@@ -252,7 +227,6 @@ https://prismjs.com/download.html#themes=prism-dark&languages=markup+css+clike+j
 -->
 
 ## Misc
-
 env EDITOR=nano crontab -e
 
 ## Fix Coveralls Badge updating issue
