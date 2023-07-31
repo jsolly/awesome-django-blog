@@ -1,4 +1,4 @@
-FROM python:3.8.17-alpine3.18
+FROM python:3.11.4-alpine3.18
 LABEL maintainer="jsolly"
 
 # Make sure Python output is sent straight to terminal
@@ -13,7 +13,7 @@ EXPOSE 8000
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     /py/bin/pip install -r /requirements.txt && \
-    adduser -disabled-password --no-create-home app && \
+    adduser -disabled-password --no-create-home app
 
 ENV PATH="/py/bin:$PATH"
 
