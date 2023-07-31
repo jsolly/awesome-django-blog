@@ -1,4 +1,4 @@
-FROM python:3.11.4-alpine3.18
+FROM python:3.11-slim
 LABEL maintainer="jsolly"
 
 # Make sure Python output is sent straight to terminal
