@@ -11,7 +11,7 @@
 ### Access the production server
 
     ```
-    $ ssh john@198.74.48.211
+    ssh john@198.74.48.211
     ```
 
 ### Pull changes from github in prod
@@ -39,7 +39,8 @@ local_branch_name and branch_name can be the same
     postgres=# CREATE DATABASE blogthedata;
     postgres=# exit
     $ psql blogthedata < ~/Documents/code/blogthedata/backups/blogthedata_db_DD_MM_YYYY.sql
-    $ scp -r john@198.74.48.211:~/blogthedata/django_project/media ~/Documents/code/blogthedata/django_project # Optionally copy media folder over (to get uploaded images)
+    # Optionally copy media folder over (to get uploaded images)
+    $ scp -r john@198.74.48.211:~/blogthedata/django_project/media ~/Documents/code/blogthedata/django_project 
     ```
 
 ### useful commands and paths
