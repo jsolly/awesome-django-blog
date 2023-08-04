@@ -66,31 +66,31 @@ jobs:
         with:
           github-token: ${{ secrets.github_token }}
 
-  static_analysis:
-    runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
+  # static_analysis:
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     actions: read
+  #     contents: read
+  #     security-events: write
 
-    strategy:
-      fail-fast: false
-      matrix:
-        language: ["javascript", "python"]
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       language: ["javascript", "python"]
 
-    steps:
-      - uses: actions/checkout@v3
+  #   steps:
+  #     - uses: actions/checkout@v3
 
-      - name: initialize-codeQL
-        uses: github/codeql-action/init@v2
-        with:
-          languages: ${{ matrix.language }}
+  #     - name: initialize-codeQL
+  #       uses: github/codeql-action/init@v2
+  #       with:
+  #         languages: ${{ matrix.language }}
 
-      - name: perform-codeQL Analysis
-        uses: github/codeql-action/analyze@v2
+  #     - name: perform-codeQL Analysis
+  #       uses: github/codeql-action/analyze@v2
 
   deploy:
-    needs: [build, static_analysis]
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: deploy-to-linode

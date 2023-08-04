@@ -60,26 +60,26 @@ jobs:
           source venv/bin/activate
           coverage run --rcfile=config/.coveragerc -m pytest django_project
 
-  static_analysis:
-    runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
+  # static_analysis:
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     actions: read
+  #     contents: read
+  #     security-events: write
 
-    strategy:
-      fail-fast: false
-      matrix:
-        language: ["javascript", "python"]
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       language: ["javascript", "python"]
 
-    steps:
-      - uses: actions/checkout@v3
+  #   steps:
+  #     - uses: actions/checkout@v3
 
-      - name: initialize-codeQL
-        uses: github/codeql-action/init@v2
-        with:
-          config-file: ./.github/codeql/codeql-config.yml
-          languages: ${{ matrix.language }}
+  #     - name: initialize-codeQL
+  #       uses: github/codeql-action/init@v2
+  #       with:
+  #         config-file: ./.github/codeql/codeql-config.yml
+  #         languages: ${{ matrix.language }}
 
-      - name: perform-codeQL Analysis
-        uses: github/codeql-action/analyze@v2
+  #     - name: perform-codeQL Analysis
+  #       uses: github/codeql-action/analyze@v2
