@@ -57,34 +57,36 @@
 <!-- Comments Section-->
 <section id="comments-section" class="content-section .sml-margin-top-bottom">
   <h2>Comments</h2>
-  {% if post.comments.count > 0 %}
-  {% for comment in post.comments.all %}
-  <ul class="comments-list">
-    <li class="comment">
-      <div class="comment-meta">
-        <small>
-          <span class="comment-author">{{ comment.author }}</span>
-          <span class="comment-date">
-            {{ comment.date_posted|date:"F d, Y" }}
-          </span>
-        </small>
-      </div>
-      <div class="comment-content">{{ comment.content|safe }}</div>
-      {% if comment.author == request.user %}
-      <span class="comment-actions">
-        <a href="{% url 'comment-update' comment.id %}" class="btn btn-dark comment-btn comment-edit">Edit</a>
-        <form class="comment-delete-form" method="POST" action="{% url 'comment-delete' comment.id %}" >
-          {% csrf_token %}
-          <button type="submit" class="btn btn-red comment-btn comment-delete">Delete</button>
-        </form>
-      </span>
-      {% endif %}
-    </li>
-  </ul>
-  {% endfor %}
-  {% else %}
-  <p class="post-date sml-margin-top-bottom">No comments yet.</p>
-  {% endif %}
+  <div id="comments" hx-get="{% url 'post-detail' slug=post.slug %} #comments-section">
+    {% if post.comments.count > 0 %}
+    <ul class="comments-list">
+      {% for comment in post.comments.all %}
+      <li class="comment">
+        <div class="comment-meta">
+          <small>
+            <span class="comment-author">{{ comment.author }}</span>
+            <span class="comment-date">
+              {{ comment.date_posted|date:"F d, Y" }}
+            </span>
+          </small>
+        </div>
+        <div class="comment-content">{{ comment.content|safe }}</div>
+        {% if comment.author == request.user %}
+        <span class="comment-actions">
+          <a href="{% url 'comment-update' comment.id %}" class="btn btn-dark comment-btn comment-edit">Edit</a>
+          <form class="comment-delete-form" method="POST" action="{% url 'comment-delete' comment.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-red comment-btn comment-delete">Delete</button>
+          </form>
+        </span>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="post-date sml-margin-top-bottom">No comments yet.</p>
+    {% endif %}
+  </div>
 </section>
 
 <!-- create comments section-->
