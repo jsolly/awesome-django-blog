@@ -8,7 +8,7 @@
   hx-post="{% url 'comment-create' slug=post.slug %}"
   hx-swap="outerHTML"
   hx-trigger="submit"
-  hx-target="#comments-section"
+  hx-target="#new-comments-placeholder"
   >
     {% csrf_token %}
     {{ comment_form.media }}

@@ -57,7 +57,6 @@
 <!-- Comments Section-->
 <section id="comments-section" class="content-section .sml-margin-top-bottom">
   <h2>Comments</h2>
-  <div id="comments" hx-get="{% url 'post-detail' slug=post.slug %} #comments-section">
     {% if post.comments.count > 0 %}
 
     <ul class="comments-list">
@@ -69,7 +68,8 @@
     {% else %}
     <p class="post-date sml-margin-top-bottom">No comments yet.</p>
     {% endif %}
-  </div>
+
+    <div id="new-comments-placeholder" hx-get="{% url 'post-detail' slug=post.slug %}"#comments-section ></div>
 </section>
 
 <!-- create comments section-->
