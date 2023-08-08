@@ -59,7 +59,13 @@
   <h2>Comments</h2>
   <div id="comments" hx-get="{% url 'post-detail' slug=post.slug %} #comments-section">
     {% if post.comments.count > 0 %}
-    {% include 'blog/comment/comment_list.html' %}
+
+    <ul class="comments-list">
+      {% for comment in post.comments.all %}
+        {% include 'blog/comment/comment_item.html' %}
+      {% endfor %}
+    </ul>  
+
     {% else %}
     <p class="post-date sml-margin-top-bottom">No comments yet.</p>
     {% endif %}
