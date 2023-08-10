@@ -159,7 +159,16 @@ $ pre-commit install
   [commit:5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b](https://github.com/jsolly/awesome-django-blog/commit/5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b))
 - ~~Custom 404 page that looks really cool. So even if your users are lost, they are still having a good time.~~ Removed in (https://github.com/jsolly/awesome-django-blog/commit/19b3d40cc6e8b231010b0f62656eb27e0104ffd7)
 
-## Core Contributors
+## Contributing
+We ♥️ our contributors.
+
+📕 We expect everyone participating in the community to abide by our [Code of Conduct](https://github.com/jsolly/awesome-django-blog/blob/master/docs/CODE_OF_CONDUCT.md). Please read and follow it. <br>
+🤝 If you'd like to contribute, start by reading our [Contribution Guide](https://github.com/jsolly/awesome-django-blog/blob/master/docs/CONTRIBUTING.md).<br>
+👾 Explore some [good first issues](https://github.com/jsolly/awesome-django-blog/labels/good_first_issue).<br>
+
+Let's build great software together.
+
+### Top Contributors
 
 |                                               John Solly                                               |                                                Praise Dike                                                |
 | :----------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------: |
