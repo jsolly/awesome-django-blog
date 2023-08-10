@@ -24,11 +24,7 @@ from .views import (
 urlpatterns = [
     path("status/", cache_page(60)(StatusView.as_view()), name="status"),
     path("answer-with-gpt/", answer_question_with_GPT, name="answer-with-gpt"),
-    path(
-        "generate-with-gpt/<int:post_id>/",
-        generate_gpt_input_value,
-        name="generate-with-gpt",
-    ),
+    path("generate-with-gpt/", generate_gpt_input_value, name="generate-with-gpt"),
     path("rss/", blogFeed(), name="rss"),
     path("atom/", atomFeed(), name="atom"),
     path("ckeditor5/", include("django_ckeditor_5.urls")),

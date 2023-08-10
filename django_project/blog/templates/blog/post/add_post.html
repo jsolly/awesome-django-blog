@@ -9,6 +9,8 @@
 {% block content %}
 <h1>Add Post</h1>
 
+{% include 'blog/parts/gpt_title_slug_generation.html' %}
+
 <br />
 <div class="form-group">
   <form method="POST" enctype="multipart/form-data">
