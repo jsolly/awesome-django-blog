@@ -438,9 +438,12 @@ def generate_gpt_input_value(request):
         )
         return html.escape(completion)
 
-    def generate_input_field(prompt, max_tokens):
+    def generate_input_field(prompt, trigger, max_tokens):
         completion = get_safe_completion(prompt, max_tokens)
         safe_completion = html.escape(completion)
+        if trigger == "generate-slug":
+            # ensure slug is lowercase and replace spaces with hyphens
+            safe_completion = safe_completion.lower().replace(" ", "-")
         return f"<input autofocus='' id='id_gpt_input' maxlength='250' name='gpt_input' required_type='text' value='{safe_completion}'>"
 
     """
@@ -473,7 +476,9 @@ def generate_gpt_input_value(request):
 
     prompt = f"No pretext or explanations. Write a concise website {prompt_dict[trigger]['target']} for the following blog post {prompt_dict[trigger]['source']}: {content}"
 
-    new_content = generate_input_field(prompt, prompt_dict[trigger]["max_tokens"])
+    new_content = generate_input_field(
+        prompt, trigger, prompt_dict[trigger]["max_tokens"]
+    )
     return HttpResponse(new_content)
 
 
