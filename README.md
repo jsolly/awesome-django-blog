@@ -7,9 +7,7 @@
 
 # Awesome Django Blog
 
-Welcome to my Django blog app! This app is a fully functional blogging platform I built using the Django web framework. It includes features such as creating and managing blog posts, comments, and categories, as well as user authentication and authorization. The app is designed to be easily integrated into any existing Django project or can be used as a standalone app. In this readme, you will find instructions for installation, configuration, and usage that I have provided. I have also included information about the app's features and troubleshooting tips that I have gathered. I hope you find this app useful, and I welcome any contributions or suggestions for improvement.
-
-![LighthouseScore](https://github.com/jsolly/jsolly/blob/main/assets/lighthouseStats.svg)
+Awesome-django-blog is a fully functional blogging platform built using the Django web framework. It includes features such as creating and managing blog posts, comments, and categories, as well as user authentication and authorization.
 
 ![desktopScreenshot](https://user-images.githubusercontent.com/9572232/183277781-adea9d73-6dc0-4971-ac3a-b14e2131d6f3.jpeg)
 
@@ -32,13 +30,12 @@ git clone https://github.com/jsolly/awesome-django-blog.git
 cd awesome-django-blog
 python3 -m venv venv
 source venv/bin/activate
-pip install --upgrade pip
-python3 -m pip install -r requirements.txt
+pip install --upgrade pip && python3 -m pip install -r requirements.txt
 ```
 
 ## Development
 
-First, rename 'awesome-django-blog/sample.env' to .env and change the values to match your setup
+First, rename 'awesome-django-blog/sample.env' to .env and change the values to match your setup.
    (database passwords, secret keys, etc)
 
 By default USE_SQLITE is set to `true` if you want to use something else like postgres, set this to False and modify the DJANGO_DB_SETTINGS variable in the file.
@@ -186,3 +183,5 @@ Reach out to me at one of the following places!
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
+
+![LighthouseScore](https://github.com/jsolly/jsolly/blob/main/assets/lighthouseStats.svg)
