@@ -542,37 +542,71 @@ class TestViews(SetUp):
 
     @patch("openai.Completion.create")
     def test_generate_gpt_input_title(self, mock_create):
-        test_post = create_post()
         mock_create.return_value = {"choices": [{"text": "mocked response"}]}
         headers = {"HTTP_HX-Trigger": "generate-title"}
-        response = self.client.post(f"/generate-with-gpt/{test_post.id}/", **headers)
+        response = self.client.post(
+            "/generate-with-gpt/", data={"content": "my test blog content"}, **headers
+        )
         self.assertEqual(response.status_code, 200)
         self.assertIn("mocked response", response.content.decode())
 
+    def test_generate_gpt_input_title_empty(self):
+        headers = {"HTTP_HX-Trigger": "generate-title"}
+        response = self.client.post(
+            "/generate-with-gpt/", data={"content": ""}, **headers
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(
+            "No content found in the post content field", response.content.decode()
+        )
+
     @patch("openai.Completion.create")
     def test_generate_gpt_input_slug(self, mock_create):
-        test_post = create_post()
         mock_create.return_value = {"choices": [{"text": "mocked-response"}]}
         headers = {"HTTP_HX-Trigger": "generate-slug"}
         response = self.client.post(
-            f"/generate-with-gpt/{test_post.id}/",
-            data={"gpt_input": "my test blog title"},
+            "/generate-with-gpt/",
+            data={"title": "my test blog title"},
             **headers,
         )
         self.assertEqual(response.status_code, 200)
         self.assertIn("mocked-response", response.content.decode())
 
+    def test_generate_gpt_input_slug_empty(self):
+        headers = {"HTTP_HX-Trigger": "generate-slug"}
+        response = self.client.post(
+            "/generate-with-gpt/",
+            data={"title": ""},
+            **headers,
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(
+            "No content found in the post title field", response.content.decode()
+        )
+
     @patch("openai.Completion.create")
     def test_generate_gpt_input_metadesc(self, mock_create):
-        test_post = create_post()
         mock_create.return_value = {"choices": [{"text": "mocked response"}]}
         headers = {"HTTP_HX-Trigger": "generate-metadesc"}
         response = self.client.post(
-            f"/generate-with-gpt/{test_post.id}/",
+            "/generate-with-gpt/",
+            data={"content": "my test blog content"},
             **headers,
         )
         self.assertEqual(response.status_code, 200)
         self.assertIn("mocked response", response.content.decode())
+
+    def test_generate_gpt_input_metadesc_empty(self):
+        headers = {"HTTP_HX-Trigger": "generate-metadesc"}
+        response = self.client.post(
+            "/generate-with-gpt/",
+            data={"content": ""},
+            **headers,
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(
+            "No content found in the post content field", response.content.decode()
+        )
 
     @patch("openai.Embedding.create")
     @patch("openai.Completion.create")

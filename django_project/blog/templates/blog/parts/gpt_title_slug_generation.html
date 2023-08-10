@@ -12,14 +12,14 @@
   <form>
     {% csrf_token %}
     <div id="generate-with-gpt-btn-container" class="sml-margin-top-bottom">
-    <button id="generate-title" hx-post="/generate-with-gpt/" hx-swap="outerHTML"
+    <button id="generate-title" hx-post="/generate-with-gpt/" hx-swap="outerHTML" hx-include="#id_content"
       hx-target="#id_gpt_input">Generate
       Title</button>
     <button id="generate-slug" hx-post="/generate-with-gpt/" hx-swap="outerHTML" hx-include="#id_title"
       hx-target="#id_gpt_input">
       Generate Slug
     </button>
-    <button id="generate-metadesc" hx-post="/generate-with-gpt/" hx-swap="outerHTML"
+    <button id="generate-metadesc" hx-post="/generate-with-gpt/" hx-swap="outerHTML" hx-include="#id_content"
       hx-target="#id_gpt_input">Generate
       Meta Description</button>
     </div>

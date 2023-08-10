@@ -443,28 +443,32 @@ def generate_gpt_input_value(request):
         safe_completion = html.escape(completion)
         return f"<input autofocus='' id='id_gpt_input' maxlength='250' name='gpt_input' required_type='text' value='{safe_completion}'>"
 
+    """
+    Max tokens: 17 ~70 characters
+    Max tokens: 30 ~150 characters
+    """
     prompt_dict = {
         "generate-title": {
             "source": "content",
             "target": "title",
             "max_tokens": 17,
-        },  # ~70 characters
+        },
         "generate-slug": {
             "source": "title",
             "target": "slug",
             "max_tokens": 17,
-        },  # ~70 characters
+        },
         "generate-metadesc": {
             "source": "content",
             "target": "metadesc",
             "max_tokens": 30,
-        },  # ~150 characters
+        },
     }
     trigger = request.htmx.trigger
     content = request.POST.get(prompt_dict[trigger]["source"], "")
     if not content:
         return HttpResponse(
-            f"No content found in the post {prompt_dict[trigger]['source']} field."
+            f"<input autofocus='' id='id_gpt_input' maxlength='250' name='gpt_input' required_type='text' value='No content found in the post {prompt_dict[trigger]['source']} field. Please add some text to the post {prompt_dict[trigger]['source']} field and try again.'>"
         )
 
     prompt = f"No pretext or explanations. Write a concise website {prompt_dict[trigger]['target']} for the following blog post {prompt_dict[trigger]['source']}: {content}"
