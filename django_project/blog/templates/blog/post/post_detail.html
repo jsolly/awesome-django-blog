@@ -18,12 +18,6 @@
 {% endblock head %}
 
 {% block content %}
-<div class="sml-margin-top-bottom" id="print-container">
-  <a class="btn btn-dark" href="javascript:window.print()">
-    <img id="print-icon" src="{% static 'svg/print-icon.svg' %}" alt="Print this blog post">
-    <span id="print-text">Print this post</span>
-  </a>
-</div>
 <article class="media content-section">
   <div class="media-body line-numbers ck-content">
     <div class="article-metadata">
@@ -49,6 +43,12 @@
       </a>
     </div>
     {% endif %}
+    <div class="sml-margin-top-bottom" id="print-container">
+      <a class="btn btn-dark" href="javascript:window.print()">
+        <img id="print-icon" src="{% static 'svg/print-icon.svg' %}" alt="Print this blog post">
+        <span id="print-text">Print this post</span>
+      </a>
+    </div>
     <div class="post-text">
       {{ post.content|safe }}
     </div>
