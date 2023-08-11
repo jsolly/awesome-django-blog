@@ -80,6 +80,7 @@ header {
 .sidebar {
   grid-column: 2;
   grid-row: 2;
+  margin-right: 15px;
 }
 
 .post-content {
@@ -1093,7 +1094,6 @@ video {
 
 #breadcrumbs {
   color: #6c757d;
-  padding: 0.5rem 0;
 }
 
 img {
@@ -1287,6 +1287,8 @@ img {
   .post-content {
     grid-row: 3;
     grid-column: 1;
+    margin-left: 20px;
+    margin-right: 20px;
   }
 
   .footer {
