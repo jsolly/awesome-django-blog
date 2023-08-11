@@ -106,7 +106,6 @@ footer {
   margin-bottom: 0.5rem;
 }
 
-
 /* Status Page */
 
 /* =============
@@ -645,9 +644,9 @@ textarea {
 }
 
 input[type="search"] {
-    margin-right: 0.5rem;
-    width: 200px;
-  }
+  margin-right: 0.5rem;
+  width: 200px;
+}
 
 input:focus,
 select:focus,
@@ -776,6 +775,7 @@ a.hidden-link {
     small,
     .word-count,
     label,
+
   ) {
   color: var(--secondary-color);
 }
@@ -1283,8 +1283,7 @@ img {
   }
 
   .sidebar {
-    grid-row: 2;
-    grid-column: 1;
+    display: none;
   }
 
   .post-content {
@@ -1358,7 +1357,6 @@ img {
   .social-share li {
     margin: 0.5rem 0;
   }
-  
 }
 
 @media (min-width: 800px) and (max-width: 1239px) {
@@ -1367,7 +1365,6 @@ img {
     justify-content: center;
   }
 }
-
 
 @media screen and (min-width: 1240px) {
   /* 
