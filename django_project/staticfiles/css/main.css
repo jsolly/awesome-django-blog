@@ -80,13 +80,11 @@ header {
 .sidebar {
   grid-column: 2;
   grid-row: 2;
-  margin: 20px;
 }
 
 .post-content {
   grid-column: 3;
   grid-row: 2;
-  margin: 20px;
 }
 
 footer {
