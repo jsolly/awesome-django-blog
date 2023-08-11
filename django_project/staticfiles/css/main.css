@@ -1252,13 +1252,19 @@ img {
   .btn {
     display: none !important;
   }
+  .social-share-container {
+    display: none !important;
+  }
   footer {
     display: none !important;
   }
-  #post-detail-meta-img {
+  #chatbox-container {
     display: none !important;
   }
-  #chatbox-container {
+  #comments-section {
+    display: none !important;
+  }
+  #create-comments-section {
     display: none !important;
   }
 }
