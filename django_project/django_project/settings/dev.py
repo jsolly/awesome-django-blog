@@ -1,6 +1,5 @@
 from .base_settings import *
 
-CAPTCHA_TEST_MODE = True
 USE_SRI = False
 
 # HTTPS SETTINGS

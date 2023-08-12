@@ -42,8 +42,6 @@ class TestForms(SetUp):
                 "password1": "Coff33cak3s!",
                 "password2": "Coff33cak3s!",
                 "secret_password": "African Swallows",
-                "captcha_0": "dummy-value",
-                "captcha_1": "PASSED",
             }
         )
         self.assertTrue(user_form.is_valid())

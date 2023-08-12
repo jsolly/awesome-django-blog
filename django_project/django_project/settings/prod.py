@@ -1,7 +1,6 @@
 from .base_settings import *
 import os
 
-CAPTCHA_TEST_MODE = False
 X_FRAME_OPTIONS = "SAMEORIGIN"
 USE_SRI = False
 
