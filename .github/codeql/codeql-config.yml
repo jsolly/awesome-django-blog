@@ -1,0 +1,5 @@
+name: "Awesome Django Blog CodeQL Configuration"
+
+paths-ignore:
+  - 'venv'
+  - 'django_project/tests'

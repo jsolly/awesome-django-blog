@@ -1,3 +1,4 @@
+# Awesome Django Blog
 [![awesome-django-blog-tests](https://github.com/jsolly/awesome-django-blog/actions/workflows/django-test-deploy-master.yaml/badge.svg)](https://github.com/jsolly/awesome-django-blog/actions/workflows/django-test-deploy-master.yaml)
 [![Coverage Status](https://coveralls.io/repos/github/jsolly/awesome-django-blog/badge.svg?branch=master&service=github)](https://coveralls.io/github/jsolly/awesome-django-blog?branch=master)
 ![CodeStyle](https://img.shields.io/badge/code%20style-black-000000.svg)
@@ -5,11 +6,8 @@
 [![Python Version](https://img.shields.io/badge/python-3.10-brightgreen.svg)](https://www.python.org/downloads/)
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
-# Awesome Django Blog
 
-Welcome to my Django blog app! This app is a fully functional blogging platform I built using the Django web framework. It includes features such as creating and managing blog posts, comments, and categories, as well as user authentication and authorization. The app is designed to be easily integrated into any existing Django project or can be used as a standalone app. In this readme, you will find instructions for installation, configuration, and usage that I have provided. I have also included information about the app's features and troubleshooting tips that I have gathered. I hope you find this app useful, and I welcome any contributions or suggestions for improvement.
-
-![LighthouseScore](https://github.com/jsolly/jsolly/blob/main/assets/lighthouseStats.svg)
+Awesome-django-blog is a fully functional blogging platform built using the Django web framework. It includes features such as creating and managing blog posts, comments, and categories, as well as user authentication and authorization.
 
 ![desktopScreenshot](https://user-images.githubusercontent.com/9572232/183277781-adea9d73-6dc0-4971-ac3a-b14e2131d6f3.jpeg)
 
@@ -32,13 +30,12 @@ git clone https://github.com/jsolly/awesome-django-blog.git
 cd awesome-django-blog
 python3 -m venv venv
 source venv/bin/activate
-pip install --upgrade pip
-python3 -m pip install -r requirements.txt
+pip install --upgrade pip && pip install -r requirements.txt
 ```
 
 ## Development
 
-First, rename 'awesome-django-blog/sample.env' to .env and change the values to match your setup
+First, rename 'awesome-django-blog/sample.env' to .env and change the values to match your setup.
    (database passwords, secret keys, etc)
 
 By default USE_SQLITE is set to `true` if you want to use something else like postgres, set this to False and modify the DJANGO_DB_SETTINGS variable in the file.
@@ -162,7 +159,16 @@ $ pre-commit install
   [commit:5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b](https://github.com/jsolly/awesome-django-blog/commit/5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b))
 - ~~Custom 404 page that looks really cool. So even if your users are lost, they are still having a good time.~~ Removed in (https://github.com/jsolly/awesome-django-blog/commit/19b3d40cc6e8b231010b0f62656eb27e0104ffd7)
 
-## Core Contributors
+## Contributing
+We ♥️ our contributors.
+
+📕 We expect everyone participating in the community to abide by our [Code of Conduct](https://github.com/jsolly/awesome-django-blog/blob/master/docs/CODE_OF_CONDUCT.md). Please read and follow it. <br>
+🤝 If you'd like to contribute, start by reading our [Contribution Guide](https://github.com/jsolly/awesome-django-blog/blob/master/docs/CONTRIBUTING.md).<br>
+👾 Explore some [good first issues](https://github.com/jsolly/awesome-django-blog/labels/good_first_issue).<br>
+
+Let's build great software together.
+
+### Top Contributors
 
 |                                               John Solly                                               |                                                Praise Dike                                                |
 | :----------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------: |

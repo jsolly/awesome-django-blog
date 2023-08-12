@@ -7,7 +7,7 @@ version: 2
 updates:
   # Maintain dependencies for pip package manager
   - package-ecosystem: "pip"
-    directory: "requirements"
+    directory: "/"
     schedule:
       interval: "daily"
 

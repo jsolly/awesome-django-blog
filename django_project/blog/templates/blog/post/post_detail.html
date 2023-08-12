@@ -18,16 +18,7 @@
 {% endblock head %}
 
 {% block content %}
-<div class="sml-margin-top-bottom" id="print-container">
-  <a class="btn btn-dark" href="javascript:window.print()">
-    <img id="print-icon" src="{% static 'svg/print-icon.svg' %}" alt="Print this blog post">
-    <span id="print-text">Print this post</span>
-  </a>
-</div>
 <article class="media content-section">
-  <div class="meta-img-container">
-    <img id="post-detail-meta-img" src="{{ post.metaimg.url }}" alt="{{ post.metadesc }}">
-  </div>
   <div class="media-body line-numbers ck-content">
     <div class="article-metadata">
       <h1 class="sml-margin-top-bottom">
@@ -36,6 +27,9 @@
         <p id="draft">(Draft)</p>
         {% endif %}
       </h1>
+      <div class="meta-img-container">
+        <img id="post-detail-meta-img" src="{{ post.metaimg.url }}" alt="{{ post.metadesc }}">
+      </div>
       <p class="post-date sml-margin-top-bottom">
         {{ post.date_posted|date:"F d, Y" }} in {{ post.category.name }}</p>
     </div>
@@ -49,6 +43,12 @@
       </a>
     </div>
     {% endif %}
+    <div class="sml-margin-top-bottom" id="print-container">
+      <a class="btn btn-dark" href="javascript:window.print()">
+        <img id="print-icon" src="{% static 'svg/print-icon.svg' %}" alt="Print this blog post">
+        <span id="print-text">Print this post</span>
+      </a>
+    </div>
     <div class="post-text">
       {{ post.content|safe }}
     </div>
@@ -73,7 +73,7 @@
       {% if comment.author == request.user %}
       <span class="comment-actions">
         <a href="{% url 'comment-update' comment.id %}" class="btn btn-dark comment-btn comment-edit">Edit</a>
-        <form class="comment-delete-form" method="POST" action="{% url 'comment-delete' comment.id %}" >
+        <form class="comment-delete-form" method="POST" action="{% url 'comment-delete' comment.id %}">
           {% csrf_token %}
           <button type="submit" class="btn btn-red comment-btn comment-delete">Delete</button>
         </form>
