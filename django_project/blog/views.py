@@ -2,7 +2,7 @@ from .models import Post, Category, Comment
 from .forms import PostForm, CommentForm
 from .utils import answer_question
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import (
@@ -383,7 +383,13 @@ class CreateCommentView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.post = Post.objects.get(slug=self.kwargs["slug"])
         form.instance.author = self.request.user
-        return super().form_valid(form)
+        comment = form.save()  # Save the comment object
+        if self.request.htmx:
+            return render(
+                self.request, "blog/comment/comment_item.html", {"comment": comment}
+            )
+        # Redirect to the appropriate URL for non-HTMX requests
+        return redirect(comment.get_absolute_url())
 
     def handle_no_permission(self):
         return handle_no_permission(self.request, slug=self.kwargs["slug"])

@@ -1,21 +1,13 @@
-
 {% block content %}
 <section id="create-comments-section" class="content-section">
   <h3>Comment</h3>
-  <form 
-  method="post"
-  action="{% url 'comment-create' slug=post.slug %}"
-  hx-post="{% url 'comment-create' slug=post.slug %}"
-  hx-swap="outerHTML"
-  hx-trigger="submit"
-  hx-target="#new-comments-placeholder"
-  >
+  <form hx-post="{% url 'comment-create' slug=post.slug %}" hx-swap="beforeend" hx-trigger="submit"
+    hx-target="#comments-list">
     {% csrf_token %}
     {{ comment_form.media }}
     {{ comment_form }}
-    <button class="post-submit-button" id="post-submit-button" type="submit">Post</button>
+    <button id="comment-submit-button" type="submit">Post</button>
   </form>
 </section>
 
 {% endblock content %}
- 

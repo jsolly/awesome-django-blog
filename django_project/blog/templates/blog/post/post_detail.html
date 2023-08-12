@@ -57,26 +57,20 @@
 <!-- Comments Section-->
 <section id="comments-section" class="content-section .sml-margin-top-bottom">
   <h2>Comments</h2>
-    {% if post.comments.count > 0 %}
+  {% if post.comments.count > 0 %}
+  <ul id="comments-list">
+    {% for comment in post.comments.all %}
+    {% include 'blog/comment/comment_item.html' %}
+    {% endfor %}
+  </ul>
 
-    <ul class="comments-list">
-      {% for comment in post.comments.all %}
-        {% include 'blog/comment/comment_item.html' %}
-      {% endfor %}
-    </ul>  
-
-    {% else %}
-    <p class="post-date sml-margin-top-bottom">No comments yet.</p>
-    {% endif %}
-
-    <div id="new-comments-placeholder" hx-get="{% url 'post-detail' slug=post.slug %}"#comments-section ></div>
+  {% else %}
+  <p class="post-date sml-margin-top-bottom">No comments yet.</p>
+  {% endif %}
 </section>
 
-<!-- create comments section-->
+<!-- Create Comments Section-->
 {% include 'blog/comment/add_comment.html' %}
-<!-- End of Create Comments section-->
-<!-- End of Comments Section -->
-
 
 <a href="{% url 'home' %}" id="post-back-to-home-button" class="btn btn-dark">
   Back to Home
