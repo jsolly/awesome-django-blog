@@ -1,4 +1,4 @@
-Django==4.2.3
+Django==4.2.4
 django-ckeditor-5==0.2.8
 django-htmx==1.15.0
 django-resized==1.0.2
