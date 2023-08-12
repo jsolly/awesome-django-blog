@@ -1,5 +1,5 @@
 Django==4.2.3
-django-ckeditor-5==0.2.8
+django-ckeditor-5==0.2.9
 django-htmx==1.15.0
 django-resized==1.0.2
 django-robots==5.0
