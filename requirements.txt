@@ -15,7 +15,7 @@ requests==2.31.0
 
 # For OpenAI
 scipy==1.11.1
-numpy==1.25.1
+numpy==1.25.2
 plotly==5.15.0
 openai==0.27.8
 pandas==2.0.3
