@@ -430,23 +430,7 @@ class CommentDeleteView(LoginRequiredMixin, View):
         return redirect("post-detail", slug=comment.post.slug)
 
 
-def generate_gpt_input_value(request, post_id):
-    blog_post = get_object_or_404(Post, id=post_id)
-    prompt_dict = {
-        "generate-title": {
-            "prompt": f"No pretext or explanations. Write a concise website title for the following blog post: {blog_post.content}",
-            "max_tokens": 17,  # ~70 characters
-        },
-        "generate-slug": {
-            "prompt": f"No pretext or explanations. Write a concise website slug based off this blog post title: {request.POST.get('gpt_input', '')}",
-            "max_tokens": 17,  # ~70 characters
-        },
-        "generate-metadesc": {
-            "prompt": f"No pretext or explanations. Write a concise website metadesc for the following blog post: {blog_post.content}",
-            "max_tokens": 40,  # ~160 characters
-        },
-    }
-
+def generate_gpt_input_value(request):
     def get_safe_completion(prompt, max_tokens):
         completion = (
             openai.Completion.create(
@@ -460,16 +444,47 @@ def generate_gpt_input_value(request, post_id):
         )
         return html.escape(completion)
 
-    def generate_input_field(prompt, max_tokens):
+    def generate_input_field(prompt, trigger, max_tokens):
         completion = get_safe_completion(prompt, max_tokens)
         safe_completion = html.escape(completion)
+        if trigger == "generate-slug":
+            # ensure slug is lowercase and replace spaces with hyphens
+            safe_completion = safe_completion.lower().replace(" ", "-")
         return f"<input autofocus='' id='id_gpt_input' maxlength='250' name='gpt_input' required_type='text' value='{safe_completion}'>"
 
+    """
+    Max tokens: 17 ~70 characters
+    Max tokens: 30 ~150 characters
+    """
+    prompt_dict = {
+        "generate-title": {
+            "source": "content",
+            "target": "title",
+            "max_tokens": 17,
+        },
+        "generate-slug": {
+            "source": "title",
+            "target": "slug",
+            "max_tokens": 17,
+        },
+        "generate-metadesc": {
+            "source": "content",
+            "target": "metadesc",
+            "max_tokens": 30,
+        },
+    }
     trigger = request.htmx.trigger
+    content = request.POST.get(prompt_dict[trigger]["source"], "")
+    if not content:
+        return HttpResponse(
+            f"<input autofocus='' id='id_gpt_input' maxlength='250' name='gpt_input' required_type='text' value='No content found in the post {prompt_dict[trigger]['source']} field. Please add some text to the post {prompt_dict[trigger]['source']} field and try again.'>"
+        )
 
-    prompt = prompt_dict[trigger]["prompt"]
-    max_tokens = prompt_dict[trigger]["max_tokens"]
-    new_content = generate_input_field(prompt, max_tokens)
+    prompt = f"No pretext or explanations. Write a concise website {prompt_dict[trigger]['target']} for the following blog post {prompt_dict[trigger]['source']}: {content}"
+
+    new_content = generate_input_field(
+        prompt, trigger, prompt_dict[trigger]["max_tokens"]
+    )
     return HttpResponse(new_content)
 
 
