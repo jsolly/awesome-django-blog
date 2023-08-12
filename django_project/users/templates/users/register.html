@@ -1,31 +1,30 @@
 {% extends "blog/parts/base.html" %}
 {% block content %}
-<h1>Sign Up</h1
-<div class="content-section">
-  <form method="POST">
-    {% csrf_token %}
-    <fieldset class="form-group">
-      <legend>
-        Join Today (DM me
-        <a rel="noopener noreferrer" target="_blank" href="https://twitter.com/_jsolly">
-          @_jsolly
-        </a>
-        for the secret password!)
-      </legend>
-      {{ form.as_p }}
-    </fieldset>
-    <div class="form-group">
-      <button id="sign-up-button" type="submit">
-        Sign up
-      </button>
-    </div>
-  </form>
-  <hr>
-  <div>
-    <small>
-      Already Have An Account?
-      <a class="sml-margin-left-right" href="{% url 'login' %}"> Sign In</a>
-    </small>
+<h1>Sign Up</h1 <div class="content-section">
+<form method="POST">
+  {% csrf_token %}
+  <fieldset class="form-group">
+    <legend>
+      Join Today (DM me
+      <a rel="noopener noreferrer" target="_blank" href="https://twitter.com/_jsolly">
+        @_jsolly
+      </a>
+      for the secret password!)
+    </legend>
+    {{ form.as_p }}
+  </fieldset>
+  <div class="form-group">
+    <button id="sign-up-button" class="sml-margin-top-bottom" type="submit">
+      Sign up
+    </button>
   </div>
+</form>
+<hr>
+<div>
+  <small>
+    Already Have An Account?
+    <a class="sml-margin-left-right" href="{% url 'login' %}"> Sign In</a>
+  </small>
+</div>
 </div>
 {% endblock content %}

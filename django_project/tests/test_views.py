@@ -413,8 +413,6 @@ class TestViews(SetUp):
             "password1": "Coff33cak3s!",
             "password2": "Coff33cak3s!",
             "secret_password": "African Swallows",
-            "captcha_0": "dummy-value",
-            "captcha_1": "PASSED",
         }
 
         response = self.client.post(reverse("register"), data=data, follow=True)
@@ -430,8 +428,6 @@ class TestViews(SetUp):
             "password1": "Coff33cak3s!",
             "password2": "Coff33cak3s!",
             "secret_password": "African Swallows",
-            "captcha_0": "dummy-value",
-            "captcha_1": "PASSED",
         }
 
         data["secret_password"] = "Wrong Password"
