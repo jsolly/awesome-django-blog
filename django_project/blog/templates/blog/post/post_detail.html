@@ -54,24 +54,6 @@
     </div>
 </article>
 
-<!-- Comments Section-->
-<section id="comments-section" class="content-section .sml-margin-top-bottom">
-  <h2>Comments</h2>
-  {% if post.comments.count > 0 %}
-  <ul id="comments-list">
-    {% for comment in post.comments.all %}
-    {% include 'blog/comment/comment_item.html' %}
-    {% endfor %}
-  </ul>
-
-  {% else %}
-  <p class="post-date sml-margin-top-bottom">No comments yet.</p>
-  {% endif %}
-</section>
-
-<!-- Create Comments Section-->
-{% include 'blog/comment/add_comment.html' %}
-
 <a href="{% url 'home' %}" id="post-back-to-home-button" class="btn btn-dark">
   Back to Home
 </a>
@@ -110,4 +92,22 @@
     </li>
   </ul>
 </div>
+
+<!-- Comments Section-->
+<section id="comments-section" class="content-section .sml-margin-top-bottom">
+  <h2>Comments</h2>
+  {% if post.comments.count > 0 %}
+  <ul id="comments-list">
+    {% for comment in post.comments.all %}
+    {% include 'blog/comment/comment_item.html' %}
+    {% endfor %}
+  </ul>
+
+  {% else %}
+  <p class="post-date sml-margin-top-bottom">No comments yet.</p>
+  {% endif %}
+</section>
+
+<!-- Create Comments Section-->
+{% include 'blog/comment/add_comment.html' %}
 {% endblock content %}
