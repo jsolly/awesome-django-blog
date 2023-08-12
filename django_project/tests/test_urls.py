@@ -130,9 +130,6 @@ class TestUrls(SetUp):
             MyPasswordResetCompleteView,
         )
 
-    # def test_captcha_url_is_resolved(self):
-    #     self.assertEqual(resolve(reverse("logout")).func.view_class, MyLogoutView)
-
     def test_comment_update_url_is_resolved(self):
         comment_on_test_post = create_comment(self.test_post, self.test_user)
         url = reverse("comment-update", args=[comment_on_test_post.id])
