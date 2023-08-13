@@ -96,15 +96,17 @@
 <!-- Comments Section-->
 <section id="comments-section" class="content-section .sml-margin-top-bottom">
   <h2>Comments</h2>
-  {% if post.comments.count > 0 %}
   <ul id="comments-list">
+    {% if post.comments.count > 0 %}
     {% for comment in post.comments.all %}
     {% include 'blog/comment/comment_item.html' %}
     {% endfor %}
   </ul>
 
   {% else %}
-  <p class="post-date sml-margin-top-bottom">No comments yet.</p>
+  <div id="no-comments-message">
+    <li class="comment">No comments yet.</li>
+  </div>
   {% endif %}
 </section>
 

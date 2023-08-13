@@ -2,8 +2,9 @@ from .models import Post, Category, Comment
 from .forms import PostForm, CommentForm
 from .utils import answer_question
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
@@ -384,10 +385,21 @@ class CreateCommentView(LoginRequiredMixin, CreateView):
         form.instance.post = Post.objects.get(slug=self.kwargs["slug"])
         form.instance.author = self.request.user
         comment = form.save()  # Save the comment object
+
         if self.request.htmx:
-            return render(
-                self.request, "blog/comment/comment_item.html", {"comment": comment}
+            post = Post.objects.get(slug=self.kwargs["slug"])
+            context = {"comment": comment}
+            comment_html = render_to_string(
+                "blog/comment/comment_item.html", context, request=self.request
             )
+            if post.comments.count() == 1:
+                oob_swap_command = (
+                    '<div hx-swap-oob="true" id="no-comments-message"></div>'
+                )
+                comment_html += oob_swap_command
+
+            return HttpResponse(comment_html)
+
         # Redirect to the appropriate URL for non-HTMX requests
         return redirect(comment.get_absolute_url())
 
