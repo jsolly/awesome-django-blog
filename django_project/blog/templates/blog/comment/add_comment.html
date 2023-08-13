@@ -2,12 +2,13 @@
 <section id="create-comments-section" class="content-section">
   <h3>Comment</h3>
   <form hx-post="{% url 'comment-create' slug=post.slug %}" hx-swap="beforeend" hx-trigger="submit"
-    hx-target="#comments-list">
+    hx-target="#comments-list" hx-on::after-request="this.reset()">
     {% csrf_token %}
     {{ comment_form.media }}
     {{ comment_form }}
     <button id="comment-submit-button" type="submit">Post</button>
   </form>
 </section>
+
 
 {% endblock content %}
