@@ -14,6 +14,11 @@ class RegisterView(FormView):
     success_url = reverse_lazy("login")
     template_name = "users/register.html"
 
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect("home")
+        return super().dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Register | Blogthedata.com"
@@ -65,6 +70,11 @@ class ProfileView(TemplateView):
 
 class MyLoginView(auth_views.LoginView):
     template_name = "users/login.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect("home")
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
