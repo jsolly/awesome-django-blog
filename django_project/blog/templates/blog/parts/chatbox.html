@@ -8,7 +8,8 @@
                 </div>
                 <div class="chatbox__content--header">
                     <p class="chatbox__heading--header">Ask a Question</p>
-                    <p class="chatbox__description--header">Hi, I'm Ezra! I can answer questions about any blog post on this site!</p>
+                    <p class="chatbox__description--header">Hi, I'm Ezra! I can answer questions about any blog post on
+                        this site!</p>
                 </div>
             </div>
             <div class="chatbox__messages"></div>
@@ -19,13 +20,14 @@
                         hx-trigger="keyup[key === 'Enter' && !shiftKey]" hx-post="/answer-with-gpt/"
                         hx-include="#question-text-area" hx-target=".chatbox__messages" hx-swap="afterbegin"></textarea>
                     <button class="chatbox__send--footer send__button" hx-post="/answer-with-gpt/"
-                        hx-include="#question-text-area" hx-target=".chatbox__messages"
-                        hx-swap="afterbegin" aria-label="Send message">Send</button>
+                        hx-include="#question-text-area" hx-target=".chatbox__messages" hx-swap="afterbegin"
+                        aria-label="Send message">Send</button>
                 </form>
             </div>
         </div>
         <div class="chatbox__button">
-            <button aria-label="Toggle chatbox"><img id="chatbox-icon" src="{% static 'svg/chatbox-icon.svg' %}" alt="Chatbox icon" /></button>
+            <button aria-label="Toggle chatbox"><img id="chatbox-icon" src="{% static 'svg/chatbox-icon.svg' %}"
+                    alt="Chatbox icon" /></button>
         </div>
     </div>
 </div>
