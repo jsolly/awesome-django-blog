@@ -384,7 +384,7 @@ class CreateCommentView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.post = Post.objects.get(slug=self.kwargs["slug"])
         form.instance.author = self.request.user
-        comment = form.save()  # Save the comment object
+        comment = form.save()
 
         if self.request.htmx:
             post = Post.objects.get(slug=self.kwargs["slug"])
