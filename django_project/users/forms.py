@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile
-from captcha.fields import CaptchaField
 from django.contrib.auth import (
     password_validation,
 )
@@ -10,9 +9,6 @@ from django.utils.translation import gettext_lazy as _
 
 
 class UserRegisterForm(UserCreationForm):
-    # email = forms.EmailField()
-    # first_name = forms.CharField(max_length=50)
-    # last_name = forms.CharField(max_length=50)
     password1 = forms.CharField(
         label=_("Password"),
         strip=False,
@@ -32,7 +28,6 @@ class UserRegisterForm(UserCreationForm):
             }
         )
     )
-    captcha = CaptchaField()
 
     class Meta:
         model = User

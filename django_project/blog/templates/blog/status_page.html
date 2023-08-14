@@ -33,154 +33,154 @@
     }
 
     function generateCpuUsageChartOption(cpuUsagePercent) {
-  return {
-    title: {
-      text: 'CPU Usage',
-      left: 'center',
-      textStyle: {
-        fontSize: 24,
-      },
-    },
-    series: [
-      {
-        type: 'gauge',
-        min: 0,
-        max: 100,
-        splitNumber: 4,
-        axisLine: {
-          lineStyle: {
-            width: 30,
-            color: [
-              [0.3, '#67e0e3'],
-              [0.7, '#37a2da'],
-              [1, '#fd666d']
+      return {
+        title: {
+          text: 'CPU Usage',
+          left: 'center',
+          textStyle: {
+            fontSize: 24,
+          },
+        },
+        series: [
+          {
+            type: 'gauge',
+            min: 0,
+            max: 100,
+            splitNumber: 4,
+            axisLine: {
+              lineStyle: {
+                width: 30,
+                color: [
+                  [0.3, '#67e0e3'],
+                  [0.7, '#37a2da'],
+                  [1, '#fd666d']
+                ]
+              }
+            },
+            axisTick: {
+              distance: -30,
+              length: 8,
+              lineStyle: {
+                color: '#fff',
+                width: 2
+              }
+            },
+            splitLine: {
+              distance: -30,
+              length: 30,
+              lineStyle: {
+                color: '#fff',
+                width: 4
+              }
+            },
+            axisLabel: {
+              color: 'inherit',
+              distance: 40,
+              fontSize: 20,
+              formatter: '{value}%'
+            },
+            detail: {
+              valueAnimation: true,
+              formatter: '{value}%',
+              color: 'inherit'
+            },
+            data: [
+              {
+                value: cpuUsagePercent,
+              }
             ]
           }
+        ]
+      };
+    }
+
+    function generateRamUsageChartOption(ramUsagePercent, ramUsed, ramTotal) {
+      return {
+        title: {
+          text: `RAM: ${ramUsed}MB / ${ramTotal}MB`,
+          left: 'center',
+          textStyle: {
+            fontSize: 24,
+          },
         },
-        axisTick: {
-          distance: -30,
-          length: 8,
-          lineStyle: {
-            color: '#fff',
-            width: 2
+        tooltip: {
+          formatter: '{b}: {c}%'
+        },
+        xAxis: {
+          data: ['RAM'],
+          axisLabel: {
+            fontSize: 16
           }
         },
-        splitLine: {
-          distance: -30,
-          length: 30,
-          lineStyle: {
-            color: '#fff',
-            width: 4
+        yAxis: {
+          max: 100,
+          axisLabel: {
+            fontSize: 16,
+            formatter: '{value}%'
           }
         },
-        axisLabel: {
-          color: 'inherit',
-          distance: 40,
-          fontSize: 20,
-          formatter: '{value}%'
-        },
-        detail: {
-          valueAnimation: true,
-          formatter: '{value}%',
-          color: 'inherit'
-        },
-        data: [
+        series: [
           {
-            value: cpuUsagePercent,
+            name: `RAM (${ramUsed}MB / ${ramTotal}MB)`,
+            type: 'bar',
+            data: [ramUsagePercent],
+            itemStyle: {
+              color: '#37a2da'
+            },
+            label: {
+              show: true,
+              position: 'inside',
+              formatter: '{c}%'
+            }
           }
         ]
-      }
-    ]
-  };
-}
+      };
+    }
 
-function generateRamUsageChartOption(ramUsagePercent, ramUsed, ramTotal) {
-  return {
-    title: {
-      text: `RAM: ${ramUsed}MB / ${ramTotal}MB`,
-      left: 'center',
-      textStyle: {
-        fontSize: 24,
-      },
-    },
-    tooltip: {
-      formatter: '{b}: {c}%'
-    },
-    xAxis: {
-      data: ['RAM'],
-      axisLabel: {
-        fontSize: 16
-      }
-    },
-    yAxis: {
-      max: 100,
-      axisLabel: {
-        fontSize: 16,
-        formatter: '{value}%'
-      }
-    },
-    series: [
-      {
-        name: `RAM (${ramUsed}MB / ${ramTotal}MB)`,
-        type: 'bar',
-        data: [ramUsagePercent],
-        itemStyle: {
-          color: '#37a2da'
+    function generateDiskUsageChartOption(usedGB, totalGB) {
+      const diskUsagePercent = Math.round((usedGB / totalGB) * 100);
+
+      return {
+        title: {
+          text: `Disk Usage: ${usedGB}GB / ${totalGB}GB`,
+          left: 'center',
+          textStyle: {
+            fontSize: 24,
+          },
         },
-        label: {
-          show: true,
-          position: 'inside',
-          formatter: '{c}%'
-        }
-      }
-    ]
-  };
-}
-
-function generateDiskUsageChartOption(usedGB, totalGB) {
-  const diskUsagePercent = Math.round((usedGB / totalGB) * 100);
-
-  return {
-    title: {
-      text: `Disk Usage: ${usedGB}GB / ${totalGB}GB`,
-      left: 'center',
-      textStyle: {
-        fontSize: 24,
-      },
-    },
-    tooltip: {
-      formatter: '{b}: {c}%'
-    },
-    xAxis: {
-      data: ['Disk'],
-      axisLabel: {
-        fontSize: 16
-      }
-    },
-    yAxis: {
-      max: 100,
-      axisLabel: {
-        fontSize: 16,
-        formatter: '{value}%'
-      }
-    },
-    series: [
-      {
-        name: `Disk Usage (${usedGB}GB / ${totalGB}GB)`,
-        type: 'bar',
-        data: [diskUsagePercent],
-        itemStyle: {
-          color: '#37a2da'
+        tooltip: {
+          formatter: '{b}: {c}%'
         },
-        label: {
-          show: true,
-          position: 'inside',
-          formatter: '{c}%'
-        }
-      }
-    ]
-  };
-}
+        xAxis: {
+          data: ['Disk'],
+          axisLabel: {
+            fontSize: 16
+          }
+        },
+        yAxis: {
+          max: 100,
+          axisLabel: {
+            fontSize: 16,
+            formatter: '{value}%'
+          }
+        },
+        series: [
+          {
+            name: `Disk Usage (${usedGB}GB / ${totalGB}GB)`,
+            type: 'bar',
+            data: [diskUsagePercent],
+            itemStyle: {
+              color: '#37a2da'
+            },
+            label: {
+              show: true,
+              position: 'inside',
+              formatter: '{c}%'
+            }
+          }
+        ]
+      };
+    }
 
 
     function initChart(chartId, chartOptionGenerator, ...data) {
@@ -201,4 +201,4 @@ function generateDiskUsageChartOption(usedGB, totalGB) {
     const [usedGB, totalGB] = '{{ disk_usage }}'.split(" / ").map(x => parseInt(x));
     initChart('disk-usage', generateDiskUsageChartOption, usedGB, totalGB);
   </script>
-{% endblock %}
+  {% endblock %}
