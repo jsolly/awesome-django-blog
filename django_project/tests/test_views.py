@@ -319,12 +319,10 @@ class TestViews(SetUp):
         )
 
         headers = {"HTTP_HX-Request": "true"}
-        response = self.client.post(
+        response = self.client.delete(
             reverse("comment-delete", args=[test_comment.id]), **headers
         )
-        self.assertEqual(
-            response.status_code, 204
-        )  # Compare against the expected status code
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.reason_phrase, "Comment deleted successfully")
         self.assertFalse(Comment.objects.filter(id=test_comment.id).exists())
 
@@ -335,7 +333,7 @@ class TestViews(SetUp):
             username=self.comment_only_user.username, password=self.test_password
         )
 
-        response = self.client.post(reverse("comment-delete", args=[test_comment.id]))
+        response = self.client.delete(reverse("comment-delete", args=[test_comment.id]))
         self.assertRedirects(response, reverse("post-detail", args=[test_post.slug]))
         self.assertFalse(Comment.objects.filter(id=test_comment.id).exists())
 
