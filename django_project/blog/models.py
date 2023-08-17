@@ -32,6 +32,11 @@ class PostManager(models.Manager):
         return super().order_by("-date_posted")
 
 
+class CommentManager(models.Manager):
+    def all(self, *args, **kwargs):
+        return super().order_by("-date_posted")
+
+
 class Category(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50, unique=True)
@@ -90,6 +95,8 @@ class Comment(models.Model):
     content = CKEditor5Field(blank=True, null=True, config_name="extends")
     date_posted = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
+
+    objects = CommentManager()
 
     class Meta:
         ordering = ["date_posted"]
