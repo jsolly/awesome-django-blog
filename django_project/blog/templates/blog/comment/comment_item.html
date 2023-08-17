@@ -10,19 +10,10 @@
   <div class="comment-content">{{ comment.content|safe }}</div>
   {% if comment.author == request.user %}
   <span class="comment-actions">
-    <a
-      href="{% url 'comment-update' comment.id %}"
-      class="btn btn-dark comment-btn comment-edit"
-      >Edit</a
-    >
-    <form
-      class="comment-delete-form"
-      method="POST"
-      hx-post="{% url 'comment-delete' comment.id %}"
-      hx-target="#comments-list"
-      hx-confirm="Are you sure you want to delete this comment?"
-    >
-      {% csrf_token %}
+    <a href="{% url 'comment-update' comment.id %}" class="btn btn-dark comment-btn comment-edit">Edit</a>
+    <form class="comment-delete-form" hx-delete="{% url 'comment-delete' comment.id %}"
+      hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-target="closest li"
+      hx-confirm="Are you sure you want to delete this comment?">
       <button type="submit" class="btn btn-red comment-btn comment-delete">
         Delete
       </button>
