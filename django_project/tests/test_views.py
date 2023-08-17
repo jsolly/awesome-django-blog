@@ -311,7 +311,24 @@ class TestViews(SetUp):
         test_comment.refresh_from_db()
         self.assertEqual(test_comment.content, updated_content)
 
-    def test_comment_delete_view(self):
+    def test_comment_delete_view_with_htmx(self):
+        test_post = create_post(title="Delete This Post", slug="delete-this-post")
+        test_comment = create_comment(post=test_post, author=self.comment_only_user)
+        self.client.login(
+            username=self.comment_only_user.username, password=self.test_password
+        )
+
+        headers = {"HTTP_HX-Request": "true"}
+        response = self.client.post(
+            reverse("comment-delete", args=[test_comment.id]), **headers
+        )
+        self.assertEqual(
+            response.status_code, 204
+        )  # Compare against the expected status code
+        self.assertEqual(response.reason_phrase, "Comment deleted successfully")
+        self.assertFalse(Comment.objects.filter(id=test_comment.id).exists())
+
+    def test_comment_delete_view_without_htmx(self):
         test_post = create_post(title="Delete This Post", slug="delete-this-post")
         test_comment = create_comment(post=test_post, author=self.comment_only_user)
         self.client.login(
