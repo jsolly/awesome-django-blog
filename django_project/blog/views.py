@@ -437,9 +437,8 @@ class CommentUpdateView(LoginRequiredMixin, UpdateView):
 class CommentDeleteView(LoginRequiredMixin, View):
     def post(self, request, comment_id):
         comment = get_object_or_404(Comment, id=comment_id)
-        if comment.author == request.user:
-            comment.delete()
-            return HttpResponse(status=204, reason="Comment deleted successfully")
+        comment.delete()
+        return HttpResponse(status=204, reason="Comment deleted successfully")
         # return redirect("post-detail", slug=comment.post.slug)
 
 
