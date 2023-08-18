@@ -17,7 +17,7 @@ from blog.views import (
     CommentUpdateView,
     CommentDeleteView,
 )
-from django_project.views import (
+from app.views import (
     works_cited_view,
     security_txt_view,
     security_pgp_key_view,

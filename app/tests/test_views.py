@@ -133,7 +133,7 @@ class TestViews(SetUp):
             "draft": False,
             "metaimg": SimpleUploadedFile(
                 name="lorem_image.jpg",
-                content=open("django_project/media/jsolly.webp", "rb").read(),
+                content=open("app/media/jsolly.webp", "rb").read(),
                 content_type="image/webp",
             ),
             "snippet": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",

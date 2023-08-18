@@ -1,11 +1,11 @@
-FROM python:3.11-slim
+FROM python:3.11
 LABEL maintainer="jsolly"
 
 # Make sure Python output is sent straight to terminal
 ENV PYTHONUNBUFFERED 1
 
 COPY ./requirements.txt /requirements.txt
-COPY ./django_project /app
+COPY ./app /app
 
 WORKDIR /app
 EXPOSE 8000

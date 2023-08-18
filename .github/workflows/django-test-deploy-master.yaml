@@ -43,22 +43,22 @@ jobs:
       - name: lint-with-ruff
         run: |
           source venv/bin/activate
-          ruff --config ./config/pyproject.toml django_project
+          ruff --config ./config/pyproject.toml app
 
       - name: collect-static-files
         run: |
           source venv/bin/activate 
-          python3 django_project/manage.py collectstatic --noinput
+          python3 app/manage.py collectstatic --noinput
 
       - name: run-db-migrations
         run: |
           source venv/bin/activate
-          python3 django_project/manage.py migrate --noinput
+          python3 app/manage.py migrate --noinput
 
       - name: run-unit-tests-with-coverage
         run: |
           source venv/bin/activate
-          coverage run --rcfile=config/.coveragerc -m pytest django_project
+          coverage run --rcfile=config/.coveragerc -m pytest app
           coverage lcov --rcfile=config/.coveragerc
 
       - name: coveralls

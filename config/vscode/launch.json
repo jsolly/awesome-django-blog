@@ -6,13 +6,13 @@
       "type": "python",
       "request": "launch",
       "program": "${file}",
-      "justMyCode": true,
+      "justMyCode": true
     },
     {
       "name": "Django_Start",
       "type": "python",
       "request": "launch",
-      "program": "~/Documents/code/blogthedata/django_project/manage.py",
+      "program": "~/Documents/code/blogthedata/app/manage.py",
       "django": true,
       "justMyCode": true,
       "args": ["runserver"],
@@ -23,19 +23,14 @@
       "name": "Launch_Chrome",
       "request": "launch",
       "type": "chrome",
-      "runtimeArgs": [
-        "--incognito",
-      ],
-      "url": "http://127.0.0.1:8000/",
-    },
+      "runtimeArgs": ["--incognito"],
+      "url": "http://127.0.0.1:8000/"
+    }
   ],
   "compounds": [
     {
       "name": "Runserver + Livereload + Chrome",
-      "configurations": [
-        "Django_Start",
-        "Launch_Chrome"
-      ],
+      "configurations": ["Django_Start", "Launch_Chrome"],
       "stopAll": true
     }
   ]
