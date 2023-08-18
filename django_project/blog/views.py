@@ -414,7 +414,10 @@ class CommentUpdateView(LoginRequiredMixin, UpdateView):
     context_object_name = "comment"
 
     def get_success_url(self):
-        return reverse_lazy("post-detail", kwargs={"slug": self.object.post.slug})
+        return (
+            reverse_lazy("post-detail", kwargs={"slug": self.object.post.slug})
+            + "#comments"
+        )
 
     def form_valid(self, form):
         form.instance.author = self.request.user
