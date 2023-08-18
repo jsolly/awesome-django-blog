@@ -1,7 +1,7 @@
 from .base import SetUp
 from django.urls import reverse
 from django.contrib.sitemaps import Sitemap
-from django_project.sitemaps import (
+from app.sitemaps import (
     HomeSitemap,
     PostSitemap,
     CategorySitemap,

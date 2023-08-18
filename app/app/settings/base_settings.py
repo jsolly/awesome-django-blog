@@ -137,7 +137,7 @@ TEMPLATES = [
     }
 ]
 
-WSGI_APPLICATION = "django_project.wsgi.application"
+WSGI_APPLICATION = "app.wsgi.application"
 
 CACHES = {
     "default": {

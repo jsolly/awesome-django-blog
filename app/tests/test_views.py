@@ -205,7 +205,7 @@ class TestViews(SetUp):
             "draft": False,
             "metaimg": SimpleUploadedFile(
                 name="test_image.jpg",
-                content=open("django_project/media/jsolly.webp", "rb").read(),
+                content=open("app/media/jsolly.webp", "rb").read(),
                 content_type="image/webp",
             ),
             "snippet": "Long ago, the four nations lived together in harmony.",
