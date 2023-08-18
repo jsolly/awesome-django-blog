@@ -307,7 +307,9 @@ class TestViews(SetUp):
             {"content": updated_content},
         )
 
-        self.assertRedirects(response, reverse("post-detail", args=[test_post.slug]))
+        self.assertRedirects(
+            response, reverse("post-detail", args=[test_post.slug]) + "#comments"
+        )
         test_comment.refresh_from_db()
         self.assertEqual(test_comment.content, updated_content)
 
