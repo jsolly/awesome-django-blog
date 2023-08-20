@@ -7,7 +7,7 @@
   "settings": {
     "python.analysis.autoImportCompletions": false,
     "python.terminal.activateEnvInCurrentTerminal": true,
-    "python.defaultInterpreterPath": "~/Documents/code/awesome-django-blog/venv/bin/python3",
+    "python.defaultInterpreterPath": "~/Documents/code/awesome-django-blog/.venv/bin/python3",
     "python.terminal.activateEnvironment": true,
     "editor.rulers": [79, 120],
     "files.exclude": {

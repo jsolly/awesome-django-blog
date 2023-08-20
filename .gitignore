@@ -11,7 +11,7 @@ exported_posts/
 processed/
 
 # Virtual Environments
-venv/
+.venv/
 
 # Environ Variables File
 .env
