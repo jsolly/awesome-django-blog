@@ -9,10 +9,10 @@
       "justMyCode": true
     },
     {
-      "name": "Django_Start",
+      "name": "Django_Start + Livereload",
       "type": "python",
       "request": "launch",
-      "program": "~/Documents/code/blogthedata/app/manage.py",
+      "program": "~/Documents/code/awesome-django-blog/app/manage.py",
       "django": true,
       "justMyCode": true,
       "args": ["runserver"],

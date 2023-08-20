@@ -6,10 +6,8 @@
   ],
   "settings": {
     "python.analysis.autoImportCompletions": false,
-    "python.formatting.provider": "black",
-    "python.formatting.autopep8Args": ["--ignore", "E402"],
     "python.terminal.activateEnvInCurrentTerminal": true,
-    "python.defaultInterpreterPath": "~/Documents/code/blogthedata/venv/bin/python3",
+    "python.defaultInterpreterPath": "~/Documents/code/awesome-django-blog/venv/bin/python3",
     "python.terminal.activateEnvironment": true,
     "editor.rulers": [79, 120],
     "files.exclude": {
