@@ -605,8 +605,8 @@ figure {
   transition: fill 0.25s ease-out;
 }
 
-.resp-sharing-button__link.twitter {
-  background-color: #55acee;
+.resp-sharing-button__link.x {
+  background-color: #0077b5;
 }
 
 .resp-sharing-button__link.reddit {
