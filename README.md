@@ -18,7 +18,7 @@ Awesome-django-blog is a fully functional blogging platform built using the Djan
 - [Installation](#installation)
 - [Development](#development)
 - [Features](#features)
-- [Core Contributors](#core-contributors)
+- [Contributing](#contributing)
 - [Support](#support)
 - [License](#license)
 
