@@ -31,6 +31,8 @@ cd awesome-django-blog
 python3 -m venv .venv
 source .venv/bin/activate
 pip install --upgrade pip && pip install -r requirements.txt
+# Create local SQLite database (Default) and apply migrations
+python3 app/manage.py migrate
 ```
 
 ## Development
