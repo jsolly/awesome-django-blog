@@ -106,7 +106,7 @@ $ pre-commit install
 - User Login with Django built-in auth to create posts and leave comments
 - Ckeditor 5 for authoring blog posts (also includes spell check, code snippets, character
   counter, and more!)
-- Add comments to blog posts for greater engagement
+- Add real-time comments without page reloads for a smooth user experience.
 - Slugified URLs for more readable links
 - Open Graph protocol compliant social media sharing for beautiful share cards (LinkedIn, Twitter, Facebook, Instagram, Reddit, etc)
 - Smart and powerful Global search so you can find any blog post with a keyword search.
