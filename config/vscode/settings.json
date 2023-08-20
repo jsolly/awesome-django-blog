@@ -1,6 +1,40 @@
 {
-  "python.testing.unittestArgs": ["-v", "-s", "./app", "-p", "test*.py"],
-  "python.testing.pytestEnabled": true,
-  "python.testing.unittestEnabled": false,
-  "python.testing.pytestArgs": ["app"]
+  "folders": [
+    {
+      "path": ".."
+    }
+  ],
+  "settings": {
+    "python.analysis.autoImportCompletions": false,
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "python.defaultInterpreterPath": "~/Documents/code/awesome-django-blog/.venv/bin/python3",
+    "python.terminal.activateEnvironment": true,
+    "editor.rulers": [79, 120],
+    "files.exclude": {
+      "**/__pycache__": true,
+      "**/.git": false,
+      "**/*.pyc": {
+        "when": "$(basename).py"
+      }
+    },
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "editor.minimap.enabled": false,
+    "window.autoDetectColorScheme": true,
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "python.testing.unittestArgs": ["-v", "-s", "./app", "-p", "test*.py"],
+    "python.testing.pytestEnabled": true,
+    "editor.fontSize": 18,
+    "[xml]": {
+      "editor.defaultFormatter": "redhat.vscode-xml"
+    },
+    "[html]": {
+      "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "editor.formatOnSave": true
+  }
 }
