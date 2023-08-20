@@ -313,6 +313,27 @@ class TestViews(SetUp):
         test_comment.refresh_from_db()
         self.assertEqual(test_comment.content, updated_content)
 
+
+    def test_update_comment_view_with_htmx(self):
+        test_post = create_post(title="Edit This Post", slug="edit-this-post")
+        test_comment = create_comment(post=test_post, author=self.comment_only_user)
+        self.client.login(
+            username=self.comment_only_user.username, password=self.test_password
+        )
+        updated_content = "Updated comment content"
+
+        headers = {"HTTP_HX-Request": "true"}
+        response = self.client.post(
+            reverse("comment-update", args=[test_comment.id]),
+            {"content": updated_content},
+            **headers
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.reason_phrase, "Comment updated successfully")
+        test_comment.refresh_from_db()
+        self.assertEqual(test_comment.content, updated_content)
+
     def test_comment_delete_view_with_htmx(self):
         test_post = create_post(title="Delete This Post", slug="delete-this-post")
         test_comment = create_comment(post=test_post, author=self.comment_only_user)
