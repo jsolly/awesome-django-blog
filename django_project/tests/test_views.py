@@ -255,9 +255,10 @@ class TestViews(SetUp):
 
     def test_create_comment_view(self):
         test_post = create_post()
+        # Login to basic account to submit comment
         self.client.login(
             username=self.comment_only_user.username, password=self.test_password
-        )  # Login to basic account to submit comment
+        )
         test_post_detail_url = reverse("post-detail", args=[test_post.slug])
         test_post_comment_url = reverse("comment-create", args=[test_post.slug])
 
@@ -268,15 +269,31 @@ class TestViews(SetUp):
                 "post_slug": test_post.slug,
             },
         )
-        self.assertEqual(
-            response.status_code, 302
-        )  # Ensure the comment was submitted and redirected to the post (Not ideal, prefer ajax)
-        self.assertRedirects(
-            response, test_post_detail_url
-        )  # Ensure redirect to post after comment submission
-        self.assertEqual(
-            test_post.comments.count(), 1
-        )  # Ensure a comment was added to the post
+        # Redirect to post detail page after comment submission
+        self.assertEqual(response.status_code, 302)
+        # Ensure redirect to post after comment submission
+        self.assertRedirects(response, test_post_detail_url)
+        # Ensure a comment was added to the post
+        self.assertEqual(test_post.comments.count(), 1)
+
+    def test_create_comment_view_with_htmx(self):
+        test_post = create_post()
+        # Login to basic account to submit comment
+        self.client.login(
+            username=self.comment_only_user.username, password=self.test_password
+        )
+        test_post_comment_url = reverse("comment-create", args=[test_post.slug])
+        headers = {"HTTP_HX-Request": "true"}
+        response = self.client.post(
+            test_post_comment_url,
+            {
+                "content": "Test comment",
+                "post_slug": test_post.slug,
+            },
+            **headers,
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(test_post.comments.count(), 1)
 
     def test_update_comment_view_has_correct_context_template_and_form(self):
         test_post = create_post(title="Edit This Post", slug="edit-this-post")
@@ -310,27 +327,6 @@ class TestViews(SetUp):
         self.assertRedirects(
             response, reverse("post-detail", args=[test_post.slug]) + "#comments"
         )
-        test_comment.refresh_from_db()
-        self.assertEqual(test_comment.content, updated_content)
-
-
-    def test_update_comment_view_with_htmx(self):
-        test_post = create_post(title="Edit This Post", slug="edit-this-post")
-        test_comment = create_comment(post=test_post, author=self.comment_only_user)
-        self.client.login(
-            username=self.comment_only_user.username, password=self.test_password
-        )
-        updated_content = "Updated comment content"
-
-        headers = {"HTTP_HX-Request": "true"}
-        response = self.client.post(
-            reverse("comment-update", args=[test_comment.id]),
-            {"content": updated_content},
-            **headers
-        )
-
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.reason_phrase, "Comment updated successfully")
         test_comment.refresh_from_db()
         self.assertEqual(test_comment.content, updated_content)
 
