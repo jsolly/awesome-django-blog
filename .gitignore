@@ -1,9 +1,9 @@
 # Blog Assets
-profile_pics/
-post_metaimgs/
-profile_pics/
+# profile_pics/
+# post_metaimgs/
+# profile_pics/
 uploads/
-app/media/django_ckeditor_5/
+# app/media/django_ckeditor_5/
 static/
 
 ## Posts and embeddings
@@ -19,10 +19,8 @@ venv/
 # Coverage files
 .coverage
 
-# Python Temp Files
+# Temp Files
 __pycache__/
-
-# MAC OSX
 .DS_Store
 
 # backups
