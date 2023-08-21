@@ -4,7 +4,12 @@ import json
 import sys
 from dotenv import load_dotenv
 
+import logging
+
+logger = logging.getLogger("django")
+
 load_dotenv()
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent  # Three levels up
 SECRET_KEY = os.environ["SECRET_KEY"]
@@ -29,11 +34,12 @@ elif DB_SETTINGS:
         DATABASES["default"][key] = value
 
 else:
-    print("Database settings are not set. Please add them to your .env file.")
-    print("Example:")
-    print(
+    message = (
+        "Database settings are not set. Please add them to your .env file.\n"
+        "Example:\n"
         'DJANGO_DB_SETTINGS=\'{"ENGINE": "django.db.backends.postgresql", "NAME": "your_database", "USER": "your_user", "PASSWORD": "your_password", "HOST": "your_host", "PORT": "your_port", "OPTIONS": {"isolation_level": 4}}\''
     )
+    logger.error(message)
     sys.exit(1)
 
 
@@ -78,6 +84,7 @@ if str(os.environ.get("DEBUG")).lower() == "true":
     CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
 
 INSTALLED_APPS = [
+    "core",
     "blog.apps.BlogConfig",
     "users.apps.UsersConfig",
     "django.contrib.admin",
