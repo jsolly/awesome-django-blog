@@ -12,8 +12,20 @@ services:
       - "8000:8000"
     volumes:
       - ./app:/app
-    env_file:
-      - .env
+      - ./fontconfig_cache:/fontconfig_cache
+    environment:
+      # Tells matplotlib where it can write the config file
+      - MPLCONFIGDIR=/tmp/matplotlib
+      # Tells fontconfig where it can write its cache
+      - FONTCONFIG_PATH=/fontconfig_cache
+      - SECRET_KEY=devsecretkey
+      - DEBUG=True
+      - DB_HOST=db
+      - DB_NAME=devdb
+      - DB_USER=devuser
+      - DB_PASS=changeme
+      - DJANGO_SETTINGS_MODULE=app.settings.dev
+      - ALLOWED_HOSTS=*
     depends_on:
       - db
 

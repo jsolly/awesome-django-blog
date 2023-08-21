@@ -13,9 +13,15 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent  # Three levels up
 SECRET_KEY = os.environ["SECRET_KEY"]
-ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
+ALLOWED_HOSTS = []
+ALLOWED_HOSTS.extend(
+    filter(
+        None,
+        os.environ.get("ALLOWED_HOSTS", "").split(" "),
+    )
+)
+
 SITE_ID = int(os.environ["SITE_ID"])
-DB_SETTINGS = os.getenv("DJANGO_DB_SETTINGS")
 
 if str(os.environ.get("USE_SQLITE")).lower() == "true":
     DATABASES = {
@@ -25,22 +31,26 @@ if str(os.environ.get("USE_SQLITE")).lower() == "true":
         }
     }
 
-elif DB_SETTINGS:
-    db_settings = json.loads(DB_SETTINGS)
-
-    DATABASES = {"default": {}}
-
-    for key, value in db_settings.items():
-        DATABASES["default"][key] = value
-
 else:
-    message = (
-        "Database settings are not set. Please add them to your .env file.\n"
-        "Example:\n"
-        'DJANGO_DB_SETTINGS=\'{"ENGINE": "django.db.backends.postgresql", "NAME": "your_database", "USER": "your_user", "PASSWORD": "your_password", "HOST": "your_host", "PORT": "your_port", "OPTIONS": {"isolation_level": 4}}\''
-    )
-    logger.error(message)
-    sys.exit(1)
+    try:
+        DATABASES = {
+            "default": {
+                "ENGINE": os.environ["DB_ENGINE"],
+                "NAME": os.environ["DB_NAME"],
+                "USER": os.environ["DB_USER"],
+                "PASSWORD": os.environ["DB_PASSWORD"],
+                "HOST": os.environ["DB_HOST"],
+                "PORT": os.environ["DB_PORT"],
+                "OPTIONS": json.loads(os.environ["DB_OPTIONS"]),
+            }
+        }
+    except KeyError:
+        message = """
+        Please set the following environment variables:
+        DB_ENGINE, DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_OPTIONS
+        """
+        logger.error(message)
+        sys.exit(1)
 
 
 # Content Security Policy
