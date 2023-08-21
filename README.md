@@ -42,6 +42,8 @@ By default USE_SQLITE is set to `true` if you want to use something else like po
 
 ```shell
 cd awesome-django-blog/django_project
+python3 manage.py migrate
+python3 manage.py createsuperuser
 python3 manage.py runserver
 ```
 
