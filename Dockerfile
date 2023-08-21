@@ -10,7 +10,7 @@ COPY ./app /app
 WORKDIR /app
 EXPOSE 8000
 
-RUN apk add --no-cache gcc g++ musl-dev python3-dev linux-headers openblas-dev && \
+RUN apk add --no-cache gcc g++ musl-dev python3-dev linux-headers openblas-dev make freetype-dev && \
     python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     /py/bin/pip install -r /requirements.txt && \
