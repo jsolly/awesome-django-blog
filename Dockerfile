@@ -10,10 +10,13 @@ COPY ./app /app
 WORKDIR /app
 EXPOSE 8000
 
-RUN python -m venv /py && \
+RUN apk add --no-cache gcc g++ musl-dev python3-dev linux-headers openblas-dev && \
+    python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     /py/bin/pip install -r /requirements.txt && \
-    adduser -disabled-password --no-create-home app
+    adduser --disabled-password --home /dev/null app && \
+    mkdir -p /fontconfig_cache && \
+    chown -R app:app /fontconfig_cache
 
 ENV PATH="/py/bin:$PATH"
 

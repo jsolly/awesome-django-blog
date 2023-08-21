@@ -14,18 +14,21 @@ services:
       - ./app:/app
       - ./fontconfig_cache:/fontconfig_cache
     environment:
-      # Tells matplotlib where it can write the config file
-      - MPLCONFIGDIR=/tmp/matplotlib
-      # Tells fontconfig where it can write its cache
-      - FONTCONFIG_PATH=/fontconfig_cache
       - SECRET_KEY=devsecretkey
       - DEBUG=True
+      - DB_ENGINE=django.db.backends.postgresql
       - DB_HOST=db
       - DB_NAME=devdb
       - DB_USER=devuser
       - DB_PASS=changeme
-      - DJANGO_SETTINGS_MODULE=app.settings.dev
-      - ALLOWED_HOSTS=*
+      - DB_PORT=5432
+      - DJANGO_SETTINGS_MODULE=app.settings.prod
+      - LOGGING=True
+      - SITE_ID=1
+      - USE_SQLITE=False
+      # Other environment variables
+      - FONTCONFIG_CACHE=/fontconfig_cache
+      - MPLCONFIGDIR=/tmp/matplotlib
     depends_on:
       - db
 

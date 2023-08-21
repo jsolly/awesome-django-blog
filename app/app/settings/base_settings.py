@@ -1,9 +1,8 @@
 from pathlib import Path
 import os
-import json
 import sys
 from dotenv import load_dotenv
-
+from psycopg import IsolationLevel
 import logging
 
 logger = logging.getLogger("django")
@@ -38,16 +37,16 @@ else:
                 "ENGINE": os.environ["DB_ENGINE"],
                 "NAME": os.environ["DB_NAME"],
                 "USER": os.environ["DB_USER"],
-                "PASSWORD": os.environ["DB_PASSWORD"],
+                "PASSWORD": os.environ["DB_PASS"],
                 "HOST": os.environ["DB_HOST"],
                 "PORT": os.environ["DB_PORT"],
-                "OPTIONS": json.loads(os.environ["DB_OPTIONS"]),
+                "OPTIONS": {"isolation_level": IsolationLevel.READ_COMMITTED},
             }
         }
     except KeyError:
         message = """
         Please set the following environment variables:
-        DB_ENGINE, DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_OPTIONS
+        DB_ENGINE, DB_NAME, DB_USER, DB_PASS, DB_HOST, DB_PORT
         """
         logger.error(message)
         sys.exit(1)
@@ -103,7 +102,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.sites",
-    "livereload",
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
     "django.contrib.redirects",
