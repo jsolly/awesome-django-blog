@@ -22,9 +22,14 @@ django-sri==0.6.0
 gunicorn==21.2.0
 whitenoise==6.5.0
 
-## GPT Bot dependencies
-openai==0.27.8
+## GPT Bot dependencies (Distances From Embeddings)
 matplotlib==3.7.2
+numpy==1.25.1
+openai==0.27.8
+pandas==2.0.3
+plotly==5.15.0
+scikit-learn==1.3.0
+scipy==1.11.1
 
 ## Legacy dependencies for migrations
 django-ckeditor==6.4.2
