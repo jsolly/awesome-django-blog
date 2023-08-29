@@ -605,8 +605,8 @@ figure {
   transition: fill 0.25s ease-out;
 }
 
-.resp-sharing-button__link.twitter {
-  background-color: #55acee;
+.resp-sharing-button__link.x {
+  background-color: #333333;
 }
 
 .resp-sharing-button__link.reddit {
@@ -624,7 +624,9 @@ figure {
 .resp-sharing-button__link.linkedin:hover .resp-sharing-button__icon {
   fill: #0077b5;
 }
-
+.resp-sharing-button__link.x:hover {
+  background-color:#4D4D4D;
+}
 .social-share-btn {
   width: 24px;
   height: 24px;

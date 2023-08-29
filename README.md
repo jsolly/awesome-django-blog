@@ -1,11 +1,11 @@
 # Awesome Django Blog
+
 [![awesome-django-blog-tests](https://github.com/jsolly/awesome-django-blog/actions/workflows/django-test-deploy-master.yaml/badge.svg)](https://github.com/jsolly/awesome-django-blog/actions/workflows/django-test-deploy-master.yaml)
 [![Coverage Status](https://coveralls.io/repos/github/jsolly/awesome-django-blog/badge.svg?branch=master&service=github)](https://coveralls.io/github/jsolly/awesome-django-blog?branch=master)
 ![CodeStyle](https://img.shields.io/badge/code%20style-black-000000.svg)
 ![Linting](https://img.shields.io/badge/linting-ruff-orange)
 [![Python Version](https://img.shields.io/badge/python-3.10-brightgreen.svg)](https://www.python.org/downloads/)
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
-
 
 Awesome-django-blog is a fully functional blogging platform built using the Django web framework. It includes features such as creating and managing blog posts, comments, and categories, as well as user authentication and authorization.
 
@@ -36,14 +36,12 @@ pip install --upgrade pip && pip install -r requirements.txt
 ## Development
 
 First, rename 'awesome-django-blog/sample.env' to .env and change the values to match your setup.
-   (database passwords, secret keys, etc)
+(database passwords, secret keys, etc)
 
 By default USE_SQLITE is set to `true` if you want to use something else like postgres, set this to False and modify the DJANGO_DB_SETTINGS variable in the file.
 
 ```shell
 cd awesome-django-blog/django_project
-python3 manage.py migrate
-python3 manage.py createsuperuser # Follow prompts to create your first user
 python3 manage.py runserver
 ```
 
@@ -162,6 +160,7 @@ $ pre-commit install
 - ~~Custom 404 page that looks really cool. So even if your users are lost, they are still having a good time.~~ Removed in (https://github.com/jsolly/awesome-django-blog/commit/19b3d40cc6e8b231010b0f62656eb27e0104ffd7)
 
 ## Contributing
+
 We ♥️ our contributors.
 
 📕 We expect everyone participating in the community to abide by our [Code of Conduct](https://github.com/jsolly/awesome-django-blog/blob/master/docs/CODE_OF_CONDUCT.md). Please read and follow it. <br>
@@ -172,9 +171,9 @@ Let's build great software together.
 
 ### Top Contributors
 
-|                                               John Solly                                               |                                                Praise Dike                                                |
-| :----------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------: |
-|   [![jsolly](https://avatars1.githubusercontent.com/u/9572232?v=3&s=200)](https://github.com/jsolly)   | [![freedompraise](https://avatars1.githubusercontent.com/u/70984186?v=4&s=200)](https://github.com/freedompraise) |
+|                                               John Solly                                               |                                                     Praise Dike                                                      |
+| :----------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: |
+|   [![jsolly](https://avatars1.githubusercontent.com/u/9572232?v=3&s=200)](https://github.com/jsolly)   |  [![freedompraise](https://avatars1.githubusercontent.com/u/70984186?v=4&s=200)](https://github.com/freedompraise)   |
 | <a href="https://github.com/jsolly" rel="noopener noreferrer" target="_blank"> `github.com/jsolly`</a> | <a href="https://github.com/freedompraise" rel="noopener noreferrer" target="_blank"> `github.com/freedompraise`</a> |
 
 ---
@@ -183,7 +182,7 @@ Let's build great software together.
 
 Reach out to me at one of the following places!
 
-- Twitter -
+- X -
   <a href="https://twitter.com/_jsolly" rel="noopener noreferrer" target="_blank">
   `@_jsolly`</a>
 
