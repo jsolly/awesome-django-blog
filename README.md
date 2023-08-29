@@ -1,11 +1,11 @@
 # Awesome Django Blog
+
 [![awesome-django-blog-tests](https://github.com/jsolly/awesome-django-blog/actions/workflows/django-test-deploy-master.yaml/badge.svg)](https://github.com/jsolly/awesome-django-blog/actions/workflows/django-test-deploy-master.yaml)
 [![Coverage Status](https://coveralls.io/repos/github/jsolly/awesome-django-blog/badge.svg?branch=master&service=github)](https://coveralls.io/github/jsolly/awesome-django-blog?branch=master)
 ![CodeStyle](https://img.shields.io/badge/code%20style-black-000000.svg)
 ![Linting](https://img.shields.io/badge/linting-ruff-orange)
 [![Python Version](https://img.shields.io/badge/python-3.10-brightgreen.svg)](https://www.python.org/downloads/)
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
-
 
 Awesome-django-blog is a fully functional blogging platform built using the Django web framework. It includes features such as creating and managing blog posts, comments, and categories, as well as user authentication and authorization.
 
@@ -18,7 +18,7 @@ Awesome-django-blog is a fully functional blogging platform built using the Djan
 - [Installation](#installation)
 - [Development](#development)
 - [Features](#features)
-- [Core Contributors](#core-contributors)
+- [Contributing](#contributing)
 - [Support](#support)
 - [License](#license)
 
@@ -113,7 +113,7 @@ $ pre-commit install
 - User Login with Django built-in auth to create posts and leave comments
 - Ckeditor 5 for authoring blog posts (also includes spell check, code snippets, character
   counter, and more!)
-- Add comments to blog posts for greater engagement
+- Add real-time comments without page reloads for a smooth user experience.
 - Slugified URLs for more readable links
 - Open Graph protocol compliant social media sharing for beautiful share cards (LinkedIn, Twitter, Facebook, Instagram, Reddit, etc)
 - Smart and powerful Global search so you can find any blog post with a keyword search.
@@ -167,6 +167,7 @@ $ pre-commit install
 - ~~Custom 404 page that looks really cool. So even if your users are lost, they are still having a good time.~~ Removed in (https://github.com/jsolly/awesome-django-blog/commit/19b3d40cc6e8b231010b0f62656eb27e0104ffd7)
 
 ## Contributing
+
 We ♥️ our contributors.
 
 📕 We expect everyone participating in the community to abide by our [Code of Conduct](https://github.com/jsolly/awesome-django-blog/blob/master/docs/CODE_OF_CONDUCT.md). Please read and follow it. <br>
@@ -177,9 +178,9 @@ Let's build great software together.
 
 ### Top Contributors
 
-|                                               John Solly                                               |                                                Praise Dike                                                |
-| :----------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------: |
-|   [![jsolly](https://avatars1.githubusercontent.com/u/9572232?v=3&s=200)](https://github.com/jsolly)   | [![freedompraise](https://avatars1.githubusercontent.com/u/70984186?v=4&s=200)](https://github.com/freedompraise) |
+|                                               John Solly                                               |                                                     Praise Dike                                                      |
+| :----------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: |
+|   [![jsolly](https://avatars1.githubusercontent.com/u/9572232?v=3&s=200)](https://github.com/jsolly)   |  [![freedompraise](https://avatars1.githubusercontent.com/u/70984186?v=4&s=200)](https://github.com/freedompraise)   |
 | <a href="https://github.com/jsolly" rel="noopener noreferrer" target="_blank"> `github.com/jsolly`</a> | <a href="https://github.com/freedompraise" rel="noopener noreferrer" target="_blank"> `github.com/freedompraise`</a> |
 
 ---
@@ -188,7 +189,7 @@ Let's build great software together.
 
 Reach out to me at one of the following places!
 
-- Twitter -
+- X -
   <a href="https://twitter.com/_jsolly" rel="noopener noreferrer" target="_blank">
   `@_jsolly`</a>
 
