@@ -65,7 +65,7 @@ class Post(models.Model):
         force_format="WEBP",
         quality=75,
         upload_to="post_metaimgs/",
-        default="jsolly.webp",
+        default="default.webp",
     )
     metaimg_alt_txt = models.CharField(max_length=500, default="John Solly Headshot")
     metaimg_attribution = models.CharField(max_length=500, blank=True, null=True)

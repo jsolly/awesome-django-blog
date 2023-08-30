@@ -13,6 +13,7 @@ services:
     volumes:
       - ./app:/app
       - ./fontconfig_cache:/fontconfig_cache
+      - ./data/web:/vol/web
     environment:
       - SECRET_KEY=devsecretkey
       - DEBUG=True
