@@ -7,6 +7,7 @@ services:
     command: >
       sh -c "python manage.py wait_for_db &&
              python manage.py migrate &&
+             # TODO create superuser with python manage.py createsuperuser --noinput &&
              python manage.py runserver 0.0.0.0:8000"
     ports:
       - "8000:8000"
