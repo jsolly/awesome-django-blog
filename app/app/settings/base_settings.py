@@ -125,7 +125,6 @@ MIDDLEWARE = [
     "django.utils.deprecation.MiddlewareMixin",
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
     "csp.middleware.CSPMiddleware",
-    "livereload.middleware.LiveReloadScript",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.contrib.redirects.middleware.RedirectFallbackMiddleware",
     "django_htmx.middleware.HtmxMiddleware",

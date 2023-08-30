@@ -11,6 +11,3 @@ SECURE_SSL_REDIRECT = False
 SECURE_BROWSER_XSS_FILTER = False
 SECURE_CONTENT_TYPE_NOSNIFF = False
 
-# For development, we want to see changes on save without having to restart the server
-INSTALLED_APPS += ["livereload"]
-MIDDLEWARE += ["livereload.middleware.LiveReloadScript"]

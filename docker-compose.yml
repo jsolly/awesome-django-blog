@@ -22,7 +22,7 @@ services:
       - DB_USER=devuser
       - DB_PASS=changeme
       - DB_PORT=5432
-      - DJANGO_SETTINGS_MODULE=app.settings.prod
+      - DJANGO_SETTINGS_MODULE=app.settings.docker_dev
       - LOGGING=True
       - SITE_ID=1
       - USE_SQLITE=False
