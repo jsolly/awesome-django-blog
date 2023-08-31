@@ -7,14 +7,12 @@ services:
     command: >
       sh -c "python manage.py wait_for_db &&
              python manage.py migrate &&
-             python manage.py createsuperuser --noinput --username admin --email admin@example.com &&
              python manage.py runserver 0.0.0.0:8000"
     ports:
       - "8000:8000"
     volumes:
       - ./app:/app
-      - ./fontconfig_cache:/fontconfig_cache
-      - ./data/web:/vol/web
+      - ./app/static:/app/static
     environment:
       - SECRET_KEY=devsecretkey
       - DEBUG=True
@@ -30,7 +28,7 @@ services:
       - SITE_ID=1
       - USE_SQLITE=False
       # Other environment variables
-      - FONTCONFIG_CACHE=/fontconfig_cache
+      - FONTCONFIG_CACHE=/tmp/fontconfig_cache
       - MPLCONFIGDIR=/tmp/matplotlib
     depends_on:
       - db
