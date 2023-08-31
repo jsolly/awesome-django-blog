@@ -30,20 +30,13 @@ git clone https://github.com/jsolly/awesome-django-blog.git
 cd awesome-django-blog
 python3 -m venv .venv
 source .venv/bin/activate
+# You only need requirments.txt on production
 pip install --upgrade pip && pip install -r requirements.txt
-# Create local SQLite database (Default) and apply migrations
 python3 app/manage.py migrate
 ```
 
-## Development
-1 - Install additional dependencies for development
-
-```shell
-pip install -r requirements-dev.txt
-```
-
-2 - Rename 'awesome-django-blog/sample.env' to .env and change the values to match your setup.
-   (database passwords, secret keys, etc)
+Rename 'awesome-django-blog/sample.env' to .env and change the values to match your setup. 
+            (database passwords, secret keys, etc)
 
 By default USE_SQLITE is set to `True` if you want to use something else like postgres, set this to False and modify the DJANGO_DB_SETTINGS variable in the file.
 
@@ -61,6 +54,18 @@ python3 manage.py runserver
 Here is a screenshot of my sites configuration:
 
 3 - Now go into your settings.dev file and change the SITE_ID to the ID of the site you just created. It should be 1 if you have yet to create any other sites.
+
+
+## Installation (Docker)
+
+```shell
+git clone https://github.com/jsolly/awesome-django-blog.git
+cd awesome-django-blog
+docker-compose build
+docker-compose run --rm app sh -c "python manage.py createsuperuser"
+docker-compose up
+```
+
 
 ### Coverage
 

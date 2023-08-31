@@ -274,16 +274,16 @@ USE_L10N = True
 USE_TZ = True
 
 
-STATIC_ROOT = BASE_DIR / "static"
 STATIC_URL = "/static/"
+MEDIA_URL = "/media/"
 
 # Extra places for collectstatic to find static files.
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_DIRS = [str(BASE_DIR / "staticfiles")]
 
-MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+STATIC_ROOT = BASE_DIR / "static"
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
