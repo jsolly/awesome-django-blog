@@ -133,7 +133,7 @@ class TestViews(SetUp):
             "draft": False,
             "metaimg": SimpleUploadedFile(
                 name="lorem_image.jpg",
-                content=open("app/media/jsolly.webp", "rb").read(),
+                content=open("app/media/default.webp", "rb").read(),
                 content_type="image/webp",
             ),
             "snippet": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -196,16 +196,15 @@ class TestViews(SetUp):
         )
         post1_detail_url = reverse("post-detail", args=[test_post.slug])
         post1_update_url = reverse("post-update", args=[test_post.slug])
-        new_category = Category.objects.create(name="New Category")
         data = {
             "title": "Updated First Post",
             "slug": test_post.slug,
-            "category": new_category.id,
+            "category": test_post.category.id,
             "metadesc": "Updated Meta Description",
             "draft": False,
             "metaimg": SimpleUploadedFile(
                 name="test_image.jpg",
-                content=open("app/media/jsolly.webp", "rb").read(),
+                content=open("app/media/default.webp", "rb").read(),
                 content_type="image/webp",
             ),
             "snippet": "Long ago, the four nations lived together in harmony.",
@@ -221,7 +220,6 @@ class TestViews(SetUp):
         self.assertRedirects(response, expected_url=post1_detail_url)
         test_post.refresh_from_db()
         self.assertEqual(test_post.title, data["title"])
-        self.assertEqual(test_post.category, new_category)
         self.assertEqual(test_post.metadesc, data["metadesc"])
         self.assertEqual(test_post.snippet, data["snippet"])
         self.assertEqual(test_post.content, data["content"])

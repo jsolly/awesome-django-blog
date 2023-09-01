@@ -46,7 +46,7 @@ def create_post(
     if not author:
         author = create_user()
     if not category:
-        category = Category.objects.get(name="Test Category")
+        category = Category.objects.get(name="Uncategorized")
     if not title:
         title = f"Default Title {post_count}"
     post = Post.objects.create(

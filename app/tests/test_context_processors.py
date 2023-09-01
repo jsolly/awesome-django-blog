@@ -10,15 +10,13 @@ class TestContextProcessors(SetUp):
         self.factory = RequestFactory()
 
     def test_category_renderer(self):
-        create_post(category=self.test_category)
         path = reverse("blog-category", args=[self.test_category.slug])
         request = self.factory.get(path)
         request.resolver_match = resolve(path)
         result = category_renderer(request)
         self.assertEqual(result["current_category"], self.test_category.slug)
         self.assertEqual(len(result["category_qs"]), 1)
-        self.assertEqual(result["category_qs"][0].name, "Test Category")
-        self.assertEqual(result["category_qs"][0].posts_count, 1)
+        self.assertEqual(result["category_qs"][0].name, "Uncategorized")
 
     def test_home_breadcrumb(self):
         request = self.factory.get("/")

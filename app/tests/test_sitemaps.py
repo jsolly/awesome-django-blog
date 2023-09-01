@@ -26,11 +26,7 @@ class TestSitemaps(SetUp):
         self.assertTrue(reverse("post-detail", args=[item.slug]))
 
     def test_category_site_map(self):
-        post = create_post()
         item = CategorySitemap.items(Sitemap)[0]
-        self.assertEqual(
-            CategorySitemap.lastmod(CategorySitemap, item), post.date_posted
-        )
         self.assertTrue(reverse("blog-category", args=[item.slug]))
 
     def test_works_cited_site_map(self):

@@ -23,5 +23,5 @@ class SetUp(TestCase):
     def setUpTestData(cls):
         warnings.simplefilter("ignore", category=ResourceWarning)
         cls.test_password = "defaultpassword"
-        cls.test_category, _ = Category.objects.get_or_create(name="Test Category")
+        cls.test_category = Category.objects.get(name="Uncategorized")
         Site.objects.get_or_create(name="localhost", domain="localhost:8000")
