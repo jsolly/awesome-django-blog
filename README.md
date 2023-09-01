@@ -41,7 +41,7 @@ Rename 'awesome-django-blog/sample.env' to .env and change the values to match y
 By default USE_SQLITE is set to `True` if you want to use something else like postgres, set this to False and modify the DJANGO_DB_SETTINGS variable in the file.
 
 ```shell
-cd awesome-django-blog/django_project
+cd awesome-django-blog/app
 python3 manage.py runserver
 ```
 
@@ -70,26 +70,26 @@ docker-compose up
 ### Coverage
 
 ```shell
-coverage run --rcfile=config/.coveragerc -m pytest django_project
+coverage run --rcfile=config/.coveragerc -m pytest app
 coverage report -m --skip-covered --rcfile=config/.coveragerc
 ```
 
 ### Tests
 
 ```shell
-pytest django_project
+pytest app
 ```
 
 ### Linting
 
 ```shell
-ruff --config ./config/pyproject.toml django_project
+ruff --config ./config/pyproject.toml app
 ```
 
 ### Formating
 
 ```shell
-black --config ./config/pyproject.toml django_project
+black --config ./config/pyproject.toml app
 ```
 
 Also see the [actions tab](https://github.com/jsolly/awesome-django-blog/actions)
