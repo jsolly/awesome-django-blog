@@ -125,7 +125,7 @@
         </div>
         <div class="related-post-text">
           <h3>{{ post.title }}</h3>
-          <p>{{ post.snippet|safe }}</p>
+          <p>{{ post.snippet|safe|truncatewords:10 }}</p>
         </div>
       </a>
     </li>

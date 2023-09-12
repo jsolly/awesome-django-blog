@@ -625,7 +625,7 @@ figure {
   fill: #0077b5;
 }
 .resp-sharing-button__link.x:hover {
-  background-color:#4D4D4D;
+  background-color: #4d4d4d;
 }
 .social-share-btn {
   width: 24px;
@@ -1458,4 +1458,73 @@ img {
 .comment-btn {
   padding: 3px 8px;
   font-size: 8px;
+}
+
+/* Container for the related posts section */
+#related-posts-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+/* Title for the related posts section */
+#related-posts-section h2 {
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: #1da1f2;
+}
+
+/* List of related posts */
+#related-posts-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* List item for each related post */
+.related-post {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+/* Image for each related post */
+.related-post img {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+/* Text container for each related post */
+.related-post div {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  padding: 10px;
+}
+
+/* Title for each related post */
+.related-post h3 {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  color: black;
+}
+
+/* Snippet for each related post */
+.related-post p {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  color: gray;
+}
+
+/* Link for each related post */
+.related-post a {
+  text-decoration: none;
+}
+
+/* Hover effect for each related post */
+.related-post:hover {
+  background-color: #f0f8ff;
 }
