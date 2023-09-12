@@ -319,7 +319,7 @@ class PostDetailView(DetailView):
         category = self.object.category
         related_posts = Post.objects.filter(category=category).exclude(
             slug=self.object.slug
-        )[:5]
+        )[:3]
 
         context = super().get_context_data(**kwargs)
         context["title"] = self.object.title
