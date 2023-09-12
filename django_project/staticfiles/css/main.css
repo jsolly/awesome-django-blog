@@ -1464,16 +1464,13 @@ img {
 #related-posts-section {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   margin: 20px;
 }
 
-/* Title for the related posts section */
 #related-posts-section h2 {
-  font-family: Arial, sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-  color: #1da1f2;
+  text-align: left;
+  align-self: flex-start;
 }
 
 /* List of related posts */
