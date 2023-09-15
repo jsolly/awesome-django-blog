@@ -1508,14 +1508,6 @@ img {
   color: black;
 }
 
-/* Snippet for each related post */
-.related-post p {
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  font-weight: normal;
-  color: gray;
-}
-
 /* Link for each related post */
 .related-post a {
   text-decoration: none;
