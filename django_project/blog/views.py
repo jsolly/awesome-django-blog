@@ -316,10 +316,16 @@ class PostDetailView(DetailView):
         return Post.objects.filter(slug=self.kwargs["slug"])
 
     def get_context_data(self, **kwargs):
+        category = self.object.category
+        related_posts = Post.objects.filter(category=category).exclude(
+            slug=self.object.slug
+        )[:3]
+
         context = super().get_context_data(**kwargs)
         context["title"] = self.object.title
         context["description"] = self.object.metadesc
         context["comment_form"] = CommentForm()
+        context["related_posts"] = related_posts
         return context
 
 

@@ -112,4 +112,26 @@
 
 <!-- Create Comments Section-->
 {% include 'blog/comment/add_comment.html' %}
+
+<!-- Related Posts Section -->
+<section id="related-posts-section" class="content-section sml-margin-top-bottom">
+  <h2>Related Posts</h2>
+  <ul id="related-posts-list">
+    {% for post in related_posts %}
+    <li class="related-post">
+      <a href="{{ post.get_absolute_url }}">
+        <div class="related-post-image">
+          <img src="{{ post.metaimg.url }}" alt="{{ post.metaimg_alt_txt }}">
+        </div>
+        <div class="related-post-text">
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.snippet|safe|truncatewords:10 }}</p>
+        </div>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+
 {% endblock content %}
