@@ -1,0 +1,22 @@
+{% extends "blog/parts/base.html" %} {% load static %}
+
+{% block head %}
+<!-- django_ckeditor_5 -->
+<link href="{% static 'django_ckeditor_5/prism.css' %}" rel="stylesheet">
+<script src="{% static 'django_ckeditor_5/prism.js' %}" defer></script>
+{% endblock head %}
+
+{% block content %}
+<h1>Add Post</h1>
+
+<br />
+<div class="form-group">
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %} {{ form.media }} {{ form }}
+    <button class="post-submit-button sml-margin-top-bottom" id="post-submit-button" type="submit">
+      Post
+    </button>
+
+    {% endblock content %}
+  </form>
+</div>

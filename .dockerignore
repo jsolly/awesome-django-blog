@@ -1,0 +1,24 @@
+# Git
+.git
+.gitignore
+
+# Docker
+.docker
+
+# Python
+app/__pycache__/
+app/*/__pycache__/
+app/*/*/__pycache__/
+app/*/*/*/__pycache__/
+.env
+.venv/
+
+# Local PostgreSQL data
+data/
+
+# MacOS
+.DS_Store
+
+# Application Files
+app/tests
+app/logs
