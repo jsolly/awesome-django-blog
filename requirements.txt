@@ -1,7 +1,7 @@
 ## Core Dependencies
-Django==4.2.3
+Django==4.2.5
 django-ckeditor-5==0.2.8
-django-htmx==1.15.0
+django-htmx==1.16.0
 django-resized==1.0.2
 django-robots==5.0
 feedparser==6.0.10
@@ -36,12 +36,12 @@ django-ckeditor==6.4.2
 
 
 ## Development Dependencies
-black==23.7.0
+black==23.9.1
 coverage==7.2.7
 django-coverage-plugin==3.1.0
 django-fastdev==1.7.3
 django-livereload-server==0.4
 pre-commit==3.3.3
 pytest==7.4.0
-ruff==0.0.280
+ruff==0.0.291
 tiktoken==0.4.0 # Creating embeddings
