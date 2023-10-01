@@ -192,9 +192,7 @@ Let's build great software together.
 
 ## Support
 
-Reach out to me at one of the following places!
-
-- X -
+Reach out to me on X!
   <a href="https://twitter.com/_jsolly" rel="noopener noreferrer" target="_blank">
   `@_jsolly`</a>
 
