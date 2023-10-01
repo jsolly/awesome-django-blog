@@ -33,3 +33,15 @@ scipy==1.11.1
 
 ## Legacy dependencies for migrations
 django-ckeditor==6.4.2
+
+
+## Development Dependencies
+black==23.7.0
+coverage==7.2.7
+django-coverage-plugin==3.1.0
+django-fastdev==1.7.3
+django-livereload-server==0.4
+pre-commit==3.3.3
+pytest==7.4.0
+ruff==0.0.280
+tiktoken==0.4.0 # Creating embeddings
