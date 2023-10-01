@@ -103,7 +103,6 @@ jobs:
           script: |
             cd blogthedata
             git pull
-            # Production is using a different venv path
-            source django_project/venv/bin/activate
-            python3 django_project/manage.py collectstatic --noinput
+            source .venv/bin/activate
+            python3 app/manage.py collectstatic --noinput
             sudo systemctl restart gunicorn
