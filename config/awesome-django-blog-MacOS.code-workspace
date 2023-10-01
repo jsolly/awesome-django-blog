@@ -35,6 +35,9 @@
     "[html]": {
       "editor.defaultFormatter": "vscode.html-language-features"
     },
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "[python]": {
+      "editor.defaultFormatter": "ms-python.black-formatter"
+    },
   }
 }

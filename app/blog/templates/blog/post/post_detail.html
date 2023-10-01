@@ -1,0 +1,137 @@
+{% extends "blog/parts/base.html" %}
+{% load static %}
+
+{% block head %}
+<!-- django_ckeditor_5 -->
+<link href="{% static 'django_ckeditor_5/ckeditor.css' %}" rel="stylesheet">
+<link href="{% static 'django_ckeditor_5/prism.css' %}" rel="stylesheet">
+<script src="{% static 'django_ckeditor_5/prism.js' %}" defer></script>
+<script src="{% static 'js/addHeaderIdsAndLinks.js' %}" defer></script>
+
+
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="{{ post.date_posted|date:'c' }}">
+<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ post.metaimg.url }}">
+<meta property="og:image:width" content="{{ post.metaimg.width }}">
+<meta property="og:image:height" content="{{ post.metaimg.height }}">
+<meta property="og:image:alt" content="{{ post.metaimg_alt_txt }}">
+{% endblock head %}
+
+{% block content %}
+<article class="media content-section">
+  <div class="media-body line-numbers ck-content">
+    <div class="article-metadata">
+      <h1 class="sml-margin-top-bottom">
+        {{ post.title }}
+        {% if post.draft %}
+        <p id="draft">(Draft)</p>
+        {% endif %}
+      </h1>
+      <div class="meta-img-container">
+        <img id="post-detail-meta-img" src="{{ post.metaimg.url }}" alt="{{ post.metadesc }}">
+      </div>
+      <p class="post-date sml-margin-top-bottom">
+        {{ post.date_posted|date:"F d, Y" }} in {{ post.category.name }}</p>
+    </div>
+    {% if post.author == user %}
+    <div class="buttons-container">
+      <a id="post-edit-button" class="btn btn-dark sml-margin-left-right" href="{% url 'post-update' post.slug %}">
+        <span>Edit Post</span>
+      </a>
+      <a id="post-delete-button" class="btn btn-red sml-margin-left-right" href="{% url 'post-delete' post.slug %}">
+        <span>Delete Post</span>
+      </a>
+    </div>
+    {% endif %}
+    <div class="sml-margin-top-bottom" id="print-container">
+      <a class="btn btn-dark" href="javascript:window.print()">
+        <img id="print-icon" src="{% static 'svg/print-icon.svg' %}" alt="Print this blog post">
+        <span id="print-text">Print this post</span>
+      </a>
+    </div>
+    <div class="post-text">
+      {{ post.content|safe }}
+    </div>
+</article>
+
+<a href="{% url 'home' %}" id="post-back-to-home-button" class="btn btn-dark">
+  Back to Home
+</a>
+
+<div class="social-share-container">
+  <ul class="social-share">
+    <li>
+      <a class="resp-sharing-button__link x"
+        href="https://twitter.com/intent/tweet/?text={{ post.title }}&amp;url={{ request.build_absolute_uri }}"
+        target="_blank" rel="noopener noreferrer" aria-label="Share on X">
+        <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+          <img class="social-share-btn" src="{% static 'svg/x-share-btn.svg' %}" alt="X">
+        </div>
+        <span>Share on X</span>
+      </a>
+    </li>
+    <li>
+      <a class="resp-sharing-button__link reddit"
+        href="https://reddit.com/submit/?url={{ request.build_absolute_uri }}&amp;resubmit=true&amp;title={{ post.title }}"
+        target="_blank" rel="noopener" aria-label="Share on Reddit">
+        <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+          <img class="social-share-btn" src="{% static 'svg/reddit-share-btn.svg' %}" alt="Reddit">
+        </div>
+        <span>Share on Reddit</span>
+      </a>
+    </li>
+    <li>
+      <a class="resp-sharing-button__link linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ request.build_absolute_uri }}&amp;title={{ post.title }}&amp;summary={{ post.metadesc }}&amp;source={{ request.build_absolute_uri }}"
+        target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+        <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
+          <img class="social-share-btn" src="{% static 'svg/linkedin-share-btn.svg' %}" alt="LinkedIn">
+        </div>
+        <span>Share on LinkedIn</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- Comments Section-->
+<section id="comments-section" class="content-section .sml-margin-top-bottom">
+  <h2>Comments</h2>
+  <ul id="comments-list">
+    {% if post.comments.count > 0 %}
+    {% for comment in post.comments.all %}
+    {% include 'blog/comment/comment_item.html' %}
+    {% endfor %}
+  </ul>
+
+  {% else %}
+  <div id="no-comments-message">
+    <li class="comment">No comments yet.</li>
+  </div>
+  {% endif %}
+</section>
+
+<!-- Create Comments Section-->
+{% include 'blog/comment/add_comment.html' %}
+
+<!-- Related Posts Section -->
+<section id="related-posts-section" class="content-section sml-margin-top-bottom">
+  <h2>Related Posts</h2>
+  <ul id="related-posts-list">
+    {% for post in related_posts %}
+    <li class="related-post">
+      <a href="{{ post.get_absolute_url }}">
+        <div class="related-post-image">
+          <img src="{{ post.metaimg.url }}" alt="{{ post.metaimg_alt_txt }}">
+        </div>
+        <div class="related-post-text">
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.snippet|safe|truncatewords:10 }}</p>
+        </div>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+
+{% endblock content %}

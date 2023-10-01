@@ -3,7 +3,7 @@ profile_pics/
 post_metaimgs/
 profile_pics/
 uploads/
-django_project/media/django_ckeditor_5/
+app/media/django_ckeditor_5/
 static/
 
 ## Posts and embeddings
@@ -11,7 +11,7 @@ exported_posts/
 processed/
 
 # Virtual Environments
-venv/
+.venv/
 
 # Environ Variables File
 .env
@@ -19,10 +19,8 @@ venv/
 # Coverage files
 .coverage
 
-# Python Temp Files
+# Temp Files
 __pycache__/
-
-# MAC OSX
 .DS_Store
 
 # backups
@@ -31,7 +29,7 @@ linode*.img
 migration_backup
 
 # Other
-logs/
+app/logs/*.log
 .vscode/
 
 db.sqlite3

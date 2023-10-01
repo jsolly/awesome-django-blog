@@ -9,9 +9,9 @@ from django.contrib.auth.models import User
 
 
 BASE_DIR = Path(__file__).resolve().parents[2]
-django_project_path = BASE_DIR / "django_project"
-sys.path.append(str(django_project_path))
-os.environ["DJANGO_SETTINGS_MODULE"] = "django_project.settings.dev"
+app_path = BASE_DIR / "app"
+sys.path.append(str(app_path))
+os.environ["DJANGO_SETTINGS_MODULE"] = "app.settings.dev"
 
 application = get_wsgi_application()
 
