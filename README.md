@@ -33,7 +33,7 @@ source .venv/bin/activate
 # You only need requirments.txt on production
 pip install --upgrade pip && pip install -r requirements.txt
 python3 app/manage.py migrate
-python3 app/manage.py createsuperuser # optional to create a user who can create posts and comments
+python3 app/manage.py createsuperuser # Create a user who can create posts and comments
 ```
 
 Rename 'awesome-django-blog/sample.env' to .env and change the values to match your setup. 
