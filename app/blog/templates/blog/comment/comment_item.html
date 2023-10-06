@@ -7,7 +7,7 @@
       </span>
     </small>
   </div>
-  <div class="comment-content">{{ comment.content|safe }}</div>
+  <div class="comment-content">{{ comment.content|safe|linebreaksbr }}</div>
   {% if comment.author == request.user %}
   <span class="comment-actions">
     <a href="{% url 'comment-update' comment.id %}" class="btn btn-dark comment-btn comment-edit">Edit</a>
