@@ -1,11 +1,26 @@
-from .models import Post, Category, Comment
-from .forms import PostForm, CommentForm
-from .utils import answer_question
-from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
-from django.shortcuts import get_object_or_404, redirect
+# Standard library imports
+import html
+import logging
+import os
+from datetime import datetime
+import shutil
+
+# Third-party imports
+import openai
+import psycopg
+import psutil
+
+# Django imports
+from django.conf import settings
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
+from django.db import connection
+from django.db.models import Q
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import (
     ListView,
     DetailView,
@@ -13,23 +28,17 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
     View,
+    TemplateView,
 )
-from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse
-from django.db import connection
-from django.db.models import Q
-import html
-import os
-import openai
-import logging
-from datetime import datetime
-from django.views.generic import TemplateView
-from django.conf import settings
-import psycopg
-import psutil
-import shutil
+
+# Local imports
+from .models import Post, Category, Comment
+from .forms import PostForm, CommentForm
+from .utils import answer_question
 from users.models import User
 from users.utils import handle_no_permission
+from pathlib import Path
+
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 ez_logger = logging.getLogger("ezra_logger")
@@ -326,6 +335,15 @@ class PostDetailView(DetailView):
         context["description"] = self.object.metadesc
         context["comment_form"] = CommentForm()
         context["related_posts"] = related_posts
+
+        # Check if metaimg exists and the associated file is available
+        if self.object.metaimg:
+            metaimg_path = Path(settings.MEDIA_ROOT) / self.object.metaimg.name
+            if metaimg_path.exists():
+                context["metaimg_url"] = self.object.metaimg.url
+                context["metaimg_width"] = self.object.metaimg.width
+                context["metaimg_height"] = self.object.metaimg.height
+
         return context
 
 
