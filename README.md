@@ -105,10 +105,6 @@ $ cd awesome-django-blog/config
 $ pre-commit install
 ```
 
-### Local server (For mobile testing)
-
-[Use Ngrok](https://ngrok.com/)
-
 ---
 
 ## Features
