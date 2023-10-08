@@ -598,6 +598,17 @@ figure {
   color: var(--muted-white);
 }
 
+.btn-primary {
+  color: var(--muted-white);
+  background-color: var(--primary-blue);
+  border-color: #5c636a;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-blue-hover);
+  border-color: #0056b3;
+}
+
 /* print button */
 #print-icon {
   margin-right: 0.5rem;
