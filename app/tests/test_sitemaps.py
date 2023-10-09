@@ -11,7 +11,6 @@ from app.sitemaps import (
     PortfolioSiteMap,
     StatusPageSiteMap,
 )
-from blog.models import Post
 
 
 class TestSitemaps(SetUp):

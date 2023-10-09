@@ -1,11 +1,9 @@
 from .base import SetUp
 from django.urls import reverse
 from PIL import Image
-from blog.models import Post, Comment, Category, slugify_instance
+from blog.models import Post, Comment, Category
 from users.models import Profile
 from django.contrib.auth.models import User
-from django.utils.text import slugify
-from .base import SetUp
 
 
 class TestModels(SetUp):
