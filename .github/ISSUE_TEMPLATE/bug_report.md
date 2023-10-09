@@ -7,7 +7,8 @@ assignees: ''
 
 ---
 
-## Context (What is the current behavior and why is it a problem?)
+## Context
+<!-- What is the current behavior and why is it a problem? -->
 
 ## Steps to reproduce the issue
 1. Go to '...'

@@ -6,15 +6,14 @@ labels: "styling, enhancement"
 assignees: ""
 ---
 
-## Styling Change Request
+## Context
+<!-- What is the current UI/UX and why is it a problem? -->
 
-### What's the style idea?
+### What's your idea to make it better?
 
-Add descriptions
 
 ### Screenshots
 
-Add screenshots
 
 ### Record
 
