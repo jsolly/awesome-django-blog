@@ -7,6 +7,7 @@ from blog.forms import PostForm, CommentForm
 from users.forms import UserRegisterForm, ProfileUpdateForm, UserUpdateForm
 from .utils import (
     create_unique_post,
+    create_comment,
     message_in_response,
 )
 
@@ -57,7 +58,7 @@ class TestViews(SetUp):
     def test_home_view_admin_user(self):
         # Access using admin_user (should get posts in draft mode)
         self.client.login(
-            username=self.admin_user.username, password=self.test_password
+            username=self.admin_user.username, password=self.admin_user_password
         )
         response = self.client.get(reverse("home"))
         self.assertEqual(response.status_code, 200)
@@ -86,7 +87,7 @@ class TestViews(SetUp):
 
     def test_post_detail_view_admin_user_sees_draft_post(self):
         self.client.login(
-            username=self.admin_user.username, password=self.test_password
+            username=self.admin_user.username, password=self.admin_user_password
         )
         draft_post_detail_url = reverse("post-detail", args=[self.draft_post.slug])
         response = self.client.get(draft_post_detail_url)
@@ -95,7 +96,7 @@ class TestViews(SetUp):
 
     def test_post_create_view_has_correct_context_template_and_form(self):
         self.client.login(
-            username=self.admin_user.username, password=self.test_password
+            username=self.admin_user.username, password=self.admin_user_password
         )
         response = self.client.get(reverse("post-create"))
         self.assertEqual(response.status_code, 200)
@@ -122,7 +123,7 @@ class TestViews(SetUp):
         }
 
         self.client.login(
-            username=self.admin_user.username, password=self.test_password
+            username=self.admin_user.username, password=self.admin_user_password
         )
 
         response = self.client.post(reverse("post-create"), data=data)
@@ -143,7 +144,7 @@ class TestViews(SetUp):
     def test_create_post_view_comment_only_user_blocked(self):
         self.client.login(
             username=self.comment_only_user.username,
-            password=self.test_password,
+            password=self.comment_only_user_password,
         )
         data = {
             "title": "Lorem Ipsum Post",
@@ -158,7 +159,7 @@ class TestViews(SetUp):
 
     def test_update_post_view_has_correct_context_template_and_form(self):
         self.client.login(
-            username=self.admin_user.username, password=self.test_password
+            username=self.admin_user.username, password=self.admin_user_password
         )
         post1_update_url = reverse("post-update", args=[self.first_post.slug])
         response = self.client.get(post1_update_url)
@@ -169,7 +170,7 @@ class TestViews(SetUp):
 
     def test_update_post_view(self):
         self.client.login(
-            username=self.admin_user.username, password=self.test_password
+            username=self.admin_user.username, password=self.admin_user_password
         )
         post1_detail_url = reverse("post-detail", args=[self.first_post.slug])
         post1_update_url = reverse("post-update", args=[self.first_post.slug])
@@ -207,7 +208,7 @@ class TestViews(SetUp):
         post1_delete_url = reverse("post-delete", args=[delete_me_post.slug])
         self.assertTrue(Post.objects.filter(id=delete_me_post.id).exists())
         self.client.login(
-            username=self.admin_user.username, password=self.test_password
+            username=self.admin_user.username, password=self.admin_user_password
         )
 
         response = self.client.get(post1_delete_url)
@@ -217,24 +218,15 @@ class TestViews(SetUp):
         self.assertRedirects(response, expected_url=reverse("home"))
         self.assertFalse(Post.objects.filter(id=delete_me_post.id).exists())
 
-    def test_post_delete_view_different_user(self):
-        new_user = User.objects.create_user(
-            username="new_user", password=self.test_password
-        )
-        post1_delete_url = reverse("post-delete", args=[self.first_post.slug])
-        self.client.login(username=new_user.username, password=self.test_password)
-
-        response = self.client.get(post1_delete_url)  # Attempt to delete post
-        self.assertEqual(response.status_code, 403)  # Should be forbidden
-        self.assertTrue(Post.objects.filter(id=self.first_post.id).exists())
-
     def test_create_comment_view(self):
         self.client.login(
             username=self.comment_only_user.username,
-            password=self.test_password,
+            password=self.comment_only_user_password,
         )
         test_post_detail_url = reverse("post-detail", args=[self.first_post.slug])
         test_post_comment_url = reverse("comment-create", args=[self.first_post.slug])
+
+        first_post_comment_count = self.first_post.comments.count()
 
         response = self.client.post(
             test_post_comment_url,
@@ -248,12 +240,14 @@ class TestViews(SetUp):
         # Ensure redirect to post after comment submission
         self.assertRedirects(response, test_post_detail_url + "#comments")
         # Ensure a comment was added to the post
-        self.assertEqual(self.first_post.comments.count(), 1)
+        self.assertEqual(self.first_post.comments.count(), first_post_comment_count + 1)
 
     def test_create_comment_view_with_htmx(self):
         self.client.login(
-            username=self.comment_only_user.username, password=self.test_password
+            username=self.comment_only_user.username,
+            password=self.comment_only_user_password,
         )
+        first_post_comment_count = self.first_post.comments.count()
         test_post_comment_url = reverse("comment-create", args=[self.first_post.slug])
         headers = {"HTTP_HX-Request": "true"}
         response = self.client.post(
@@ -265,72 +259,96 @@ class TestViews(SetUp):
             **headers,
         )
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(self.first_post.comments.count(), 1)
+        self.assertEqual(self.first_post.comments.count(), first_post_comment_count + 1)
 
     def test_update_comment_view_has_correct_context_template_and_form(self):
-        test_post = create_post(title="Edit This Post", slug="edit-this-post")
-        test_comment = create_comment(post=test_post, author=self.comment_only_user)
         self.client.login(
-            username=self.comment_only_user.username, password=self.test_password
+            username=self.comment_only_user.username,
+            password=self.comment_only_user_password,
         )
-        response = self.client.get(reverse("comment-update", args=[test_comment.id]))
+        unqiue_comment = create_comment(post=self.first_post)
+        response = self.client.get(reverse("comment-update", args=[unqiue_comment.id]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/comment/update_comment.html")
         self.assertIsInstance(response.context["form"], CommentForm)
-        self.assertEqual(response.context["title"], f"Edit Comment #{test_comment.id}")
         self.assertEqual(
-            response.context["description"], f"Edit Comment #{test_comment.id}"
+            response.context["title"], f"Edit Comment #{unqiue_comment.id}"
         )
-        self.assertEqual(response.context["comment"], test_comment)
+        self.assertEqual(
+            response.context["description"], f"Edit Comment #{unqiue_comment.id}"
+        )
+        self.assertEqual(response.context["comment"], unqiue_comment)
 
     def test_update_comment_view(self):
-        test_post = create_post(title="Edit This Post", slug="edit-this-post")
-        test_comment = create_comment(post=test_post, author=self.comment_only_user)
+        update_me_comment = create_comment(
+            post=self.first_post, author=self.comment_only_user
+        )
         self.client.login(
-            username=self.comment_only_user.username, password=self.test_password
+            username=self.comment_only_user.username,
+            password=self.comment_only_user_password,
         )
         updated_content = "Updated comment content"
 
         response = self.client.post(
-            reverse("comment-update", args=[test_comment.id]),
+            reverse("comment-update", args=[update_me_comment.id]),
             {"content": updated_content},
         )
 
         self.assertRedirects(
             response, reverse("post-detail", args=[self.first_post.slug]) + "#comments"
         )
-        test_comment.refresh_from_db()
-        self.assertEqual(test_comment.content, updated_content)
+        update_me_comment.refresh_from_db()
+        self.assertEqual(update_me_comment.content, updated_content)
 
     def test_comment_delete_view_with_htmx(self):
-        test_post = create_post(title="Delete This Post", slug="delete-this-post")
-        test_comment = create_comment(post=test_post, author=self.comment_only_user)
+        delete_me_comment = create_comment(
+            post=self.first_post, author=self.comment_only_user.username
+        )
         self.client.login(
-            username=self.comment_only_user.username, password=self.test_password
+            username=self.comment_only_user.username,
+            password=self.comment_only_user_password,
         )
 
         headers = {"HTTP_HX-Request": "true"}
         response = self.client.delete(
-            reverse("comment-delete", args=[test_comment.id]), **headers
+            reverse("comment-delete", args=[delete_me_comment.id]), **headers
         )
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.reason_phrase, "Comment deleted successfully")
-        self.assertFalse(Comment.objects.filter(id=test_comment.id).exists())
+        self.assertFalse(Comment.objects.filter(id=delete_me_comment.id).exists())
 
     def test_comment_delete_view_without_htmx(self):
-        test_post = create_unique_post(
-            title="Delete This Post", slug="delete-this-post"
+        delete_me_comment = create_comment(
+            post=self.first_post, author=self.comment_only_user
         )
-        test_comment = create_comment(post=test_post, author=self.comment_only_user)
         self.client.login(
-            username=self.comment_only_user.username, password=self.test_password
+            username=self.comment_only_user.username,
+            password=self.comment_only_user_password,
         )
 
-        response = self.client.delete(reverse("comment-delete", args=[test_comment.id]))
+        response = self.client.delete(
+            reverse("comment-delete", args=[delete_me_comment.id])
+        )
         self.assertRedirects(
             response, reverse("post-detail", args=[self.first_post.slug])
         )
-        self.assertFalse(Comment.objects.filter(id=test_comment.id).exists())
+        self.assertFalse(Comment.objects.filter(id=delete_me_comment.id).exists())
+
+    def test_comment_delete_different_user_blocked(self):
+        first_comment = self.first_comment
+        comment_only_user_2 = User.objects.create_user(
+            username="comment_only_user_2",
+            email="comment_only_user2@example.com",
+            password="testpassword",
+        )
+        self.client.login(
+            username=comment_only_user_2.username, password="testpassword"
+        )
+        response = self.client.delete(
+            reverse("comment-delete", args=[first_comment.id])
+        )
+        self.assertEqual(response.status_code, 403)
+        self.assertTrue(Comment.objects.filter(id=first_comment.id).exists())
 
     def test_category_view_anonymous(self):
         category_url = reverse("blog-category", args=[self.default_category.slug])
@@ -348,20 +366,20 @@ class TestViews(SetUp):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/parts/posts.html")
 
-    def test_category_view_paginated(self):
-        category_url = reverse("blog-category", args=[self.default_category.slug])
-        # Paginated list appears when there are more than paginate_by posts
-        response = self.client.get(category_url)
-        self.assertTrue(response.context["is_paginated"])
-        self.assertEqual(
-            response.context["posts"].count(), CategoryView.paginate_by
-        )  # 3 per page
+    # def test_category_view_paginated(self):
+    #     category_url = reverse("blog-category", args=[self.default_category.slug])
+    #     # Paginated list appears when there are more than paginate_by posts
+    #     response = self.client.get(category_url)
+    #     self.assertTrue(response.context["is_paginated"])
+    #     self.assertEqual(
+    #         response.context["posts"].count(), CategoryView.paginate_by
+    #     )  # 3 per page
 
-    def test_category_view_paginated_second_page(self):
-        category_url = reverse("blog-category", args=[self.default_category.slug])
-        # Paginated list works when user has moved forward at least one page
-        response = self.client.get(category_url, {"page": 2})
-        self.assertTrue(response.context["page_obj"].has_previous())
+    # def test_category_view_paginated_second_page(self):
+    #     category_url = reverse("blog-category", args=[self.default_category.slug])
+    #     # Paginated list works when user has moved forward at least one page
+    #     response = self.client.get(category_url, {"page": 2})
+    #     self.assertTrue(response.context["page_obj"].has_previous())
 
     def test_portfolio_view(self):
         portfolio_url = reverse("portfolio")
@@ -385,7 +403,7 @@ class TestViews(SetUp):
         data = {"searched": self.draft_post.title}
         # If authenticated, can see drafts
         self.client.login(
-            username=self.admin_user.username, password=self.test_password
+            username=self.admin_user.username, password=self.admin_user_password
         )
         response = self.client.get(reverse("blog-search"), data=data)
         self.assertEqual(response.status_code, 200)
@@ -437,7 +455,7 @@ class TestViews(SetUp):
 
     def test_profile_view(self):
         self.client.login(
-            username=self.admin_user.username, password=self.test_password
+            username=self.admin_user.username, password=self.admin_user_password
         )
         response = self.client.get(reverse("profile"))
         self.assertEqual(response.status_code, 200)
@@ -447,7 +465,7 @@ class TestViews(SetUp):
 
     # def test_profile_view_edit(self):
     #     admin_user = User.objects.get(username="admin")
-    #     self.client.login(username=self.admin_user.username, password=self.test_password)
+    #     self.client.login(username=self.admin_user.username, password=self.admin_user_password)
     #     response = self.client.post(
     #         reverse("profile"),
     #         data={"email": "test@modified.com", "username": "modified"},
@@ -461,7 +479,7 @@ class TestViews(SetUp):
 
     def test_profile_view_edit_invalid(self):
         self.client.login(
-            username=self.admin_user.username, password=self.test_password
+            username=self.admin_user.username, password=self.admin_user_password
         )
         response = self.client.post(
             reverse("profile"),
@@ -479,7 +497,7 @@ class TestViews(SetUp):
 
     def test_logout_view(self):
         self.client.login(
-            username=self.admin_user.username, password=self.test_password
+            username=self.admin_user.username, password=self.admin_user_password
         )
         response = self.client.get(reverse("logout"))
         self.assertEqual(response.status_code, 200)

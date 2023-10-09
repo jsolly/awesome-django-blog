@@ -22,14 +22,11 @@ class SetUp(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.test_password = "admin"
+        cls.admin_user_password = "admin"
+        cls.comment_only_user_password = "comment_only"
         cls.default_category = Category.objects.get(slug="uncategorized")
         cls.admin_user = User.objects.get(username="admin")
-        cls.comment_only_user = User.objects.get_or_create(
-            username="comment_only",
-            email="comment_only@example.com",
-            password=cls.test_password,
-        )[0]
+        cls.comment_only_user = User.objects.get(username="comment_only")
         cls.first_post = create_unique_post()
         cls.first_comment = create_comment(cls.first_post)
         cls.draft_post = create_unique_post(draft=True)

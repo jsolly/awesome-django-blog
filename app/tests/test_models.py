@@ -51,8 +51,10 @@ class TestModels(SetUp):
         comment.delete()
 
     def test_comment_print_and_absolute_url(self):
-        test_comment = Comment.objects.first()
+        test_comment = self.first_post.comments.first()
         self.assertEqual(
             str(test_comment), f"Comment '{test_comment.content}' by admin"
         )
-        self.assertEqual(test_comment.get_absolute_url(), "/post/first-post/")
+        self.assertEqual(
+            test_comment.get_absolute_url(), f"/post/{self.first_post.slug}/#comments"
+        )

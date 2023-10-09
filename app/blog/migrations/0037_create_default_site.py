@@ -8,7 +8,7 @@ def create_default_site(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("blog", "0036_add_default_user"),
+        ("blog", "0036_add_default_users"),
         ("sites", "0002_alter_domain_unique"),
     ]
 

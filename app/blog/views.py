@@ -454,7 +454,17 @@ class CommentUpdateView(LoginRequiredMixin, UpdateView):
         return context
 
 
-class CommentDeleteView(LoginRequiredMixin, View):
+class CommentDeleteView(UserPassesTestMixin, View):
+    raise_exception = True
+
+    def test_func(self):
+        comment = self.get_object()
+        return self.request.user == comment.author
+
+    def get_object(self):
+        comment_id = self.kwargs.get("comment_id")
+        return get_object_or_404(Comment, id=comment_id)
+
     def delete(self, request, comment_id):
         comment = get_object_or_404(Comment, id=comment_id)
         comment.delete()
