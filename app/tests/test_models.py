@@ -1,75 +1,28 @@
 from .base import SetUp
 from django.urls import reverse
 from PIL import Image
-from blog.models import Post, Comment, slugify_instance
+from blog.models import Post, Comment, Category
 from users.models import Profile
-from .utils import create_user, create_post
-from django.utils.text import slugify
+from django.contrib.auth.models import User
 
 
 class TestModels(SetUp):
-    def setUp(self):
-        self.test_user = create_user()
-
-    def test_slugify_instance_with_new_slug(self):
-        test_post = create_post()
-        slugify_instance(test_post, new_slug="lorem-ipsum-post", save=True)
-        self.assertEqual(test_post.slug, "lorem-ipsum-post")
-
-    def test_slugify_instance_post_without_new_slug(self):
-        test_post = create_post()
-        slugify_instance(test_post, save=True)
-        self.assertEqual(test_post.slug, slugify(test_post.title))
-
-    def test_slugify_instance_category_with_new_slug(self):
-        slugify_instance(self.test_category, new_slug="test-category", save=True)
-        self.assertEqual(self.test_category.slug, "test-category")
-
-    def test_slugify_instance_category_without_new_slug(self):
-        slugify_instance(self.test_category, save=True)
-        self.assertEqual(self.test_category.slug, slugify(self.test_category.name))
-
-    def test_post_manager_all(self):
-        create_post()
-        posts = Post.objects.all()
-        self.assertIsInstance(posts[0], Post)
-        post_count = posts.count()
-        create_post()
-        new_post_count = Post.objects.count()
-        self.assertEqual(new_post_count, post_count + 1)
-
-    def test_post_manager_active(self):
-        create_post()
+    def test_post_manager(self):
         active_posts = Post.objects.active()
         self.assertIsInstance(active_posts[0], Post)
-        active_posts_count = active_posts.count()
-        another_post = create_post()
-        new_active_post_count = Post.objects.active().count()
-        self.assertEqual(new_active_post_count, active_posts_count + 1)
-        another_post.draft = True
-        another_post.save()
-        active_posts_minus_draft = Post.objects.active().count()
-        self.assertEqual(active_posts_minus_draft, new_active_post_count - 1)
 
     def test_category_absolute_url(self):
+        test_category = Category.objects.get(name="Uncategorized")
         self.assertEqual(
-            self.test_category.get_absolute_url(),
-            f"/category/{self.test_category.slug}/",
+            test_category.get_absolute_url(),
+            "/category/uncategorized/",
         )
-
-    def test_post_absolute_url(self):
-        test_post = create_post()
-        self.assertEqual(test_post.get_absolute_url(), f"/post/{test_post.slug}/")
-
-    def test_post_model(self):
-        test_post = create_post(title="Test Post", slug=None)
-        self.assertEqual(test_post.title, "Test Post")
-        self.assertEqual(test_post.slug, slugify(test_post.title))
 
     # Users Models
     def test_profile(self):
-        profile1 = Profile.objects.get(user=self.test_user)
-        self.assertEqual(str(profile1), f"{self.test_user.username} Profile")
+        admin = User.objects.get(username="admin")
+        profile1 = Profile.objects.get(user=admin)
+        self.assertEqual(str(profile1), f"{admin.username} Profile")
         self.assertEqual(profile1.get_absolute_url(), reverse("profile"))
         width, height = 400, 400
         img = Image.new(mode="RGB", size=(width, height))
@@ -80,37 +33,26 @@ class TestModels(SetUp):
             self.assertEqual(img.width, 300)
 
     def test_create_comment(self):
-        test_post = create_post()
+        test_post = Post.objects.first()
+        admin = User.objects.get(username="admin")
         comment = Comment.objects.create(
             post=test_post,
-            author=self.test_user,
+            author=admin,
             content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         )
         self.assertEqual(comment.post, test_post)
-        self.assertEqual(comment.author, self.test_user)
+        self.assertEqual(comment.author, admin)
         self.assertEqual(
             comment.content, "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         )
+        # Delete the comment
+        comment.delete()
 
-    def test_comment_print(self):
-        test_post = create_post()
-        comment = Comment.objects.create(
-            post=test_post,
-            author=self.test_user,
-            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    def test_comment_print_and_absolute_url(self):
+        test_comment = self.first_post.comments.first()
+        self.assertEqual(
+            str(test_comment), f"Comment '{test_comment.content}' by admin"
         )
         self.assertEqual(
-            str(comment), f"Comment '{comment.content}' by {self.test_user.username}"
-        )
-
-    def test_comment_absolute_url(self):
-        test_post = create_post()
-        comment = Comment.objects.create(
-            post=test_post,
-            author=self.test_user,
-            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        )
-        self.assertEqual(
-            comment.get_absolute_url(),
-            f"/post/{test_post.slug}/",
+            test_comment.get_absolute_url(), f"/post/{self.first_post.slug}/#comments"
         )

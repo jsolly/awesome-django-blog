@@ -1,12 +1,12 @@
-from .base import SetUp
 from django.utils.deprecation import MiddlewareMixin
 from blog.utils import create_context, answer_question, load_pickle_file
 import pandas as pd
 from unittest.mock import patch
 import numpy as np
+from unittest import TestCase
 
 
-class TestUtils(SetUp, MiddlewareMixin):
+class TestUtils(TestCase, MiddlewareMixin):
     def test_load_pickle_file(self):
         df = load_pickle_file()
         self.assertIsInstance(df, pd.DataFrame)

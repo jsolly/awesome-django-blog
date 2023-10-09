@@ -33,31 +33,18 @@ source .venv/bin/activate
 # You only need requirments.txt on production
 pip install --upgrade pip && pip install -r requirements.txt
 python3 app/manage.py migrate
-python3 app/manage.py createsuperuser # Create a user who can create posts and comments
 ```
 
 Rename 'awesome-django-blog/sample.env' to .env and change the values to match your setup. 
             (database passwords, secret keys, etc)
-
-By default USE_SQLITE is set to `True` if you want to use something else like postgres, set this to False and modify the DJANGO_DB_SETTINGS variable in the file.
 
 ```shell
 cd awesome-django-blog/app
 python3 manage.py runserver
 ```
 
-### Configure Django Sites Framework
 
-1 - Run the server and navigate to http://127.0.0.1:8000/admin/sites
-
-2 - Add a new site with the following values: - Domain name: 127.0.0.1:8000 - Display name: 127.0.0.1:8000
-
-Here is a screenshot of my sites configuration:
-
-3 - Now go into your settings.dev file and change the SITE_ID to the ID of the site you just created. It should be 1 if you have yet to create any other sites.
-
-
-## Installation (Docker)
+<!-- ## Installation (Docker)
 
 ```shell
 git clone https://github.com/jsolly/awesome-django-blog.git
@@ -65,7 +52,15 @@ cd awesome-django-blog
 docker-compose build
 docker-compose run --rm app sh -c "python manage.py createsuperuser"
 docker-compose up
-```
+``` -->
+
+### Using the app
+By default, there are two users created. One is an admin and the other can only add comments to posts. 
+Username: admin
+Password: admin
+
+Username: comment_only
+Password: comment_only
 
 
 ### Coverage
