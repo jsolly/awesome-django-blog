@@ -463,18 +463,22 @@ class TestViews(SetUp):
         self.assertIsInstance(response.context["u_form"], UserUpdateForm)
 
     # def test_profile_view_edit(self):
-    #     admin_user = User.objects.get(username="admin")
-    #     self.client.login(username=self.admin_user.username, password=self.admin_user_password)
+    #     new_user = User.objects.get_or_create(
+    #         username="test2",
+    #         email="test2@example.com",
+    #         password="testpassword",
+    #     )[0]
+    #     self.client.login(username=new_user.username, password="testpassword")
     #     response = self.client.post(
     #         reverse("profile"),
-    #         data={"email": "test@modified.com", "username": "modified"},
+    #         data={"email": "test2@modified.com", "username": "modified"},
     #     )
     #     self.assertTrue(
     #         message_in_response(response, "Your account has been updated. Thanks!")
     #     )
     #     self.comment_only_user.refresh_from_db()
-    #     self.assertEqual(admin_user, "test@modified.com")
-    #     self.assertEqual(admin_user, "modified")
+    #     self.assertEqual(new_user, "test@modified.com")
+    #     self.assertEqual(new_user, "modified")
 
     def test_profile_view_edit_invalid(self):
         self.client.login(
