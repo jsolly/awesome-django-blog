@@ -6,7 +6,9 @@ def create_default_category(apps, schema_editor):
     Category = apps.get_model("blog", "Category")
     name = "Uncategorized"
     slug = slugify(name)
-    Category.objects.create(name=name, slug=slug, description="Default category")
+    Category.objects.get_or_create(
+        name=name, slug=slug, defaults={"description": "Default category"}
+    )
 
 
 class Migration(migrations.Migration):
