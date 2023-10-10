@@ -36,7 +36,6 @@ from .models import Post, Category, Comment
 from .forms import PostForm, CommentForm
 from .utils import answer_question
 from users.models import User
-from users.utils import handle_no_permission
 from pathlib import Path
 
 
@@ -351,14 +350,14 @@ class CreatePostView(UserPassesTestMixin, CreateView):
     model = Post
     form_class = PostForm
     template_name = "blog/post/add_post.html"
+    raise_exception = True
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
     def test_func(self):
-        if self.request.user.is_staff:
-            return True
+        return self.request.user.is_staff or self.request.user.is_superuser
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -377,8 +376,7 @@ class PostUpdateView(UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         post = self.get_object()
-        if self.request.user == post.author:
-            return True
+        return self.request.user == post.author
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -395,9 +393,7 @@ class PostDeleteView(UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         post = self.get_object()
-        if self.request.user == post.author:
-            return True
-        return False
+        return self.request.user == post.author
 
 
 class CreateCommentView(LoginRequiredMixin, CreateView):
@@ -426,9 +422,6 @@ class CreateCommentView(LoginRequiredMixin, CreateView):
 
         # Redirect to the appropriate URL for non-HTMX requests
         return redirect(comment.get_absolute_url())
-
-    def handle_no_permission(self):
-        return handle_no_permission(self.request, slug=self.kwargs["slug"])
 
 
 class CommentUpdateView(LoginRequiredMixin, UpdateView):
@@ -461,7 +454,17 @@ class CommentUpdateView(LoginRequiredMixin, UpdateView):
         return context
 
 
-class CommentDeleteView(LoginRequiredMixin, View):
+class CommentDeleteView(UserPassesTestMixin, View):
+    raise_exception = True
+
+    def test_func(self):
+        comment = self.get_object()
+        return self.request.user == comment.author
+
+    def get_object(self):
+        comment_id = self.kwargs.get("comment_id")
+        return get_object_or_404(Comment, id=comment_id)
+
     def delete(self, request, comment_id):
         comment = get_object_or_404(Comment, id=comment_id)
         comment.delete()

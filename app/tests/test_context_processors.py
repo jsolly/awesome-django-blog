@@ -1,7 +1,6 @@
-from django.urls import reverse, resolve
 from .base import SetUp
+from django.urls import reverse, resolve
 from blog.context_processors import category_renderer, breadcrumbs
-from .utils import create_post
 from django.test.client import RequestFactory
 
 
@@ -10,11 +9,11 @@ class TestContextProcessors(SetUp):
         self.factory = RequestFactory()
 
     def test_category_renderer(self):
-        path = reverse("blog-category", args=[self.test_category.slug])
+        path = reverse("blog-category", args=["uncategorized"])
         request = self.factory.get(path)
         request.resolver_match = resolve(path)
         result = category_renderer(request)
-        self.assertEqual(result["current_category"], self.test_category.slug)
+        self.assertEqual(result["current_category"], "uncategorized")
         self.assertEqual(len(result["category_qs"]), 1)
         self.assertEqual(result["category_qs"][0].name, "Uncategorized")
 
@@ -26,31 +25,30 @@ class TestContextProcessors(SetUp):
         self.assertEqual(result["breadcrumbs"][0]["url"], reverse("home"))
 
     def test_blog_category_breadcrumb(self):
-        request = self.factory.get(
-            reverse("blog-category", args=[self.test_category.slug])
-        )
+        request = self.factory.get(reverse("blog-category", args=["uncategorized"]))
         result = breadcrumbs(request)
         self.assertEqual(len(result["breadcrumbs"]), 2)
-        self.assertEqual(result["breadcrumbs"][1]["name"], self.test_category.name)
+        self.assertEqual(result["breadcrumbs"][1]["name"], "Uncategorized")
         self.assertEqual(
             result["breadcrumbs"][1]["url"],
-            reverse("blog-category", args=[self.test_category.slug]),
+            reverse("blog-category", args=["uncategorized"]),
         )
 
     def test_post_detail_breadcrumb(self):
-        test_post = create_post()
-        request = self.factory.get(reverse("post-detail", args=[test_post.slug]))
+        request = self.factory.get(reverse("post-detail", args=[self.first_post.slug]))
         result = breadcrumbs(request)
         self.assertEqual(len(result["breadcrumbs"]), 3)
-        self.assertEqual(result["breadcrumbs"][1]["name"], test_post.category.name)
+        self.assertEqual(
+            result["breadcrumbs"][1]["name"], self.first_post.category.name
+        )
         self.assertEqual(
             result["breadcrumbs"][1]["url"],
-            reverse("blog-category", args=[test_post.category.slug]),
+            reverse("blog-category", args=[self.first_post.category.slug]),
         )
-        self.assertEqual(result["breadcrumbs"][2]["name"], test_post.title)
+        self.assertEqual(result["breadcrumbs"][2]["name"], self.first_post.title)
         self.assertEqual(
             result["breadcrumbs"][2]["url"],
-            reverse("post-detail", args=[test_post.slug]),
+            reverse("post-detail", args=[self.first_post.slug]),
         )
 
     def test_works_cited_breadcrumb(self):

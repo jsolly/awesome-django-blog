@@ -105,4 +105,6 @@ class Comment(models.Model):
         return f"Comment '{self.content}' by {self.author}"
 
     def get_absolute_url(self):
-        return reverse("post-detail", kwargs={"slug": self.post.slug})
+        post_url = reverse("post-detail", kwargs={"slug": self.post.slug})
+        comments_section_url = f"{post_url}#comments"
+        return comments_section_url

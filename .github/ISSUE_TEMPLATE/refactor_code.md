@@ -6,17 +6,13 @@ labels: "refactor"
 assignees: ""
 ---
 
-## Refactor Code
+## Context
+<!-- What is the current structure and why is it a problem? -->
 
 ### File Name
+<!-- Enter the path to the file or files that you want to refactor.
 
-Enter the path to the file that you want to refactor in the codebase
-
-for example: `django_project/blog/views.py`
-
-### Reason for refactoring
-
-Describe what improvements can be made in the codebase
+for example: `django_project/blog/views.py` -->
 
 ### Record
 
