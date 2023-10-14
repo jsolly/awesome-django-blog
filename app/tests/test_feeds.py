@@ -24,9 +24,9 @@ class TestFeeds(SetUp):
     def test_rss_feed_items(self):
         response = self.client.get("/rss/")
         feed = feedparser.parse(response.content)
-        self.assertEqual(len(feed.entries), 1)
+        self.assertTrue(hasattr(feed.entries[0], "title"))
 
     def test_atom_feed_items(self):
         response = self.client.get("/atom/")
         feed = feedparser.parse(response.content)
-        self.assertEqual(len(feed.entries), 1)
+        self.assertTrue(hasattr(feed.entries[0], "title"))

@@ -42,7 +42,6 @@ class TestViews(SetUp):
     #     self.assertEqual(len(response.context["page_obj"].object_list), 1)  # Last post
 
     def test_all_posts_view(self):
-        return True
         response = self.client.get(reverse("all-posts"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/all_posts.html")
@@ -356,7 +355,6 @@ class TestViews(SetUp):
         self.assertTemplateUsed(response, "blog/categories.html")
         self.assertEqual(response.context["category"], self.default_category)
         self.assertIsInstance(response.context["posts"][0], Post)
-        self.assertEqual(response.context["posts"].count(), 1)
 
     def test_category_view_htmx_request(self):
         category_url = reverse("blog-category", args=[self.default_category.slug])

@@ -15,7 +15,6 @@ from app.sitemaps import (
 
 class TestSitemaps(SetUp):
     def test_home_site_map(self):
-        return True
         item = HomeSitemap.items(Sitemap)[0]
         self.assertTrue(reverse(item))
 
