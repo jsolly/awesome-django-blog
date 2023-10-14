@@ -9,7 +9,7 @@ class blogFeed(Feed):
     description = "Latest blog posts from blogthedata"
 
     def items(self):
-        return Post.objects.active().order_by("-date_posted")[:5]
+        return Post.objects.active().order_by("-date_updated")[:5]
 
     def item_title(self, item):
         return item.title
