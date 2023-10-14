@@ -15,9 +15,19 @@
           <div class="post-card-info">
             <div class="post-body">
               <div class="post-header">
-                <h2 class="post-title">{{ post.title }}{% if post.draft %}<span class="post-draft">(Draft)</span>{% endif %}</h2>
+                <h2 class="post-title">{{ post.title }}
+                  {% if post.draft %}
+                  <span class="post-draft">(Draft)</span>
+                  {% endif %}
+                </h2>
               </div>
-              <p class="post-date">{{ post.date_posted|date:"F d, Y" }} in {{ post.category.name }}</p>
+              <p class="post-dates">
+                {{ post.date_posted|date:"F d, Y" }} in {{ post.category.name }}
+                {% if post.date_updated|date:"Ymd" != post.date_posted|date:"Ymd" %}
+                <br>
+                Last updated: {{ post.date_updated|date:"F d, Y" }}
+                {% endif %}
+              </p>
               <div class="post-details">
                 <div class="post-readtime">
                   <img src="{% static 'svg/clock.svg' %}" alt="Clock Icon" class="post-readtime-icon">

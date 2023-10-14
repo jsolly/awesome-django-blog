@@ -1,14 +1,14 @@
 from django.db import migrations
-from django.utils.text import slugify
 
 
 def create_default_category(apps, schema_editor):
     Category = apps.get_model("blog", "Category")
     name = "Uncategorized"
-    slug = slugify(name)
-    Category.objects.get_or_create(
-        name=name, slug=slug, defaults={"description": "Default category"}
-    )
+    slug = "uncategorized"
+    try:
+        Category.objects.get(slug=slug)
+    except Category.DoesNotExist:
+        Category.objects.create(name=name, slug=slug, description="Default category")
 
 
 class Migration(migrations.Migration):

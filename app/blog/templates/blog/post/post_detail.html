@@ -32,8 +32,13 @@
       <div class="meta-img-container">
         <img id="post-detail-meta-img" src="{{ post.metaimg.url }}" alt="{{ post.metadesc }}">
       </div>
-      <p class="post-date sml-margin-top-bottom">
-        {{ post.date_posted|date:"F d, Y" }} in {{ post.category.name }}</p>
+      <p class="post-dates sml-margin-top-bottom">
+        {{ post.date_posted|date:"F d, Y" }} in {{ post.category.name }}
+        {% if post.date_updated|date:"Ymd" != post.date_posted|date:"Ymd" %}
+        <br>
+        Last updated: {{ post.date_updated|date:"F d, Y" }}
+        {% endif %}
+      </p>
     </div>
     {% if post.author == user %}
     <div class="buttons-container">
