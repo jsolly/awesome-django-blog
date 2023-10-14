@@ -98,18 +98,6 @@ local_branch_name and branch_name can be the same
     openssl dgst -sha384 -binary prism_patched.min.js | openssl base64 -A
     ```
 
-# Configuring Python install on new Mac
-
-    ```
-    Install using the regular installer from python.org. Make sure to match the version that is on production.
-    The file path should look like:
-    /Applications/"Python 3.8"/IDLE.app/Contents/MacOS/Python
-
-    Go into Applications/<Python Directory>
-    Open 'Install Certificates.command'
-    Open Update Shell Profile.command
-    ```
-
 ### Roll back migration
 
     ```
