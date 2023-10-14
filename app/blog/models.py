@@ -72,6 +72,7 @@ class Post(models.Model):
     content = CKEditor5Field(blank=True, null=True, config_name="extends")
     snippet = CKEditor5Field(blank=True, null=True, config_name="extends")
     date_posted = models.DateTimeField(default=timezone.now)
+    date_updated = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     objects = PostManager()  # Make sure objects only include active (not draft) posts.
