@@ -9,7 +9,9 @@
 
 Awesome-django-blog is a fully functional blogging platform built using the Django web framework. It includes features such as creating and managing blog posts, comments, and categories, as well as user authentication and authorization.
 
-![desktopScreenshot](https://user-images.githubusercontent.com/9572232/183277781-adea9d73-6dc0-4971-ac3a-b14e2131d6f3.jpeg)
+![image](https://github.com/jsolly/awesome-django-blog/assets/9572232/e0066fc2-d68e-4561-b3e4-18ece55e09b2)
+
+
 
 ---
 
