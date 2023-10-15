@@ -56,12 +56,9 @@ docker-compose up
 
 ### Using the app
 By default, there are two users created. One is an admin and the other can only add comments to posts. 
-Username: admin
-Password: admin
 
-Username: comment_only
-Password: comment_only
-
+**Username/Password**: admin/admin<br>
+**Username/Password**: comment_only/comment_only
 
 ### Coverage
 
