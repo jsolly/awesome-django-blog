@@ -1,8 +1,10 @@
 from django import forms
 from .models import Post, Category, Comment
+from taggit.forms import TagField
 
 
 class PostForm(forms.ModelForm):
+    tags = TagField()
     class Meta:
         model = Post
         fields = (
@@ -16,6 +18,7 @@ class PostForm(forms.ModelForm):
             "metaimg_attribution",
             "content",
             "snippet",
+            "tags",
         )
 
         widgets = {

@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 from django_ckeditor_5.fields import CKEditor5Field
+from taggit.managers import TaggableManager
 
 # import logging
 from django_resized import ResizedImageField
@@ -74,6 +75,7 @@ class Post(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     date_updated = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    tags = TaggableManager()
 
     objects = PostManager()  # Make sure objects only include active (not draft) posts.
 
@@ -88,6 +90,11 @@ class Post(models.Model):
             slugify_instance(self, save=False)
 
         super().save(*args, **kwargs)
+
+    def related_posts(self):
+        return Post.objects.filter(
+            tags__in=self.tags.all().exclude(id=self.id).distinct()
+        )
 
 
 class Comment(models.Model):
