@@ -110,6 +110,7 @@ INSTALLED_APPS = [
     "sri",
     "django_htmx",
     "django.contrib.humanize",
+    "taggit",
 ]
 
 MIDDLEWARE = [
