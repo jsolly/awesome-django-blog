@@ -19,7 +19,6 @@ import os
 from django.urls import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.contrib.auth.models import User
-from taggit.models import Tag
 
 
 class TestViews(SetUp):
