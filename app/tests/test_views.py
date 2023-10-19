@@ -12,11 +12,14 @@ from .utils import (
 
 # Python Standard Library Imports
 from unittest.mock import patch
+from django.conf import settings
+import os
 
 # Third-Party Imports
 from django.urls import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.contrib.auth.models import User
+from taggit.models import Tag
 
 
 class TestViews(SetUp):
@@ -111,12 +114,15 @@ class TestViews(SetUp):
             "draft": False,
             "metaimg": SimpleUploadedFile(
                 name="lorem_image.jpg",
-                content=open("app/media/default.webp", "rb").read(),
+                content=open(
+                    os.path.join(settings.MEDIA_ROOT, "default.webp"), "rb"
+                ).read(),
                 content_type="image/webp",
             ),
             "snippet": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             "author": self.admin_user.id,
+            "tags": "lorem",
             "metaimg_alt_txt": "Lorem ipsum",
         }
 
@@ -137,6 +143,7 @@ class TestViews(SetUp):
         self.assertEqual(Post.objects.last().snippet, data["snippet"])
         self.assertEqual(Post.objects.last().content, data["content"])
         self.assertEqual(Post.objects.last().author, self.admin_user)
+        self.assertEqual(Post.objects.last().tags.first().name, "lorem")
         self.assertEqual(Post.objects.last().metaimg_alt_txt, data["metaimg_alt_txt"])
 
     def test_create_post_view_comment_only_user_blocked(self):
@@ -179,14 +186,17 @@ class TestViews(SetUp):
             "metadesc": "Updated Meta Description",
             "draft": False,
             "metaimg": SimpleUploadedFile(
-                name="test_image.jpg",
-                content=open("app/media/default.webp", "rb").read(),
+                name="lorem_image.jpg",
+                content=open(
+                    os.path.join(settings.MEDIA_ROOT, "default.webp"), "rb"
+                ).read(),
                 content_type="image/webp",
             ),
             "snippet": "Long ago, the four nations lived together in harmony.",
             "content": "Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
             "metaimg_alt_txt": "Meta Image Alt-Text Update",
             # date_posted : ""
+            "tags": "updated",
             "author": self.admin_user
             # "likes"
             # "views"
@@ -199,6 +209,7 @@ class TestViews(SetUp):
         self.assertEqual(self.first_post.metadesc, data["metadesc"])
         self.assertEqual(self.first_post.snippet, data["snippet"])
         self.assertEqual(self.first_post.content, data["content"])
+        self.assertEqual(self.first_post.tags.first().name, "updated")
         self.assertEqual(self.first_post.metaimg_alt_txt, data["metaimg_alt_txt"])
 
     def test_post_delete_view(self):
