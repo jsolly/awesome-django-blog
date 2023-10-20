@@ -13,7 +13,7 @@ from .utils import (
 # Python Standard Library Imports
 from unittest.mock import patch
 from django.conf import settings
-import os
+from pathlib import Path
 
 # Third-Party Imports
 from django.urls import reverse
@@ -105,6 +105,9 @@ class TestViews(SetUp):
         self.assertEqual(response.context["title"], "Create a New Post")
 
     def test_create_post_view(self):
+        metaimg_path = Path(settings.MEDIA_ROOT) / "default.webp"
+        metaimg_content = metaimg_path.read_bytes()
+
         data = {
             "title": "Lorem Ipsum Post",
             "slug": "lorem-ipsum-post",
@@ -113,9 +116,7 @@ class TestViews(SetUp):
             "draft": False,
             "metaimg": SimpleUploadedFile(
                 name="lorem_image.jpg",
-                content=open(
-                    os.path.join(settings.MEDIA_ROOT, "default.webp"), "rb"
-                ).read(),
+                content=metaimg_content,
                 content_type="image/webp",
             ),
             "snippet": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -173,6 +174,8 @@ class TestViews(SetUp):
         self.assertEqual(response.context["title"], f"Edit {self.first_post.title}")
 
     def test_update_post_view(self):
+        metaimg_path = Path(settings.MEDIA_ROOT) / "default.webp"
+        metaimg_content = metaimg_path.read_bytes()
         self.client.login(
             username=self.admin_user.username, password=self.admin_user_password
         )
@@ -186,9 +189,7 @@ class TestViews(SetUp):
             "draft": False,
             "metaimg": SimpleUploadedFile(
                 name="lorem_image.jpg",
-                content=open(
-                    os.path.join(settings.MEDIA_ROOT, "default.webp"), "rb"
-                ).read(),
+                content=metaimg_content,
                 content_type="image/webp",
             ),
             "snippet": "Long ago, the four nations lived together in harmony.",
