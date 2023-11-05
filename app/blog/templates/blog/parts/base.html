@@ -4,36 +4,38 @@
 <html lang="en-US">
 
 <head>
-  {% block head %}
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:image"
-  content="{{ request.scheme }}://{{ request.get_host }}{% static 'iPhoneblogthedata.webp' %}">
-  <meta property="og:image:alt" content="An Iphone on a table with blogthedata.com on the screen">
-  <meta property="og:image:type" content="image/webp">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  {% endblock head %}
   <title>
     {{ title }}
   </title>
-
-  <!-- Meta -->
+  {% block head %}
+  {% endblock head %}
+  <!--General Meta Tags-->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <meta name="author" content="John Solly">
   <meta name="description" content="{{ description }}" />
-  
 
-  <!-- Open Graph Meta -->
+  <!-- Open Graph Meta Tags-->
+  <meta property="og:locale" content="en_US">
+  {% if not post %}
+  <meta property="og:type" content="website">
+  <meta property="og:image"
+    content="{{ request.scheme }}://{{ request.get_host }}{% static 'iPhoneblogthedata.webp' %}">
+  <meta property="og:image:alt" content="An Iphone on a table with blogthedata.com on the screen">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  {% endif %}
   <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
   <meta property="og:title" content="{{ title }}" />
   <meta property="og:description" content="{{ description }}" />
 
-  <!-- Twitter Meta -->
+  <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
+  {% if not post %}
   <meta name="twitter:image"
     content="{{ request.scheme }}://{{ request.get_host }}{% static 'iPhoneblogthedata.webp' %}">
+  {% endif %}
   <meta name="twitter:site" content="@_jsolly">
   <meta property="twitter:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
   <meta property="twitter:domain" content="{{ request.get_host }}">
@@ -47,7 +49,6 @@
   <link rel="icon" type="image/webp" sizes="512x512" href="{% static 'favicon/android-chrome-512x512.webp' %}">
   <link rel="icon" type="image/webp" sizes="512x512" href="{% static 'favicon/android-chrome-192x192.webp' %}">
   <link rel="icon" type="image/webp" sizes="48x48" href="{% static 'favicon/favicon.ico' %}">
-
 
   <!-- My CSS -->
   <link href="{% static 'css/main.css' %}" rel="stylesheet" defer>
@@ -75,27 +76,27 @@
     <div class="sidebar">
       {% include "blog/parts/sidebar.html" %}
     </div>
-      <div id="content-area" class="post-content">
-        {% if messages %} {% for message in messages %} Removed due to caching issue persisting message
-        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-        {% endfor %} {% endif %}
-        <main id="main">
-          <div>
-            <div id="breadcrumbs-container">
-              {% include "blog/parts/breadcrumbs.html" %}
-            </div>
+    <div id="content-area" class="post-content">
+      {% if messages %} {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+      {% endfor %} {% endif %}
+      <main id="main">
+        <div>
+          <div id="breadcrumbs-container">
+            {% include "blog/parts/breadcrumbs.html" %}
           </div>
-          {% block content %}
-          {% endblock content %}
-        </main>
-        <nav id="scroll-to-top-container" aria-label="Scroll to top">
-          <a id="scroll-to-top" href="#">
-            <img id="scroll-to-top-icon" src="{% static 'svg/scroll-to-top.svg' %}" alt="Scroll to top of page">
-            top</a>
-          </nav>
         </div>
-      </div>
-      {% include "blog/parts/footer.html" %}
-    </body>
+        {% block content %}
+        {% endblock content %}
+      </main>
+      <nav id="scroll-to-top-container" aria-label="Scroll to top">
+        <a id="scroll-to-top" href="#">
+          <img id="scroll-to-top-icon" src="{% static 'svg/scroll-to-top.svg' %}" alt="Scroll to top of page">
+          top</a>
+      </nav>
+    </div>
+  </div>
+  {% include "blog/parts/footer.html" %}
+</body>
 
 </html>
