@@ -660,25 +660,6 @@ input[type="search"] {
   width: 200px;
 }
 
-input[type="checkbox"] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background: url("https://i.imgur.com/7xJWZvT.png") no-repeat center center;
-  width: 20px;
-  height: 20px;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
-
-input[type="checkbox"]:checked + .custom-checkbox-checkmark {
-  background-image: url("https://i.imgur.com/7xJWZvT.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 20px 20px;
-}
-
 input:focus,
 select:focus,
 textarea:focus {
@@ -1488,14 +1469,4 @@ img {
 .comment-btn {
   padding: 3px 8px;
   font-size: 8px;
-}
-
-.custom-checkbox-checkmark {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 2px;
-  margin-right: 5px;
 }
