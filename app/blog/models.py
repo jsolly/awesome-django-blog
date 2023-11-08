@@ -71,7 +71,9 @@ class Post(models.Model):
     metaimg_alt_txt = models.CharField(max_length=500, default="John Solly Headshot")
     metaimg_attribution = models.CharField(max_length=500, blank=True, null=True)
     content = CKEditor5Field(blank=True, null=True, config_name="extends")
-    snippet = models.TextField(validators=[snippet_validator])
+    snippet = CKEditor5Field(
+        blank=True, null=True, config_name="extends", validators=[snippet_validator]
+    )
     date_posted = models.DateTimeField(default=timezone.now)
     date_updated = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
