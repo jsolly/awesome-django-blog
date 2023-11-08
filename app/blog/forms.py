@@ -29,6 +29,7 @@ class PostForm(forms.ModelForm):
             "metadesc": forms.TextInput(),
             "metaimg_alt_txt": forms.TextInput(),
             "metaimg_attribution": forms.TextInput(),
+            "draft": forms.CheckboxInput(attrs={"class": "custom-checkbox-input"}),
         }
 
     def __init__(self, *args, **kwargs):
