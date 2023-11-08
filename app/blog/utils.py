@@ -96,7 +96,7 @@ import re
 def snippet_validator(value):
     link_media_regex = r"<a.*?/a>|<img.*?/img>|<video.*?/video>|<audio.*?/audio>"
     value_without_links_media = re.sub(link_media_regex, "", value, flags=re.IGNORECASE)
-    max_length = 255
+    max_length = 400
     if len(value_without_links_media) > max_length:
         # Raise a validation error
         raise ValidationError(
