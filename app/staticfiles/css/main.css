@@ -724,6 +724,29 @@ label[for="id_draft"] {
    Typeography
 ============= */
 
+:is(
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    strong,
+    .list-group-item,
+    svg,
+    table,
+    p,
+    blockquote,
+    li,
+    legend,
+    small,
+    .word-count,
+    label,
+
+  ) {
+  color: var(--secondary-color);
+}
+
 .category-title {
   font-weight: 300;
   letter-spacing: 0.1rem;
@@ -757,8 +780,9 @@ a[href^="http"]::after {
   margin: auto;
 }
 
-.errorlist {
-  color: var(--a11-red);
+.errorlist li {
+  color: red;
+  list-style-type: none;
 }
 
 a.hidden-link {
@@ -768,28 +792,6 @@ a.hidden-link {
 
 :is(h1, h2, h3) {
   line-height: 1.1;
-}
-:is(
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    strong,
-    .list-group-item,
-    svg,
-    table,
-    p,
-    blockquote,
-    li,
-    legend,
-    small,
-    .word-count,
-    label,
-
-  ) {
-  color: var(--secondary-color);
 }
 
 hr {
