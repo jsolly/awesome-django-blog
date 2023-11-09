@@ -703,21 +703,10 @@ label[for="id_draft"] {
 }
 
 #id_draft {
-  -webkit-appearance: none; /* Remove default checkbox styling for Safari/Chrome */
-  -moz-appearance: none; /* Remove default checkbox styling for Firefox */
-  appearance: none; /* Remove default checkbox styling */
   width: 16px;
   height: 16px;
-  border-radius: 3px;
-  border: 1px solid #ccc;
-  background-color: #fff;
   vertical-align: middle;
   position: relative;
-}
-
-#id_draft:checked {
-  background-color: var(--primary-blue);
-  border-color: var(--primary-blue);
 }
 
 /* =============
