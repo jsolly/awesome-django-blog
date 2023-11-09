@@ -111,27 +111,30 @@ def cleanup_similarities(post: Post) -> None:
 
 def compute_similarity(post_id: int) -> None:
     post = Post.objects.get(id=post_id)
-    other_posts = Post.objects.exclude(id=post_id)
-    vectorizer = TfidfVectorizer()
-    text_data = [f"{post.content} {post.title}"] + [
-        f"{other_post.content} {other_post.title}" for other_post in other_posts
+    other_posts = Post.objects.exclude(id=post_id).exclude(content="")
+
+    if not other_posts:
+        return  # No other posts to compare, exit the function.
+
+    combined_texts = [f"{post.content} {post.title}"] + [
+        f"{op.content} {op.title}" for op in other_posts
     ]
-    tfidf_matrix = vectorizer.fit_transform(text_data)
+    vectorizer = TfidfVectorizer()
+    tfidf_matrix = vectorizer.fit_transform(combined_texts)
+
+    if tfidf_matrix.shape[0] < 2:
+        return  # Not enough data to compute similarity, exit the function.
+
     cosine_sim = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:])
-
-    # Get primary keys of all other posts
-    other_posts_pks = list(other_posts.values_list("pk", flat=True))
-
-    # Get as many indices as there are other posts, up to 3
+    other_posts_pks = [op.pk for op in other_posts]
     num_similar_posts = min(len(other_posts_pks), 3)
     top_indices = np.argsort(-cosine_sim[0])[:num_similar_posts]
 
-    # Update or create Similarity instances for the top similar posts
     for idx in top_indices:
-        similar_post_pk = other_posts_pks[int(idx)]
-        similar_post = Post.objects.get(pk=similar_post_pk)
         Similarity.objects.update_or_create(
-            post1=post, post2=similar_post, defaults={"score": cosine_sim[0][idx]}
+            post1=post,
+            post2=Post.objects.get(pk=other_posts_pks[idx]),
+            defaults={"score": cosine_sim[0][idx]},
         )
 
     cleanup_similarities(post)
