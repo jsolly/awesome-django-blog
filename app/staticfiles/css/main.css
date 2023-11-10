@@ -59,6 +59,7 @@ body {
 }
 
 body,
+input,
 .post-card,
 .list-group-item {
   background-color: var(--primary-color);
@@ -769,6 +770,7 @@ a.hidden-link {
     svg,
     table,
     p,
+    input,
     blockquote,
     li,
     legend,
