@@ -703,26 +703,38 @@ label[for="id_draft"] {
 }
 
 #id_draft {
-  -webkit-appearance: none; /* Remove default checkbox styling for Safari/Chrome */
-  -moz-appearance: none; /* Remove default checkbox styling for Firefox */
-  appearance: none; /* Remove default checkbox styling */
   width: 16px;
   height: 16px;
-  border-radius: 3px;
-  border: 1px solid #ccc;
-  background-color: #fff;
   vertical-align: middle;
   position: relative;
-}
-
-#id_draft:checked {
-  background-color: var(--primary-blue);
-  border-color: var(--primary-blue);
 }
 
 /* =============
    Typeography
 ============= */
+
+:is(
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    strong,
+    .list-group-item,
+    svg,
+    table,
+    p,
+    blockquote,
+    li,
+    legend,
+    small,
+    .word-count,
+    label,
+
+  ) {
+  color: var(--secondary-color);
+}
 
 .category-title {
   font-weight: 300;
@@ -757,8 +769,9 @@ a[href^="http"]::after {
   margin: auto;
 }
 
-.errorlist {
-  color: var(--a11-red);
+.errorlist li {
+  color: red;
+  list-style-type: none;
 }
 
 a.hidden-link {
@@ -768,28 +781,6 @@ a.hidden-link {
 
 :is(h1, h2, h3) {
   line-height: 1.1;
-}
-:is(
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    strong,
-    .list-group-item,
-    svg,
-    table,
-    p,
-    blockquote,
-    li,
-    legend,
-    small,
-    .word-count,
-    label,
-
-  ) {
-  color: var(--secondary-color);
 }
 
 hr {
