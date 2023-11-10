@@ -83,7 +83,7 @@ ruff --config ./config/pyproject.toml app
 ### Formating
 
 ```shell
-ruff format
+ruff format app
 ```
 
 Also see the [actions tab](https://github.com/jsolly/awesome-django-blog/actions)
