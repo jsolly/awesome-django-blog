@@ -56,7 +56,6 @@ body {
   padding: 0;
   margin: 0;
   line-height: 1.6;
-  font-size: 1.3rem;
 }
 
 body,
@@ -1182,9 +1181,9 @@ img {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --primary-color: rgb(18, 18, 18);
-    --secondary-color: rgb(240, 240, 240);
-    --secondary-color-rgb: 240, 240, 240;
+    --primary-color: rgb(24 24 26);
+    --secondary-color: rgb(161, 161, 170);
+    --secondary-color-rgb: 161, 161, 170;
     --post-card-hover-background-color: hsl(0, 0%, 100%, 0.05);
     --background-hover-color: hsl(0, 0%, 100%, 0.05);
     --link-color: #6c9ff2;
