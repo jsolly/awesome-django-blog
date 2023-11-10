@@ -44,6 +44,12 @@ cd awesome-django-blog/app
 python3 manage.py runserver
 ```
 
+### Seed Posts (Optional)
+This command creates sample posts.
+```shell
+python3 app/manage.py import_posts utilities/seed_posts/posts.json
+```
+
 
 <!-- ## Installation (Docker)
 

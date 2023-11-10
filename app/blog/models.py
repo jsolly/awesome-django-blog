@@ -77,6 +77,17 @@ class Post(models.Model):
 
     objects = PostManager()  # Make sure objects only include active (not draft) posts.
 
+    def get_related_posts(self) -> models.QuerySet:
+        """
+        Get the top 3 related posts based on the similarities
+        """
+
+        return Post.objects.filter(
+            id__in=self.similarities1.order_by("-score").values_list(
+                "post2", flat=True
+            )[:3]
+        )
+
     def __str__(self):
         return self.title + " | " + str(self.author)
 
@@ -88,6 +99,22 @@ class Post(models.Model):
             slugify_instance(self, save=False)
 
         super().save(*args, **kwargs)
+
+
+class Similarity(models.Model):
+    post1 = models.ForeignKey(
+        Post, related_name="similarities1", on_delete=models.CASCADE
+    )
+    post2 = models.ForeignKey(
+        Post, related_name="similarities2", on_delete=models.CASCADE
+    )
+    score = models.FloatField()
+
+    # Ensure that the same pair of posts can't be added twice
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["post1", "post2"], name="unique_pair")
+        ]
 
 
 class Comment(models.Model):
