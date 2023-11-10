@@ -36,7 +36,6 @@ django-ckeditor==6.4.2
 
 
 ## Development Dependencies
-black==23.9.1
 coverage==7.2.7
 django-coverage-plugin==3.1.0
 django-fastdev==1.7.3

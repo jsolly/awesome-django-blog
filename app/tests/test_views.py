@@ -187,7 +187,7 @@ class TestViews(SetUp):
             "content": "Long ago, the four nations lived together in harmony. Then everything changed when the fire nation attacked.",
             "metaimg_alt_txt": "Meta Image Alt-Text Update",
             # date_posted : ""
-            "author": self.admin_user
+            "author": self.admin_user,
             # "likes"
             # "views"
         }
