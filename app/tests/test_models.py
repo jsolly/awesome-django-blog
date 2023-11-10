@@ -56,3 +56,12 @@ class TestModels(SetUp):
         self.assertEqual(
             test_comment.get_absolute_url(), f"/post/{self.first_post.slug}/#comments"
         )
+
+    def test_valid_snippet(self):
+        test_post = Post.objects.first()
+        test_post.snippet = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        test_post.save()
+        self.assertEqual(
+            test_post.snippet,
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        )
