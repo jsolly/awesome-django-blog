@@ -2,10 +2,10 @@
 
 [![awesome-django-blog-tests](https://github.com/jsolly/awesome-django-blog/actions/workflows/django-test-deploy-master.yaml/badge.svg)](https://github.com/jsolly/awesome-django-blog/actions/workflows/django-test-deploy-master.yaml)
 [![Coverage Status](https://coveralls.io/repos/github/jsolly/awesome-django-blog/badge.svg?branch=master&service=github)](https://coveralls.io/github/jsolly/awesome-django-blog?branch=master)
-![CodeStyle](https://img.shields.io/badge/code%20style-black-000000.svg)
-![Linting](https://img.shields.io/badge/linting-ruff-orange)
-[![Python Version](https://img.shields.io/badge/python-3.10-brightgreen.svg)](https://www.python.org/downloads/)
-[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+![CodeStyle](https://img.shields.io/badge/ruff-orange?logo=ruff&label=code-style)
+![Linting](https://img.shields.io/badge/ruff-orange?logo=ruff&label=linting)
+![PythonVersion](https://img.shields.io/badge/3.11-yellow?logo=Python&logoColor=yellow&label=Python)
+[![License](https://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 Awesome-django-blog is a fully functional blogging platform built using the Django web framework. It includes features such as creating and managing blog posts, comments, and categories, as well as user authentication and authorization.
 
@@ -83,7 +83,7 @@ ruff --config ./config/pyproject.toml app
 ### Formating
 
 ```shell
-black --config ./config/pyproject.toml app
+ruff format
 ```
 
 Also see the [actions tab](https://github.com/jsolly/awesome-django-blog/actions)
@@ -137,7 +137,7 @@ $ pre-commit install
 - 100% linted with [ruff](https://pypi.org/project/ruff/) and PEP8 compliant for beautiful Python code.
 - Static scans with [CodeQL](https://codeql.github.com/) and pip
   dependency checks with [Dependabot](https://github.com/dependabot) for automated security and updates.
-- Formatted with [Black](https://pypi.org/project/black/) for beauty and readability
+- Formatted with [Ruff](https://github.com/astral-sh/ruff) for beauty and speed.
 - Strict Content Security Policy preventing inline styles and scripts for better security
 - Subresource Integrity for better security
 - [A+ Score on Mozilla Observatory](<[url](https://observatory.mozilla.org/analyze/blogthedata.com)>)
