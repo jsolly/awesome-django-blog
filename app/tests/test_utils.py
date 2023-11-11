@@ -4,7 +4,6 @@ from blog.utils import (
     answer_question,
     load_pickle_file,
     snippet_validator,
-    link_media_pattern,
     max_length,
 )
 import pandas as pd
