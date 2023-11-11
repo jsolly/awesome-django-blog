@@ -4,7 +4,7 @@ from PIL import Image
 from blog.models import Post, Comment, Category
 from users.models import Profile
 from django.contrib.auth.models import User
-
+from .utils import snippet_validation
 
 class TestModels(SetUp):
     def test_post_manager(self):
@@ -57,11 +57,20 @@ class TestModels(SetUp):
             test_comment.get_absolute_url(), f"/post/{self.first_post.slug}/#comments"
         )
 
-    def test_valid_snippet(self):
-        test_post = Post.objects.first()
-        test_post.snippet = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-        test_post.save()
-        self.assertEqual(
-            test_post.snippet,
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        )
+    def test_snippet_validation(self):
+        valid_value = "This is a valid snippet."
+        snippet_validator(valid_value)
+
+        max_length = 400
+        invalid_value = f"A {'<a href="http://example.com">Link</a> ' * 10}{'B' * (max_length - 10)}"
+        
+        with self.assertRaises(ValidationError) as context:
+            snippet_validator(invalid_value)
+
+        expected_error_message = f"The snippet cannot have more than {max_length} characters (excluding links and media)."
+        self.assertEqual(str(context.exception), expected_error_message)
+
+        valid_value_with_links = ' '.join([f'<a href="http://example{i}.com">Link{i}</a>' for i in range(100)])
+        snippet_validator(valid_value_with_links) 
+
+        self.assertIsNone(None)
