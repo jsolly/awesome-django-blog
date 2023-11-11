@@ -1,5 +1,12 @@
 from django.utils.deprecation import MiddlewareMixin
-from blog.utils import create_context, answer_question, load_pickle_file
+from blog.utils import (
+    create_context,
+    answer_question,
+    load_pickle_file,
+    snippet_validator,
+    link_media_pattern,
+    max_length,
+)
 import pandas as pd
 from unittest.mock import patch
 import numpy as np
@@ -76,3 +83,23 @@ class TestUtils(TestCase, MiddlewareMixin):
             question="What is the capital of the United States of America?", df=df
         )
         self.assertEqual(answer, "The mocked answer")
+
+    def test_snippet_validation(self):
+        valid_value = "This is a valid snippet."
+        snippet_validator(valid_value)
+
+        max_length = 400
+        invalid_value = f"""A {'<a href="http://example.com">Link</a> ' * 10}{'B' * (max_length - 10)}"""
+
+        with self.assertRaises(ValidationError) as context:
+            snippet_validator(invalid_value)
+
+        expected_error_message = f"The snippet cannot have more than {max_length} characters (excluding links and media)."
+        self.assertEqual(str(context.exception), expected_error_message)
+
+        valid_value_with_links = " ".join(
+            [f'<a href="http://example{i}.com">Link{i}</a>' for i in range(100)]
+        )
+        snippet_validator(valid_value_with_links)
+
+        self.assertIsNone(None)
