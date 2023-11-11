@@ -2,6 +2,8 @@ from openai import Embedding, Completion
 from openai.embeddings_utils import distances_from_embeddings
 import pickle
 from pathlib import Path
+from django.core.exceptions import ValidationError
+import re
 
 
 def load_pickle_file():
@@ -89,16 +91,15 @@ def answer_question(
     return response["choices"][0]["text"].strip()
 
 
-from django.core.exceptions import ValidationError
-import re
+link_media_pattern = re.compile(
+    r"<a.*?/a>|<img.*?/img>|<video.*?/video>|<audio.*?/audio>", flags=re.IGNORECASE
+)
+max_length = 400
 
 
 def snippet_validator(value):
-    link_media_regex = r"<a.*?/a>|<img.*?/img>|<video.*?/video>|<audio.*?/audio>"
-    value_without_links_media = re.sub(link_media_regex, "", value, flags=re.IGNORECASE)
-    max_length = 400
+    value_without_links_media = link_media_pattern.sub("", value)
     if len(value_without_links_media) > max_length:
-        # Raise a validation error
         raise ValidationError(
             f"The snippet cannot have more than {max_length} characters (excluding links and media)."
         )
