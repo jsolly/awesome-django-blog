@@ -324,10 +324,7 @@ class PostDetailView(DetailView):
         return Post.objects.filter(slug=self.kwargs["slug"])
 
     def get_context_data(self, **kwargs):
-        category = self.object.category
-        related_posts = Post.objects.filter(category=category).exclude(
-            slug=self.object.slug
-        )[:3]
+        related_posts = self.object.get_related_posts()
 
         context = super().get_context_data(**kwargs)
         context["title"] = self.object.title
@@ -477,7 +474,7 @@ def generate_gpt_input_value(request):
     def get_safe_completion(prompt, max_tokens):
         completion = (
             openai.Completion.create(
-                model="text-davinci-003",
+                model="gpt-3.5-turbo-instruct",
                 prompt=prompt,
                 max_tokens=max_tokens,
                 temperature=0.5,

@@ -56,10 +56,10 @@ body {
   padding: 0;
   margin: 0;
   line-height: 1.6;
-  font-size: 1.3rem;
 }
 
 body,
+input,
 .post-card,
 .list-group-item {
   background-color: var(--primary-color);
@@ -713,27 +713,13 @@ label[for="id_draft"] {
    Typeography
 ============= */
 
-:is(
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    strong,
-    .list-group-item,
-    svg,
-    table,
-    p,
-    blockquote,
-    li,
-    legend,
-    small,
-    .word-count,
-    label,
-
-  ) {
-  color: var(--secondary-color);
+code {
+  background-color: #f4f4f4; /* Light grey background */
+  border: 1px solid #ddd; /* Grey border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 2px 4px; /* Top and bottom padding of 2px, left and right padding of 4px */
+  font-family: monospace;
+  font-size: 0.95em;
 }
 
 .category-title {
@@ -781,6 +767,28 @@ a.hidden-link {
 
 :is(h1, h2, h3) {
   line-height: 1.1;
+}
+:is(
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    strong,
+    .list-group-item,
+    svg,
+    table,
+    p,
+    blockquote,
+    li,
+    legend,
+    small,
+    .word-count,
+    label,
+
+  ) {
+  color: var(--secondary-color);
 }
 
 hr {
@@ -1184,12 +1192,22 @@ img {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --primary-color: rgb(18, 18, 18);
-    --secondary-color: rgb(240, 240, 240);
-    --secondary-color-rgb: 240, 240, 240;
+    --primary-color: rgb(24 24 26);
+    --secondary-color: rgb(161, 161, 170);
+    --secondary-color-rgb: 161, 161, 170;
     --post-card-hover-background-color: hsl(0, 0%, 100%, 0.05);
     --background-hover-color: hsl(0, 0%, 100%, 0.05);
     --link-color: #6c9ff2;
+  }
+
+  code {
+    background-color: #2d2d2d;
+    color: #c5c8c6;
+    border: 1px solid #444;
+    border-radius: 4px; /* Rounded corners */
+    padding: 2px 4px; /* Top and bottom padding of 2px, left and right padding of 4px */
+    font-family: monospace;
+    font-size: 0.95em;
   }
 
   .github-icon svg {

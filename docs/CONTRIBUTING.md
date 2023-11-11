@@ -12,7 +12,7 @@ If you find any bugs, issues or errors while using the app, please submit a new 
 
 ## Contributions
 
-We welcome any contributions to the project, including bug fixes, feature requests, and general improvements. When contributing, please make sure to follow our coding standards, which include using ruff for code linting and Black for code formatting. Additionally, we suggest using conventional commits for commit messages to maintain consistency in our commit history.
+We welcome any contributions to the project, including bug fixes, feature requests, and general improvements. When contributing, please make sure to follow our coding standards, which include using ruff for code linting and code formatting. Additionally, we suggest using conventional commits for commit messages to maintain consistency in our commit history.
 
 ## Testing
 
