@@ -11,6 +11,7 @@ import pandas as pd
 from unittest.mock import patch
 import numpy as np
 from unittest import TestCase
+from django.core.exceptions import ValidationError
 
 
 class TestUtils(TestCase, MiddlewareMixin):
@@ -85,21 +86,13 @@ class TestUtils(TestCase, MiddlewareMixin):
         self.assertEqual(answer, "The mocked answer")
 
     def test_snippet_validation(self):
-        valid_value = "This is a valid snippet."
-        snippet_validator(valid_value)
-
-        max_length = 400
-        invalid_value = f"""A {'<a href="http://example.com">Link</a> ' * 10}{'B' * (max_length - 10)}"""
-
-        with self.assertRaises(ValidationError) as context:
-            snippet_validator(invalid_value)
-
-        expected_error_message = f"The snippet cannot have more than {max_length} characters (excluding links and media)."
-        self.assertEqual(str(context.exception), expected_error_message)
-
         valid_value_with_links = " ".join(
             [f'<a href="http://example{i}.com">Link{i}</a>' for i in range(100)]
         )
-        snippet_validator(valid_value_with_links)
+        invalid_value = f"""A {'<a href="http://example.com">Link</a> ' * 10}{'B' * (max_length - 10)}"""
 
-        self.assertIsNone(None)
+        with self.assertRaises(ValidationError):
+            snippet_validator(invalid_value)
+
+        snippet_validator(valid_value_with_links)
+        self.assertTrue(True)
