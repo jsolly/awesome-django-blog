@@ -474,7 +474,7 @@ def generate_gpt_input_value(request):
     def get_safe_completion(prompt, max_tokens):
         completion = (
             openai.Completion.create(
-                model="text-davinci-003",
+                model="gpt-3.5-turbo-instruct",
                 prompt=prompt,
                 max_tokens=max_tokens,
                 temperature=0.5,
