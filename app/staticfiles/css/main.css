@@ -713,6 +713,15 @@ label[for="id_draft"] {
    Typeography
 ============= */
 
+code {
+  background-color: #f4f4f4; /* Light grey background */
+  border: 1px solid #ddd; /* Grey border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 2px 4px; /* Top and bottom padding of 2px, left and right padding of 4px */
+  font-family: monospace;
+  font-size: 0.95em;
+}
+
 .category-title {
   font-weight: 300;
   letter-spacing: 0.1rem;
@@ -1189,6 +1198,16 @@ img {
     --post-card-hover-background-color: hsl(0, 0%, 100%, 0.05);
     --background-hover-color: hsl(0, 0%, 100%, 0.05);
     --link-color: #6c9ff2;
+  }
+
+  code {
+    background-color: #2d2d2d;
+    color: #c5c8c6;
+    border: 1px solid #444;
+    border-radius: 4px; /* Rounded corners */
+    padding: 2px 4px; /* Top and bottom padding of 2px, left and right padding of 4px */
+    font-family: monospace;
+    font-size: 0.95em;
   }
 
   .github-icon svg {
