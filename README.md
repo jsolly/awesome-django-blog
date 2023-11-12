@@ -128,6 +128,7 @@ $ pre-commit install
 - Site-wide 'breadcumbs' so your users can know exactly where they are and navigate with ease.
 - Each page is optimized for viewing (and printing) so break out those 8 1/2 by 11s and print out some content!
 - GPT-powered Chatbot that can answer questions about your blog and help you find content.
+- Related posts at the end of each post detail page so users can quickly navigate to a similar post on your blog.
 
 ### Non-Functional Features
 
