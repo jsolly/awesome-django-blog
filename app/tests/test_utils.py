@@ -3,14 +3,13 @@ from blog.utils import (
     create_context,
     answer_question,
     load_pickle_file,
-    snippet_validator,
-    max_length,
 )
 import pandas as pd
 from unittest.mock import patch
 import numpy as np
 from unittest import TestCase
 from django.core.exceptions import ValidationError
+from blog.validators import snippet_validator, max_length
 
 
 class TestUtils(TestCase, MiddlewareMixin):
