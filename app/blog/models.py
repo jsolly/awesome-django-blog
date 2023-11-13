@@ -4,7 +4,7 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 from django_ckeditor_5.fields import CKEditor5Field
-from .utils import snippet_validator
+from .validators import snippet_validator
 
 # import logging
 from django_resized import ResizedImageField

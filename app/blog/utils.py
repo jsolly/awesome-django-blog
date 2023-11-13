@@ -7,8 +7,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 from .models import Post, Similarity
 from django.db import models
-from django.core.exceptions import ValidationError
-import re
 
 
 def load_pickle_file():
@@ -140,17 +138,3 @@ def compute_similarity(post_id: int) -> None:
         )
 
     cleanup_similarities(post)
-
-
-link_media_pattern = re.compile(
-    r"<a.*?/a>|<img.*?/img>|<video.*?/video>|<audio.*?/audio>", flags=re.IGNORECASE
-)
-max_length = 400
-
-
-def snippet_validator(value):
-    value_without_links_media = link_media_pattern.sub("", value)
-    if len(value_without_links_media) > max_length:
-        raise ValidationError(
-            f"The snippet cannot have more than {max_length} characters (excluding links and media)."
-        )
