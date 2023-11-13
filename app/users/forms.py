@@ -24,7 +24,7 @@ class UserRegisterForm(UserCreationForm):
     secret_password = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "placeholder": "DM me on Twitter (@_jsolly) for the secret password!",
+                "placeholder": "DM me on X (@_jsolly) for the secret password!",
             }
         )
     )
@@ -33,6 +33,7 @@ class UserRegisterForm(UserCreationForm):
         model = User
 
         fields = [
+            "secret_password",
             "username",
             "first_name",
             "last_name",
