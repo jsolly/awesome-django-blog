@@ -2,7 +2,8 @@ import re
 from django.core.exceptions import ValidationError
 
 link_media_pattern = re.compile(
-    r"<a.*?/a>|<img.*?/img>|<video.*?/video>|<audio.*?/audio>", flags=re.IGNORECASE
+    r"<a[^>]*>.*?</a>|<img[^>]*>.*?</img>|<video[^>]*>.*?</video>|<audio[^>]*>.*?</audio>",
+    flags=re.IGNORECASE | re.DOTALL,
 )
 
 
