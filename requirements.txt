@@ -1,7 +1,7 @@
 ## Core Dependencies
 Django==4.2.7
 django-ckeditor-5==0.2.9
-django-htmx==1.16.0
+django-htmx==1.17.1
 django-resized==1.0.2
 django-robots==5.0
 feedparser==6.0.10
