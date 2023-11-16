@@ -10,7 +10,7 @@ class TestValidators(SetUp):
     def test_snippet_validation_valid_with_links(self):
         max_length = 400
         valid_value_with_links = " ".join(
-            [f'<a href="http://example{i}.com">Link{i}</a>' for i in range(100)]
+            [f'<a href="http://example{i}.com">Link</a>' for i in range(100)]
         )
 
         self.assertTrue(
@@ -24,6 +24,6 @@ class TestValidators(SetUp):
 
     def test_snippet_validation_invalid(self):
         max_length = 400
-        invalid_value = f"""A {'<a href="http://example.com">Link</a> ' * 10}{'B' * (max_length - 10)}"""
+        invalid_value = f"A {'[Link](http://example.com) ' * 50}{'![Image](image.jpg) ' * 10}{'C' * (max_length - 60)}"
         with self.assertRaises(ValidationError):
             snippet_validator(invalid_value, max_length=max_length)
