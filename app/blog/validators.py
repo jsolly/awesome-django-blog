@@ -2,9 +2,7 @@ import re
 from django.core.exceptions import ValidationError
 from bs4 import BeautifulSoup
 
-link_media_regex = re.compile(
-    r"<a\s[^>]*>.*?</a>|<img\s[^>]*>.*?</img>|<video\s[^>]*>.*?</video>|<audio\s[^>]*>.*?</audio>"
-)
+link_media_regex = re.compile(r"<a\s[^>]*>.*?</a>|`[^`]*`|\*\*[^*]*\*\*")
 
 
 def snippet_validator(value, max_length=400):

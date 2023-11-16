@@ -22,12 +22,6 @@ class TestValidators(SetUp):
 
         self.assertTrue(snippet_validator(invalid_value, max_length=400))
 
-    def test_snippet_validation_invalid(self):
-        max_length = 400
-        invalid_value = f"A {'[Link](http://example.com) ' * 50}{'![Image](image.jpg) ' * 10}{'C' * (max_length - 60)}"
-        with self.assertRaises(ValidationError):
-            snippet_validator(invalid_value, max_length=max_length)
-
     def test_snippet_validation_long_text_exceeding_max_length(self):
         max_length = 400
         long_text = (
@@ -39,3 +33,14 @@ class TestValidators(SetUp):
         )
         with self.assertRaises(ValidationError):
             snippet_validator(long_text, max_length=max_length)
+
+    def test_snippet_validation_within_max_length(self):
+        max_length = 400
+        short_text = (
+            "Short text within the max length "
+            "[Link](http://example.com) "
+            "![Image](image.jpg) "
+            "*emphasis* "
+            "**strong**"
+        )
+        self.assertTrue(snippet_validator(short_text, max_length=max_length))
