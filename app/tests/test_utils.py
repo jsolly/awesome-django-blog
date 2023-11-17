@@ -1,5 +1,9 @@
 from django.utils.deprecation import MiddlewareMixin
-from blog.utils import create_context, answer_question, load_pickle_file
+from blog.utils import (
+    create_context,
+    answer_question,
+    load_pickle_file,
+)
 import pandas as pd
 from unittest.mock import patch
 import numpy as np
