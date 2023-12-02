@@ -34,13 +34,6 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 python3 app/manage.py migrate
-```
-
-Rename 'awesome-django-blog/sample.env' to .env and change the values to match your setup. 
-            (database passwords, secret keys, etc)
-
-```shell
-cd awesome-django-blog/app
 python3 manage.py runserver
 ```
 
