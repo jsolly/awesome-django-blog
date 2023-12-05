@@ -464,10 +464,14 @@ class CommentDeleteView(UserPassesTestMixin, View):
 
     def delete(self, request, comment_id):
         comment = get_object_or_404(Comment, id=comment_id)
+        post = comment.post
         comment.delete()
         if self.request.htmx:
+            if post.comments.count() == 0:
+                oob_swap_command = '<div hx-swap-oob="true" id="no-comments-message">No comments yet</div>'
+                return HttpResponse(oob_swap_command, status=200, reason="Comment deleted successfully")
             return HttpResponse(status=200, reason="Comment deleted successfully")
-        return redirect("post-detail", slug=comment.post.slug)
+        return redirect("post-detail", slug=post.slug)
 
 
 def generate_gpt_input_value(request):
