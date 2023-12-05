@@ -713,7 +713,7 @@ label[for="id_draft"] {
    Typeography
 ============= */
 
-code {
+p > code {
   background-color: #f4f4f4; /* Light grey background */
   border: 1px solid #ddd; /* Grey border */
   border-radius: 4px; /* Rounded corners */
