@@ -786,7 +786,7 @@ a.hidden-link {
     small,
     .word-count,
     label,
-
+    input,
   ) {
   color: var(--secondary-color);
 }
