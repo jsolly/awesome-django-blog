@@ -211,7 +211,7 @@ class TestViews(SetUp):
 
         response = self.client.get(post1_delete_url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/post_confirm_delete.html")
+        self.assertTemplateUsed(response, "blog/post/post_confirm_delete.html")
         response = self.client.post(post1_delete_url, follow=True)
         self.assertRedirects(response, expected_url=reverse("home"))
         self.assertFalse(Post.objects.filter(id=delete_me_post.id).exists())
