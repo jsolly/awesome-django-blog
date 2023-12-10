@@ -4,8 +4,26 @@
 {% block head %}
 <!-- django_ckeditor_5 -->
 <link href="{% static 'django_ckeditor_5/ckeditor.css' %}" rel="stylesheet">
-<link href="{% static 'django_ckeditor_5/prism.css' %}" rel="stylesheet">
 <script src="{% static 'django_ckeditor_5/prism.js' %}" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      var lightModePrismCSS = "{% static 'django_ckeditor_5/prism-light.css' %}";
+      var darkModePrismCSS = "{% static 'django_ckeditor_5/prism-dark.css' %}";
+
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          // User prefers dark mode
+          link.href = darkModePrismCSS;
+      } else {
+          // User prefers light mode
+          link.href = lightModePrismCSS;
+      }
+
+      document.head.appendChild(link);
+  });
+</script>
 <script src="{% static 'js/addHeaderIdsAndLinks.js' %}" defer></script>
 
 <!-- Post-detail Injected Meta tags -->
