@@ -7,7 +7,7 @@ omit =
     app/app/settings/*
     app/blog/templates/blog/pgp-key.txt
     app/blog/templates/blog/parts/posts.html
-    app/blog/templates/blog/parts/base.html
+    app/blog/templates/blog/base.html
 
 [lcov]
 output = ./coverage/lcov.info
