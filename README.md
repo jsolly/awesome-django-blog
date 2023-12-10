@@ -122,6 +122,7 @@ $ pre-commit install
 - Each page is optimized for viewing (and printing) so break out those 8 1/2 by 11s and print out some content!
 - GPT-powered Chatbot that can answer questions about your blog and help you find content.
 - Related posts at the end of each post detail page so users can quickly navigate to a similar post on your blog.
+- Syntax highlighting with Prism.js for beautiful code blocks in a variety of languages. Also includes line numbers and copy to clipboard functionality. Automatically changes light/dark theme based on user's current system theme.
 
 ### Non-Functional Features
 
