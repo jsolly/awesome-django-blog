@@ -1141,6 +1141,7 @@ img {
 
 ::-webkit-scrollbar-track {
   background-color: var(--link-color);
+  border-radius: 0.5rem;
 }
 
 /* p {
