@@ -7,24 +7,25 @@
 <script src="{% static 'django_ckeditor_5/prism.js' %}" defer></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-      var lightModePrismCSS = "{% static 'django_ckeditor_5/prism-light.css' %}";
-      var darkModePrismCSS = "{% static 'django_ckeditor_5/prism-dark.css' %}";
+    var lightModePrismCSS = "{% static 'django_ckeditor_5/prism-light.css' %}";
+    var darkModePrismCSS = "{% static 'django_ckeditor_5/prism-dark.css' %}";
 
-      var link = document.createElement('link');
-      link.rel = 'stylesheet';
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
 
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          // User prefers dark mode
-          link.href = darkModePrismCSS;
-      } else {
-          // User prefers light mode
-          link.href = lightModePrismCSS;
-      }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      // User prefers dark mode
+      link.href = darkModePrismCSS;
+    } else {
+      // User prefers light mode
+      link.href = lightModePrismCSS;
+    }
 
-      document.head.appendChild(link);
+    document.head.insertBefore(link, document.head.firstChild);
   });
 </script>
 <script src="{% static 'js/addHeaderIdsAndLinks.js' %}" defer></script>
+
 
 <!-- Post-detail Injected Meta tags -->
 <meta property="og:type" content="article">
