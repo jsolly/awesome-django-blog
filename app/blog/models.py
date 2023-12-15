@@ -72,6 +72,7 @@ class Post(models.Model):
     content = CKEditor5Field(blank=True, null=True)
     snippet = CKEditor5Field(blank=True, null=True)
     upvotes = models.IntegerField(default=0)
+    upvoters = models.ManyToManyField(User, related_name="upvoted_posts")
     date_posted = models.DateTimeField(default=timezone.now)
     date_updated = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
