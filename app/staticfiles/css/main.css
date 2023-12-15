@@ -459,7 +459,7 @@ figure {
 .comment-details {
   display: flex;
   align-items: center;
-  font-size: 1rem;
+  font-size: 0.8rem;
   margin-bottom: 1rem;
   color: var(--secondary-color);
 }
