@@ -439,6 +439,31 @@ figure {
   border: 0;
 }
 
+.comment-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.5rem;
+} 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.comment-details {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--secondary-color);
+}
+
 /* About Me Card */
 .about-me-image {
   height: auto;

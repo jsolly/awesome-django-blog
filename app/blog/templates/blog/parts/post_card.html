@@ -36,6 +36,10 @@
               </div>
               {{ post.snippet|safe }}
             </div>
+            <div class="comment-details">
+              <img src="{% static 'svg/comment-icon.svg' %}" alt="Comment Icon" class="comment-icon" >
+             <p>Number of Comments: {{ post.comments.count }}</p>
+            </div>
           </div>
         </div>
       </div>
