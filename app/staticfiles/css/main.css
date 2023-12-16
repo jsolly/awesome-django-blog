@@ -443,6 +443,7 @@ figure {
   width: 16px;
   height: 16px;
   margin-right: 0.5rem;
+  color: var(--secondary-color); 
 } 
 .visually-hidden {
   position: absolute;
@@ -1223,6 +1224,9 @@ img {
     --post-card-hover-background-color: hsl(0, 0%, 100%, 0.05);
     --background-hover-color: hsl(0, 0%, 100%, 0.05);
     --link-color: #6c9ff2;
+  }
+  .comment-icon path {
+    fill:  #ffffff;
   }
   .github-icon svg {
     fill: black;
