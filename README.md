@@ -54,11 +54,12 @@ docker-compose run --rm app sh -c "python manage.py createsuperuser"
 docker-compose up
 ``` -->
 
-### Using the app
-By default, there are two users created. One is an admin and the other can only add comments to posts. 
+### Default Accounts
+The app comes preinstalled with two users. One is an admin and the other can only add comments to posts. 
 
-**Username/Password**: admin/admin<br>
-**Username/Password**: comment_only/comment_only
+**(Username/Password)**: 
+- admin/admin<br>
+- comment_only/comment_only
 
 ### Coverage
 
