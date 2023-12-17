@@ -439,6 +439,32 @@ figure {
   border: 0;
 }
 
+.comment-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.5rem;
+  color: var(--secondary-color); 
+} 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.comment-details {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  color: var(--secondary-color);
+}
+
 /* About Me Card */
 .about-me-image {
   height: auto;
@@ -1198,6 +1224,9 @@ img {
     --post-card-hover-background-color: hsl(0, 0%, 100%, 0.05);
     --background-hover-color: hsl(0, 0%, 100%, 0.05);
     --link-color: #6c9ff2;
+  }
+  .comment-icon path {
+    fill:  #ffffff;
   }
   .github-icon svg {
     fill: black;
