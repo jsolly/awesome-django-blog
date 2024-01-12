@@ -92,3 +92,5 @@ urlpatterns = [
 ]
 if settings.DEBUG:  # pragma: no cover
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = "app.views.handler_404"
