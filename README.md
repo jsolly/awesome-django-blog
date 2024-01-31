@@ -148,7 +148,7 @@ $ pre-commit install
 - Badges for test coverage, passing builds, formatter, and linting
 - Automated, rotating backups of blog posts using local and cloud storage
 - Status page for monitoring uptime and performance of your blog at https://blogthedata.com/status using Apache Echarts.
-- Custom 404 page that looks really cool. So even if your users are lost, they are still having a good time.
+- Custom 404 and 500 pages that look really cool. So even if your users are lost or your app is broke, they are still having a good time.
 
 ## Depreciated Features
 
