@@ -29,7 +29,8 @@ Global Styles
   --post-card-hover-background-color: hsl(0, 0%, 90%);
   --border-color: #777777;
   --a11-red: #990000;
-  --action-color: #333333; /* Slightly darker than secondary color */
+  /* Slightly darker than secondary color */
+  --action-color: #333333;
   --link-color: var(--primary-blue);
   --footer-color: rgb(50, 50, 50);
   --background-hover-color: #f7f7f7;
@@ -41,11 +42,9 @@ Global Styles
   --primary-box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
   --secondary-box-shadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
   --primary-gradient: linear-gradient(93.12deg, #0d6efd 0.52%, #007bff 100%);
-  --secondary-gradient: linear-gradient(
-    268.91deg,
-    #0d6efd -2.14%,
-    #007bff 99.69%
-  );
+  --secondary-gradient: linear-gradient(268.91deg,
+      #0d6efd -2.14%,
+      #007bff 99.69%);
 }
 
 html {
@@ -64,6 +63,7 @@ input,
 .list-group-item {
   background-color: var(--primary-color);
 }
+
 /* =============
    Layout
 ============= */
@@ -115,6 +115,7 @@ footer {
   height: 40px;
   width: 34.4px;
 }
+
 /* Navbar */
 .navbar-menu.show-menu .navbar-nav {
   padding-left: 20px;
@@ -252,6 +253,7 @@ footer {
 .github-icon svg {
   margin-right: 5px;
 }
+
 .github-icon::after {
   content: none !important;
 }
@@ -369,6 +371,7 @@ footer .dropdown-menu {
   margin-bottom: 30px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 .post-card-row {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -427,6 +430,7 @@ figure {
   height: 16px;
   margin-right: 0.5rem;
 }
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -443,7 +447,7 @@ figure {
   width: 16px;
   height: 16px;
   margin-right: 0.5rem;
-  color: var(--secondary-color); 
+  color: var(--secondary-color);
 }
 
 .comment-details {
@@ -529,6 +533,7 @@ figure {
   background-color: #dc3545;
   border: 1px solid #dc3545;
 }
+
 .btn-red:hover {
   background-color: #c82333;
   border-color: #c82333;
@@ -539,6 +544,7 @@ figure {
   background-color: #6c757d;
   border: 1px solid #6c757d;
 }
+
 .btn-dark:hover {
   background-color: #5c636a;
   border-color: #5c636a;
@@ -650,9 +656,11 @@ figure {
 .resp-sharing-button__link.linkedin:hover .resp-sharing-button__icon {
   fill: #0077b5;
 }
+
 .resp-sharing-button__link.x:hover {
   background-color: #4d4d4d;
 }
+
 .social-share-btn {
   width: 24px;
   height: 24px;
@@ -728,7 +736,7 @@ label[for="id_draft"] {
    Typeography
 ============= */
 
-p > code {
+p>code {
   color: #e76f51;
   font-family: monospace;
   font-size: 0.95em;
@@ -780,27 +788,27 @@ a.hidden-link {
 :is(h1, h2, h3) {
   line-height: 1.1;
 }
-:is(
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    strong,
-    .list-group-item,
-    svg,
-    table,
-    p,
-    blockquote,
-    li,
-    legend,
-    small,
-    .word-count,
-    label,
-    input,
-    form,
-  ) {
+
+:is(h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong,
+  .list-group-item,
+  svg,
+  table,
+  p,
+  blockquote,
+  li,
+  legend,
+  small,
+  .word-count,
+  label,
+  input,
+  form,
+) {
   color: var(--secondary-color);
 }
 
@@ -809,7 +817,7 @@ hr {
   opacity: 0.25;
 }
 
-.post-content > p:first-of-type::first-letter {
+.post-content>p:first-of-type::first-letter {
   font-size: 2rem;
   font-weight: 700;
 }
@@ -863,6 +871,7 @@ button a:hover {
   width: 35px;
   height: 35px;
 }
+
 #chatbot-container {
   position: fixed;
   bottom: 0;
@@ -1077,7 +1086,7 @@ textarea::placeholder {
 ============= */
 
 /* Override Ckeditor */
-.ck.ck-toolbar.ck-toolbar_grouping > .ck-toolbar__items {
+.ck.ck-toolbar.ck-toolbar_grouping>.ck-toolbar__items {
   flex-wrap: wrap !important;
 }
 
@@ -1179,9 +1188,10 @@ img {
    Media Queries
 ============= */
 @media (prefers-reduced-motion: reduce) {
-  .navbar-nav > li:hover:not(.dropdown) {
+  .navbar-nav>li:hover:not(.dropdown) {
     animation: none;
   }
+
   .dropdown-item:hover {
     animation: none;
   }
@@ -1191,6 +1201,7 @@ img {
   .dropdown-item:hover {
     animation: button-shake 0.3s linear;
   }
+
   a:not(#scroll-to-top):hover::before {
     transform: scaleX(1);
   }
@@ -1214,14 +1225,16 @@ img {
     --background-hover-color: hsl(0, 0%, 100%, 0.05);
     --link-color: rgb(108, 159, 242);
   }
+
   .comment-icon path {
-    fill:  #ffffff;
+    fill: #ffffff;
   }
+
   .github-icon svg {
     fill: black;
   }
 
-  p > code {
+  p>code {
     color: #a626a4;
   }
 
@@ -1232,6 +1245,7 @@ img {
   footer {
     background-color: var(--secondary-color);
   }
+
   hr {
     border-color: rgb(128, 128, 128);
   }
@@ -1243,6 +1257,7 @@ img {
   img {
     filter: brightness(0.8) contrast(1.2);
   }
+
   .testimonial-quote::before {
     color: hsla(229, 100%, 88%, 0.6);
   }
@@ -1267,43 +1282,75 @@ img {
 }
 
 @media print {
+
+  /* @page
+{
+    size: Letter portrait;
+    margin: 0;
+} */
+  html,
+  body {
+    background-color: white !important;
+  }
+
   header {
     display: none !important;
   }
+
   nav {
     display: none !important;
   }
+
   .header-link {
     display: none !important;
   }
+
   #scroll-to-top-container {
     display: none !important;
   }
+
   #print-container {
     display: none !important;
   }
+
   .btn {
     display: none !important;
   }
+
   .social-share-container {
     display: none !important;
   }
+
   footer {
     display: none !important;
   }
+
   #chatbox-container {
     display: none !important;
   }
+
   #comments-section {
     display: none !important;
   }
+
   #create-comments-section {
     display: none !important;
   }
+
+  #related-posts-section {
+    display: none !important;
+  }
+
+  #aboutMe {
+    display: none !important;
+  }
+
+
 }
 
 /* Responsive Styles*/
 @media (max-width: 1239px) {
+
   /* 
   Changes the layout of the container to a single column grid
   with the header, sidebar, post-content, and footer taking up
@@ -1362,6 +1409,7 @@ img {
     flex-direction: column;
     align-items: flex-start;
   }
+
   .navbar-menu {
     display: none;
     background-color: var(--secondary-color);
@@ -1378,6 +1426,7 @@ img {
     margin: 0;
     padding-left: 0;
   }
+
   .nav-item,
   .dropdown {
     margin: 10px 0;
@@ -1406,6 +1455,7 @@ img {
 }
 
 @media screen and (min-width: 1240px) {
+
   /* 
   Changes the layout of the container to a 4 column grid.
   The Sidebar and post-content occupy the middle two columns,
@@ -1415,18 +1465,22 @@ img {
   .container {
     grid-template-columns: 0.25fr 1.25fr 2.25fr 0.25fr;
   }
+
   header {
     grid-column: 1 / 5;
     grid-row: 1;
   }
+
   .sidebar {
     grid-column: 2;
     grid-row: 2;
   }
+
   .post-content {
     grid-column: 3;
     grid-row: 2;
   }
+
   footer {
     grid-column: 1 / 5;
     grid-row: 3;
@@ -1437,9 +1491,11 @@ img {
   .container {
     grid-template-columns: 0.5fr 1fr 2fr 0.5fr;
   }
+
   .sidebar {
     grid-column: 2;
   }
+
   .post-content {
     grid-column: 3;
   }
@@ -1449,9 +1505,11 @@ img {
   .container {
     grid-template-columns: 0.8fr 0.9fr 1.5fr 0.8fr;
   }
+
   .sidebar {
     grid-column: 2;
   }
+
   .post-content {
     grid-column: 3;
   }
@@ -1461,16 +1519,18 @@ img {
   .container {
     grid-template-columns: 1.1fr 0.6fr 1.2fr 1.1fr;
   }
+
   .sidebar {
     grid-column: 2;
   }
+
   .post-content {
     grid-column: 3;
   }
 }
 
 @media (min-width: 992px) {
-  .navbar-nav > li:hover:not(.dropdown) {
+  .navbar-nav>li:hover:not(.dropdown) {
     animation: button-shake 0.3s linear;
   }
 }
@@ -1482,6 +1542,7 @@ img {
 .comment-delete-form {
   display: inline;
 }
+
 .content-section {
   margin-bottom: 30px;
 }
