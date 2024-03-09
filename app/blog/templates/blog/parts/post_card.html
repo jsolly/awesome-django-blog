@@ -22,10 +22,10 @@
                 </h2>
               </div>
               <p class="post-dates">
-                {{ post.date_posted|date:"F d, Y" }} in {{ post.category.name }}
+                <time datetime="{{ post.date_posted|date:"Y-m-d" }}">{{ post.date_posted|date:"F d, Y" }}</time> in {{ post.category.name }}
                 {% if post.date_updated|date:"Ymd" != post.date_posted|date:"Ymd" %}
                 <br>
-                Last updated: {{ post.date_updated|date:"F d, Y" }}
+                Last updated: <time datetime="{{ post.date_updated|date:"Y-m-d" }}">{{ post.date_updated|date:"F d, Y" }}</time>
                 {% endif %}
               </p>
               <div class="post-details">
