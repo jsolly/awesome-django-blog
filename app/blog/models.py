@@ -26,10 +26,10 @@ def slugify_instance(instance, save=False, new_slug=None):
 
 class PostManager(models.Manager):
     def active(self, *args, **kwargs):
-        return super().filter(draft=False).order_by("-date_updated")
+        return super().filter(draft=False).order_by("-date_posted")
 
     def all(self, *args, **kwargs):
-        return super().order_by("-date_updated")
+        return super().order_by("-date_posted")
 
 
 class CommentManager(models.Manager):
