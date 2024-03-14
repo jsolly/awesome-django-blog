@@ -14,7 +14,6 @@ from blog.views import (
     PostDeleteView,
     CategoryView,
     SearchView,
-    PortfolioView,
     StatusView,
     CommentUpdateView,
     CommentDeleteView,
@@ -74,9 +73,6 @@ class TestUrls(SetUp):
     def test_category_url_is_resolved(self):
         category_url = reverse("blog-category", args=["uncategorized"])
         self.assertEqual(resolve(category_url).func.view_class, CategoryView)
-
-    def test_portfolio_url_is_resolved(self):
-        self.assertEqual(resolve(reverse("portfolio")).func.view_class, PortfolioView)
 
     def test_search_url_is_resolved(self):
         self.assertEqual(resolve(reverse("blog-search")).func.view_class, SearchView)

@@ -49,6 +49,4 @@ def breadcrumbs(request):
         breadcrumbs.append({"name": "Works Cited", "url": reverse(match.url_name)})
     elif match.url_name == "privacy":
         breadcrumbs.append({"name": "Privacy Policy", "url": reverse(match.url_name)})
-    elif match.url_name == "portfolio":
-        breadcrumbs.append({"name": "Portfolio", "url": reverse(match.url_name)})
     return {"breadcrumbs": breadcrumbs}
