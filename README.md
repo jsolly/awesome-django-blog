@@ -113,7 +113,6 @@ $ pre-commit install
 - Open Graph protocol compliant social media sharing for beautiful share cards (LinkedIn, Twitter, Facebook, Instagram, Reddit, etc)
 - Smart and powerful Global search so you can find any blog post with a keyword search.
 - Display site visitors in a web map
-- Portfolio page with testimonials, contact me, Web vitals, and more!
 - Light and Dark Theme that automatically switch based on user's current system theme.
 - Blog reading time so viewers can estimate how long it will take them to read a post.
 - Atom and RSS feed so users can subscribe to your latest blog posts.
@@ -162,6 +161,7 @@ $ pre-commit install
 - ~~Github Integration to show active issue backlog without leaving blog~~ (removed
   in https://github.com/jsolly/awesome-django-blog/pull/121)
   [commit:5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b](https://github.com/jsolly/awesome-django-blog/commit/5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b))
+- ~~Portfolio page with testimonials, contact me, Web vitals, and more!~~ (removed in )
 
 ## Contributing
 
