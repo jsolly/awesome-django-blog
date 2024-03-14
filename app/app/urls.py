@@ -9,7 +9,6 @@ from app.sitemaps import (
     WorksCitedSiteMap,
     privacyPolicySiteMap,
     CategorySitemap,
-    PortfolioSiteMap,
     StatusPageSiteMap,
 )
 from .views import (
@@ -35,7 +34,6 @@ sitemaps = {
     "Works Cited": WorksCitedSiteMap,
     "Privacy Policy": privacyPolicySiteMap,
     "Categories": CategorySitemap,
-    "Portfolio": PortfolioSiteMap,
     "Status Page": StatusPageSiteMap,
 }
 

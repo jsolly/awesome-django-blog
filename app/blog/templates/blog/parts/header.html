@@ -14,16 +14,14 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="header-navbarDropdown">
             {% for cat in category_qs %}
-            {% if cat.slug != 'portfolio' %}
             <li>
               <a class="dropdown-item" href="{% url 'blog-category' cat.slug %}">{{cat.name}}</a>
             </li>
-            {% endif %}
             {% endfor %}
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'portfolio' %}">Portfolio</a>
+          <a class="nav-link" target="_blank" rel="me" href="https://johnsolly.dev">Portfolio</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" rel="noopener noreferrer" target="_blank"
