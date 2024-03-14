@@ -161,7 +161,7 @@ $ pre-commit install
 - ~~Github Integration to show active issue backlog without leaving blog~~ (removed
   in https://github.com/jsolly/awesome-django-blog/pull/121)
   [commit:5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b](https://github.com/jsolly/awesome-django-blog/commit/5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b))
-- ~~Portfolio page with testimonials, contact me, Web vitals, and more!~~ (removed in )
+- ~~Portfolio page with testimonials, contact me, Web vitals, and more!~~ (removed in https://github.com/jsolly/awesome-django-blog/pull/404)
 
 ## Contributing
 
