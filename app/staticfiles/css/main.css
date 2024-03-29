@@ -744,7 +744,7 @@ p>code {
 
 .category-title {
   font-weight: 300;
-  letter-spacing: 0.1rem;
+  letter-spacing: -0.025em;
   margin-bottom: 0;
 }
 
@@ -786,7 +786,7 @@ a.hidden-link {
 }
 
 :is(h1, h2, h3) {
-  line-height: 1.1;
+  line-height: 1;
 }
 
 :is(h1,
@@ -831,7 +831,8 @@ hr {
 }
 
 h1 {
-  letter-spacing: 2px;
+  letter-spacing: -0.025em;
+  font-size: 2em;
 }
 
 a {
