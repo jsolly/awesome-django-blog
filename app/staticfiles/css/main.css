@@ -1095,18 +1095,12 @@ iframe {
   max-width: 100%;
 }
 
-.post-text {
-  width: 100%;
-  overflow-x: hidden;
+.code-toolbar {
+  max-width: 90vw !important;
 }
 
-
-.post-text pre,
-.post-text code {
-  white-space: pre-wrap;
-  overflow-wrap: break-word;
-  word-break: break-all;
-  max-width: 100%;
+code {
+  padding: 1rem !important
 }
 
 .meta-img-container {
@@ -1158,12 +1152,22 @@ img {
   width: 1rem;
 }
 
-::-webkit-scrollbar-thumb:vertical {
+::-webkit-scrollbar-thumb {
+  background: var(--secondary-color);
+  border-radius: 100vw;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
   background: var(--secondary-color);
   border-radius: 100vw;
 }
 
 ::-webkit-scrollbar-track {
+  background-color: var(--link-color);
+  border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-track:horizontal {
   background-color: var(--link-color);
   border-radius: 0.5rem;
 }
@@ -1551,4 +1555,9 @@ img {
 .comment-btn {
   padding: 3px 8px;
   font-size: 8px;
+}
+
+
+main {
+  max-width: 800px !important;
 }
