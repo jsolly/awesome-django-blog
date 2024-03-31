@@ -787,6 +787,13 @@ a.hidden-link {
 
 :is(h1, h2, h3) {
   line-height: 1;
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+
+:is(p) {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 :is(h1,
