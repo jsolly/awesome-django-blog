@@ -1112,6 +1112,7 @@ code {
 
 .meta-img-container {
   display: flex;
+  height: 20vh;
 }
 
 
@@ -1134,7 +1135,8 @@ img {
 
 /* Make sure images maintain aspect ration on small screens */
 figure img {
-  object-fit: scale-down !important;
+  max-width: 100%;
+  height: auto;
 }
 
 #scroll-to-top {
@@ -1415,9 +1417,6 @@ figure img {
     height: auto;
     object-fit: cover;
   }
-  .meta-img-container {
-    height: 20vh;
-  }
 
   /* Navbar */
   .navbar-menu.show-menu {
@@ -1468,9 +1467,6 @@ figure img {
     grid-template-columns: repeat(2, 1fr);
     justify-content: center;
   }
-  .meta-img-container {
-    height: 30vh;
-  }
 }
 
 @media screen and (min-width: 1240px) {
@@ -1503,9 +1499,6 @@ figure img {
   footer {
     grid-column: 1 / 5;
     grid-row: 3;
-  }
-  .meta-img-container {
-    height: 30vh;
   }
 }
 
