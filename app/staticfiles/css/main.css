@@ -1130,6 +1130,11 @@ img {
   max-width: 100%;
 }
 
+/* Make sure images maintain aspect ration on small screens */
+figure img {
+  object-fit: scale-down !important;
+}
+
 #scroll-to-top {
   display: flex;
   align-items: center;
