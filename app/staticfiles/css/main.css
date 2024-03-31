@@ -1112,13 +1112,8 @@ code {
 
 .meta-img-container {
   display: flex;
-  height: 30vh;
 }
 
-#post-detail-meta-img {
-  max-width: 100%;
-  max-height: 100%;
-}
 
 #draft {
   color: var(--a11-red);
@@ -1413,11 +1408,15 @@ figure img {
     max-width: 100%;
   }
 
+
   .post-card-meta-img-container img {
     display: block;
     width: 100%;
     height: auto;
     object-fit: cover;
+  }
+  .meta-img-container {
+    height: 20vh;
   }
 
   /* Navbar */
@@ -1469,6 +1468,9 @@ figure img {
     grid-template-columns: repeat(2, 1fr);
     justify-content: center;
   }
+  .meta-img-container {
+    height: 30vh;
+  }
 }
 
 @media screen and (min-width: 1240px) {
@@ -1502,6 +1504,9 @@ figure img {
     grid-column: 1 / 5;
     grid-row: 3;
   }
+  .meta-img-container {
+    height: 30vh;
+  }
 }
 
 @media screen and (min-width: 1700px) {
@@ -1516,6 +1521,7 @@ figure img {
   .post-content {
     grid-column: 3;
   }
+  
 }
 
 @media screen and (min-width: 2000px) {
