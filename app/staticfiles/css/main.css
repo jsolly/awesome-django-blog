@@ -413,7 +413,7 @@ figure {
 }
 
 .post-dates {
-  font-size: 1rem;
+  font-size: 0.8rem;
   margin-bottom: 0.25rem;
 }
 
@@ -576,6 +576,7 @@ figure {
 #print-icon {
   margin-right: 0.5rem;
 }
+
 
 /* Post Submit Button */
 .post-submit-button {
@@ -1113,6 +1114,7 @@ code {
 .meta-img-container {
   display: flex;
   height: 20vh;
+  margin-top: 1rem;
 }
 
 
