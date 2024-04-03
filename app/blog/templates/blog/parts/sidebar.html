@@ -1,7 +1,7 @@
 <aside>
   <nav role="navigation" aria-label="Sidebar Navigation">
     <div class="list-group">
-      <h2>Navigate to a Category</h2>
+      <h2 id="sidebar-heading">Navigate to a Category</h2>
       <a href="{% url 'home' %}" id="sidebar-home"
         class="list-group-item {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
         Blog Home

@@ -261,6 +261,12 @@ footer {
 /* =============
    Sidebar
 ============= */
+
+#sidebar-heading {
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 aside {
   padding: 0 15px;
 }
@@ -275,6 +281,7 @@ aside {
   display: block;
   padding: 0.5rem 1rem;
   background-color: var(--primary-color);
+  border-radius: 0.25rem;
 }
 
 .list-group-item:hover {
@@ -370,6 +377,7 @@ footer .dropdown-menu {
   transition: background-color 0.6s 0s;
   margin-bottom: 30px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
 }
 
 .post-card-row {
@@ -790,6 +798,7 @@ a.hidden-link {
   line-height: 1;
   margin-top: 0em;
   margin-bottom: 0em;
+  letter-spacing: -0.025em;
 }
 
 :is(p) {
@@ -1158,34 +1167,13 @@ figure img {
   margin-right: 5px;
 }
 
-::-webkit-scrollbar {
-  height: 1rem;
-  width: 1rem;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--secondary-color);
-  border-radius: 100vw;
-}
-
-::-webkit-scrollbar-thumb:horizontal {
-  background: var(--secondary-color);
-  border-radius: 100vw;
-}
-
-::-webkit-scrollbar-track {
-  background-color: var(--link-color);
-  border-radius: 0.5rem;
-}
-
-::-webkit-scrollbar-track:horizontal {
-  background-color: var(--link-color);
-  border-radius: 0.5rem;
-}
-
 /* p {
   max-width: 70ch;
 } */
+
+#Blog-Home-posts h1 {
+  margin-bottom: 1rem;
+} 
 
 /* =============
    Keyframes
