@@ -1551,6 +1551,9 @@ figure img {
   .navbar-nav>li:hover:not(.dropdown) {
     animation: button-shake 0.3s linear;
   }
+  .nav-categories {
+    display: none;
+  }
 }
 
 .comment {
