@@ -796,8 +796,8 @@ a.hidden-link {
 
 :is(h1, h2, h3) {
   line-height: 1;
-  margin-top: 0em;
-  margin-bottom: 0em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
   letter-spacing: -0.025em;
 }
 
@@ -1170,10 +1170,6 @@ figure img {
 /* p {
   max-width: 70ch;
 } */
-
-#Blog-Home-posts h1 {
-  margin-bottom: 1rem;
-} 
 
 /* =============
    Keyframes
