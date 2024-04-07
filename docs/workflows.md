@@ -33,14 +33,14 @@ local_branch_name and branch_name can be the same
     ```
     sudo -u postgres pg_dump blogthedata > ~/blogthedata/backups/blogthedata_db_DD_MM_YYYY.sql # do this inside prod
     #### The following steps are done on a local dev machine
-    scp john@198.74.48.211:~/blogthedata/backups/blogthedata_db_DD_MM_YYYY.sql ~/Documents/code/awesome-django-blog/backups
+    scp john@198.74.48.211:~/blogthedata/backups/blogthedata_db_DD_MM_YYYY.sql ~/code/awesome-django-blog/backups
     psql -U postgres
     postgres=# DROP DATABASE blogthedata;
     postgres=# CREATE DATABASE blogthedata;
     postgres=# exit
-    psql blogthedata < ~/Documents/code/awesome-django-blog/backups/blogthedata_db_DD_MM_YYYY.sql
+    psql blogthedata < ~/code/awesome-django-blog/backups/blogthedata_db_DD_MM_YYYY.sql
     # Optionally copy media folder over (to get uploaded images)
-    scp -r john@198.74.48.211:~/blogthedata/app/media ~/Documents/code/awesome-django-blog/app 
+    scp -r john@198.74.48.211:~/blogthedata/app/media ~/code/awesome-django-blog/app 
     ```
 
 ### useful commands and paths
