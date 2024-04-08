@@ -6,8 +6,10 @@
 - Cards
 - Buttons
 - Forms
+- Images
 - Typography
 - Chatbot
+- Comments
 - Misc
 - Keyframes
 - Media Queries
@@ -67,6 +69,14 @@ input,
 /* =============
    Layout
 ============= */
+.content-section {
+  margin-bottom: 30px;
+}
+
+main {
+  max-width: 800px !important;
+}
+
 .container {
   display: grid;
   grid-template-columns: 0.25fr 0.5fr 1fr 0.25fr;
@@ -103,6 +113,10 @@ footer {
 
 .sml-margin-bottom {
   margin-bottom: 0.5rem;
+}
+
+.lg-margin-top-bottom {
+  margin: 2rem 0;
 }
 
 /* Status Page */
@@ -743,6 +757,29 @@ label[for="id_draft"] {
 }
 
 /* =============
+   Images
+============= */
+
+.meta-img-container {
+  display: flex;
+  height: 20vh;
+  margin-top: 1rem;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* Make sure images maintain aspect ration on small screens */
+figure img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+
+
+/* =============
    Typeography
 ============= */
 
@@ -1068,6 +1105,33 @@ textarea::placeholder {
 #question-text-area {
   margin-right: 10px;
 }
+/* =============
+   Comments
+============= */
+
+.comment {
+  list-style-type: none;
+}
+
+
+.comment-delete-form {
+  display: inline;
+}
+
+
+.comment-btn {
+  padding: 3px 8px;
+  font-size: 8px;
+}
+
+#comments-section {
+  background-color: var(--primary-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin-bottom: 1rem;
+} 
+
+
 
 /* =============
    Status Page
@@ -1121,13 +1185,6 @@ code {
   padding: 1rem !important
 }
 
-.meta-img-container {
-  display: flex;
-  height: 20vh;
-  margin-top: 1rem;
-}
-
-
 #draft {
   color: var(--a11-red);
 }
@@ -1139,16 +1196,6 @@ video {
 
 #breadcrumbs {
   color: #6c757d;
-}
-
-img {
-  max-width: 100%;
-}
-
-/* Make sure images maintain aspect ration on small screens */
-figure img {
-  max-width: 100%;
-  height: auto;
 }
 
 #scroll-to-top {
@@ -1539,26 +1586,4 @@ figure img {
   .nav-categories {
     display: none;
   }
-}
-
-.comment {
-  list-style-type: none;
-}
-
-.comment-delete-form {
-  display: inline;
-}
-
-.content-section {
-  margin-bottom: 30px;
-}
-
-.comment-btn {
-  padding: 3px 8px;
-  font-size: 8px;
-}
-
-
-main {
-  max-width: 800px !important;
 }
