@@ -839,6 +839,10 @@ a.hidden-link {
   letter-spacing: -0.025em;
 }
 
+h2 {
+  font-weight: normal;
+}
+
 :is(p) {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
