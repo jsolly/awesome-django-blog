@@ -435,23 +435,21 @@ figure {
   margin-left: 0.5rem;
 }
 
-.post-dates {
+.post-info {
   font-size: 0.8rem;
-  margin-bottom: 0.25rem;
+  color: var(--secondary-color);
 }
 
 .post-readtime {
-  display: flex;
-  align-items: center;
-  font-size: 1rem;
-  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
   color: var(--secondary-color);
 }
 
 .post-readtime-icon {
-  width: 16px;
-  height: 16px;
-  margin-right: 0.5rem;
+  width: 10px;
+  height: 10px;
+  margin-right: 0.2rem;
 }
 
 .visually-hidden {

@@ -21,24 +21,25 @@
                   {% endif %}
                 </h2>
               </div>
-              <p class="post-dates">
-                <time datetime="{{ post.date_posted|date:"Y-m-d" }}">{{ post.date_posted|date:"F d, Y" }}</time> in {{ post.category.name }}
-                {% if post.date_updated|date:"Ymd" != post.date_posted|date:"Ymd" %}
-                <br>
-                Last updated: <time datetime="{{ post.date_updated|date:"Y-m-d" }}">{{ post.date_updated|date:"F d, Y" }}</time>
-                {% endif %}
-              </p>
-              <div class="post-details">
+              <div class="post-info">
+                <time datetime="{{ post.date_posted|date:" Y-m-d" }}">{{ post.date_posted|date:"F d, Y" }}</time> in {{ post.category.name }}
+                <div class="post-updated">
+                  {% if post.date_updated|date:"Ymd" != post.date_posted|date:"Ymd" %}
+                  Last updated: <time datetime="{{ post.date_updated|date:" Y-m-d" }}">{{ post.date_updated|date:"F d, Y" }}</time>
+                  {% endif %}
+                </div>
                 <div class="post-readtime">
-                  <img src="{% static 'svg/clock.svg' %}" alt="Clock Icon" class="post-readtime-icon">
+                  <img src="{% static 'svg/clock.svg' %}" alt="Clock Icon" class="post-readtime-icon" />
                   <span class="post-readtime-text">{{ post.content|readtime }}</span>
                 </div>
               </div>
-              {{ post.snippet|safe }}
+              <div class="post-excerpt">
+                {{ post.snippet|safe }}
+              </div>
             </div>
             <div class="comment-details">
-              <img src="{% static 'svg/comment-icon.svg' %}" alt="Comment Icon" class="comment-icon" >
-             <p>{{ post.comments.count }}</p>
+              <img src="{% static 'svg/comment-icon.svg' %}" alt="Comment Icon" class="comment-icon">
+              <p>{{ post.comments.count }}</p>
             </div>
           </div>
         </div>
