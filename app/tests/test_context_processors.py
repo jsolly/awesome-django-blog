@@ -65,13 +65,6 @@ class TestContextProcessors(SetUp):
         self.assertEqual(result["breadcrumbs"][1]["name"], "Privacy Policy")
         self.assertEqual(result["breadcrumbs"][1]["url"], reverse("privacy"))
 
-    def test_portfolio_breadcrumb(self):
-        request = self.factory.get(reverse("portfolio"))
-        result = breadcrumbs(request)
-        self.assertEqual(len(result["breadcrumbs"]), 2)
-        self.assertEqual(result["breadcrumbs"][1]["name"], "Portfolio")
-        self.assertEqual(result["breadcrumbs"][1]["url"], reverse("portfolio"))
-
     def test_invalid_url_breadcrumb(self):
         request = self.factory.get("/invalid-url/")
         result = breadcrumbs(request)

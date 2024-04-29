@@ -10,7 +10,7 @@
     <button id="comment-submit-button" type="submit">Post</button>
   </form>
   {% else %}
-  <a href="{% url 'login' %}?next={{ request.path }}#comments" id="login-button" class="btn btn-primary">Login to Comment</a>
+  <a href="{% url 'login' %}?next={{ request.path }}#comments" id="login-button" class="btn btn-dark sml-margin-top-bottom">Login to Comment</a>
   {% endif %}
 </section>
 {% endblock content %}
