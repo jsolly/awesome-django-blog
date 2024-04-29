@@ -1,12 +1,31 @@
-{% extends "blog/parts/base.html" %}
+{% extends "blog/base.html" %}
 {% load static %}
 
 {% block head %}
 <!-- django_ckeditor_5 -->
 <link href="{% static 'django_ckeditor_5/ckeditor.css' %}" rel="stylesheet">
-<link href="{% static 'django_ckeditor_5/prism.css' %}" rel="stylesheet">
 <script src="{% static 'django_ckeditor_5/prism.js' %}" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var lightModePrismCSS = "{% static 'django_ckeditor_5/prism-light.css' %}";
+    var darkModePrismCSS = "{% static 'django_ckeditor_5/prism-dark.css' %}";
+
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      // User prefers dark mode
+      link.href = darkModePrismCSS;
+    } else {
+      // User prefers light mode
+      link.href = lightModePrismCSS;
+    }
+
+    document.head.insertBefore(link, document.head.firstChild);
+  });
+</script>
 <script src="{% static 'js/addHeaderIdsAndLinks.js' %}" defer></script>
+
 
 <!-- Post-detail Injected Meta tags -->
 <meta property="og:type" content="article">
@@ -21,7 +40,7 @@
 {% endblock head %}
 
 {% block content %}
-<article class="media content-section">
+<article class="media">
   <div class="media-body line-numbers ck-content">
     <div class="article-metadata">
       <h1 class="sml-margin-top-bottom">
@@ -34,10 +53,10 @@
         <img id="post-detail-meta-img" src="{{ post.metaimg.url }}" alt="{{ post.metadesc }}">
       </div>
       <p class="post-dates sml-margin-top-bottom">
-        {{ post.date_posted|date:"F d, Y" }} in {{ post.category.name }}
+        <time datetime="{{ post.date_posted|date:"Y-m-d" }}">{{ post.date_posted|date:"F d, Y" }}</time> in {{ post.category.name }}
         {% if post.date_updated|date:"Ymd" != post.date_posted|date:"Ymd" %}
         <br>
-        Last updated: {{ post.date_updated|date:"F d, Y" }}
+        Last updated: <time datetime="{{ post.date_updated|date:"Y-m-d" }}">{{ post.date_updated|date:"F d, Y" }}</time>
         {% endif %}
       </p>
     </div>
@@ -62,7 +81,31 @@
     </div>
 </article>
 
-<a href="{% url 'home' %}" id="post-back-to-home-button" class="btn btn-dark">
+<!-- Comments Section-->
+<section id="comments-section" class="content-section sml-margin-top-bottom">
+  <h2>Comments</h2>
+  <ul id="comments-list">
+    {% if post.comments.count > 0 %}
+    {% for comment in post.comments.all %}
+    {% include 'blog/comment/comment_item.html' %}
+    {% endfor %}
+    <li class="comment sml-margin-top-bottom">
+      <!-- Create Comments Section-->
+    {% include 'blog/comment/add_comment.html' %}
+    </li>
+  </ul>
+
+  {% else %}
+  <div id="no-comments-message">
+    <li class="comment">No comments yet.</li>
+    {% include 'blog/comment/add_comment.html' %}
+  </div>
+  {% endif %}
+</section>
+
+
+
+<a href="{% url 'home' %}" id="post-back-to-home-button" class="btn btn-primary">
   Back to Home
 </a>
 
@@ -101,29 +144,6 @@
   </ul>
 </div>
 
-<!-- About The Author Section -->
-{% include 'blog/parts/about_me_post_detail.html' %}
-
-<!-- Comments Section-->
-<section id="comments-section" class="content-section .sml-margin-top-bottom">
-  <h2>Comments</h2>
-  <ul id="comments-list">
-    {% if post.comments.count > 0 %}
-    {% for comment in post.comments.all %}
-    {% include 'blog/comment/comment_item.html' %}
-    {% endfor %}
-  </ul>
-
-  {% else %}
-  <div id="no-comments-message">
-    <li class="comment">No comments yet.</li>
-  </div>
-  {% endif %}
-</section>
-
-<!-- Create Comments Section-->
-{% include 'blog/comment/add_comment.html' %}
-
 <!-- Related Posts Section -->
 <section id="related-posts-section" class="content-section sml-margin-top-bottom">
   <h2>Related Posts</h2>
@@ -131,6 +151,9 @@
   {% include 'blog/parts/post_card.html' %}
   {% endfor %}
 </section>
+<!-- About The Author Section -->
+{% include 'blog/parts/about_me_card.html' %}
+
 
 
 {% endblock content %}

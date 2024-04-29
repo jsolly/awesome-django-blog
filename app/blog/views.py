@@ -208,64 +208,6 @@ class CategoryView(ListView):
         return "blog/categories.html"
 
 
-class PortfolioView(ListView):
-    model = Post
-    template_name = "blog/portfolio.html"  # <app>/<model>_<viewtype>.html
-    context_object_name = "posts"  # The default is object_list
-    paginate_by = 10
-
-    def get_queryset(self):
-        return Post.objects.active().filter(category__slug="portfolio")
-
-    def get_context_data(self, *args, **kwargs):
-        carousel_items = [
-            {
-                "avatar_url": "portfolio/AmyBrazil.webp",
-                "name": "Amy Brazil",
-                "position": "Direct Manager",
-                "company": "YellowfinBI",
-                "year": "2022",
-                "quote": "I had the pleasure to hire, onboard and manage John...",
-                "link": "https://www.linkedin.com/in/jsolly/",
-            },
-            {
-                "avatar_url": "portfolio/CraigUtley.webp",
-                "name": "Craig Utley",
-                "position": "Direct Manager",
-                "company": "YellowfinBI",
-                "year": "2022",
-                "quote": "There is a right way to come into an organization and John did it the right way...",
-                "link": "https://www.linkedin.com/in/jsolly/",
-            },
-            {
-                "avatar_url": "portfolio/MeredithBean.webp",
-                "name": "Meredith Bean",
-                "position": "Undergraduate Student",
-                "company": "GMU",
-                "year": "2016",
-                "quote": "John was an extraordinary TA to me as a student in an introductory GIS class...",
-                "link": "https://www.linkedin.com/in/jsolly/",
-            },
-            {
-                "avatar_url": "portfolio/KathrynThorpe.webp",
-                "name": "Kathryn Thorpe",
-                "position": "Coworker",
-                "company": "YellowfinBI",
-                "year": "2022",
-                "quote": "Not only is John the kind of guy you'd trust with all things IT based on his technical prowess...",
-                "link": "https://www.linkedin.com/in/jsolly/",
-            },
-        ]
-        context = super().get_context_data(*args, **kwargs)
-        context["url"] = self.request.path
-        context["carousel_items"] = carousel_items
-        context["title"] = "Solly's Portfolio | Blogthedata.com"
-        context[
-            "description"
-        ] = "John Solly's portfolio. A geospatial software engineer with a passion for creating beautiful and fast mapping applications."
-        return context
-
-
 class SearchView(ListView):
     model = Post
     template_name = "blog/search_posts.html"
@@ -387,6 +329,7 @@ class PostUpdateView(UserPassesTestMixin, UpdateView):
 class PostDeleteView(UserPassesTestMixin, DeleteView):
     model = Post
     success_url = reverse_lazy("home")
+    template_name = "blog/post/post_confirm_delete.html"
 
     def test_func(self):
         post = self.get_object()

@@ -13,7 +13,6 @@ from .views import (
     PostUpdateView,
     PostDeleteView,
     CategoryView,
-    PortfolioView,
     AllPostsView,
     SearchView,
     StatusView,
@@ -35,7 +34,6 @@ urlpatterns = [
     path("post/<slug:slug>/update", PostUpdateView.as_view(), name="post-update"),
     path("post/<slug:slug>/delete", PostDeleteView.as_view(), name="post-delete"),
     path("category/<slug:slug>/", CategoryView.as_view(), name="blog-category"),
-    path("portfolio/", PortfolioView.as_view(), name="portfolio"),
     path("search/", SearchView.as_view(), name="blog-search"),
     path(
         "post/<slug:slug>/comment/new",

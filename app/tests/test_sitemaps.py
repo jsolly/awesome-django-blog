@@ -8,7 +8,6 @@ from app.sitemaps import (
     CategorySitemap,
     WorksCitedSiteMap,
     privacyPolicySiteMap,
-    PortfolioSiteMap,
     StatusPageSiteMap,
 )
 
@@ -38,11 +37,6 @@ class TestSitemaps(SetUp):
         item = privacyPolicySiteMap.items(Sitemap)[0]
         self.assertTrue(reverse(item))
         self.assertTrue(privacyPolicySiteMap.location(Sitemap, item))
-
-    def test_portfolio_site_map(self):
-        item = PortfolioSiteMap.items(Sitemap)[0]
-        self.assertTrue(reverse(item))
-        self.assertTrue(PortfolioSiteMap.location(Sitemap, item))
 
     def test_status_page_site_map(self):
         item = StatusPageSiteMap.items(Sitemap)[0]

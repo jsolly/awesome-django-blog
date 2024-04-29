@@ -28,7 +28,6 @@
     "diffEditor.ignoreTrimWhitespace": false,
     "python.testing.unittestArgs": ["-v", "-s", "./app", "-p", "test*.py"],
     "python.testing.pytestEnabled": true,
-    "editor.fontSize": 18,
     "[xml]": {
       "editor.defaultFormatter": "redhat.vscode-xml"
     },
