@@ -1,4 +1,4 @@
-{% extends "blog/parts/base.html" %} {% load static %}
+{% extends "blog/base.html" %} {% load static %}
 
 {% block head %}
 <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}" />
@@ -6,7 +6,7 @@
 
 {% block content %}
 <section id="about-me-home">
-  {% include "blog/parts/about_me.html" %}
+  {% include "blog/parts/about_me_card.html" %}
 </section>
 
 <section id="Blog-Home-posts">

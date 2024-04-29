@@ -70,18 +70,6 @@ class privacyPolicySiteMap(Sitemap):
     def location(self, item):
         return reverse(item)
 
-
-class PortfolioSiteMap(Sitemap):
-    changefreq = "monthly"
-    priority = 0.8
-
-    def items(self):
-        return ["portfolio"]
-
-    def location(self, item):
-        return reverse(item)
-
-
 class StatusPageSiteMap(Sitemap):
     changefreq = "monthly"
     priority = 0.1

@@ -211,7 +211,7 @@ class TestViews(SetUp):
 
         response = self.client.get(post1_delete_url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/post_confirm_delete.html")
+        self.assertTemplateUsed(response, "blog/post/post_confirm_delete.html")
         response = self.client.post(post1_delete_url, follow=True)
         self.assertRedirects(response, expected_url=reverse("home"))
         self.assertFalse(Post.objects.filter(id=delete_me_post.id).exists())
@@ -378,10 +378,6 @@ class TestViews(SetUp):
     #     response = self.client.get(category_url, {"page": 2})
     #     self.assertTrue(response.context["page_obj"].has_previous())
 
-    def test_portfolio_view(self):
-        portfolio_url = reverse("portfolio")
-        response = self.client.get(portfolio_url)
-        self.assertEqual(response.status_code, 200)
 
     def test_search_view_blank(self):
         # Empty page if user didn't search for anything and manually typed in the search url (get)

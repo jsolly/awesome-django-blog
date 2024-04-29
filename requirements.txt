@@ -1,7 +1,7 @@
 ## Core Dependencies
 beautifulSoup4==4.12.2
 Django==4.2.7
-django-ckeditor-5==0.2.9
+django-ckeditor-5==0.2.12
 django-htmx==1.16.0
 django-resized==1.0.2
 django-robots==5.0
@@ -15,6 +15,7 @@ python-dotenv==1.0.0
 pytz==2023.3
 readtime==3.0.0
 requests==2.31.0
+nltk==3.8.1
 
 ## Production dependencies
 Brotli==1.0.9
@@ -40,7 +41,7 @@ django-ckeditor==6.4.2
 coverage==7.2.7
 django-coverage-plugin==3.1.0
 django-fastdev==1.7.3
-django-livereload-server==0.5
+django-livereload-server==0.5.1
 pre-commit==3.3.3
 pytest==7.4.0
 ruff==0.1.5

@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <link rel="stylesheet" href="{% static 'css/404.css' %}" />
+
+  <title>Page Not Found</title>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <span class="title">404 NOT FOUND</span>
+    </header>
+    <main>
+      <section class="illustration">
+        <img src="{% static 'img/Scarecrow.webp' %}" alt="scarecrow image" />
+      </section>
+      <section class="content">
+        <h1 class="heading">I have bad news for you...</h1>
+        <p class="message">
+          The page you are looking for might be removed or is temporarily
+          unavailable
+        </p>
+        <a href="{% url 'home' %}" class="btn-home">BACK TO HOMEPAGE</a>
+      </section>
+    </main>
+    <footer>
+      <p class="author">
+        created by
+        <a href="https://github.com/OnlyManu/">onlymanu</a>-devChallenge.io
+      </p>
+    </footer>
+  </div>
+</body>
+
+</html>

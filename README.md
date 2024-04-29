@@ -54,11 +54,12 @@ docker-compose run --rm app sh -c "python manage.py createsuperuser"
 docker-compose up
 ``` -->
 
-### Using the app
-By default, there are two users created. One is an admin and the other can only add comments to posts. 
+### Default Accounts
+The app comes preinstalled with two users. One is an admin and the other can only add comments to posts. 
 
-**Username/Password**: admin/admin<br>
-**Username/Password**: comment_only/comment_only
+**(Username/Password)**: 
+- admin/admin<br>
+- comment_only/comment_only
 
 ### Coverage
 
@@ -112,7 +113,6 @@ $ pre-commit install
 - Open Graph protocol compliant social media sharing for beautiful share cards (LinkedIn, Twitter, Facebook, Instagram, Reddit, etc)
 - Smart and powerful Global search so you can find any blog post with a keyword search.
 - Display site visitors in a web map
-- Portfolio page with testimonials, contact me, Web vitals, and more!
 - Light and Dark Theme that automatically switch based on user's current system theme.
 - Blog reading time so viewers can estimate how long it will take them to read a post.
 - Atom and RSS feed so users can subscribe to your latest blog posts.
@@ -122,6 +122,7 @@ $ pre-commit install
 - Each page is optimized for viewing (and printing) so break out those 8 1/2 by 11s and print out some content!
 - GPT-powered Chatbot that can answer questions about your blog and help you find content.
 - Related posts at the end of each post detail page so users can quickly navigate to a similar post on your blog.
+- Syntax highlighting with Prism.js for beautiful code blocks in a variety of languages. Also includes line numbers and copy to clipboard functionality. Automatically changes light/dark theme based on user's current system theme.
 
 ### Non-Functional Features
 
@@ -146,6 +147,7 @@ $ pre-commit install
 - Badges for test coverage, passing builds, formatter, and linting
 - Automated, rotating backups of blog posts using local and cloud storage
 - Status page for monitoring uptime and performance of your blog at https://blogthedata.com/status using Apache Echarts.
+- Custom 404 and 500 pages that look really cool. So even if your users are lost or your app is broke, they are still having a good time.
 
 ## Depreciated Features
 
@@ -159,7 +161,7 @@ $ pre-commit install
 - ~~Github Integration to show active issue backlog without leaving blog~~ (removed
   in https://github.com/jsolly/awesome-django-blog/pull/121)
   [commit:5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b](https://github.com/jsolly/awesome-django-blog/commit/5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b))
-- ~~Custom 404 page that looks really cool. So even if your users are lost, they are still having a good time.~~ Removed in (https://github.com/jsolly/awesome-django-blog/commit/19b3d40cc6e8b231010b0f62656eb27e0104ffd7)
+- ~~Portfolio page with testimonials, contact me, Web vitals, and more!~~ (removed in https://github.com/jsolly/awesome-django-blog/pull/404)
 
 ## Contributing
 
