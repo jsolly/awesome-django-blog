@@ -20,7 +20,7 @@ nltk==3.8.1
 ## Production dependencies
 Brotli==1.1.0
 django-csp==3.7
-django-sri==0.6.0
+django-sri==0.7.0
 gunicorn==21.2.0
 whitenoise==6.5.0
 
