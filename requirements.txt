@@ -18,7 +18,7 @@ requests==2.31.0
 nltk==3.8.1
 
 ## Production dependencies
-Brotli==1.0.9
+Brotli==1.1.0
 django-csp==3.7
 django-sri==0.6.0
 gunicorn==21.2.0
