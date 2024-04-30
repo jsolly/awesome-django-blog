@@ -6,7 +6,10 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 from .models import Post, Similarity
-from django.db import models
+import string
+import re
+import nltk
+from nltk.corpus import stopwords
 
 
 def load_pickle_file():
@@ -94,47 +97,73 @@ def answer_question(
     return response["choices"][0]["text"].strip()
 
 
-def cleanup_similarities(post: Post) -> None:
-    # Get all Similarity instances related to the post and order by score descending
-    all_similarities = Similarity.objects.filter(
-        models.Q(post1=post) | models.Q(post2=post)
-    ).order_by("-score")
+def preprocess_text(text: str) -> str:
+    """
+    Preprocess the input text by applying text preprocessing steps
+    """
+    # Convert the text to lowercase
+    text = text.lower()
+    # Remove any leading or trailing whitespace
+    text = text.strip()
+    # Remove punctuation marks
+    text = text.translate(str.maketrans("", "", string.punctuation))
+    # Remove numbers
+    text = re.sub(r'\d+', '', text)
+    # Remove extra whitespaces
+    text = re.sub(r'\s+', ' ', text)
+    # Remove stopwords
+    nltk.download('stopwords')
+    stop_words = set(stopwords.words('english'))
+    text = ' '.join([word for word in text.split() if word not in stop_words])
+    return text
 
-    # Keep the top 3 similarities
-    top_similarities = all_similarities[:3]
 
-    # Exclude the top similarities and delete the rest
-    all_similarities.exclude(
-        id__in=top_similarities.values_list("id", flat=True)
-    ).delete()
-
+def getPostChunks(post: Post, chunk_size: int = 1800) -> list:
+    """
+    Split the post content into chunks of specified size
+    """
+    content = preprocess_text(post.content)
+    chunks = [content[i:i + chunk_size] for i in range(0, len(content), chunk_size)]
+    return chunks
 
 def compute_similarity(post_id: int) -> None:
     post = Post.objects.get(id=post_id)
     other_posts = Post.objects.exclude(id=post_id).exclude(content="")
 
-    if not other_posts:
-        return  # No other posts to compare, exit the function.
+    if not other_posts.exists():
+        return
 
-    combined_texts = [f"{post.content} {post.title}"] + [
-        f"{op.content} {op.title}" for op in other_posts
+    # Create a list of (chunk, post_pk) tuples for all other posts
+    combined_texts_and_pks = [
+        (chunk, other_post.pk) for other_post in other_posts
+        for chunk in getPostChunks(other_post)
     ]
+
+    # Prepend the target post's content as the first element, associating it with its own PK
+    combined_texts_and_pks.insert(0, (f"{post.content} {post.title}", post.pk))
+
+    # Separate the combined texts and their corresponding post PKs
+    combined_texts, post_pks = zip(*combined_texts_and_pks)
+
     vectorizer = TfidfVectorizer()
     tfidf_matrix = vectorizer.fit_transform(combined_texts)
 
     if tfidf_matrix.shape[0] < 2:
-        return  # Not enough data to compute similarity, exit the function.
+        return
 
     cosine_sim = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:])
-    other_posts_pks = [op.pk for op in other_posts]
-    num_similar_posts = min(len(other_posts_pks), 3)
-    top_indices = np.argsort(-cosine_sim[0])[:num_similar_posts]
+    
+    # Calculate the number of similar posts to consider
+    num_similar_posts = min(len(set(post_pks)) - 1, 3)  # Exclude the target post itself
 
-    for idx in top_indices:
+    # Get the top indices, but make sure to map them back to unique post PKs
+    top_indices = np.argsort(-cosine_sim[0])[:num_similar_posts]
+    unique_top_pks = {post_pks[i + 1] for i in top_indices}  # +1 to skip the first post itself
+
+    for pk in unique_top_pks:
+        idx = combined_texts_and_pks.index(next(filter(lambda x: x[1] == pk, combined_texts_and_pks)))
         Similarity.objects.update_or_create(
             post1=post,
-            post2=Post.objects.get(pk=other_posts_pks[idx]),
-            defaults={"score": cosine_sim[0][idx]},
+            post2=Post.objects.get(pk=pk),
+            defaults={"score": cosine_sim[0][idx - 1]},  # Adjust index for cosine_sim offset
         )
-
-    cleanup_similarities(post)
