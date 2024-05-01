@@ -4,6 +4,8 @@ import os
 
 
 os.environ["DJANGO_SETTINGS_MODULE"] = "app.settings.ci"
+# Set the site id to 1 because we need to create a site object in the database
+os.environ["SITE_ID"] = "1"
 setup()
 
 load_dotenv()
@@ -11,6 +13,7 @@ load_dotenv()
 from django.test import TestCase
 from django.test.utils import setup_test_environment
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 
 # Local imports
 from blog.models import Post, Category
@@ -19,6 +22,7 @@ from .utils import create_unique_post, create_comment
 
 class SetUp(TestCase):
     setup_test_environment()
+    Site.objects.get_or_create(domain='testserver', defaults={'name': 'Test Server'})
 
     @classmethod
     def setUpTestData(cls):
