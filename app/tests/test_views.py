@@ -496,7 +496,7 @@ class TestViews(SetUp):
         self.client.login(
             username=self.admin_user.username, password=self.admin_user_password
         )
-        response = self.client.get(reverse("logout"))
+        response = self.client.post(reverse("logout"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "users/logout.html")
 

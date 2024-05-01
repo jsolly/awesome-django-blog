@@ -133,7 +133,7 @@ $ pre-commit install
 - GitActions CI integration with coverage, linting, and testing. Push with confidence!
 - Compatible with Sqllite or postgres databases for fast protyping and production
 - Optimized for Performance, SEO, and A11Y
-- Latest Django 4.x
+- Latest Django 5.x
 - 95% or above unit code coverage for a maintainable codebase
 - 100% linted with [ruff](https://pypi.org/project/ruff/) and PEP8 compliant for beautiful Python code.
 - Static scans with [CodeQL](https://codeql.github.com/) and pip
