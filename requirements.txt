@@ -20,8 +20,8 @@ nltk==3.8.1
 ## Production dependencies
 Brotli==1.1.0
 django-csp==3.7
-django-sri==0.6.0
 gunicorn==22.0.0
+django-sri==0.7.0
 whitenoise==6.5.0
 
 ## GPT Bot dependencies (Distances From Embeddings)
