@@ -4,7 +4,7 @@ Django==5.0.4
 django-ckeditor-5==0.2.12
 django-htmx==1.16.0
 django-resized==1.0.2
-django-robots==5.0
+django-robots==6.1
 feedparser==6.0.10
 filetype==1.2.0
 Pillow==10.3.0
