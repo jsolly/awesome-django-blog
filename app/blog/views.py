@@ -139,7 +139,6 @@ class AllPostsView(ListView):
     model = Post
     template_name = "blog/all_posts.html"
     context_object_name = "posts"  # The default is object_list
-    paginate_by = 10
 
     def get_queryset(self):
         return Post.objects.active()
