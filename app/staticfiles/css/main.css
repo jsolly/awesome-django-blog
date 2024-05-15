@@ -189,6 +189,7 @@ footer {
 
 .nav-item {
   display: flex;
+  margin: 10px;
 }
 
 .nav-link {
