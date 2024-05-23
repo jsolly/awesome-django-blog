@@ -1,4 +1,5 @@
 from .base_settings import *
+import sys
 
 USE_SRI = False
 
@@ -11,6 +12,7 @@ SECURE_SSL_REDIRECT = False
 SECURE_BROWSER_XSS_FILTER = False
 SECURE_CONTENT_TYPE_NOSNIFF = False
 
-# For development, we want to see changes on save without having to restart the server
-INSTALLED_APPS += ["livereload"]
-MIDDLEWARE += ["livereload.middleware.LiveReloadScript"]
+# Check if the `livereload` command is in the command-line arguments
+if 'livereload' in sys.argv:
+    INSTALLED_APPS += ["livereload"]
+    MIDDLEWARE += ["livereload.middleware.LiveReloadScript"]
