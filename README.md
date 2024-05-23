@@ -100,10 +100,11 @@ $ pre-commit install
 ```
 
 ### Live Reload
-If you wamt to automatically reload the server whenever you make changes to source code, you can add `livereload` to the runserver command like this:
+If you wamt to automatically reload the server whenever you make changes to source code, you can add `livereload` to the runserver command like this. You can learn more about this tool [on their GitHub page](https://github.com/tjwalch/django-livereload-server).
 ```sh
 python3 app/manage.py runserver livereload
 ```
+
 
 ---
 
