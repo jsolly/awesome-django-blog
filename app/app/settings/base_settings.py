@@ -223,7 +223,7 @@ LOGGERS = (
         },
         "django.template": {
             "handlers": ["error_handler"],
-            "level": "DEBUG",
+            "level": "INFO", # Change to DEBUG to see missing template vars errors
             "propagate": True,
         },
         "django.server": {
