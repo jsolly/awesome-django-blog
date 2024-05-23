@@ -99,6 +99,12 @@ $ cd awesome-django-blog/config
 $ pre-commit install
 ```
 
+### Live Reload
+If you wamt to automatically reload the server whenever you make changes to source code, you can add `livereload` to the runserver command like this:
+```sh
+python3 app/manage.py runserver livereload
+```
+
 ---
 
 ## Features
