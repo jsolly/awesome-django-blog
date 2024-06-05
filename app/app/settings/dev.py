@@ -1,5 +1,5 @@
 from .base_settings import *
-import sys
+import os
 
 USE_SRI = False
 
@@ -13,6 +13,6 @@ SECURE_BROWSER_XSS_FILTER = False
 SECURE_CONTENT_TYPE_NOSNIFF = False
 
 # Check if the `livereload` command is in the command-line arguments
-if 'livereload' in sys.argv:
+if os.getenv('LIVERELOAD') == 'True':
     INSTALLED_APPS += ["livereload"]
     MIDDLEWARE += ["livereload.middleware.LiveReloadScript"]

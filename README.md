@@ -100,9 +100,12 @@ $ pre-commit install
 ```
 
 ### Live Reload
-If you wamt to automatically reload the server whenever you make changes to source code, you can add `livereload` to the runserver command like this. You can learn more about this tool [on their GitHub page](https://github.com/tjwalch/django-livereload-server).
+If you want to automatically reload the server whenever you make changes to source code, you can set `LIVERELOAD` in the .env file to True. You can learn more about this tool [on their GitHub page](https://github.com/tjwalch/django-livereload-server).
+
+To use livereload, you have to run these commands in TWO SEPARATE terminal windows. Or you can use the included vscode launch.json to run both commands at once.
 ```sh
-python3 app/manage.py runserver livereload
+python3 app/manage.py runserver
+python3 app/manage.py livereload
 ```
 
 
