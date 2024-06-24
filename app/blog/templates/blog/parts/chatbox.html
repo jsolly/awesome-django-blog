@@ -8,26 +8,37 @@
                 </div>
                 <div class="chatbox__content--header">
                     <p class="chatbox__heading--header">Ask a Question</p>
-                    <p class="chatbox__description--header">Hi, I'm Ezra! I can answer questions about any blog post on
-                        this site!</p>
+                    <p class="chatbox__time--header">
+                        {% now "jS F Y" %}
+                    </p>
                 </div>
             </div>
-            <div class="chatbox__messages"></div>
+            <div class="chatbox__messages">
+                <div class="messages__item messages__item--bot">
+                    I can answer questions about any blog post on this site!
+                </div>
+                <div class="messages__item messages__item--bot">
+                    Hi, I'm Ezra!
+                </div>
+            </div>
             <div class="chatbox__footer">
                 <form id="chatbox-submit">
                     {% csrf_token %}
-                    <textarea name="question-text-area" id="question-text-area" placeholder="Write a message..."
+                    <textarea name="question-text-area" id="question-text-area" placeholder="Send a message..."
                         hx-trigger="keyup[key === 'Enter' && !shiftKey]" hx-post="/answer-with-gpt/"
                         hx-include="#question-text-area" hx-target=".chatbox__messages" hx-swap="afterbegin"></textarea>
                     <button class="chatbox__send--footer send__button" hx-post="/answer-with-gpt/"
                         hx-include="#question-text-area" hx-target=".chatbox__messages" hx-swap="afterbegin"
-                        aria-label="Send message">Send</button>
+                        aria-label="Send message">
+                        <img src="{% static 'svg/send-icon.svg' %}" alt="Send icon">
+                    </button>
                 </form>
             </div>
         </div>
         <div class="chatbox__button">
-            <button aria-label="Toggle chatbox"><img id="chatbox-icon" src="{% static 'svg/chatbox-icon.svg' %}"
-                    alt="Chatbox icon" /></button>
+            <button aria-label="Toggle chatbox">
+                <img id="chatbox-icon" src="{% static 'svg/chatbox-icon.svg' %}" alt="Chatbox icon" />
+            </button>
         </div>
     </div>
 </div>
