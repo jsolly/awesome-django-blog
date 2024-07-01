@@ -108,6 +108,8 @@ python3 app/manage.py runserver
 python3 app/manage.py livereload
 ```
 
+### Production Deployment
+I recommend [this post](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu) which I followed to deploy this app on blogthedata.com
 
 ---
 
