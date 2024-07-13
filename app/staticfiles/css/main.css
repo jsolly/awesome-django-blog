@@ -929,6 +929,7 @@ button a:hover {
   width: 40px;
   height: 40px;
   cursor: pointer;
+  /* position: fixed; */
 }
 
 #chatbot-container {
@@ -940,7 +941,7 @@ button a:hover {
 
 .chatbox {
   position: fixed;
-  bottom: 70px;
+  bottom: 20px;
   right: 20px;
   z-index: 123456;
 }
