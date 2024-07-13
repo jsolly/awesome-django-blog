@@ -8,18 +8,18 @@
                 </div>
                 <div class="chatbox__content--header">
                     <p class="chatbox__heading--header">Ezra</p>
-                    <p class="chatbox__time--header">
-                        {% now "jS F Y" %}
-                    </p>
+                    <p class="chatbox__time--header"> {% now "jS F Y" %} </p>
+                </div>
+                <div class="chatbox__close--header">
+                    <button aria-label="Close chatbox">
+                        <img src="{% static 'svg/close-icon.svg' %}" alt="Close icon">
+                    </button>
                 </div>
             </div>
             <div class="chatbox__messages">
-                <div class="messages__item messages__item--bot">
-                    I can answer questions about any blog post on this site!
-                </div>
-                <div class="messages__item messages__item--bot">
-                    Hi, I'm Ezra!
-                </div>
+                <div class="messages__item messages__item--bot"> I can answer questions about any blog post on this
+                    site! </div>
+                <div class="messages__item messages__item--bot"> Hi, I'm Ezra! </div>
             </div>
             <div class="chatbox__footer">
                 <form id="chatbox-submit">
@@ -33,6 +33,9 @@
                         <img src="{% static 'svg/send-icon.svg' %}" alt="Send icon">
                     </button>
                 </form>
+            </div>
+            <div class="chatbox__footer--small">
+                <p>Powered by <a href="https://blogthedata.com">BlogTheData</a></p>
             </div>
         </div>
         <div class="chatbox__button">
