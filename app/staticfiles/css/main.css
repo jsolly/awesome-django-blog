@@ -1222,7 +1222,7 @@ video {
   color: var(--a11-red);
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  left: 20px;
   z-index: 999;
   font-size: 2rem;
 }
