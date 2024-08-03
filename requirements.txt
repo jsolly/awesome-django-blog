@@ -22,7 +22,7 @@ Brotli==1.1.0
 django-csp==3.7
 gunicorn==22.0.0
 django-sri==0.7.0
-whitenoise==6.5.0
+whitenoise==6.7.0
 
 ## GPT Bot dependencies (Distances From Embeddings)
 matplotlib==3.9.1
