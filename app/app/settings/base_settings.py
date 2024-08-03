@@ -93,7 +93,6 @@ if str(os.environ.get("DEBUG")).lower() == "true":
     CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
 
 INSTALLED_APPS = [
-    "core",
     "blog.apps.BlogConfig",
     "users.apps.UsersConfig",
     "django.contrib.admin",

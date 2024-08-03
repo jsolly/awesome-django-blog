@@ -1,0 +1,44 @@
+server {
+    server_name blogthedata.com www.blogthedata.com;
+
+    location /static/ {
+        alias /home/john/blogthedata/django_project/static/;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
+
+    location /media/ {
+        alias /home/john/blogthedata/django_project/media/;
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/blogthedata.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/blogthedata.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+    if ($host = www.blogthedata.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = blogthedata.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    server_name blogthedata.com www.blogthedata.com;
+    return 404; # managed by Certbot
+
+
+
+
+}
