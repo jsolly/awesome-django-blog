@@ -30,11 +30,12 @@ Awesome-django-blog is a fully functional blogging platform built using the Djan
 # first install Python 3.10.x (have not tested newer versions, but they could work)
 git clone https://github.com/jsolly/awesome-django-blog.git
 cd awesome-django-blog
-python3 -m venv .venv
-source .venv/bin/activate
+python3 -m venv .venv # Create virtual environment
+source .venv/bin/activate # Activate virtual environment
 pip install -r requirements.txt
-python3 app/manage.py migrate
-python3 manage.py runserver
+python app/manage.py setup_env # Creates .env file from .env.example
+python3 app/manage.py migrate # Create empty schema
+python3 app/manage.py runserver
 ```
 
 ### Seed Posts (Optional)
@@ -97,6 +98,18 @@ If there are any Ruff failures (badly linted code), the build will fail, so plea
 $ cd awesome-django-blog/config
 $ pre-commit install
 ```
+
+### Live Reload
+If you want to automatically reload the server whenever you make changes to source code, you can set `LIVERELOAD` in the .env file to True. You can learn more about this tool [on their GitHub page](https://github.com/tjwalch/django-livereload-server).
+
+To use livereload, you have to run these commands in TWO SEPARATE terminal windows. Or you can use the included vscode launch.json to run both commands at once.
+```sh
+python3 app/manage.py runserver
+python3 app/manage.py livereload
+```
+
+### Production Deployment
+I recommend [this post](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu) which I followed to deploy this app on blogthedata.com
 
 ---
 
