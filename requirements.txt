@@ -45,4 +45,4 @@ django-livereload-server==0.5.1
 pre-commit==3.8.0
 pytest==8.2.0
 ruff==0.1.5
-tiktoken==0.4.0 # Creating embeddings
+tiktoken==0.7.0 # Creating embeddings
