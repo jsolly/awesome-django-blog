@@ -34,7 +34,7 @@ scikit-learn==1.5.1
 scipy==1.11.1
 
 ## Legacy dependencies for migrations
-django-ckeditor==6.4.2
+django-ckeditor==6.7.1
 
 
 ## Development Dependencies
