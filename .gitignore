@@ -29,7 +29,7 @@ linode*.img
 migration_backup
 
 # Other
-app/logs/*.log
+app/logs/*.log*
 .vscode/
 
 db.sqlite3
