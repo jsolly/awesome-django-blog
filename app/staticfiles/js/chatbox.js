@@ -14,15 +14,27 @@ document.addEventListener("DOMContentLoaded", () => {
       this.openButton.addEventListener("click", () => this.toggleState());
       this.closeButton.addEventListener("click", () => this.toggleState());
       this.sendButton.addEventListener("click", () => this.onSendButton());
-      const node = this.chatBox.querySelector("textarea");
-      node.addEventListener("input", () => {
-        node.style.height = "auto";
-        node.style.height = `${node.scrollHeight}px`;
+      const textArea = this.chatBox.querySelector("textarea");
+
+      textArea.addEventListener("input", () => {
+        textArea.style.height = "auto";
+        textArea.style.height = `${textArea.scrollHeight}px`;
       });
-      node.addEventListener("keyup", ({ key, shiftKey }) => {
+
+      textArea.addEventListener("keyup", ({ key, shiftKey }) => {
         if (key === "Enter" && !shiftKey) {
           this.onSendButton();
         }
+      });
+
+      const observer = new MutationObserver(() => {
+        textArea.style.height = "auto";
+      });
+
+      observer.observe(textArea, {
+        childList: true,
+        subtree: true,
+        characterData: true,
       });
     }
 
@@ -41,6 +53,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
       this.updateChatText(text);
+      textField.value = "";
+      textField.style.height = "auto";
+      textField.dispatchEvent(new Event("input"));
     }
 
     updateChatText(text) {
@@ -49,7 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
       message.classList.add("messages__item", "messages__item--user");
       message.textContent = text;
       chatmessages.prepend(message);
-      this.chatBox.querySelector("#question-text-area").value = "";
     }
   }
 
