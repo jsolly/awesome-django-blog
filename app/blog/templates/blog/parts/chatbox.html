@@ -24,14 +24,17 @@
             <div class="chatbox__footer">
                 <form id="chatbox-submit">
                     {% csrf_token %}
-                    <textarea name="question-text-area" id="question-text-area" placeholder="Send a message..."
-                        hx-trigger="keyup[key === 'Enter' && !shiftKey]" hx-post="/answer-with-gpt/"
-                        hx-include="#question-text-area" hx-target=".chatbox__messages" hx-swap="afterbegin"></textarea>
-                    <button class="chatbox__send--footer send__button" hx-post="/answer-with-gpt/"
-                        hx-include="#question-text-area" hx-target=".chatbox__messages" hx-swap="afterbegin"
-                        aria-label="Send message">
-                        <img src="{% static 'svg/send-icon.svg' %}" alt="Send icon">
-                    </button>
+                    <div class="chatbox__input-container">
+                        <textarea name="question-text-area" id="question-text-area" placeholder="Send a message..."
+                            hx-trigger="keyup[key === 'Enter' && !shiftKey]" hx-post="/answer-with-gpt/"
+                            hx-include="#question-text-area" hx-target=".chatbox__messages"
+                            hx-swap="afterbegin"></textarea>
+                        <button class="chatbox__send--footer send__button" hx-post="/answer-with-gpt/"
+                            hx-include="#question-text-area" hx-target=".chatbox__messages" hx-swap="afterbegin"
+                            aria-label="Send message">
+                            <img src="{% static 'svg/send-icon.svg' %}" alt="Send icon">
+                        </button>
+                    </div>
                 </form>
             </div>
             <div class="chatbox__footer--small">
