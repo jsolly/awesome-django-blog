@@ -983,7 +983,7 @@ textarea {
   padding: 10px;
   border: 1px solid #ddd;
   font-family: "Arial", sans-serif;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 textarea::placeholder {
