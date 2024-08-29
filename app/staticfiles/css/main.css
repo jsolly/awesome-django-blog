@@ -954,8 +954,9 @@ button a:hover {
 }
 
 .chatbox__time--header {
-  font-size: 0.8rem;
+  font-size: 0.6em;
   color: white;
+  margin-top: 1px;
 }
 
 /* CONTENT IS OPEN */
@@ -1037,6 +1038,7 @@ textarea::placeholder {
 .chatbox__heading--header {
   font-size: 1.2rem;
   color: white;
+  margin-bottom: 0;
 }
 
 .chatbox__description--header {
