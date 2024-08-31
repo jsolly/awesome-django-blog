@@ -922,6 +922,20 @@ button a:hover {
   color: inherit;
 }
 /* ============= Chatbot ============= */
+
+#chatbox-container button svg {
+  transition: fill 0.3s ease;
+}
+
+#chatbox-container button:hover svg {
+  fill: white !important;
+}
+
+#chatbox-container button:hover,
+#chatbox-container button {
+  background-color: transparent !important;
+}
+
 #chatbox-icon {
   width: 40px;
   height: 40px;
@@ -947,7 +961,7 @@ button a:hover {
   flex-direction: column;
   background: #f9f9f9;
   width: 350px;
-  height: 550px; /* Increased chatbox height */
+  height: 550px;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -972,7 +986,7 @@ button a:hover {
 }
 
 .send__button:hover {
-  color: #0d6efd;
+  size: 1.1rem;
 }
 
 /* MESSAGES */
