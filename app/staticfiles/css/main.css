@@ -1146,6 +1146,13 @@ textarea::placeholder {
   margin-left: auto;
 }
 
+.chatbox__close--header button {
+  border: none;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+}
+
 .chatbox__footer--small {
   font-size: 0.7rem;
   text-align: center;
