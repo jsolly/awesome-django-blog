@@ -927,7 +927,7 @@ button a:hover {
   transition: fill 0.3s ease;
 }
 
-#chatbox-container button:hover svg {
+#chatbox-container button:hover svg path {
   fill: white !important;
 }
 
