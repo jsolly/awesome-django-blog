@@ -1097,7 +1097,7 @@ textarea::placeholder {
   right: 10px;
   font-size: 0.75rem;
   color: #888;
-  opacity: 0;
+  opacity: 0.3;
   transition: opacity 0.3s;
 }
 
