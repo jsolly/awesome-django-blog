@@ -1,5 +1,6 @@
 from openai import Embedding, Completion
-from openai.embeddings_utils import distances_from_embeddings
+from typing import List
+from scipy import spatial
 import pickle
 from pathlib import Path
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -23,6 +24,24 @@ def load_pickle_file():
 
 
 global_df = load_pickle_file()
+
+
+def distances_from_embeddings(
+    query_embedding: List[float],
+    embeddings: List[List[float]],
+    distance_metric="cosine",
+) -> List[List]:
+    distance_metrics = {
+        "cosine": spatial.distance.cosine,
+        "L1": spatial.distance.cityblock,
+        "L2": spatial.distance.euclidean,
+        "Linf": spatial.distance.chebyshev,
+    }
+    distances = [
+        distance_metrics[distance_metric](query_embedding, embedding)
+        for embedding in embeddings
+    ]
+    return distances
 
 
 def create_context(question, df, max_len=1800, size="ada"):
@@ -108,13 +127,13 @@ def preprocess_text(text: str) -> str:
     # Remove punctuation marks
     text = text.translate(str.maketrans("", "", string.punctuation))
     # Remove numbers
-    text = re.sub(r'\d+', '', text)
+    text = re.sub(r"\d+", "", text)
     # Remove extra whitespaces
-    text = re.sub(r'\s+', ' ', text)
+    text = re.sub(r"\s+", " ", text)
     # Remove stopwords
-    nltk.download('stopwords')
-    stop_words = set(stopwords.words('english'))
-    text = ' '.join([word for word in text.split() if word not in stop_words])
+    nltk.download("stopwords")
+    stop_words = set(stopwords.words("english"))
+    text = " ".join([word for word in text.split() if word not in stop_words])
     return text
 
 
@@ -123,8 +142,9 @@ def getPostChunks(post: Post, chunk_size: int = 1800) -> list:
     Split the post content into chunks of specified size
     """
     content = preprocess_text(post.content)
-    chunks = [content[i:i + chunk_size] for i in range(0, len(content), chunk_size)]
+    chunks = [content[i : i + chunk_size] for i in range(0, len(content), chunk_size)]
     return chunks
+
 
 def compute_similarity(post_id: int) -> None:
     post = Post.objects.get(id=post_id)
@@ -135,7 +155,8 @@ def compute_similarity(post_id: int) -> None:
 
     # Create a list of (chunk, post_pk) tuples for all other posts
     combined_texts_and_pks = [
-        (chunk, other_post.pk) for other_post in other_posts
+        (chunk, other_post.pk)
+        for other_post in other_posts
         for chunk in getPostChunks(other_post)
     ]
 
@@ -152,18 +173,24 @@ def compute_similarity(post_id: int) -> None:
         return
 
     cosine_sim = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:])
-    
+
     # Calculate the number of similar posts to consider
     num_similar_posts = min(len(set(post_pks)) - 1, 3)  # Exclude the target post itself
 
     # Get the top indices, but make sure to map them back to unique post PKs
     top_indices = np.argsort(-cosine_sim[0])[:num_similar_posts]
-    unique_top_pks = {post_pks[i + 1] for i in top_indices}  # +1 to skip the first post itself
+    unique_top_pks = {
+        post_pks[i + 1] for i in top_indices
+    }  # +1 to skip the first post itself
 
     for pk in unique_top_pks:
-        idx = combined_texts_and_pks.index(next(filter(lambda x: x[1] == pk, combined_texts_and_pks)))
+        idx = combined_texts_and_pks.index(
+            next(filter(lambda x: x[1] == pk, combined_texts_and_pks))
+        )
         Similarity.objects.update_or_create(
             post1=post,
             post2=Post.objects.get(pk=pk),
-            defaults={"score": cosine_sim[0][idx - 1]},  # Adjust index for cosine_sim offset
+            defaults={
+                "score": cosine_sim[0][idx - 1]
+            },  # Adjust index for cosine_sim offset
         )
