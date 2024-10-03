@@ -1,1 +1,1 @@
-web: gunicorn app.app.wsgi:application --log-file -
+web: DJANGO_SETTINGS_MODULE=app.settings.prod gunicorn app.app.wsgi:application --log-file -
