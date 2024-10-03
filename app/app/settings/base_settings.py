@@ -7,7 +7,8 @@ import logging
 
 logger = logging.getLogger("django")
 
-load_dotenv()
+if "DYNO" not in os.environ:
+    load_dotenv()
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent  # Three levels up
@@ -222,7 +223,7 @@ LOGGERS = (
         },
         "django.template": {
             "handlers": ["error_handler"],
-            "level": "INFO", # Change to DEBUG to see missing template vars errors
+            "level": "INFO",  # Change to DEBUG to see missing template vars errors
             "propagate": True,
         },
         "django.server": {
