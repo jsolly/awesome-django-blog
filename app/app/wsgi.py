@@ -1,7 +1,4 @@
 import os
-from dotenv import load_dotenv
-
-load_dotenv("/home/jsolly/awesome-django-blog/.env")
 
 from django.core.wsgi import get_wsgi_application
 
