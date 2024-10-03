@@ -189,7 +189,7 @@ ssh -N -L 10000:127.0.0.1:80 john@198.74.48.211
 ### Resolve image upload issue (403 from rejected csrf token)
 
 I added the following to
-venv/lib/python3.8/site-packages/django_ckeditor_5/views.py
+.venv/lib/python3.10/site-packages/django_ckeditor_5/views.py
 
 from django.views.decorators.csrf import csrf_exempt
 
