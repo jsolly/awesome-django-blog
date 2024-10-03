@@ -1,7 +1,7 @@
 ## Core Dependencies
 beautifulSoup4==4.12.2
 Django==5.0.7
-django-ckeditor-5==0.2.12
+django-ckeditor-5==0.2.13
 django-htmx==1.16.0
 django-resized==1.0.2
 django-robots==6.1
