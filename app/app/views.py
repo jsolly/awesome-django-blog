@@ -19,7 +19,7 @@ def privacy_view(request):
         request,
         context={
             "title": "Privacy Policy | Blogthedata.com",
-            "description": "This site collects IP addresses and geocodes them for use on a map. No personal information is collected. See the privacy policy for more information.",
+            "description": "I don't collect any information about you. I'm just a guy who likes to blog. You can read my privacy policy here.",
         },
         template_name="blog/privacy.html",
     )
