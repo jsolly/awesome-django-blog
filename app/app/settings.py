@@ -1,17 +1,46 @@
 from pathlib import Path
 import os
 import sys
-from dotenv import load_dotenv
 from psycopg import IsolationLevel
 import logging
 
 logger = logging.getLogger("django")
 
 if "DYNO" not in os.environ:
+    from dotenv import load_dotenv
+
     load_dotenv()
 
+X_FRAME_OPTIONS = "SAMEORIGIN"
+USE_SRI = False
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent  # Three levels up
+# HTTPS SETTINGS
+if str(os.environ.get("DEBUG")).lower() == "false":
+    SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_HTTPONLY = True
+    CSRF_COOKIE_HTTPONLY = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+
+    # HSTS SETTINGS (Configured in CloudFlare)
+    # SECURE_HSTS_SECONDS = 60
+    # SECURE_HSTS_PRELOAD = True
+    # SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    EMAIL_HOST = "smtp.sendgrid.net"
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "")
+    EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
+    DEFAULT_FROM_EMAIL = os.environ.get("FROM_EMAIL", "")
+    DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent  # Three levels up
 SECRET_KEY = os.environ["SECRET_KEY"]
 ALLOWED_HOSTS = []
 ALLOWED_HOSTS.extend(
