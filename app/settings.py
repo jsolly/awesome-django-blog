@@ -43,13 +43,14 @@ if str(os.environ.get("DEBUG")).lower() == "false":
 
 BASE_DIR = Path(__file__).resolve().parent.parent  # Three levels up
 SECRET_KEY = os.environ["SECRET_KEY"]
-ALLOWED_HOSTS = []
-ALLOWED_HOSTS.extend(
-    filter(
-        None,
-        os.environ.get("ALLOWED_HOSTS", "").split(" "),
-    )
-)
+ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = []
+# ALLOWED_HOSTS.extend(
+#     filter(
+#         None,
+#         os.environ.get("ALLOWED_HOSTS", "").split(" "),
+#     )
+# )
 
 SITE_ID = int(os.environ["SITE_ID"])
 
