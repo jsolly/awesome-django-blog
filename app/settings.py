@@ -159,6 +159,12 @@ MIDDLEWARE = [
     "django_htmx.middleware.HtmxMiddleware",
 ]
 
+# LiveReload configuration
+if os.getenv("LIVERELOAD") == "True":
+    INSTALLED_APPS += ["livereload"]
+    MIDDLEWARE += ["livereload.middleware.LiveReloadScript"]
+
+
 ROOT_URLCONF = "app.urls"
 
 TEMPLATES = [

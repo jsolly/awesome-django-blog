@@ -1,0 +1,138 @@
+ERROR 2024-10-03 11:28:20,103 django.request Thread-6 (process_request_thread) 6224785408 log log.py 241 django.request log_response 51530 Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: django_site
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/contrib/sites/middleware.py", line 12, in process_request
+    request.site = get_current_site(request)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/contrib/sites/shortcuts.py", line 16, in get_current_site
+    return Site.objects.get_current(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/contrib/sites/models.py", line 59, in get_current
+    return self._get_site_by_id(site_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/contrib/sites/models.py", line 30, in _get_site_by_id
+    site = self.get(pk=site_id)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: django_site
+ERROR 2024-10-03 11:28:20,109 django.server Thread-6 (process_request_thread) 6224785408 basehttp basehttp.py 212 django.server log_message 51530 "GET / HTTP/1.1" 500 19811
+ERROR 2024-10-03 11:28:20,282 django.request Thread-6 (process_request_thread) 6224785408 log log.py 241 django.request log_response 51530 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: django_site
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/contrib/sites/middleware.py", line 12, in process_request
+    request.site = get_current_site(request)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/contrib/sites/shortcuts.py", line 16, in get_current_site
+    return Site.objects.get_current(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/contrib/sites/models.py", line 59, in get_current
+    return self._get_site_by_id(site_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/contrib/sites/models.py", line 30, in _get_site_by_id
+    site = self.get(pk=site_id)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnsolly/code/awesome-django-blog/.venv/lib/python3.12/site-packages/django/db/backends/sqlite3/base.py", line 329, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: django_site
+ERROR 2024-10-03 11:28:20,285 django.server Thread-6 (process_request_thread) 6224785408 basehttp basehttp.py 212 django.server log_message 51530 "GET /favicon.ico HTTP/1.1" 500 19786
