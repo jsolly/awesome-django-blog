@@ -85,44 +85,51 @@ else:
 
 
 # Content Security Policy
-CSP_DEFAULT_SRC = ("'none'",)
-CSP_STYLE_SRC = (
-    "'self'",
-    "'unsafe-inline'",
-)
-CSP_SCRIPT_SRC_ELEM = (
-    "'self'",
-    "'unsafe-inline'",
-)
-CSP_SCRIPT_SRC = (
-    "'self'",
-    "'unsafe-eval'",
-    "'unsafe-inline'",
-)
-CSP_MEDIA_SRC = "'self'"
-CSP_IMG_SRC = (
-    "'self'",
-    "data:",
-    "*.openstreetmap.org",
-)
-CSP_FONT_SRC = "'self'"
-CSP_CONNECT_SRC = ("'self'",)
-CSP_FRAME_SRC = ("*",)
-CSP_FRAME_ANCESTORS = ("'self'",)
-CSP_BASE_URI = ("'none'",)
-CSP_FORM_ACTION = "'self'"
-CSP_OBJECT_SRC = ("'self'",)
-CSP_WORKER_SRC = ("'self'", "blob:")
-CSP_EXCLUDE_URL_PREFIXES = "/admin"
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", "https://blogthedata.s3.amazonaws.com")
+CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'", "'unsafe-eval'", "https://blogthedata.s3.amazonaws.com", "http://127.0.0.1:35729")
+CSP_IMG_SRC = ("'self'", "data:", "https:", "http:")
+CSP_FONT_SRC = ("'self'", "https://blogthedata.s3.amazonaws.com")
+CSP_CONNECT_SRC = ("'self'", "ws://127.0.0.1:35729")
+
+
+# CSP_STYLE_SRC = (
+#     "'self'",
+#     "'unsafe-inline'",
+# )
+# CSP_SCRIPT_SRC_ELEM = (
+#     "'self'",
+#     "'unsafe-inline'",
+# )
+# CSP_SCRIPT_SRC = (
+#     "'self'",
+#     "'unsafe-eval'",
+#     "'unsafe-inline'",
+# )
+# CSP_MEDIA_SRC = "'self'"
+# CSP_IMG_SRC = (
+#     "'self'",
+#     "data:",
+#     "*.openstreetmap.org",
+# )
+# CSP_FONT_SRC = "'self'"
+# CSP_CONNECT_SRC = ("'self'",)
+# CSP_FRAME_SRC = ("*",)
+# CSP_FRAME_ANCESTORS = ("'self'",)
+# CSP_BASE_URI = ("'none'",)
+# CSP_FORM_ACTION = "'self'"
+# CSP_OBJECT_SRC = ("'self'",)
+# CSP_WORKER_SRC = ("'self'", "blob:")
+# CSP_EXCLUDE_URL_PREFIXES = "/admin"
 # CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
 
 DEBUG = False
 
 if str(os.environ.get("DEBUG")).lower() == "true":
     DEBUG = True
-    CSP_SCRIPT_SRC_ELEM += ("http://127.0.0.1:35729/livereload.js",)
-    CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js",)
-    CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
+    # CSP_SCRIPT_SRC_ELEM += ("http://127.0.0.1:35729/livereload.js",)
+    # CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js",)
+    # CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
 
 INSTALLED_APPS = [
     "blog.apps.BlogConfig",
@@ -133,7 +140,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.sites",
-    "django.contrib.staticfiles",
     "django.contrib.sitemaps",
     "django.contrib.redirects",
     "django_ckeditor_5",
@@ -141,12 +147,12 @@ INSTALLED_APPS = [
     "sri",
     "django_htmx",
     "django.contrib.humanize",
+    'django.contrib.staticfiles',
+    'storages'
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
-    "django.middleware.gzip.GZipMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -162,7 +168,7 @@ MIDDLEWARE = [
 ]
 
 # LiveReload configuration
-if os.getenv("LIVERELOAD") == "True":
+if str(os.environ.get("LIVERELOAD")).lower() == "true":
     INSTALLED_APPS += ["livereload"]
     MIDDLEWARE += ["livereload.middleware.LiveReloadScript"]
 
@@ -309,26 +315,67 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
+if str(os.environ.get("USE_S3")).lower() == "true":
+    # AWS Settings
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+    AWS_DEFAULT_ACL = None
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    
+    # S3 Static Settings
+    STATIC_LOCATION = 'static'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+    
+    # S3 Public Media Settings
+    PUBLIC_MEDIA_LOCATION = 'media'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+    
+    # S3 Private Media Settings
+    PRIVATE_MEDIA_LOCATION = 'private'
+    
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        },
+        "staticfiles": {
+            "BACKEND": "app.storage_backends.StaticStorage",
+        },
+    }
+    
+    # This tells Django to use your custom storage for static files
+    STATICFILES_STORAGE = 'app.storage_backends.StaticStorage'
+    
+    # Additional storage backends
+    DEFAULT_FILE_STORAGE = 'app.storage_backends.PublicMediaStorage'
+    PRIVATE_FILE_STORAGE = 'app.storage_backends.PrivateMediaStorage'
 
-STATIC_URL = "/static/"
-MEDIA_URL = "/media/"
+    # Add this line to include your project-level static directory
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-# Extra places for collectstatic to find static files.
-STORAGES = {
-    "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_DIRS = [str(BASE_DIR / "staticfiles")]
+else:
+    # Local file storage settings
+    STATIC_URL = '/staticfiles/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    MEDIA_URL = '/mediafiles/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
-MEDIA_ROOT = BASE_DIR / "media"
-STATIC_ROOT = BASE_DIR / "static"
+    # Add this line to include your project-level static directory
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-CKEDITOR_UPLOAD_PATH = "uploads/"
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
+    }
+
+
+# CKEDITOR_UPLOAD_PATH = "uploads/"
+
 
 LOGIN_REDIRECT_URL = "home"
 LOGIN_URL = "login"
@@ -503,5 +550,8 @@ CKEDITOR_5_CONFIGS = {
 }
 
 
-CKEDITOR_5_FILE_STORAGE = "blog.storage.CustomStorage"
-CKEDITOR_5_CUSTOM_CSS = STATIC_URL + "django_ckeditor_5/ckeditor_custom.css"
+# CKEDITOR_5_FILE_STORAGE = "blog.storage.CustomStorage"
+# CKEDITOR_5_CUSTOM_CSS = STATIC_URL + "django_ckeditor_5/ckeditor_custom.css"
+
+
+

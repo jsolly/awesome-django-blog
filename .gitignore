@@ -4,7 +4,6 @@ post_metaimgs/
 profile_pics/
 uploads/
 app/media/django_ckeditor_5/
-static/
 
 ## Posts and embeddings
 exported_posts/
