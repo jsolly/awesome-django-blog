@@ -84,44 +84,42 @@ else:
         sys.exit(1)
 
 
+
+BUCKET_URL = os.environ.get('AWS_URL')
+
 # Content Security Policy
-CSP_DEFAULT_SRC = ("'self'",)
-CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", "https://blogthedata.s3.amazonaws.com")
-CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'", "'unsafe-eval'", "https://blogthedata.s3.amazonaws.com", "http://127.0.0.1:35729")
-CSP_IMG_SRC = ("'self'", "data:", "https:", "http:")
-CSP_FONT_SRC = ("'self'", "https://blogthedata.s3.amazonaws.com")
-CSP_CONNECT_SRC = ("'self'", "ws://127.0.0.1:35729")
-
-
-# CSP_STYLE_SRC = (
-#     "'self'",
-#     "'unsafe-inline'",
-# )
-# CSP_SCRIPT_SRC_ELEM = (
-#     "'self'",
-#     "'unsafe-inline'",
-# )
-# CSP_SCRIPT_SRC = (
-#     "'self'",
-#     "'unsafe-eval'",
-#     "'unsafe-inline'",
-# )
-# CSP_MEDIA_SRC = "'self'"
-# CSP_IMG_SRC = (
-#     "'self'",
-#     "data:",
-#     "*.openstreetmap.org",
-# )
-# CSP_FONT_SRC = "'self'"
-# CSP_CONNECT_SRC = ("'self'",)
-# CSP_FRAME_SRC = ("*",)
-# CSP_FRAME_ANCESTORS = ("'self'",)
-# CSP_BASE_URI = ("'none'",)
-# CSP_FORM_ACTION = "'self'"
-# CSP_OBJECT_SRC = ("'self'",)
-# CSP_WORKER_SRC = ("'self'", "blob:")
-# CSP_EXCLUDE_URL_PREFIXES = "/admin"
-# CSP_REQUIRE_TRUSTED_TYPES_FOR = ("'script'",)
+CSP_STYLE_SRC = (
+    "'self'",
+    "'unsafe-inline'",
+    BUCKET_URL
+)
+CSP_SCRIPT_SRC_ELEM = (
+    "'self'",
+    "'unsafe-inline'",
+    BUCKET_URL
+)
+CSP_SCRIPT_SRC = (
+    "'self'",
+    "'unsafe-eval'",
+    "'unsafe-inline'",
+    BUCKET_URL
+)
+CSP_MEDIA_SRC = "'self'"
+CSP_IMG_SRC = (
+    "'self'",
+    "data:",
+    "*.openstreetmap.org",
+    BUCKET_URL
+)
+CSP_FONT_SRC = "'self'"
+CSP_CONNECT_SRC = ("'self'",)
+CSP_FRAME_SRC = ("*",)
+CSP_FRAME_ANCESTORS = ("'self'",)
+CSP_BASE_URI = ("'none'",)
+CSP_FORM_ACTION = "'self'"
+CSP_OBJECT_SRC = ("'self'",)
+CSP_WORKER_SRC = ("'self'", "blob:")
+CSP_EXCLUDE_URL_PREFIXES = "/admin"
 
 DEBUG = False
 
