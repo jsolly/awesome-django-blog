@@ -27,6 +27,10 @@ blogthedata*.sql
 linode*.img
 migration_backup
 
+# Static Files
+staticfiles/
+
+
 # Other
 *.log
 .vscode/
