@@ -111,7 +111,7 @@ class TestViews(SetUp):
             "draft": False,
             "metaimg": SimpleUploadedFile(
                 name="lorem_image.jpg",
-                content=open("app/media/default.webp", "rb").read(),
+                content=open("mediafiles/default.webp", "rb").read(),
                 content_type="image/webp",
             ),
             "snippet": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -180,7 +180,7 @@ class TestViews(SetUp):
             "draft": False,
             "metaimg": SimpleUploadedFile(
                 name="test_image.jpg",
-                content=open("app/media/default.webp", "rb").read(),
+                content=open("mediafiles/default.webp", "rb").read(),
                 content_type="image/webp",
             ),
             "snippet": "Long ago, the four nations lived together in harmony.",

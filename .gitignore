@@ -3,8 +3,7 @@ profile_pics/
 post_metaimgs/
 profile_pics/
 uploads/
-app/media/django_ckeditor_5/
-static/
+app/mediafiles/django_ckeditor_5/
 
 ## Posts and embeddings
 exported_posts/
@@ -28,8 +27,12 @@ blogthedata*.sql
 linode*.img
 migration_backup
 
+# Static Files
+staticfiles/
+
+
 # Other
-app/logs/*.log*
+*.log
 .vscode/
 
 db.sqlite3

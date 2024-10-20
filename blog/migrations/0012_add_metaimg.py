@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="post",
             name="metaimg",
-            field=models.ImageField(default="jsolly.webp", upload_to="post_metaimgs/"),
+            field=models.ImageField(default="default.webp", upload_to="post_metaimgs/"),
         ),
         migrations.AddField(
             model_name="post",

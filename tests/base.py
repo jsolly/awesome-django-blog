@@ -3,7 +3,8 @@ from dotenv import load_dotenv
 import os
 
 
-os.environ["DJANGO_SETTINGS_MODULE"] = "app.settings.ci"
+# Set USE_S3 to False for testing
+os.environ["USE_S3"] = "False"
 # Set the site id to 1 because we need to create a site object in the database
 os.environ["SITE_ID"] = "1"
 setup()
