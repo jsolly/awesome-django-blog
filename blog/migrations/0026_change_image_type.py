@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             name="metaimg",
             field=django_resized.forms.ResizedImageField(
                 crop=None,
-                default="jsolly.webp",
+                default="default.webp",
                 force_format="WEBP",
                 keep_meta=True,
                 quality=75,
