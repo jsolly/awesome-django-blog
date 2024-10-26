@@ -4,10 +4,11 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 from django_ckeditor_5.fields import CKEditor5Field
+from django_resized import ResizedImageField
+from django.conf import settings
+import os
 
 # import logging
-from django_resized import ResizedImageField
-
 # logger = logging.getLogger("django")
 
 
@@ -55,6 +56,13 @@ class Category(models.Model):
         super().save(*args, **kwargs)
 
 
+def get_default_metaimg():
+    if os.environ.get("USE_S3").lower() == "true":
+        return f"{settings.STATIC_LOCATION}/default.webp"
+    else:
+        return "default.webp"
+
+
 class Post(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(unique=True, blank=True, null=True)
@@ -65,7 +73,7 @@ class Post(models.Model):
         force_format="WEBP",
         quality=75,
         upload_to="post_metaimgs/",
-        default="default.webp",
+        default=get_default_metaimg,
     )
     metaimg_alt_txt = models.CharField(max_length=500, default="John Solly Headshot")
     metaimg_attribution = models.CharField(max_length=500, blank=True, null=True)

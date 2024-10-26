@@ -2,11 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from PIL import Image
+import blog.models
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default="default.webp", upload_to="profile_pics")
+    image = models.ImageField(
+        default=blog.models.get_default_metaimg, upload_to="profile_pics"
+    )
 
     def __str__(self):
         return f"{self.user.username} Profile"

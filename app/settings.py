@@ -84,33 +84,14 @@ else:
         sys.exit(1)
 
 
-
-BUCKET_URL = os.environ.get('AWS_URL')
+BUCKET_URL = os.environ.get("AWS_URL")
 
 # Content Security Policy
-CSP_STYLE_SRC = (
-    "'self'",
-    "'unsafe-inline'",
-    BUCKET_URL
-)
-CSP_SCRIPT_SRC_ELEM = (
-    "'self'",
-    "'unsafe-inline'",
-    BUCKET_URL
-)
-CSP_SCRIPT_SRC = (
-    "'self'",
-    "'unsafe-eval'",
-    "'unsafe-inline'",
-    BUCKET_URL
-)
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", BUCKET_URL)
+CSP_SCRIPT_SRC_ELEM = ("'self'", "'unsafe-inline'", BUCKET_URL)
+CSP_SCRIPT_SRC = ("'self'", "'unsafe-eval'", "'unsafe-inline'", BUCKET_URL)
 CSP_MEDIA_SRC = "'self'"
-CSP_IMG_SRC = (
-    "'self'",
-    "data:",
-    "*.openstreetmap.org",
-    BUCKET_URL
-)
+CSP_IMG_SRC = ("'self'", "data:", "*.openstreetmap.org", BUCKET_URL)
 CSP_FONT_SRC = "'self'"
 CSP_CONNECT_SRC = ("'self'",)
 CSP_FRAME_SRC = ("*",)
@@ -145,8 +126,8 @@ INSTALLED_APPS = [
     "sri",
     "django_htmx",
     "django.contrib.humanize",
-    'django.contrib.staticfiles',
-    'storages'
+    "django.contrib.staticfiles",
+    "storages",
 ]
 
 MIDDLEWARE = [
@@ -314,25 +295,21 @@ USE_I18N = True
 USE_TZ = True
 
 if str(os.environ.get("USE_S3")).lower() == "true":
-    # AWS Settings
-    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
     AWS_DEFAULT_ACL = None
-    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
-    
-    # S3 Static Settings
-    STATIC_LOCATION = 'static'
-    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
-    
-    # S3 Public Media Settings
-    PUBLIC_MEDIA_LOCATION = 'media'
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-    
-    # S3 Private Media Settings
-    PRIVATE_MEDIA_LOCATION = 'private'
-    
+    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
+
+    STATIC_LOCATION = "static"
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/"
+
+    PUBLIC_MEDIA_LOCATION = "media"
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
+
+    PRIVATE_MEDIA_LOCATION = "private"
+
     STORAGES = {
         "default": {
             "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
@@ -341,26 +318,23 @@ if str(os.environ.get("USE_S3")).lower() == "true":
             "BACKEND": "app.storage_backends.StaticStorage",
         },
     }
-    
-    # This tells Django to use your custom storage for static files
-    STATICFILES_STORAGE = 'app.storage_backends.StaticStorage'
-    
-    # Additional storage backends
-    DEFAULT_FILE_STORAGE = 'app.storage_backends.PublicMediaStorage'
-    PRIVATE_FILE_STORAGE = 'app.storage_backends.PrivateMediaStorage'
 
-    # Add this line to include your project-level static directory
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+    STATICFILES_STORAGE = "app.storage_backends.StaticStorage"
+
+    DEFAULT_FILE_STORAGE = "app.storage_backends.PublicMediaStorage"
+    PRIVATE_FILE_STORAGE = "app.storage_backends.PrivateMediaStorage"
+
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 else:
-    # Local file storage settings
-    STATIC_URL = '/staticfiles/'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    MEDIA_URL = '/mediafiles/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
+    STATIC_LOCATION = "staticfiles"
+    STATIC_URL = "/staticfiles/"
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+    MEDIA_URL = "/mediafiles/"
+    MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 
     # Add this line to include your project-level static directory
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
     STORAGES = {
         "default": {
@@ -550,6 +524,3 @@ CKEDITOR_5_CONFIGS = {
 
 # CKEDITOR_5_FILE_STORAGE = "blog.storage.CustomStorage"
 # CKEDITOR_5_CUSTOM_CSS = STATIC_URL + "django_ckeditor_5/ckeditor_custom.css"
-
-
-
