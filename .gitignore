@@ -29,7 +29,10 @@ migration_backup
 
 # Static Files
 staticfiles/
+mediafiles/
 
+# But don't ignore default.webp
+!mediafiles/default.webp
 
 # Other
 *.log
@@ -37,4 +40,3 @@ staticfiles/
 
 db.sqlite3
 db.sqlite3-journal
-
