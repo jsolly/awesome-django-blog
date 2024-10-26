@@ -1,10 +1,3 @@
-# Blog Assets
-profile_pics/
-post_metaimgs/
-profile_pics/
-uploads/
-app/mediafiles/django_ckeditor_5/
-
 ## Posts and embeddings
 exported_posts/
 processed/
@@ -29,7 +22,7 @@ migration_backup
 
 # Static Files
 staticfiles/
-mediafiles/
+mediafiles/*
 
 # But don't ignore default.webp
 !mediafiles/default.webp
