@@ -3,6 +3,7 @@ import os
 import sys
 from psycopg import IsolationLevel
 import logging
+from app.storage_backends import CKEditor5StorageS3, CKEditor5StorageLocal
 
 logger = logging.getLogger("django")
 
@@ -305,8 +306,8 @@ if str(os.environ.get("USE_S3")).lower() == "true":
     STATIC_LOCATION = "static"
     STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/"
 
-    PUBLIC_MEDIA_LOCATION = "media"
-    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
+    MEDIA_LOCATION = "media"
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/"
 
     PRIVATE_MEDIA_LOCATION = "private"
 
@@ -324,16 +325,15 @@ if str(os.environ.get("USE_S3")).lower() == "true":
     DEFAULT_FILE_STORAGE = "app.storage_backends.PublicMediaStorage"
     PRIVATE_FILE_STORAGE = "app.storage_backends.PrivateMediaStorage"
 
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+    CKEDITOR_5_FILE_STORAGE = "app.storage_backends.CKEditor5StorageS3"
 
 else:
-    STATIC_LOCATION = "staticfiles"
     STATIC_URL = "/staticfiles/"
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+    MEDIA_LOCATION = "mediafiles"
     MEDIA_URL = "/mediafiles/"
     MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 
-    # Add this line to include your project-level static directory
     STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
     STORAGES = {
@@ -345,8 +345,7 @@ else:
         },
     }
 
-
-# CKEDITOR_UPLOAD_PATH = "uploads/"
+    CKEDITOR_5_FILE_STORAGE = "app.storage_backends.CKEditor5StorageLocal"
 
 
 LOGIN_REDIRECT_URL = "home"
@@ -522,5 +521,4 @@ CKEDITOR_5_CONFIGS = {
 }
 
 
-# CKEDITOR_5_FILE_STORAGE = "blog.storage.CustomStorage"
-# CKEDITOR_5_CUSTOM_CSS = STATIC_URL + "django_ckeditor_5/ckeditor_custom.css"
+CKEDITOR_5_CUSTOM_CSS = STATIC_URL + "django_ckeditor_5/ckeditor_custom.css"
