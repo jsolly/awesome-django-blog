@@ -56,13 +56,6 @@ class Category(models.Model):
         super().save(*args, **kwargs)
 
 
-def get_default_metaimg():
-    if os.environ.get("USE_S3").lower() == "true":
-        return f"{settings.STATIC_LOCATION}/default.webp"
-    else:
-        return "default.webp"
-
-
 class Post(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(unique=True, blank=True, null=True)
@@ -72,8 +65,8 @@ class Post(models.Model):
     metaimg = ResizedImageField(
         force_format="WEBP",
         quality=75,
-        upload_to="post_metaimgs/",
-        default=get_default_metaimg,
+        upload_to="post_metaimgs",
+        default="default.webp",
     )
     metaimg_alt_txt = models.CharField(max_length=500, default="John Solly Headshot")
     metaimg_attribution = models.CharField(max_length=500, blank=True, null=True)

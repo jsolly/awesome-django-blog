@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from PIL import Image
-import blog.models
 import os
 from io import BytesIO
 from django.core.files.storage import default_storage
@@ -12,7 +11,7 @@ from django.core.files.base import ContentFile
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(
-        default=blog.models.get_default_metaimg,
+        default="default.webp",
         upload_to="profile_pics",
         storage=default_storage,
     )

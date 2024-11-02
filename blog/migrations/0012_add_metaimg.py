@@ -2,7 +2,6 @@
 
 from django.db import migrations, models
 import django_resized.forms
-import blog.models
 
 
 class Migration(migrations.Migration):
@@ -16,7 +15,7 @@ class Migration(migrations.Migration):
             name="metaimg",
             field=django_resized.forms.ResizedImageField(
                 crop=None,
-                default=blog.models.get_default_metaimg,
+                default="default.webp",
                 force_format="WEBP",
                 keep_meta=True,
                 quality=75,

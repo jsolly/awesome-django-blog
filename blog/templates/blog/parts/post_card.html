@@ -1,5 +1,6 @@
 {% load post_utils %}
 {% load static %}
+{% load image_utils %}
 
 <article class="post">
   <a href="{% url 'post-detail' post.slug %}" aria-label='{{ post.title }}'>
@@ -7,7 +8,8 @@
       <div class="post-card-row">
         <div class="post-card-meta-img-container">
           <figure>
-            <img src="{{ post.metaimg.url }}" alt="{{ post.metaimg_alt_txt }}" class="post-card-img" loading="lazy">
+            <img src="{% get_image_url post.metaimg %}" alt="{{ post.metaimg_alt_txt }}" class="post-card-img"
+              loading="lazy">
             <figcaption class="visually-hidden">{{ post.metaimg_alt_txt }}</figcaption>
           </figure>
         </div>

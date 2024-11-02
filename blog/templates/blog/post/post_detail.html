@@ -1,5 +1,6 @@
 {% extends "blog/base.html" %}
 {% load static %}
+{% load image_utils %}
 
 {% block head %}
 <!-- django_ckeditor_5 -->
@@ -50,7 +51,7 @@
         {% endif %}
       </h1>
       <div class="meta-img-container">
-        <img id="post-detail-meta-img" src="{{ post.metaimg.url }}" alt="{{ post.metadesc }}">
+        <img id="post-detail-meta-img" src="{% get_image_url post.metaimg %}" alt="{{ post.metadesc }}">
       </div>
       <p class="post-dates sml-margin-top-bottom">
         <time datetime="{{ post.date_posted|date:"Y-m-d" }}">{{ post.date_posted|date:"F d, Y" }}</time> in {{ post.category.name }}

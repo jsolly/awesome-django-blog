@@ -3,7 +3,6 @@
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
-from blog.models import get_default_metaimg
 
 
 class Migration(migrations.Migration):
@@ -28,9 +27,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "image",
-                    models.ImageField(
-                        default=get_default_metaimg, upload_to="profile_pics"
-                    ),
+                    models.ImageField(default="default.webp", upload_to="profile_pics"),
                 ),
                 (
                     "user",
