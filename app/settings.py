@@ -324,7 +324,12 @@ if str(os.environ.get("USE_S3")).lower() == "true":
     DEFAULT_FILE_STORAGE = "app.storage_backends.PublicMediaStorage"
     PRIVATE_FILE_STORAGE = "app.storage_backends.PrivateMediaStorage"
 
-    CKEDITOR_5_FILE_STORAGE = "app.storage_backends.CKEditor5StorageS3"
+    if str(os.environ.get("USE_S3")).lower() == "true":
+        POST_IMAGE_STORAGE = "app.storage_backends.PostImageStorageS3"
+    else:
+        POST_IMAGE_STORAGE = "app.storage_backends.PostImageStorageLocal"
+
+    CKEDITOR_5_FILE_STORAGE = POST_IMAGE_STORAGE
 
 else:
     STATIC_URL = "/staticfiles/"
@@ -344,7 +349,8 @@ else:
         },
     }
 
-    CKEDITOR_5_FILE_STORAGE = "app.storage_backends.CKEditor5StorageLocal"
+    POST_IMAGE_STORAGE = "app.storage_backends.PostImageStorageLocal"
+    CKEDITOR_5_FILE_STORAGE = POST_IMAGE_STORAGE
 
 
 LOGIN_REDIRECT_URL = "home"

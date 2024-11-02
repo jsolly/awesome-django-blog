@@ -23,13 +23,13 @@ class PrivateMediaStorage(S3Boto3Storage):
     custom_domain = False
 
 
-class CKEditor5StorageBase:
-    """Base mixin for CKEditor storage to ensure consistent path handling"""
+class PostImageStorageBase:
+    """Base mixin for post image storage to ensure consistent path handling"""
     def get_upload_path(self, filename):
-        return f"django_ckeditor_5/{filename}"
+        return f"post_imgs/{filename}"
 
 
-class CKEditor5StorageS3(CKEditor5StorageBase, S3Boto3Storage):
+class PostImageStorageS3(PostImageStorageBase, S3Boto3Storage):
     location = "media"
     default_acl = "public-read"
     file_overwrite = False
@@ -39,7 +39,7 @@ class CKEditor5StorageS3(CKEditor5StorageBase, S3Boto3Storage):
         return super()._save(name, content)
 
 
-class CKEditor5StorageLocal(CKEditor5StorageBase, FileSystemStorage):
+class PostImageStorageLocal(PostImageStorageBase, FileSystemStorage):
     location = settings.MEDIA_ROOT
     base_url = settings.MEDIA_URL
 
