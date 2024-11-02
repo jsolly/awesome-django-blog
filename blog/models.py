@@ -101,6 +101,11 @@ class Post(models.Model):
 
         super().save(*args, **kwargs)
 
+    def get_metaimg_url(self):
+        if self.metaimg:
+            return self.metaimg.url
+        return None
+
 
 class Similarity(models.Model):
     post1 = models.ForeignKey(

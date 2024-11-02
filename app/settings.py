@@ -3,7 +3,6 @@ import os
 import sys
 from psycopg import IsolationLevel
 import logging
-from app.storage_backends import CKEditor5StorageS3, CKEditor5StorageLocal
 
 logger = logging.getLogger("django")
 
