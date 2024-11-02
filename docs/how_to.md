@@ -7,6 +7,24 @@
     ```
 
 
+## Overwrite heroku Postgres database with local database
+
+    ```bash
+    # First, list your Heroku apps to find the correct app name
+    heroku apps
+    
+    # Reset the database (replace YOUR_APP_NAME with your actual app name)
+    heroku pg:reset DATABASE --app YOUR_APP_NAME --confirm YOUR_APP_NAME
+    
+    # Get the Postgres URL for your app
+    heroku config:get DATABASE_URL --app YOUR_APP_NAME
+    
+    # Import your local database backup
+    psql <heroku_postgres_url>
+    \i <path_to_local_db_backup.sql>
+    ```
+
+
 
 ## Export prod database and restore locally (Untested)
 

@@ -87,6 +87,14 @@ class MyLoginView(auth_views.LoginView):
 
 class MyLogoutView(auth_views.LogoutView):
     template_name = "users/logout.html"
+    http_method_names = ['get', 'post']
+    
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            from django.contrib.auth import logout
+            logout(request)
+            messages.success(request, "You have been logged out successfully!")
+        return super().get(request, *args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
