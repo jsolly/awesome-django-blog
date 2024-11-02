@@ -25,17 +25,25 @@ class Profile(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-        if os.environ.get("USE_S3").lower() == "true":
-            img_read = default_storage.open(self.image.name, "rb")
-            img = Image.open(img_read)
+        # Skip processing for default image
+        if self.image.name == "default.webp":
+            return
 
-            if img.height > 300 or img.width > 300:
-                output_size = (300, 300)
-                img.thumbnail(output_size)
+        if str(os.environ.get("USE_S3")).lower() == "true":
+            try:
+                img_read = default_storage.open(self.image.name, "rb")
+                img = Image.open(img_read)
 
-                buffer = BytesIO()
-                img.save(buffer, format="JPEG")
-                default_storage.save(self.image.name, ContentFile(buffer.getvalue()))
+                if img.height > 300 or img.width > 300:
+                    output_size = (300, 300)
+                    img.thumbnail(output_size)
+
+                    buffer = BytesIO()
+                    img.save(buffer, format="JPEG")
+                    default_storage.save(self.image.name, ContentFile(buffer.getvalue()))
+            except FileNotFoundError:
+                # Handle the error or just pass if using default image
+                pass
         else:
             with Image.open(self.image.path) as img:
                 if img.height > 300 or img.width > 300:
