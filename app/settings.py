@@ -4,21 +4,26 @@ import sys
 from psycopg import IsolationLevel
 import logging
 
-def get_bool_env(var_name, default=False):
-    return str(os.environ.get(var_name, str(default))).lower() == "true"
-
-logger = logging.getLogger("django")
-
 if "DYNO" not in os.environ:
     from dotenv import load_dotenv
 
     load_dotenv()
+    
+def get_bool_env(var_name, default=False):
+    return str(os.environ.get(var_name, str(default))).lower() == "true"
+
+DOMAIN = os.environ.get("DOMAIN")
+DEBUG = get_bool_env("DEBUG", False)
+LOGGING = get_bool_env("LOGGING", False)
+
+logger = logging.getLogger("django")
+
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
 USE_SRI = False
 
-# HTTPS SETTINGS
-if not get_bool_env("DEBUG"):
+
+if not DEBUG:
     SESSION_COOKIE_SECURE = True
     SESSION_COOKIE_HTTPONLY = True
     CSRF_COOKIE_HTTPONLY = True
@@ -43,8 +48,8 @@ if not get_bool_env("DEBUG"):
     DEFAULT_FROM_EMAIL = os.environ.get("FROM_EMAIL", "")
 
     CSRF_TRUSTED_ORIGINS = [
-        "https://blogthedata.com",
-        "https://*.blogthedata.com"
+        f"https://{DOMAIN}",
+        f"https://*.{DOMAIN}"
     ]
 
 
@@ -92,20 +97,16 @@ CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", BUCKET_URL)
 CSP_SCRIPT_SRC_ELEM = ("'self'", "'unsafe-inline'", BUCKET_URL)
 CSP_SCRIPT_SRC = ("'self'", "'unsafe-eval'", "'unsafe-inline'", BUCKET_URL)
 CSP_MEDIA_SRC = "'self'"
-CSP_IMG_SRC = ("'self'", "data:", "*.openstreetmap.org", BUCKET_URL, "https://blogthedata.com")
+CSP_IMG_SRC = ("'self'", "data:", "*.openstreetmap.org", BUCKET_URL, f"https://{DOMAIN}")
 CSP_FONT_SRC = "'self'"
-CSP_CONNECT_SRC = ("'self'", "https://blogthedata.com")
-CSP_FRAME_SRC = ("'self'", "https://blogthedata.com")
+CSP_CONNECT_SRC = ("'self'", f"https://{DOMAIN}")
+CSP_FRAME_SRC = ("'self'", f"https://{DOMAIN}")
 CSP_FRAME_ANCESTORS = ("'self'",)
 CSP_BASE_URI = ("'none'",)
 CSP_FORM_ACTION = "'self'"
 CSP_OBJECT_SRC = ("'self'",)
 CSP_WORKER_SRC = ("'self'", "blob:")
 CSP_EXCLUDE_URL_PREFIXES = "/admin"
-
-
-
-DEBUG = get_bool_env("DEBUG", False)
 
 INSTALLED_APPS = [
     "blog.apps.BlogConfig",
@@ -148,6 +149,7 @@ REQUIRED_ENV_VARS = [
     "SECRET_KEY",
     "ALLOWED_HOSTS",
     "SITE_ID",
+    "DOMAIN",
 ]
 
 def validate_env_vars():
@@ -279,9 +281,6 @@ LOGGING = {
     "loggers": LOGGERS,
 }
 
-
-if not get_bool_env("LOGGING", True):
-    LOGGING = None
 
 AUTH_PASSWORD_VALIDATORS = [
     {
