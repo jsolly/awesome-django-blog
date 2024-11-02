@@ -4,6 +4,9 @@ import sys
 from psycopg import IsolationLevel
 import logging
 
+def get_bool_env(var_name, default=False):
+    return str(os.environ.get(var_name, str(default))).lower() == "true"
+
 logger = logging.getLogger("django")
 
 if "DYNO" not in os.environ:
@@ -15,7 +18,7 @@ X_FRAME_OPTIONS = "SAMEORIGIN"
 USE_SRI = False
 
 # HTTPS SETTINGS
-if str(os.environ.get("DEBUG")).lower() == "false":
+if not get_bool_env("DEBUG"):
     SESSION_COOKIE_SECURE = True
     SESSION_COOKIE_HTTPONLY = True
     CSRF_COOKIE_HTTPONLY = True
@@ -38,23 +41,21 @@ if str(os.environ.get("DEBUG")).lower() == "false":
     EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "")
     EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
     DEFAULT_FROM_EMAIL = os.environ.get("FROM_EMAIL", "")
-    DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
+    CSRF_TRUSTED_ORIGINS = [
+        "https://blogthedata.com",
+        "https://*.blogthedata.com"
+    ]
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent  # Three levels up
+
 SECRET_KEY = os.environ["SECRET_KEY"]
-ALLOWED_HOSTS = ["*"]
-# ALLOWED_HOSTS = []
-# ALLOWED_HOSTS.extend(
-#     filter(
-#         None,
-#         os.environ.get("ALLOWED_HOSTS", "").split(" "),
-#     )
-# )
+ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
 
 SITE_ID = int(os.environ["SITE_ID"])
 
-if str(os.environ.get("USE_SQLITE")).lower() == "true":
+if get_bool_env("USE_SQLITE"):
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -91,10 +92,10 @@ CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", BUCKET_URL)
 CSP_SCRIPT_SRC_ELEM = ("'self'", "'unsafe-inline'", BUCKET_URL)
 CSP_SCRIPT_SRC = ("'self'", "'unsafe-eval'", "'unsafe-inline'", BUCKET_URL)
 CSP_MEDIA_SRC = "'self'"
-CSP_IMG_SRC = ("'self'", "data:", "*.openstreetmap.org", BUCKET_URL)
+CSP_IMG_SRC = ("'self'", "data:", "*.openstreetmap.org", BUCKET_URL, "https://blogthedata.com")
 CSP_FONT_SRC = "'self'"
-CSP_CONNECT_SRC = ("'self'",)
-CSP_FRAME_SRC = ("*",)
+CSP_CONNECT_SRC = ("'self'", "https://blogthedata.com")
+CSP_FRAME_SRC = ("'self'", "https://blogthedata.com")
 CSP_FRAME_ANCESTORS = ("'self'",)
 CSP_BASE_URI = ("'none'",)
 CSP_FORM_ACTION = "'self'"
@@ -102,13 +103,9 @@ CSP_OBJECT_SRC = ("'self'",)
 CSP_WORKER_SRC = ("'self'", "blob:")
 CSP_EXCLUDE_URL_PREFIXES = "/admin"
 
-DEBUG = False
 
-if str(os.environ.get("DEBUG")).lower() == "true":
-    DEBUG = True
-    # CSP_SCRIPT_SRC_ELEM += ("http://127.0.0.1:35729/livereload.js",)
-    # CSP_SCRIPT_SRC += ("http://127.0.0.1:35729/livereload.js",)
-    # CSP_CONNECT_SRC += ("ws://127.0.0.1:35729/livereload",)
+
+DEBUG = get_bool_env("DEBUG", False)
 
 INSTALLED_APPS = [
     "blog.apps.BlogConfig",
@@ -138,16 +135,32 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django.utils.deprecation.MiddlewareMixin",
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
     "csp.middleware.CSPMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.contrib.redirects.middleware.RedirectFallbackMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
 ]
 
-# LiveReload configuration
-if str(os.environ.get("LIVERELOAD")).lower() == "true":
+LOGS_DIR = BASE_DIR / "logs"
+LOGS_DIR.mkdir(exist_ok=True)
+
+REQUIRED_ENV_VARS = [
+    "SECRET_KEY",
+    "ALLOWED_HOSTS",
+    "SITE_ID",
+]
+
+def validate_env_vars():
+    missing = []
+    for var in REQUIRED_ENV_VARS:
+        if not os.environ.get(var):
+            missing.append(var)
+    if missing:
+        raise Exception(f"Required environment variables are missing: {', '.join(missing)}")
+
+validate_env_vars()
+
+if get_bool_env("LIVERELOAD"):
     INSTALLED_APPS += ["livereload"]
     MIDDLEWARE += ["livereload.middleware.LiveReloadScript"]
 
@@ -168,7 +181,7 @@ TEMPLATES = [
                 "blog.context_processors.category_renderer",
                 "blog.context_processors.breadcrumbs",
             ],
-            "debug": True,
+            "debug": DEBUG,
         },
     }
 ]
@@ -182,18 +195,16 @@ CACHES = {
     }
 }
 
-FORMATTERS = (
-    {
-        "verbose": {
-            "format": "{levelname} {asctime:s} {name} {threadName} {thread:d} {module} {filename} {lineno:d} {name} {funcName} {process:d} {message}",
-            "style": "{",
-        },
-        "simple": {
-            "format": "{levelname} {asctime:s} {name} {module} {filename} {lineno:d} {funcName} {message}",
-            "style": "{",
-        },
+FORMATTERS = {
+    "verbose": {
+        "format": "{levelname} {asctime:s} {name} {threadName} {thread:d} {module} {filename} {lineno:d} {name} {funcName} {process:d} {message}",
+        "style": "{",
     },
-)
+    "simple": {
+        "format": "{levelname} {asctime:s} {name} {module} {filename} {lineno:d} {funcName} {message}",
+        "style": "{",
+    },
+}
 
 
 HANDLERS = {
@@ -232,46 +243,44 @@ HANDLERS = {
     },
 }
 
-LOGGERS = (
-    {
-        "django": {
-            "handlers": ["console_handler", "info_handler"],
-            "level": "INFO",
-        },
-        "django.request": {
-            "handlers": ["error_handler"],
-            "level": "INFO",
-            "propagate": True,
-        },
-        "django.template": {
-            "handlers": ["error_handler"],
-            "level": "INFO",  # Change to DEBUG to see missing template vars errors
-            "propagate": True,
-        },
-        "django.server": {
-            "handlers": ["error_handler"],
-            "level": "INFO",
-            "propagate": True,
-        },
-        "ezra_logger": {
-            "handlers": ["ezra_handler"],
-            "level": "INFO",
-            "propagate": False,
-        },
+LOGGERS = {
+    "django": {
+        "handlers": ["console_handler", "info_handler"],
+        "level": "INFO",
     },
-)
+    "django.request": {
+        "handlers": ["error_handler"],
+        "level": "INFO",
+        "propagate": True,
+    },
+    "django.template": {
+        "handlers": ["error_handler"],
+        "level": "INFO",  # Change to DEBUG to see missing template vars errors
+        "propagate": True,
+    },
+    "django.server": {
+        "handlers": ["error_handler"],
+        "level": "INFO",
+        "propagate": True,
+    },
+    "ezra_logger": {
+        "handlers": ["ezra_handler"],
+        "level": "INFO",
+        "propagate": False,
+    },
+}
 
 
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-    "formatters": FORMATTERS[0],
+    "formatters": FORMATTERS,
     "handlers": HANDLERS,
-    "loggers": LOGGERS[0],
+    "loggers": LOGGERS,
 }
 
 
-if os.environ["LOGGING"] == "False":
+if not get_bool_env("LOGGING", True):
     LOGGING = None
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -294,7 +303,7 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
-if str(os.environ.get("USE_S3")).lower() == "true":
+if get_bool_env("USE_S3"):
     AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
     AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
@@ -324,7 +333,7 @@ if str(os.environ.get("USE_S3")).lower() == "true":
     DEFAULT_FILE_STORAGE = "app.storage_backends.PublicMediaStorage"
     PRIVATE_FILE_STORAGE = "app.storage_backends.PrivateMediaStorage"
 
-    if str(os.environ.get("USE_S3")).lower() == "true":
+    if get_bool_env("USE_S3"):
         POST_IMAGE_STORAGE = "app.storage_backends.PostImageStorageS3"
     else:
         POST_IMAGE_STORAGE = "app.storage_backends.PostImageStorageLocal"
@@ -514,6 +523,13 @@ CKEDITOR_5_CONFIGS = {
                     "class": "ck-heading_heading3",
                 },
             ]
+        },
+        "simpleUpload": {
+            "uploadUrl": "/ckeditor5/image_upload/",
+            "withCredentials": True,
+            "headers": {
+                "X-CSRF-TOKEN": "{{csrf_token}}"
+            }
         },
     },
     "list": {
