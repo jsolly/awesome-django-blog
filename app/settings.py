@@ -12,6 +12,23 @@ if "DYNO" not in os.environ:
 def get_bool_env(var_name, default=False):
     return str(os.environ.get(var_name, str(default))).lower() == "true"
 
+def get_qualified_hosts():
+    qualified_hosts = []
+    for host in ALLOWED_HOSTS:
+        # Skip localhost and IP addresses
+        if host in ('localhost', '127.0.0.1'):
+            continue
+            
+        # Handle wildcard domains (starting with dot)
+        if host.startswith('.'):
+            # Remove the leading dot and add wildcard
+            domain = host[1:]
+            qualified_hosts.append(f"https://*.{domain}")
+        else:
+            # Regular domain - add only direct https:// prefix
+            qualified_hosts.append(f"https://{host}")
+    
+    return qualified_hosts
 
 DOMAIN = os.environ.get("DOMAIN")
 DEBUG = get_bool_env("DEBUG", False)
@@ -19,6 +36,7 @@ LOGGING = get_bool_env("LOGGING", False)
 BASE_DIR = Path(__file__).resolve().parent.parent  # Three levels up
 SECRET_KEY = os.environ["SECRET_KEY"]
 ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
+FULLY_QUALIFIED_ALLOWED_HOSTS = get_qualified_hosts()
 SITE_ID = int(os.environ["SITE_ID"])
 BUCKET_URL = os.environ.get("AWS_URL")
 X_FRAME_OPTIONS = "SAMEORIGIN"
@@ -26,17 +44,16 @@ USE_SRI = False
 
 logger = logging.getLogger("django")
 
-
 if not DEBUG:
-    # SESSION_COOKIE_SECURE = True
-    # SESSION_COOKIE_HTTPONLY = True
-    CSRF_COOKIE_HTTPONLY = True
-    CSRF_COOKIE_SECURE = True
-    # SECURE_SSL_REDIRECT = True
-    # SECURE_BROWSER_XSS_FILTER = True
-    # SECURE_CONTENT_TYPE_NOSNIFF = True
-    # SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-    # SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+    SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_HTTPONLY = True
+    # CSRF_COOKIE_HTTPONLY = True
+    # CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
     # HSTS SETTINGS (Configured in CloudFlare)
     # SECURE_HSTS_SECONDS = 60
@@ -51,12 +68,7 @@ if not DEBUG:
     EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
     DEFAULT_FROM_EMAIL = os.environ.get("FROM_EMAIL", "")
 
-    CSRF_TRUSTED_ORIGINS = [
-        f"https://{DOMAIN}",
-        f"https://*.{DOMAIN}",
-        "http://localhost:8000",
-        "http://127.0.0.1:8000",
-    ]
+    CSRF_TRUSTED_ORIGINS = FULLY_QUALIFIED_ALLOWED_HOSTS
 
 
 
@@ -102,18 +114,16 @@ CSP_SCRIPT_SRC = (
     BUCKET_URL,
 )
 CSP_MEDIA_SRC = "'self'"
-CSP_IMG_SRC = ("'self'", "data:", "https://openstreetmap.org", "https://*.openstreetmap.org", BUCKET_URL, f"https://{DOMAIN}", f"https://*.{DOMAIN}")
+CSP_IMG_SRC = tuple(["'self'", "data:", "https://openstreetmap.org", "https://*.openstreetmap.org", BUCKET_URL] + 
+                    FULLY_QUALIFIED_ALLOWED_HOSTS)
 CSP_FONT_SRC = "'self'"
-CSP_CONNECT_SRC = ("'self'", f"https://{DOMAIN}", f"https://*.{DOMAIN}")
-CSP_FRAME_SRC = (
-    "'self'", 
-    f"https://{DOMAIN}",
-    f"https://*.{DOMAIN}",
-    "https://youtube.com", # YouTube embeds
-    "https://*.youtube.com",
-    "https://nbviewer.org/", # Embed Jupyter notebooks
-    "https://*.nbviewer.org/",
-)
+CSP_CONNECT_SRC = tuple(["'self'"] + FULLY_QUALIFIED_ALLOWED_HOSTS)
+CSP_FRAME_SRC = tuple(["'self'"] + 
+                     FULLY_QUALIFIED_ALLOWED_HOSTS +
+                     ["https://youtube.com",
+                      "https://*.youtube.com",
+                      "https://nbviewer.org/",
+                      "https://*.nbviewer.org/"])
 CSP_FRAME_ANCESTORS = ("'self'",)
 CSP_BASE_URI = ("'none'",)
 CSP_FORM_ACTION = "'self'"
@@ -518,6 +528,10 @@ CKEDITOR_5_CONFIGS = {
                     "class": "ck-heading_heading3",
                 },
             ]
+        },
+        "simpleUpload": {
+            "uploadUrl": "/ckeditor5/image_upload/",
+            "withCredentials": True,
         },
     },
     "list": {
