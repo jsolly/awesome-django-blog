@@ -15,22 +15,21 @@ def get_bool_env(var_name, default=False):
 def get_qualified_hosts():
     qualified_hosts = []
     for host in ALLOWED_HOSTS:
-        # Skip localhost and IP addresses
-        if host in ('localhost', '127.0.0.1'):
+        if host in ('localhost', '127.0.0.1') and DEBUG: # Allow localhost for development
+            qualified_hosts.extend([
+                    f"http://{host}:8000",
+                ])
             continue
             
         # Handle wildcard domains (starting with dot)
         if host.startswith('.'):
-            # Remove the leading dot and add wildcard
             domain = host[1:]
             qualified_hosts.append(f"https://*.{domain}")
         else:
-            # Regular domain - add only direct https:// prefix
             qualified_hosts.append(f"https://{host}")
     
     return qualified_hosts
 
-DOMAIN = os.environ.get("DOMAIN")
 DEBUG = get_bool_env("DEBUG", False)
 LOGGING = get_bool_env("LOGGING", False)
 BASE_DIR = Path(__file__).resolve().parent.parent  # Three levels up
@@ -47,7 +46,7 @@ logger = logging.getLogger("django")
 if not DEBUG:
     SESSION_COOKIE_SECURE = True
     SESSION_COOKIE_HTTPONLY = True
-    # CSRF_COOKIE_HTTPONLY = True
+    # CSRF_COOKIE_HTTPONLY = True # Broke ckedtor5 image uploads
     # CSRF_COOKIE_SECURE = True
     SECURE_SSL_REDIRECT = True
     SECURE_BROWSER_XSS_FILTER = True
@@ -69,7 +68,6 @@ if not DEBUG:
     DEFAULT_FROM_EMAIL = os.environ.get("FROM_EMAIL", "")
 
     CSRF_TRUSTED_ORIGINS = FULLY_QUALIFIED_ALLOWED_HOSTS
-
 
 
 if get_bool_env("USE_SQLITE"):
@@ -101,11 +99,7 @@ else:
         logger.error(message)
         sys.exit(1)
 
-
-
-
 # Content Security Policy
-CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", BUCKET_URL)
 CSP_SCRIPT_SRC_ELEM = ("'self'", "'unsafe-inline'", BUCKET_URL)
 CSP_SCRIPT_SRC = (
     "'self'", 
@@ -113,11 +107,20 @@ CSP_SCRIPT_SRC = (
     "'unsafe-inline'", 
     BUCKET_URL,
 )
+CSP_CONNECT_SRC = tuple(["'self'"] + FULLY_QUALIFIED_ALLOWED_HOSTS)
+
+# Livereload.js is on 127.0.0.1:35729
+# There is never a reason to allow livereload.js in production
+if DEBUG and get_bool_env("LIVERELOAD"):
+    CSP_SCRIPT_SRC_ELEM += ("http://127.0.0.1:35729",)
+    CSP_SCRIPT_SRC += ("http://127.0.0.1:35729",)
+    CSP_CONNECT_SRC += ("ws://127.0.0.1:35729",)
+
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", BUCKET_URL)
 CSP_MEDIA_SRC = "'self'"
 CSP_IMG_SRC = tuple(["'self'", "data:", "https://openstreetmap.org", "https://*.openstreetmap.org", BUCKET_URL] + 
                     FULLY_QUALIFIED_ALLOWED_HOSTS)
 CSP_FONT_SRC = "'self'"
-CSP_CONNECT_SRC = tuple(["'self'"] + FULLY_QUALIFIED_ALLOWED_HOSTS)
 CSP_FRAME_SRC = tuple(["'self'"] + 
                      FULLY_QUALIFIED_ALLOWED_HOSTS +
                      ["https://youtube.com",
@@ -144,7 +147,7 @@ INSTALLED_APPS = [
     "django.contrib.redirects",
     "django_ckeditor_5",
     "robots",
-    "sri",
+    # "sri",
     "django_htmx",
     "django.contrib.humanize",
     "django.contrib.staticfiles",
@@ -205,7 +208,7 @@ CACHES = {
 
 FORMATTERS = {
     "verbose": {
-        "format": "{levelname} {asctime:s} {name} {threadName} {thread:d} {module} {filename} {lineno:d} {name} {funcName} {process:d} {message}",
+        "format": "{levelname} {asctime:s} {name} {threadName} {thread:d} {module} {filename} {lineno:d} {funcName} {process:d} {message}",
         "style": "{",
     },
     "simple": {
