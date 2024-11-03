@@ -12,6 +12,7 @@ if "DYNO" not in os.environ:
 def get_bool_env(var_name, default=False):
     return str(os.environ.get(var_name, str(default))).lower() == "true"
 
+
 DOMAIN = os.environ.get("DOMAIN")
 DEBUG = get_bool_env("DEBUG", False)
 LOGGING = get_bool_env("LOGGING", False)
@@ -94,12 +95,21 @@ else:
 # Content Security Policy
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", BUCKET_URL)
 CSP_SCRIPT_SRC_ELEM = ("'self'", "'unsafe-inline'", BUCKET_URL)
-CSP_SCRIPT_SRC = ("'self'", "'unsafe-eval'", "'unsafe-inline'", BUCKET_URL)
+CSP_SCRIPT_SRC = (
+    "'self'", 
+    "'unsafe-eval'", 
+    "'unsafe-inline'", 
+    BUCKET_URL,
+)
 CSP_MEDIA_SRC = "'self'"
-CSP_IMG_SRC = ("'self'", "data:", "*.openstreetmap.org", BUCKET_URL, f"https://{DOMAIN}")
+CSP_IMG_SRC = ("'self'", "data:", "*.openstreetmap.org", BUCKET_URL, f"https://*.{DOMAIN}")
 CSP_FONT_SRC = "'self'"
-CSP_CONNECT_SRC = ("'self'", f"https://{DOMAIN}")
-CSP_FRAME_SRC = ("'self'", f"https://{DOMAIN}")
+CSP_CONNECT_SRC = ("'self'", f"https://*.{DOMAIN}")
+CSP_FRAME_SRC = (
+    "'self'", 
+    f"https://*.{DOMAIN}",
+    "https://*.youtube.com"
+)
 CSP_FRAME_ANCESTORS = ("'self'",)
 CSP_BASE_URI = ("'none'",)
 CSP_FORM_ACTION = "'self'"
@@ -143,23 +153,6 @@ MIDDLEWARE = [
 
 LOGS_DIR = BASE_DIR / "logs"
 LOGS_DIR.mkdir(exist_ok=True)
-
-REQUIRED_ENV_VARS = [
-    "SECRET_KEY",
-    "ALLOWED_HOSTS",
-    "SITE_ID",
-    "DOMAIN",
-]
-
-def validate_env_vars():
-    missing = []
-    for var in REQUIRED_ENV_VARS:
-        if not os.environ.get(var):
-            missing.append(var)
-    if missing:
-        raise Exception(f"Required environment variables are missing: {', '.join(missing)}")
-
-validate_env_vars()
 
 if get_bool_env("LIVERELOAD"):
     INSTALLED_APPS += ["livereload"]
