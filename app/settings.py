@@ -102,13 +102,15 @@ CSP_SCRIPT_SRC = (
     BUCKET_URL,
 )
 CSP_MEDIA_SRC = "'self'"
-CSP_IMG_SRC = ("'self'", "data:", "*.openstreetmap.org", BUCKET_URL, f"https://*.{DOMAIN}")
+CSP_IMG_SRC = ("'self'", "data:", "https://openstreetmap.org", "https://*.openstreetmap.org", BUCKET_URL, f"https://{DOMAIN}", f"https://*.{DOMAIN}")
 CSP_FONT_SRC = "'self'"
-CSP_CONNECT_SRC = ("'self'", f"https://*.{DOMAIN}")
+CSP_CONNECT_SRC = ("'self'", f"https://{DOMAIN}", f"https://*.{DOMAIN}")
 CSP_FRAME_SRC = (
     "'self'", 
+    f"https://{DOMAIN}",
     f"https://*.{DOMAIN}",
-    "https://*.youtube.com"
+    "https://youtube.com",
+    "https://*.youtube.com",
 )
 CSP_FRAME_ANCESTORS = ("'self'",)
 CSP_BASE_URI = ("'none'",)
