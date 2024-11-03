@@ -40,6 +40,13 @@ SITE_ID = int(os.environ["SITE_ID"])
 BUCKET_URL = os.environ.get("AWS_URL")
 X_FRAME_OPTIONS = "SAMEORIGIN"
 USE_SRI = False
+USE_CLOUD = get_bool_env("USE_CLOUD")
+LANGUAGE_CODE = "en-us"
+TIME_ZONE = "UTC"
+USE_I18N = True
+USE_TZ = True
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_HOST = os.environ.get("DJANGO_STATIC_HOST", "") if USE_CLOUD else ""
 
 logger = logging.getLogger("django")
 
@@ -135,6 +142,7 @@ CSP_WORKER_SRC = ("'self'", "blob:")
 CSP_EXCLUDE_URL_PREFIXES = "/admin"
 
 INSTALLED_APPS = [
+    "whitenoise.runserver_nostatic",
     "blog.apps.BlogConfig",
     "users.apps.UsersConfig",
     "django.contrib.admin",
@@ -156,6 +164,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -306,12 +315,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = "en-us"
-TIME_ZONE = "UTC"
-USE_I18N = True
-USE_TZ = True
-
-if get_bool_env("USE_S3"):
+if USE_CLOUD:
     AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
     AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
@@ -320,7 +324,7 @@ if get_bool_env("USE_S3"):
     AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
 
     STATIC_LOCATION = "static"
-    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/"
+    STATIC_URL = f"{STATIC_HOST}/{STATIC_LOCATION}/"
 
     MEDIA_LOCATION = "media"
     MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/"
@@ -334,25 +338,21 @@ if get_bool_env("USE_S3"):
         "staticfiles": {
             "BACKEND": "app.storage_backends.StaticStorage",
         },
+        "media": {
+            "BACKEND": "app.storage_backends.PublicMediaStorage",
+        }
     }
-
-    STATICFILES_STORAGE = "app.storage_backends.StaticStorage"
 
     DEFAULT_FILE_STORAGE = "app.storage_backends.PublicMediaStorage"
     PRIVATE_FILE_STORAGE = "app.storage_backends.PrivateMediaStorage"
-
-    if get_bool_env("USE_S3"):
-        POST_IMAGE_STORAGE = "app.storage_backends.PostImageStorageS3"
-    else:
-        POST_IMAGE_STORAGE = "app.storage_backends.PostImageStorageLocal"
-
+    POST_IMAGE_STORAGE = "app.storage_backends.PostImageStorageS3"
     CKEDITOR_5_FILE_STORAGE = POST_IMAGE_STORAGE
 
 else:
-    STATIC_URL = "/staticfiles/"
+    STATIC_URL = f"{STATIC_HOST}/staticfiles/"
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
     MEDIA_LOCATION = "mediafiles"
-    MEDIA_URL = "/mediafiles/"
+    MEDIA_URL = f"{STATIC_HOST}/mediafiles/"
     MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 
     STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
@@ -362,7 +362,7 @@ else:
             "BACKEND": "django.core.files.storage.FileSystemStorage",
         },
         "staticfiles": {
-            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
         },
     }
 
@@ -547,4 +547,4 @@ CKEDITOR_5_CONFIGS = {
 }
 
 
-CKEDITOR_5_CUSTOM_CSS = STATIC_URL + "django_ckeditor_5/ckeditor_custom.css"
+CKEDITOR_5_CUSTOM_CSS = f"{STATIC_HOST}/django_ckeditor_5/ckeditor_custom.css"

@@ -32,7 +32,6 @@ class PostImageStorageS3(PostImageStorageBase, S3Boto3Storage):
     location = "media"
     default_acl = "public-read"
     file_overwrite = False
-
     def _save(self, name, content):
         name = self.get_upload_path(name)
         return super()._save(name, content)
@@ -45,3 +44,4 @@ class PostImageStorageLocal(PostImageStorageBase, FileSystemStorage):
     def _save(self, name, content):
         name = self.get_upload_path(name)
         return super()._save(name, content)
+
