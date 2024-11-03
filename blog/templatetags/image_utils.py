@@ -2,8 +2,9 @@ from django import template
 from django.conf import settings
 from django.utils.safestring import mark_safe
 import re
-import os
+import logging
 
+logger = logging.getLogger(__name__)
 register = template.Library()
 
 @register.filter
@@ -12,7 +13,7 @@ def fix_image_urls(content):
     Takes content with relative image paths and converts them to full URLs based on storage backend.
     Example: 
         Input:  src="post_imgs/image.png"
-        Output: src="https://bucket.s3.amazonaws.com/media/post_imgs/image.png" (if USE_S3)
+        Output: src="https://cloudfront.net/media/post_imgs/image.png" (if USE_CLOUD)
                 src="/mediafiles/post_imgs/image.png" (if local storage)
     """
     if not content:
@@ -23,28 +24,30 @@ def fix_image_urls(content):
     
     def replace_url(match):
         path = match.group(1)
-        if os.environ.get("USE_S3") == "True":
-            bucket_url = settings.BUCKET_URL.rstrip("/")
-            return f'src="{bucket_url}/media/{path}"'
+        logger.debug(f"Fixing image URL for path: {path}")
+        if settings.USE_CLOUD:
+            url = f"{settings.STATIC_HOST}/{settings.MEDIA_LOCATION}/{path}"
+            logger.debug(f"Using CloudFront URL: {url}")
+            return f'src="{url}"'
         else:
-            return f'src="/mediafiles/{path}"'
+            url = f"/mediafiles/{path}"
+            logger.debug(f"Using local URL: {url}")
+            return f'src="{url}"'
     
-    return mark_safe(re.sub(pattern, replace_url, content))
+    fixed_content = re.sub(pattern, replace_url, content)
+    return mark_safe(fixed_content)
 
 @register.simple_tag
 def get_image_url(image_field):
     """
     Returns the correct URL for an image field based on storage backend:
-    - When USE_S3=True: Use AWS bucket URL with /media/
-    - When USE_S3=False: Use /mediafiles/
+    - When USE_CLOUD=True: Use CloudFront URL with /media/
+    - When USE_CLOUD=False: Use /mediafiles/
     """
     if not image_field:
         return ""
         
-    file_path = str(image_field.name)
-    
-    if os.environ.get("USE_S3") == "True":
-        bucket_url = settings.BUCKET_URL.rstrip("/")
-        return f"{bucket_url}/media/{file_path}"
+    if settings.USE_CLOUD:
+        return f"{settings.STATIC_HOST}/{settings.MEDIA_LOCATION}/{image_field.name}"
     else:
-        return f"/mediafiles/{file_path}"
+        return f"/mediafiles/{image_field.name}"

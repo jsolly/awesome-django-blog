@@ -291,6 +291,21 @@ LOGGERS = {
         "level": "INFO",
         "propagate": False,
     },
+    "django.core.files": {
+        "handlers": ["console_handler"],
+        "level": "DEBUG",
+        "propagate": True,
+    },
+    "storages": {
+        "handlers": ["console_handler"],
+        "level": "DEBUG",
+        "propagate": True,
+    },
+    "app.storage_backends": {
+        "handlers": ["console_handler"],
+        "level": "DEBUG",
+        "propagate": True,
+    },
 }
 
 
@@ -321,23 +336,31 @@ AUTH_PASSWORD_VALIDATORS = [
 if USE_CLOUD:
     AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
     AWS_DEFAULT_ACL = None
+    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"  # Need this for uploads
     AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
 
     STATIC_LOCATION = "static"
     STATIC_URL = f"{STATIC_HOST}/{STATIC_LOCATION}/"
 
     MEDIA_LOCATION = "media"
-    MEDIA_URL = f"{STATIC_HOST}/{MEDIA_LOCATION}/"
+    MEDIA_URL = f"{STATIC_HOST}/{MEDIA_LOCATION}/"  # This should be used for all media
+    MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 
     PRIVATE_MEDIA_LOCATION = "private"
+
+    BUCKET_URL = os.environ.get("AWS_BUCKET_URL")  # Keep this for uploads
 
     STORAGES = {
         "default": {
             "BACKEND": "app.storage_backends.PublicMediaStorage",
         },
         "staticfiles": {
-            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+            "BACKEND": "app.storage_backends.StaticStorage",
+        },
+        "media": { 
+            "BACKEND": "app.storage_backends.PublicMediaStorage",
         }
     }
 
