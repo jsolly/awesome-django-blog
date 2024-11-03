@@ -21,12 +21,10 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
 SITE_ID = int(os.environ["SITE_ID"])
 BUCKET_URL = os.environ.get("AWS_URL")
-
-logger = logging.getLogger("django")
-
-
 X_FRAME_OPTIONS = "SAMEORIGIN"
 USE_SRI = False
+
+logger = logging.getLogger("django")
 
 
 if not DEBUG:
@@ -109,8 +107,10 @@ CSP_FRAME_SRC = (
     "'self'", 
     f"https://{DOMAIN}",
     f"https://*.{DOMAIN}",
-    "https://youtube.com",
+    "https://youtube.com", # YouTube embeds
     "https://*.youtube.com",
+    "https://nbviewer.org/", # Embed Jupyter notebooks
+    "https://*.nbviewer.org/",
 )
 CSP_FRAME_ANCESTORS = ("'self'",)
 CSP_BASE_URI = ("'none'",)
