@@ -12,6 +12,22 @@
     e.preventDefault();
     e.returnValue = "Are you sure you want to leave this page?";
   });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const editors = document.querySelectorAll('.django_ckeditor_5');
+    editors.forEach(editor => {
+      editor.addEventListener('ready', function() {
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        this.editor.config._config.simpleUpload = {
+          uploadUrl: '/ckeditor5/image_upload/',
+          withCredentials: true,
+          headers: {
+            'X-CSRFToken': csrfToken
+          }
+        };
+      });
+    });
+  });
 </script>
 {% endblock head %}
 

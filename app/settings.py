@@ -28,15 +28,15 @@ logger = logging.getLogger("django")
 
 
 if not DEBUG:
-    SESSION_COOKIE_SECURE = True
-    SESSION_COOKIE_HTTPONLY = True
-    # CSRF_COOKIE_HTTPONLY = True
-    # CSRF_COOKIE_SECURE = True
-    SECURE_SSL_REDIRECT = True
-    SECURE_BROWSER_XSS_FILTER = True
-    SECURE_CONTENT_TYPE_NOSNIFF = True
-    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-    SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+    # SESSION_COOKIE_SECURE = True
+    # SESSION_COOKIE_HTTPONLY = True
+    CSRF_COOKIE_HTTPONLY = True
+    CSRF_COOKIE_SECURE = True
+    # SECURE_SSL_REDIRECT = True
+    # SECURE_BROWSER_XSS_FILTER = True
+    # SECURE_CONTENT_TYPE_NOSNIFF = True
+    # SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    # SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
     # HSTS SETTINGS (Configured in CloudFlare)
     # SECURE_HSTS_SECONDS = 60
@@ -53,7 +53,9 @@ if not DEBUG:
 
     CSRF_TRUSTED_ORIGINS = [
         f"https://{DOMAIN}",
-        f"https://*.{DOMAIN}"
+        f"https://*.{DOMAIN}",
+        "http://localhost:8000",
+        "http://127.0.0.1:8000",
     ]
 
 
@@ -516,13 +518,6 @@ CKEDITOR_5_CONFIGS = {
                     "class": "ck-heading_heading3",
                 },
             ]
-        },
-        "simpleUpload": {
-            "uploadUrl": "/ckeditor5/image_upload/",
-            "withCredentials": True,
-            "headers": {
-                "X-CSRF-TOKEN": "{{csrf_token}}"
-            }
         },
     },
     "list": {
