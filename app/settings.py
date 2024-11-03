@@ -15,6 +15,11 @@ def get_bool_env(var_name, default=False):
 DOMAIN = os.environ.get("DOMAIN")
 DEBUG = get_bool_env("DEBUG", False)
 LOGGING = get_bool_env("LOGGING", False)
+BASE_DIR = Path(__file__).resolve().parent.parent  # Three levels up
+SECRET_KEY = os.environ["SECRET_KEY"]
+ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
+SITE_ID = int(os.environ["SITE_ID"])
+BUCKET_URL = os.environ.get("AWS_URL")
 
 logger = logging.getLogger("django")
 
@@ -26,13 +31,13 @@ USE_SRI = False
 if not DEBUG:
     SESSION_COOKIE_SECURE = True
     SESSION_COOKIE_HTTPONLY = True
-    CSRF_COOKIE_HTTPONLY = True
+    # CSRF_COOKIE_HTTPONLY = True
     # CSRF_COOKIE_SECURE = True
-    # SECURE_SSL_REDIRECT = True
-    # SECURE_BROWSER_XSS_FILTER = True
-    # SECURE_CONTENT_TYPE_NOSNIFF = True
-    # SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-    # SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+    SECURE_SSL_REDIRECT = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
     # HSTS SETTINGS (Configured in CloudFlare)
     # SECURE_HSTS_SECONDS = 60
@@ -53,12 +58,6 @@ if not DEBUG:
     ]
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent  # Three levels up
-
-SECRET_KEY = os.environ["SECRET_KEY"]
-ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
-
-SITE_ID = int(os.environ["SITE_ID"])
 
 if get_bool_env("USE_SQLITE"):
     DATABASES = {
@@ -90,7 +89,7 @@ else:
         sys.exit(1)
 
 
-BUCKET_URL = os.environ.get("AWS_URL")
+
 
 # Content Security Policy
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", BUCKET_URL)
