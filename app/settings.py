@@ -37,7 +37,6 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
 FULLY_QUALIFIED_ALLOWED_HOSTS = get_qualified_hosts()
 SITE_ID = int(os.environ["SITE_ID"])
-BUCKET_URL = os.environ.get("AWS_URL")
 X_FRAME_OPTIONS = "SAMEORIGIN"
 USE_SRI = False
 USE_CLOUD = get_bool_env("USE_CLOUD")
@@ -107,12 +106,16 @@ else:
         sys.exit(1)
 
 # Content Security Policy
-CSP_SCRIPT_SRC_ELEM = ("'self'", "'unsafe-inline'", BUCKET_URL)
+CSP_SCRIPT_SRC_ELEM = (
+    "'self'", 
+    "'unsafe-inline'", 
+    STATIC_HOST,
+)
 CSP_SCRIPT_SRC = (
     "'self'", 
     "'unsafe-eval'", 
     "'unsafe-inline'", 
-    BUCKET_URL,
+    STATIC_HOST,
 )
 CSP_CONNECT_SRC = tuple(["'self'"] + FULLY_QUALIFIED_ALLOWED_HOSTS)
 
@@ -123,9 +126,9 @@ if DEBUG and get_bool_env("LIVERELOAD"):
     CSP_SCRIPT_SRC += ("http://127.0.0.1:35729",)
     CSP_CONNECT_SRC += ("ws://127.0.0.1:35729",)
 
-CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", BUCKET_URL)
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", STATIC_HOST)
 CSP_MEDIA_SRC = "'self'"
-CSP_IMG_SRC = tuple(["'self'", "data:", "https://openstreetmap.org", "https://*.openstreetmap.org", BUCKET_URL] + 
+CSP_IMG_SRC = tuple(["'self'", "data:", "https://openstreetmap.org", "https://*.openstreetmap.org", STATIC_HOST] +
                     FULLY_QUALIFIED_ALLOWED_HOSTS)
 CSP_FONT_SRC = "'self'"
 CSP_FRAME_SRC = tuple(["'self'"] + 
@@ -318,32 +321,26 @@ AUTH_PASSWORD_VALIDATORS = [
 if USE_CLOUD:
     AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-    AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
     AWS_DEFAULT_ACL = None
-    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
     AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
 
     STATIC_LOCATION = "static"
     STATIC_URL = f"{STATIC_HOST}/{STATIC_LOCATION}/"
 
     MEDIA_LOCATION = "media"
-    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/"
+    MEDIA_URL = f"{STATIC_HOST}/{MEDIA_LOCATION}/"
 
     PRIVATE_MEDIA_LOCATION = "private"
 
     STORAGES = {
         "default": {
-            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+            "BACKEND": "app.storage_backends.PublicMediaStorage",
         },
         "staticfiles": {
-            "BACKEND": "app.storage_backends.StaticStorage",
-        },
-        "media": {
-            "BACKEND": "app.storage_backends.PublicMediaStorage",
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
         }
     }
 
-    DEFAULT_FILE_STORAGE = "app.storage_backends.PublicMediaStorage"
     PRIVATE_FILE_STORAGE = "app.storage_backends.PrivateMediaStorage"
     POST_IMAGE_STORAGE = "app.storage_backends.PostImageStorageS3"
     CKEDITOR_5_FILE_STORAGE = POST_IMAGE_STORAGE
