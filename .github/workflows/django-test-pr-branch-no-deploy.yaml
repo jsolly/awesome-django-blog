@@ -58,7 +58,7 @@ jobs:
       - name: run-unit-tests-with-coverage
         run: |
           source .venv/bin/activate
-          coverage run --rcfile=config/.coveragerc -m pytest app
+          coverage run --rcfile=config/.coveragerc -m pytest tests
 
   static_analysis:
     runs-on: ubuntu-latest

@@ -54,7 +54,7 @@ The app comes preinstalled with two users. One is an admin and the other can onl
 ### Coverage
 
 ```shell
-coverage run --rcfile=config/.coveragerc -m pytest app
+coverage run --rcfile=config/.coveragerc -m pytest tests
 coverage report -m --skip-covered --rcfile=config/.coveragerc
 ```
 
