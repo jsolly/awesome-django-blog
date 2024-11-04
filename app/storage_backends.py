@@ -68,11 +68,10 @@ class PostImageStorageS3(PostImageStorageBase, S3Boto3Storage):
         """Override url method to use CloudFront domain"""
         logger.debug(f"PostImageStorageS3.url called for {name}")
         if settings.USE_CLOUD and settings.STATIC_HOST:
-            url = f"{settings.STATIC_HOST}/{self.location}/{self.get_upload_path(name)}"
+            url = f"{settings.STATIC_HOST}/{self.location}/{name}"
             logger.debug(f"Returning CloudFront URL: {url}")
             return url
         url = super().url(name)
-        logger.debug(f"Returning S3 URL: {url}")
         return url
 
 

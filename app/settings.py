@@ -566,5 +566,4 @@ CKEDITOR_5_CONFIGS = {
     },
 }
 
-
-CKEDITOR_5_CUSTOM_CSS = f"{STATIC_HOST}/django_ckeditor_5/ckeditor_custom.css"
+CKEDITOR_5_CUSTOM_CSS = f"{STATIC_URL}django_ckeditor_5/ckeditor_custom.css"

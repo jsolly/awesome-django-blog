@@ -5,8 +5,6 @@ from django.utils.text import slugify
 from django.contrib.auth.models import User
 from django_ckeditor_5.fields import CKEditor5Field
 from django_resized import ResizedImageField
-from django.conf import settings
-import os
 
 # import logging
 # logger = logging.getLogger("django")
