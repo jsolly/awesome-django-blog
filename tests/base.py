@@ -2,9 +2,8 @@ from django import setup
 from dotenv import load_dotenv
 import os
 
-
-# Set USE_S3 to False for testing
-os.environ["USE_S3"] = "False"
+os.environ["USE_SQLITE"] = "True"
+os.environ["USE_CLOUD"] = "False"
 # Set the site id to 1 because we need to create a site object in the database
 os.environ["SITE_ID"] = "1"
 setup()
