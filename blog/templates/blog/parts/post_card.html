@@ -1,0 +1,51 @@
+{% load post_utils %}
+{% load static %}
+{% load image_utils %}
+
+<article class="post">
+  <a href="{% url 'post-detail' post.slug %}" aria-label='{{ post.title }}'>
+    <div class="post-card">
+      <div class="post-card-row">
+        <div class="post-card-meta-img-container">
+          <figure>
+            <img src="{% get_image_url post.metaimg %}" alt="{{ post.metaimg_alt_txt }}" class="post-card-img"
+              loading="lazy">
+            <figcaption class="visually-hidden">{{ post.metaimg_alt_txt }}</figcaption>
+          </figure>
+        </div>
+        <div class="post-card-content">
+          <div class="post-card-info">
+            <div class="post-body">
+              <div class="post-header">
+                <h2 class="post-title">{{ post.title }}
+                  {% if post.draft %}
+                  <span class="post-draft">(Draft)</span>
+                  {% endif %}
+                </h2>
+              </div>
+              <div class="post-info">
+                <time datetime="{{ post.date_posted|date:" Y-m-d" }}">{{ post.date_posted|date:"F d, Y" }}</time> in {{ post.category.name }}
+                <div class="post-updated">
+                  {% if post.date_updated|date:"Ymd" != post.date_posted|date:"Ymd" %}
+                  Last updated: <time datetime="{{ post.date_updated|date:" Y-m-d" }}">{{ post.date_updated|date:"F d, Y" }}</time>
+                  {% endif %}
+                </div>
+                <div class="post-readtime">
+                  <img src="{% static 'svg/clock.svg' %}" alt="Clock Icon" class="post-readtime-icon" />
+                  <span class="post-readtime-text">{{ post.content|readtime }}</span>
+                </div>
+              </div>
+              <div class="post-excerpt">
+                {{ post.snippet|safe }}
+              </div>
+            </div>
+            <div class="comment-details">
+              <img src="{% static 'svg/comment-icon.svg' %}" alt="Comment Icon" class="comment-icon">
+              <p>{{ post.comments.count }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+</article>
