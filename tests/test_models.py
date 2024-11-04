@@ -4,7 +4,8 @@ from PIL import Image
 from blog.models import Post, Comment, Category
 from users.models import Profile
 from django.contrib.auth.models import User
-import os
+from django.core.files.uploadedfile import SimpleUploadedFile
+from io import BytesIO
 
 
 class TestModels(SetUp):
@@ -26,20 +27,19 @@ class TestModels(SetUp):
         self.assertEqual(str(profile1), f"{admin.username} Profile")
         self.assertEqual(profile1.get_absolute_url(), reverse("profile"))
         
-        # Create test directory if it doesn't exist
-        test_dir = os.path.join(os.path.dirname(profile1.image.path), "test_images")
-        os.makedirs(test_dir, exist_ok=True)
-        
-        # Create an image larger than 300x300 to trigger resizing
+        # Create a test image in memory
         width, height = 400, 400
         img = Image.new(mode="RGB", size=(width, height))
+        img_io = BytesIO()
+        img.save(img_io, format='JPEG')
+        img_file = SimpleUploadedFile(
+            'test_profile.jpg',
+            img_io.getvalue(),
+            content_type='image/jpeg'
+        )
         
-        # Save to a test image file
-        test_image_path = os.path.join(test_dir, "test_profile.jpg")
-        img.save(test_image_path)
-        
-        # Update profile to use this image
-        profile1.image = test_image_path
+        # Update profile with the test image
+        profile1.image = img_file
         profile1.save()
         
         # Now the image should be resized to 300x300
