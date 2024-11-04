@@ -27,7 +27,7 @@ Awesome-django-blog is a fully functional blogging platform built using the Djan
 ## Installation
 
 ```shell
-# first install Python 3.10.x (have not tested newer versions, but they could work)
+# first install Python 3.12.x (have not tested newer versions, but they could work)
 git clone https://github.com/jsolly/awesome-django-blog.git
 cd awesome-django-blog
 python3 -m venv .venv # Create virtual environment
