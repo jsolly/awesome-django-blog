@@ -10,7 +10,7 @@ on:
 env:
   DEBUG: False
   LOGGING: False
-  DJANGO_SETTINGS_MODULE: app.settings.ci
+  DJANGO_SETTINGS_MODULE: app.settings
   USE_SQLITE: True
   SECRET_KEY: "Not applicable for tests"
   ALLOWED_HOSTS: "127.0.0.1 localhost"
@@ -60,26 +60,26 @@ jobs:
           source .venv/bin/activate
           coverage run --rcfile=config/.coveragerc -m pytest app
 
-  # static_analysis:
-  #   runs-on: ubuntu-latest
-  #   permissions:
-  #     actions: read
-  #     contents: read
-  #     security-events: write
+  static_analysis:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
 
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       language: ["javascript", "python"]
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ["javascript", "python"]
 
-  #   steps:
-  #     - uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v4
 
-  #     - name: initialize-codeQL
-  #       uses: github/codeql-action/init@v2
-  #       with:
-  #         config-file: ./.github/codeql/codeql-config.yml
-  #         languages: ${{ matrix.language }}
+      - name: initialize-codeQL
+        uses: github/codeql-action/init@v2
+        with:
+          config-file: ./.github/codeql/codeql-config.yml
+          languages: ${{ matrix.language }}
 
-  #     - name: perform-codeQL Analysis
-  #       uses: github/codeql-action/analyze@v2
+      - name: perform-codeQL Analysis
+        uses: github/codeql-action/analyze@v2

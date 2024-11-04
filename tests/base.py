@@ -1,0 +1,40 @@
+from django import setup
+from dotenv import load_dotenv
+import os
+
+
+# Set USE_S3 to False for testing
+os.environ["USE_S3"] = "False"
+# Set the site id to 1 because we need to create a site object in the database
+os.environ["SITE_ID"] = "1"
+setup()
+
+load_dotenv()
+
+from django.test import TestCase
+from django.test.utils import setup_test_environment
+from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
+
+# Local imports
+from blog.models import Post, Category
+from .utils import create_unique_post, create_comment
+
+
+class SetUp(TestCase):
+    setup_test_environment()
+    Site.objects.get_or_create(domain='testserver', defaults={'name': 'Test Server'})
+
+    @classmethod
+    def setUpTestData(cls):
+        cls.admin_user_password = "admin"
+        cls.comment_only_user_password = "comment_only"
+        cls.default_category = Category.objects.get(slug="uncategorized")
+        cls.admin_user = User.objects.get(username="admin")
+        cls.comment_only_user = User.objects.get(username="comment_only")
+        cls.first_post = create_unique_post()
+        cls.first_comment = create_comment(cls.first_post)
+        cls.draft_post = create_unique_post(draft=True)
+
+    def tearDown(self):
+        Post.objects.all().delete()

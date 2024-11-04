@@ -33,27 +33,16 @@ cd awesome-django-blog
 python3 -m venv .venv # Create virtual environment
 source .venv/bin/activate # Activate virtual environment
 pip install -r requirements.txt
-python app/manage.py setup_env # Creates .env file from .env.example
-python3 app/manage.py migrate # Create empty schema
-python3 app/manage.py runserver
+python manage.py setup_env # Creates .env file from .env.example
+python3 manage.py migrate # Create empty schema
+python3 manage.py runserver
 ```
 
 ### Seed Posts (Optional)
 This command creates sample posts.
 ```shell
-python3 app/manage.py import_posts utilities/seed_posts/posts.json
+python3 manage.py import_posts utilities/seed_posts/posts.json
 ```
-
-
-<!-- ## Installation (Docker)
-
-```shell
-git clone https://github.com/jsolly/awesome-django-blog.git
-cd awesome-django-blog
-docker-compose build
-docker-compose run --rm app sh -c "python manage.py createsuperuser"
-docker-compose up
-``` -->
 
 ### Default Accounts
 The app comes preinstalled with two users. One is an admin and the other can only add comments to posts. 
@@ -104,8 +93,8 @@ If you want to automatically reload the server whenever you make changes to sour
 
 To use livereload, you have to run these commands in TWO SEPARATE terminal windows. Or you can use the included vscode launch.json to run both commands at once.
 ```sh
-python3 app/manage.py runserver
-python3 app/manage.py livereload
+python3 manage.py runserver
+python3 manage.py livereload
 ```
 
 ### Production Deployment

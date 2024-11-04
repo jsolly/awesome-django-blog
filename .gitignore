@@ -1,11 +1,3 @@
-# Blog Assets
-profile_pics/
-post_metaimgs/
-profile_pics/
-uploads/
-app/media/django_ckeditor_5/
-static/
-
 ## Posts and embeddings
 exported_posts/
 processed/
@@ -28,10 +20,16 @@ blogthedata*.sql
 linode*.img
 migration_backup
 
+# Static Files
+staticfiles/
+mediafiles/*
+
+# But don't ignore default.webp
+!mediafiles/default.webp
+
 # Other
-app/logs/*.log*
+*.log
 .vscode/
 
 db.sqlite3
 db.sqlite3-journal
-
