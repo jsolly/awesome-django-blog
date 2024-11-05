@@ -272,14 +272,10 @@ class PostDetailView(DetailView):
         context["description"] = self.object.metadesc
         context["comment_form"] = CommentForm()
         context["related_posts"] = related_posts
+        context["metaimg_url"] = self.object.metaimg.url
+        context["metaimg_width"] = self.object.metaimg.width
+        context["metaimg_height"] = self.object.metaimg.height
 
-        # Only try to get local file path if not using cloud storage
-        if not settings.USE_CLOUD:
-            metaimg_path = Path(settings.MEDIA_ROOT) / self.object.metaimg.name
-            if metaimg_path.exists():
-                context["metaimg_url"] = self.object.metaimg.url
-                context["metaimg_width"] = self.object.metaimg.width
-                context["metaimg_height"] = self.object.metaimg.height
         return context
 
 
