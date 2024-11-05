@@ -169,6 +169,7 @@ MIDDLEWARE = [
     'django.middleware.gzip.GZipMiddleware',
     'htmlmin.middleware.HtmlMinifyMiddleware',
     'htmlmin.middleware.MarkRequestMiddleware',
+    'app.middleware.WwwRedirectMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -570,3 +571,6 @@ CKEDITOR_5_CONFIGS = {
 }
 
 CKEDITOR_5_CUSTOM_CSS = f"{STATIC_URL}django_ckeditor_5/ckeditor_custom.css"
+
+# Make sure APPEND_SLASH is set
+APPEND_SLASH = True

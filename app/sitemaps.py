@@ -1,81 +1,45 @@
 from django.contrib.sitemaps import Sitemap
+from blog.models import Post, Category
 from django.urls import reverse
-from blog.models import Post
-from blog.models import Category
-import pytz
-import datetime
-
-
-class HomeSitemap(Sitemap):
-    changefreq = "daily"
-    priority = 0.8
-
-    def items(self):
-        return ["home"]
-
-    def location(self, item):
-        return reverse(item)
 
 
 class PostSitemap(Sitemap):
     changefreq = "weekly"
-    priority = 0.9
+    priority = 0.8
 
     def items(self):
-        return Post.objects.all()
+        return Post.objects.active()
 
     def lastmod(self, obj):
-        return obj.date_posted
+        return obj.date_updated
 
-    # def location() Django uses get_absolute_url() by default
+    def location(self, obj):
+        return obj.get_absolute_url()
 
 
 class CategorySitemap(Sitemap):
     changefreq = "weekly"
-    priority = 0.5
+    priority = 0.6
 
     def items(self):
         return Category.objects.all()
 
-    def lastmod(self, obj):
-        try:
-            latest_post = obj.post_set.latest("date_posted")
-            return latest_post.date_posted
-        # if there are no posts in the category
-        except Post.DoesNotExist:
-            timezone = pytz.timezone("America/Los_Angeles")
-            default_datetime = datetime.datetime(2023, 1, 1)
-            default_datetime = timezone.localize(default_datetime)
-            return default_datetime
+    def location(self, obj):
+        return obj.get_absolute_url()
 
 
-class WorksCitedSiteMap(Sitemap):
+class StaticSitemap(Sitemap):
     changefreq = "monthly"
-    priority = 0.1
+    priority = 0.3
 
     def items(self):
-        return ["works-cited"]
-
-    def location(self, item):
-        return reverse(item)
-
-
-class privacyPolicySiteMap(Sitemap):
-    changefreq = "monthly"
-    priority = 0.1
-
-    def items(self):
-        return ["privacy"]
-
-    def location(self, item):
-        return reverse(item)
-
-class StatusPageSiteMap(Sitemap):
-    changefreq = "monthly"
-    priority = 0.1
-
-    def items(self):
-        return ["status"]
+        return [
+            'home',
+            'works-cited',
+            'privacy',
+            'status',
+            'all-posts',
+        ]
 
     def location(self, item):
         return reverse(item)

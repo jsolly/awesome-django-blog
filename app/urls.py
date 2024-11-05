@@ -5,11 +5,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from app.sitemaps import (
     PostSitemap,
-    HomeSitemap,
-    WorksCitedSiteMap,
-    privacyPolicySiteMap,
     CategorySitemap,
-    StatusPageSiteMap,
+    StaticSitemap,
 )
 from .views import (
     works_cited_view,
@@ -30,11 +27,8 @@ from users.views import (
 
 sitemaps = {
     "posts": PostSitemap,
-    "home page": HomeSitemap,
-    "Works Cited": WorksCitedSiteMap,
-    "Privacy Policy": privacyPolicySiteMap,
-    "Categories": CategorySitemap,
-    "Status Page": StatusPageSiteMap,
+    "categories": CategorySitemap,
+    "static": StaticSitemap,
 }
 
 urlpatterns = [
