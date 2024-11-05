@@ -22,7 +22,7 @@ migration_backup
 
 # Static Files
 staticfiles/
-mediafiles/
+mediafiles/*
 
 # But don't ignore default.webp
 !mediafiles/default.webp

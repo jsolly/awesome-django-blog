@@ -3,6 +3,7 @@ from django.db.models import Count
 from django.urls import resolve
 from django.urls import reverse, Resolver404
 from django.shortcuts import get_object_or_404
+from django.conf import settings
 
 
 def category_renderer(request):
@@ -50,3 +51,10 @@ def breadcrumbs(request):
     elif match.url_name == "privacy":
         breadcrumbs.append({"name": "Privacy Policy", "url": reverse(match.url_name)})
     return {"breadcrumbs": breadcrumbs}
+
+
+def settings_context(request):
+    """Make settings available in templates."""
+    return {
+        'settings': settings
+    }

@@ -206,6 +206,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "blog.context_processors.category_renderer",
                 "blog.context_processors.breadcrumbs",
+                "blog.context_processors.settings_context",
             ],
             "debug": DEBUG,
         },
