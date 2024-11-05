@@ -96,10 +96,6 @@ To use livereload, you have to run these commands in TWO SEPARATE terminal windo
 python3 manage.py runserver
 python3 manage.py livereload
 ```
-
-### Production Deployment
-I recommend [this post](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu) which I followed to deploy this app on blogthedata.com
-
 ---
 
 ## Features
@@ -134,6 +130,8 @@ I recommend [this post](https://www.digitalocean.com/community/tutorials/how-to-
 - Git hooks for automatic static file generation (manage.py collectstatic)
 - GitActions CI integration with coverage, linting, and testing. Push with confidence!
 - Compatible with Sqllite or postgres databases for fast protyping and production
+- Deploy static assets to Amazon S3 + Cloudfront just by changing a few settings in the .env file.
+- Procfile included for easy deployment with Heroku or other services that use Procfile.
 - Optimized for Performance, SEO, and A11Y
 - Latest Django 5.x
 - 95% or above unit code coverage for a maintainable codebase
@@ -150,6 +148,8 @@ I recommend [this post](https://www.digitalocean.com/community/tutorials/how-to-
 - Automated, rotating backups of blog posts using local and cloud storage
 - Status page for monitoring uptime and performance of your blog at https://blogthedata.com/status using Apache Echarts.
 - Custom 404 and 500 pages that look really cool. So even if your users are lost or your app is broke, they are still having a good time.
+- Canonical domain middleware to force www. prefix and redirect non-www. requests to www.
+- HTML minification to reduce page weight and improve load times
 
 ## Depreciated Features
 
