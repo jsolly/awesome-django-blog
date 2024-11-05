@@ -11,21 +11,27 @@ register = template.Library()
 def fix_image_urls(content):
     """
     Takes content with image paths and converts them to full URLs based on storage backend.
-    Handles both relative paths and full mediafiles paths.
+    Handles relative paths, full mediafiles paths, and CloudFront URLs.
     
-    Examples: 
-        Input:  src="post_imgs/image.png" or src="/mediafiles/post_imgs/image.png"
-        Output: src="https://cloudfront.net/media/post_imgs/image.png" (if USE_CLOUD)
-                src="/mediafiles/post_imgs/image.png" (if local storage)
+    When USE_CLOUD=True:
+        "post_imgs/image.png"                                              → "https://<distrbution_id>.cloudfront.net/media/post_imgs/image.png"
+        "/mediafiles/post_imgs/image.png"                                  → "https://<distrbution_id>.cloudfront.net/media/post_imgs/image.png"
+        "https://<distrbution_id>.cloudfront.net/media/post_imgs/image.png" → "https://<distrbution_id>.cloudfront.net/media/post_imgs/image.png"
+    
+    When USE_CLOUD=False:
+        "post_imgs/image.png"                                              → "/mediafiles/post_imgs/image.png"
+        "/mediafiles/post_imgs/image.png"                                  → "/mediafiles/post_imgs/image.png"
+        "https://<distrbution_id>.cloudfront.net/media/post_imgs/image.png" → "/mediafiles/post_imgs/image.png"
     """
     if not content:
         return content
 
-    # Pattern to match both relative and full mediafiles paths
-    pattern = r'src="(?:/mediafiles/)?((?:post_imgs|uploads)/[^"]*)"'
+    # Pattern to match all possible formats including full CloudFront URLs
+    cloudfront_pattern = re.escape(f"{settings.STATIC_HOST}/{settings.MEDIA_LOCATION}/")
+    pattern = r'src="(?:' + cloudfront_pattern + r'|/mediafiles/|https://[^/]+/media/)?((?:post_imgs|uploads)/[^"]*)"'
     
     def replace_url(match):
-        # Get the path part without /mediafiles/ prefix if it exists
+        # Get the path part without any prefix
         path = match.group(1)
         logger.debug(f"Fixing image URL for path: {path}")
         

@@ -71,6 +71,11 @@ aws s3 sync mediafiles/ s3://your-bucket-name/media
 aws s3 ls s3://your-bucket-name/media/
 ```
 
+## Sync remote media files to local mediafiles directory
+
+```bash
+aws s3 sync s3://your-bucket-name/media/ mediafiles/
+```
 
 
 ## Roll back migration
