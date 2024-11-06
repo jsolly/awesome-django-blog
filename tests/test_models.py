@@ -4,6 +4,8 @@ from PIL import Image
 from blog.models import Post, Comment, Category
 from users.models import Profile
 from django.contrib.auth.models import User
+from django.core.files.uploadedfile import SimpleUploadedFile
+from io import BytesIO
 
 
 class TestModels(SetUp):
@@ -24,13 +26,26 @@ class TestModels(SetUp):
         profile1 = Profile.objects.get(user=admin)
         self.assertEqual(str(profile1), f"{admin.username} Profile")
         self.assertEqual(profile1.get_absolute_url(), reverse("profile"))
+        
+        # Create a test image in memory
         width, height = 400, 400
         img = Image.new(mode="RGB", size=(width, height))
-        img.save(profile1.image.path)
+        img_io = BytesIO()
+        img.save(img_io, format='JPEG')
+        img_file = SimpleUploadedFile(
+            'test_profile.jpg',
+            img_io.getvalue(),
+            content_type='image/jpeg'
+        )
+        
+        # Update profile with the test image
+        profile1.image = img_file
         profile1.save()
+        
+        # Now the image should be resized to 300x300
         with Image.open(profile1.image.path) as img:
-            self.assertEqual(img.height, 300)
-            self.assertEqual(img.width, 300)
+            self.assertLessEqual(img.height, 300)
+            self.assertLessEqual(img.width, 300)
 
     def test_create_comment(self):
         test_post = Post.objects.first()

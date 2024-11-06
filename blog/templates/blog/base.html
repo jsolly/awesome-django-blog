@@ -15,6 +15,13 @@
   <meta name="author" content="John Solly">
   <meta name="description" content="{{ description }}" />
 
+  <!-- Canonical URL -->
+  {% if request.path == '/' %}
+  <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}">
+  {% else %}
+  <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+  {% endif %}
+
   <!-- Open Graph Meta Tags-->
   <meta property="og:locale" content="en_US">
   {% if not post %}
