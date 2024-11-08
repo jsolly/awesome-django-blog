@@ -18,7 +18,7 @@ class blogFeed(Feed):
         return item.metadesc
 
     def item_link(self, item):
-        return item.get_absolute_url() + "test"
+        return item.get_absolute_url()
 
 
 class atomFeed(blogFeed):
