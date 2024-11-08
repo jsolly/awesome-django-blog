@@ -16,7 +16,7 @@ readtime==3.0.0
 requests==2.32.3
 nltk==3.9.1
 
-## Production dependencies
+## Prod dependencies
 Brotli==1.1.0
 django-csp==3.7
 gunicorn==22.0.0
