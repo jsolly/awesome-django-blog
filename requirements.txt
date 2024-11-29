@@ -9,7 +9,7 @@ feedparser==6.0.10
 filetype==1.2.0
 Pillow==10.3.0
 psycopg[binary]==3.2.3
-psutil==5.9.5
+psutil==6.1.0
 python-dotenv==1.0.0
 pytz==2023.3
 readtime==3.0.0
