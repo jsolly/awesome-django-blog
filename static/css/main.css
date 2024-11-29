@@ -1460,6 +1460,11 @@ video {
   .container {
     display: grid;
     grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
   }
 
   header {
@@ -1474,8 +1479,13 @@ video {
   .post-content {
     grid-row: 3;
     grid-column: 1;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: auto;
+    max-width: calc(100% - 20px);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
   }
 
   .footer {
@@ -1635,5 +1645,20 @@ video {
   }
   .nav-categories {
     display: none;
+  }
+}
+
+/* Add specific handling for very small screens */
+@media (max-width: 480px) {
+  .post-content {
+    margin-left: 5px;
+    margin-right: 5px;
+    max-width: calc(100% - 10px);
+  }
+
+  /* Further reduce any paddings */
+  .container > * {
+    padding-left: 5px;
+    padding-right: 5px;
   }
 }
