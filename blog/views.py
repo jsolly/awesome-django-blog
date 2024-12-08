@@ -272,9 +272,15 @@ class PostDetailView(DetailView):
         context["description"] = self.object.metadesc
         context["comment_form"] = CommentForm()
         context["related_posts"] = related_posts
-        context["metaimg_url"] = self.object.metaimg.url
-        context["metaimg_width"] = self.object.metaimg.width
-        context["metaimg_height"] = self.object.metaimg.height
+        
+        try:
+            context["metaimg_url"] = self.object.metaimg.url
+            context["metaimg_width"] = self.object.metaimg.width
+            context["metaimg_height"] = self.object.metaimg.height
+        except Exception:
+            context["metaimg_url"] = self.object.metaimg.url if self.object.metaimg else ""
+            context["metaimg_width"] = 1200  # default width
+            context["metaimg_height"] = 630  # default height
 
         return context
 
