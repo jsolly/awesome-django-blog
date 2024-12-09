@@ -24,8 +24,7 @@ class TestViews(SetUp):
     def test_status_view(self, mock_db_status):
         mock_db_status.return_value.get_status.return_value = (10, 2, 500)
         response = self.client.get(reverse("status"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/status_page.html")
+        self.assertResponseAndTemplate(response, "blog/status_page.html")
 
     # def test_all_posts_view_shows_pagination(self):
     #     response = self.client.get("/all-posts/")
@@ -43,23 +42,20 @@ class TestViews(SetUp):
 
     def test_all_posts_view(self):
         response = self.client.get(reverse("all-posts"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/all_posts.html")
+        self.assertResponseAndTemplate(response, "blog/all_posts.html")
         self.assertIsInstance(response.context["posts"][0], Post)
 
-    def test_home_view_anonymous_user(self):  # TODO add check for draft post
+    def test_home_view_anonymous_user(self):
         response = self.client.get(reverse("home"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/home.html")
+        self.assertResponseAndTemplate(response, "blog/home.html")
         self.assertIsInstance(response.context["posts"][0], Post)
 
     def test_home_view_admin_user(self):
-        # Access using admin_user (should get posts in draft mode)
         self.client.login(
             username=self.admin_user.username, password=self.admin_user_password
         )
         response = self.client.get(reverse("home"))
-        self.assertEqual(response.status_code, 200)
+        self.assertResponseAndTemplate(response, "blog/home.html")
 
     def test_home_view_htmx_request(self):
         headers = {"HTTP_HX-Request": "true", "HTTP_HX-Trigger": "TEST"}
@@ -75,8 +71,7 @@ class TestViews(SetUp):
     def test_post_detail_view_anonymous(self):
         test_post_detail_url = reverse("post-detail", args=[self.first_post.slug])
         response = self.client.get(test_post_detail_url)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/post/post_detail.html")
+        self.assertResponseAndTemplate(response, "blog/post/post_detail.html")
 
     def test_post_detail_view_anonymous_draft_post(self):
         draft_post_detail_url = reverse("post-detail", args=[self.draft_post.slug])
@@ -97,8 +92,7 @@ class TestViews(SetUp):
             username=self.admin_user.username, password=self.admin_user_password
         )
         response = self.client.get(reverse("post-create"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/post/add_post.html")
+        self.assertResponseAndTemplate(response, "blog/post/add_post.html")
         self.assertIsInstance(response.context["form"], PostForm)
         self.assertEqual(response.context["title"], "Create a New Post")
 
@@ -161,8 +155,7 @@ class TestViews(SetUp):
         )
         post1_update_url = reverse("post-update", args=[self.first_post.slug])
         response = self.client.get(post1_update_url)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/post/edit_post.html")
+        self.assertResponseAndTemplate(response, "blog/post/edit_post.html")
         self.assertIsInstance(response.context["form"], PostForm)
         self.assertEqual(response.context["title"], f"Edit {self.first_post.title}")
 
@@ -351,8 +344,7 @@ class TestViews(SetUp):
     def test_category_view_anonymous(self):
         category_url = reverse("blog-category", args=[self.default_category.slug])
         response = self.client.get(category_url)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/categories.html")
+        self.assertResponseAndTemplate(response, "blog/categories.html")
         self.assertEqual(response.context["category"], self.default_category)
         self.assertIsInstance(response.context["posts"][0], Post)
 
@@ -380,10 +372,8 @@ class TestViews(SetUp):
 
 
     def test_search_view_blank(self):
-        # Empty page if user didn't search for anything and manually typed in the search url (get)
         response = self.client.get(reverse("blog-search"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "blog/search_posts.html")
+        self.assertResponseAndTemplate(response, "blog/search_posts.html")
 
     def test_search_view_anonymous(self):
         # If anonymous, should be able to find a post
@@ -406,8 +396,7 @@ class TestViews(SetUp):
 
     def test_register_view_happy_path(self):
         response = self.client.get(reverse("register"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "users/register.html")
+        self.assertResponseAndTemplate(response, "users/register.html")
         self.assertIsInstance(response.context["form"], UserRegisterForm)
 
         data = {
@@ -451,8 +440,7 @@ class TestViews(SetUp):
             username=self.admin_user.username, password=self.admin_user_password
         )
         response = self.client.get(reverse("profile"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "users/profile.html")
+        self.assertResponseAndTemplate(response, "users/profile.html")
         self.assertIsInstance(response.context["p_form"], ProfileUpdateForm)
         self.assertIsInstance(response.context["u_form"], UserUpdateForm)
 
@@ -489,34 +477,29 @@ class TestViews(SetUp):
 
     def test_login_view(self):
         response = self.client.get(reverse("login"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "users/login.html")
+        self.assertResponseAndTemplate(response, "users/login.html")
 
     def test_logout_view(self):
         self.client.login(
             username=self.admin_user.username, password=self.admin_user_password
         )
         response = self.client.post(reverse("logout"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "users/logout.html")
+        self.assertResponseAndTemplate(response, "users/logout.html")
 
     def test_password_rest_view(self):
         response = self.client.get(reverse("password_reset"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "users/password_reset.html")
+        self.assertResponseAndTemplate(response, "users/password_reset.html")
 
     def test_password_reset_done_view(self):
         response = self.client.get(reverse("password_reset_done"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "users/password_reset_done.html")
+        self.assertResponseAndTemplate(response, "users/password_reset_done.html")
 
     # def test_password_reset_confirm_view(self):
     #     # TODO
 
     def test_password_reset_complete(self):
         response = self.client.get(reverse("password_reset_complete"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "users/password_reset_complete.html")
+        self.assertResponseAndTemplate(response, "users/password_reset_complete.html")
 
     def test_sitemap_view(self):
         response = self.client.get(reverse("django.contrib.sitemaps.views.sitemap"))

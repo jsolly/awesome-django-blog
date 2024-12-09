@@ -41,3 +41,15 @@ class SetUp(TestCase):
 
     def tearDown(self):
         Post.objects.all().delete()
+
+    def assertResponseAndTemplate(self, response, template_name, status_code=200):
+        """Helper method to check response status and template after redirects"""
+        if hasattr(response, 'redirect_chain') and response.redirect_chain:
+            # Get the final response status from the last redirect
+            final_url, final_status = response.redirect_chain[-1]
+            self.assertEqual(final_status, status_code)
+        else:
+            # Direct response without redirects
+            self.assertEqual(response.status_code, status_code)
+            
+        self.assertTemplateUsed(response, template_name)
