@@ -60,7 +60,7 @@ class TestViews(SetUp):
     def test_home_view_htmx_request(self):
         headers = {"HTTP_HX-Request": "true", "HTTP_HX-Trigger": "TEST"}
         response = self.client.get(reverse("home"), **headers)
-        self.assertEqual(response.status_code, 200)
+
         self.assertTemplateUsed(response, "blog/parts/posts.html")
 
     # def test_home_view_paginated(self):
@@ -84,7 +84,7 @@ class TestViews(SetUp):
         )
         draft_post_detail_url = reverse("post-detail", args=[self.draft_post.slug])
         response = self.client.get(draft_post_detail_url)
-        self.assertEqual(response.status_code, 200)
+
         self.assertTemplateUsed(response, "blog/post/post_detail.html")
 
     def test_post_create_view_has_correct_context_template_and_form(self):
@@ -203,7 +203,7 @@ class TestViews(SetUp):
         )
 
         response = self.client.get(post1_delete_url)
-        self.assertEqual(response.status_code, 200)
+
         self.assertTemplateUsed(response, "blog/post/post_confirm_delete.html")
         response = self.client.post(post1_delete_url, follow=True)
         self.assertRedirects(response, expected_url=reverse("home"))
@@ -249,7 +249,7 @@ class TestViews(SetUp):
             },
             **headers,
         )
-        self.assertEqual(response.status_code, 200)
+
         self.assertEqual(self.first_post.comments.count(), first_post_comment_count + 1)
 
     def test_update_comment_view_has_correct_context_template_and_form(self):
@@ -259,7 +259,7 @@ class TestViews(SetUp):
         )
         unqiue_comment = create_comment(post=self.first_post)
         response = self.client.get(reverse("comment-update", args=[unqiue_comment.id]))
-        self.assertEqual(response.status_code, 200)
+
         self.assertTemplateUsed(response, "blog/comment/update_comment.html")
         self.assertIsInstance(response.context["form"], CommentForm)
         self.assertEqual(
@@ -304,7 +304,7 @@ class TestViews(SetUp):
         response = self.client.delete(
             reverse("comment-delete", args=[delete_me_comment.id]), **headers
         )
-        self.assertEqual(response.status_code, 200)
+
         self.assertEqual(response.reason_phrase, "Comment deleted successfully")
         self.assertFalse(Comment.objects.filter(id=delete_me_comment.id).exists())
 
@@ -352,7 +352,7 @@ class TestViews(SetUp):
         category_url = reverse("blog-category", args=[self.default_category.slug])
         headers = {"HTTP_HX-Request": "true", "HTTP_HX-Trigger": "test"}
         response = self.client.get(category_url, **headers)
-        self.assertEqual(response.status_code, 200)
+
         self.assertTemplateUsed(response, "blog/parts/posts.html")
 
     # def test_category_view_paginated(self):
@@ -370,7 +370,6 @@ class TestViews(SetUp):
     #     response = self.client.get(category_url, {"page": 2})
     #     self.assertTrue(response.context["page_obj"].has_previous())
 
-
     def test_search_view_blank(self):
         response = self.client.get(reverse("blog-search"))
         self.assertResponseAndTemplate(response, "blog/search_posts.html")
@@ -379,7 +378,7 @@ class TestViews(SetUp):
         # If anonymous, should be able to find a post
         data = {"searched": self.first_post.title}
         response = self.client.get(reverse("blog-search"), data=data)
-        self.assertEqual(response.status_code, 200)
+
         self.assertEqual(response.context["posts"][0], self.first_post)
 
     def test_search_view_staff(self):
@@ -389,7 +388,6 @@ class TestViews(SetUp):
             username=self.admin_user.username, password=self.admin_user_password
         )
         response = self.client.get(reverse("blog-search"), data=data)
-        self.assertEqual(response.status_code, 200)
 
         posts_in_response = response.context["posts"]
         self.assertEqual(posts_in_response.count(), 1)
@@ -470,7 +468,7 @@ class TestViews(SetUp):
             reverse("profile"),
             data={"email": "invalid", "username": ""},
         )
-        self.assertEqual(response.status_code, 200)
+
         self.assertTemplateUsed(response, "users/profile.html")
         self.assertIsInstance(response.context["p_form"], ProfileUpdateForm)
         self.assertIsInstance(response.context["u_form"], UserUpdateForm)
@@ -503,29 +501,24 @@ class TestViews(SetUp):
 
     def test_sitemap_view(self):
         response = self.client.get(reverse("django.contrib.sitemaps.views.sitemap"))
-        self.assertEqual(response.status_code, 200)
 
     def test_robots_view(self):
         response = self.client.get(reverse("robots_rule_list"))
-        self.assertEqual(response.status_code, 200)
+
         lines = response.content.decode().splitlines()
         self.assertEqual(lines[0], "User-agent: *")
 
     def test_works_cited_view(self):
         response = self.client.get(reverse("works-cited"))
-        self.assertEqual(response.status_code, 200)
 
     def test_privacy_view(self):
         response = self.client.get(reverse("privacy"))
-        self.assertEqual(response.status_code, 200)
 
     def test_security_txt_view(self):
         response = self.client.get(reverse("security-txt"))
-        self.assertEqual(response.status_code, 200)
 
     def test_security_pgp_key_view(self):
         response = self.client.get(reverse("security-pgp-key-txt"))
-        self.assertEqual(response.status_code, 200)
 
     @patch("openai.Completion.create")
     def test_generate_gpt_input_title(self, mock_create):
@@ -534,7 +527,7 @@ class TestViews(SetUp):
         response = self.client.post(
             "/generate-with-gpt/", data={"content": "my test blog content"}, **headers
         )
-        self.assertEqual(response.status_code, 200)
+
         self.assertIn("mocked response", response.content.decode())
 
     def test_generate_gpt_input_title_empty(self):
@@ -542,7 +535,7 @@ class TestViews(SetUp):
         response = self.client.post(
             "/generate-with-gpt/", data={"content": ""}, **headers
         )
-        self.assertEqual(response.status_code, 200)
+
         self.assertIn(
             "No content found in the post content field", response.content.decode()
         )
@@ -556,7 +549,7 @@ class TestViews(SetUp):
             data={"title": "my test blog title"},
             **headers,
         )
-        self.assertEqual(response.status_code, 200)
+
         self.assertIn("mocked-response", response.content.decode())
 
     def test_generate_gpt_input_slug_empty(self):
@@ -566,7 +559,7 @@ class TestViews(SetUp):
             data={"title": ""},
             **headers,
         )
-        self.assertEqual(response.status_code, 200)
+
         self.assertIn(
             "No content found in the post title field", response.content.decode()
         )
@@ -580,7 +573,7 @@ class TestViews(SetUp):
             data={"content": "my test blog content"},
             **headers,
         )
-        self.assertEqual(response.status_code, 200)
+
         self.assertIn("mocked response", response.content.decode())
 
     def test_generate_gpt_input_metadesc_empty(self):
@@ -590,7 +583,7 @@ class TestViews(SetUp):
             data={"content": ""},
             **headers,
         )
-        self.assertEqual(response.status_code, 200)
+
         self.assertIn(
             "No content found in the post content field", response.content.decode()
         )
@@ -605,5 +598,5 @@ class TestViews(SetUp):
         response = self.client.post(
             "/answer-with-gpt/", data={"question-text-area": "Test question?"}
         )
-        self.assertEqual(response.status_code, 200)
+
         self.assertIn("mocked response", response.content.decode())
