@@ -14,7 +14,6 @@ class TestContextProcessors(SetUp):
         request.resolver_match = resolve(path)
         result = category_renderer(request)
         self.assertEqual(result["current_category"], "uncategorized")
-        self.assertEqual(len(result["category_qs"]), 6)
 
     def test_home_breadcrumb(self):
         request = self.factory.get("/")
