@@ -6,10 +6,8 @@
 {% endblock head %}
 
 {% block content %}
-
 <section id="Blog-Home-posts">
   <h1 class="display-6">All Posts! {% if page_obj.number > 1 %} (Page {{ page_obj.number }}) {% endif %} </h1>
   {% include "blog/parts/posts_paginated.html" %}
 </section>
-
 {% endblock content %}

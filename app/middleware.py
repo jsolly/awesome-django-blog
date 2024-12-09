@@ -6,8 +6,8 @@ class WwwRedirectMiddleware:
 
     def __call__(self, request):
         host = request.get_host().lower()
-        if host.startswith('www.'):
+        if not host.startswith('www.') and host not in ('localhost', '127.0.0.1'):
             return HttpResponsePermanentRedirect(
-                f"{request.scheme}://{host[4:]}{request.path}"
+                f"{request.scheme}://www.{host}{request.get_full_path()}"
             )
         return self.get_response(request) 

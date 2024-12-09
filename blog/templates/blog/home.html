@@ -1,9 +1,5 @@
 {% extends "blog/base.html" %} {% load static %}
 
-{% block head %}
-<link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}" />
-{% endblock head %}
-
 {% block content %}
 <section id="about-me-home">
   {% include "blog/parts/about_me_card.html" %}
