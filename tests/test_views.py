@@ -485,18 +485,18 @@ class TestViews(SetUp):
         self.assertResponseAndTemplate(response, "users/logout.html")
 
     def test_password_rest_view(self):
-        response = self.client.get(reverse("password_reset"))
+        response = self.client.get(reverse("password_reset"), follow=True)
         self.assertResponseAndTemplate(response, "users/password_reset.html")
 
     def test_password_reset_done_view(self):
-        response = self.client.get(reverse("password_reset_done"))
+        response = self.client.get(reverse("password_reset_done"), follow=True)
         self.assertResponseAndTemplate(response, "users/password_reset_done.html")
 
     # def test_password_reset_confirm_view(self):
     #     # TODO
 
     def test_password_reset_complete(self):
-        response = self.client.get(reverse("password_reset_complete"))
+        response = self.client.get(reverse("password_reset_complete"), follow=True)
         self.assertResponseAndTemplate(response, "users/password_reset_complete.html")
 
     def test_sitemap_view(self):
