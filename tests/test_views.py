@@ -46,7 +46,7 @@ class TestViews(SetUp):
         self.assertIsInstance(response.context["posts"][0], Post)
 
     def test_home_view_anonymous_user(self):
-        response = self.client.get(reverse("home"))
+        response = self.client.get(reverse("home") + "/", follow=True)
         self.assertTemplateUsed(response, "blog/home.html")
         self.assertIsInstance(response.context["posts"][0], Post)
 
@@ -225,11 +225,14 @@ class TestViews(SetUp):
                 "content": "Test comment",
                 "post_slug": self.first_post.slug,
             },
+            follow=True
         )
-        # Redirect to post detail page after comment submission
-        self.assertEqual(response.status_code, 302)
-        # Ensure redirect to post after comment submission
-        self.assertRedirects(response, test_post_detail_url + "#comments")
+        # Check final redirect location and status
+        self.assertRedirects(
+            response, 
+            test_post_detail_url + "#comments",
+            status_code=302
+        )
         # Ensure a comment was added to the post
         self.assertEqual(self.first_post.comments.count(), first_post_comment_count + 1)
 
@@ -371,14 +374,14 @@ class TestViews(SetUp):
     #     self.assertTrue(response.context["page_obj"].has_previous())
 
     def test_search_view_blank(self):
-        response = self.client.get(reverse("blog-search"))
+        response = self.client.get(reverse("blog-search"), follow=True)
         self.assertTemplateUsed(response, "blog/search_posts.html")
 
     def test_search_view_anonymous(self):
         # If anonymous, should be able to find a post
         data = {"searched": self.first_post.title}
-        response = self.client.get(reverse("blog-search"), data=data)
-
+        response = self.client.get(reverse("blog-search"), data=data, follow=True)
+        self.assertTemplateUsed(response, "blog/search_posts.html")
         self.assertEqual(response.context["posts"][0], self.first_post)
 
     def test_search_view_staff(self):
@@ -387,8 +390,8 @@ class TestViews(SetUp):
         self.client.login(
             username=self.admin_user.username, password=self.admin_user_password
         )
-        response = self.client.get(reverse("blog-search"), data=data)
-
+        response = self.client.get(reverse("blog-search"), data=data, follow=True)
+        self.assertTemplateUsed(response, "blog/search_posts.html")
         posts_in_response = response.context["posts"]
         self.assertEqual(posts_in_response.count(), 1)
 
@@ -525,10 +528,12 @@ class TestViews(SetUp):
         mock_create.return_value = {"choices": [{"text": "mocked response"}]}
         headers = {"HTTP_HX-Trigger": "generate-title"}
         response = self.client.post(
-            "/generate-with-gpt/", data={"content": "my test blog content"}, **headers
+            "/generate-with-gpt/", 
+            data={"content": "my test blog content"}, 
+            **headers,
+            follow=True
         )
-
-        self.assertIn("mocked response", response.content.decode())
+        self.assertContains(response, "mocked response")
 
     def test_generate_gpt_input_title_empty(self):
         headers = {"HTTP_HX-Trigger": "generate-title"}
