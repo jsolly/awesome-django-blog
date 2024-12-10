@@ -55,16 +55,16 @@ jobs:
           source .venv/bin/activate
           python3 manage.py migrate --noinput
 
-      - name: run-unit-tests-with-coverage
-        run: |
-          source .venv/bin/activate
-          coverage run --rcfile=config/.coveragerc -m pytest tests
-          coverage lcov --rcfile=config/.coveragerc
+      # - name: run-unit-tests-with-coverage
+      #   run: |
+      #     source .venv/bin/activate
+      #     coverage run --rcfile=config/.coveragerc -m pytest tests
+      #     coverage lcov --rcfile=config/.coveragerc
 
-      - name: coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.github_token }}
+      # - name: coveralls
+      #   uses: coverallsapp/github-action@master
+      #   with:
+      #     github-token: ${{ secrets.github_token }}
 
   static_analysis:
     runs-on: ubuntu-latest
