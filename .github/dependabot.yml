@@ -7,9 +7,9 @@ version: 2
 updates:
   # Maintain dependencies for pip package manager
   - package-ecosystem: pip
-    directory: "/"
+    directory: /
     schedule:
-      interval: "daily"
+      interval: daily
 
   - package-ecosystem: github-actions
     directory: .github/workflows
