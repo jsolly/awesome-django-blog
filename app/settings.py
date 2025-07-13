@@ -34,7 +34,12 @@ DEBUG = get_bool_env("DEBUG", False)
 LOGGING = get_bool_env("LOGGING", False)
 BASE_DIR = Path(__file__).resolve().parent.parent  # Three levels up
 SECRET_KEY = os.environ["SECRET_KEY"]
+
 ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(" ")
+
+# In development, automatically add www.localhost if localhost is present
+if DEBUG and 'localhost' in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append('www.localhost')
 FULLY_QUALIFIED_ALLOWED_HOSTS = get_qualified_hosts()
 SITE_ID = int(os.environ["SITE_ID"])
 X_FRAME_OPTIONS = "SAMEORIGIN"

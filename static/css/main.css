@@ -44,11 +44,9 @@ Global Styles
   --primary-box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
   --secondary-box-shadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
   --primary-gradient: linear-gradient(93.12deg, #0d6efd 0.52%, #007bff 100%);
-  --secondary-gradient: linear-gradient(
-    268.91deg,
-    #0d6efd -2.14%,
-    #007bff 99.69%
-  );
+  --secondary-gradient: linear-gradient(268.91deg,
+      #0d6efd -2.14%,
+      #007bff 99.69%);
 }
 
 html {
@@ -284,6 +282,7 @@ footer {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+
 aside {
   padding: 0 15px;
 }
@@ -781,7 +780,7 @@ figure img {
    Typography
 ============= */
 
-p > code {
+p>code {
   color: #e76f51;
   font-family: monospace;
   font-size: 0.95em;
@@ -800,7 +799,7 @@ p > code {
 
 a[href^="http"]::after {
   content: "↗";
-  margin-left: 0.1rem;
+  vertical-align: middle;
 }
 
 .screenreader-text {
@@ -846,28 +845,27 @@ h2 {
   margin-bottom: 0.5em;
 }
 
-:is(
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    strong,
-    .list-group-item,
-    svg,
-    table,
-    p,
-    blockquote,
-    li,
-    legend,
-    small,
-    .word-count,
-    label,
-    input,
-    form,
+:is(h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong,
+  .list-group-item,
+  svg,
+  table,
+  p,
+  blockquote,
+  li,
+  legend,
+  small,
+  .word-count,
+  label,
+  input,
+  form,
 
-  ) {
+) {
   color: var(--secondary-color);
 }
 
@@ -876,7 +874,7 @@ hr {
   opacity: 0.25;
 }
 
-.post-content > p:first-of-type::first-letter {
+.post-content>p:first-of-type::first-letter {
   font-size: 2rem;
   font-weight: 700;
 }
@@ -896,7 +894,6 @@ h1 {
 
 a {
   text-decoration: none;
-  position: relative;
   color: var(--link-color);
 }
 
@@ -904,24 +901,21 @@ a {
   color: var(--secondary-color);
 }
 
-a:not(.btn, .navbar-brand, #scroll-to-top)::before {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background-color: var(--link-color);
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-  z-index: 1;
+a {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  text-decoration-skip-ink: none;
+  transition: text-decoration-color 0.3s ease;
 }
+
 
 button a,
 button a:hover {
   color: inherit;
 }
+
 /* ============= Chatbot ============= */
 
 #chatbox-container button svg {
@@ -1226,7 +1220,7 @@ textarea::placeholder {
 ============= */
 
 /* Override Ckeditor */
-.ck.ck-toolbar.ck-toolbar_grouping > .ck-toolbar__items {
+.ck.ck-toolbar.ck-toolbar_grouping>.ck-toolbar__items {
   flex-wrap: wrap !important;
 }
 
@@ -1293,7 +1287,7 @@ video {
    Media Queries
 ============= */
 @media (prefers-reduced-motion: reduce) {
-  .navbar-nav > li:hover:not(.dropdown) {
+  .navbar-nav>li:hover:not(.dropdown) {
     animation: none;
   }
 
@@ -1307,8 +1301,8 @@ video {
     animation: button-shake 0.3s linear;
   }
 
-  a:not(#scroll-to-top):hover::before {
-    transform: scaleX(1);
+  a:not(#scroll-to-top, .post a, .list-group-item):hover {
+    text-decoration-color: var(--link-color);
   }
 
   .post-card:not(#aboutMe):hover {
@@ -1339,7 +1333,7 @@ video {
     fill: black;
   }
 
-  p > code {
+  p>code {
     color: #a626a4;
   }
 
@@ -1387,6 +1381,7 @@ video {
 }
 
 @media print {
+
   /* @page
 {
     size: Letter portrait;
@@ -1452,6 +1447,7 @@ video {
 
 /* Responsive Styles*/
 @media (max-width: 1239px) {
+
   /* 
   Changes the layout of the container to a single column grid
   with the header, sidebar, post-content, and footer taking up
@@ -1566,6 +1562,7 @@ video {
 }
 
 @media screen and (min-width: 1240px) {
+
   /* 
   Changes the layout of the container to a 4 column grid.
   The Sidebar and post-content occupy the middle two columns,
@@ -1640,9 +1637,10 @@ video {
 }
 
 @media (min-width: 992px) {
-  .navbar-nav > li:hover:not(.dropdown) {
+  .navbar-nav>li:hover:not(.dropdown) {
     animation: button-shake 0.3s linear;
   }
+
   .nav-categories {
     display: none;
   }
@@ -1657,7 +1655,7 @@ video {
   }
 
   /* Further reduce any paddings */
-  .container > * {
+  .container>* {
     padding-left: 5px;
     padding-right: 5px;
   }

@@ -34,7 +34,7 @@ python3 -m venv .venv # Create virtual environment
 source .venv/bin/activate # Activate virtual environment
 pip install -r requirements.txt
 python manage.py setup_env # Creates .env file from .env.example
-python3 manage.py migrate # Create empty schema
+python3 manage.py migrate # Create empty schema (if you are using postgres, you need to create the database first. The default database is sqlite3)
 python3 manage.py runserver
 ```
 
