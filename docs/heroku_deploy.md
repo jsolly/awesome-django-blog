@@ -31,11 +31,10 @@ heroku config:set ALLOWED_HOSTS="<your_app_name>.herokuapp.com" -a <your_app_nam
 heroku config:set USE_SQLITE=False -a <your_app_name>
 
 # AWS S3 settings
-heroku config:set USE_S3=True -a <your_app_name>
+heroku config:set USE_CLOUD=True -a <your_app_name>
 heroku config:set AWS_ACCESS_KEY_ID=<your-aws-key> -a <your_app_name>
 heroku config:set AWS_SECRET_ACCESS_KEY=<your-aws-secret> -a <your_app_name>
 heroku config:set AWS_STORAGE_BUCKET_NAME=<your-bucket-name> -a <your_app_name>
-heroku config:set AWS_URL=<your-s3-url> -a <your_app_name>
 
 # OpenAI
 heroku config:set OPENAI_API_KEY=<your-openai-key> -a <your_app_name>
