@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/jsolly/awesome-django-blog/badge.svg?branch=master&service=github)](https://coveralls.io/github/jsolly/awesome-django-blog?branch=master)
 ![CodeStyle](https://img.shields.io/badge/ruff-orange?logo=ruff&label=code-style)
 ![Linting](https://img.shields.io/badge/ruff-orange?logo=ruff&label=linting)
-![PythonVersion](https://img.shields.io/badge/3.11-yellow?logo=Python&logoColor=yellow&label=Python)
+![PythonVersion](https://img.shields.io/badge/3.13-yellow?logo=Python&logoColor=yellow&label=Python)
 [![License](https://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 Awesome-django-blog is a fully functional blogging platform built using the Django web framework. It includes features such as creating and managing blog posts, comments, and categories, as well as user authentication and authorization.
@@ -26,7 +26,7 @@ Awesome-django-blog is a fully functional blogging platform built using the Djan
 ## Installation
 
 ```shell
-# first install Python 3.12.x (have not tested newer versions, but they could work)
+# first install Python 3.13.x
 git clone https://github.com/jsolly/awesome-django-blog.git
 cd awesome-django-blog
 python3 -m venv .venv # Create virtual environment
