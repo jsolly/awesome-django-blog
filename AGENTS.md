@@ -80,22 +80,10 @@ When the family-memory MCP is available, call `recall` (no args) at conversation
 
 ## Collaboration
 
-- Use `--headed --persistent` when launching playwright-cli for interactive browser sessions. Without `--headed`, it defaults to headless.
 - No pull requests for personal projects. `/review-fix-push` skill is the sole review gate — reviews local changes against remote, fixes issues, commits and pushes.
 - Custom skills live at `~/.agents/skills/` (e.g., `~/.agents/skills/review-fix-push/SKILL.md`), not `.claude/plugins/`.
 - `~/.cursor/skills/` and `~/.claude/skills/` must be **real directories** (not symlinks to `~/.agents/skills/`). The `npx skills add` installer stores content in `~/.agents/skills/<name>/` then creates per-skill symlinks from each agent dir — directory-level symlinks cause circular links.
 - Family/domain knowledge lives in the family-memory MCP, not in flat files.
-- Don't create new IAM users or roles when an existing one can be reused — these are personal projects, avoid role sprawl.
-- Always run `sam deploy` after modifying `aws/template.yaml` — there's no CI for SAM stacks, only code-only updates deploy via GitHub Actions.
-
-## AWS
-
-- Use `--profile prod-admin` for all production AWS commands.
-- SSO profiles: `prod-admin` (730335616323, production), `general-admin` (541310242108), `amplify-admin`, `jsolly-sandbox`, `jsolly-dev`.
-
-## Logging & alert-hub
-
-Every personal-project Lambda is wired to **alert-hub**: structured JSON logs, CloudWatch alarms on `AWS/Lambda Errors` + a `level=error` MetricFilter, both routed to an SNS topic that an enricher Lambda turns into an email with the actual error text. To learn the patterns (logger shape, SAM wiring, retry helper, fan-out error handling), look at existing repos before adding a new one: `~/code/alert-hub` (the hub), `~/code/misc-notifications` (Node logger + retry helper + contract test), `~/code/family-memory` (Node logger + contract test), `~/code/todoist-backlog-scheduler` (Python equivalent).
 
 ## User Context
 
@@ -115,39 +103,4 @@ When exploring ideas, be discursive and collaborative — follow the thread wher
 - **Proactively improve adjacent code.** If you see something nearby that could be better, clean it up. Prefer deep refactoring over preserving backwards compatibility.
 - **Concise responses.** Short, dense with information. I can ask for more detail.
 - **When uncertain, ask.** Don't guess at project conventions, intent, or technical details — even if it slows things down.
-
-## Code Style
-
-These are prototypes / non-critical apps. Breaking changes are free. Default to destructive forward edits over preserving old behavior.
-
-- **No compatibility layers**: No shims, adapters, deprecations, or re-exports for legacy behavior.
-- **No browser polyfills**: Modern browser APIs (`fetch`, `URL`, `AbortController`, `crypto.randomUUID()`, etc.) are assumed. Server-side polyfills are fine when Node.js lacks the API.
-- **Relative paths only**: No `@`-style aliases.
-- **No barrel files / re-exports**: Import from the defining module, not intermediary files.
-- **No timing hacks**: No `setTimeout`/`nextTick`/`requestAnimationFrame` to mask race conditions. Fix the root cause. Legitimate uses (debouncing, throttling) are fine.
-- **No dead-shape parsing**: When you change a data shape, delete the branches that handled the old shape. Don't keep them "just in case."
-- **No unused schema fields**: If a column/field is no longer read or written, drop it. Don't preserve it for hypothetical old clients.
-- **No migration files for schema churn**: Edit the schema in place and recreate the DB. Migrations are for stacks with real users, not prototypes.
-- **No feature flags for rollout**: Just ship the new behavior. Flags are for prod traffic you're afraid to break.
-- **Delete, don't comment out**: Git history is the archive.
-
-## Error Handling
-
-- **Trust the type system**: Skip defensive null/undefined checks when strict TypeScript or DB constraints guarantee safety. Add checks only when values can legitimately be missing (parsed JSON, nullable columns, third-party payloads).
-- **Deterministic error checking**: Use structured error properties (`error.code`, `error.status`), not string matching (`.includes()`) on messages.
-- **No swallowed errors, no silent fallbacks**: Don't catch-and-ignore, don't substitute default values for unexpected failures, don't add recovery branches that hide logic bugs. Surface the failure. Retries on structured transient failures (e.g. 429, network timeout via `error.code`/`error.status`) are fine — log them at `warn` while retrying, escalate to `error` only when retries are exhausted or the failure isn't retryable.
-- **Logging levels**:
-  - `info` — expected business rejections (auth failures, invalid input, rate limits) and routine lifecycle events.
-  - `warn` — early signals that could escalate to an error if ignored, or transient failures that the next retry / next scheduled invocation may recover from on its own.
-  - `error` — the failure can't be fixed by a retry, or retries have already exhausted. The data is wrong, the operation can't complete, the parser rejected input we expected to parse.
-
-## Testing Philosophy
-
-- **Scenario-based coverage**: Cover real-world scenarios that could happen in production — not to maximize code coverage or add a test file per source file. Each test should represent a plausible user journey or system event.
-- **Integration over isolation**: Prefer integration tests that use real dependencies. Only mock external services that consume paid API allocations.
-- **Assert via behavior, not mocks**: Prefer asserting on DB state, response payloads, and status codes rather than on mocked return values or call counts.
-- **Realistic data**: Use real names, realistic values, and plausible details. Never use placeholder values like `foo`, `bar`, `test123`, or round numbers when a realistic value would work.
-- **Scenario-based test style**: Frame `describe`/`it` blocks around user journeys or system events, not abstract technical operations.
-  - Good: `"User in Pacific timezone receives market update after close"`
-  - Bad: `"returns correct value when input is 2"`
 <!-- END GLOBAL RULES (managed by sync-global-agents.sh) -->
