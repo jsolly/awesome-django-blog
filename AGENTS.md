@@ -176,6 +176,42 @@ logger.exception("Unexpected failure")  # includes traceback
 4. If publishing alerts directly from app code (not just via alarms), grant `sns:Publish` on `!Ref AlertTopicArn` to the function role.
 5. Use the structured logger and emit `level=error` for non-recoverable failures.
 
+## External API calls — retry, backoff, and the warn → error contract
+
+**Goal.** Single transient blips don't fire alarms. Persistent failures always do — with the actual error text in the email.
+
+### The pattern
+
+Every call out to a third-party HTTP API (NWS, iCloud CalDAV, AirNow, EPA UV, OpenAI, Bedrock, Twilio, Apple, Google, etc.) goes through a bounded retry helper:
+
+- **3 attempts** total: immediate, then backoff at ~500ms, then ~1500ms.
+- **15s `AbortController` timeout per attempt** (skip when the SDK doesn't accept a signal — Lambda's outer timeout is the floor).
+- **Retry on:** HTTP 5xx, network errors, abort/timeout, transient SDK errors.
+- **Fail fast on:** HTTP 4xx, schema/parse failures (data is wrong, retrying won't help). Throw a tagged error type the helper recognizes — never regex-match on `error.message`.
+- **Between attempts:** `logger.warn("<operation> failed, retrying", { attempt, maxAttempts, backoffMs, ... }, error)`.
+- **On retry exhaustion:** `logger.error("<operation> failed after N attempt(s)", { ... }, error)` *before* re-throwing. The explicit `level=error` JSON line is what the alert-hub enricher's Logs Insights query (`level = "error" or level = "ERROR"`) picks up. Lambda's runtime "Invoke Error" line has no `level` field and is invisible to the enricher — relying on it is what breaks alarm enrichment.
+
+The caller decides what to do with the throw: crash-the-job (NWS in misc-notifications) or graceful-degrade (iCloud calendar in misc-notifications — caller catches, logs an application-level `level=error` for context, returns a fallback that lets the rest of the flow continue).
+
+### Why this matters
+
+- "API blipped once, recovered" is silent (warn-level → no alarm).
+- "API was genuinely broken across 3 attempts" fires the metric-filter alarm AND ships the error text to the inbox.
+- The same alarm that used to wake you up at 5am for a transient 504 now only wakes you up when there's actually something to fix.
+
+### Reference implementation
+
+Node: `~/code/misc-notifications/src/shared/retry.ts` — generic `withRetry(fn, options)` helper plus a `NonRetryableError` tagged class. Port it verbatim into other Node repos when you need it; do not reinvent.
+
+The helper signature accepts an `isRetryable(error)` predicate so callers can extend the default (which only short-circuits `NonRetryableError`) with SDK-specific structured-error checks.
+
+### Don't
+
+- Don't rely on Lambda's async-invoke retry as your retry strategy. It works but the *first* failure always fires the alarm. The whole point is to absorb single blips silently.
+- Don't string-match on error messages to classify retryable vs. non-retryable. Use a tagged error class, an `error.code`, or `error.status`.
+- Don't add `setTimeout`-based fallback handlers outside the helper. Race-condition masking via `setTimeout` is forbidden by the global rules; retry backoff inside `withRetry` is the carve-out.
+- Don't double-log on graceful degradation in a confusing way. The helper logs the infrastructure failure ("X failed after N attempts"); the application-layer caller logs the user-visible outcome ("calendar feature degraded — shipping MMS with note"). Both are useful. They have different messages and the same metric filter counts both — same alarm fires either way.
+
 ## User Context
 
 Software engineer turned Sr. Director at Leidos (Health-IT under DIGMOD). I use this chat to think through ideas, explore topics, write code, and have real conversations.
@@ -203,17 +239,26 @@ Common types: `feat`, `fix`, `chore`, `docs`, `style`, `refactor`, `test`, `perf
 
 ## Code Style
 
+These are prototypes / non-critical apps. Breaking changes are free. Default to destructive forward edits over preserving old behavior.
+
+Every Lambda is wired to **alert-hub** (see the Error Logging section above) — uncaught exceptions and `level=error` logs land in an email inbox with the actual error text. The goal is visibility, not crashes: don't swallow failures, but don't escalate to `error` while retries are still in flight and a 200 is still possible. Mid-retry failures are `warn`; only log `error` when the operation can't recover (retries exhausted, non-retryable status, parser rejected expected input).
+
 - **No compatibility layers**: No shims, adapters, deprecations, or re-exports for legacy behavior.
 - **No browser polyfills**: Modern browser APIs (`fetch`, `URL`, `AbortController`, `crypto.randomUUID()`, etc.) are assumed. Server-side polyfills are fine when Node.js lacks the API.
 - **Relative paths only**: No `@`-style aliases.
 - **No barrel files / re-exports**: Import from the defining module, not intermediary files.
 - **No timing hacks**: No `setTimeout`/`nextTick`/`requestAnimationFrame` to mask race conditions. Fix the root cause. Legitimate uses (debouncing, throttling) are fine.
+- **No dead-shape parsing**: When you change a data shape, delete the branches that handled the old shape. Don't keep them "just in case."
+- **No unused schema fields**: If a column/field is no longer read or written, drop it. Don't preserve it for hypothetical old clients.
+- **No migration files for schema churn**: Edit the schema in place and recreate the DB. Migrations are for stacks with real users, not prototypes.
+- **No feature flags for rollout**: Just ship the new behavior. Flags are for prod traffic you're afraid to break.
+- **Delete, don't comment out**: Git history is the archive.
 
 ## Error Handling
 
 - **Trust the type system**: Skip defensive null/undefined checks when strict TypeScript or DB constraints guarantee safety. Add checks only when values can legitimately be missing (parsed JSON, nullable columns, third-party payloads).
 - **Deterministic error checking**: Use structured error properties (`error.code`, `error.status`), not string matching (`.includes()`) on messages.
-- **Fail fast**: No silent fallbacks or default values on unexpected errors. If a fallback is needed for resilience, gate it on structured error properties and log with context.
+- **No swallowed errors, no silent fallbacks**: Don't catch-and-ignore, don't substitute default values for unexpected failures, don't add recovery branches that hide logic bugs. Surface the failure. Retries on structured transient failures (e.g. 429, network timeout via `error.code`/`error.status`) are fine — log them at `warn` while retrying, escalate to `error` only when retries are exhausted or the failure isn't retryable.
 - **Logging levels**:
   - `info` — expected business rejections (auth failures, invalid input, rate limits) and routine lifecycle events.
   - `warn` — early signals that could escalate to an error if ignored, or transient failures that the next retry / next scheduled invocation may recover from on its own.
