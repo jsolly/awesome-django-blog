@@ -51,20 +51,20 @@ Three Django apps plus a project package:
 - **`app/`** — project config. Single-module `settings.py` (not a package; `DJANGO_SETTINGS_MODULE=app.settings`). Contains URL root, ASGI/WSGI, custom `WwwRedirectMiddleware`, `storage_backends.py` (S3 variants for public/private/post-image/static), and `sitemaps.py`.
 - **`blog/`** — domain core. Models: `Category`, `Post` (CKEditor5 content, ResizedImageField → WEBP), `Comment`. Class-based views in `views.py` cover CRUD, search, status page, and two GPT endpoints (`generate-with-gpt`, `answer-with-gpt`). Post-similarity uses a pickled DataFrame at `blog/df.pkl` produced by the `recalculate_post_simularities` management command — don't regenerate casually.
 - **`users/`** — auth views, profile, password reset. Wraps Django's built-in auth views with custom templates.
-- **`tests/`** — flat pytest suite at repo root (NOT inside each app). All test classes inherit from `tests.base.SetUp`, which forces `USE_SQLITE=True` / `USE_CLOUD=False` at import time and pre-creates `admin`, `comment_only`, default `uncategorized` category, and a `first_post`/`first_comment`. Use `tests/utils.py` (`create_unique_post`, `create_comment`) instead of building fixtures inline. The `tearDown` deletes all `Post` rows between tests — **don't** assume posts persist across tests.
+- **`tests/`** — flat pytest suite at repo root (NOT inside each app). All test classes inherit from `tests.base.SetUp`, which forces `USE_SQLITE=True` / `USE_CLOUD=False` at import time and pre-creates `admin`, `comment_only`, default `uncategorized` category, and a `first_post`/`first_comment`. Use `tests/utils.py` (`create_unique_post`, `create_comment`) instead of building fixtures inline. The `tearDown` deletes all `Post` rows between tests — **treat each test as starting from zero `Post` rows**; rebuild fixtures via `tests/utils.py`.
 
 Key cross-cutting pieces:
 
 - **CSP** is enforced via `django-csp` (`CSP_*` settings in `app/settings.py`). Adding any new external script/style/font/image source requires updating these tuples or it'll be blocked at runtime — symptom is silent breakage in the browser console, not a Django error. `livereload` injects its own CSP entries, gated on `LIVERELOAD=True`.
 - **HTML minification** via `django-htmlmin` middleware runs on every response — beware when debugging template whitespace issues.
 - **Storage** flips entirely on `USE_CLOUD`. With `USE_CLOUD=True`, default/media/static/CKEditor uploads all route through `app/storage_backends.py` to S3; otherwise FileSystemStorage + WhiteNoise. Tests force `USE_CLOUD=False` regardless of `.env`.
-- **CKEditor 5 image uploads** depend on `CSRF_COOKIE_HTTPONLY` staying `False` (commented out in settings with a note). Don't enable it.
+- **CKEditor 5 image uploads** require `CSRF_COOKIE_HTTPONLY = False` (commented out in settings with a note). Keep it off.
 - **Status page** (`/status/`) is cached for 60s via `cache_page`; the project uses `LocMemCache` so cache is per-process — fine for single-dyno Heroku, surprising in tests.
 - **GPT chatbot** loads `blog/df.pkl` (post embeddings) into memory. Files in `utilities/create_embeddings/` build it; the management command refreshes it.
 
 ## Conventions
 
-- Ruff config (`config/pyproject.toml`) ignores `E402`, `E501`, `F403` and excludes `apps.py` / `*/settings/*`. Don't fight those rules — they exist for Django-specific patterns (settings star-imports, top-of-file `setup()` calls in tests, intentionally long lines).
+- Ruff config (`config/pyproject.toml`) ignores `E402`, `E501`, `F403` and excludes `apps.py` / `*/settings/*`. Leave them ignored — these handle Django star-imports, top-of-file `setup()` calls in tests, and intentional long lines.
 - Test convention: flat `tests/test_<module>.py` mirroring the source module, classes inheriting `SetUp` from `tests/base.py`.
-- This is a personal project. No PRs; the `/review-fix-push` skill is the review gate. Conventional Commits (`feat(blog): …`, `fix(users): …`).
+- Conventional Commits (`feat(blog): …`, `fix(users): …`).
 - CI's test step is currently commented out in `.github/workflows/django-test-deploy-master.yaml`. Run tests locally before pushing.
