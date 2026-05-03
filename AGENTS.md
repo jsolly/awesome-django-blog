@@ -56,15 +56,14 @@ Three Django apps plus a project package:
 Key cross-cutting pieces:
 
 - **CSP** is enforced via `django-csp` (`CSP_*` settings in `app/settings.py`). Adding any new external script/style/font/image source requires updating these tuples or it'll be blocked at runtime — symptom is silent breakage in the browser console, not a Django error. `livereload` injects its own CSP entries, gated on `LIVERELOAD=True`.
-- **HTML minification** via `django-htmlmin` middleware runs on every response — beware when debugging template whitespace issues.
+- **HTML minification** runs on every response via `django-htmlmin` middleware. Disable in dev settings when debugging template whitespace.
 - **Storage** flips entirely on `USE_CLOUD`. With `USE_CLOUD=True`, default/media/static/CKEditor uploads all route through `app/storage_backends.py` to S3; otherwise FileSystemStorage + WhiteNoise. Tests force `USE_CLOUD=False` regardless of `.env`.
-- **CKEditor 5 image uploads** require `CSRF_COOKIE_HTTPONLY = False` (commented out in settings with a note). Keep it off.
-- **Status page** (`/status/`) is cached for 60s via `cache_page`; the project uses `LocMemCache` so cache is per-process — fine for single-dyno Heroku, surprising in tests.
+- **CKEditor 5 image uploads** require `CSRF_COOKIE_HTTPONLY = False`. The setting stays commented out in `app/settings.py` until image upload is actively needed.
+- **Status page** (`/status/`) is cached for 60s via `cache_page` in `LocMemCache` (per-process — assumes single-instance deploy; tests can see stale cache).
 - **GPT chatbot** loads `blog/df.pkl` (post embeddings) into memory. Files in `utilities/create_embeddings/` build it; the management command refreshes it.
 
 ## Conventions
 
-- Ruff config (`config/pyproject.toml`) ignores `E402`, `E501`, `F403` and excludes `apps.py` / `*/settings/*`. Leave them ignored — these handle Django star-imports, top-of-file `setup()` calls in tests, and intentional long lines.
+- Ruff config (`config/pyproject.toml`) ignores `E402`, `E501`, `F403` and excludes `apps.py` / `*/settings/*` — these accommodate Django star-imports, top-of-file `setup()` calls in tests, and intentional long lines.
 - Test convention: flat `tests/test_<module>.py` mirroring the source module, classes inheriting `SetUp` from `tests/base.py`.
 - Conventional Commits (`feat(blog): …`, `fix(users): …`).
-- CI's test step is currently commented out in `.github/workflows/django-test-deploy-master.yaml`. Run tests locally before pushing.
