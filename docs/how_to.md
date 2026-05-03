@@ -43,7 +43,7 @@
     psql blogthedata < ~/code/awesome-django-blog/backups/blogthedata_db_$(date +%d_%m_%Y).sql
 
     # Optionally sync media files from S3 to local (if using S3 for media storage)
-    aws s3 sync s3://your-bucket-name/media ~/code/awesome-django-blog/app/media
+    aws s3 sync s3://your-bucket-name/media ~/code/awesome-django-blog/mediafiles
     ```
 
 ## Create manual backup of Heroku database
