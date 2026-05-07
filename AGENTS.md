@@ -64,6 +64,20 @@ Key cross-cutting pieces:
 - **Status page** (`/status/`) is cached for 60s via `cache_page` in `LocMemCache` (per-process — assumes single-instance deploy; tests can see stale cache).
 - **GPT chatbot** loads `blog/df.pkl` (post embeddings) into memory. Files in `utilities/create_embeddings/` build it; the management command refreshes it.
 
+## Deploy & operations
+
+Heroku CLI (`heroku`) is installed locally — use it directly rather than reaching for the dashboard. App is **`blogthedata`** in the `Personal` team. Auth: `heroku login` (browser flow).
+
+```bash
+heroku releases -a blogthedata --num 5     # last 5 deploys
+heroku logs -a blogthedata --num 200       # recent dyno logs
+heroku ps -a blogthedata                   # dyno status
+```
+
+Auto-deploys from GitHub `master` after the `build` status check passes — no Heroku-side build customization, Procfile + buildpacks only.
+
+**S3 access** (django-storages → S3 + CloudFront, gated on `USE_CLOUD=True`): the Heroku dyno authenticates via a long-lived static IAM key set as Heroku config vars (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_STORAGE_BUCKET_NAME`). The IAM user is **`awesome-django-blog-heroku`** with a single bucket-scoped inline policy `awesome-django-blog-s3-access` — `s3:Get/Put/Delete/ListBucket/ACL` on `arn:aws:s3:::blogthedata` only. **Don't widen.** Heroku doesn't issue OIDC tokens to dynos ([heroku/roadmap#247](https://github.com/heroku/roadmap/issues/247)), so the long-lived key is unavoidable; the narrow policy is the mitigation. AWS profile for any console/CLI work: `prod-admin` (account `730335616323`).
+
 ## Conventions
 
 - Ruff config (`config/pyproject.toml`) ignores `E402`, `E501`, `F403` and excludes `apps.py` / `*/settings/*` — these accommodate Django star-imports, top-of-file `setup()` calls in tests, and intentional long lines.
