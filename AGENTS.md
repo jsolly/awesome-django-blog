@@ -1,5 +1,7 @@
 # AGENTS.md
 
+@~/.agents/AGENTS.md
+
 ## Stack
 
 Django 5.1 blogging platform on Python 3.13. SQLite by default, Postgres optional. HTMX for partial updates, CKEditor 5 for authoring, OpenAI for chatbot/title generation. WhiteNoise + optional S3/CloudFront for static/media. Deploys via Procfile (Heroku-style).
