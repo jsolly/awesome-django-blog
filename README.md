@@ -140,7 +140,7 @@ python3 manage.py livereload
 - Formatted with [Ruff](https://github.com/astral-sh/ruff) for beauty and speed.
 - Strict Content Security Policy preventing inline styles and scripts for better security
 - Subresource Integrity for better security
-- [A+ Score on Mozilla Observatory](<[url](https://observatory.mozilla.org/analyze/blogthedata.com)>)
+- [A+ Score on Mozilla Observatory](https://observatory.mozilla.org/analyze/blogthedata.com)
 - 100/100 for Performance, SEO, and Accessibility according to Google Lighthouse
 - Automatic Conversion of images (.png, .jpeg, etc) to .webp for blazingly fast image loads.
 - Badges for test coverage, passing builds, formatter, and linting
