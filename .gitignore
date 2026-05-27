@@ -33,3 +33,6 @@ mediafiles/*
 
 db.sqlite3
 db.sqlite3-journal
+
+# editor (local symlinks to ~/.agents rules — machine-specific)
+.cursor/
