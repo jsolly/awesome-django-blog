@@ -33,6 +33,8 @@ They do **not** see `.agents/`, `~/.cursor/skills/`, or local symlinks outside t
 
 See `.cursor/environment.json` in this repo. After a successful cloud run, capture a **`snapshot`** ID in that file (Cursor dashboard) to speed up future sessions.
 
+**Project-local paths (never overwritten by fleet subtree pull):** `.agents/hooks/`, `.agents/automations/` — commit these in the child repo only; they are not in the dotagents `fleet` branch.
+
 ## Fleet updates (dotagents subtree)
 
 Fleet config is vendored from [dotagents](https://github.com/jsolly/dotagents) `fleet` branch via [git subtree](https://gist.github.com/SKempin/b7857a6ff6bddb05717cc17a44091202).
