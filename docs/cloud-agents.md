@@ -1,6 +1,6 @@
 # Cursor Cloud Agents — awesome-django-blog
 
-This repo is configured for **cloud-only development**: agents, skills, and rules are self-contained in git (no `~/.agents/` on the VM).
+This repo is configured for **cloud-only development**: agents, skills, and rules are self-contained in git (no `.agents/` on the VM).
 
 ## Layout
 
@@ -27,7 +27,7 @@ Cloud agents discover:
 - **Rules** at `.cursor/rules/` (fleet + project)
 - **Instructions** from root `AGENTS.md`
 
-They do **not** see `~/.agents/`, `~/.cursor/skills/`, or local symlinks outside the repo.
+They do **not** see `.agents/`, `~/.cursor/skills/`, or local symlinks outside the repo.
 
 ## Environment
 
@@ -43,7 +43,7 @@ Fleet config is vendored from [dotagents](https://github.com/jsolly/dotagents) `
 ./scripts/update-agents-subtree.sh
 ```
 
-**Edit fleet canonical copy** (on a machine with `~/.agents/`):
+**Edit fleet canonical copy** (on a machine with `.agents/`):
 
 ```bash
 cd ~/.agents
