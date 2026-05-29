@@ -1,6 +1,6 @@
 # AGENTS.md
 
-@~/.agents/AGENTS.md
+@.agents/AGENTS.md
 
 ## Stack
 
