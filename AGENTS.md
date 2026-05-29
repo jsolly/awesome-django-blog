@@ -80,7 +80,7 @@ heroku ps -a blogthedata                   # dyno status
 
 Auto-deploys from GitHub `master` after the `build` status check passes — no Heroku-side build customization, Procfile + buildpacks only.
 
-**S3 access** (django-storages → S3 + CloudFront, gated on `USE_CLOUD=True`): the Heroku dyno authenticates via a long-lived static IAM key set as Heroku config vars (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_STORAGE_BUCKET_NAME`). The IAM user is **`awesome-django-blog-heroku`** with a single bucket-scoped inline policy `awesome-django-blog-s3-access` — `s3:Get/Put/Delete/ListBucket/ACL` on `arn:aws:s3:::blogthedata` only. **Don't widen.** Heroku doesn't issue OIDC tokens to dynos ([heroku/roadmap#247](https://github.com/heroku/roadmap/issues/247)), so the long-lived key is unavoidable; the narrow policy is the mitigation. AWS profile for any console/CLI work: `prod-admin` (account `730335616323`).
+**S3 access** (django-storages → S3 + CloudFront, gated on `USE_CLOUD=True`): the Heroku dyno authenticates via a long-lived static IAM key set as Heroku config vars (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_STORAGE_BUCKET_NAME`). The IAM user is **`awesome-django-blog-heroku`** with a single bucket-scoped inline policy `awesome-django-blog-s3-access` — `s3:Get/Put/Delete/ListBucket/ACL` on `arn:aws:s3:::blogthedata` only. **Don't widen.** Heroku doesn't issue OIDC tokens to dynos ([heroku/roadmap#247](https://github.com/heroku/roadmap/issues/247)), so the long-lived key is unavoidable; the narrow policy is the mitigation. AWS console/CLI: use credentials for account `730335616323` via local `AWS_PROFILE` (see `~/.agents/rules/aws.md`) — do not commit profile names in this repo.
 
 ## Conventions
 
