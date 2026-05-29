@@ -17,10 +17,17 @@ jobs:
           fetch-depth: 0
 
       - name: Pull latest fleet from dotagents
+        env:
+          FLEET_SYNC_TOKEN: ${{ secrets.FLEET_SYNC_TOKEN }}
         run: |
+          if [ -z "${FLEET_SYNC_TOKEN}" ]; then
+            echo "::error::Missing FLEET_SYNC_TOKEN repository secret (read-only PAT for jsolly/dotagents)."
+            exit 1
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git remote add dotagents https://github.com/jsolly/dotagents.git || true
+          git remote remove dotagents 2>/dev/null || true
+          git remote add dotagents "https://x-access-token:${FLEET_SYNC_TOKEN}@github.com/jsolly/dotagents.git"
           git fetch dotagents fleet
           if ! git subtree pull --prefix=.agents dotagents fleet --squash -m "CI: sync agent fleet from dotagents"; then
             echo "Subtree pull failed or no changes"
