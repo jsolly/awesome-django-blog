@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Symlink fleet Cursor rules from .agents/ into .cursor/rules/.
 # Project-only rules (real files) are left untouched.
+# Stale fleet symlinks (e.g. removed rules) are deleted.
 # Run from repo root after subtree add/pull.
 
 set -euo pipefail
@@ -26,6 +27,15 @@ for f in "$FLEET_RULES"/*.mdc; do
   link_target="$(python3 -c "import os.path; print(os.path.relpath('${f}', '${dest_dir}'))")"
   ln -sf "$link_target" "$target"
   echo "Linked ${DEST}/${base} -> $link_target"
+done
+
+for target in "$DEST"/*.mdc; do
+  [[ -L "$target" ]] || continue
+  base="$(basename "$target")"
+  if [[ ! -f "$FLEET_RULES/$base" ]]; then
+    rm -f "$target"
+    echo "Removed stale fleet symlink: ${DEST}/${base}"
+  fi
 done
 
 echo "Done. Fleet rules linked; project-only .mdc files unchanged."
