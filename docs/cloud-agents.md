@@ -14,15 +14,16 @@ This repo is configured for **cloud-only development**: agents, skills, and rule
 │   ├── agents/                       # review-fix-push subagent prompts
 │   ├── skills/                       # review-fix, review-fix-push
 │   ├── hooks/
-│   │   └── block-git-no-verify.sh    # fleet — blocks git push/commit --no-verify
+│   │   ├── block-git-no-verify.sh       # fleet — blocks git push/commit --no-verify
+│   │   └── check-fleet-subtree-stale.sh # fleet — sessionStart stale FLEET.lock check
 │   ├── rules/                        # canonical guidelines (.md, Cursor frontmatter)
 │   ├── FLEET.lock                    # pinned dotagents fleet branch SHA (written on sync in app repos)
 │   └── scripts/
 │       ├── link-fleet-rules.sh       # wire .agents/rules into .cursor/rules/ (fleet-vendored)
-│       └── merge-cursor-git-guard.sh # merge git guard into .cursor/hooks.json
+│       └── merge-cursor-git-guard.sh # merge fleet hooks into .cursor/hooks.json
 ├── .cursor/
 │   ├── environment.json              # cloud VM install (+ optional terminals)
-│   ├── hooks.json                    # git --no-verify guard (+ project hooks)
+│   ├── hooks.json                    # fleet hooks (+ project hooks)
 │   └── rules/                        # fleet symlinks (.mdc) + project-only rules
 └── scripts/
     ├── update-agents-subtree.sh      # pull fleet updates from dotagents
@@ -40,13 +41,15 @@ They **do** read the committed `.agents/` subtree in the repo. They do **not** s
 
 ### Edit path (fleet changes)
 
-Fleet changes go to [dotagents](https://github.com/jsolly/dotagents) `main` → CI publishes the `fleet` branch → each app repo pulls via **Actions → Sync agent fleet → Run workflow**, the weekly schedule, or `./scripts/update-agents-subtree.sh`. **Never edit `.agents/` in app repos** — the next fleet publish or subtree pull overwrites direct edits.
+Fleet changes go to [dotagents](https://github.com/jsolly/dotagents) `main` → CI publishes the `fleet` branch → each app repo pulls with `./scripts/update-agents-subtree.sh` when the Cursor `sessionStart` hook reports a stale `FLEET.lock`. **Never edit `.agents/` in app repos** — the next fleet publish or subtree pull overwrites direct edits.
 
 ## Environment
 
 See `.cursor/environment.json`. New repos ship with `"agentCanUpdateSnapshot": true` so Cursor may let the agent refresh the pinned snapshot when the platform supports it (see [environment schema](https://www.cursor.com/schemas/environment.schema.json)).
 
-**Project-local paths (never overwritten by fleet subtree pull):** extra files under `.agents/hooks/` (e.g. deploy checks) and `.agents/automations/` — commit these in the child repo only. Fleet ships `block-git-no-verify.sh` and `merge-cursor-git-guard.sh` via subtree.
+**Project-local paths (never overwritten by fleet subtree pull):** extra files under `.agents/hooks/` (e.g. deploy checks) and `.agents/automations/` — commit these in the child repo only. Fleet ships `block-git-no-verify.sh`, `check-fleet-subtree-stale.sh`, and `merge-cursor-git-guard.sh` via subtree.
+
+**sessionStart fleet check:** `check-fleet-subtree-stale.sh` runs in the IDE when a composer session starts (not in Cursor Cloud — cloud VMs start after submit). It compares `.agents/FLEET.lock` to `dotagents/fleet` and injects a reminder to run `./scripts/update-agents-subtree.sh` when behind.
 
 ## Snapshot bootstrap (agent-run)
 
@@ -95,21 +98,19 @@ cd ~/.agents
 git add -A && git commit -m "..." && git push   # CI rebuilds + publishes the fleet branch
 ```
 
-Then in this repo: `./scripts/update-agents-subtree.sh` (or wait for the weekly sync).
+Then in this repo: `./scripts/update-agents-subtree.sh` (local IDE sessions are nudged by the `sessionStart` hook when `FLEET.lock` is behind `dotagents/fleet`).
 
-**Note:** `.agents/` in this repo is **read-only** — pull-only. The `fleet` branch is published by dotagents CI from `.agents/`; editing `.agents/` here and pushing back upstream does not round-trip (the next CI publish overwrites it). Make fleet changes in `.agents/`.
+**Note:** `.agents/` in this repo is **read-only** — pull-only. The `fleet` branch is published by dotagents CI from `~/.agents/`; editing `.agents/` here and pushing back upstream does not round-trip (the next CI publish overwrites it). Make fleet changes in `~/.agents/`.
 
-### GitHub Actions weekly sync
+### FLEET.lock on pull requests
 
-Repos with `.github/workflows/sync-agent-fleet.yml` pull fleet automatically (Monday 6am UTC) or via **Actions → Sync agent fleet → Run workflow**.
-
-Because `dotagents` is private, each repo needs a **repository secret**:
+Repos with `.github/workflows/fleet-lock-guard.yml` verify that `.agents/FLEET.lock` matches `dotagents/fleet` when `.agents/` changes in a PR.
 
 | Secret | Value |
 | --- | --- |
 | `FLEET_SYNC_TOKEN` | Fine-grained PAT: **read-only** access to `jsolly/dotagents` (Contents) |
 
-Do **not** reuse `GH_AGENT_TOKEN` (Cursor cloud agents) — that token has broader cross-repo scope and should stay in Cursor secrets only. The workflow push back to the same repo uses the built-in `GITHUB_TOKEN`.
+Do **not** reuse `GH_AGENT_TOKEN` (Cursor cloud agents) — that token has broader cross-repo scope and should stay in Cursor secrets only.
 
 ## Project-only vs fleet
 
