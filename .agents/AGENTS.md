@@ -22,7 +22,7 @@ Software engineer turned Sr. Director at Leidos (Health-IT under DIGMOD). Treat 
 - **In a repo:** fleet config lives at `.agents/` (git subtree from [dotagents](https://github.com/jsolly/dotagents)). Skills at `.agents/skills/`, review agents at `.agents/agents/`, guidelines at `.agents/rules/`.
 - **Cursor discovery:** skills under `.agents/skills/`; wire `.agents/rules/*.md` into `.cursor/rules/*.mdc` via `.agents/scripts/link-fleet-rules.sh` (relative symlinks). Project-only rules stay as real files in `.cursor/rules/`.
 - **Updating the fleet:** edit the canonical files in the [dotagents](https://github.com/jsolly/dotagents) repo and push to `main`; CI rebuilds and publishes the `fleet` branch automatically. App repos pull on demand with `scripts/update-agents-subtree.sh` when the Cursor `sessionStart` hook reports a stale `FLEET.lock`. The `fleet` branch is published by CI only — `.agents/` here is read-only; make fleet changes upstream in dotagents.
-- **Cloud agents:** no developer-home config on the VM — everything comes from the repo subtree and project `AGENTS.md`. After the first successful cloud boot, pin the VM snapshot per `docs/cloud-agents.md` → **Snapshot bootstrap (agent-run)** (`./scripts/pin-cloud-snapshot.sh`).
+- **Cloud agents:** no developer-home config on the VM — everything comes from the repo subtree and project `AGENTS.md`. At cloud task start run `./scripts/cloud-fleet-sync-if-stale.sh` when fleet may have moved. Do **not** pin VM snapshots in `environment.json` unless the user asks.
 - **Node.js:** fleet standard is Node 24 — see `rules/node-version.md` (`.nvmrc`, `engines`, CI `node-version-file`, Lambda `nodejs24.x`).
 
 ## Family Memory

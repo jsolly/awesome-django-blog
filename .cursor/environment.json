@@ -5,6 +5,5 @@
       "name": "dev",
       "command": ".venv/bin/python manage.py runserver"
     }
-  ],
-  "agentCanUpdateSnapshot": true
+  ]
 }
