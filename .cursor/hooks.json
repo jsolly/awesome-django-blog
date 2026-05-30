@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeShellExecution": [
+      {
+        "command": "bash .agents/hooks/block-git-no-verify.sh",
+        "failClosed": true,
+        "timeout": 5
+      }
+    ]
+  }
+}
