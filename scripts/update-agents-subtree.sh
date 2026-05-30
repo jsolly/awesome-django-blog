@@ -11,15 +11,30 @@ set -euo pipefail
 REMOTE="${DOTAGENTS_REMOTE:-dotagents}"
 BRANCH="${DOTAGENTS_BRANCH:-fleet}"
 
-if ! git remote get-url "$REMOTE" &>/dev/null; then
-  git remote add "$REMOTE" git@github.com:jsolly/dotagents.git
+if [ -n "${DOTAGENTS_GITHUB_TOKEN:-}" ]; then
+  URL="https://x-access-token:${DOTAGENTS_GITHUB_TOKEN}@github.com/jsolly/dotagents.git"
+else
+  URL="${DOTAGENTS_URL:-git@github.com:jsolly/dotagents.git}"
+fi
+
+if git remote get-url "$REMOTE" &>/dev/null; then
+  git remote set-url "$REMOTE" "$URL"
+else
+  git remote add "$REMOTE" "$URL"
 fi
 
 git fetch "$REMOTE" "$BRANCH"
 git subtree pull --prefix=.agents "$REMOTE" "$BRANCH" --squash -m "Update agent fleet subtree" || \
   git subtree add --prefix=.agents "$REMOTE" "$BRANCH" --squash -m "Add agent fleet subtree from dotagents"
 
+FLEET_SHA="$(git rev-parse "${REMOTE}/${BRANCH}^{commit}")"
+printf 'sha: %s\n' "$FLEET_SHA" > .agents/FLEET.lock
+
 # Project-local .agents/hooks and .agents/automations are NOT in the fleet branch — subtree pull will not remove them if committed here.
 bash .agents/scripts/link-fleet-rules.sh
 
-echo "Updated .agents/ from ${REMOTE}/${BRANCH}"
+if [[ -x .agents/scripts/merge-cursor-git-guard.sh ]]; then
+  bash .agents/scripts/merge-cursor-git-guard.sh
+fi
+
+echo "Updated .agents/ from ${REMOTE}/${BRANCH} (FLEET.lock: ${FLEET_SHA:0:7})"

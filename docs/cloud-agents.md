@@ -1,6 +1,8 @@
 # Cursor Cloud Agents — awesome-django-blog
 
-This repo is configured for **cloud-only development**: agents, skills, and rules are self-contained in git (no `.agents/` on the VM).
+<!-- fleet-doc-version: 3 -->
+
+This repo is configured for **cloud-only development**: agents, skills, and rules are self-contained in git (no developer-home agents checkout on the VM).
 
 ## Layout
 
@@ -11,11 +13,16 @@ This repo is configured for **cloud-only development**: agents, skills, and rule
 │   ├── AGENTS.md                     # fleet persona + collaboration
 │   ├── agents/                       # review-fix-push subagent prompts
 │   ├── skills/                       # review-fix, review-fix-push
+│   ├── hooks/
+│   │   └── block-git-no-verify.sh    # fleet — blocks git push/commit --no-verify
 │   ├── rules/                        # canonical guidelines (.md, Cursor frontmatter)
+│   ├── FLEET.lock                    # pinned dotagents fleet branch SHA (written on sync in app repos)
 │   └── scripts/
-│       └── link-fleet-rules.sh       # wire .agents/rules into .cursor/rules/ (fleet-vendored)
+│       ├── link-fleet-rules.sh       # wire .agents/rules into .cursor/rules/ (fleet-vendored)
+│       └── merge-cursor-git-guard.sh # merge git guard into .cursor/hooks.json
 ├── .cursor/
 │   ├── environment.json              # cloud VM install (+ optional terminals)
+│   ├── hooks.json                    # git --no-verify guard (+ project hooks)
 │   └── rules/                        # fleet symlinks (.mdc) + project-only rules
 └── scripts/
     ├── update-agents-subtree.sh      # pull fleet updates from dotagents
@@ -25,16 +32,21 @@ This repo is configured for **cloud-only development**: agents, skills, and rule
 Cloud agents discover:
 
 - **Skills** at `.agents/skills/`
-- **Rules** at `.cursor/rules/` (fleet + project)
+- **Fleet persona** at `.agents/AGENTS.md` (included via root `AGENTS.md`)
+- **Rules** at `.cursor/rules/` (fleet symlinks + project-only files)
 - **Instructions** from root `AGENTS.md`
 
-They do **not** see `.agents/`, `~/.cursor/skills/`, or local symlinks outside the repo.
+They **do** read the committed `.agents/` subtree in the repo. They do **not** see developer-home skill paths, `~/.cursor/skills/`, or machine-local symlinks outside the repo.
+
+### Edit path (fleet changes)
+
+Fleet changes go to [dotagents](https://github.com/jsolly/dotagents) `main` → CI publishes the `fleet` branch → app repos pull via vendor PR, weekly sync, or `./scripts/update-agents-subtree.sh`. **Never edit `.agents/` in app repos** — the next fleet publish or subtree pull overwrites direct edits.
 
 ## Environment
 
 See `.cursor/environment.json`. New repos ship with `"agentCanUpdateSnapshot": true` so Cursor may let the agent refresh the pinned snapshot when the platform supports it (see [environment schema](https://www.cursor.com/schemas/environment.schema.json)).
 
-**Project-local paths (never overwritten by fleet subtree pull):** `.agents/hooks/`, `.agents/automations/` — commit these in the child repo only; they are not in the dotagents `fleet` branch.
+**Project-local paths (never overwritten by fleet subtree pull):** extra files under `.agents/hooks/` (e.g. deploy checks) and `.agents/automations/` — commit these in the child repo only. Fleet ships `block-git-no-verify.sh` and `merge-cursor-git-guard.sh` via subtree.
 
 ## Snapshot bootstrap (agent-run)
 

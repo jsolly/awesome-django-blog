@@ -1,3 +1,13 @@
+# Sync agent fleet — weekly subtree pull from jsolly/dotagents `fleet` branch.
+#
+# Requires repository secret FLEET_SYNC_TOKEN (fine-grained PAT: read jsolly/dotagents).
+# Set or rotate (token not echoed):
+#   read -s FLEET_SYNC_TOKEN && export FLEET_SYNC_TOKEN
+#   for repo in family-memory alert-hub checkboxes todoist-backlog-scheduler \
+#     misc-notifications stocktextalerts awesome-django-blog jsolly-website GeoRoids; do
+#     gh secret set FLEET_SYNC_TOKEN --repo "jsolly/$repo" --body "$FLEET_SYNC_TOKEN"
+#   done
+
 name: Sync agent fleet
 
 on:
@@ -33,9 +43,14 @@ jobs:
             echo "Subtree pull failed or no changes"
             exit 0
           fi
+          FLEET_SHA="$(git rev-parse dotagents/fleet^{commit})"
+          printf 'sha: %s\n' "$FLEET_SHA" > .agents/FLEET.lock
           bash .agents/scripts/link-fleet-rules.sh
+          if [[ -x .agents/scripts/merge-cursor-git-guard.sh ]]; then
+            bash .agents/scripts/merge-cursor-git-guard.sh
+          fi
           git add -A .agents
-          git add -f .cursor/rules || true
+          git add -f .cursor/rules .cursor/hooks.json || true
           if git diff --cached --quiet; then
             echo "Fleet already up to date"
             exit 0
