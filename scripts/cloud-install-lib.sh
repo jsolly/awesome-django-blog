@@ -2,7 +2,34 @@
 # Shared Cursor Cloud install helpers. Source from repo scripts/cloud-agent-install.sh:
 #   source "$(cd "$(dirname "$0")/.." && pwd)/.agents/scripts/cloud-install-lib.sh"
 #
-# Provides: install_zip_unzip, install_sam, install_yaml_linters
+# Provides: ensure_node_version, install_zip_unzip, install_aws_cli, install_sam, install_yaml_linters
+
+ensure_node_version() {
+	local required_major
+	required_major="$(cat .nvmrc 2>/dev/null || echo 24)"
+	required_major="${required_major%%.*}"
+
+	if command -v node >/dev/null 2>&1; then
+		local major
+		major="$(node -p "process.versions.node.split('.')[0]")"
+		if [[ "$major" -ge "$required_major" ]]; then
+			node -v
+			return 0
+		fi
+	fi
+
+	if [[ -s "${NVM_DIR:-$HOME/.nvm}/nvm.sh" ]]; then
+		# shellcheck source=/dev/null
+		. "${NVM_DIR:-$HOME/.nvm}/nvm.sh"
+		nvm install "$required_major"
+		nvm use "$required_major"
+		node -v
+		return 0
+	fi
+
+	echo "Node ${required_major} required but nvm unavailable" >&2
+	exit 1
+}
 
 install_zip_unzip() {
 	if ! command -v apt-get >/dev/null 2>&1; then
@@ -38,6 +65,28 @@ install_sam() {
 	unzip -q /tmp/sam.zip -d /tmp/sam
 	sudo /tmp/sam/install
 	sam --version
+}
+
+install_aws_cli() {
+	if command -v aws >/dev/null 2>&1; then
+		aws --version
+		return 0
+	fi
+	install_zip_unzip
+	local arch aws_arch
+	arch="$(uname -m)"
+	case "$arch" in
+		aarch64 | arm64) aws_arch=aarch64 ;;
+		x86_64 | amd64) aws_arch=x86_64 ;;
+		*)
+			echo "Unsupported architecture for AWS CLI install: $arch" >&2
+			exit 1
+			;;
+	esac
+	curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-${aws_arch}.zip" -o /tmp/awscliv2.zip
+	unzip -q /tmp/awscliv2.zip -d /tmp/aws
+	sudo /tmp/aws/install
+	aws --version
 }
 
 install_yaml_linters() {
