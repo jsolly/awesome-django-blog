@@ -1,6 +1,6 @@
 # Cursor Cloud Agents
 
-<!-- fleet-doc-version: 8 -->
+<!-- fleet-doc-version: 10 -->
 
 This repo is configured for **cloud-only development**: agents, skills, and rules are self-contained in git (no developer-home agents checkout on the VM).
 
@@ -9,29 +9,36 @@ This repo is configured for **cloud-only development**: agents, skills, and rule
 ```text
 <repo>/
 ├── AGENTS.md                         # @.agents/AGENTS.md + ## Project / ## Purpose
-├── .agents/                          # git subtree from dotagents (fleet branch)
+├── .agents/                          # git subtree from dotagents (fleet branch) — DO NOT EDIT
 │   ├── AGENTS.md                     # fleet persona + collaboration
+│   ├── DO-NOT-EDIT.md                # banner: fleet-managed paths (read-only in app repos)
 │   ├── agents/                       # review-fix-push subagent prompts
 │   ├── skills/                       # review-fix, review-fix-push
 │   ├── hooks/
-│   │   └── block-git-no-verify.sh    # fleet — blocks git push/commit --no-verify (Cursor hook)
+│   │   ├── block-git-no-verify.sh    # blocks git push/commit --no-verify (Cursor hook)
+│   │   └── block-fleet-edits.sh      # blocks Write/Delete on fleet-managed paths (Cursor hook)
 │   ├── rules/                        # canonical guidelines (.md, Cursor frontmatter)
 │   ├── FLEET.lock                    # pinned dotagents fleet branch SHA (written on sync in app repos)
 │   ├── docs/cloud-agents.md          # this doc (read from the subtree)
-│   ├── templates/                    # repo shims + workflow installed by onboard-repo.sh
+│   ├── templates/                    # repo shims, claude-settings.json, workflow installed by onboard-repo.sh
 │   └── scripts/                      # self-installing fleet logic (auto-propagates)
 │       ├── onboard-repo.sh           # first-time / re-onboard: install shims, converge, lock
-│       ├── converge-repo.sh          # idempotent shape convergence (rules, guard, workflow, cleanup)
+│       ├── converge-repo.sh          # idempotent shape convergence (rules, guards, workflow, cleanup)
 │       ├── update-agents-subtree.sh  # real subtree updater (run via the scripts/ shim)
 │       ├── cloud-fleet-sync-if-stale.sh
-│       ├── fleet-lock-check.sh       # CI lock check (called by fleet-lock-guard.yml)
+│       ├── cloud-install-lib.sh      # shared cloud install helpers (Node, SAM, Playwright E2E, …)
+│       ├── fleet-lock-check.sh       # CI lock + content-drift check (fleet-lock-guard.yml)
 │       ├── link-fleet-rules.sh       # wire .agents/rules into .cursor/rules/
-│       └── merge-cursor-git-guard.sh # merge git guard into .cursor/hooks.json
+│       ├── merge-cursor-git-guard.sh # merge git guard into .cursor/hooks.json
+│       ├── merge-cursor-edit-guard.sh # merge fleet edit guard into .cursor/hooks.json
+│       └── merge-claude-edit-guard.sh # merge Edit/Write deny rules into .claude/settings.json
+├── .claude/
+│   └── settings.json                 # fleet Edit/Write deny rules (merged by converge-repo.sh)
 ├── .github/workflows/
-│   └── fleet-lock-guard.yml          # verifies FLEET.lock on PRs touching .agents/
+│   └── fleet-lock-guard.yml          # verifies FLEET.lock + .agents/ content on PRs touching .agents/
 ├── .cursor/
 │   ├── environment.json              # cloud VM install (+ optional terminals)
-│   ├── hooks.json                    # git guard (+ project hooks)
+│   ├── hooks.json                    # git guard + fleet edit guard (+ project hooks)
 │   └── rules/                        # fleet symlinks (.mdc) + project-only rules
 └── scripts/                          # thin shims (copy fleet logic to a tmp file, run it)
     ├── update-agents-subtree.sh
@@ -71,7 +78,7 @@ Cloud agents only see **committed** `.agents/` on the branch Cursor cloned. **At
    bash scripts/cloud-fleet-sync-if-stale.sh
    ```
 
-   Compares `.agents/FLEET.lock` to `dotagents/fleet`; when stale, runs `./scripts/update-agents-subtree.sh`, which pulls the subtree, writes `FLEET.lock`, runs `converge-repo.sh` (rule links, git-guard merge, workflow ref, stale-file cleanup), and **commits the sync automatically**.
+   Compares `.agents/FLEET.lock` to `dotagents/fleet`; when stale, runs `./scripts/update-agents-subtree.sh`, which pulls the subtree, writes `FLEET.lock`, runs `converge-repo.sh` (rule links, git/edit guards, Claude deny merge, workflow ref, stale-file cleanup), and **commits the sync automatically**.
 
 4. **Push** the sync commit before feature work:
 
@@ -90,9 +97,47 @@ See `.cursor/environment.json`. Fleet repos use an `install` command (typically 
 
 After install succeeds, run smoke checks from root `AGENTS.md` (e.g. `npm run check:ts`, `npm test`). Do **not** add `snapshot` or `agentCanUpdateSnapshot` to `environment.json` unless the user explicitly asks for snapshot pinning.
 
-**Project-local paths (never overwritten by fleet subtree pull):** extra files under `.agents/hooks/` (e.g. deploy checks) and `.agents/automations/` — commit these in the child repo only. Fleet ships `block-git-no-verify.sh` and `merge-cursor-git-guard.sh` via subtree.
+### Node on PATH (Cursor Cloud VMs)
+
+Cursor Cloud VMs ship **Node 22** on PATH ahead of nvm. `use_node_for_cursor_cloud` (in `.agents/scripts/cloud-install-lib.sh`) installs Node 24 and prepends nvm’s bin directory for the **install script** only. It also appends an `~/.bashrc` marker so **new interactive shells** prefer Node 24.
+
+Non-interactive commands in the same agent turn (or before opening a fresh shell) may still run Node 22 unless you activate nvm:
+
+```bash
+export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+nvm use 24
+export PATH="$(dirname "$(nvm which 24)"):$PATH"
+```
+
+Symptom: `node -v` shows v22 while `.nvmrc` requires 24 — `npm test` / native addons / `engines` checks fail mysteriously.
+
+**Fleet edit guards:** `converge-repo.sh` wires three enforcement layers:
+
+- **Cursor:** `merge-cursor-edit-guard.sh` adds `preToolUse` → `block-fleet-edits.sh` (denies `Write`/`Delete` on `.agents/**` and regenerated shims).
+- **Claude Code:** `merge-claude-edit-guard.sh` merges `permissions.deny` for `Edit`/`Write` on the same paths into `.claude/settings.json`.
+- **Codex:** advisory only — read `.agents/AGENTS.md` and `.agents/DO-NOT-EDIT.md`; no Codex config shipped (would override sandbox mode).
 
 **Git guard hook:** `merge-cursor-git-guard.sh` wires `block-git-no-verify.sh` into `.cursor/hooks.json` (`beforeShellExecution`). Fleet sync is **not** a hook — use `cloud-fleet-sync-if-stale.sh` at task start.
+
+### Playwright browser E2E (opt-in)
+
+Playwright 1.5x on Linux launches via **chrome-headless-shell**, not only the Chromium bundle. `npx playwright install chromium` alone leaves browser E2E failing with:
+
+```text
+Executable doesn't exist at .../chromium_headless_shell-*/chrome-headless-shell-linux64/chrome-headless-shell
+```
+
+Repos that run Playwright browser tests should call the fleet helper from `scripts/cloud-agent-install.sh` (after `npm ci` / `use_node_for_cursor_cloud`):
+
+```bash
+source "$(cd "$(dirname "$0")/.." && pwd)/.agents/scripts/cloud-install-lib.sh"
+install_playwright_browsers_for_e2e   # installs chromium + chromium-headless-shell; verifies binary unless PLAYWRIGHT_E2E_VERIFY=0
+```
+
+Repos without Playwright E2E should **not** call this — it is not part of the default cloud install.
+
+**Troubleshooting:** If install stalls at 100%, remove the stale lock and retry: `rm -f ~/.cache/ms-playwright/__dirlock`. If the binary is still missing, recover from the temp download: `unzip /tmp/playwright-download-*/*headless-shell*.zip -d ~/.cache/ms-playwright/` (then re-run the helper or `npx playwright install chromium-headless-shell`).
 
 ## Fleet updates (dotagents subtree)
 
@@ -129,7 +174,10 @@ Do **not** reuse `GH_AGENT_TOKEN` for fleet fetch — broader cross-repo scope; 
 
 ### FLEET.lock on pull requests
 
-Repos with `.github/workflows/fleet-lock-guard.yml` verify that `.agents/FLEET.lock` matches `dotagents/fleet` when `.agents/` changes in a PR.
+Repos with `.github/workflows/fleet-lock-guard.yml` verify when `.agents/` changes in a PR:
+
+1. `.agents/FLEET.lock` SHA matches `dotagents/fleet` HEAD (`FLEET_SYNC_TOKEN` required).
+2. `.agents/` file blobs match the fleet tree at that SHA (content-drift check — catches hand-edits that keep a valid lock).
 
 ## Project-only vs fleet
 

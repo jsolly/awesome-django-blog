@@ -3,7 +3,8 @@
 #   source "$(cd "$(dirname "$0")/.." && pwd)/.agents/scripts/cloud-install-lib.sh"
 #
 # Provides: ensure_node_version, use_node_for_cursor_cloud, install_zip_unzip, install_aws_cli,
-# install_sam, install_yaml_linters, ensure_user_local_bin_on_path
+# install_sam, install_yaml_linters, ensure_user_local_bin_on_path,
+# install_playwright_browsers_for_e2e
 
 ensure_node_version() {
 	local required_major
@@ -167,4 +168,54 @@ install_yaml_linters() {
 	fi
 	yamllint --version
 	actionlint -version
+}
+
+_playwright_browsers_path() {
+	printf '%s\n' "${PLAYWRIGHT_BROWSERS_PATH:-${HOME}/.cache/ms-playwright}"
+}
+
+_playwright_headless_shell_arch_dir() {
+	case "$(uname -m)" in
+		aarch64 | arm64) printf '%s\n' chrome-headless-shell-linux-arm64 ;;
+		x86_64 | amd64) printf '%s\n' chrome-headless-shell-linux64 ;;
+		*)
+			echo "Unsupported architecture for Playwright headless shell: $(uname -m)" >&2
+			return 1
+			;;
+	esac
+}
+
+playwright_headless_shell_bin() {
+	local browsers_path arch_dir
+	browsers_path="$(_playwright_browsers_path)"
+	arch_dir="$(_playwright_headless_shell_arch_dir)" || return 1
+	find "$browsers_path" -path "*/${arch_dir}/chrome-headless-shell" -type f 2>/dev/null | head -1
+}
+
+# Opt-in for repos with Playwright browser E2E. Call from scripts/cloud-agent-install.sh after npm ci.
+# Playwright 1.5x on Linux launches via chrome-headless-shell; `playwright install chromium` alone is insufficient.
+# Set PLAYWRIGHT_E2E_VERIFY=0 to skip the post-install binary check.
+install_playwright_browsers_for_e2e() {
+	local browsers_path="${PLAYWRIGHT_BROWSERS_PATH:-$HOME/.cache/ms-playwright}"
+	rm -f "${browsers_path}/__dirlock" 2>/dev/null || true
+
+	echo "Installing Playwright Chromium + headless shell..."
+	npx playwright install chromium
+	npx playwright install chromium-headless-shell
+
+	if [[ "${PLAYWRIGHT_E2E_VERIFY:-1}" == "0" ]]; then
+		return 0
+	fi
+
+	local bin
+	bin="$(playwright_headless_shell_bin || true)"
+	if [[ -n "$bin" && -x "$bin" ]]; then
+		echo "Playwright headless shell ready: $bin"
+		return 0
+	fi
+
+	echo "Playwright headless shell binary missing after install." >&2
+	echo "Troubleshooting: rm -f ~/.cache/ms-playwright/__dirlock && re-run install_playwright_browsers_for_e2e;" >&2
+	echo "If download stalled at 100%: unzip /tmp/playwright-download-*/*headless-shell*.zip into ~/.cache/ms-playwright/ (see .agents/docs/cloud-agents.md)." >&2
+	exit 1
 }

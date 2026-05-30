@@ -7,9 +7,11 @@ set -euo pipefail
 ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 cd "$ROOT"
 
-# 1. Wire fleet rules into .cursor/rules and merge the git --no-verify guard.
+# 1. Wire fleet rules into .cursor/rules and merge fleet guards.
 [[ -x .agents/scripts/link-fleet-rules.sh ]] && bash .agents/scripts/link-fleet-rules.sh
 [[ -x .agents/scripts/merge-cursor-git-guard.sh ]] && bash .agents/scripts/merge-cursor-git-guard.sh
+[[ -x .agents/scripts/merge-cursor-edit-guard.sh ]] && bash .agents/scripts/merge-cursor-edit-guard.sh
+[[ -x .agents/scripts/merge-claude-edit-guard.sh ]] && bash .agents/scripts/merge-claude-edit-guard.sh
 
 # 2. The fleet-lock-guard workflow must call the bundled checker, not a vendored copy.
 WF=".github/workflows/fleet-lock-guard.yml"

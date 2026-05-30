@@ -15,6 +15,7 @@ Personal repos target **Node 24** everywhere the runtime is under our control.
 | `package.json` | `"engines": { "node": ">=24" }` or `"24.x"` when exact match is required |
 | GitHub Actions | `actions/setup-node@v6` + `node-version-file: .nvmrc` |
 | AWS Lambda | `Runtime: nodejs24.x` in SAM templates |
+| Cursor Cloud VMs | `use_node_for_cursor_cloud` in `.agents/scripts/cloud-install-lib.sh` during install; see **Node on PATH** in `.agents/docs/cloud-agents.md` for non-interactive shells |
 
 ## Rationale
 
@@ -27,6 +28,10 @@ Personal repos target **Node 24** everywhere the runtime is under our control.
 1. Update `.nvmrc`, `engines`, CI workflows, and SAM `Runtime` together — not one in isolation.
 2. Run the repo smoke suite (`check:ts`, tests, build) after the bump; watch native modules (`canvas`, `sharp`, etc.).
 3. Re-verify cloud `install` and smoke tests after toolchain changes (`docs/cloud-agents.md` in repos that use Cursor Cloud).
+
+## Cursor Cloud: Node on PATH
+
+Cloud VMs expose Node 22 on PATH before nvm. Install scripts call `use_node_for_cursor_cloud` to install and prefer Node 24; interactive shells get an `~/.bashrc` hook. **Agent-run shell commands** in the same session may still see Node 22 — `source ~/.nvm/nvm.sh && nvm use 24` (or a new shell) before `npm test`, `npm run build`, etc. Full troubleshooting: `.agents/docs/cloud-agents.md` → **Node on PATH**.
 
 ## Exceptions
 

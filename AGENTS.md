@@ -25,6 +25,21 @@ Software engineer turned Sr. Director at Leidos (Health-IT under DIGMOD). Treat 
 - **Cloud agents:** no developer-home config on the VM — everything comes from the repo subtree and project `AGENTS.md`. At cloud task start run `./scripts/cloud-fleet-sync-if-stale.sh` when fleet may have moved. Do **not** pin VM snapshots in `environment.json` unless the user asks — use `install` only (see `.agents/docs/cloud-agents.md`).
 - **Node.js:** fleet standard is Node 24 — see `rules/node-version.md` (`.nvmrc`, `engines`, CI `node-version-file`, Lambda `nodejs24.x`).
 
+## Do not edit fleet-managed files
+
+**Never edit these paths in an app repo** — the next fleet sync clobbers them:
+
+| Path | Why |
+| --- | --- |
+| `.agents/**` | Entire subtree replaced by `git subtree pull` |
+| `scripts/update-agents-subtree.sh` | Reinstalled from `.agents/templates/` by converge |
+| `scripts/cloud-fleet-sync-if-stale.sh` | Reinstalled from `.agents/templates/` by converge |
+| `.github/workflows/fleet-lock-guard.yml` | Reinstalled from `.agents/templates/` by converge |
+
+Make fleet changes in [dotagents](https://github.com/jsolly/dotagents) `main` → CI publishes `fleet` → sync into this repo. See `.agents/DO-NOT-EDIT.md`.
+
+Cursor and Claude Code block edits to these paths when fleet guards are wired (via `converge-repo.sh`). CI fails PRs that commit drift under `.agents/`.
+
 ## Family Memory
 
 When the family-memory MCP is available, call `recall` (no args) at conversation start to load context about the user. Use `remember` to store notable new facts, preferences, or events that come up naturally.
