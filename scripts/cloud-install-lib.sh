@@ -84,7 +84,9 @@ install_aws_cli() {
 			;;
 	esac
 	curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-${aws_arch}.zip" -o /tmp/awscliv2.zip
-	unzip -q /tmp/awscliv2.zip -d /tmp/aws
+	# Zip root is `aws/` — extract to /tmp so install lands at /tmp/aws/install.
+	rm -rf /tmp/aws
+	unzip -q /tmp/awscliv2.zip -d /tmp
 	sudo /tmp/aws/install
 	aws --version
 }
