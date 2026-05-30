@@ -35,7 +35,7 @@ The orchestration is documented in `references/orchestration.md` — read it bef
 ## Safety rules (non-negotiable)
 
 - **Never push to a non-`main` branch** — this skill is for `main` only.
-- **Never `--no-verify`** on commit or push. The deny rules in `~/.claude/settings.json` (see `references/safety-rules.md`) make this mechanical, not advisory.
+- **Never `--no-verify`** on commit or push. Per-agent guards in `.agents/hooks/` (see `references/safety-rules.md`) make this mechanical, not advisory.
 - **Never `git push --force` / `--force-with-lease` / `git reset --hard`** — also blocked by deny rules.
 - **Never `git add -A` or `git add .`** — stage by name to avoid sweeping in untracked secrets, large binaries, or probe artifacts.
 
@@ -55,4 +55,4 @@ For small changes (a single file or two with trivial diffs), review inline witho
 - `references/dispatch-prompt.md` — the prompt template each agent receives via Task.
 - `references/deploy-rules.md` — per-project post-commit deploy patterns (SAM, Terraform, Lambda code updates).
 - `references/conflict-resolution.md` — merge conflict resolution + CI reproduction guidance.
-- `references/safety-rules.md` — `permissions.deny` rules in settings.json that mechanize the safety promise.
+- `references/safety-rules.md` — per-agent guards (Claude, Cursor, Codex) that mechanize the safety promise.
