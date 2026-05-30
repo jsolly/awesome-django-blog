@@ -9,11 +9,18 @@ cmd=$(printf '%s' "$input" | jq -r '.command // .tool_input.command // ""')
 
 block_msg='git push/commit with --no-verify is blocked. Fix the failing hook instead of bypassing it.'
 
+segment_has_no_verify_flag() {
+  local segment="$1"
+  local stripped
+  stripped=$(printf '%s' "$segment" | sed -E "s/'[^']*'//g; s/\"[^\"]*\"//g")
+  printf '%s' "$stripped" | grep -qE '(^|[[:space:]])--no-verify([[:space:]]|$)'
+}
+
 should_block=false
 while IFS= read -r segment || [[ -n "${segment:-}" ]]; do
   segment=$(printf '%s' "$segment" | sed -E 's/^[[:space:]]+|[[:space:]]+$//g')
   [[ -z "$segment" ]] && continue
-  if printf '%s' "$segment" | grep -q -- '--no-verify' \
+  if segment_has_no_verify_flag "$segment" \
     && printf '%s' "$segment" | grep -qE '(^|[[:space:]])(/[^[:space:]]+/git|git)[[:space:]]+(push|commit)([[:space:]]|$)'; then
     should_block=true
     break
