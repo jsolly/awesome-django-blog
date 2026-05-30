@@ -1,1 +1,0 @@
-../../rules/testing.md

@@ -11,14 +11,14 @@ This repo is configured for **cloud-only development**: agents, skills, and rule
 │   ├── AGENTS.md                     # fleet persona + collaboration
 │   ├── agents/                       # review-fix-push subagent prompts
 │   ├── skills/                       # review-fix, review-fix-push
-│   ├── rules/                        # canonical guideline markdown
-│   └── .cursor/rules/                # Cursor auto-apply rules (.mdc symlinks)
+│   ├── rules/                        # canonical guidelines (.md, Cursor frontmatter)
+│   └── scripts/
+│       └── link-fleet-rules.sh       # wire .agents/rules into .cursor/rules/ (fleet-vendored)
 ├── .cursor/
 │   ├── environment.json              # cloud VM install (+ optional terminals)
-│   └── rules/                        # fleet symlinks + project-only rules
+│   └── rules/                        # fleet symlinks (.mdc) + project-only rules
 └── scripts/
     ├── update-agents-subtree.sh      # pull fleet updates from dotagents
-    ├── link-fleet-rules.sh           # wire .agents rules into .cursor/rules/
     └── pin-cloud-snapshot.sh         # commit snapshot ID after first green cloud boot
 ```
 
@@ -75,25 +75,17 @@ Fleet config is vendored from [dotagents](https://github.com/jsolly/dotagents) `
 ./scripts/update-agents-subtree.sh
 ```
 
-**Edit fleet canonical copy** (on a machine with `.agents/`):
+**Edit fleet canonical copy** (on a machine with a `~/.agents` checkout):
 
 ```bash
 cd ~/.agents
 # edit agents/, skills/, rules/
-./scripts/refresh-fleet.sh
-git add fleet/ && git commit -m "..."
-./scripts/refresh-fleet.sh --push
+git add -A && git commit -m "..." && git push   # CI rebuilds + publishes the fleet branch
 ```
 
-Then in this repo: `./scripts/update-agents-subtree.sh`
+Then in this repo: `./scripts/update-agents-subtree.sh` (or wait for the weekly sync).
 
-**Push repo edits back to dotagents** (e.g. improved a skill in cloud):
-
-```bash
-git subtree push --prefix=.agents dotagents fleet
-```
-
-Then merge `origin/fleet` into `fleet/` on dotagents `main` (or re-run `refresh-fleet.sh` there to reconcile).
+**Note:** `.agents/` in this repo is **read-only** — pull-only. The `fleet` branch is published by dotagents CI from `.agents/`; editing `.agents/` here and pushing back upstream does not round-trip (the next CI publish overwrites it). Make fleet changes in `.agents/`.
 
 ### GitHub Actions weekly sync
 

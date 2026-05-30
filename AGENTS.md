@@ -19,10 +19,10 @@ Software engineer turned Sr. Director at Leidos (Health-IT under DIGMOD). Treat 
 ## Collaboration
 
 - For personal projects, use `/review-fix-push` to review changes, fix issues, commit, and push. (No PR step.)
-- **In a repo:** fleet config lives at `.agents/` (git subtree from [dotagents](https://github.com/jsolly/dotagents)). Skills at `.agents/skills/`, review agents at `.agents/agents/`, Cursor rules at `.agents/.cursor/rules/`.
-- **Cursor discovery:** skills under `.agents/skills/`; wire fleet rules into `.cursor/rules/` via `scripts/link-fleet-rules.sh` (relative symlinks). Project-only rules stay as real files in `.cursor/rules/`.
-- **Local dev (optional):** edit the canonical copy in `.agents/`, run `scripts/refresh-fleet.sh`, commit `fleet/`, then `scripts/refresh-fleet.sh --push`. In each app repo, run `scripts/update-agents-subtree.sh` at the repo root.
-- **Cloud agents:** no `.agents/` — everything comes from the repo subtree and project `AGENTS.md`. After the first successful cloud boot, pin the VM snapshot per `docs/cloud-agents.md` → **Snapshot bootstrap (agent-run)** (`./scripts/pin-cloud-snapshot.sh`).
+- **In a repo:** fleet config lives at `.agents/` (git subtree from [dotagents](https://github.com/jsolly/dotagents)). Skills at `.agents/skills/`, review agents at `.agents/agents/`, guidelines at `.agents/rules/`.
+- **Cursor discovery:** skills under `.agents/skills/`; wire `.agents/rules/*.md` into `.cursor/rules/*.mdc` via `.agents/scripts/link-fleet-rules.sh` (relative symlinks). Project-only rules stay as real files in `.cursor/rules/`.
+- **Updating the fleet:** edit the canonical files in the [dotagents](https://github.com/jsolly/dotagents) repo and push to `main`; CI rebuilds and publishes the `fleet` branch automatically. App repos pull it via the weekly sync (or run `scripts/update-agents-subtree.sh` to pull on demand). The `fleet` branch is published by CI only — `.agents/` here is read-only; make fleet changes upstream in dotagents.
+- **Cloud agents:** no developer-home config on the VM — everything comes from the repo subtree and project `AGENTS.md`. After the first successful cloud boot, pin the VM snapshot per `docs/cloud-agents.md` → **Snapshot bootstrap (agent-run)** (`./scripts/pin-cloud-snapshot.sh`).
 - **Node.js:** fleet standard is Node 24 — see `rules/node-version.md` (`.nvmrc`, `engines`, CI `node-version-file`, Lambda `nodejs24.x`).
 
 ## Family Memory
