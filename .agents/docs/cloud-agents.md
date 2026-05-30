@@ -1,6 +1,6 @@
 # Cursor Cloud Agents
 
-<!-- fleet-doc-version: 3 -->
+<!-- fleet-doc-version: 4 -->
 
 This repo is configured for **cloud-only development**: agents, skills, and rules are self-contained in git (no developer-home agents checkout on the VM).
 
@@ -40,7 +40,7 @@ They **do** read the committed `.agents/` subtree in the repo. They do **not** s
 
 ### Edit path (fleet changes)
 
-Fleet changes go to [dotagents](https://github.com/jsolly/dotagents) `main` → CI publishes the `fleet` branch → app repos pull via vendor PR, weekly sync, or `./scripts/update-agents-subtree.sh`. **Never edit `.agents/` in app repos** — the next fleet publish or subtree pull overwrites direct edits.
+Fleet changes go to [dotagents](https://github.com/jsolly/dotagents) `main` → CI publishes the `fleet` branch → each app repo pulls via **Actions → Sync agent fleet → Run workflow**, the weekly schedule, or `./scripts/update-agents-subtree.sh`. **Never edit `.agents/` in app repos** — the next fleet publish or subtree pull overwrites direct edits.
 
 ## Environment
 
