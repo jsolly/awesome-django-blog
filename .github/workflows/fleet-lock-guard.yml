@@ -1,0 +1,21 @@
+name: Fleet lock guard
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  fleet-lock:
+    name: Fleet lock guard
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Verify FLEET.lock when .agents/ changes
+        env:
+          FLEET_SYNC_TOKEN: ${{ secrets.FLEET_SYNC_TOKEN }}
+        run: bash .github/scripts/fleet-lock-check.sh

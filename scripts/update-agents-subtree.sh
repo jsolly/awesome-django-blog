@@ -24,6 +24,10 @@ else
 fi
 
 git fetch "$REMOTE" "$BRANCH"
+if [[ -f .agents/FLEET.lock ]]; then
+  git rm -f .agents/FLEET.lock
+  git commit -m "chore(fleet): remove stale FLEET.lock before subtree pull" || true
+fi
 git subtree pull --prefix=.agents "$REMOTE" "$BRANCH" --squash -m "Update agent fleet subtree" || \
   git subtree add --prefix=.agents "$REMOTE" "$BRANCH" --squash -m "Add agent fleet subtree from dotagents"
 
@@ -35,6 +39,11 @@ bash .agents/scripts/link-fleet-rules.sh
 
 if [[ -x .agents/scripts/merge-cursor-git-guard.sh ]]; then
   bash .agents/scripts/merge-cursor-git-guard.sh
+fi
+
+if [[ -f .agents/docs/cloud-agents.md ]]; then
+  cp .agents/docs/cloud-agents.md docs/cloud-agents.md
+  sed -i '' "s/# Cursor Cloud Agents/# Cursor Cloud Agents — $(basename "$PWD")/" docs/cloud-agents.md
 fi
 
 echo "Updated .agents/ from ${REMOTE}/${BRANCH} (FLEET.lock: ${FLEET_SHA:0:7})"

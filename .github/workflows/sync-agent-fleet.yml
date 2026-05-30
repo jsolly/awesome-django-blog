@@ -43,7 +43,7 @@ jobs:
             echo "Subtree pull failed or no changes"
             exit 0
           fi
-          FLEET_SHA="$(git rev-parse dotagents/fleet^{commit})"
+          FLEET_SHA="$(git rev-parse 'dotagents/fleet^{commit}')"
           printf 'sha: %s\n' "$FLEET_SHA" > .agents/FLEET.lock
           bash .agents/scripts/link-fleet-rules.sh
           if [[ -x .agents/scripts/merge-cursor-git-guard.sh ]]; then
