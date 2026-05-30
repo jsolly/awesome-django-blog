@@ -7,6 +7,14 @@
         "failClosed": true,
         "timeout": 5
       }
+    ],
+    "preToolUse": [
+      {
+        "command": "bash .agents/hooks/block-fleet-edits.sh",
+        "failClosed": false,
+        "timeout": 5,
+        "matcher": "Write|Delete"
+      }
     ]
   }
 }
