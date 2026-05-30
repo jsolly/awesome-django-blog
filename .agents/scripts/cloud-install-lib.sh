@@ -2,7 +2,8 @@
 # Shared Cursor Cloud install helpers. Source from repo scripts/cloud-agent-install.sh:
 #   source "$(cd "$(dirname "$0")/.." && pwd)/.agents/scripts/cloud-install-lib.sh"
 #
-# Provides: ensure_node_version, use_node_for_cursor_cloud, install_zip_unzip, install_aws_cli, install_sam, install_yaml_linters
+# Provides: ensure_node_version, use_node_for_cursor_cloud, install_zip_unzip, install_aws_cli,
+# install_sam, install_yaml_linters, ensure_user_local_bin_on_path
 
 ensure_node_version() {
 	local required_major
@@ -42,7 +43,10 @@ use_node_for_cursor_cloud() {
 	if [[ -s "${NVM_DIR:-$HOME/.nvm}/nvm.sh" ]]; then
 		# shellcheck source=/dev/null
 		. "${NVM_DIR:-$HOME/.nvm}/nvm.sh"
-		export PATH="$(dirname "$(nvm which "$required_major")"):$PATH"
+		local nvm_node nvm_bin
+		nvm_node="$(nvm which "$required_major")"
+		nvm_bin="$(dirname "$nvm_node")"
+		export PATH="${nvm_bin}:${PATH}"
 	fi
 
 	local major
@@ -139,7 +143,13 @@ install_aws_cli() {
 	aws --version
 }
 
+# pip --user / pipx install to ~/.local/bin; cloud shells often omit it from PATH.
+ensure_user_local_bin_on_path() {
+	export PATH="${HOME}/.local/bin:${PATH}"
+}
+
 install_yaml_linters() {
+	ensure_user_local_bin_on_path
 	# Pin versions to match stocktextalerts CI (noDeploy.yml).
 	if ! command -v yamllint >/dev/null 2>&1; then
 		if command -v pipx >/dev/null 2>&1; then

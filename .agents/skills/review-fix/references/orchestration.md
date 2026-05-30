@@ -54,7 +54,7 @@ Identical to `/review-fix-push` step 3. Read `.agents/skills/review-fix-push/ref
 Quick recap:
 
 - Read project `AGENTS.md` (root of repo) + linked guideline files + global `.agents/AGENTS.md`.
-- Locate the plan or spec the user was implementing (most-recent `~/.claude/plans/*.md`, then referenced specs, then the conversation's first user message).
+- Locate the plan or spec the user was implementing (most-recent `<repo-root>/docs/superpowers/plans/*.md`, then `<repo-root>/docs/superpowers/specs/*.md`, then a path referenced in recent messages, then the conversation's first user message). See `.agents/rules/specs-and-plans.md`.
 - Note any post-commit deploy rules — but in this skill they're informational only (we don't deploy here).
 
 The located plan text becomes `{PLAN_OR_SPEC}` in the dispatch prompt at step 7.

@@ -16,7 +16,7 @@ Specs and implementation plans live inside the project repo, not in vendor-speci
 
 - **Slug**: kebab-case, descriptive (`extended-hours-notifications`, `spec-compliance-reviewer`). No spaces, no random word-tuples.
 - **Date**: the day work begins (or the design lands), not the day it ships. Don't backfill.
-- **Working on `.agents/` itself?** Treat it as a child repo — artifacts go to `.agents/docs/superpowers/{specs,plans}/`.
+- **Working on the `dotagents` repo itself?** It's a normal `~/code` repo (`~/code/dotagents`) — artifacts go to `~/code/dotagents/docs/superpowers/{specs,plans}/`.
 
 ## Two-file pattern
 

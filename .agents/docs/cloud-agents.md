@@ -1,6 +1,6 @@
 # Cursor Cloud Agents
 
-<!-- fleet-doc-version: 6 -->
+<!-- fleet-doc-version: 8 -->
 
 This repo is configured for **cloud-only development**: agents, skills, and rules are self-contained in git (no developer-home agents checkout on the VM).
 
@@ -17,17 +17,25 @@ This repo is configured for **cloud-only development**: agents, skills, and rule
 │   │   └── block-git-no-verify.sh    # fleet — blocks git push/commit --no-verify (Cursor hook)
 │   ├── rules/                        # canonical guidelines (.md, Cursor frontmatter)
 │   ├── FLEET.lock                    # pinned dotagents fleet branch SHA (written on sync in app repos)
-│   └── scripts/
+│   ├── docs/cloud-agents.md          # this doc (read from the subtree)
+│   ├── templates/                    # repo shims + workflow installed by onboard-repo.sh
+│   └── scripts/                      # self-installing fleet logic (auto-propagates)
+│       ├── onboard-repo.sh           # first-time / re-onboard: install shims, converge, lock
+│       ├── converge-repo.sh          # idempotent shape convergence (rules, guard, workflow, cleanup)
+│       ├── update-agents-subtree.sh  # real subtree updater (run via the scripts/ shim)
+│       ├── cloud-fleet-sync-if-stale.sh
+│       ├── fleet-lock-check.sh       # CI lock check (called by fleet-lock-guard.yml)
 │       ├── link-fleet-rules.sh       # wire .agents/rules into .cursor/rules/
 │       └── merge-cursor-git-guard.sh # merge git guard into .cursor/hooks.json
+├── .github/workflows/
+│   └── fleet-lock-guard.yml          # verifies FLEET.lock on PRs touching .agents/
 ├── .cursor/
 │   ├── environment.json              # cloud VM install (+ optional terminals)
 │   ├── hooks.json                    # git guard (+ project hooks)
 │   └── rules/                        # fleet symlinks (.mdc) + project-only rules
-└── scripts/
-    ├── update-agents-subtree.sh      # pull fleet updates from dotagents
-    ├── cloud-fleet-sync-if-stale.sh  # cloud task start — pull when FLEET.lock is behind
-    └── pin-cloud-snapshot.sh         # commit snapshot ID after first green cloud boot
+└── scripts/                          # thin shims (copy fleet logic to a tmp file, run it)
+    ├── update-agents-subtree.sh
+    └── cloud-fleet-sync-if-stale.sh
 ```
 
 Cloud agents discover:
@@ -63,58 +71,28 @@ Cloud agents only see **committed** `.agents/` on the branch Cursor cloned. **At
    bash scripts/cloud-fleet-sync-if-stale.sh
    ```
 
-   Compares `.agents/FLEET.lock` to `dotagents/fleet`; when stale, runs `./scripts/update-agents-subtree.sh` (subtree pull, `FLEET.lock`, rule links, git-guard merge).
+   Compares `.agents/FLEET.lock` to `dotagents/fleet`; when stale, runs `./scripts/update-agents-subtree.sh`, which pulls the subtree, writes `FLEET.lock`, runs `converge-repo.sh` (rule links, git-guard merge, workflow ref, stale-file cleanup), and **commits the sync automatically**.
 
-4. **Commit and push** any changes before feature work:
+4. **Push** the sync commit before feature work:
 
    ```bash
-   git status
-   git add .agents .cursor/rules .cursor/hooks.json docs/cloud-agents.md
-   git add .agents/FLEET.lock 2>/dev/null || true
-   git commit -m "chore(fleet): sync agent fleet from dotagents"
+   git status        # should show a "chore(fleet): sync agent fleet from dotagents" commit ahead
    git push
    ```
 
-   Stage only paths that changed. Skip the commit if `git status` is clean.
+   If `git status` shows nothing ahead, the fleet was already current — nothing to push.
 
 If `dotagents` remote is missing, `update-agents-subtree.sh` adds it.
 
 ## Environment
 
-See `.cursor/environment.json`. New repos ship with `"agentCanUpdateSnapshot": true` so Cursor may let the agent refresh the pinned snapshot when the platform supports it (see [environment schema](https://www.cursor.com/schemas/environment.schema.json)).
+See `.cursor/environment.json`. Fleet repos use an `install` command (typically `bash scripts/cloud-agent-install.sh`) and **do not** commit a `"snapshot"` field — every agent boot runs install, then Cursor may reuse internal checkpoints (best-effort; see [Cloud Agent setup](https://cursor.com/docs/cloud-agent/setup)).
+
+After install succeeds, run smoke checks from root `AGENTS.md` (e.g. `npm run check:ts`, `npm test`). Do **not** add `snapshot` or `agentCanUpdateSnapshot` to `environment.json` unless the user explicitly asks for snapshot pinning.
 
 **Project-local paths (never overwritten by fleet subtree pull):** extra files under `.agents/hooks/` (e.g. deploy checks) and `.agents/automations/` — commit these in the child repo only. Fleet ships `block-git-no-verify.sh` and `merge-cursor-git-guard.sh` via subtree.
 
 **Git guard hook:** `merge-cursor-git-guard.sh` wires `block-git-no-verify.sh` into `.cursor/hooks.json` (`beforeShellExecution`). Fleet sync is **not** a hook — use `cloud-fleet-sync-if-stale.sh` at task start.
-
-## Snapshot bootstrap (agent-run)
-
-Run this **once per repo** (or again after dependency/toolchain changes) when you are a **Cursor Cloud agent** and `.cursor/environment.json` has no `snapshot` field, has a stale snapshot, or the user asked you to refresh the cloud environment.
-
-1. **Verify install** — Re-run or confirm the `install` command from `.cursor/environment.json` succeeded. Then run a **smoke check** from root `AGENTS.md` (e.g. `npm run check:ts`, `npm test`, project-specific command). Do not pin a snapshot on a broken environment.
-
-2. **Obtain a snapshot ID** (real ID only; never guess):
-   - Check agent UI / session metadata for a snapshot or environment ID after setup completes.
-   - Check env vars: `CURSOR_SNAPSHOT_ID`, `SNAPSHOT_ID` (if Cursor injected one).
-   - If still missing: open [Cloud Agents → Environments](https://cursor.com/dashboard?tab=cloud-agents), find this repository’s saved environment, and use **Copy** on the Snapshot column (requires an authenticated browser session — use browser tools if available, otherwise ask the user to paste the ID).
-
-3. **Pin in the repo:**
-
-   ```bash
-   ./scripts/pin-cloud-snapshot.sh 'snapshot-YYYYMMDD-...'
-   ```
-
-4. **Commit and push** on the working branch:
-
-   ```bash
-   git add .cursor/environment.json
-   git commit -m "chore(agents): pin cloud environment snapshot"
-   git push
-   ```
-
-5. **Fleet sync** — Run `bash scripts/cloud-fleet-sync-if-stale.sh` when pulling dotagents fleet changes, not as part of snapshot pinning.
-
-If you cannot obtain a snapshot ID, **leave `snapshot` unset** and note the blocker in your summary. The next agent will boot from `install` only.
 
 ## Fleet updates (dotagents subtree)
 
@@ -128,17 +106,17 @@ Fleet config is vendored from [dotagents](https://github.com/jsolly/dotagents) `
 
 Or from a cloud task: `bash scripts/cloud-fleet-sync-if-stale.sh` (checks `FLEET.lock` first).
 
-**Edit fleet canonical copy** (in `~/.agents` / dotagents `main`):
+**Edit fleet canonical copy** (in `~/code/dotagents`, dotagents `main`):
 
 ```bash
-cd ~/.agents
-# edit agents/, skills/, rules/
+cd ~/code/dotagents
+# edit agents/, skills/, rules/ (or via the ~/.agents symlink farm — same files)
 git add -A && git commit -m "..." && git push   # CI rebuilds + publishes the fleet branch
 ```
 
 Then sync into this repo via cloud task start or `update-agents-subtree.sh`.
 
-**Note:** `.agents/` in this repo is **read-only** — pull-only. The `fleet` branch is published by dotagents CI from `.agents/`; editing `.agents/` here and pushing back upstream does not round-trip (the next CI publish overwrites it). Make fleet changes in `.agents/`.
+**Note:** `.agents/` in this repo is **read-only** — pull-only. The `fleet` branch is published by dotagents CI from `~/code/dotagents`; editing `.agents/` here and pushing back upstream does not round-trip (the next CI publish overwrites it). Make fleet changes in `~/code/dotagents`.
 
 ### Secrets summary
 
