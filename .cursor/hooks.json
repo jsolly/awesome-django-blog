@@ -7,12 +7,6 @@
         "failClosed": true,
         "timeout": 5
       }
-    ],
-    "sessionStart": [
-      {
-        "command": "bash .agents/hooks/check-fleet-subtree-stale.sh",
-        "timeout": 15
-      }
     ]
   }
 }
