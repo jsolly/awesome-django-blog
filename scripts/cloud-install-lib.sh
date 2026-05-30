@@ -2,7 +2,8 @@
 # Shared Cursor Cloud install helpers. Source from repo scripts/cloud-agent-install.sh:
 #   source "$(cd "$(dirname "$0")/.." && pwd)/.agents/scripts/cloud-install-lib.sh"
 #
-# Provides: ensure_node_version, install_zip_unzip, install_aws_cli, install_sam, install_yaml_linters
+# Provides: ensure_node_version, use_node_for_cursor_cloud, install_zip_unzip, install_aws_cli,
+# install_sam, install_yaml_linters, ensure_user_local_bin_on_path
 
 ensure_node_version() {
 	local required_major
@@ -29,6 +30,57 @@ ensure_node_version() {
 
 	echo "Node ${required_major} required but nvm unavailable" >&2
 	exit 1
+}
+
+# Cursor cloud VMs put /exec-daemon Node 22 ahead of nvm on PATH — ensure_node_version alone is not enough.
+use_node_for_cursor_cloud() {
+	local required_major
+	required_major="$(tr -d '[:space:]' < .nvmrc 2>/dev/null || echo 24)"
+	required_major="${required_major%%.*}"
+
+	ensure_node_version
+
+	if [[ -s "${NVM_DIR:-$HOME/.nvm}/nvm.sh" ]]; then
+		# shellcheck source=/dev/null
+		. "${NVM_DIR:-$HOME/.nvm}/nvm.sh"
+		local nvm_node nvm_bin
+		nvm_node="$(nvm which "$required_major")"
+		nvm_bin="$(dirname "$nvm_node")"
+		export PATH="${nvm_bin}:${PATH}"
+	fi
+
+	local major
+	major="$(node -p "process.versions.node.split('.')[0]")"
+	if [[ "$major" -lt "$required_major" ]]; then
+		echo "Expected Node >= ${required_major}, got: $(node -v)" >&2
+		exit 1
+	fi
+
+	persist_cursor_node_shell "$required_major"
+	node -v
+}
+
+persist_cursor_node_shell() {
+	local required_major="${1:-24}"
+	local marker="cursor-cloud-agent-node${required_major}"
+	local profile="$HOME/.bashrc"
+
+	if [[ ! -f "$profile" ]] || grep -q "$marker" "$profile" 2>/dev/null; then
+		return 0
+	fi
+
+	cat >>"$profile" <<EOF
+
+# --- ${marker} (fleet cloud-install-lib.sh) ---
+export NVM_DIR="\${NVM_DIR:-\$HOME/.nvm}"
+[ -s "\$NVM_DIR/nvm.sh" ] && . "\$NVM_DIR/nvm.sh"
+nvm install ${required_major} >/dev/null 2>&1 || true
+nvm use ${required_major} >/dev/null 2>&1 || true
+if nvm which ${required_major} >/dev/null 2>&1; then
+  export PATH="\$(dirname "\$(nvm which ${required_major})"):\$PATH"
+fi
+# --- end ${marker} ---
+EOF
 }
 
 install_zip_unzip() {
@@ -91,7 +143,13 @@ install_aws_cli() {
 	aws --version
 }
 
+# pip --user / pipx install to ~/.local/bin; cloud shells often omit it from PATH.
+ensure_user_local_bin_on_path() {
+	export PATH="${HOME}/.local/bin:${PATH}"
+}
+
 install_yaml_linters() {
+	ensure_user_local_bin_on_path
 	# Pin versions to match stocktextalerts CI (noDeploy.yml).
 	if ! command -v yamllint >/dev/null 2>&1; then
 		if command -v pipx >/dev/null 2>&1; then

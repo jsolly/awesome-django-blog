@@ -26,7 +26,7 @@ Personal repos target **Node 24** everywhere the runtime is under our control.
 
 1. Update `.nvmrc`, `engines`, CI workflows, and SAM `Runtime` together — not one in isolation.
 2. Run the repo smoke suite (`check:ts`, tests, build) after the bump; watch native modules (`canvas`, `sharp`, etc.).
-3. Pin cloud-agent snapshots after toolchain changes (`docs/cloud-agents.md` in repos that use Cursor Cloud).
+3. Re-verify cloud `install` and smoke tests after toolchain changes (`docs/cloud-agents.md` in repos that use Cursor Cloud).
 
 ## Exceptions
 
