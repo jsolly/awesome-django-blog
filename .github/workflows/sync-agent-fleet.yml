@@ -15,7 +15,6 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          persist-credentials: false
 
       - name: Pull latest fleet from dotagents
         env:
@@ -34,8 +33,7 @@ jobs:
             echo "Subtree pull failed or no changes"
             exit 0
           fi
-          chmod +x scripts/link-fleet-rules.sh
-          ./scripts/link-fleet-rules.sh
+          bash .agents/scripts/link-fleet-rules.sh
           git add -A .agents
           git add -f .cursor/rules || true
           if git diff --cached --quiet; then

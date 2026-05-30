@@ -2,9 +2,9 @@
 # Pull latest fleet config from dotagents into .agents/, then relink Cursor rules.
 # Run from repo root.
 #
-# Push local .agents/ edits back to dotagents:
-#   git subtree push --prefix=.agents dotagents fleet
-# Then merge origin/fleet into dotagents main fleet/ (or re-run refresh-fleet there).
+# .agents/ is read-only (pull-only). The dotagents `fleet` branch is published by CI
+# from ~/.agents/ — make fleet changes there, not here. Pushing .agents/ edits back
+# upstream does not round-trip; the next CI publish overwrites the branch.
 
 set -euo pipefail
 
@@ -19,6 +19,7 @@ git fetch "$REMOTE" "$BRANCH"
 git subtree pull --prefix=.agents "$REMOTE" "$BRANCH" --squash -m "Update agent fleet subtree" || \
   git subtree add --prefix=.agents "$REMOTE" "$BRANCH" --squash -m "Add agent fleet subtree from dotagents"
 
-./scripts/link-fleet-rules.sh
+# Project-local .agents/hooks and .agents/automations are NOT in the fleet branch — subtree pull will not remove them if committed here.
+bash .agents/scripts/link-fleet-rules.sh
 
 echo "Updated .agents/ from ${REMOTE}/${BRANCH}"
