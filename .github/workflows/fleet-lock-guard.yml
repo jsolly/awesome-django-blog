@@ -18,4 +18,4 @@ jobs:
       - name: Verify FLEET.lock when .agents/ changes
         env:
           FLEET_SYNC_TOKEN: ${{ secrets.FLEET_SYNC_TOKEN }}
-        run: bash .github/scripts/fleet-lock-check.sh
+        run: bash .agents/scripts/fleet-lock-check.sh

@@ -4,7 +4,7 @@
 
 ## Cursor Cloud
 
-Cloud agents: see `docs/cloud-agents.md` (fleet layout, subtree updates).
+Cloud agents: see `.agents/docs/cloud-agents.md` (fleet layout, subtree updates).
 
 ## Stack
 
