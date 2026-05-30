@@ -171,7 +171,7 @@ The destination is always `main`. The current branch name doesn't matter — the
 
 - `git push origin HEAD:main`. This works whether you're on `main`, on a worktree topic branch, or on any other local branch — the commits land on remote `main`.
 - If the remote rejects the push as non-fast-forward, `main` advanced after the step-2 sync (rare but possible during a long review pass). Re-run step 2 against the new `origin/main`, re-run smoke checks, then push again.
-- Pre-commit hooks run linting and tests automatically. If they fail, fix and re-commit. **Never use `--no-verify`** — the deny rules in `~/.claude/settings.json` (see `references/safety-rules.md`) block this mechanically.
+- Pre-commit hooks run linting and tests automatically. If they fail, fix and re-commit. **Never use `--no-verify`** — per-agent guards (see `references/safety-rules.md`) block this mechanically.
 
 ### 11a. Worktree cleanup (default when work was done in a worktree)
 

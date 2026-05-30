@@ -1,12 +1,63 @@
-# Safety Rules — `permissions.deny` in `~/.claude/settings.json`
+# Agent safety rules — block `git push/commit --no-verify`
 
-The skill states "Never use `--no-verify`" and "Never `git push --force`" as instructions to the model. These deny rules make those instructions **mechanical**, not advisory: any tool call matching them is rejected by Claude Code before reaching the shell, regardless of what the model intends.
+These guards make "never bypass hooks with `--no-verify`" **mechanical**, not advisory. Each agent has its own enforcement layer; there is no shared git wrapper.
 
-This file documents the rules; they live in `~/.claude/settings.json` because that's where Claude Code reads `permissions.deny`. The connection to `/review-fix-push` is conceptual — these are safety nets for the skill's "no PR, push directly to main" model.
+## Two layers
+
+| Layer | Where | Covers |
+| --- | --- | --- |
+| **Home** | `~/.claude`, `~/.cursor`, `~/.codex` via install script | All repos on that machine (Claude, Cursor IDE/CLI, Codex) |
+| **Repo** | `.agents/hooks/block-git-no-verify.sh` + merged `.cursor/hooks.json` | Cursor Cloud and defense-in-depth locally |
+
+**Home layer** — run once per machine:
+
+```bash
+.agents/scripts/install-agent-git-guards.sh
+```
+
+**Repo layer** — ships in fleet subtree; merge into each app repo:
+
+```bash
+bash .agents/scripts/merge-cursor-git-guard.sh
+```
+
+Roll out to all local fleet repos after subtree pull:
+
+```bash
+.agents/scripts/rollout-git-guards-to-repos.sh
+```
+
+Canonical snippets and the shared hook script live under `.agents/hooks/` (dotagents repo root; not all snippets ship in fleet).
 
 ---
 
-## The rules
+## Propagation checklist
+
+| Surface | Install path | Verify |
+| --- | --- | --- |
+| Home Mac | `.agents/scripts/install-agent-git-guards.sh` | jq checks below |
+| Work Mac | setup-work-computer §2 (copy hooks) + §11 install | same jq checks |
+| App repo (local + cloud) | subtree pull + `merge-cursor-git-guard.sh` | `jq '.hooks.beforeShellExecution' .cursor/hooks.json` |
+| Codex | home install + `/hooks` trust once | hook listed in Codex `/hooks` |
+
+---
+
+## Shared hook script
+
+`.agents/hooks/block-git-no-verify.sh` (fleet: `.agents/hooks/block-git-no-verify.sh`) parses the shell command (including compound commands split on `&&`, `||`, `;`, `|`) and blocks when a segment is `git push` or `git commit` with `--no-verify`.
+
+---
+
+## Claude Code
+
+**Layers:** `permissions.deny` + `PreToolUse` hook on `Bash`.
+
+Snippets:
+
+- `hooks/claude-permissions-snippet.json` — deny rules
+- `hooks/claude-hooks-snippet.json` — adds the Bash hook under `PreToolUse`
+
+Deny rules (also in snippet):
 
 ```json
 {
@@ -22,50 +73,89 @@ This file documents the rules; they live in `~/.claude/settings.json` because th
 }
 ```
 
-## What each rule blocks
+The `PreToolUse` hook is belt-and-suspenders when `defaultMode` is `bypassPermissions` — exit code `2` blocks before the shell runs.
 
-| Rule | Blocks | Why |
-| --- | --- | --- |
-| `Bash(git push *--force*)` | `git push --force`, `git push origin --force`, `git push --force HEAD:main`, etc. | Force-pushes overwrite remote main; reviewer pushes have no business doing this. |
-| `Bash(git push *--force-with-lease*)` | Same as above with `--force-with-lease` | Still rewrites history; safer than `--force` but not safe enough for a sole-gate workflow. |
-| `Bash(git push *--no-verify*)` | `git push --no-verify HEAD:main`, etc. | Bypasses pre-push hooks the user trusts. The skill explicitly forbids this. |
-| `Bash(git commit *--no-verify*)` | `git commit --no-verify -m "..."`, etc. | Bypasses pre-commit hooks. |
-| `Bash(git reset --hard*)` | `git reset --hard`, `git reset --hard origin/main`, etc. | Loses uncommitted work; the skill's flow never needs this. |
-
-## Caveat from the docs (fragility)
-
-Per the [Claude Code permissions docs](https://code.claude.com/docs/en/permissions): "Bash permission patterns that try to constrain command arguments are fragile."
-
-Variations that could evade these rules:
-
-- **Aliases**: a shell alias mapping `gpf` to `git push --force` would route around the deny rule because the matcher sees `gpf`, not the expanded command.
-- **Env-var splicing**: `FLAGS="--force" git push $FLAGS` — the matcher sees the literal command string before the shell expands `$FLAGS`. Whether the deny rule fires depends on Claude Code's invocation point.
-- **Short flags for `--force`**: `-f` is intentionally not in the deny list because `Bash(git push *-f*)` would also match `--fast-forward` and similar legitimate flags. The skill instructs the model not to use `-f` either; this is belt-and-suspenders.
-- **Compound commands**: per the docs, Claude Code splits compound commands by `&&`, `||`, `;`, `|`, etc., and checks each subcommand independently. So `git push --force && echo done` is correctly blocked. But complex shell constructions might evade.
-
-For solo prototyping the threat model is "don't accidentally type `--force`," not "thwart adversarial injection." If the model is ever observed routing around a rule, expand the pattern set.
-
-## Verifying the rules
-
-After installing, confirm via:
+**Verify:**
 
 ```bash
-# Check that the deny rules are present
-jq '.permissions.deny' ~/.claude/settings.json
-
-# In any Claude Code session, run /permissions and look for the deny entries
+jq '.permissions.deny, .hooks.PreToolUse' ~/.claude/settings.json
 ```
 
-To test a deny rule without actually running the dangerous command, ask Claude Code in a sandbox session to attempt it — the call should be rejected before the shell sees it.
+In Claude Code: `/permissions` should list the deny entries; `/hooks` reloads after edits.
 
-## Precedence (per the docs)
+**Caveat:** Bash permission patterns are fragile (aliases, env-var splicing, `-f` short flags). The hook catches full command strings more reliably than deny patterns alone.
 
-Rules are evaluated in order: **deny → ask → allow**. The first matching rule wins, so deny rules always take precedence over allow rules. Hooks (PreToolUse) cannot override deny rules — even a hook returning `permissionDecision: "allow"` is overruled by a matching deny.
+---
 
-This is what makes deny rules the right tool here: they're stronger than the model's intent and stronger than any other harness layer.
+## Cursor (IDE agent)
 
-## What this file does NOT do
+**Home layer:** `beforeShellExecution` hook in `~/.cursor/hooks.json` (snippet: `hooks/cursor-hooks-snippet.json`).
 
-- **Does not enforce these rules** — the rules live in `~/.claude/settings.json`. This file just documents them.
-- **Does not protect against `git` directly invoked outside Claude Code** — pre-commit hooks at the git layer (e.g., via the `pre-commit` framework, or a `.git/hooks/pre-push` script) are the defense for that. Out of scope here.
-- **Does not block `git config alias.gpf "push --force"`** — alias creation is its own concern. A deny on `Bash(git config alias.* push*--force*)` could help; not currently in the rule set.
+**Repo layer:** merged entry in `.cursor/hooks.json` calling `bash .agents/hooks/block-git-no-verify.sh` (via `merge-cursor-git-guard.sh`).
+
+Home install symlinks the script at `~/.cursor/hooks/block-git-no-verify.sh` (paths in user `hooks.json` are relative to `~/.cursor/`).
+
+Uses `failClosed: true` so a crashed hook denies instead of fail-open.
+
+**Verify:** Cursor **Settings → Hooks**, or the **Hooks** output channel after triggering a blocked command.
+
+---
+
+## Cursor CLI (`cursor-agent`)
+
+**Layer:** `permissions.deny` tokens in `~/.cursor/cli-config.json`.
+
+Snippet: `hooks/cursor-cli-permissions-snippet.json`
+
+```json
+{
+  "permissions": {
+    "deny": [
+      "Shell(git:push*--no-verify*)",
+      "Shell(git:commit*--no-verify*)"
+    ]
+  }
+}
+```
+
+Uses the `Shell(command:args)` form so `--no-verify` can appear anywhere in the args after `push`/`commit`.
+
+**Verify:**
+
+```bash
+jq '.permissions.deny' ~/.cursor/cli-config.json
+```
+
+Deny wins over allow rules.
+
+---
+
+## Codex
+
+**Layer:** `PreToolUse` hook on `Bash` in `~/.codex/hooks.json`.
+
+Snippet: `hooks/codex-hooks-snippet.json` → installed to `~/.codex/hooks.json`.
+
+Hooks are enabled by default. Non-managed hooks require trust review — open `/hooks` in Codex after install (one-time manual step).
+
+**Verify:**
+
+```bash
+jq '.hooks.PreToolUse' ~/.codex/hooks.json
+```
+
+Prefix rules in `~/.codex/rules/*.rules` are **not** used here; they only match command prefixes and miss `git push origin main --no-verify`. The hook handles trailing flags.
+
+---
+
+## Precedence notes (Claude)
+
+Per [Claude Code permissions docs](https://code.claude.com/docs/en/permissions): deny → ask → allow; deny rules from any scope win. PreToolUse hooks that exit `2` block before permission rules run (stronger than allow, complementary to deny).
+
+---
+
+## What this does NOT do
+
+- Does not block `--no-verify` when git is invoked outside these agents (manual terminal, CI, other tools).
+- Does not block force-push via `-f` short flag in Claude deny patterns (documented fragility).
+- Does not replace fixing broken pre-commit/pre-push hooks — it only stops agents from bypassing them.
