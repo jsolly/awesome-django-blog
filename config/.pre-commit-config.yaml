@@ -1,7 +1,13 @@
 repos:
     - repo: https://github.com/charliermarsh/ruff-pre-commit
-      # Ruff version.
       rev: "v0.0.246"
       hooks:
           - id: ruff
             args: ["--config", "config/pyproject.toml"]
+    - repo: local
+      hooks:
+          - id: django-ci-parity
+            name: Django CI parity (collectstatic, migrate, pytest)
+            entry: bash scripts/ci-parity-pre-commit.sh
+            language: system
+            pass_filenames: false
