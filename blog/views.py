@@ -42,6 +42,17 @@ from pathlib import Path
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 ez_logger = logging.getLogger("ezra_logger")
 
+_LOG_PREVIEW_MAX_CHARS = 500
+
+
+def _bounded_log_preview(value, max_chars: int = _LOG_PREVIEW_MAX_CHARS) -> str:
+    if value is None:
+        return ""
+    text = value if isinstance(value, str) else str(value)
+    if len(text) <= max_chars:
+        return text
+    return f"{text[:max_chars]}…"
+
 
 class DatabaseStatus:  # pragma: no cover
     def get_status(self):
@@ -273,14 +284,27 @@ class PostDetailView(DetailView):
         context["comment_form"] = CommentForm()
         context["related_posts"] = related_posts
         
-        try:
-            context["metaimg_url"] = self.object.metaimg.url
-            context["metaimg_width"] = self.object.metaimg.width
-            context["metaimg_height"] = self.object.metaimg.height
-        except Exception:
-            context["metaimg_url"] = self.object.metaimg.url if self.object.metaimg else ""
-            context["metaimg_width"] = 1200  # default width
-            context["metaimg_height"] = 630  # default height
+        if self.object.metaimg:
+            try:
+                context["metaimg_url"] = self.object.metaimg.url
+                context["metaimg_width"] = self.object.metaimg.width
+                context["metaimg_height"] = self.object.metaimg.height
+            except (ValueError, OSError) as exc:
+                ez_logger.warning(
+                    "Post meta image unavailable; using defaults",
+                    extra={
+                        "post_slug": self.object.slug,
+                        "metaimg_name": self.object.metaimg.name,
+                        "error": str(exc),
+                    },
+                )
+                context["metaimg_url"] = ""
+                context["metaimg_width"] = 1200
+                context["metaimg_height"] = 630
+        else:
+            context["metaimg_url"] = ""
+            context["metaimg_width"] = 1200
+            context["metaimg_height"] = 630
 
         return context
 
@@ -418,21 +442,33 @@ class CommentDeleteView(UserPassesTestMixin, View):
 
 
 def generate_gpt_input_value(request):
-    def get_safe_completion(prompt, max_tokens):
-        completion = (
-            openai.Completion.create(
-                model="gpt-3.5-turbo-instruct",
-                prompt=prompt,
-                max_tokens=max_tokens,
-                temperature=0.5,
-            )["choices"][0]["text"]
-            .replace("\n", "")
-            .replace('"', "")
-        )
+    def get_safe_completion(prompt, max_tokens, trigger):
+        try:
+            completion = (
+                openai.Completion.create(
+                    model="gpt-3.5-turbo-instruct",
+                    prompt=prompt,
+                    max_tokens=max_tokens,
+                    temperature=0.5,
+                )["choices"][0]["text"]
+                .replace("\n", "")
+                .replace('"', "")
+            )
+        except Exception as exc:
+            ez_logger.error(
+                "GPT completion failed",
+                extra={
+                    "trigger": trigger,
+                    "max_tokens": max_tokens,
+                    "prompt_preview": _bounded_log_preview(prompt),
+                    "error": str(exc),
+                },
+            )
+            raise
         return html.escape(completion)
 
     def generate_input_field(prompt, trigger, max_tokens):
-        completion = get_safe_completion(prompt, max_tokens)
+        completion = get_safe_completion(prompt, max_tokens, trigger)
         safe_completion = html.escape(completion)
         if trigger == "generate-slug":
             # ensure slug is lowercase and replace spaces with hyphens
@@ -478,8 +514,21 @@ def generate_gpt_input_value(request):
 @csrf_exempt
 def answer_question_with_GPT(request):
     question = request.POST.get("question-text-area", "")
-    ez_logger.info(f"Question: {question}")
-    completion = answer_question(question=question)
+    ez_logger.info(
+        "GPT question received",
+        extra={"question_preview": _bounded_log_preview(question)},
+    )
+    try:
+        completion = answer_question(question=question)
+    except Exception as exc:
+        ez_logger.error(
+            "GPT answer failed",
+            extra={
+                "question_preview": _bounded_log_preview(question),
+                "error": str(exc),
+            },
+        )
+        raise
     response = f"<div class='messages__item messages__item--bot'>{completion}</div>"
 
     return HttpResponse(response)
