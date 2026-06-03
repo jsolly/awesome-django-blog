@@ -11,6 +11,8 @@ env:
   LOGGING: False
   DJANGO_SETTINGS_MODULE: app.settings
   USE_SQLITE: True
+  USE_CLOUD: False
+  SECURE_SSL_REDIRECT: False
   SECRET_KEY: "Not applicable for tests"
   ALLOWED_HOSTS: "127.0.0.1 localhost"
   SITE_ID: 1

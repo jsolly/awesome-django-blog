@@ -5,7 +5,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
-export DEBUG=False LOGGING=False DJANGO_SETTINGS_MODULE=app.settings USE_SQLITE=True
+export DEBUG=False LOGGING=False DJANGO_SETTINGS_MODULE=app.settings USE_SQLITE=True USE_CLOUD=False SECURE_SSL_REDIRECT=False
 export SECRET_KEY="local-pre-commit" ALLOWED_HOSTS="127.0.0.1 localhost" SITE_ID=1
 
 if [[ ! -d .venv ]]; then
