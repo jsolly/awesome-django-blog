@@ -1,6 +1,6 @@
 # Reviewer Output Contract
 
-**This is the canonical output format every review subagent must follow.** Every agent in `.agents/agents/` inlines this contract. The orchestrator at `.agents/skills/review-fix-push/SKILL.md` consumes this format. Drift across agents breaks the aggregator.
+**This is the canonical output format every review subagent must follow.** Every agent in dotagents `agents/` inlines this contract; local installs expose those prompts at `.agents/agents/`, and app repos receive them at `.agents/agents/`. The `/review-fix-push` orchestrator consumes this format. Drift across agents breaks the aggregator.
 
 When you edit an agent's `## Output format` block, mirror this file exactly (modulo the agent-specific `## Out of scope` sub-block, which is per-lens).
 

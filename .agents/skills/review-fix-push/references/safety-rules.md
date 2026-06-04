@@ -4,10 +4,18 @@
 
 | Layer | Where | Covers |
 | --- | --- | --- |
-| **Repo** | `.agents/hooks/block-git-no-verify.sh` merged into `.cursor/hooks.json` | Cursor IDE and Cursor Cloud in that repo |
-| **Home (desktop)** | `~/.claude/settings.json`, `~/.cursor/hooks.json`, `~/.codex/hooks.json` via `block-git-no-verify.sh` | All repos on that Mac for those tools |
+| **Repo** | `.agents/hooks/block-git-no-verify.sh` merged into repo `.cursor/hooks.json` by `converge-repo.sh` | Cursor IDE and Cursor Cloud in that repo |
+| **Home (desktop)** | `.agents/hooks/block-git-no-verify.sh` merged into `~/.cursor/hooks.json`, `~/.claude/settings.json`, and `~/.codex/hooks.json` by `scripts/install-local-agent-runtime.sh` | Local Cursor, Claude Code, and Codex sessions, including dotagents itself and repos before fleet convergence |
 
-Install desktop guards and sound hooks from dotagents: `bash ~/code/dotagents/scripts/install-desktop-agent-hooks.sh` (sounds only) plus existing Claude/Codex Bash `PreToolUse` wiring for the git guard. Fleet repos get the repo layer from `converge-repo.sh` automatically.
+Install or refresh the local desktop guards with:
+
+```bash
+bash ~/code/dotagents/scripts/install-local-agent-runtime.sh personal
+# or
+bash ~/code/dotagents/scripts/install-local-agent-runtime.sh work
+```
+
+Fleet repos get the repo layer from `converge-repo.sh` automatically. Desktop sound hooks are separate and optional: `bash ~/code/dotagents/scripts/install-desktop-agent-hooks.sh`.
 
 ## The repo guard
 
@@ -33,7 +41,17 @@ jq '.hooks.beforeShellExecution' .cursor/hooks.json
 
 Cursor surfaces a blocked command in **Settings → Hooks** and the **Hooks** output channel.
 
+## The local desktop guard
+
+The local runtime installer preserves existing hook entries and adds exactly one guard command per tool:
+
+```bash
+bash .agents/hooks/block-git-no-verify.sh
+```
+
+Cursor uses `beforeShellExecution`; Claude Code and Codex use `PreToolUse` for Bash. This protects local sessions even in repos that are not fleet-converged. App repos should still rely on the repo guard as the cloud-compatible source of enforcement.
+
 ## What this does NOT do
 
-- Does not block `--no-verify` when git is invoked outside the Cursor agent (manual terminal, CI, other tools).
+- Does not block `--no-verify` when git is invoked outside configured agent hooks (manual terminal, CI, other tools).
 - Does not replace fixing broken pre-commit/pre-push hooks — it only stops the agent from bypassing them.

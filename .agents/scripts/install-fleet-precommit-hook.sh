@@ -1,16 +1,50 @@
 #!/usr/bin/env bash
-# Install or refresh the fleet freshness block in .git/hooks/pre-commit.
+# Install or refresh the fleet freshness block in the repo's active pre-commit hook.
 # Ships in the bundle at .agents/scripts/install-fleet-precommit-hook.sh and auto-propagates.
-# Idempotent; does not overwrite non-shell hooks.
+# Idempotent; does not overwrite non-shell hooks. Respects core.hooksPath (.githooks, .git-hooks, .husky).
 set -euo pipefail
 
 ROOT="$(git rev-parse --show-toplevel)"
 cd "$ROOT"
 
-HOOK=".git/hooks/pre-commit"
 CHECKER=".agents/scripts/fleet-precommit-check.sh"
 BEGIN='# BEGIN dotagents fleet pre-commit guard'
 END='# END dotagents fleet pre-commit guard'
+
+resolve_precommit_hook() {
+  local hp
+  hp="$(git config --local core.hooksPath 2>/dev/null || true)"
+  hp="${hp%/}"
+
+  # Husky v9: core.hooksPath=.husky/_ ; user hook is .husky/pre-commit or .git-hooks/pre-commit
+  if [[ "$hp" == ".husky/_" ]]; then
+    if [[ -f .husky/pre-commit ]]; then
+      echo ".husky/pre-commit"
+      return
+    fi
+    if [[ -f .git-hooks/pre-commit ]]; then
+      echo ".git-hooks/pre-commit"
+      return
+    fi
+  fi
+
+  if [[ -n "$hp" && "$hp" != ".husky/_" && -f "$hp/pre-commit" ]]; then
+    echo "$hp/pre-commit"
+    return
+  fi
+
+  if [[ -f .git-hooks/pre-commit ]]; then
+    echo ".git-hooks/pre-commit"
+    return
+  fi
+
+  if [[ -f .githooks/pre-commit ]]; then
+    echo ".githooks/pre-commit"
+    return
+  fi
+
+  echo ".git/hooks/pre-commit"
+}
 
 fleet_block() {
   cat <<BLOCK
@@ -33,12 +67,17 @@ if [[ ! -f "$CHECKER" ]]; then
   exit 0
 fi
 
-mkdir -p .git/hooks
+HOOK="$(resolve_precommit_hook)"
+HOOK_DIR="$(dirname "$HOOK")"
+mkdir -p "$HOOK_DIR" .git/hooks
 
-if [[ -f "$HOOK" ]] && ! head -n1 "$HOOK" | grep -qE '^#!.*(sh|bash)'; then
-  echo "WARN: $HOOK is not a shell hook — add the fleet guard manually:" >&2
-  echo "  bash $CHECKER || exit 1" >&2
-  exit 0
+if [[ -f "$HOOK" ]]; then
+  first_line="$(head -n1 "$HOOK")"
+  if [[ "$first_line" =~ ^#! ]] && [[ ! "$first_line" =~ ^#!.*(sh|bash) ]]; then
+    echo "WARN: $HOOK is not a shell hook — add the fleet guard manually:" >&2
+    echo "  bash $CHECKER || exit 1" >&2
+    exit 0
+  fi
 fi
 
 BLOCK_CONTENT="$(fleet_block)"
@@ -68,7 +107,8 @@ if begin in text and end in text:
         new_text += "\n"
     pathlib.Path(hook_path).write_text(new_text, encoding="utf-8")
 else:
-    new_text = text.rstrip() + "\n\n" + block.strip() + "\n"
+    # Run fleet freshness check before existing hook body.
+    new_text = block.strip() + "\n\n" + text.lstrip("\n")
     if not new_text.endswith("\n"):
         new_text += "\n"
     pathlib.Path(hook_path).write_text(new_text, encoding="utf-8")

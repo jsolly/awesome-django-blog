@@ -17,7 +17,7 @@ If an argument is present:
 1. List candidates: `git diff --name-only origin/main...HEAD` (run after the fetch in step 3 if you haven't already; for the first pass, `git diff --name-only HEAD` against the local working tree is fine — you'll re-resolve after sync).
 2. Match the concept using filename + path semantics. Use these heuristics in order:
    - Direct token match in the path (`auth` → any path containing `auth`).
-   - File-type cluster (`migration` → `*.sql` files; `plan` / `spec` → `*.md` under `plans/`, `specs/`, `~/.claude/plans/`, `docs/superpowers/specs/`).
+   - File-type cluster (`migration` → `*.sql` files; `plan` / `spec` → `*.md` under `docs/superpowers/plans/`, `docs/superpowers/specs/`, or project-local docs paths).
    - Directory cluster (`dashboard` → all files under `src/components/dashboard/`).
    - If none of the above produces a confident match and the diff is small (≤5 files), sample the contents of each and judge by the file's own stated purpose.
 3. Show the matched scope as a single line: `Scoped to: <N> file(s) — <one-line summary>`.
@@ -54,7 +54,7 @@ Identical to `/review-fix-push` step 3. Read `.agents/skills/review-fix-push/ref
 Quick recap:
 
 - Read project `AGENTS.md` (root of repo) + linked guideline files + global `.agents/AGENTS.md`.
-- Locate the plan or spec the user was implementing (most-recent `<repo-root>/docs/superpowers/plans/*.md`, then `<repo-root>/docs/superpowers/specs/*.md`, then a path referenced in recent messages, then the conversation's first user message). See `.agents/rules/specs-and-plans.md`.
+- Locate the plan or spec the user was implementing (most-recent `<repo-root>/docs/superpowers/plans/*.md`, then `<repo-root>/docs/superpowers/specs/*.md`, then a path referenced in recent messages, then the conversation's first user message). See `rules/specs-and-plans.md` in the dotagents source or `.agents/rules/specs-and-plans.md` in app repos.
 - Note any post-commit deploy rules — but in this skill they're informational only (we don't deploy here).
 
 The located plan text becomes `{PLAN_OR_SPEC}` in the dispatch prompt at step 7.
