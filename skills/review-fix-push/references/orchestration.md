@@ -30,7 +30,7 @@ This step is the gate that makes the rest of the skill meaningful. Skip it only 
 
 **Guidelines**:
 
-- Read the project `AGENTS.md` (root of repo) and any linked guideline files it references (e.g., `.agents/code-style.md`, `.agents/testing.md`, etc.).
+- Read the project `AGENTS.md` (root of repo) and any linked guideline files it references (e.g., `.agents/rules/code-style.md`, `.agents/rules/testing.md`, etc.).
 - Read any `AGENTS.md` in directories containing modified files.
 - Read the global `.agents/AGENTS.md` for cross-project conventions.
 - These guidelines are the standard the review is measured against.
@@ -38,7 +38,7 @@ This step is the gate that makes the rest of the skill meaningful. Skip it only 
 
 **Plan/spec lookup (D.1)**:
 
-Locate the plan or spec the user was implementing, in this order. Project-local paths are canonical — see `.agents/rules/specs-and-plans.md` for the full convention and why vendor-specific paths (`~/.claude/plans/`, etc.) are deprecated.
+Locate the plan or spec the user was implementing, in this order. Project-local paths are canonical — see `rules/specs-and-plans.md` in the dotagents source or `.agents/rules/specs-and-plans.md` in app repos for the full convention and why vendor-specific planning directories are deprecated.
 
 1. Most recently modified file matching `<repo-root>/docs/superpowers/plans/*.md` within the current session window. Resolve `<repo-root>` via `git rev-parse --show-toplevel` from the working directory.
 2. Most recently modified file matching `<repo-root>/docs/superpowers/specs/*.md` (fallback if no plan exists but a spec does).
@@ -48,7 +48,7 @@ Locate the plan or spec the user was implementing, in this order. Project-local 
 
 Disambiguation: if multiple plans were modified within ~60 seconds of each other, pause and ask the user which to inject.
 
-Legacy `~/.claude/plans/*.md` is intentionally not in the lookup chain — that location is deprecated per the specs-and-plans rule. If a user has plans lingering there, surface them in the message and ask whether to migrate to `docs/superpowers/plans/` before proceeding.
+Legacy vendor-specific plan directories are intentionally not in the lookup chain. If a user has plans lingering outside the repo, surface that and ask whether to migrate them to `docs/superpowers/plans/` before proceeding.
 
 The located plan text becomes `{PLAN_OR_SPEC}` in the dispatch prompt at step 6 — every agent will receive it under an `## Intended outcome` heading, with instruction to flag material divergence as Critical regardless of their lens.
 

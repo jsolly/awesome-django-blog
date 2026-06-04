@@ -1,6 +1,6 @@
 # Agent Fleet — Composition, Gating, Models
 
-The 16 review subagents in `.agents/agents/` are dispatched in parallel by `/review-fix-push` step 6. This file documents which agents fire when and why. Every agent uses `model: inherit` in frontmatter (same model as the orchestrator session).
+The 16 review subagent prompts live in dotagents `agents/`. Local installs expose them through `.agents/agents/` and Cursor `~/.cursor/agents/*.md` symlinks; fleet consumers receive the same prompts at `.agents/agents/`. `/review-fix-push` step 6 dispatches this fleet in parallel. Every agent uses `model: inherit` in frontmatter (same model as the orchestrator session).
 
 ---
 

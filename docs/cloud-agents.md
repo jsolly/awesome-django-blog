@@ -2,7 +2,7 @@
 
 <!-- fleet-doc-version: 10 -->
 
-This repo is configured for **cloud agents and local desktop agents**. Skills, rules, and fleet guards are self-contained in git. **Cursor Cloud VMs** have no developer-home checkout — only the committed subtree applies. **Local desktop** Cursor / Claude / Codex use the same subtree per repo plus optional machine-local hooks from [dotagents](https://github.com/jsolly/dotagents) (`docs/setup-local-machine.md` in the canonical repo).
+This repo is configured for **cloud agents and local desktop agents** through the same committed app-repo runtime. Skills, reviewer prompts, rules, instructions, and fleet guards are self-contained in git. **Cursor Cloud VMs** have no developer-home checkout — only the committed repo content applies. **Local desktop** Cursor / Claude / Codex use the same subtree when opened inside an app repo, plus the optional local laptop runtime from [dotagents](https://github.com/jsolly/dotagents) (`docs/setup-local-machine.md` in the canonical repo).
 
 ## Layout
 
@@ -29,6 +29,7 @@ This repo is configured for **cloud agents and local desktop agents**. Skills, r
 │       ├── cloud-install-lib.sh      # shared cloud install helpers (Node, SAM, Playwright E2E, …)
 │       ├── fleet-lock-check.sh       # CI lock + content-drift check (fleet-lock-guard.yml)
 │       ├── link-fleet-rules.sh       # wire .agents/rules into .cursor/rules/
+│       ├── link-fleet-discovery.sh   # wire .agents/skills and .agents/agents into .cursor/
 │       ├── merge-cursor-git-guard.sh # merge git guard into .cursor/hooks.json
 │       ├── merge-cursor-edit-guard.sh # merge fleet edit guard into .cursor/hooks.json
 │       └── merge-claude-edit-guard.sh # merge Edit/Write deny rules into .claude/settings.json
@@ -47,12 +48,13 @@ This repo is configured for **cloud agents and local desktop agents**. Skills, r
 
 Cloud agents discover:
 
-- **Skills** at `.agents/skills/`
+- **Skills** at `.cursor/skills/` symlinked to `.agents/skills/`
+- **Reviewer agent prompts** at `.cursor/agents/` symlinked to `.agents/agents/`
 - **Fleet persona** at `.agents/AGENTS.md` (included via root `AGENTS.md`)
 - **Rules** at `.cursor/rules/` (fleet symlinks + project-only files)
 - **Instructions** from root `AGENTS.md`
 
-They **do** read the committed `.agents/` subtree in the repo. They do **not** see developer-home skill paths, `~/.cursor/skills/`, or machine-local symlinks outside the repo.
+They **do** read the committed `.agents/` subtree and repo-local `.cursor/` discovery links. They do **not** see developer-home skill paths, `~/.agents`, user-level `~/.cursor/skills/`, user-level `~/.cursor/agents/`, or machine-local symlinks outside the repo.
 
 ### Edit path (fleet changes)
 
@@ -78,7 +80,7 @@ Cloud agents only see **committed** `.agents/` on the branch Cursor cloned. **At
    bash scripts/cloud-fleet-sync-if-stale.sh
    ```
 
-   Compares `.agents/FLEET.lock` to `dotagents/fleet`; when stale, runs `./scripts/update-agents-subtree.sh`, which pulls the subtree, writes `FLEET.lock`, runs `converge-repo.sh` (rule links, git/edit guards, Claude deny merge, workflow ref, stale-file cleanup), and **commits the sync automatically**.
+   Compares `.agents/FLEET.lock` to `dotagents/fleet`; when stale, runs `./scripts/update-agents-subtree.sh`, which pulls the subtree, writes `FLEET.lock`, runs `converge-repo.sh` (skill/agent/rule links, git/edit guards, Claude deny merge, workflow ref, stale-file cleanup), and **commits the sync automatically**.
 
 4. **Push** the sync commit before feature work:
 
@@ -157,8 +159,10 @@ Or from a cloud task: `bash scripts/cloud-fleet-sync-if-stale.sh` (checks `FLEET
 
 ```bash
 cd ~/code/dotagents
-# edit agents/, skills/, rules/ (or via the ~/.agents symlink farm — same files)
-git add -A && git commit -m "..." && git push   # CI rebuilds + publishes the fleet branch
+# edit agents/, skills/, rules/, hooks/, templates/, or fleet scripts
+git add <changed paths>
+git commit -m "..."
+git push   # CI rebuilds + publishes the fleet branch
 ```
 
 Then sync into this repo via cloud task start or `update-agents-subtree.sh`.
@@ -170,13 +174,13 @@ Then sync into this repo via cloud task start or `update-agents-subtree.sh`.
 | Secret | Where | Purpose |
 | --- | --- | --- |
 | `DOTAGENTS_GITHUB_TOKEN` | Cursor Cloud repo secrets | Cloud agent fetch of `jsolly/dotagents` `fleet` |
-| `FLEET_SYNC_TOKEN` | GitHub Actions repo secret | PR workflow `fleet-lock-guard` when `.agents/` changes |
+| `FLEET_SYNC_TOKEN` | GitHub Actions repo secret | PR/push workflow `fleet-lock-guard` when `.agents/` changes |
 
 Do **not** reuse `GH_AGENT_TOKEN` for fleet fetch — broader cross-repo scope; keep in Cursor-only config.
 
 ### FLEET.lock on pull requests
 
-Repos with `.github/workflows/fleet-lock-guard.yml` verify when `.agents/` changes in a PR:
+Repos with `.github/workflows/fleet-lock-guard.yml` verify when `.agents/` changes in a PR or push to `main`. `FLEET_SYNC_TOKEN` is required; the workflow fails closed without it.
 
 1. `.agents/FLEET.lock` SHA matches `dotagents/fleet` HEAD (`FLEET_SYNC_TOKEN` required).
 2. `.agents/` file blobs match the fleet tree at that SHA (content-drift check — catches hand-edits that keep a valid lock).

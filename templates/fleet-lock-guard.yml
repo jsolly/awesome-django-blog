@@ -1,6 +1,11 @@
 name: Fleet lock guard
 
 on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".agents/**"
+      - ".github/workflows/fleet-lock-guard.yml"
   push:
     branches: [main]
     paths:
@@ -23,4 +28,5 @@ jobs:
       - name: Verify FLEET.lock when .agents/ changes
         env:
           FLEET_SYNC_TOKEN: ${{ secrets.FLEET_SYNC_TOKEN }}
+          GITHUB_EVENT_BEFORE: ${{ github.event.before }}
         run: bash .agents/scripts/fleet-lock-check.sh

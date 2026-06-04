@@ -1,22 +1,42 @@
 #!/usr/bin/env bash
-# Assert .agents/FLEET.lock matches dotagents fleet branch when .agents/ changes in a PR.
+# Assert .agents/FLEET.lock matches dotagents fleet branch when .agents/ changes.
 # Ships in the fleet bundle at .agents/scripts/fleet-lock-check.sh and auto-propagates.
 #
-# Used by .github/workflows/fleet-lock-guard.yml (after checkout, when FLEET_SYNC_TOKEN is set):
+# Used by .github/workflows/fleet-lock-guard.yml after checkout:
 #   - run: bash .agents/scripts/fleet-lock-check.sh
 #     env:
 #       FLEET_SYNC_TOKEN: ${{ secrets.FLEET_SYNC_TOKEN }}
 
 set -euo pipefail
 
-if ! git diff --name-only "origin/${GITHUB_BASE_REF:-main}...HEAD" | grep -q '^\.agents/'; then
+changed_files() {
+  if [ -n "${GITHUB_BASE_REF:-}" ]; then
+    if git fetch origin "$GITHUB_BASE_REF" --quiet 2>/dev/null; then
+      git diff --name-only "origin/${GITHUB_BASE_REF}...HEAD" 2>/dev/null && return 0
+    else
+      echo "::warning::failed to fetch origin/${GITHUB_BASE_REF}; falling back to local comparison" >&2
+    fi
+  fi
+
+  if [ -n "${GITHUB_EVENT_BEFORE:-}" ] && ! printf '%s' "$GITHUB_EVENT_BEFORE" | grep -qE '^0+$'; then
+    git diff --name-only "$GITHUB_EVENT_BEFORE...HEAD" 2>/dev/null && return 0
+  fi
+
+  if git rev-parse --verify HEAD^ >/dev/null 2>&1; then
+    git diff --name-only "HEAD^...HEAD"
+  else
+    git ls-tree -r --name-only HEAD
+  fi
+}
+
+if ! changed_files | grep -q '^\.agents/'; then
   echo "No .agents/ changes — lock check skipped"
   exit 0
 fi
 
 if [ -z "${FLEET_SYNC_TOKEN:-}" ]; then
-  echo "::warning::FLEET_SYNC_TOKEN not set — skipping FLEET.lock check"
-  exit 0
+  echo "::error::.agents/ changed but FLEET_SYNC_TOKEN is not set; cannot verify dotagents fleet lock"
+  exit 1
 fi
 
 if [ ! -f .agents/FLEET.lock ]; then
@@ -24,15 +44,20 @@ if [ ! -f .agents/FLEET.lock ]; then
   exit 1
 fi
 
-LOCK_SHA="$(grep '^sha:' .agents/FLEET.lock | awk '{print $2}')"
+LOCK_SHA="$(awk '/^sha:/ {print $2; exit}' .agents/FLEET.lock)"
 if [ -z "$LOCK_SHA" ]; then
   echo "::error::.agents/FLEET.lock has no sha field"
   exit 1
 fi
 
-git remote remove dotagents-lock 2>/dev/null || true
-git remote add dotagents-lock "https://x-access-token:${FLEET_SYNC_TOKEN}@github.com/jsolly/dotagents.git"
-FLEET_HEAD="$(git ls-remote dotagents-lock refs/heads/fleet | awk '{print $1}')"
+auth_header="$(printf 'x-access-token:%s' "$FLEET_SYNC_TOKEN" | base64 | tr -d '\n')"
+FLEET_URL="https://github.com/jsolly/dotagents.git"
+FLEET_HEAD="$(git -c "http.extraHeader=AUTHORIZATION: basic $auth_header" ls-remote "$FLEET_URL" refs/heads/fleet | awk '{print $1}')"
+
+if [ -z "$FLEET_HEAD" ]; then
+  echo "::error::dotagents fleet branch not found — check FLEET_SYNC_TOKEN and repo access"
+  exit 1
+fi
 
 if [ "$LOCK_SHA" != "$FLEET_HEAD" ]; then
   echo "::error::FLEET.lock sha ($LOCK_SHA) does not match dotagents fleet HEAD ($FLEET_HEAD)"
@@ -41,7 +66,7 @@ fi
 
 echo "FLEET.lock matches dotagents fleet @ ${FLEET_HEAD:0:7}"
 
-if ! git fetch dotagents-lock fleet --quiet; then
+if ! git -c "http.extraHeader=AUTHORIZATION: basic $auth_header" fetch "$FLEET_URL" fleet --quiet; then
   echo "::error::Failed to fetch dotagents fleet branch — check FLEET_SYNC_TOKEN and repo access"
   exit 1
 fi
@@ -50,7 +75,6 @@ tmp_fleet="$(mktemp)"
 tmp_child="$(mktemp)"
 cleanup() {
   rm -f "$tmp_fleet" "$tmp_child"
-  git remote remove dotagents-lock 2>/dev/null || true
 }
 trap cleanup EXIT
 

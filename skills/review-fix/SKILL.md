@@ -25,7 +25,7 @@ Resolution procedure:
 
 1. List candidates: `git diff --name-only origin/main...HEAD`.
 2. Match the concept against candidates using filename + path semantics. Examples:
-   - `the plan` → files matching `*plan*.md`, `~/.claude/plans/*.md`, `docs/superpowers/specs/*.md`, `docs/**/plan*.md`
+   - `the plan` → files matching `docs/superpowers/plans/*.md`, `docs/superpowers/specs/*.md`, or `docs/**/plan*.md`
    - `the migration` → files under `supabase/migrations/`, `migrations/`, or any new `*.sql` files
    - `the auth changes` → files with `auth` anywhere in the path
    - `the Vue dashboard` → files under `src/components/dashboard/**/*.vue`

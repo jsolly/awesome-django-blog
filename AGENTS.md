@@ -19,11 +19,11 @@ Software engineer turned Sr. Director at Leidos (Health-IT under DIGMOD). Treat 
 ## Collaboration
 
 - For personal projects, use `/review-fix-push` to review changes, fix issues, commit, and push. (No PR step.)
-- **In a repo:** fleet config lives at `.agents/` (git subtree from [dotagents](https://github.com/jsolly/dotagents)). Skills at `.agents/skills/`, review agents at `.agents/agents/`, guidelines at `.agents/rules/`.
-- **Cursor discovery:** skills under `.agents/skills/`; wire `.agents/rules/*.md` into `.cursor/rules/*.mdc` via `.agents/scripts/link-fleet-rules.sh` (relative symlinks). Project-only rules stay as real files in `.cursor/rules/`.
+- **In a repo:** fleet config lives at `.agents/` (git subtree from [dotagents](https://github.com/jsolly/dotagents)). Skills at `.agents/skills/`, review agent prompts at `.agents/agents/`, guidelines at `.agents/rules/`.
+- **Cursor discovery:** skills live under `.agents/skills/` and review prompts under `.agents/agents/`; `converge-repo.sh` wires them into `.cursor/skills/` and `.cursor/agents/` via `.agents/scripts/link-fleet-discovery.sh`. It also wires `.agents/rules/*.md` into `.cursor/rules/*.mdc` via `.agents/scripts/link-fleet-rules.sh`. Project-only discovery files stay as real files in `.cursor/`.
 - **Updating the fleet:** edit the canonical files in the [dotagents](https://github.com/jsolly/dotagents) repo and push to `main`; CI rebuilds and publishes the `fleet` branch automatically. App repos sync on demand via `scripts/update-agents-subtree.sh` or `scripts/cloud-fleet-sync-if-stale.sh` at cloud task start. After `converge-repo.sh`, a **pre-commit** guard blocks commits when `FLEET.lock` is behind `dotagents/fleet` (run `./scripts/update-agents-subtree.sh` first — the hook never auto-syncs). The `fleet` branch is published by CI only — `.agents/` here is read-only; make fleet changes upstream in dotagents.
 - **Cloud agents:** no developer-home config on the VM — everything comes from the repo subtree and project `AGENTS.md`. At cloud task start run `./scripts/cloud-fleet-sync-if-stale.sh` when fleet may have moved. Do **not** pin VM snapshots in `environment.json` unless the user asks — use `install` only (see `.agents/docs/cloud-agents.md`).
-- **Desktop agents:** open the repo in Cursor, Claude Code, or Codex on your Mac; use the same `.agents/` subtree. Machine-local sound hooks and extra guards are installed from dotagents `main` via `docs/setup-local-machine.md` (not part of the fleet bundle).
+- **Desktop agents:** open the repo in Cursor, Claude Code, or Codex on your Mac; use the same `.agents/` subtree for this app repo. The optional local laptop runtime (`~/.agents` symlink farm, personal/work profile, local-only skills, sound hooks) is installed from dotagents `main` via `docs/setup-local-machine.md` and is not part of the fleet bundle.
 - **Node.js:** fleet standard is Node 24 — see `rules/node-version.md` (`.nvmrc`, `engines`, CI `node-version-file`, Lambda `nodejs24.x`).
 
 ## Do not edit fleet-managed files
@@ -40,7 +40,3 @@ Software engineer turned Sr. Director at Leidos (Health-IT under DIGMOD). Treat 
 Make fleet changes in [dotagents](https://github.com/jsolly/dotagents) `main` → CI publishes `fleet` → sync into this repo. See `.agents/DO-NOT-EDIT.md`.
 
 Cursor and Claude Code block edits to these paths when fleet guards are wired (via `converge-repo.sh`). CI fails PRs that commit drift under `.agents/`.
-
-## Family Memory
-
-When the family-memory MCP is available, call `recall` (no args) at conversation start to load context about the user. Use `remember` to store notable new facts, preferences, or events that come up naturally.

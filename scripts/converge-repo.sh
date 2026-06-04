@@ -9,6 +9,7 @@ cd "$ROOT"
 
 # 1. Wire fleet rules into .cursor/rules and merge fleet guards.
 [[ -x .agents/scripts/link-fleet-rules.sh ]] && bash .agents/scripts/link-fleet-rules.sh
+[[ -x .agents/scripts/link-fleet-discovery.sh ]] && bash .agents/scripts/link-fleet-discovery.sh
 [[ -x .agents/scripts/merge-cursor-git-guard.sh ]] && bash .agents/scripts/merge-cursor-git-guard.sh
 [[ -x .agents/scripts/merge-cursor-edit-guard.sh ]] && bash .agents/scripts/merge-cursor-edit-guard.sh
 [[ -x .agents/scripts/merge-claude-edit-guard.sh ]] && bash .agents/scripts/merge-claude-edit-guard.sh
@@ -19,6 +20,9 @@ WF=".github/workflows/fleet-lock-guard.yml"
 if [[ -f "$WF" ]] && grep -q '\.github/scripts/fleet-lock-check\.sh' "$WF"; then
   sed -i.bak 's#\.github/scripts/fleet-lock-check\.sh#.agents/scripts/fleet-lock-check.sh#g' "$WF"
   rm -f "$WF.bak"
+fi
+if [[ -f "$WF" ]]; then
+  echo "NOTE: fleet-lock-guard requires repo secret FLEET_SYNC_TOKEN when .agents changes."
 fi
 
 # 3. Drop the now-bundled vendored checker (logic lives in .agents/scripts/fleet-lock-check.sh).
