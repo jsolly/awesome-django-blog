@@ -78,7 +78,7 @@ cleanup() {
 }
 trap cleanup EXIT
 
-git ls-tree -r "$LOCK_SHA" | awk '{print $4, $3}' | LC_ALL=C sort >"$tmp_fleet"
+git ls-tree -r "$LOCK_SHA" | awk '$4 != "FLEET.lock" {print $4, $3}' | LC_ALL=C sort >"$tmp_fleet"
 git ls-tree -r "HEAD:.agents" | awk '$4 != "FLEET.lock" {print $4, $3}' | LC_ALL=C sort >"$tmp_child"
 
 if ! diff -q "$tmp_fleet" "$tmp_child" >/dev/null 2>&1; then
