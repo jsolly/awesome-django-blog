@@ -2,13 +2,13 @@
   "permissions": {
     "deny": [
       "Edit(/.agents/**)",
-      "Write(/.agents/**)",
-      "Edit(/scripts/update-agents-subtree.sh)",
-      "Write(/scripts/update-agents-subtree.sh)",
-      "Edit(/scripts/cloud-fleet-sync-if-stale.sh)",
-      "Write(/scripts/cloud-fleet-sync-if-stale.sh)",
       "Edit(/.github/workflows/fleet-lock-guard.yml)",
-      "Write(/.github/workflows/fleet-lock-guard.yml)"
+      "Edit(/scripts/cloud-fleet-sync-if-stale.sh)",
+      "Edit(/scripts/update-agents-subtree.sh)",
+      "Write(/.agents/**)",
+      "Write(/.github/workflows/fleet-lock-guard.yml)",
+      "Write(/scripts/cloud-fleet-sync-if-stale.sh)",
+      "Write(/scripts/update-agents-subtree.sh)"
     ]
   }
 }
