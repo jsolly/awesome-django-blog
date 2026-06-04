@@ -50,7 +50,8 @@ if [ -z "$LOCK_SHA" ]; then
   exit 1
 fi
 
-auth_header="$(printf 'x-access-token:%s' "$FLEET_SYNC_TOKEN" | base64 | tr -d '\n')"
+# Linux base64 wraps lines by default; broken header surfaces as "Repository not found".
+auth_header="$(printf 'x-access-token:%s' "$FLEET_SYNC_TOKEN" | base64 -w 0 2>/dev/null || base64 | tr -d '\n')"
 FLEET_URL="https://github.com/jsolly/dotagents.git"
 FLEET_HEAD="$(git -c "http.extraHeader=AUTHORIZATION: basic $auth_header" ls-remote "$FLEET_URL" refs/heads/fleet | awk '{print $1}')"
 
