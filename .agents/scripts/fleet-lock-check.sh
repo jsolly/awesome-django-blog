@@ -50,10 +50,9 @@ if [ -z "$LOCK_SHA" ]; then
   exit 1
 fi
 
-# Linux base64 wraps lines by default; broken header surfaces as "Repository not found".
-auth_header="$(printf 'x-access-token:%s' "$FLEET_SYNC_TOKEN" | base64 -w 0 2>/dev/null || base64 | tr -d '\n')"
-FLEET_URL="https://github.com/jsolly/dotagents.git"
-FLEET_HEAD="$(git -c "http.extraHeader=AUTHORIZATION: basic $auth_header" ls-remote "$FLEET_URL" refs/heads/fleet | awk '{print $1}')"
+token="$(printf '%s' "$FLEET_SYNC_TOKEN" | tr -d '\n\r')"
+FLEET_URL="https://x-access-token:${token}@github.com/jsolly/dotagents.git"
+FLEET_HEAD="$(git ls-remote "$FLEET_URL" refs/heads/fleet | awk '{print $1}')"
 
 if [ -z "$FLEET_HEAD" ]; then
   echo "::error::dotagents fleet branch not found — check FLEET_SYNC_TOKEN and repo access"
@@ -67,7 +66,7 @@ fi
 
 echo "FLEET.lock matches dotagents fleet @ ${FLEET_HEAD:0:7}"
 
-if ! git -c "http.extraHeader=AUTHORIZATION: basic $auth_header" fetch "$FLEET_URL" fleet --quiet; then
+if ! git fetch "$FLEET_URL" "+refs/heads/fleet:refs/remotes/dotagents-fleet-lock/fleet" --quiet; then
   echo "::error::Failed to fetch dotagents fleet branch — check FLEET_SYNC_TOKEN and repo access"
   exit 1
 fi
