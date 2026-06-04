@@ -36,7 +36,7 @@ The orchestration is documented in `references/orchestration.md` — read it bef
 ## Safety rules (non-negotiable)
 
 - **Never push to a non-`main` branch** — this skill is for `main` only.
-- **Never `--no-verify`** on commit or push. Per-agent guards in `.agents/hooks/` (see `references/safety-rules.md`) make this mechanical, not advisory.
+- **Never `--no-verify`** on commit or push. Per-agent guards (see `references/safety-rules.md`) make this mechanical, not advisory.
 - **Never `git push --force` / `--force-with-lease` / `git reset --hard`** — also blocked by deny rules.
 - **Never `git add -A` or `git add .`** — stage by name to avoid sweeping in untracked secrets, large binaries, or probe artifacts.
 

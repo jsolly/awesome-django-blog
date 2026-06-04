@@ -5,7 +5,7 @@
 | Layer | Where | Covers |
 | --- | --- | --- |
 | **Repo** | `.agents/hooks/block-git-no-verify.sh` merged into repo `.cursor/hooks.json` by `converge-repo.sh` | Cursor IDE and Cursor Cloud in that repo |
-| **Home (desktop)** | `.agents/hooks/block-git-no-verify.sh` merged into `~/.cursor/hooks.json`, `~/.claude/settings.json`, and `~/.codex/hooks.json` by `scripts/install-local-agent-runtime.sh` | Local Cursor, Claude Code, and Codex sessions, including dotagents itself and repos before fleet convergence |
+| **Home (desktop)** | `~/code/dotagents/hooks/block-git-no-verify.sh` merged into `~/.cursor/hooks.json`, `~/.claude/settings.json`, and `~/.codex/hooks.json` by `scripts/install-local-agent-runtime.sh` | Local Cursor, Claude Code, and Codex sessions, including dotagents itself and repos before fleet convergence |
 
 Install or refresh the local desktop guards with:
 
@@ -46,7 +46,7 @@ Cursor surfaces a blocked command in **Settings → Hooks** and the **Hooks** ou
 The local runtime installer preserves existing hook entries and adds exactly one guard command per tool:
 
 ```bash
-bash .agents/hooks/block-git-no-verify.sh
+bash ~/code/dotagents/hooks/block-git-no-verify.sh
 ```
 
 Cursor uses `beforeShellExecution`; Claude Code and Codex use `PreToolUse` for Bash. This protects local sessions even in repos that are not fleet-converged. App repos should still rely on the repo guard as the cloud-compatible source of enforcement.

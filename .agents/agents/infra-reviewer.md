@@ -25,7 +25,7 @@ You will receive: a diff, a list of changed files, and project guidelines. You r
 
 ## Deploy step cross-check
 
-Read `AGENTS.md` (project root and `.agents/AGENTS.md`) for any post-commit deploy rules gated on paths. If the diff touches paths mentioned in those rules (e.g., "always run `sam deploy` after modifying `template.yaml`"), **flag whether the skill's step 12 will catch it**. If the rule is ambiguous, surface it.
+Read `AGENTS.md` (project root and the active dotagents brief) for any post-commit deploy rules gated on paths. If the diff touches paths mentioned in those rules (e.g., "always run `sam deploy` after modifying `template.yaml`"), **flag whether the skill's step 12 will catch it**. If the rule is ambiguous, surface it.
 
 ## Out of scope
 
@@ -51,7 +51,7 @@ DON'T:
 
 ## Output format
 
-<!-- Output contract canon: .agents/skills/review-fix-push/references/output-contract.md -->
+<!-- Output contract canon: ../skills/review-fix-push/references/output-contract.md -->
 
 Only flag issues that would cause real problems. Minor wording improvements, stylistic preferences, premature-abstraction quibbles, and "this could be slightly clearer" are not findings.
 

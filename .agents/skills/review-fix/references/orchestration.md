@@ -39,7 +39,7 @@ The resolved scope becomes the basis for `{CHANGED_FILES}` and `{DIFF}` in step 
 
 Identical to `/review-fix-push` step 2 — `git fetch origin main`, compare, merge (default) or rebase (1–2 commit topic branches only), resolve conflicts, re-run smoke before continuing.
 
-Read `.agents/skills/review-fix-push/references/orchestration.md` step 2 for the full procedure, and `.agents/skills/review-fix-push/references/conflict-resolution.md` for conflict guidance.
+Read `../review-fix-push/references/orchestration.md` step 2 for the full procedure, and `../review-fix-push/references/conflict-resolution.md` for conflict guidance.
 
 The user picked "still sync main" for this skill because reviewing on a stale base produces the same false-confidence pattern that the push gate catches. Don't skip it.
 
@@ -49,11 +49,11 @@ After sync, re-resolve scope (step 1) against the post-merge diff: `git diff --n
 
 ## 4. Load project guidelines + locate plan/spec (D.1)
 
-Identical to `/review-fix-push` step 3. Read `.agents/skills/review-fix-push/references/orchestration.md` step 3 for the full procedure.
+Identical to `/review-fix-push` step 3. Read `../review-fix-push/references/orchestration.md` step 3 for the full procedure.
 
 Quick recap:
 
-- Read project `AGENTS.md` (root of repo) + linked guideline files + global `.agents/AGENTS.md`.
+- Read project `AGENTS.md` (root of repo) + linked guideline files + the active dotagents brief (desktop: `~/.cursor/AGENTS.md` symlink; app repos: `.agents/AGENTS.md`).
 - Locate the plan or spec the user was implementing (most-recent `<repo-root>/docs/superpowers/plans/*.md`, then `<repo-root>/docs/superpowers/specs/*.md`, then a path referenced in recent messages, then the conversation's first user message). See `rules/specs-and-plans.md` in the dotagents source or `.agents/rules/specs-and-plans.md` in app repos.
 - Note any post-commit deploy rules — but in this skill they're informational only (we don't deploy here).
 
@@ -61,7 +61,7 @@ The located plan text becomes `{PLAN_OR_SPEC}` in the dispatch prompt at step 7.
 
 ## 5. Smoke check — tests, types, and CI reproduction
 
-Same as `/review-fix-push` step 4. Run the project's test command, the type checker, and `act` for CI reproduction when relevant paths changed (see `.agents/skills/review-fix-push/references/conflict-resolution.md`).
+Same as `/review-fix-push` step 4. Run the project's test command, the type checker, and `act` for CI reproduction when relevant paths changed (see `../review-fix-push/references/conflict-resolution.md`).
 
 If smoke fails, fix those failures before proceeding to agent review — same gate as the push variant. A red baseline makes the agent review noisy because every reviewer will spot the breakage independently.
 
@@ -73,9 +73,9 @@ Same as `/review-fix-push` step 5 — orchestrator-side manual scan for wrong-la
 
 Same fleet, same dispatch template, same output contract as `/review-fix-push` step 6. Read:
 
-- `.agents/skills/review-fix-push/references/agent-fleet.md` — always-run + extension-gated agents, model rationale, `guidelines-auditor ×2` pattern.
-- `.agents/skills/review-fix-push/references/dispatch-prompt.md` — prompt template.
-- `.agents/skills/review-fix-push/references/output-contract.md` — reviewer output schema.
+- `../review-fix-push/references/agent-fleet.md` — always-run + extension-gated agents, model rationale, `guidelines-auditor ×2` pattern.
+- `../review-fix-push/references/dispatch-prompt.md` — prompt template.
+- `../review-fix-push/references/output-contract.md` — reviewer output schema.
 
 Placeholder fill-ins:
 

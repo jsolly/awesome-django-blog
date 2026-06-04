@@ -47,7 +47,7 @@ A small change can collapse to a single plan file with a brief inline "Spec" sec
 
 ## Discovery for `/review-fix-push`
 
-The `/review-fix-push` orchestrator's plan lookup at step 3 (D.1) follows this rule. The lookup order, per `.agents/skills/review-fix-push/references/orchestration.md`:
+The `/review-fix-push` orchestrator's plan lookup at step 3 (D.1) follows this rule. The lookup order, per `../skills/review-fix-push/references/orchestration.md` in dotagents (`.agents/skills/review-fix-push/references/orchestration.md` in app repos):
 
 1. `<repo-root>/docs/superpowers/plans/*.md` (most recently modified within the session)
 2. `<repo-root>/docs/superpowers/specs/*.md` (fallback if no plan but a spec exists)

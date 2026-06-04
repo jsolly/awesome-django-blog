@@ -51,7 +51,7 @@ Review per your declared scope. Follow the output contract in your system prompt
 | --- | --- | --- |
 | `{PLAN_OR_SPEC}` | Most recently modified `<repo-root>/docs/superpowers/plans/*.md` within the session, falling back to `<repo-root>/docs/superpowers/specs/*.md`, or a path referenced explicitly in recent messages. See `references/orchestration.md` step 3 and `rules/specs-and-plans.md` in dotagents (`.agents/rules/specs-and-plans.md` in app repos). | Use the conversation's first user message describing intent. If none, write `No explicit plan or spec — review against the diff and project guidelines only.` |
 | `{ARCHITECTURAL_NOTES}` | The orchestrator's notes from step 5 (architectural sanity check) | `No architectural concerns noted.` |
-| `{GUIDELINES}` | Concatenated content of project root `AGENTS.md`, any `AGENTS.md` in directories containing modified files, and the active dotagents brief (`.agents/AGENTS.md` locally or `.agents/AGENTS.md` in app repos) | The user's active dotagents brief alone if no project `AGENTS.md` exists |
+| `{GUIDELINES}` | Concatenated content of project root `AGENTS.md`, any `AGENTS.md` in directories containing modified files, and the active dotagents brief (desktop: read `~/.cursor/AGENTS.md` symlink target; app repos: `.agents/AGENTS.md`) | The user's active dotagents brief alone if no project `AGENTS.md` exists |
 | `{CHANGED_FILES}` | Output of `git diff --name-only origin/main...HEAD` | Required — must not be empty |
 | `{DIFF}` | Output of `git diff origin/main...HEAD` | Required — must not be empty |
 
