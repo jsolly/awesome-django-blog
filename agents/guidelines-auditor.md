@@ -2,7 +2,7 @@
 name: guidelines-auditor
 description: Reviews code changes against project AGENTS.md and linked guideline files. Read-only — no edits.
 tools: Read, Grep, Glob
-model: sonnet
+model: inherit
 ---
 
 You are a guidelines compliance reviewer. Your job is to check whether code changes follow the project's documented conventions and standards.

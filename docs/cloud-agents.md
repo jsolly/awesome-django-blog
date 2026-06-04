@@ -2,7 +2,7 @@
 
 <!-- fleet-doc-version: 10 -->
 
-This repo is configured for **cloud-only development**: agents, skills, and rules are self-contained in git (no developer-home agents checkout on the VM).
+This repo is configured for **cloud agents and local desktop agents**. Skills, rules, and fleet guards are self-contained in git. **Cursor Cloud VMs** have no developer-home checkout — only the committed subtree applies. **Local desktop** Cursor / Claude / Codex use the same subtree per repo plus optional machine-local hooks from [dotagents](https://github.com/jsolly/dotagents) (`docs/setup-local-machine.md` in the canonical repo).
 
 ## Layout
 
@@ -118,7 +118,9 @@ Symptom: `node -v` shows v22 while `.nvmrc` requires 24 — `npm test` / native 
 - **Claude Code:** `merge-claude-edit-guard.sh` merges `permissions.deny` for `Edit`/`Write` on the same paths into `.claude/settings.json`.
 - **Codex:** advisory only — read `.agents/AGENTS.md` and `.agents/DO-NOT-EDIT.md`; no Codex config shipped (would override sandbox mode).
 
-**Git guard hook:** `merge-cursor-git-guard.sh` wires `block-git-no-verify.sh` into `.cursor/hooks.json` (`beforeShellExecution`). Fleet sync is **not** a hook — use `cloud-fleet-sync-if-stale.sh` at task start.
+**Git guard hook:** `merge-cursor-git-guard.sh` wires `block-git-no-verify.sh` into `.cursor/hooks.json` (`beforeShellExecution`).
+
+**Fleet pre-commit guard:** `converge-repo.sh` installs a block-only check in `.git/hooks/pre-commit` via `install-fleet-precommit-hook.sh`. Before each commit, `fleet-precommit-check.sh` compares `.agents/FLEET.lock` to `dotagents/fleet` and **fails** if stale — it does not run subtree pull. Fix: `./scripts/update-agents-subtree.sh`, commit the sync, then retry. Cloud task start still uses `cloud-fleet-sync-if-stale.sh` to pull when stale.
 
 ### Playwright browser E2E (opt-in)
 

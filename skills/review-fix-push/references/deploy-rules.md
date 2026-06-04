@@ -4,35 +4,92 @@ Some projects require extra deploy steps after pushing because CI doesn't cover 
 
 This file documents the patterns; the actual rules per repo live in each project's `AGENTS.md`.
 
+**Step 12 is mandatory when triggers match.** Do not end the skill with "remember to run SAM deploy" — run it (unless credentials are missing or the deploy is destructive and needs confirmation).
+
 ---
 
 ## How to detect which apply
 
-In step 3 (load guidelines), the orchestrator notes any post-commit deploy rules gated on specific paths. Examples:
+In step 3 (load guidelines), capture post-push deploy rules into `{POST_PUSH_DEPLOYS}`. Examples:
 
-- "Always run `sam deploy` after modifying `aws/template.yaml`."
+- "SAM deploy required when `aws/template.yaml`, `aws/deploy.sh`, `src/handlers/`, or `src/lib/` changes — command `npm run deploy:aws`."
 - "Run `terraform apply` from `infra/` after any `*.tf` change."
-- "Lambda code-only updates to `src/handlers/` are deployed by the `Deploy Website` GitHub Actions workflow's `deploy-lambdas` job — no manual step needed."
+- "Lambda code-only updates to `src/handlers/` are deployed by the `Deploy Website` GitHub Actions workflow — no manual step."
 
 The pattern is: **paths trigger commands**.
+
+Also read `docs/deploy-gotchas.md` (or equivalent) for preconditions — e.g., merge to `main` before SAM deploy when Lambda env vars change.
 
 ## How to execute (step 12)
 
 After the push succeeds (step 11):
 
-1. Re-check the post-commit deploy rules captured in step 3 against the list of committed files (`git diff --name-only origin/main~1 HEAD`).
-2. If any rule's path trigger matches a committed file, **run the deploy command automatically** — it's part of shipping the change, not an optional follow-up.
-3. Announce each deploy before running it (one-line `running <command> because <path> changed`).
+1. Re-check `{POST_PUSH_DEPLOYS}` against committed files (`git diff --name-only origin/main~1 HEAD` or `origin/main...HEAD`).
+2. If any rule's path trigger matches a committed file, **run the deploy command automatically** — it's part of shipping, not an optional follow-up.
+3. Announce each deploy before running it (one-line `Running <command> because <path> changed`).
 4. Stream the deploy output so the user can spot failures. If the deploy fails, surface the error and stop — do not retry blindly or hide the failure behind a summary.
 5. If a rule is ambiguous or the deploy is destructive/irreversible beyond a normal code push (e.g., DB migrations against prod, infra teardown), confirm with the user before running.
 6. If no rules match the committed paths, skip step 12 silently.
 
-## Common patterns
+---
 
-**SAM/CloudFormation**:
+## AWS SAM deploy (Lambda / CloudFormation)
 
-- Trigger: changes to `template.yaml`, `template.yml`, or `samconfig.toml`.
-- Command: `cd <stack-dir> && sam build && sam deploy`.
+Most common fleet pattern for personal projects with an `aws/` directory.
+
+### When to run
+
+After a successful push to `main`, when **any** committed file matches a trigger path documented in the repo's AGENTS.md. Typical triggers:
+
+| Path prefix | Why |
+| --- | --- |
+| `aws/template.yaml`, `aws/template.yml` | Stack definition, env vars, alarms, IAM |
+| `aws/deploy.sh` | Deploy script / bundling behavior |
+| `src/handlers/` | Lambda handler entrypoints |
+| `src/lib/` | Shared code bundled into Lambdas |
+
+**Important:** `src/lib/` changes often require SAM redeploy even when handlers are unchanged — the bundled artifact includes shared modules. Do not skip SAM deploy just because only `src/lib/` changed.
+
+### Preconditions
+
+1. **Code must be on `main` first** (step 11 done). Feature-branch SAM deploy before merge can push partial env vars to production and crash Lambdas. See project `docs/deploy-gotchas.md`.
+2. **AWS credentials** must work locally (`AWS_PROFILE` per `docs/tooling-setup.md` or AGENTS.md). If deploy fails with SSO expiry, stop and ask the user to `aws sso login` — do not switch profiles or IAM users silently.
+3. **`aws/samconfig.toml`** is usually gitignored — user must have copied `samconfig.toml.example` once. If deploy fails with missing config, surface that setup step; do not invent profile names.
+
+### Command (pick what the repo documents)
+
+```bash
+# Preferred when package.json defines it (StockTextAlerts, etc.)
+npm run deploy:aws
+
+# Or directly
+cd aws && npm run deploy
+
+# Generic SAM (when no npm wrapper)
+cd aws && sam build && sam deploy
+```
+
+Run from the **repo root** unless AGENTS.md says otherwise. Do not use `--no-verify` on git; SAM flags follow project `deploy.sh`.
+
+### Success criteria
+
+- Command exits 0.
+- Output shows stack update complete (wording varies: `UPDATE_COMPLETE`, `Successfully created/updated stack`).
+- Include deploy status in step-13 summary: `AWS SAM deploy: succeeded` or `failed`.
+
+### Reference: StockTextAlerts
+
+From root `AGENTS.md`:
+
+- **Triggers:** `aws/template.yaml`, `aws/deploy.sh`, `src/handlers/`, `src/lib/`
+- **Command:** `npm run deploy:aws` (alias for `npm --prefix aws run deploy`)
+- **Gotcha:** merge env-var template changes to `main` before SAM deploy — see `docs/deploy-gotchas.md`
+
+---
+
+## Common patterns (other stacks)
+
+**SAM/CloudFormation** — see **AWS SAM deploy** above (preferred detail).
 
 **CDK**:
 
@@ -47,7 +104,7 @@ After the push succeeds (step 11):
 **Lambda code-only updates** (when CI handles infra but not code):
 
 - Trigger: changes to handler source files in a path documented in AGENTS.md (e.g., `src/handlers/**`).
-- Command: project-specific (often the GitHub Actions workflow handles this on push; if so, no manual step).
+- Command: project-specific (often the GitHub Actions workflow handles this on push; if AGENTS.md says so, **skip** manual SAM deploy for handler-only changes).
 
 **Docker image pushes**:
 
@@ -56,9 +113,15 @@ After the push succeeds (step 11):
 
 ## Avoiding the trap
 
-The most common bug here is **running a destructive deploy because the orchestrator didn't notice the rule was conditional**. Examples:
+The most common bug here is **skipping deploy because the orchestrator treated it as optional**. Examples:
 
-- "Run `sam deploy` after modifying `template.yaml`" but the diff only modified comments. Deploy is a no-op but still costs time.
-- "Run `terraform apply`" but the diff added a resource that requires manual approval first.
+- Changed `src/handlers/email-dispatch.ts` and pushed — Lambda still runs old code until SAM deploy runs.
+- Changed `src/lib/messaging/` shared by Lambdas — same; CI may not redeploy Lambdas automatically.
 
-Mitigation: when the deploy is destructive (DB drops, infra teardown, prod resource changes), always confirm with the user before running. The skill is for code; "I changed the schema and now it's deployed" should not be a surprise.
+The second-most-common bug is **running SAM deploy before merge to `main`** when env vars changed — partial production config.
+
+Mitigation:
+
+- Step 12 runs deploy automatically when path triggers match.
+- When the deploy is destructive (DB drops, infra teardown, prod resource deletes), confirm with the user before running.
+- When credentials fail, stop and ask — do not pretend deploy succeeded.

@@ -1,8 +1,15 @@
 # Agent safety rules — block `git push/commit --no-verify`
 
-"Never bypass hooks with `--no-verify`" is **mechanical**, not advisory. A repo-level Cursor hook enforces it for both the IDE agent and Cursor Cloud — the runtime for fleet repos. (There is no home-machine / multi-provider install anymore; everything runs in Cursor containers/cloud.)
+"Never bypass hooks with `--no-verify`" is **mechanical**, not advisory. Two enforcement layers:
 
-## The guard
+| Layer | Where | Covers |
+| --- | --- | --- |
+| **Repo** | `.agents/hooks/block-git-no-verify.sh` merged into `.cursor/hooks.json` | Cursor IDE and Cursor Cloud in that repo |
+| **Home (desktop)** | `~/.claude/settings.json`, `~/.cursor/hooks.json`, `~/.codex/hooks.json` via `block-git-no-verify.sh` | All repos on that Mac for those tools |
+
+Install desktop guards and sound hooks from dotagents: `bash ~/code/dotagents/scripts/install-desktop-agent-hooks.sh` (sounds only) plus existing Claude/Codex Bash `PreToolUse` wiring for the git guard. Fleet repos get the repo layer from `converge-repo.sh` automatically.
+
+## The repo guard
 
 The hook ships in the fleet subtree and is wired into the repo's `.cursor/hooks.json`:
 

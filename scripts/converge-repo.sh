@@ -12,6 +12,7 @@ cd "$ROOT"
 [[ -x .agents/scripts/merge-cursor-git-guard.sh ]] && bash .agents/scripts/merge-cursor-git-guard.sh
 [[ -x .agents/scripts/merge-cursor-edit-guard.sh ]] && bash .agents/scripts/merge-cursor-edit-guard.sh
 [[ -x .agents/scripts/merge-claude-edit-guard.sh ]] && bash .agents/scripts/merge-claude-edit-guard.sh
+[[ -x .agents/scripts/install-fleet-precommit-hook.sh ]] && bash .agents/scripts/install-fleet-precommit-hook.sh
 
 # 2. The fleet-lock-guard workflow must call the bundled checker, not a vendored copy.
 WF=".github/workflows/fleet-lock-guard.yml"

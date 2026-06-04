@@ -43,12 +43,25 @@ if [[ -f .agents/FLEET.lock ]]; then
     git diff --cached --quiet || git commit -m "chore(fleet): converge agent fleet shape"
     exit 0
   fi
-  git rm -f .agents/FLEET.lock
-  git commit -m "chore(fleet): remove stale FLEET.lock before subtree pull"
 fi
 
-git subtree pull --prefix=.agents "$REMOTE" "$BRANCH" --squash -m "Update agent fleet subtree" || \
-  git subtree add --prefix=.agents "$REMOTE" "$BRANCH" --squash -m "Add agent fleet subtree from dotagents"
+if ! git subtree pull --prefix=.agents "$REMOTE" "$BRANCH" --squash -m "Update agent fleet subtree"; then
+  # FLEET.lock is tracked in both the fleet branch and child repos; subtree pull often
+  # conflicts on the sha line alone. Resolve to the fetched fleet HEAD and finish the merge.
+  if git rev-parse -q --verify MERGE_HEAD >/dev/null 2>&1; then
+    unmerged="$(git diff --name-only --diff-filter=U)"
+    if [[ "$unmerged" == ".agents/FLEET.lock" ]]; then
+      printf 'sha: %s\n' "$REMOTE_SHA" > .agents/FLEET.lock
+      git add .agents/FLEET.lock
+      git commit --no-edit
+    else
+      echo "Fleet subtree pull failed with conflicts: ${unmerged:-unknown}" >&2
+      exit 1
+    fi
+  elif ! git subtree add --prefix=.agents "$REMOTE" "$BRANCH" --squash -m "Add agent fleet subtree from dotagents"; then
+    exit 1
+  fi
+fi
 
 printf 'sha: %s\n' "$REMOTE_SHA" > .agents/FLEET.lock
 

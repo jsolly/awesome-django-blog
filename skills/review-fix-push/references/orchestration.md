@@ -34,7 +34,7 @@ This step is the gate that makes the rest of the skill meaningful. Skip it only 
 - Read any `AGENTS.md` in directories containing modified files.
 - Read the global `.agents/AGENTS.md` for cross-project conventions.
 - These guidelines are the standard the review is measured against.
-- **Note any post-commit deploy rules** gated on specific paths (e.g., "SAM deploy required when `aws/template.yaml` changes", "run `terraform apply` after `infra/` changes"). These drive step 12.
+- **Capture post-push deploy rules** gated on specific paths — path prefixes, command, and preconditions (e.g., "SAM deploy required when `aws/template.yaml` or `src/handlers/` changes; command `npm run deploy:aws`; merge to main first when env vars change"). Record these as `{POST_PUSH_DEPLOYS}` for step 12. If none exist in AGENTS.md, set `{POST_PUSH_DEPLOYS}` to `none`.
 
 **Plan/spec lookup (D.1)**:
 
@@ -83,7 +83,7 @@ Don't leave it blank — agents read absent context as "not provided" and may co
 
 For small changes (a few files), review inline — no agents needed.
 
-For larger changes, launch parallel agents simultaneously. Fleet composition (always-run + extension-gated), the `guidelines-auditor ×2` voting pattern, and per-agent model selection are documented in `references/agent-fleet.md`.
+For larger changes, launch parallel agents simultaneously. Fleet composition (always-run + extension-gated), the `guidelines-auditor ×2` voting pattern, and `model: inherit` on all agents are documented in `references/agent-fleet.md`.
 
 Each agent receives the dispatch prompt template from `references/dispatch-prompt.md` with these placeholders filled in:
 
@@ -123,10 +123,12 @@ Run scorer calls in parallel where possible — one Task call per finding, never
 
 ## 8. Present verdict + findings (E.1, E.2)
 
+**Pre-push review verdict** — use at step 8 only, before commit/push. Do **not** reuse this wording in the final summary after a successful push (see step 13).
+
 **Verdict line first** (E.1):
 
 ```text
-**Verdict: <Ready to push / Needs attention / Needs work>**
+**Review verdict: <Ready to push / Needs attention / Needs work>**
 <one-sentence reasoning>
 ```
 
@@ -135,6 +137,8 @@ Verdict thresholds:
 - Any post-scoring Critical surviving → **Needs work**
 - Any post-scoring Important surviving → **Needs attention**
 - Otherwise → **Ready to push**
+
+If the verdict is **Needs work** or **Needs attention**, stop after presenting findings — do not commit or push until issues are fixed (step 9) and the verdict is **Ready to push**.
 
 **TL;DR paragraph** (E.2):
 
@@ -184,6 +188,46 @@ If `git rev-parse --git-dir` differs from `git rev-parse --git-common-dir`, the 
 
 Confirm with the user only if you have positive signal they want to keep iterating in the same worktree. The default end-state is no worktree, on `main`, in sync with origin.
 
-## 12. Project-specific deploys
+## 12. AWS / project deploys (post-push)
 
-See `references/deploy-rules.md` for the per-project deploy patterns and how to detect which apply.
+Shipping is not complete until required deploys run. Step 11 puts code on `main`; step 12 pushes that code to runtime (Lambdas, infra, images) when project rules say so.
+
+**Read `references/deploy-rules.md` first** — especially the **AWS SAM** section when the repo has an `aws/` stack.
+
+### Detect
+
+1. Use `{POST_PUSH_DEPLOYS}` captured in step 3 (from AGENTS.md, `docs/deploy-gotchas.md`, linked deploy docs).
+2. List files in the push: `git diff --name-only origin/main~1 HEAD` (single commit) or `git diff --name-only origin/main...HEAD` (multi-commit push).
+3. If any committed path matches a documented trigger prefix, a deploy is **required** — not a suggestion for the user to run later.
+
+### Execute
+
+1. Announce before each deploy: `Running <command> because <matched paths> changed`.
+2. **AWS SAM** (when triggers match — see deploy-rules.md):
+   - Push to `main` must already have succeeded (step 11). SAM deploy reads live template + env; feature-branch deploy before merge is a known outage pattern when env vars change.
+   - Prefer repo-root script when defined: `npm run deploy:aws`. Otherwise: `cd aws && npm run deploy` (or the command AGENTS.md names).
+   - Use the project's AWS profile (`AWS_PROFILE` in AGENTS.md / `docs/tooling-setup.md`). If output shows SSO/token expiry, **stop** and ask the user to `aws sso login` — do not retry with a different profile.
+   - Stream full deploy output. On failure: report the error, note that `main` is updated but Lambdas/infra may be stale, and **do not** claim the skill finished successfully.
+3. **Other stacks** (Terraform, CDK, Docker push): run the command from `{POST_PUSH_DEPLOYS}` / deploy-rules.md. Confirm with the user first when the deploy is destructive (prod DDL, teardown).
+4. If no trigger paths matched, skip step 12 silently.
+
+### Record for step 13
+
+Note deploy outcome in the closing summary: `AWS SAM deploy: succeeded` / `skipped (no trigger paths)` / `failed — <reason>`.
+
+## 13. Final user summary (E.3)
+
+After steps 10–12 complete, send **one closing message** to the user. This is separate from the step-8 review verdict — the user should never finish the skill wondering whether the push happened.
+
+**Lead with outcome, not review status:**
+
+| Outcome | Opening line |
+| --- | --- |
+| Push succeeded | **`Pushed to main`** — include commit SHA (short) and one-line summary of what shipped |
+| Commit succeeded, push not attempted | **`Committed locally`** — explain why push was skipped |
+| Push failed | **`Push failed`** — error summary and next step |
+| Stopped on findings | **`Stopped — not pushed`** — reference the step-8 review verdict |
+
+Then: TL;DR of the change, checks run (tests/lint), deploy notes if any, and unresolved Important findings if you pushed despite them (should be rare).
+
+**Do not** end a successful run with **"Ready to push"** or **"Review verdict: Ready to push"** — that language is pre-push gate only and reads as if nothing landed on the remote.
