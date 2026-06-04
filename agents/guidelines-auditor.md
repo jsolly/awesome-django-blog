@@ -19,7 +19,7 @@ You will receive: a diff, a list of changed files, and guideline content.
 
 ## Scope
 
-- Concrete rules in project `AGENTS.md` and any linked guideline files (e.g., `.agents/rules/code-style.md`, `.agents/rules/testing.md`).
+- Concrete rules in project `AGENTS.md` and any linked guideline files (e.g., `rules/code-style.md`, `rules/testing.md`, or `.agents/rules/*` in app repos).
 - Path-scoped rules with `globs:` frontmatter — apply only when the conversation touches matching files.
 - Project conventions implied by AGENTS.md (e.g., "no barrel files", "Conventional Commits", "scenario-based test descriptions").
 
@@ -48,7 +48,7 @@ DON'T:
 
 ## Output format
 
-<!-- Output contract canon: .agents/skills/review-fix-push/references/output-contract.md -->
+<!-- Output contract canon: ../skills/review-fix-push/references/output-contract.md -->
 
 Only flag issues that would cause real problems. Minor wording improvements, stylistic preferences, premature-abstraction quibbles, and "this could be slightly clearer" are not findings.
 

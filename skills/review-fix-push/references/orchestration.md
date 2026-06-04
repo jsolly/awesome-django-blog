@@ -32,7 +32,7 @@ This step is the gate that makes the rest of the skill meaningful. Skip it only 
 
 - Read the project `AGENTS.md` (root of repo) and any linked guideline files it references (e.g., `.agents/rules/code-style.md`, `.agents/rules/testing.md`, etc.).
 - Read any `AGENTS.md` in directories containing modified files.
-- Read the global `.agents/AGENTS.md` for cross-project conventions.
+- Read the active dotagents brief for cross-project conventions: on desktop, follow the installed entrypoint symlink (`~/.cursor/AGENTS.md` → `~/code/dotagents/AGENTS.md` or `AGENTS.work.md` per profile); in app repos, use `.agents/AGENTS.md`.
 - These guidelines are the standard the review is measured against.
 - **Capture post-push deploy rules** gated on specific paths — path prefixes, command, and preconditions (e.g., "SAM deploy required when `aws/template.yaml` or `src/handlers/` changes; command `npm run deploy:aws`; merge to main first when env vars change"). Record these as `{POST_PUSH_DEPLOYS}` for step 12. If none exist in AGENTS.md, set `{POST_PUSH_DEPLOYS}` to `none`.
 

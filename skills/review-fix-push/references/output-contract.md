@@ -1,6 +1,6 @@
 # Reviewer Output Contract
 
-**This is the canonical output format every review subagent must follow.** Every agent in dotagents `agents/` inlines this contract; local installs expose those prompts at `.agents/agents/`, and app repos receive them at `.agents/agents/`. The `/review-fix-push` orchestrator consumes this format. Drift across agents breaks the aggregator.
+**This is the canonical output format every review subagent must follow.** Every agent in dotagents `agents/` inlines this contract; local installs expose those prompts through `~/.cursor/agents/*.md` symlinks, and app repos receive them at `.agents/agents/`. The `/review-fix-push` orchestrator consumes this format. Drift across agents breaks the aggregator.
 
 When you edit an agent's `## Output format` block, mirror this file exactly (modulo the agent-specific `## Out of scope` sub-block, which is per-lens).
 
@@ -114,7 +114,7 @@ DON'T:
 
 ## Output format
 
-<!-- Output contract canon: .agents/skills/review-fix-push/references/output-contract.md -->
+<!-- Output contract canon: references/output-contract.md -->
 
 Only flag issues that would cause real problems. Minor wording improvements, stylistic preferences, premature-abstraction quibbles, and "this could be slightly clearer" are not findings.
 
@@ -153,4 +153,4 @@ If you find nothing in your scope, return only:
 
 ## Drift detection
 
-When updating this contract, also update every agent's inlined copy. A drift-check script can grep each `.agents/agents/*.md` for the fenced template above and flag mismatches.
+When updating this contract, also update every agent's inlined copy. A drift-check script can grep each `agents/*.md` for the fenced template above and flag mismatches.

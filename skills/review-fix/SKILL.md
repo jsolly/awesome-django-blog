@@ -42,11 +42,11 @@ The full body is in `references/orchestration.md` — read it before each step. 
 
 1. **Resolve scope** — parse the argument (if any), match against the diff, confirm with the user. → see `references/orchestration.md`.
 2. **Inspect changes** — `git status`, `git diff` over the scoped files.
-3. **Sync main into the working branch** — fetch, compare, merge or rebase, resolve conflicts. Identical to `/review-fix-push` step 2. → see `.agents/skills/review-fix-push/references/orchestration.md` and `.agents/skills/review-fix-push/references/conflict-resolution.md`.
-4. **Load project guidelines + locate plan/spec** — D.1 plan injection (same as `/review-fix-push`). → see `.agents/skills/review-fix-push/references/orchestration.md` step 3.
+3. **Sync main into the working branch** — fetch, compare, merge or rebase, resolve conflicts. Identical to `/review-fix-push` step 2. → see `../review-fix-push/references/orchestration.md` and `../review-fix-push/references/conflict-resolution.md`.
+4. **Load project guidelines + locate plan/spec** — D.1 plan injection (same as `/review-fix-push`). → see `../review-fix-push/references/orchestration.md` step 3.
 5. **Smoke check** — tests, type checker, CI reproduction via `act` if applicable.
 6. **Architectural sanity check** — orchestrator notes for D.2.
-7. **Review with parallel agents** — fleet, dispatch prompt, output contract are shared with `/review-fix-push`. → see `.agents/skills/review-fix-push/references/agent-fleet.md`, `.agents/skills/review-fix-push/references/dispatch-prompt.md`, `.agents/skills/review-fix-push/references/output-contract.md`.
+7. **Review with parallel agents** — fleet, dispatch prompt, output contract are shared with `/review-fix-push`. → see `../review-fix-push/references/agent-fleet.md`, `../review-fix-push/references/dispatch-prompt.md`, `../review-fix-push/references/output-contract.md`.
 8. **Adjudicate findings with `confidence-scorer`** — drop Minor, score Critical/Important, drop adjudicated false positives and downgrades.
 9. **Present verdict + findings** — verdict-line first, TL;DR paragraph, then per-severity findings.
 10. **Fix issues + re-smoke** — fix all Critical and reasonable Important findings; re-run smoke (step 5) after fixes; loop up to 3 cycles total.
@@ -71,8 +71,8 @@ For small scoped reviews (a single file or two with trivial diffs), review inlin
 
 - `references/orchestration.md` — full step-by-step body, including scope resolution and the differences from `/review-fix-push`.
 - Shared with `/review-fix-push` (read directly from there):
-  - `.agents/skills/review-fix-push/references/agent-fleet.md` — always-run + extension-gated agent tables, model rationale, the `guidelines-auditor ×2` pattern.
-  - `.agents/skills/review-fix-push/references/dispatch-prompt.md` — prompt template each agent receives via Task.
-  - `.agents/skills/review-fix-push/references/output-contract.md` — canonical reviewer output schema.
-  - `.agents/skills/review-fix-push/references/conflict-resolution.md` — merge conflict resolution + CI reproduction.
-  - `.agents/skills/review-fix-push/references/safety-rules.md` — `permissions.deny` rules in settings.json.
+  - `../review-fix-push/references/agent-fleet.md` — always-run + extension-gated agent tables, model rationale, the `guidelines-auditor ×2` pattern.
+  - `../review-fix-push/references/dispatch-prompt.md` — prompt template each agent receives via Task.
+  - `../review-fix-push/references/output-contract.md` — canonical reviewer output schema.
+  - `../review-fix-push/references/conflict-resolution.md` — merge conflict resolution + CI reproduction.
+  - `../review-fix-push/references/safety-rules.md` — `permissions.deny` rules in settings.json.
