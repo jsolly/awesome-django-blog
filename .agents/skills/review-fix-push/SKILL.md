@@ -1,6 +1,6 @@
 ---
 name: review-fix-push
-description: Reviews local changes with parallel specialist agents, syncs main, fixes any blocking findings, and pushes the result directly to main. Sole review gate — no PRs. Use when the user asks to push changes, says `/review-fix-push`, asks for "review and push" / "commit and push" / "ship it", or otherwise indicates they're ready to integrate local work to `main`. Do NOT invoke for routine in-flight commits — only when the user signals end-of-task integration.
+description: Reviews local changes with parallel specialist agents, syncs main, fixes any blocking findings, pushes the result directly to main, and runs required post-push deploys (AWS SAM, Terraform, etc.) when project AGENTS.md path triggers match. Sole review gate — no PRs. Use when the user asks to push changes, says `/review-fix-push`, asks for "review and push" / "commit and push" / "ship it", or otherwise indicates they're ready to integrate local work to `main`. Do NOT invoke for routine in-flight commits — only when the user signals end-of-task integration.
 effort: max
 ---
 
@@ -30,7 +30,8 @@ The orchestration is documented in `references/orchestration.md` — read it bef
 9. **Fix issues + re-smoke** — fix all Critical and reasonable Important findings; re-run smoke (step 4) after fixes; loop up to 3 cycles total. → see `references/orchestration.md`
 10. **Stage and commit** — stage by name (no `git add -A`); Conventional Commits message describing original intent. → see `references/orchestration.md`
 11. **Push to main + worktree cleanup** — `git push origin HEAD:main`; pre-commit hooks must pass, never `--no-verify`. If the work was done in a worktree, default to switching back to `main`, fast-forwarding local `main`, and removing the worktree + topic branch. → see `references/orchestration.md`
-12. **Project-specific deploys** — re-check post-commit deploy rules; run any required deploys. → see `references/deploy-rules.md`
+12. **AWS / project deploys** — after push, match committed paths to AGENTS.md deploy rules; **run SAM/Terraform/etc. automatically** when triggered (not an optional follow-up). → see `references/deploy-rules.md`
+13. **Final user summary** — after a successful push, lead with **`Pushed to main`** (commit SHA + summary), not the step-8 "Ready to push" review verdict. → see `references/orchestration.md` step 13
 
 ## Safety rules (non-negotiable)
 
@@ -50,7 +51,7 @@ For small changes (a single file or two with trivial diffs), review inline witho
 ## Reference files
 
 - `references/orchestration.md` — full step-by-step body, including D.1, D.2, D.3, E.1, E.2 wiring.
-- `references/agent-fleet.md` — always-run + extension-gated tables, model rationale, the `guidelines-auditor ×2` pattern.
+- `references/agent-fleet.md` — always-run + extension-gated tables, `model: inherit`, the `guidelines-auditor ×2` pattern.
 - `references/output-contract.md` — canonical reviewer output schema (every agent inlines this).
 - `references/dispatch-prompt.md` — the prompt template each agent receives via Task.
 - `references/deploy-rules.md` — per-project post-commit deploy patterns (SAM, Terraform, Lambda code updates).

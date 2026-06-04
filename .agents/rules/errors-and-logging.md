@@ -17,3 +17,9 @@ alwaysApply: false
 - `info` — expected business rejections (auth failures, invalid input, rate limits) and routine lifecycle events.
 - `warn` — early signals that could escalate to an error if ignored, or transient failures that the next retry / next scheduled invocation may recover from on its own.
 - `error` — the failure can't be fixed by a retry, or retries have already exhausted. The data is wrong, the operation can't complete, the parser rejected input we expected to parse.
+
+## Bounded payload logging (alert-hub repos)
+
+When logging large or sensitive blobs (API bodies, tool args, WebSocket frames, LLM output, query strings), do not `JSON.stringify` the whole value into context. Use the shared helper where the repo has one (`preparePayloadForLog` + `payloadLogFields` from `src/shared/log-payload.ts` or `src/lib/logging/log-payload.ts`): **4 KB** inline full object, **8 KB** head/tail preview, **500-char** string cap, sensitive-key redaction, and PII masking aligned with `logging.ts`. Log **metadata** (IDs, routes, counts, sorted key names) plus bounded `*{Preview,Mode,ByteLength}` fields — not secrets, tokens, full phone numbers, or raw user content.
+
+For operator emails, enriched alarms expose lookup lines (`log-group`, `insights-query`, optional `insights-query-request`). Downstream apps should document expected `message` + context fields in `docs/alert-hub.md` so agents know what to expect in CloudWatch. See `~/code/alert-hub/docs/architecture.md` → **Agent log lookup playbook**.

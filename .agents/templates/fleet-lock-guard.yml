@@ -1,7 +1,12 @@
 name: Fleet lock guard
 
 on:
-  pull_request:
+  push:
+    branches: [main]
+    paths:
+      - ".agents/**"
+      - ".github/workflows/fleet-lock-guard.yml"
+  workflow_dispatch:
 
 permissions:
   contents: read

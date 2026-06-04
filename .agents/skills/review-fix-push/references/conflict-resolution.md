@@ -16,13 +16,13 @@ If the merge introduced regressions in test fixtures or signatures (common when 
 
 Commit the merge with the default merge message — Conventional Commits doesn't apply to merge commits.
 
-## CI reproduction with `act` (step 4)
+## CI reproduction before push (step 4)
 
-Local tests pass in a warm, cached dev environment; CI runs from cold, in a container, with a different OS/arch and a stripped-down env. Catching CI-only regressions locally is drastically cheaper than push-and-wait loops.
+Local tests pass in a warm, cached dev environment; the default-branch deploy workflow runs from cold with production or cloud credentials. Catching regressions locally is drastically cheaper than push-and-wait loops.
 
-**When to reproduce CI**:
+**Default:** run the repo's pre-commit hook (or the same commands it runs) before `git push origin HEAD:main`. That stack should match the non-deploy portion of the main guard workflow.
 
-If the repo uses `act` (check for `.actrc`, `scripts/ci/run-local-actions.sh`, or `package.json` scripts like `gha:local*`), run the relevant local workflow when the diff touches any of:
+**When to run the full local guard**, especially if pre-commit is lighter than deploy:
 
 - `.github/workflows/**` or `.github/actions/**`
 - Test harness or runners (`tests/setup.ts`, `tests/run-vitest.ts`, `playwright.config.ts`, `vitest.config.ts`, any `tests/helpers/**`)
@@ -31,15 +31,6 @@ If the repo uses `act` (check for `.actrc`, `scripts/ci/run-local-actions.sh`, o
 - Container/service config (`supabase/config.toml`, `docker-compose*.yml`, `Dockerfile*`)
 - Dependency changes that move packages between `dependencies` and `devDependencies`
 
-**Workflows `act` can't run**: typically anything gated on `github.actor != 'nektos/act'` or requiring real cloud creds. Reproduce the equivalent step with local env overrides instead.
+**Deploy workflows with prod creds** (Vercel, linked Supabase, AWS Lambda publish) are not runnable locally. Reproduce their check steps via pre-commit or documented local commands; accept that the publish step only runs on GitHub after push.
 
-Example: if CI's E2E step is `npm run test:e2e` with a specific env var set in `.github/actions/run-ci/action.yml`:
-
-1. Back up `.env.local`.
-2. Write those env vars verbatim.
-3. Rerun `npm run test:e2e`.
-4. Restore `.env.local`.
-
-**Repos without `act` configured**: skip this step; just flag in the agent review that CI coverage is thinner than local.
-
-**If you skip CI reproduction on a change that touches any of the paths above and CI then fails, that's on you.** Add it to the lessons list for the next run.
+**If you skip the full local guard on a change that touches any of the paths above and CI then fails, that's on you.** Add it to the lessons list for the next run.
