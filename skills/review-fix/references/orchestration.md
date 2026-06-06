@@ -1,8 +1,8 @@
 # Orchestration — Full Step-by-Step
 
-This is the operational body of `/review-fix`. The skill's `SKILL.md` is the dispatcher; this file holds the deep guidance for each step. Where the mechanics are identical to `/review-fix-push`, this file points at that skill's reference rather than duplicating — the goal is one source of truth for the agent fleet, dispatch prompt, output contract, and conflict resolution.
+This is the operational body of `/review-fix`. The skill's `SKILL.md` is the dispatcher; this file holds the deep guidance for each step. Where the mechanics are identical to `/review-fix-push-babysit`, this file points at that skill's reference rather than duplicating — the goal is one source of truth for the agent fleet, dispatch prompt, output contract, and conflict resolution.
 
-The big difference from `/review-fix-push`: this skill **stops at step 11** (report-and-stop). No staging, no commit, no push, no deploy. Treat that as load-bearing — don't drift back into the push flow even if the verdict comes back clean.
+The big difference from `/review-fix-push-babysit`: this skill **stops at step 11** (report-and-stop). No staging, no commit, no push, no deploy. Treat that as load-bearing — don't drift back into the push flow even if the verdict comes back clean.
 
 ---
 
@@ -37,19 +37,19 @@ The resolved scope becomes the basis for `{CHANGED_FILES}` and `{DIFF}` in step 
 
 ## 3. Sync main into the working branch
 
-Identical to `/review-fix-push` step 2 — `git fetch origin main`, compare, merge (default) or rebase (1–2 commit topic branches only), resolve conflicts, re-run smoke before continuing.
+Identical to `/review-fix-push-babysit` step 2 — `git fetch origin main`, compare, merge (default) or rebase (1–2 commit topic branches only), resolve conflicts, re-run smoke before continuing.
 
-Read `../review-fix-push/references/orchestration.md` step 2 for the full procedure, and `../review-fix-push/references/conflict-resolution.md` for conflict guidance.
+Read `../review-fix-push-babysit/references/orchestration.md` step 2 for the full procedure, and `../review-fix-push-babysit/references/conflict-resolution.md` for conflict guidance.
 
 The user picked "still sync main" for this skill because reviewing on a stale base produces the same false-confidence pattern that the push gate catches. Don't skip it.
 
 After sync, re-resolve scope (step 1) against the post-merge diff: `git diff --name-only origin/main...HEAD`. If the scoped set changed (merge added files matching the concept, or removed some), surface the new set to the user before proceeding.
 
-**One difference from the push variant**: if the sync introduces a merge commit, that commit *will* exist locally even though this skill doesn't push. That's fine and expected — the user can decide later (via `/review-fix-push` or manual push) whether the merge ships. The merge commit is the cost of reviewing against the merged state. Don't try to undo it; don't reset back.
+**One difference from the push variant**: if the sync introduces a merge commit, that commit *will* exist locally even though this skill doesn't push. That's fine and expected — the user can decide later (via `/review-fix-push-babysit` or manual push) whether the merge ships. The merge commit is the cost of reviewing against the merged state. Don't try to undo it; don't reset back.
 
 ## 4. Load project guidelines + locate plan/spec (D.1)
 
-Identical to `/review-fix-push` step 3. Read `../review-fix-push/references/orchestration.md` step 3 for the full procedure.
+Identical to `/review-fix-push-babysit` step 3. Read `../review-fix-push-babysit/references/orchestration.md` step 3 for the full procedure.
 
 Quick recap:
 
@@ -61,21 +61,21 @@ The located plan text becomes `{PLAN_OR_SPEC}` in the dispatch prompt at step 7.
 
 ## 5. Smoke check — tests, types, and CI reproduction
 
-Same as `/review-fix-push` step 4. Run the project's test command, the type checker, and `act` for CI reproduction when relevant paths changed (see `../review-fix-push/references/conflict-resolution.md`).
+Same as `/review-fix-push-babysit` step 4. Run the project's test command, the type checker, and `act` for CI reproduction when relevant paths changed (see `../review-fix-push-babysit/references/conflict-resolution.md`).
 
 If smoke fails, fix those failures before proceeding to agent review — same gate as the push variant. A red baseline makes the agent review noisy because every reviewer will spot the breakage independently.
 
 ## 6. Architectural sanity check (D.2)
 
-Same as `/review-fix-push` step 5 — orchestrator-side manual scan for wrong-layer logic, coupling, API surface bloat, and inconsistency with existing patterns. Capture notes for `{ARCHITECTURAL_NOTES}` in the dispatch prompt. If nothing surfaces, set the placeholder to the explicit "no concerns noted" string — never leave it blank.
+Same as `/review-fix-push-babysit` step 5 — orchestrator-side manual scan for wrong-layer logic, coupling, API surface bloat, and inconsistency with existing patterns. Capture notes for `{ARCHITECTURAL_NOTES}` in the dispatch prompt. If nothing surfaces, set the placeholder to the explicit "no concerns noted" string — never leave it blank.
 
 ## 7. Review with parallel agents
 
-Same fleet, same dispatch template, same output contract as `/review-fix-push` step 6. Read:
+Same fleet, same dispatch template, same output contract as `/review-fix-push-babysit` step 6. Read:
 
-- `../review-fix-push/references/agent-fleet.md` — always-run + extension-gated agents, model rationale, `guidelines-auditor ×2` pattern.
-- `../review-fix-push/references/dispatch-prompt.md` — prompt template.
-- `../review-fix-push/references/output-contract.md` — reviewer output schema.
+- `../review-fix-push-babysit/references/agent-fleet.md` — always-run + extension-gated agents, model rationale, `guidelines-auditor ×2` pattern.
+- `../review-fix-push-babysit/references/dispatch-prompt.md` — prompt template.
+- `../review-fix-push-babysit/references/output-contract.md` — reviewer output schema.
 
 Placeholder fill-ins:
 
@@ -93,13 +93,13 @@ For small scoped diffs (1–2 files, trivial changes), skip the fan-out — revi
 
 ## 8. Adjudicate findings with `confidence-scorer`
 
-Same as `/review-fix-push` step 7. Drop Minor before scoring; run scorer in parallel, one Task per finding, never batched (batching anchors later scores to earlier ones); drop adjudicated false positives and Minor downgrades; dedupe surviving findings by `(file, line, issue)`.
+Same as `/review-fix-push-babysit` step 7. Drop Minor before scoring; run scorer in parallel, one Task per finding, never batched (batching anchors later scores to earlier ones); drop adjudicated false positives and Minor downgrades; dedupe surviving findings by `(file, line, issue)`.
 
-Findings catchable by tooling (Biome, tsc, the test suite) drop out the same way — but be aware that since this skill doesn't commit, those tools haven't yet had their pre-commit-hook turn. If the user runs `/review-fix-push` next, those will surface there. Don't re-flag them here.
+Findings catchable by tooling (Biome, tsc, the test suite) drop out the same way — but be aware that since this skill doesn't commit, those tools haven't yet had their pre-commit-hook turn. If the user runs `/review-fix-push-babysit` next, those will surface there. Don't re-flag them here.
 
 ## 9. Present verdict + findings (E.1, E.2)
 
-Same shape as `/review-fix-push` step 8 — verdict line, TL;DR paragraph, per-severity findings list with the 4-field shape (file:line, what, why it matters, fix). Surface architectural notes alongside agent findings.
+Same shape as `/review-fix-push-babysit` step 8 — verdict line, TL;DR paragraph, per-severity findings list with the 4-field shape (file:line, what, why it matters, fix). Surface architectural notes alongside agent findings.
 
 **Verdict thresholds** (adjusted for the no-push outcome):
 
@@ -107,11 +107,11 @@ Same shape as `/review-fix-push` step 8 — verdict line, TL;DR paragraph, per-s
 - Any post-scoring Important surviving → **Needs attention** (will be fixed if reasonable, in step 10).
 - Otherwise → **Clean** (skip step 10, go directly to step 11).
 
-The `Ready to push` verdict from `/review-fix-push` doesn't apply here — this skill never pushes. Use `Clean` for the no-issues case.
+The `Ready to push` verdict from `/review-fix-push-babysit` doesn't apply here — this skill never pushes. Use `Clean` for the no-issues case.
 
 ## 10. Fix issues + re-smoke (D.3)
 
-Same as `/review-fix-push` step 9.
+Same as `/review-fix-push-babysit` step 9.
 
 - Fix all **Critical** issues and reasonable **Important** issues. Explain each fix as you make it.
 - Skip suggestions that are debatable or require refactoring beyond scope — note why.
@@ -122,7 +122,7 @@ Same as `/review-fix-push` step 9.
 
 ## 11. Stop and report
 
-This is where this skill ends. The intent is to leave the working tree in a clean, reviewable state with all the agent-applied fixes present but uncommitted, so the user can inspect, iterate, or hand off to `/review-fix-push`.
+This is where this skill ends. The intent is to leave the working tree in a clean, reviewable state with all the agent-applied fixes present but uncommitted, so the user can inspect, iterate, or hand off to `/review-fix-push-babysit`.
 
 Output, in this order:
 
@@ -132,6 +132,6 @@ Output, in this order:
    - `Partial — N fixed, M still Critical (cycle bound hit); smoke passed.` (or `smoke failed` — surface that loud)
 2. **`git status`** output, verbatim, so the user sees exactly what's uncommitted.
 3. **A short summary line** of what changed in the working tree relative to the pre-skill state (e.g., `2 files modified by fixes; 1 merge commit added by sync`).
-4. **Next-step nudge**: explicitly remind the user that nothing was committed and suggest `/review-fix-push` when they're ready to ship. If the verdict was `Partial`, suggest the user resolve the remaining Critical findings manually before running `/review-fix-push`, since that skill will re-flag them.
+4. **Next-step nudge**: explicitly remind the user that nothing was committed and suggest `/review-fix-push-babysit` when they're ready to ship. If the verdict was `Partial`, suggest the user resolve the remaining Critical findings manually before running `/review-fix-push-babysit`, since that skill will re-flag them.
 
 Do not run `git add`, `git commit`, `git push`, or any deploy commands. The merge commit from step 3 is the only commit this skill is allowed to create, and it was created as part of conflict resolution — not as part of finishing.

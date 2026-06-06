@@ -1,6 +1,6 @@
 # Dispatch Prompt Template
 
-This is the template the orchestrator (`/review-fix-push`) uses when invoking each reviewer subagent via the `Task` tool. The orchestrator fills the placeholders before dispatching.
+This is the template the orchestrator (`/review-fix-push-babysit`) uses when invoking each reviewer subagent via the `Task` tool. The orchestrator fills the placeholders before dispatching.
 
 The template ensures every agent receives:
 

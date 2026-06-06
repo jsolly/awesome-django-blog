@@ -1,6 +1,6 @@
 # Agent Fleet — Composition, Gating, Models
 
-The 16 review subagent prompts live in dotagents `agents/`. Local installs expose them through Cursor `~/.cursor/agents/*.md` symlinks that point directly into `~/code/dotagents/agents/`; fleet consumers receive the same prompts at `.agents/agents/`. `/review-fix-push` step 6 dispatches this fleet in parallel. Every agent uses `model: inherit` in frontmatter (same model as the orchestrator session).
+The 16 review subagent prompts live in dotagents `agents/`. Local installs expose them through Cursor `~/.cursor/agents/*.md` symlinks that point directly into `~/code/dotagents/agents/`; fleet consumers receive the same prompts at `.agents/agents/`. `/review-fix-push-babysit` step 6 dispatches this fleet in parallel. Every agent uses `model: inherit` in frontmatter (same model as the orchestrator session).
 
 ---
 
@@ -61,7 +61,7 @@ Anthropic's plugin pattern duplicates a critical specialist to reduce false nega
 
 ## Model: inherit
 
-All agents set `model: inherit` in frontmatter so each subagent uses the same model as the `/review-fix-push` orchestrator session. Pick the parent model for the review (e.g. a strong reasoning model for a large diff); subagents follow automatically. Final synthesis at step 8 still happens in the orchestrator's context.
+All agents set `model: inherit` in frontmatter so each subagent uses the same model as the `/review-fix-push-babysit` orchestrator session. Pick the parent model for the review (e.g. a strong reasoning model for a large diff); subagents follow automatically. Final synthesis at step 8 still happens in the orchestrator's context.
 
 ## Token economics
 

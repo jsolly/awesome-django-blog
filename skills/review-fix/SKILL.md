@@ -1,12 +1,12 @@
 ---
 name: review-fix
-description: Reviews local changes with parallel specialist agents and applies fixes for blocking findings, stopping BEFORE commit (no staging, no push). Optional natural-language argument scopes the review to one concept — e.g., `/review-fix the plan` reviews only files matching "the plan" in the diff. Use this skill whenever the user says `/review-fix`, asks to "review and fix" / "review my changes and fix the issues" / "do a review pass and patch what's broken", asks for a "code review pass" before they commit, or wants critical findings cleaned up while still deciding whether to commit. Do NOT invoke when the user is already ready to push (use `review-fix-push`) or wants a read-only review with no fixes (use `review` or `security-review`).
+description: Reviews local changes with parallel specialist agents and applies fixes for blocking findings, stopping BEFORE commit (no staging, no push). Optional natural-language argument scopes the review to one concept — e.g., `/review-fix the plan` reviews only files matching "the plan" in the diff. Use this skill whenever the user says `/review-fix`, asks to "review and fix" / "review my changes and fix the issues" / "do a review pass and patch what's broken", asks for a "code review pass" before they commit, or wants critical findings cleaned up while still deciding whether to commit. Do NOT invoke when the user is already ready to push (use `review-fix-push-babysit`) or wants a read-only review with no fixes (use `review` or `security-review`).
 effort: max
 ---
 
 # Local Review + Fix (no commit, no push)
 
-This skill is the mid-flight cousin of `/review-fix-push`. Same review fleet, same fix loop — but it stops before staging anything. After it runs, fixes live in the working tree as uncommitted changes; the user decides whether and when to commit.
+This skill is the mid-flight cousin of `/review-fix-push-babysit`. Same review fleet, same fix loop — but it stops before staging anything. After it runs, fixes live in the working tree as uncommitted changes; the user decides whether and when to commit.
 
 The expected starting state is one of two things:
 
@@ -42,15 +42,15 @@ The full body is in `references/orchestration.md` — read it before each step. 
 
 1. **Resolve scope** — parse the argument (if any), match against the diff, confirm with the user. → see `references/orchestration.md`.
 2. **Inspect changes** — `git status`, `git diff` over the scoped files.
-3. **Sync main into the working branch** — fetch, compare, merge or rebase, resolve conflicts. Identical to `/review-fix-push` step 2. → see `../review-fix-push/references/orchestration.md` and `../review-fix-push/references/conflict-resolution.md`.
-4. **Load project guidelines + locate plan/spec** — D.1 plan injection (same as `/review-fix-push`). → see `../review-fix-push/references/orchestration.md` step 3.
+3. **Sync main into the working branch** — fetch, compare, merge or rebase, resolve conflicts. Identical to `/review-fix-push-babysit` step 2. → see `../review-fix-push-babysit/references/orchestration.md` and `../review-fix-push-babysit/references/conflict-resolution.md`.
+4. **Load project guidelines + locate plan/spec** — D.1 plan injection (same as `/review-fix-push-babysit`). → see `../review-fix-push-babysit/references/orchestration.md` step 3.
 5. **Smoke check** — tests, type checker, CI reproduction via `act` if applicable.
 6. **Architectural sanity check** — orchestrator notes for D.2.
-7. **Review with parallel agents** — fleet, dispatch prompt, output contract are shared with `/review-fix-push`. → see `../review-fix-push/references/agent-fleet.md`, `../review-fix-push/references/dispatch-prompt.md`, `../review-fix-push/references/output-contract.md`.
+7. **Review with parallel agents** — fleet, dispatch prompt, output contract are shared with `/review-fix-push-babysit`. → see `../review-fix-push-babysit/references/agent-fleet.md`, `../review-fix-push-babysit/references/dispatch-prompt.md`, `../review-fix-push-babysit/references/output-contract.md`.
 8. **Adjudicate findings with `confidence-scorer`** — drop Minor, score Critical/Important, drop adjudicated false positives and downgrades.
 9. **Present verdict + findings** — verdict-line first, TL;DR paragraph, then per-severity findings.
 10. **Fix issues + re-smoke** — fix all Critical and reasonable Important findings; re-run smoke (step 5) after fixes; loop up to 3 cycles total.
-11. **Stop and report** — show `git status` plus a one-line summary of what changed in the working tree; explicitly remind the user nothing was committed and suggest `/review-fix-push` when they're ready to ship.
+11. **Stop and report** — show `git status` plus a one-line summary of what changed in the working tree; explicitly remind the user nothing was committed and suggest `/review-fix-push-babysit` when they're ready to ship.
 
 ## Safety rules (non-negotiable)
 
@@ -69,10 +69,10 @@ For small scoped reviews (a single file or two with trivial diffs), review inlin
 
 ## Reference files
 
-- `references/orchestration.md` — full step-by-step body, including scope resolution and the differences from `/review-fix-push`.
-- Shared with `/review-fix-push` (read directly from there):
-  - `../review-fix-push/references/agent-fleet.md` — always-run + extension-gated agent tables, model rationale, the `guidelines-auditor ×2` pattern.
-  - `../review-fix-push/references/dispatch-prompt.md` — prompt template each agent receives via Task.
-  - `../review-fix-push/references/output-contract.md` — canonical reviewer output schema.
-  - `../review-fix-push/references/conflict-resolution.md` — merge conflict resolution + CI reproduction.
-  - `../review-fix-push/references/safety-rules.md` — `permissions.deny` rules in settings.json.
+- `references/orchestration.md` — full step-by-step body, including scope resolution and the differences from `/review-fix-push-babysit`.
+- Shared with `/review-fix-push-babysit` (read directly from there):
+  - `../review-fix-push-babysit/references/agent-fleet.md` — always-run + extension-gated agent tables, model rationale, the `guidelines-auditor ×2` pattern.
+  - `../review-fix-push-babysit/references/dispatch-prompt.md` — prompt template each agent receives via Task.
+  - `../review-fix-push-babysit/references/output-contract.md` — canonical reviewer output schema.
+  - `../review-fix-push-babysit/references/conflict-resolution.md` — merge conflict resolution + CI reproduction.
+  - `../review-fix-push-babysit/references/safety-rules.md` — `permissions.deny` rules in settings.json.

@@ -12,8 +12,8 @@ This repo is configured for **cloud agents and local desktop agents** through th
 ├── .agents/                          # git subtree from dotagents (fleet branch) — DO NOT EDIT
 │   ├── AGENTS.md                     # fleet persona + collaboration
 │   ├── DO-NOT-EDIT.md                # banner: fleet-managed paths (read-only in app repos)
-│   ├── agents/                       # review-fix-push subagent prompts
-│   ├── skills/                       # review-fix, review-fix-push
+│   ├── agents/                       # review-fix-push-babysit subagent prompts
+│   ├── skills/                       # review-fix, review-fix-push-babysit
 │   ├── hooks/
 │   │   ├── block-git-no-verify.sh    # blocks git push/commit --no-verify (Cursor hook)
 │   │   └── block-fleet-edits.sh      # blocks Write/Delete on fleet-managed paths (Cursor hook)
@@ -122,7 +122,15 @@ Symptom: `node -v` shows v22 while `.nvmrc` requires 24 — `npm test` / native 
 
 **Git guard hook:** `merge-cursor-git-guard.sh` wires `block-git-no-verify.sh` into `.cursor/hooks.json` (`beforeShellExecution`).
 
-**Fleet pre-commit guard:** `converge-repo.sh` installs a block-only check in `.git/hooks/pre-commit` via `install-fleet-precommit-hook.sh`. Before each commit, `fleet-precommit-check.sh` compares `.agents/FLEET.lock` to `dotagents/fleet` and **fails** if stale — it does not run subtree pull. Fix: `./scripts/update-agents-subtree.sh`, commit the sync, then retry. Cloud task start still uses `cloud-fleet-sync-if-stale.sh` to pull when stale.
+**Fleet freshness enforcement (three layers, all fail-only except cloud/shipping paths):**
+
+| Layer | When | Behavior |
+| --- | --- | --- |
+| Cloud task start | Each cloud agent boot | `cloud-fleet-sync-if-stale.sh` pulls when stale (may stash/commit sync) |
+| Pre-commit hook | Every local commit | `fleet-precommit-check.sh` **blocks** when stale — never auto-pulls |
+| `/review-fix-push-babysit` step 1a | Before shipping app work | Explicit gate: stash if dirty, run `cloud-fleet-sync-if-stale.sh`, restore stash |
+
+There is **no pre-push auto-sync**. Fix stale fleet with `./scripts/update-agents-subtree.sh` or let the cloud/shipping paths above run `cloud-fleet-sync-if-stale.sh`. During `/review-fix-push-babysit`, a named stash may appear briefly while fleet sync runs on a dirty tree — that is expected.
 
 ### Playwright browser E2E (opt-in)
 

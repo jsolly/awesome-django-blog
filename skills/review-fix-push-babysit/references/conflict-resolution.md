@@ -18,7 +18,7 @@ Commit the merge with the default merge message — Conventional Commits doesn't
 
 ## CI reproduction before push (step 4)
 
-Local tests pass in a warm, cached dev environment; the default-branch deploy workflow runs from cold with production or cloud credentials. Catching regressions locally is drastically cheaper than push-and-wait loops.
+Local tests pass in a warm, cached dev environment; the default-branch deploy workflow runs from cold with production or cloud credentials. Catching regressions locally is drastically cheaper than push-and-wait loops. For this skill, step 12 CI babysit is the explicit post-push exception — pre-push local reproduction remains primary.
 
 **Default:** run the repo's pre-commit hook (or the same commands it runs) before `git push origin HEAD:main`. That stack should match the non-deploy portion of the main guard workflow.
 

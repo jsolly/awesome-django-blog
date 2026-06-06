@@ -1,10 +1,12 @@
-# Per-Project Post-Commit Deploys (Step 12)
+# Per-Project Post-CI Deploys (Step 13)
 
 Some projects require extra deploy steps after pushing because CI doesn't cover every path — e.g., SAM/CDK stacks, Terraform, Docker image pushes, Lambda code updates, manual cache invalidations.
 
 This file documents the patterns; the actual rules per repo live in each project's `AGENTS.md`.
 
-**Step 12 is mandatory when triggers match.** Do not end the skill with "remember to run SAM deploy" — run it (unless credentials are missing or the deploy is destructive and needs confirmation).
+**Step 13 runs only after step 12 CI babysit succeeds (or CI is absent).** Do not run manual deploys when CI is red.
+
+**Step 13 is mandatory when triggers match.** Do not end the skill with "remember to run SAM deploy" — run it (unless credentials are missing or the deploy is destructive and needs confirmation).
 
 ---
 
@@ -20,16 +22,16 @@ The pattern is: **paths trigger commands**.
 
 Also read `docs/deploy-gotchas.md` (or equivalent) for preconditions — e.g., merge to `main` before SAM deploy when Lambda env vars change.
 
-## How to execute (step 12)
+## How to execute (step 13)
 
-After the push succeeds (step 11):
+After the push succeeds (step 11) and CI is green (step 12):
 
 1. Re-check `{POST_PUSH_DEPLOYS}` against committed files (`git diff --name-only origin/main~1 HEAD` or `origin/main...HEAD`).
 2. If any rule's path trigger matches a committed file, **run the deploy command automatically** — it's part of shipping, not an optional follow-up.
 3. Announce each deploy before running it (one-line `Running <command> because <path> changed`).
 4. Stream the deploy output so the user can spot failures. If the deploy fails, surface the error and stop — do not retry blindly or hide the failure behind a summary.
 5. If a rule is ambiguous or the deploy is destructive/irreversible beyond a normal code push (e.g., DB migrations against prod, infra teardown), confirm with the user before running.
-6. If no rules match the committed paths, skip step 12 silently.
+6. If no rules match the committed paths, skip step 13 silently.
 
 ---
 
@@ -75,7 +77,7 @@ Run from the **repo root** unless AGENTS.md says otherwise. Do not use `--no-ver
 
 - Command exits 0.
 - Output shows stack update complete (wording varies: `UPDATE_COMPLETE`, `Successfully created/updated stack`).
-- Include deploy status in step-13 summary: `AWS SAM deploy: succeeded` or `failed`.
+- Include deploy status in step-14 summary: `AWS SAM deploy: succeeded` or `failed`.
 
 ### Reference: StockTextAlerts
 
@@ -122,6 +124,6 @@ The second-most-common bug is **running SAM deploy before merge to `main`** when
 
 Mitigation:
 
-- Step 12 runs deploy automatically when path triggers match.
+- Step 13 runs deploy automatically when path triggers match.
 - When the deploy is destructive (DB drops, infra teardown, prod resource deletes), confirm with the user before running.
 - When credentials fail, stop and ask — do not pretend deploy succeeded.
