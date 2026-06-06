@@ -56,7 +56,7 @@ DON'T:
 
 ## Output format
 
-<!-- Output contract canon: ../skills/review-fix-push/references/output-contract.md -->
+<!-- Output contract canon: ../skills/review-fix-push-babysit/references/output-contract.md -->
 
 Only flag issues that would cause real problems. Minor wording improvements, stylistic preferences, premature-abstraction quibbles, and "this could be slightly clearer" are not findings.
 

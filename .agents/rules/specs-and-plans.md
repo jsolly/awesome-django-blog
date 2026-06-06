@@ -29,7 +29,7 @@ A small change can collapse to a single plan file with a brief inline "Spec" sec
 
 - The plan references the spec (`**Spec:** docs/superpowers/specs/...`).
 - The eventual commit / PR description references the plan (`Implements docs/superpowers/plans/...`) so reviewers can audit the work against the intent.
-- The `/review-fix-push` orchestrator's D.1 spec lookup should find these files automatically (see "Discovery", below).
+- The `/review-fix-push-babysit` orchestrator's D.1 spec lookup should find these files automatically (see "Discovery", below).
 
 ## Don't use
 
@@ -45,9 +45,9 @@ A small change can collapse to a single plan file with a brief inline "Spec" sec
 ❌ `docs/plans/squishy-conjuring-lobster.md` (random slug, no date)
 ❌ `~/.claude/plans/2026-05-23-spec-compliance-reviewer.md` (vendor lock-in)
 
-## Discovery for `/review-fix-push`
+## Discovery for `/review-fix-push-babysit`
 
-The `/review-fix-push` orchestrator's plan lookup at step 3 (D.1) follows this rule. The lookup order, per `../skills/review-fix-push/references/orchestration.md` in dotagents (`.agents/skills/review-fix-push/references/orchestration.md` in app repos):
+The `/review-fix-push-babysit` orchestrator's plan lookup at step 3 (D.1) follows this rule. The lookup order, per `../skills/review-fix-push-babysit/references/orchestration.md` in dotagents (`.agents/skills/review-fix-push-babysit/references/orchestration.md` in app repos):
 
 1. `<repo-root>/docs/superpowers/plans/*.md` (most recently modified within the session)
 2. `<repo-root>/docs/superpowers/specs/*.md` (fallback if no plan but a spec exists)

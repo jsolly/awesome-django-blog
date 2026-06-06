@@ -1,6 +1,6 @@
 # Orchestration — Full Step-by-Step
 
-This is the operational body of `/review-fix-push`. The skill's `SKILL.md` is the dispatcher; this file holds the deep guidance for each step.
+This is the operational body of `/review-fix-push-babysit`. The skill's `SKILL.md` is the dispatcher; this file holds the deep guidance for each step.
 
 ---
 
@@ -9,6 +9,23 @@ This is the operational body of `/review-fix-push`. The skill's `SKILL.md` is th
 - Run `git status`, `git diff`, and `git diff --cached` to see all local changes.
 - After fetch (step 2), run `git diff --name-only origin/main...HEAD` to get the changed files for review.
 - Note whether you're in a worktree: `git rev-parse --git-common-dir` and `git rev-parse --git-dir` differ in worktrees. The current branch may not exist on the remote, and the push target is `main` regardless of the current branch name.
+
+## 1a. Fleet freshness gate
+
+**Read `references/fleet-sync-gate.md` first** — it holds the full procedure.
+
+App repos with `.agents/FLEET.lock` must sync fleet **before** step 2's WIP commit. The fleet pre-commit guard blocks any commit when the lock is behind `dotagents/fleet`; running this gate here avoids hitting that guard mid-merge with uncommitted work still in the tree.
+
+Summary:
+
+1. If `.agents/FLEET.lock` is absent, skip — dotagents and non-fleet repos are not subtree consumers.
+2. Run `bash .agents/scripts/fleet-precommit-check.sh` to detect current vs stale vs fetch failure.
+3. When stale, run `./scripts/cloud-fleet-sync-if-stale.sh`. If the working tree is dirty, stash with `git stash push -u`, sync, then `git stash pop --index` per `references/fleet-sync-gate.md`.
+4. Keep any `chore(fleet): …` sync commit on the branch being shipped.
+5. On stash conflicts, fetch failures, or sync errors — **stop**; do not commit or push. Report recovery state (`git status`, stash list).
+6. Re-run `git status` and continue to step 2.
+
+Hooks remain fail-only — this gate is explicit sync on the shipping path, not pre-push auto-sync.
 
 ## 2. Sync main into the working branch
 
@@ -34,7 +51,8 @@ This step is the gate that makes the rest of the skill meaningful. Skip it only 
 - Read any `AGENTS.md` in directories containing modified files.
 - Read the active dotagents brief for cross-project conventions: on desktop, follow the installed entrypoint symlink (`~/.cursor/AGENTS.md` → `~/code/dotagents/AGENTS.md` or `AGENTS.work.md` per profile); in app repos, use `.agents/AGENTS.md`.
 - These guidelines are the standard the review is measured against.
-- **Capture post-push deploy rules** gated on specific paths — path prefixes, command, and preconditions (e.g., "SAM deploy required when `aws/template.yaml` or `src/handlers/` changes; command `npm run deploy:aws`; merge to main first when env vars change"). Record these as `{POST_PUSH_DEPLOYS}` for step 12. If none exist in AGENTS.md, set `{POST_PUSH_DEPLOYS}` to `none`.
+- **Capture post-push deploy rules** gated on specific paths — path prefixes, command, and preconditions (e.g., "SAM deploy required when `aws/template.yaml` or `src/handlers/` changes; command `npm run deploy:aws`; merge to main first when env vars change"). Record these as `{POST_PUSH_DEPLOYS}` for step 13. If none exist in AGENTS.md, set `{POST_PUSH_DEPLOYS}` to `none`.
+- **Capture CI guard workflows** if AGENTS.md names specific workflows to wait on — record as `{CI_GUARD_WORKFLOWS}` for step 12. If none named, set to `all push-triggered`.
 
 **Plan/spec lookup (D.1)**:
 
@@ -123,7 +141,7 @@ Run scorer calls in parallel where possible — one Task call per finding, never
 
 ## 8. Present verdict + findings (E.1, E.2)
 
-**Pre-push review verdict** — use at step 8 only, before commit/push. Do **not** reuse this wording in the final summary after a successful push (see step 13).
+**Pre-push review verdict** — use at step 8 only, before commit/push. Do **not** reuse this wording in the final summary after a successful ship (see step 14).
 
 **Verdict line first** (E.1):
 
@@ -173,24 +191,34 @@ Surface architectural notes from step 5 alongside the agent findings.
 
 The destination is always `main`. The current branch name doesn't matter — the goal is to advance `main` to the current HEAD.
 
+**Before pushing:** if `.github/workflows/` exists and the remote is GitHub, verify `gh auth status` and `gh workflow list`. If `gh` is not authenticated, stop and ask the user to run `gh auth login` — do not push and then discover babysit is impossible.
+
 - `git push origin HEAD:main`. This works whether you're on `main`, on a worktree topic branch, or on any other local branch — the commits land on remote `main`.
 - If the remote rejects the push as non-fast-forward, `main` advanced after the step-2 sync (rare but possible during a long review pass). Re-run step 2 against the new `origin/main`, re-run smoke checks, then push again.
 - Pre-commit hooks run linting and tests automatically. If they fail, fix and re-commit. **Never use `--no-verify`** — per-agent guards (see `references/safety-rules.md`) block this mechanically.
 
-### 11a. Worktree cleanup (default when work was done in a worktree)
+**Do not run worktree cleanup here.** CI babysit (step 12) may require additional fix/push cycles from the same checkout. Worktree cleanup is deferred to step 15.
 
-If `git rev-parse --git-dir` differs from `git rev-parse --git-common-dir`, the work was done in a worktree. After a successful push, the default closing sequence is to switch back to `main` and remove the worktree — it existed to scope one piece of work, and that work is now in main. Run all four steps unless the user has signaled they want to keep iterating in the same worktree (e.g., a follow-up task explicitly tied to this branch).
+## 12. CI babysit (post-push)
 
-1. **Switch the session back to the main checkout.** In Claude Code, call `ExitWorktree` with `action: "keep"` (the directory + branch survive on disk for the next two steps; the session's working directory returns to the main repo). Outside Claude Code, `cd` to the main repo path.
-2. **Fast-forward the local `main` branch to include the just-pushed commit.** From the main checkout: `git fetch origin && git merge --ff-only origin/main` (or `git pull --ff-only origin main`). Skipping this leaves `main` behind `origin/main` and the next worktree session will redundantly re-merge the same commits.
-3. **Remove the worktree directory.** From the main checkout: `git worktree remove <path>`. The command refuses if the worktree has uncommitted work — treat that as the safety check working, not as a problem to bypass; investigate whether that work was supposed to land in this push.
-4. **Delete the topic branch.** `git branch -D <topic-branch>`. Safe because the commit is on `origin/main` — the branch ref is now redundant.
+**Read `references/ci-babysit.md` first** — it holds the full procedure.
 
-Confirm with the user only if you have positive signal they want to keep iterating in the same worktree. The default end-state is no worktree, on `main`, in sync with origin.
+Summary:
 
-## 12. AWS / project deploys (post-push)
+1. If no `.github/workflows/`, skip and note `CI: skipped (no workflows)`; proceed to step 13.
+2. Capture `SHA=$(git rev-parse HEAD)` and list push-triggered runs via `gh run list --commit "$SHA"`.
+3. Watch all push-triggered runs (or `{CI_GUARD_WORKFLOWS}` from step 3) with `gh run watch --exit-status`.
+4. On failure: inspect `gh run view <run-id> --log-failed`, fix locally, smoke, commit (`fix(ci): …`), push, re-watch new SHA.
+5. **Loop bound:** 3 CI fix cycles, ~45-minute wall-clock ceiling. On the 4th failure, stop and report — do not claim shipped.
+6. On non-fast-forward during babysit: re-run step 2 sync, smoke, push, then re-watch.
 
-Shipping is not complete until required deploys run. Step 11 puts code on `main`; step 12 pushes that code to runtime (Lambdas, infra, images) when project rules say so.
+Do not weaken CI, skip hooks, or make unrelated changes to turn CI green.
+
+## 13. AWS / project deploys (post-CI)
+
+Shipping is not complete until required deploys run. Step 11 puts code on `main`; step 12 verifies CI; step 13 pushes that code to runtime (Lambdas, infra, images) when project rules say so.
+
+**Manual deploys run only after step 12 CI green (or CI skipped).** Do not run SAM/Terraform when CI is red.
 
 **Read `references/deploy-rules.md` first** — especially the **AWS SAM** section when the repo has an `aws/` stack.
 
@@ -204,30 +232,44 @@ Shipping is not complete until required deploys run. Step 11 puts code on `main`
 
 1. Announce before each deploy: `Running <command> because <matched paths> changed`.
 2. **AWS SAM** (when triggers match — see deploy-rules.md):
-   - Push to `main` must already have succeeded (step 11). SAM deploy reads live template + env; feature-branch deploy before merge is a known outage pattern when env vars change.
+   - Push to `main` must already have succeeded (step 11) and CI must be green (step 12).
    - Prefer repo-root script when defined: `npm run deploy:aws`. Otherwise: `cd aws && npm run deploy` (or the command AGENTS.md names).
    - Use the project's AWS profile (`AWS_PROFILE` in AGENTS.md / `docs/tooling-setup.md`). If output shows SSO/token expiry, **stop** and ask the user to `aws sso login` — do not retry with a different profile.
    - Stream full deploy output. On failure: report the error, note that `main` is updated but Lambdas/infra may be stale, and **do not** claim the skill finished successfully.
 3. **Other stacks** (Terraform, CDK, Docker push): run the command from `{POST_PUSH_DEPLOYS}` / deploy-rules.md. Confirm with the user first when the deploy is destructive (prod DDL, teardown).
-4. If no trigger paths matched, skip step 12 silently.
+4. If no trigger paths matched, skip step 13 silently.
 
-### Record for step 13
+### Record for step 14
 
 Note deploy outcome in the closing summary: `AWS SAM deploy: succeeded` / `skipped (no trigger paths)` / `failed — <reason>`.
 
-## 13. Final user summary (E.3)
+## 14. Final user summary (E.3)
 
-After steps 10–12 complete, send **one closing message** to the user. This is separate from the step-8 review verdict — the user should never finish the skill wondering whether the push happened.
+After steps 10–13 complete, send **one closing message** to the user. This is separate from the step-8 review verdict — the user should never finish the skill wondering whether the push happened.
 
 **Lead with outcome, not review status:**
 
 | Outcome | Opening line |
 | --- | --- |
-| Push succeeded | **`Pushed to main`** — include commit SHA (short) and one-line summary of what shipped |
-| Commit succeeded, push not attempted | **`Committed locally`** — explain why push was skipped |
+| Full success (CI green + deploys OK) | **`Shipped to main`** — SHA, CI green, deploy outcome |
+| Push OK, CI green, no deploy needed | **`Shipped to main`** — `deploy: skipped (no triggers)` |
+| Push OK, CI exhausted | **`Pushed to main — CI failed (stopped)`** — last failure, cycles used |
+| Push OK, CI green, deploy failed | **`Pushed to main — deploy failed`** — CI OK, runtime may be stale |
 | Push failed | **`Push failed`** — error summary and next step |
 | Stopped on findings | **`Stopped — not pushed`** — reference the step-8 review verdict |
+| CI skipped (no workflows) | **`Shipped to main`** — note `CI: no workflows` |
 
-Then: TL;DR of the change, checks run (tests/lint), deploy notes if any, and unresolved Important findings if you pushed despite them (should be rare).
+Then: TL;DR of the change, checks run (tests/lint), CI babysit cycles count, deploy notes, and unresolved Important findings if you pushed despite them (should be rare).
 
 **Do not** end a successful run with **"Ready to push"** or **"Review verdict: Ready to push"** — that language is pre-push gate only and reads as if nothing landed on the remote.
+
+## 15. Worktree cleanup (deferred from old step 11a)
+
+If `git rev-parse --git-dir` differs from `git rev-parse --git-common-dir`, the work was done in a worktree. After step 12 finishes (green or stopped on cycle cap) and step 13 runs or is skipped, the default closing sequence is to switch back to `main` and remove the worktree — even when CI failed or deploy failed, unless the user wants to keep fixing in the worktree. Run all four steps unless the user has signaled they want to keep iterating in the same worktree.
+
+1. **Switch the session back to the main checkout.** In Claude Code, call `ExitWorktree` with `action: "keep"` (the directory + branch survive on disk for the next two steps; the session's working directory returns to the main repo). Outside Claude Code, `cd` to the main repo path.
+2. **Fast-forward the local `main` branch to include the just-pushed commit.** From the main checkout: `git fetch origin && git merge --ff-only origin/main` (or `git pull --ff-only origin main`). Skipping this leaves `main` behind `origin/main` and the next worktree session will redundantly re-merge the same commits.
+3. **Remove the worktree directory.** From the main checkout: `git worktree remove <path>`. The command refuses if the worktree has uncommitted work — treat that as the safety check working, not as a problem to bypass; investigate whether that work was supposed to land in this push.
+4. **Delete the topic branch.** `git branch -D <topic-branch>`. Safe because the commit is on `origin/main` — the branch ref is now redundant.
+
+Confirm with the user only if you have positive signal they want to keep iterating in the same worktree. The default end-state is no worktree, on `main`, in sync with origin.
