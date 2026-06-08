@@ -8,7 +8,7 @@ def move_images():
     source_dir = base_dir / 'mediafiles' / 'uploads'
     dest_dir = base_dir / 'mediafiles' / 'post_imgs'
 
-    print(f"\nScript starting...")
+    print("\nScript starting...")
     print(f"Looking for images in: {source_dir}")
     print(f"Will move them to: {dest_dir}\n")
 
@@ -43,7 +43,7 @@ def move_images():
                     print(f"✗ Error moving {source_file.name}: {e}")
                     files_failed += 1
 
-    print(f"\nOperation complete!")
+    print("\nOperation complete!")
     print(f"Files moved successfully: {files_moved}")
     print(f"Files failed to move: {files_failed}")
 

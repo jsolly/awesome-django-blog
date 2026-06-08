@@ -35,8 +35,8 @@ coverage report -m --skip-covered --rcfile=config/.coveragerc
 ruff check --config ./config/pyproject.toml app
 ruff format app
 
-# Pre-commit hooks (configured under config/, not root)
-cd config && pre-commit install
+# Pre-commit hooks (tracked in .git-hooks/, configured like the rest of the fleet)
+git config core.hooksPath .git-hooks
 
 # Seed data — required for many tests since base.py expects existing admin/comment_only users + "uncategorized" category
 python manage.py import_posts utilities/seed_posts/posts.json

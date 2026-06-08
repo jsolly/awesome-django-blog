@@ -36,7 +36,6 @@ from .models import Post, Category, Comment
 from .forms import PostForm, CommentForm
 from .utils import answer_question
 from users.models import User
-from pathlib import Path
 
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")

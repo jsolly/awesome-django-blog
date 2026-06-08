@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
+set -euo pipefail
+
 # BEGIN dotagents fleet pre-commit guard
 ROOT="$(git rev-parse --show-toplevel)"
 if [ -x "$ROOT/.agents/scripts/fleet-precommit-check.sh" ]; then
@@ -6,6 +8,5 @@ if [ -x "$ROOT/.agents/scripts/fleet-precommit-check.sh" ]; then
 fi
 # END dotagents fleet pre-commit guard
 
-set -e
-
-
+echo "Running Python pre-commit checks..."
+pre-commit run --config config/.pre-commit-config.yaml --all-files

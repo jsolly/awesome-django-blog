@@ -56,7 +56,7 @@ def clean_sql_file(input_file, output_file):
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write(content)
     
-    print(f"\nProcessing complete!")
+    print("\nProcessing complete!")
     print(f"Total URLs cleaned: {total_matches}")
     print(f"Modified SQL saved to: {output_file}")
 
