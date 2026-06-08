@@ -9,6 +9,7 @@ FLEET_DENY=".agents/templates/claude-settings.json"
 [[ -f "$FLEET_DENY" ]] || { echo "Missing $FLEET_DENY — run subtree pull first" >&2; exit 1; }
 
 SETTINGS=".claude/settings.json"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 mkdir -p .claude
 
 merge_settings() {
@@ -31,6 +32,7 @@ else
 	jq '.' "$FLEET_DENY" >"$SETTINGS.new"
 fi
 mv "$SETTINGS.new" "$SETTINGS"
+bash "$SCRIPT_DIR/format-repo-json.sh" "$SETTINGS" || true
 echo "Merged fleet edit deny rules into $SETTINGS"
 
 # Ensure .claude/settings.json can be committed when .claude/ is gitignored.

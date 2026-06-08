@@ -10,6 +10,7 @@ GUARD=".agents/hooks/block-git-no-verify.sh"
 [[ -x "$GUARD" ]] || { echo "Missing $GUARD — run subtree pull first" >&2; exit 1; }
 
 HOOKS=".cursor/hooks.json"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 mkdir -p .cursor
 
 merge_hooks() {
@@ -31,4 +32,5 @@ else
   merge_hooks <<< '{"version":1,"hooks":{}}' > "$HOOKS.new"
 fi
 mv "$HOOKS.new" "$HOOKS"
+bash "$SCRIPT_DIR/format-repo-json.sh" "$HOOKS" || true
 echo "Merged git guard into $HOOKS"

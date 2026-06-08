@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Install or refresh the fleet freshness block in the repo's active pre-commit hook.
+# Install or refresh the fleet freshness block in the repo's tracked pre-commit hook.
 # Ships in the bundle at .agents/scripts/install-fleet-precommit-hook.sh and auto-propagates.
-# Idempotent; does not overwrite non-shell hooks. Respects core.hooksPath (.githooks, .git-hooks, .husky).
+# Idempotent; does not overwrite non-shell hooks. Standardizes repos on .git-hooks.
 set -euo pipefail
 
 ROOT="$(git rev-parse --show-toplevel)"
@@ -10,40 +10,23 @@ cd "$ROOT"
 CHECKER=".agents/scripts/fleet-precommit-check.sh"
 BEGIN='# BEGIN dotagents fleet pre-commit guard'
 END='# END dotagents fleet pre-commit guard'
+HOOK=".git-hooks/pre-commit"
 
-resolve_precommit_hook() {
+find_existing_hook() {
   local hp
   hp="$(git config --local core.hooksPath 2>/dev/null || true)"
   hp="${hp%/}"
 
-  # Husky v9: core.hooksPath=.husky/_ ; user hook is .husky/pre-commit or .git-hooks/pre-commit
-  if [[ "$hp" == ".husky/_" ]]; then
-    if [[ -f .husky/pre-commit ]]; then
-      echo ".husky/pre-commit"
-      return
-    fi
-    if [[ -f .git-hooks/pre-commit ]]; then
-      echo ".git-hooks/pre-commit"
-      return
-    fi
-  fi
-
-  if [[ -n "$hp" && "$hp" != ".husky/_" && -f "$hp/pre-commit" ]]; then
+  if [[ -n "$hp" && "$hp" != ".git-hooks" && "$hp" != ".husky/_" && -f "$hp/pre-commit" ]]; then
     echo "$hp/pre-commit"
     return
   fi
 
-  if [[ -f .git-hooks/pre-commit ]]; then
-    echo ".git-hooks/pre-commit"
+  for candidate in .husky/pre-commit .githooks/pre-commit .git/hooks/pre-commit; do
+    [[ -f "$candidate" ]] || continue
+    echo "$candidate"
     return
-  fi
-
-  if [[ -f .githooks/pre-commit ]]; then
-    echo ".githooks/pre-commit"
-    return
-  fi
-
-  echo ".git/hooks/pre-commit"
+  done
 }
 
 fleet_block() {
@@ -57,7 +40,7 @@ $END
 BLOCK
 }
 
-if [[ ! -d .git ]]; then
+if ! git rev-parse --git-dir >/dev/null 2>&1; then
   echo "install-fleet-precommit-hook: not a git repository — skipping" >&2
   exit 0
 fi
@@ -67,20 +50,22 @@ if [[ ! -f "$CHECKER" ]]; then
   exit 0
 fi
 
-HOOK="$(resolve_precommit_hook)"
 HOOK_DIR="$(dirname "$HOOK")"
 mkdir -p "$HOOK_DIR" .git/hooks
 
 BLOCK_CONTENT="$(fleet_block)"
 
 if [[ ! -f "$HOOK" ]]; then
-  {
-    echo '#!/bin/sh'
-    echo "$BLOCK_CONTENT"
-  } >"$HOOK"
+  existing="$(find_existing_hook || true)"
+  if [[ -n "$existing" ]]; then
+    cp "$existing" "$HOOK"
+  else
+    {
+      echo '#!/bin/sh'
+      echo "$BLOCK_CONTENT"
+    } >"$HOOK"
+  fi
   chmod +x "$HOOK"
-  echo "Installed fleet pre-commit guard at $HOOK"
-  exit 0
 fi
 
 set +e
@@ -159,4 +144,5 @@ if [[ "$code" -ne 0 ]]; then
 fi
 
 chmod +x "$HOOK"
+git config core.hooksPath .git-hooks
 echo "Updated fleet pre-commit guard in $HOOK"
