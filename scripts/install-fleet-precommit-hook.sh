@@ -50,7 +50,7 @@ fleet_block() {
   cat <<BLOCK
 $BEGIN
 ROOT="\$(git rev-parse --show-toplevel)"
-if [[ -x "\$ROOT/$CHECKER" ]]; then
+if [ -x "\$ROOT/$CHECKER" ]; then
   bash "\$ROOT/$CHECKER" || exit 1
 fi
 $END
@@ -71,21 +71,11 @@ HOOK="$(resolve_precommit_hook)"
 HOOK_DIR="$(dirname "$HOOK")"
 mkdir -p "$HOOK_DIR" .git/hooks
 
-if [[ -f "$HOOK" ]]; then
-  first_line="$(head -n1 "$HOOK")"
-  if [[ "$first_line" =~ ^#! ]] && [[ ! "$first_line" =~ ^#!.*(sh|bash) ]]; then
-    echo "WARN: $HOOK is not a shell hook — add the fleet guard manually:" >&2
-    echo "  bash $CHECKER || exit 1" >&2
-    exit 0
-  fi
-fi
-
 BLOCK_CONTENT="$(fleet_block)"
 
 if [[ ! -f "$HOOK" ]]; then
   {
     echo '#!/bin/sh'
-    echo 'set -e'
     echo "$BLOCK_CONTENT"
   } >"$HOOK"
   chmod +x "$HOOK"
@@ -93,26 +83,80 @@ if [[ ! -f "$HOOK" ]]; then
   exit 0
 fi
 
-python3 - "$HOOK" "$BEGIN" "$END" "$BLOCK_CONTENT" <<'PY'
+set +e
+python3 - "$HOOK" "$BEGIN" "$END" "$BLOCK_CONTENT" "$CHECKER" <<'PY'
 import pathlib
+import shlex
 import sys
 
-hook_path, begin, end, block = sys.argv[1:5]
+hook_path, begin, end, block, checker = sys.argv[1:6]
 text = pathlib.Path(hook_path).read_text(encoding="utf-8")
+lines = text.splitlines()
+
+
+def is_shell_shebang(line):
+    if not line.startswith("#!"):
+        return False
+
+    try:
+        parts = shlex.split(line[2:].strip())
+    except ValueError:
+        parts = line[2:].strip().split()
+
+    if not parts:
+        return False
+
+    executable = pathlib.PurePosixPath(parts[0]).name
+    if executable == "env":
+        for part in parts[1:]:
+            if part.startswith("-"):
+                continue
+            executable = pathlib.PurePosixPath(part).name
+            break
+
+    return executable in {"sh", "bash", "dash", "ksh", "zsh"}
+
+
+first_line = lines[0] if lines else ""
+if first_line.startswith("#!") and not is_shell_shebang(first_line):
+    print(f"WARN: {hook_path} is not a shell hook — add the fleet guard manually:", file=sys.stderr)
+    print(f"  bash {checker} || exit 1", file=sys.stderr)
+    sys.exit(2)
+
 if begin in text and end in text:
     before, _, rest = text.partition(begin)
     _, _, after = rest.partition(end)
-    new_text = before.rstrip() + "\n\n" + block.strip() + "\n" + after.lstrip("\n")
-    if not new_text.endswith("\n"):
-        new_text += "\n"
-    pathlib.Path(hook_path).write_text(new_text, encoding="utf-8")
-else:
-    # Run fleet freshness check before existing hook body.
-    new_text = block.strip() + "\n\n" + text.lstrip("\n")
-    if not new_text.endswith("\n"):
-        new_text += "\n"
-    pathlib.Path(hook_path).write_text(new_text, encoding="utf-8")
+    text = before + after
+
+shebang = None
+body_lines = []
+for line in text.splitlines():
+    if is_shell_shebang(line):
+        if shebang is None:
+            shebang = line
+        continue
+    body_lines.append(line)
+
+if shebang is None:
+    shebang = "#!/bin/sh"
+
+while body_lines and body_lines[0] == "":
+    body_lines.pop(0)
+
+body = "\n".join(body_lines)
+new_text = shebang + "\n" + block.strip() + "\n"
+if body:
+    new_text += "\n" + body + "\n"
+pathlib.Path(hook_path).write_text(new_text, encoding="utf-8")
 PY
+code=$?
+set -e
+if [[ "$code" -eq 2 ]]; then
+  exit 0
+fi
+if [[ "$code" -ne 0 ]]; then
+  exit "$code"
+fi
 
 chmod +x "$HOOK"
 echo "Updated fleet pre-commit guard in $HOOK"
