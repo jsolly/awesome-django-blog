@@ -55,6 +55,7 @@ Full details: `references/orchestration.md`.
 - Post-deploy crawler results can lag caches/CDNs. Verify live output before deciding a fix failed.
 - Stop optimization loops at 100 or when the score stops improving. Do not patch P3 accepted noise just to chase a score.
 - GSC performance metrics lag indexing changes; same-day verification should use URL Inspection and crawl evidence, not clicks/impressions.
+- A missing API token is not an unavailable tool. Ahrefs's primary path is the logged-in browser UI (open `app.ahrefs.com/site-audit`, match the project to the target host); GSC's is `gcloud` ADC. Attempt those — and record Ahrefs Health Score as the primary baseline — before falling back to Squirrel-only, which is justified only by a login wall or a missing project.
 
 ## Helper scripts
 

@@ -20,6 +20,8 @@ Confirm or infer:
 - Available tools: browser session, Ahrefs UI/export, optional Ahrefs API/MCP, GSC API/CLI, Squirrel CLI, deployment access.
 - Whether the user wants audit-only, fix-only, or audit-fix-verify.
 
+**Determine tool availability by attempting each tool's primary path** (Ahrefs logged-in browser UI; GSC via `gcloud` ADC), not by checking for an env token. A missing API token never, on its own, means a tool is unavailable.
+
 Stop and ask if the target site, codebase, or deploy authority is ambiguous.
 
 ## Phase 1: Baseline evidence
@@ -27,7 +29,7 @@ Stop and ask if the target site, codebase, or deploy authority is ambiguous.
 Collect enough evidence before editing:
 
 1. Run `scripts/squirrel-baseline.sh pre <site-url> <out-dir>` when Squirrel is installed.
-2. Inspect Ahrefs issue summaries in the browser UI:
+2. Inspect Ahrefs issue summaries in the browser UI (**required** for a full run — not optional, not gated on an API token; record Health Score as the primary baseline):
    - Navigate to the Site Audit project.
    - Review all issue groups and affected rows.
    - Use exports for large tables.
@@ -38,7 +40,7 @@ Collect enough evidence before editing:
    - canonical host
    - representative redirect chains
    - noindex/private routes
-4. Run GSC URL Inspection on high-priority flagged URLs when credentials are available.
+4. Run GSC URL Inspection on high-priority flagged URLs. If unauthenticated and `gcloud` is installed, give the user the exact ADC login command and proceed once authed rather than skipping GSC.
 5. Record crawl timestamp and compare baseline for later.
 
 If a tool is unavailable, continue with available evidence and report the gap.

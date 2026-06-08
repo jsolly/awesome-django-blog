@@ -7,11 +7,9 @@ set -euo pipefail
 ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 cd "$ROOT"
 
-# 1. Wire fleet rules into .cursor/rules and merge fleet guards.
-[[ -x .agents/scripts/link-fleet-rules.sh ]] && bash .agents/scripts/link-fleet-rules.sh
-[[ -x .agents/scripts/link-fleet-discovery.sh ]] && bash .agents/scripts/link-fleet-discovery.sh
-[[ -x .agents/scripts/merge-cursor-git-guard.sh ]] && bash .agents/scripts/merge-cursor-git-guard.sh
-[[ -x .agents/scripts/merge-cursor-edit-guard.sh ]] && bash .agents/scripts/merge-cursor-edit-guard.sh
+# 1. Wire fleet rules/skills/agents into .cursor and merge fleet guards.
+[[ -x .agents/scripts/link-fleet-cursor.sh ]] && bash .agents/scripts/link-fleet-cursor.sh
+[[ -x .agents/scripts/merge-cursor-hooks.sh ]] && bash .agents/scripts/merge-cursor-hooks.sh
 [[ -x .agents/scripts/merge-claude-edit-guard.sh ]] && bash .agents/scripts/merge-claude-edit-guard.sh
 [[ -x .agents/scripts/install-fleet-precommit-hook.sh ]] && bash .agents/scripts/install-fleet-precommit-hook.sh
 
