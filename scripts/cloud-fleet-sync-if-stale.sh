@@ -2,7 +2,7 @@
 # Cloud task startup: pull the fleet subtree when FLEET.lock is behind dotagents/fleet.
 # Ships in the bundle at .agents/scripts/cloud-fleet-sync-if-stale.sh and auto-propagates.
 # Invoked via the repo's thin scripts/cloud-fleet-sync-if-stale.sh shim.
-# Requires DOTAGENTS_GITHUB_TOKEN (or an SSH dotagents remote) and a clean working tree.
+# Requires FLEET_SYNC_TOKEN, DOTAGENTS_URL, or an SSH dotagents remote, plus a clean working tree.
 set -euo pipefail
 
 ROOT="$(git rev-parse --show-toplevel)"
@@ -20,8 +20,8 @@ fi
 LOCK_SHA="$(grep '^sha:' "$LOCK" | awk '{print $2}')"
 [[ -n "$LOCK_SHA" ]] || { echo "Invalid $LOCK" >&2; exit 1; }
 
-if [[ -n "${DOTAGENTS_GITHUB_TOKEN:-}" ]]; then
-  URL="https://x-access-token:${DOTAGENTS_GITHUB_TOKEN}@github.com/jsolly/dotagents.git"
+if [[ -n "${FLEET_SYNC_TOKEN:-}" ]]; then
+  URL="https://x-access-token:${FLEET_SYNC_TOKEN}@github.com/jsolly/dotagents.git"
 elif [[ -n "${DOTAGENTS_URL:-}" ]]; then
   URL="$DOTAGENTS_URL"
 else

@@ -22,8 +22,8 @@ if [[ -z "$LOCK_SHA" ]]; then
   exit 1
 fi
 
-if [[ -n "${DOTAGENTS_GITHUB_TOKEN:-}" ]]; then
-  URL="https://x-access-token:${DOTAGENTS_GITHUB_TOKEN}@github.com/jsolly/dotagents.git"
+if [[ -n "${FLEET_SYNC_TOKEN:-}" ]]; then
+  URL="https://x-access-token:${FLEET_SYNC_TOKEN}@github.com/jsolly/dotagents.git"
 elif [[ -n "${DOTAGENTS_URL:-}" ]]; then
   URL="$DOTAGENTS_URL"
 else
@@ -31,7 +31,7 @@ else
 fi
 
 if git remote get-url "$REMOTE" &>/dev/null; then
-  if [[ -n "${DOTAGENTS_GITHUB_TOKEN:-}" || -n "${DOTAGENTS_URL:-}" ]]; then
+  if [[ -n "${FLEET_SYNC_TOKEN:-}" || -n "${DOTAGENTS_URL:-}" ]]; then
     git remote set-url "$REMOTE" "$URL"
   fi
 else

@@ -14,8 +14,8 @@ cd "$ROOT"
 REMOTE="${DOTAGENTS_REMOTE:-dotagents}"
 BRANCH="${DOTAGENTS_BRANCH:-fleet}"
 
-if [ -n "${DOTAGENTS_GITHUB_TOKEN:-}" ]; then
-  URL="https://x-access-token:${DOTAGENTS_GITHUB_TOKEN}@github.com/jsolly/dotagents.git"
+if [ -n "${FLEET_SYNC_TOKEN:-}" ]; then
+  URL="https://x-access-token:${FLEET_SYNC_TOKEN}@github.com/jsolly/dotagents.git"
 else
   URL="${DOTAGENTS_URL:-git@github.com:jsolly/dotagents.git}"
 fi

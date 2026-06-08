@@ -21,7 +21,7 @@ When `.agents/FLEET.lock` exists:
 
 - `./scripts/cloud-fleet-sync-if-stale.sh` must exist and be executable.
 - `.agents/scripts/fleet-precommit-check.sh` must exist (bundled in the subtree).
-- Network access to fetch `dotagents/fleet` (SSH `dotagents` remote or `DOTAGENTS_GITHUB_TOKEN` / `DOTAGENTS_URL`).
+- Network access to fetch `dotagents/fleet` (SSH `dotagents` remote or `FLEET_SYNC_TOKEN` / `DOTAGENTS_URL`).
 
 If the sync shim is missing, stop and tell the user to run `./scripts/update-agents-subtree.sh` once to onboard the repo.
 
