@@ -38,7 +38,6 @@ The `seo` skill should not load for:
 ## Forbidden-load cases
 
 - `/research SEO tools for SaaS startups` → use the research skill.
-- `/review-fix the SEO changes` → use the review-fix skill.
 - `/review-fix-push-babysit ship the SEO changes` → use the review-fix-push-babysit skill.
 - `Why are emails going to spam?` → not SEO; use email/deliverability guidance if available.
 - `Build a new marketing landing page` → use frontend/design or product-marketing guidance, not `seo`, unless the user specifically asks for technical SEO audit/fix.
