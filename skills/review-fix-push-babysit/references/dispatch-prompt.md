@@ -49,6 +49,8 @@ Full file bodies for every path in changed files — not just diff hunks. Use fo
 ---
 
 Review per your declared scope. Follow the output contract in your system prompt.
+
+Do not invoke nested review helpers, panels, or sub-reviewers. Inspect files and read-only tools within your declared scope only, then return findings in the output contract.
 ```
 
 ## Placeholder resolution

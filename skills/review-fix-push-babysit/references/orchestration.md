@@ -159,6 +159,19 @@ Drop all Minor findings from the report before scoring (the scorer doesn't see t
 
 Run scorer calls in parallel where possible — one Task call per finding, never batched (batching lets earlier scores anchor later ones). After scoring, dedupe surviving findings by `(file, line, issue)` — the duplicated `guidelines-auditor` will naturally produce overlapping findings.
 
+### Review discipline (post-scoring)
+
+Treat review output as advisory. Never blindly apply a finding just because it survived scoring.
+
+For each surviving Critical or Important finding, the orchestrator must verify each surviving finding before presenting or fixing:
+
+1. Read the real code path and adjacent code — not just the diff hunk or the agent's excerpt.
+2. When the finding depends on external behavior (library API, framework contract, upstream type), inspect dependency docs, source, or types before accepting or rejecting it.
+3. Reject unrealistic edge cases, speculative risks, broad rewrites, and fixes that over-complicate the codebase.
+4. Prefer small fixes at the right ownership boundary; no refactor unless it clearly improves the bug class.
+
+Record rejected findings with a brief reason — they feed the step-14 review disposition.
+
 ## 8. Present verdict + findings (E.1, E.2)
 
 **Pre-push review verdict** — use at step 8 only, before commit/push. Do **not** reuse this wording in the final summary after a successful ship (see step 14).
@@ -193,10 +206,12 @@ Surface architectural notes from step 5 alongside the agent findings.
 
 ## 9. Fix issues + re-smoke (D.3)
 
-- Fix all **Critical** issues and reasonable **Important** issues. Explain each fix.
-- Skip suggestions that are debatable or require refactoring beyond scope — note why.
-- **Re-run smoke checks (step 4) after fixes** before committing. Fixes themselves can break things — especially refactor-style fixes that touch multiple call sites. No commit without green smoke.
-- Re-review (step 6 + 7) after fixing if any Critical issues remain. Repeat until no Critical issues remain.
+- Fix all **verified Critical** issues and reasonable **verified Important** issues. Explain each fix.
+- Skip suggestions that are debatable or require refactoring beyond scope — note why in the review disposition.
+- **Sibling-instance sweep:** when an accepted finding reveals a bug class or repeated pattern, inspect the current changed scope for sibling instances before fixing. Fix the scoped bug class at once when practical; stop at touched surfaces, owner boundaries, and clear follow-up territory.
+- **Re-run smoke checks (step 4) after any review-triggered fix** before committing. Fixes themselves can break things — especially refactor-style fixes that touch multiple call sites. No commit without green smoke.
+- **Re-review after review-triggered code changes:** if any review-triggered fix changed code, rerun focused smoke checks and rerun step 6 + 7 until no accepted/actionable Critical or reasonable Important findings remain. Do not rerun the full fleet solely to get a cleaner "clean" line once verified findings are resolved.
+- Do not invoke nested review helpers, panels, or sub-reviewers from inside reviewer agents — the orchestrator owns the review loop.
 
 **Loop bound**: 3 cycles total (matches the existing fix-loop bound). On the 4th, surface the failure to the user and stop. Don't push with unresolved Critical findings.
 
@@ -280,6 +295,14 @@ After steps 10–13 complete, send **one closing message** to the user. This is 
 | CI skipped (no workflows) | **`Shipped to main`** — note `CI: no workflows` |
 
 Then: TL;DR of the change, checks run (tests/lint), CI babysit cycles count, deploy notes, and unresolved Important findings if you pushed despite them (should be rare).
+
+**Review disposition** — one compact line after the outcome summary:
+
+```text
+Review: <N> accepted/fixed, <M> rejected (<brief reason>), <K> Important deferred
+```
+
+Examples: `Review: 2 accepted/fixed, 1 rejected (speculative race — no concurrent caller)`, `Review: 0 findings — clean`.
 
 **Do not** end a successful run with **"Ready to push"** or **"Review verdict: Ready to push"** — that language is pre-push gate only and reads as if nothing landed on the remote.
 
