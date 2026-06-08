@@ -22,7 +22,7 @@ Fleet repos get the repo layer from `converge-repo.sh` automatically. Desktop so
 The hook ships in the fleet subtree and is wired into the repo's `.cursor/hooks.json`:
 
 ```bash
-bash .agents/scripts/merge-cursor-git-guard.sh
+bash .agents/scripts/merge-cursor-hooks.sh
 ```
 
 This runs automatically during fleet sync and onboarding (`.agents/scripts/converge-repo.sh` calls it), so a converged repo already has it. The merge adds a `beforeShellExecution` hook with `failClosed: true` (a crashed hook denies rather than fail-open) that calls:

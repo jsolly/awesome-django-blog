@@ -4,6 +4,8 @@ Use the safest available path. Do not invent credentials or persist secrets.
 
 ## Ahrefs
 
+**A missing `AHREFS_API_TOKEN` does not mean Ahrefs is unavailable** — it only rules out API path #3. For any full `/seo` run, the logged-in browser UI is the **default, required** path: open `app.ahrefs.com/site-audit`, match the project to the target host, read the Health Score and All Issues, and drill into each issue's data-explorer for affected URLs. Record the Ahrefs **Health Score as the primary baseline**. Fall back to Squirrel-as-primary only when (a) the host has no Ahrefs project, or (b) a login/CAPTCHA wall blocks access. Determine availability by attempting this path, not by checking for an env token.
+
 Preferred order:
 
 1. Browser UI in the user's logged-in Ahrefs session.
@@ -23,6 +25,8 @@ Known constraints:
 - IndexNow submission in Ahrefs may require the crawl setting to know the key even if the key file exists on the site.
 
 ## Google Search Console
+
+**A missing `GSC_ACCESS_TOKEN` / `GOOGLE_APPLICATION_CREDENTIALS` does not mean GSC is unavailable.** If `gcloud` is installed, URL Inspection is reachable via ADC: use an existing session, or hand the user the exact interactive `gcloud auth application-default login --scopes=...webmasters` command (it needs their browser consent) and proceed once authed. Do not silently drop GSC — surface it as a required step. Ahrefs's "GSC Insights" tab is performance data (delayed follow-up), not a substitute for URL Inspection.
 
 Use GSC for Google-side evidence:
 

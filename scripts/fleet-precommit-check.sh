@@ -7,43 +7,34 @@ set -euo pipefail
 ROOT="$(git rev-parse --show-toplevel)"
 cd "$ROOT"
 
+# Runs in-place from .agents/scripts (not a temp copy), so the sibling lib is always present.
+# shellcheck source=/dev/null
+source "$(dirname "${BASH_SOURCE[0]}")/fleet-remote.sh"
+
 LOCK=".agents/FLEET.lock"
-REMOTE="${DOTAGENTS_REMOTE:-dotagents}"
-BRANCH="${DOTAGENTS_BRANCH:-fleet}"
+REMOTE="$(fleet_remote_name)"
+BRANCH="$(fleet_remote_branch)"
 
 if [[ ! -f "$LOCK" ]]; then
   echo "Fleet pre-commit: no $LOCK — skipping fleet freshness check"
   exit 0
 fi
 
-LOCK_SHA="$(grep '^sha:' "$LOCK" | awk '{print $2}')"
+LOCK_SHA="$(fleet_lock_sha "$LOCK")"
 if [[ -z "$LOCK_SHA" ]]; then
   echo "Fleet pre-commit: invalid $LOCK (missing sha field)" >&2
   exit 1
 fi
 
-if [[ -n "${FLEET_SYNC_TOKEN:-}" ]]; then
-  URL="https://x-access-token:${FLEET_SYNC_TOKEN}@github.com/jsolly/dotagents.git"
-elif [[ -n "${DOTAGENTS_URL:-}" ]]; then
-  URL="$DOTAGENTS_URL"
-else
-  URL="git@github.com:jsolly/dotagents.git"
-fi
+# Read-only check: don't clobber a repo's configured dotagents remote URL.
+fleet_set_remote preserve
 
-if git remote get-url "$REMOTE" &>/dev/null; then
-  if [[ -n "${FLEET_SYNC_TOKEN:-}" || -n "${DOTAGENTS_URL:-}" ]]; then
-    git remote set-url "$REMOTE" "$URL"
-  fi
-else
-  git remote add "$REMOTE" "$URL"
-fi
-
-if ! git fetch "$REMOTE" "$BRANCH" --quiet 2>/dev/null; then
+if ! fleet_fetch 2>/dev/null; then
   echo "Fleet pre-commit: could not fetch ${REMOTE}/${BRANCH} — check network and dotagents access" >&2
   exit 1
 fi
 
-REMOTE_SHA="$(git rev-parse "${REMOTE}/${BRANCH}^{commit}")"
+REMOTE_SHA="$(fleet_remote_sha)"
 
 if [[ "$LOCK_SHA" == "$REMOTE_SHA" ]]; then
   exit 0

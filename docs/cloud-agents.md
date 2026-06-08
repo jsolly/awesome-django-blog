@@ -13,7 +13,7 @@ This repo is configured for **cloud agents and local desktop agents** through th
 │   ├── AGENTS.md                     # fleet persona + collaboration
 │   ├── DO-NOT-EDIT.md                # banner: fleet-managed paths (read-only in app repos)
 │   ├── agents/                       # review-fix-push-babysit subagent prompts
-│   ├── skills/                       # review-fix-push-babysit, seo
+│   ├── skills/                       # all skills from dotagents main
 │   ├── hooks/
 │   │   ├── block-git-no-verify.sh    # blocks git push/commit --no-verify (Cursor hook)
 │   │   └── block-fleet-edits.sh      # blocks Write/Delete on fleet-managed paths (Cursor hook)
@@ -28,10 +28,9 @@ This repo is configured for **cloud agents and local desktop agents** through th
 │       ├── cloud-fleet-sync-if-stale.sh
 │       ├── cloud-install-lib.sh      # shared cloud install helpers (Node, SAM, Playwright E2E, …)
 │       ├── fleet-lock-check.sh       # CI lock + content-drift check (fleet-lock-guard.yml)
-│       ├── link-fleet-rules.sh       # wire .agents/rules into .cursor/rules/
-│       ├── link-fleet-discovery.sh   # wire .agents/skills and .agents/agents into .cursor/
-│       ├── merge-cursor-git-guard.sh # merge git guard into .cursor/hooks.json
-│       ├── merge-cursor-edit-guard.sh # merge fleet edit guard into .cursor/hooks.json
+│       ├── fleet-remote.sh           # shared dotagents remote helpers (sourced by sync scripts)
+│       ├── link-fleet-cursor.sh      # wire .agents rules/skills/agents into .cursor/
+│       ├── merge-cursor-hooks.sh     # merge git + fleet edit guards into .cursor/hooks.json
 │       ├── merge-claude-edit-guard.sh # merge Edit/Write deny rules into .claude/settings.json
 │       ├── format-repo-json.sh       # Biome-format JSON after jq merges (hooks, settings)
 │       └── install-fleet-precommit-hook.sh # standardize local pre-commit on .git-hooks/
@@ -118,11 +117,11 @@ Symptom: `node -v` shows v22 while `.nvmrc` requires 24 — `npm test` / native 
 
 **Fleet edit guards:** `converge-repo.sh` wires three enforcement layers:
 
-- **Cursor:** `merge-cursor-edit-guard.sh` adds `preToolUse` → `block-fleet-edits.sh` (denies `Write`/`Delete` on `.agents/**` and regenerated shims).
+- **Cursor:** `merge-cursor-hooks.sh` adds `preToolUse` → `block-fleet-edits.sh` (denies `Write`/`Delete` on `.agents/**` and regenerated shims).
 - **Claude Code:** `merge-claude-edit-guard.sh` merges `permissions.deny` for `Edit`/`Write` on the same paths into `.claude/settings.json`.
 - **Codex:** advisory only — read `.agents/AGENTS.md` and `.agents/DO-NOT-EDIT.md`; no Codex config shipped (would override sandbox mode).
 
-**Git guard hook:** `merge-cursor-git-guard.sh` wires `block-git-no-verify.sh` into `.cursor/hooks.json` (`beforeShellExecution`).
+**Git guard hook:** `merge-cursor-hooks.sh` also wires `block-git-no-verify.sh` into `.cursor/hooks.json` (`beforeShellExecution`).
 
 **Fleet freshness enforcement (three layers, all fail-only except cloud/shipping paths):**
 

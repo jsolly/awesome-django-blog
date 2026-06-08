@@ -11,23 +11,22 @@ set -euo pipefail
 ROOT="$(git rev-parse --show-toplevel)"
 cd "$ROOT"
 
-REMOTE="${DOTAGENTS_REMOTE:-dotagents}"
-BRANCH="${DOTAGENTS_BRANCH:-fleet}"
+# Source the shared remote helper. The shim runs this from a temp copy, so the script's own
+# directory has no sibling lib — fall back to the bundle path under $ROOT.
+_fleet_remote_lib=""
+for _cand in "$(dirname "${BASH_SOURCE[0]}")/fleet-remote.sh" "$ROOT/.agents/scripts/fleet-remote.sh"; do
+  [[ -f "$_cand" ]] && { _fleet_remote_lib="$_cand"; break; }
+done
+[[ -n "$_fleet_remote_lib" ]] || { echo "Cannot locate fleet-remote.sh" >&2; exit 1; }
+# shellcheck source=/dev/null
+source "$_fleet_remote_lib"
 
-if [ -n "${FLEET_SYNC_TOKEN:-}" ]; then
-  URL="https://x-access-token:${FLEET_SYNC_TOKEN}@github.com/jsolly/dotagents.git"
-else
-  URL="${DOTAGENTS_URL:-git@github.com:jsolly/dotagents.git}"
-fi
+REMOTE="$(fleet_remote_name)"
+BRANCH="$(fleet_remote_branch)"
 
-if git remote get-url "$REMOTE" &>/dev/null; then
-  git remote set-url "$REMOTE" "$URL"
-else
-  git remote add "$REMOTE" "$URL"
-fi
-
-git fetch "$REMOTE" "$BRANCH"
-REMOTE_SHA="$(git rev-parse "${REMOTE}/${BRANCH}^{commit}")"
+fleet_set_remote
+fleet_fetch
+REMOTE_SHA="$(fleet_remote_sha)"
 
 if [[ -n "$(git status --porcelain)" ]]; then
   echo "Working tree must be clean before fleet subtree pull (commit or stash first)." >&2
@@ -35,7 +34,7 @@ if [[ -n "$(git status --porcelain)" ]]; then
 fi
 
 if [[ -f .agents/FLEET.lock ]]; then
-  LOCK_SHA="$(grep '^sha:' .agents/FLEET.lock | awk '{print $2}')"
+  LOCK_SHA="$(fleet_lock_sha)"
   if [[ -n "$LOCK_SHA" && "$LOCK_SHA" == "$REMOTE_SHA" ]]; then
     echo "Fleet already at ${REMOTE}/${BRANCH} (${REMOTE_SHA:0:7}) — converging shape only"
     bash .agents/scripts/converge-repo.sh

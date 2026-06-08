@@ -12,6 +12,7 @@ alwaysApply: false
 - **Integration over isolation**: Prefer integration tests that use real dependencies. Only mock external services that consume paid API allocations.
 - **Assert via behavior, not mocks**: Prefer asserting on DB state, response payloads, and status codes rather than on mocked return values or call counts.
 - **Realistic data**: Use values that could plausibly appear in production — `Sarah Chen` over `foo`, `45.7° at 3:42pm` over `100°`, `$1,247.83` over `$1000`. Specific, plausible test data both reads better in failures and catches more real bugs.
+- **A test must be able to fail.** If changing the business logic it guards wouldn't break the test, it asserts nothing. Pin the outcome that matters — the row that must change, the status that must return — not a condition that holds no matter what the code does.
 
 ## Scenario-first descriptions
 

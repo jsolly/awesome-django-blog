@@ -18,3 +18,5 @@ Optimize for clarity now over flexibility later. Fewer abstractions, fewer depen
 - **Ship features behind real architectural seams** (separate endpoints, separate code paths) rather than runtime feature flags.
 - **Use git history as the archive.** Delete dead code instead of commenting it out.
 - **Prefer deep refactoring over preserving backwards compatibility.**
+- **Surface conflicts; don't average them.** When two existing patterns contradict, pick one — the more recent or better-tested — apply it, and flag the other for cleanup. Don't blend them into a hybrid; two half-followed conventions are worse than one enforced one.
+- **Read before you write.** Before adding code, read the exports you'll touch, their immediate callers, and the shared utilities already in play. "Looks orthogonal" is how you duplicate a helper or break a caller you didn't see. If you can't tell why something is structured the way it is, ask before changing it.
