@@ -32,7 +32,9 @@ This repo is configured for **cloud agents and local desktop agents** through th
 │       ├── link-fleet-discovery.sh   # wire .agents/skills and .agents/agents into .cursor/
 │       ├── merge-cursor-git-guard.sh # merge git guard into .cursor/hooks.json
 │       ├── merge-cursor-edit-guard.sh # merge fleet edit guard into .cursor/hooks.json
-│       └── merge-claude-edit-guard.sh # merge Edit/Write deny rules into .claude/settings.json
+│       ├── merge-claude-edit-guard.sh # merge Edit/Write deny rules into .claude/settings.json
+│       ├── format-repo-json.sh       # Biome-format JSON after jq merges (hooks, settings)
+│       └── install-fleet-precommit-hook.sh # standardize local pre-commit on .git-hooks/
 ├── .claude/
 │   └── settings.json                 # fleet Edit/Write deny rules (merged by converge-repo.sh)
 ├── .github/workflows/
@@ -127,8 +129,10 @@ Symptom: `node -v` shows v22 while `.nvmrc` requires 24 — `npm test` / native 
 | Layer | When | Behavior |
 | --- | --- | --- |
 | Cloud task start | Each cloud agent boot | `cloud-fleet-sync-if-stale.sh` pulls when stale (may stash/commit sync) |
-| Pre-commit hook | Every local commit | `fleet-precommit-check.sh` **blocks** when stale — never auto-pulls |
+| Pre-commit hook | Every local commit | `.git-hooks/pre-commit` runs `fleet-precommit-check.sh`, which **blocks** when stale — never auto-pulls |
 | `/review-fix-push-babysit` step 1a | Before shipping app work | Explicit gate: stash if dirty, run `cloud-fleet-sync-if-stale.sh`, restore stash |
+
+Local hooks use the no-Husky pattern: a committed `.git-hooks/pre-commit` plus local `git config core.hooksPath .git-hooks`. `converge-repo.sh` keeps the fleet guard at the top of that hook and migrates older `.husky/`, `.githooks/`, or `.git/hooks/` shell hooks into `.git-hooks/`.
 
 There is **no pre-push auto-sync**. Fix stale fleet with `./scripts/update-agents-subtree.sh` or let the cloud/shipping paths above run `cloud-fleet-sync-if-stale.sh`. During `/review-fix-push-babysit`, a named stash may appear briefly while fleet sync runs on a dirty tree — that is expected.
 
