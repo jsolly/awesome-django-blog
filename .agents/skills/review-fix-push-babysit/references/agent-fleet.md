@@ -1,10 +1,10 @@
 # Agent Fleet — Composition, Gating, Models
 
-The 16 review subagent prompts live in dotagents `agents/`. Local installs expose them through Cursor `~/.cursor/agents/*.md` symlinks that point directly into `~/code/dotagents/agents/`; fleet consumers receive the same prompts at `.agents/agents/`. `/review-fix-push-babysit` step 6 dispatches this fleet in parallel. Every agent uses `model: inherit` in frontmatter (same model as the orchestrator session).
+The 17 review subagent prompts live in dotagents `agents/`. Local installs expose them through Cursor `~/.cursor/agents/*.md` symlinks that point directly into `~/code/dotagents/agents/`; fleet consumers receive the same prompts at `.agents/agents/`. `/review-fix-push-babysit` step 6 dispatches this fleet in parallel. Every agent uses `model: inherit` in frontmatter (same model as the orchestrator session).
 
 ---
 
-## Always-run (12 agents)
+## Always-run (15 agent types, 16 calls)
 
 These fire on every fan-out invocation.
 
@@ -12,6 +12,7 @@ These fire on every fan-out invocation.
 | --- | --- | --- |
 | `guidelines-auditor` | Project conventions from AGENTS.md and linked rules | no |
 | `guidelines-auditor` (2nd invocation) | Same — duplicate-invocation reduces false negatives per Anthropic's plugin pattern | no |
+| `code-quality-reviewer` | Deep maintainability — code-judo, 1k-line rule, spaghetti growth, boundaries, canonical layers | yes |
 | `bug-scanner` | Logic errors, broken contracts, race conditions, edge cases | yes |
 | `security-scanner` | Injection, XSS, auth bypass, CSRF, SSRF, crypto misuse, insecure defaults | yes |
 | `secrets-scanner` | Hardcoded API keys, tokens, private keys, .env leaks | yes |
@@ -37,7 +38,7 @@ The empty-scope verdict pattern: agents whose lens doesn't apply to the current 
 
 ## Extension-gated (1 agent)
 
-Fires only when `git diff --name-only origin/main...HEAD` matches the gate.
+Fires only when the full pending changed-file set (committed branch changes, staged changes, unstaged changes, and untracked files) matches the gate.
 
 | Agent | Gate |
 | --- | --- |
@@ -65,4 +66,4 @@ All agents set `model: inherit` in frontmatter so each subagent uses the same mo
 
 ## Token economics
 
-Per the artifact: agents use ~4× tokens of chat; multi-agent systems ~15× chat. This is justified for high-value tasks (research, comprehensive PR review, audits) but not for trivial single-file changes. SKILL.md's "for small changes (a few files), review inline — no agents needed" rule handles this — fan-out kicks in for diffs with multiple files or non-trivial logic.
+Per the artifact: agents use ~4× tokens of chat; multi-agent systems ~15× chat. This skill is the last gate before `main`, so it defaults to full fan-out for any non-trivial diff. Skip fan-out only for truly trivial changes (single-file typo, comment-only, or one-value config tweak).

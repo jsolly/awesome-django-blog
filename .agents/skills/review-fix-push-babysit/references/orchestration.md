@@ -7,7 +7,7 @@ This is the operational body of `/review-fix-push-babysit`. The skill's `SKILL.m
 ## 1. Inspect changes
 
 - Run `git status`, `git diff`, and `git diff --cached` to see all local changes.
-- After fetch (step 2), run `git diff --name-only origin/main...HEAD` to get the changed files for review.
+- After fetch (step 2), `git diff --name-only origin/main...HEAD` is useful as committed-branch inventory only; step 6 defines the full review file set by unioning committed, staged, unstaged, and untracked paths.
 - Note whether you're in a worktree: `git rev-parse --git-common-dir` and `git rev-parse --git-dir` differ in worktrees. The current branch may not exist on the remote, and the push target is `main` regardless of the current branch name.
 
 ## 1a. Fleet freshness gate
@@ -88,6 +88,10 @@ Before launching parallel agents, do a brief manual review of the diff for struc
 - **Coupling**: Does this change introduce tight coupling between modules that were previously independent?
 - **API surface**: Are new exports, endpoints, or public interfaces justified, or is this growing surface area unnecessarily?
 - **Consistency**: Does the approach match how similar problems are solved elsewhere in the codebase?
+- **Code-judo**: Is there a reframing that deletes branches, helpers, or layers instead of adding them?
+- **File size**: Does any touched file cross or approach 1000 lines because of this diff?
+- **Spaghetti growth**: New ad-hoc conditionals or feature checks bolted onto shared paths?
+- **Canonical home**: Bespoke helpers where an existing utility should own this logic?
 
 Capture the orchestrator's notes — these become `{ARCHITECTURAL_NOTES}` in the dispatch prompt at step 6 (D.2). Each agent will receive your notes and is instructed not to re-flag what's already noted, only to corroborate or deepen the analysis.
 
@@ -99,9 +103,24 @@ Don't leave it blank — agents read absent context as "not provided" and may co
 
 ## 6. Review with parallel agents
 
-For small changes (a few files), review inline — no agents needed.
+This skill is the sole gate before `main` — default to a **deep review**. Skip fan-out only for truly trivial diffs: single-file typo, comment-only, or a one-value config tweak with no logic change. Everything else gets the full fleet.
 
-For larger changes, launch parallel agents simultaneously. Fleet composition (always-run + extension-gated), the `guidelines-auditor ×2` voting pattern, and `model: inherit` on all agents are documented in `references/agent-fleet.md`.
+For fan-out, **gather full pending-change context first** (the diff alone hides file-size boundaries and cross-hunk structure). The review scope is the union of committed branch changes, staged changes, unstaged changes, and untracked files:
+
+1. `CHANGED_FILES`: combine `git diff --name-only origin/main...HEAD`, `git diff --cached --name-only`, `git diff --name-only`, and untracked paths from `git status --short` / `git ls-files --others --exclude-standard`; de-dupe while preserving paths.
+2. `DIFF`: combine `git diff origin/main...HEAD`, `git diff --cached`, and `git diff`; for untracked files, include a short `Untracked file: <path> (full content below)` marker.
+3. For each path in `CHANGED_FILES`, read the **full current file** from disk with the file-read tool. Build `{FILE_CONTENTS}` as labeled sections:
+
+   ```markdown
+   ### path/to/file.ts (1234 lines)
+   <full file body>
+   ```
+
+   - Deleted paths: `(deleted in this diff)`
+   - Binary or unreadable: `(binary — skipped)`
+   - Do not truncate — `code-quality-reviewer` needs accurate line counts for the 1k-line rule.
+
+Then launch parallel agents simultaneously. Fleet composition (always-run + extension-gated), the `guidelines-auditor ×2` voting pattern, and `model: inherit` on all agents are documented in `references/agent-fleet.md`.
 
 Each agent receives the dispatch prompt template from `references/dispatch-prompt.md` with these placeholders filled in:
 
@@ -110,10 +129,11 @@ Each agent receives the dispatch prompt template from `references/dispatch-promp
 | `{PLAN_OR_SPEC}` | Located in step 3 (D.1) |
 | `{ARCHITECTURAL_NOTES}` | Notes from step 5 (D.2) |
 | `{GUIDELINES}` | Guidelines content from step 3 |
-| `{CHANGED_FILES}` | `git diff --name-only origin/main...HEAD` |
-| `{DIFF}` | `git diff origin/main...HEAD` |
+| `{CHANGED_FILES}` | Union of committed branch, staged, unstaged, and untracked paths |
+| `{FILE_CONTENTS}` | Full bodies gathered above |
+| `{DIFF}` | Combined committed branch, staged, and unstaged diffs, plus untracked markers |
 
-Expect 15–30 total Task calls per invocation including the `confidence-scorer` pass in step 7.
+Expect 16–35 total Task calls per invocation including the `confidence-scorer` pass in step 7.
 
 Each agent returns findings in the canonical contract format (see `references/output-contract.md`): Critical/Important/Minor + verdict line + ≤10 findings.
 
@@ -162,7 +182,7 @@ If the verdict is **Needs work** or **Needs attention**, stop after presenting f
 
 A 2–3 sentence summary: *"3 critical issues across `auth/handlers.ts:42` and `db/migrate.sql:18`; 2 important suggestions; tests pass; ready for fix-and-retry."* This is the headline — the user reads this first.
 
-**Findings list** — group by severity (Critical / Important / Minor), retaining the per-finding 4-field shape:
+**Findings list** — group by severity (Critical / Important / Minor), retaining the per-finding 4-field shape. When merging across agents, surface structural/maintainability findings from `code-quality-reviewer` before tactical nits — same priority order that agent uses internally:
 
 - **File:line**
 - **What**

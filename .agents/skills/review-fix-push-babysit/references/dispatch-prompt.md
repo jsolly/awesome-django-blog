@@ -6,7 +6,7 @@ The template ensures every agent receives:
 
 - The intent of the change (plan/spec) — D.1
 - The orchestrator's own architectural notes — D.2
-- The diff and changed files
+- The diff, changed files, and full contents of changed files (for boundary and file-size analysis)
 - Project guidelines
 
 Without these, agents review against generic principles instead of *this* change's specific intent. The plan injection (D.1) is the single largest expected lift in review quality.
@@ -36,6 +36,12 @@ Don't re-flag what's already noted; you may corroborate or deepen the analysis.
 
 {CHANGED_FILES}
 
+## Changed file contents
+
+{FILE_CONTENTS}
+
+Full file bodies for every path in changed files — not just diff hunks. Use for file-size boundaries, cross-hunk context, and module-boundary analysis.
+
 ## Diff
 
 {DIFF}
@@ -52,8 +58,9 @@ Review per your declared scope. Follow the output contract in your system prompt
 | `{PLAN_OR_SPEC}` | Most recently modified `<repo-root>/docs/superpowers/plans/*.md` within the session, falling back to `<repo-root>/docs/superpowers/specs/*.md`, or a path referenced explicitly in recent messages. See `references/orchestration.md` step 3 and `rules/specs-and-plans.md` in dotagents (`.agents/rules/specs-and-plans.md` in app repos). | Use the conversation's first user message describing intent. If none, write `No explicit plan or spec — review against the diff and project guidelines only.` |
 | `{ARCHITECTURAL_NOTES}` | The orchestrator's notes from step 5 (architectural sanity check) | `No architectural concerns noted.` |
 | `{GUIDELINES}` | Concatenated content of project root `AGENTS.md`, any `AGENTS.md` in directories containing modified files, and the active dotagents brief (desktop: read `~/.cursor/AGENTS.md` symlink target; app repos: `.agents/AGENTS.md`) | The user's active dotagents brief alone if no project `AGENTS.md` exists |
-| `{CHANGED_FILES}` | Output of `git diff --name-only origin/main...HEAD` | Required — must not be empty |
-| `{DIFF}` | Output of `git diff origin/main...HEAD` | Required — must not be empty |
+| `{CHANGED_FILES}` | Union of committed branch changes (`origin/main...HEAD`), staged changes, unstaged changes, and untracked files | Required — must not be empty |
+| `{FILE_CONTENTS}` | Full text of each changed file, labeled by path (orchestrator reads via the file-read tool in step 6) | Required for fan-out — use `(deleted)` for removed paths, `(binary — skipped)` for non-text |
+| `{DIFF}` | Combined committed branch diff, staged diff, unstaged diff, and untracked-file markers | Required — must not be empty |
 
 ## When to skip placeholder injection
 
@@ -61,7 +68,7 @@ For agents that already have everything they need from their system prompt and d
 
 - `confidence-scorer` — gets only the finding, file excerpt, and diff hunk per its existing contract. Does NOT receive `{PLAN_OR_SPEC}` or `{ARCHITECTURAL_NOTES}`. Independence is the design.
 
-For all 15 other agents, dispatch with the full template above.
+For all 16 other agents, dispatch with the full template above.
 
 ## Disambiguating multiple plans
 

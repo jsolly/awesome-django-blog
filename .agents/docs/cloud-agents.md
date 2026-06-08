@@ -68,7 +68,7 @@ Cloud agents only see **committed** `.agents/` on the branch Cursor cloned. **At
 
    | Secret | Value |
    | --- | --- |
-   | `DOTAGENTS_GITHUB_TOKEN` | Fine-grained PAT: **read-only** Contents on `jsolly/dotagents` (used by `update-agents-subtree.sh` to fetch `fleet`) |
+   | `FLEET_SYNC_TOKEN` | Fine-grained PAT: **read-only** Contents on `jsolly/dotagents` (used by `update-agents-subtree.sh` to fetch `fleet`) |
 
    App-repo push uses Cursor’s normal GitHub access for this repository. Do **not** put `GH_AGENT_TOKEN` in repo secrets for fleet fetch — keep that in Cursor-only config.
 
@@ -181,8 +181,7 @@ Then sync into this repo via cloud task start or `update-agents-subtree.sh`.
 
 | Secret | Where | Purpose |
 | --- | --- | --- |
-| `DOTAGENTS_GITHUB_TOKEN` | Cursor Cloud repo secrets | Cloud agent fetch of `jsolly/dotagents` `fleet` |
-| `FLEET_SYNC_TOKEN` | GitHub Actions repo secret | PR/push workflow `fleet-lock-guard` when `.agents/` changes |
+| `FLEET_SYNC_TOKEN` | Cursor Cloud repo secrets and GitHub Actions repo secret | Cloud agent fetch of `jsolly/dotagents` `fleet`; PR/push workflow `fleet-lock-guard` when `.agents/` changes |
 
 Do **not** reuse `GH_AGENT_TOKEN` for fleet fetch — broader cross-repo scope; keep in Cursor-only config.
 
