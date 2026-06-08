@@ -1,6 +1,6 @@
 # Cursor Cloud Agents
 
-<!-- fleet-doc-version: 10 -->
+<!-- fleet-doc-version: 11 -->
 
 This repo is configured for **cloud agents and local desktop agents** through the same committed app-repo runtime. Skills, reviewer prompts, rules, instructions, and fleet guards are self-contained in git. **Cursor Cloud VMs** have no developer-home checkout — only the committed repo content applies. **Local desktop** Cursor / Claude / Codex use the same subtree when opened inside an app repo, plus the optional local laptop runtime from [dotagents](https://github.com/jsolly/dotagents) (`docs/setup-local-machine.md` in the canonical repo).
 
@@ -13,7 +13,7 @@ This repo is configured for **cloud agents and local desktop agents** through th
 │   ├── AGENTS.md                     # fleet persona + collaboration
 │   ├── DO-NOT-EDIT.md                # banner: fleet-managed paths (read-only in app repos)
 │   ├── agents/                       # review-fix-push-babysit subagent prompts
-│   ├── skills/                       # review-fix, review-fix-push-babysit
+│   ├── skills/                       # review-fix, review-fix-push-babysit, seo
 │   ├── hooks/
 │   │   ├── block-git-no-verify.sh    # blocks git push/commit --no-verify (Cursor hook)
 │   │   └── block-fleet-edits.sh      # blocks Write/Delete on fleet-managed paths (Cursor hook)
