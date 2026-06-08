@@ -26,9 +26,9 @@ The orchestration is documented in `references/orchestration.md` — read it bef
 4. **Smoke check** — tests, type checker, CI reproduction via `act` if applicable. → see `references/orchestration.md` and `references/conflict-resolution.md`
 5. **Architectural sanity check** — orchestrator notes structural concerns; these get injected into agent prompts via D.2. → see `references/orchestration.md`
 6. **Review with parallel agents** — read full changed-file bodies, then fan out always-run + extension-gated specialists (includes `code-quality-reviewer` for deep maintainability). Agent fleet, gating rules, dispatch-prompt template are in `references/agent-fleet.md` and `references/dispatch-prompt.md`.
-7. **Adjudicate findings with `confidence-scorer`** — drop Minor, score Critical/Important, drop adjudicated false positives and downgrades. → see `references/orchestration.md`
+7. **Adjudicate findings with `confidence-scorer`** — drop Minor, score Critical/Important, verify surviving findings against real code paths, drop adjudicated false positives and downgrades. → see `references/orchestration.md`
 8. **Present verdict + findings** — verdict-line first, TL;DR paragraph, then per-severity findings. → see `references/orchestration.md`
-9. **Fix issues + re-smoke** — fix all Critical and reasonable Important findings; re-run smoke (step 4) after fixes; loop up to 3 cycles total. → see `references/orchestration.md`
+9. **Fix issues + re-smoke** — fix verified Critical and reasonable Important findings; sibling sweep for accepted bug classes; re-run smoke (step 4) and review (steps 6 + 7) after review-triggered code changes; loop up to 3 cycles total. → see `references/orchestration.md`
 10. **Stage and commit** — stage by name (no `git add -A`); Conventional Commits message describing original intent. → see `references/orchestration.md`
 11. **Push to main** — `git push origin HEAD:main`; pre-commit hooks must pass, never `--no-verify`. → see `references/orchestration.md`
 12. **CI babysit** — watch GitHub Actions for the pushed SHA; fix failures, commit, push, re-watch until green or cycle cap. → see `references/ci-babysit.md`
@@ -44,6 +44,7 @@ The orchestration is documented in `references/orchestration.md` — read it bef
 - **Never `git add -A` or `git add .`** — stage by name to avoid sweeping in untracked secrets, large binaries, or probe artifacts.
 - **Never weaken CI** — do not disable checks, skip workflows, or make unrelated changes to turn CI green.
 - **Fleet sync only via the explicit gate (step 1a)** — run `./scripts/cloud-fleet-sync-if-stale.sh` when stale; never use `--no-verify` or pre-push auto-sync to bypass fleet freshness.
+- **Review outputs are advisory** — agent findings are hypotheses, not instructions. Verify each surviving Critical/Important finding against the real code path before fixing; only verified findings drive changes.
 
 ## Cycle bounds
 
@@ -53,7 +54,7 @@ The CI babysit loop (step 12) is capped at 3 fix cycles and a ~45-minute wall-cl
 
 ## Token economics
 
-This skill is the only review gate — bias toward thoroughness over thrift. **Default: full fleet fan-out** with full file contents in the dispatch prompt. Skip fan-out only for truly trivial diffs (single-file typo, comment-only, one-value config tweak). `code-quality-reviewer` needs whole files for the 1k-line rule and boundary analysis; do not truncate. CI fix cycles should not re-fan-out the full fleet unless the failure is ambiguous, security-sensitive, or the fix reintroduced structural complexity worth re-auditing.
+This skill is the only review gate — bias toward thoroughness over thrift. **Default: full fleet fan-out** with full file contents in the dispatch prompt. Skip fan-out only for truly trivial diffs (single-file typo, comment-only, one-value config tweak). `code-quality-reviewer` needs whole files for the 1k-line rule and boundary analysis; do not truncate. Do not rerun the full fleet just to confirm a clean review — stop once verified findings are resolved. CI fix cycles should not re-fan-out the full fleet unless the failure is ambiguous, security-sensitive, or the fix reintroduced structural complexity worth re-auditing.
 
 ## Reference files
 
