@@ -13,7 +13,7 @@ This repo is configured for **cloud agents and local desktop agents** through th
 │   ├── AGENTS.md                     # fleet persona + collaboration
 │   ├── DO-NOT-EDIT.md                # banner: fleet-managed paths (read-only in app repos)
 │   ├── agents/                       # review-fix-push-babysit subagent prompts
-│   ├── skills/                       # review-fix, review-fix-push-babysit, seo
+│   ├── skills/                       # review-fix-push-babysit, seo
 │   ├── hooks/
 │   │   ├── block-git-no-verify.sh    # blocks git push/commit --no-verify (Cursor hook)
 │   │   └── block-fleet-edits.sh      # blocks Write/Delete on fleet-managed paths (Cursor hook)
