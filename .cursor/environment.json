@@ -1,5 +1,5 @@
 {
-  "install": "python3 -m venv .venv && .venv/bin/pip install -r requirements.txt",
+  "install": "bash scripts/bootstrap-repo-fleet.sh && python3 -m venv .venv && .venv/bin/pip install -r requirements.txt",
   "terminals": [
     {
       "name": "dev",

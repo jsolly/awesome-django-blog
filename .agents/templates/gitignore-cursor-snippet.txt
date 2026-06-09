@@ -1,6 +1,0 @@
-# Cursor: track cloud config and rules; ignore other local editor state
-.cursor/*
-!.cursor/environment.json
-!.cursor/hooks.json
-!.cursor/rules/
-!.cursor/rules/**
