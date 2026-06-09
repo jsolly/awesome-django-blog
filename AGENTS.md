@@ -1,6 +1,5 @@
 # AGENTS.md
 
-@.agents/AGENTS.md
 
 ## Cursor Cloud
 

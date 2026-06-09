@@ -43,10 +43,3 @@ db.sqlite3-journal
 !.cursor/rules/
 !.cursor/rules/**
 
-# Fleet runtime — materialized by scripts/bootstrap-repo-fleet.sh, not committed
-/.agents/
-/.cursor/rules/code-style.mdc
-/.cursor/rules/errors-and-logging.mdc
-/.cursor/rules/node-version.mdc
-/.cursor/rules/specs-and-plans.mdc
-/.cursor/rules/testing.mdc
