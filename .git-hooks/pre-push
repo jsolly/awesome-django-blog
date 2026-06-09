@@ -1,0 +1,6 @@
+#!/bin/sh
+# Managed pre-push hook — gate (+ deploy where applicable) logic lives in
+# scripts/prepush.sh. (core.hooksPath=.git-hooks is set by `npm run prepare`.)
+# git passes <remote-name> <remote-url> as args and the pushed refs on stdin;
+# exec preserves both for scripts/prepush.sh.
+exec bash "$(git rev-parse --show-toplevel)/scripts/prepush.sh" "$@"
