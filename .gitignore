@@ -46,3 +46,6 @@ db.sqlite3-journal
 
 # Materialized agent config (fetched by .dotagents/bootstrap.sh; not committed)
 /.agents/
+
+# Local planning docs (may contain account specifics)
+plans/

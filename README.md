@@ -1,7 +1,5 @@
 # Awesome Django Blog
 
-[![awesome-django-blog-tests](https://github.com/jsolly/awesome-django-blog/actions/workflows/django-test-deploy-master.yaml/badge.svg)](https://github.com/jsolly/awesome-django-blog/actions/workflows/django-test-deploy-master.yaml)
-[![Coverage Status](https://coveralls.io/repos/github/jsolly/awesome-django-blog/badge.svg?branch=master&service=github)](https://coveralls.io/github/jsolly/awesome-django-blog?branch=master)
 ![CodeStyle](https://img.shields.io/badge/ruff-orange?logo=ruff&label=code-style)
 ![Linting](https://img.shields.io/badge/ruff-orange?logo=ruff&label=linting)
 ![PythonVersion](https://img.shields.io/badge/3.13-yellow?logo=Python&logoColor=yellow&label=Python)
@@ -66,7 +64,7 @@ pytest app
 ### Linting
 
 ```shell
-ruff --config ./config/pyproject.toml app
+ruff check --config ./config/pyproject.toml app
 ```
 
 ### Formating
@@ -75,17 +73,15 @@ ruff --config ./config/pyproject.toml app
 ruff format app
 ```
 
-Also see the [actions tab](https://github.com/jsolly/awesome-django-blog/actions)
-to see if everything is passing.
+### Pre-push gate
 
-### Pre-commit Hooks
+The quality gate (ruff, collectstatic, migrate, pytest + coverage) runs locally on every push to `master` via the tracked pre-push hook. Wire it up once per clone:
 
-If there are any Ruff failures (badly linted code), the build will fail, so please make sure you have the pre-commit hook installed.
-
+```shell
+git config core.hooksPath .git-hooks
 ```
-$ cd awesome-django-blog/config
-$ pre-commit install
-```
+
+The gate logic lives in `scripts/prepush.sh`; a failure aborts the push.
 
 ### Live Reload
 If you want to automatically reload the server whenever you make changes to source code, you can set `LIVERELOAD` in the .env file to True. You can learn more about this tool [on their GitHub page](https://github.com/tjwalch/django-livereload-server).
@@ -127,23 +123,22 @@ python3 manage.py livereload
 - HTMX for dynamic page updates without a page refresh
 - Robots.txt, security.txt, and sitemap.xml for optimized SEO and security
 - Git hooks for automatic static file generation (manage.py collectstatic)
-- GitActions CI integration with coverage, linting, and testing. Push with confidence!
+- Local pre-push quality gate (lint, collectstatic, migrations, tests + coverage) via `scripts/prepush.sh`. Push with confidence!
 - Compatible with Sqllite or postgres databases for fast protyping and production
 - Deploy static assets to Amazon S3 + Cloudfront just by changing a few settings in the .env file.
 - Procfile included for easy deployment with Heroku or other services that use Procfile.
 - Optimized for Performance, SEO, and A11Y
 - Latest Django 5.x
-- 95% or above unit code coverage for a maintainable codebase
+- Unit test coverage measured on every push (coverage.py) for a maintainable codebase
 - 100% linted with [ruff](https://pypi.org/project/ruff/) and PEP8 compliant for beautiful Python code.
-- Static scans with [CodeQL](https://codeql.github.com/) and pip
-  dependency checks with [Dependabot](https://github.com/dependabot) for automated security and updates.
+- pip dependency checks with [Dependabot](https://github.com/dependabot) for automated security and updates.
 - Formatted with [Ruff](https://github.com/astral-sh/ruff) for beauty and speed.
 - Strict Content Security Policy preventing inline styles and scripts for better security
 - Subresource Integrity for better security
 - [A+ Score on Mozilla Observatory](https://observatory.mozilla.org/analyze/blogthedata.com)
 - 100/100 for Performance, SEO, and Accessibility according to Google Lighthouse
 - Automatic Conversion of images (.png, .jpeg, etc) to .webp for blazingly fast image loads.
-- Badges for test coverage, passing builds, formatter, and linting
+- Badges for formatter and linting
 - Automated, rotating backups of blog posts using local and cloud storage
 - Status page for monitoring uptime and performance of your blog at https://blogthedata.com/status using Apache Echarts.
 - Custom 404 and 500 pages that look really cool. So even if your users are lost or your app is broke, they are still having a good time.

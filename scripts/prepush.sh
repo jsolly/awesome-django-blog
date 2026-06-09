@@ -7,7 +7,7 @@
 # deploy is handled by the hosting provider on push to master, unchanged.
 #
 # Only acts on a non-deleting push to main/master; feature-branch pushes stay
-# fast. Escape hatch: FLEET_SKIP_PREPUSH=1 git push (audited).
+# fast. Escape hatch: FLEET_SKIP_PREPUSH=1 git push.
 set -euo pipefail
 
 if [ "${FLEET_SKIP_PREPUSH:-}" = "1" ]; then
@@ -33,10 +33,13 @@ done
 
 echo "▶ pre-push gate (awesome-django-blog) → $push_to_main"
 
-# Activate the project virtualenv if present (CI created one per-run).
+# The gate must run against the pinned project deps, never system Python.
 if [ -f .venv/bin/activate ]; then
   # shellcheck disable=SC1091
   . .venv/bin/activate
+else
+  echo "✗ .venv missing — run: python3 -m venv .venv && .venv/bin/pip install -r requirements.txt" >&2
+  exit 1
 fi
 
 # Test-only Django settings (mirror the old workflow env).
@@ -51,11 +54,12 @@ export ALLOWED_HOSTS="127.0.0.1 localhost"
 export SITE_ID=1
 
 echo "• ruff lint"
-ruff --config ./config/pyproject.toml app
+ruff check --config ./config/pyproject.toml app
 echo "• collectstatic"
 python3 manage.py collectstatic --noinput
 echo "• migrate"
 python3 manage.py migrate --noinput
 echo "• pytest + coverage"
 coverage run --rcfile=config/.coveragerc -m pytest tests
+coverage report -m --skip-covered --rcfile=config/.coveragerc
 echo "✓ pre-push gate complete"

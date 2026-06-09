@@ -29,7 +29,7 @@ coverage report -m --skip-covered --rcfile=config/.coveragerc
 ruff check --config ./config/pyproject.toml app
 ruff format app
 
-# Pre-commit hooks (tracked in .git-hooks/, configured like the rest of the fleet)
+# Git hooks — pre-push gate (tracked in .git-hooks/, configured like the rest of the fleet)
 git config core.hooksPath .git-hooks
 
 # Seed data — required for many tests since base.py expects existing admin/comment_only users + "uncategorized" category
@@ -72,7 +72,7 @@ heroku logs -a blogthedata --num 200       # recent dyno logs
 heroku ps -a blogthedata                   # dyno status
 ```
 
-Auto-deploys from GitHub `master` after the `build` status check passes — no Heroku-side build customization, Procfile + buildpacks only.
+Auto-deploys from GitHub `master` on push — the quality gate runs locally in the pre-push hook (`scripts/prepush.sh`); there is no GitHub Actions status check anymore. No Heroku-side build customization, Procfile + buildpacks only.
 
 **S3 access** (django-storages → S3 + CloudFront, gated on `USE_CLOUD=True`): the Heroku dyno authenticates via a long-lived static IAM key set as Heroku config vars (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_STORAGE_BUCKET_NAME`). The IAM user is **`awesome-django-blog-heroku`** with a single bucket-scoped inline policy `awesome-django-blog-s3-access` — `s3:Get/Put/Delete/ListBucket/ACL` on `arn:aws:s3:::blogthedata` only. **Don't widen.** Heroku doesn't issue OIDC tokens to dynos ([heroku/roadmap#247](https://github.com/heroku/roadmap/issues/247)), so the long-lived key is unavoidable; the narrow policy is the mitigation. AWS console/CLI: use credentials for account `730335616323` via local `AWS_PROFILE` — do not commit profile names in this repo.
 
