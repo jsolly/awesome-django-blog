@@ -64,12 +64,12 @@ Key cross-cutting pieces:
 
 ## Deploy & operations
 
-Heroku CLI (`heroku`) is installed locally — use it directly rather than reaching for the dashboard. App is **`blogthedata`** in the `Personal` team. Auth: `heroku login` (browser flow).
+Heroku CLI is a devDependency of this repo (`package.json`; run `npm install` once, Node 24 per `.nvmrc`) — invoke it via `npx heroku` rather than reaching for the dashboard. App is **`blogthedata`** in the `Personal` team. Auth: `npx heroku login` (browser flow).
 
 ```bash
-heroku releases -a blogthedata --num 5     # last 5 deploys
-heroku logs -a blogthedata --num 200       # recent dyno logs
-heroku ps -a blogthedata                   # dyno status
+npx heroku releases -a blogthedata --num 5     # last 5 deploys
+npx heroku logs -a blogthedata --num 200       # recent dyno logs
+npx heroku ps -a blogthedata                   # dyno status
 ```
 
 Auto-deploys from GitHub `master` on push — the quality gate runs locally in the pre-push hook (`scripts/prepush.sh`); there is no GitHub Actions status check anymore. No Heroku-side build customization, Procfile + buildpacks only.

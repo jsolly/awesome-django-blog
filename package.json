@@ -1,0 +1,11 @@
+{
+  "name": "awesome-django-blog-tooling",
+  "private": true,
+  "description": "Dev tooling only (heroku CLI) — the app itself is Python/Django",
+  "engines": {
+    "node": ">=24"
+  },
+  "devDependencies": {
+    "heroku": "^11.4.0"
+  }
+}

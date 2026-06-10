@@ -27,6 +27,9 @@ mediafiles/*
 # But don't ignore default.webp
 !mediafiles/default.webp
 
+# Node dev tooling (heroku CLI via package.json devDependencies)
+node_modules/
+
 # Other
 *.log
 .vscode/
