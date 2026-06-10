@@ -8,7 +8,9 @@
 #     the repo-local .cursor/ so cloud agents discover skills/agents/rules + the global guards.
 #
 # Canonical source of truth is the dotagents repo's content dirs (skills/ agents/ rules/ hooks/);
-# there is no separate "bundle build". The materialized copy under .agents/ is gitignored.
+# there is no separate "bundle build". The materialized copy under .agents/ is gitignored. Cloud
+# wires the same guard set as the laptop harnesses (no-verify, git-force, prod-DB, stack-delete,
+# branch-create, settings-write) — no laptop/cloud distinction.
 set -euo pipefail
 
 DOT="${DOTAGENTS_ROOT:-$HOME/code/dotagents}"
@@ -37,6 +39,12 @@ tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
 git clone --depth 1 "$remote" "$tmp/dotagents" >/dev/null 2>&1 \
   || { echo "bootstrap: failed to fetch canonical agent config from $FLEET_REPO" >&2; exit 1; }
+
+# Best-effort staleness visibility: the wiring below uses the freshly fetched canonical
+# content either way, but a stale vendored copy of THIS script may lack newer wiring logic.
+if ! cmp -s "${BASH_SOURCE[0]}" "$tmp/dotagents/bootstrap/bootstrap.sh"; then
+  echo "bootstrap: WARNING — this vendored .dotagents/bootstrap.sh is STALE vs canonical; refresh the subtree (git subtree pull --prefix=.dotagents ... bootstrap-split --squash)" >&2
+fi
 
 rm -rf "$DEST"
 mkdir -p "$DEST"
@@ -69,9 +77,11 @@ link_into "$DEST/skills" "$DEST/skills/*"    "$ROOT/.cursor/skills" ""    ""
 link_into "$DEST/agents" "$DEST/agents/*.md" "$ROOT/.cursor/agents" ""    ""
 
 # Wire the global guards into repo-local .cursor/hooks.json (cloud can't read ~/'s copy).
+# Same guard set as the laptop harnesses; block-settings-write guards the repo-local
+# .claude/settings(.local).json (its regex matches any .claude/ dot-segment, not just ~/).
 ch="$ROOT/.cursor/hooks.json"
 [[ -f "$ch" ]] || printf '{"version":1,"hooks":{}}\n' >"$ch"
-for g in block-git-no-verify block-prod-db-migrations block-stack-delete; do
+for g in block-git-no-verify block-git-force block-prod-db-migrations block-stack-delete block-branch-create block-settings-write; do
   jq --arg cmd "bash .agents/hooks/$g.sh" --arg n "$g" '
     .version //= 1
     | .hooks.beforeShellExecution //= []
