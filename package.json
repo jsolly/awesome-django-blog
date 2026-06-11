@@ -1,11 +1,8 @@
 {
   "name": "awesome-django-blog-tooling",
   "private": true,
-  "description": "Dev tooling only (heroku CLI) — the app itself is Python/Django",
+  "description": "Dev tooling only — the app itself is Python/Django. Install the Heroku CLI via https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli rather than npm (the npm package ships a shrinkwrap that locks vulnerable transitive deps that npm overrides cannot patch).",
   "engines": {
     "node": ">=24"
-  },
-  "devDependencies": {
-    "heroku": "^11.4.0"
   }
 }
