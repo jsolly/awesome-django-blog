@@ -81,7 +81,9 @@ link_into "$DEST/agents" "$DEST/agents/*.md" "$ROOT/.cursor/agents" ""    ""
 # .claude/settings(.local).json (its regex matches any .claude/ dot-segment, not just ~/).
 ch="$ROOT/.cursor/hooks.json"
 [[ -f "$ch" ]] || printf '{"version":1,"hooks":{}}\n' >"$ch"
-for g in block-git-no-verify block-git-force block-prod-db-migrations block-stack-delete block-branch-create block-settings-write; do
+# block-stray-plans rides the same beforeShellExecution event here: in cloud Cursor only the shell
+# path is hookable (afterFileEdit can't block), so it catches `echo > .cursor/plans/x.md`-style writes.
+for g in block-git-no-verify block-git-force block-prod-db-migrations block-stack-delete block-branch-create block-settings-write block-stray-plans; do
   jq --arg cmd "bash .agents/hooks/$g.sh" --arg n "$g" '
     .version //= 1
     | .hooks.beforeShellExecution //= []
