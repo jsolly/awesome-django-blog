@@ -14,6 +14,9 @@
   },
   "ignores": [
     "node_modules/**",
+    // Python virtualenv — vendored third-party deps (gitignored), the .venv
+    // analog of node_modules. Not repo content; never lint-gated.
+    ".venv/**",
     // Archival planning/spec records — not active content, not lint-gated.
     "docs/plans/**",
     "docs/specs/**",
