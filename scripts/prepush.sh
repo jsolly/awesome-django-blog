@@ -21,15 +21,50 @@ cd "$ROOT"
 # pre-push stdin: <local ref> <local sha> <remote ref> <remote sha>
 ZERO="0000000000000000000000000000000000000000"
 push_to_main=""
-while read -r _local_ref local_sha remote_ref _remote_sha; do
+LOCAL_SHA="" REMOTE_SHA=""
+while read -r _local_ref local_sha remote_ref remote_sha; do
   case "$remote_ref" in
     refs/heads/main | refs/heads/master)
       [ "$local_sha" = "$ZERO" ] && continue
       push_to_main="$remote_ref"
+      LOCAL_SHA="$local_sha"
+      REMOTE_SHA="$remote_sha"
       ;;
   esac
 done
 [ -z "$push_to_main" ] && exit 0
+
+# --- Doc-only fast path -------------------------------------------------------
+# Skip the full gate when the pushed range touches only documentation, so prose
+# edits don't pay for the lint/type/test battery. Conservative allow-list:
+# root-level *.md, the docs/ tree, .github/*.md, and LICENSE — markdown that is
+# site CONTENT (under src/, content/, …) still runs the full gate. Falls back to
+# the full gate whenever the range can't be computed (new branch, non-fast-
+# forward, missing remote sha), so it can only skip too little, never too much.
+# Force the full gate with:  FLEET_DOC_FAST=0 git push
+prepush_doc_only() { # <remote_sha> <local_sha>  → 0 when the fast path applies
+  local remote_sha="$1" local_sha="$2" files f
+  [ "${FLEET_DOC_FAST:-1}" = "1" ] || return 1
+  [ -n "$remote_sha" ] && [ "$remote_sha" != "$ZERO" ] || return 1
+  git cat-file -e "$remote_sha" 2>/dev/null || return 1
+  git merge-base --is-ancestor "$remote_sha" "$local_sha" 2>/dev/null || return 1
+  files="$(git diff --name-only "$remote_sha" "$local_sha")" || return 1
+  [ -n "$files" ] || return 1
+  while IFS= read -r f; do
+    case "$f" in
+      docs/*) ;;
+      .github/*.md) ;;
+      *.md | *.mdx | *.markdown) [ "${f%/*}" = "$f" ] || return 1 ;;
+      LICENSE | LICENSE.*) ;;
+      *) return 1 ;;
+    esac
+  done <<<"$files"
+  return 0
+}
+if prepush_doc_only "$REMOTE_SHA" "$LOCAL_SHA"; then
+  echo "▶ pre-push (awesome-django-blog) → $push_to_main: docs-only change — skipping the full gate."
+  exit 0
+fi
 
 echo "▶ pre-push gate (awesome-django-blog) → $push_to_main"
 
