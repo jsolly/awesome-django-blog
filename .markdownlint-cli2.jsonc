@@ -1,4 +1,7 @@
 {
+  // Respect .gitignore — never lint generated/gitignored markdown
+  // (dist/, .astro/, .vercel/, .venv/, MEMORY.md, generated seeds, node_modules, etc.).
+  "gitignore": true,
   "config": {
     // Enable the full default rule set; overrides below opt specific rules out/in.
     "default": true,
