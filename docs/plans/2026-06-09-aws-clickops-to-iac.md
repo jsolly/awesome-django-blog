@@ -14,7 +14,7 @@ Live inventory (audited 2026-06-09 with read-only CLI):
 |---|---|---|
 | S3 bucket | `blogthedata` | Public-read bucket policy (`s3:GetObject` + `s3:ListBucket` to `*`), PublicAccessBlock all `false`, SSE-S3 default encryption with `BucketKeyEnabled: true`, no versioning/CORS/lifecycle/website config |
 | CloudFront distribution | `E2M9Z7CW2YREHA` | Origin `blogthedata.s3.us-east-1.amazonaws.com` (public origin — no OAI/OAC), default `*.cloudfront.net` cert, managed `CachingOptimized` cache policy (`658327ea-f89d-4fab-a63d-7e88639e58f6`), `redirect-to-https`, GET/HEAD only, `Compress: true`, `http2and3`, IPv6 on, no aliases/WAF/logging. Served to Django via `DJANGO_STATIC_HOST` env var |
-| IAM user | `awesome-django-blog-heroku` | Inline policy `awesome-django-blog-s3-access` (ListBucket/GetBucketLocation on the bucket; Get/Put/Delete Object + ObjectAcl on objects). One active access key (`AKIA2UC3FDVB5TPQHWXE`) held in Heroku config vars — Heroku can't do OIDC ([heroku/roadmap#247](https://github.com/heroku/roadmap/issues/247)), so the static key stays |
+| IAM user | `awesome-django-blog-heroku` | Inline policy `awesome-django-blog-s3-access` (ListBucket/GetBucketLocation on the bucket; Get/Put/Delete Object + ObjectAcl on objects). One active access key (`AKIA…REDACTED (see AWS Console / Heroku config var AWS_ACCESS_KEY_ID)`) held in Heroku config vars — Heroku can't do OIDC ([heroku/roadmap#247](https://github.com/heroku/roadmap/issues/247)), so the static key stays |
 
 App coupling (`app/settings.py:345-351`, `app/storage_backends.py`): uploads go to
 `{bucket}.s3.amazonaws.com` via django-storages; serving goes through the CloudFront domain when
@@ -93,7 +93,7 @@ Notes:
    CloudFront; spot-check a media upload from the Django admin (exercises the Heroku key path —
    key must be untouched throughout).
 3. `aws iam list-access-keys --user-name awesome-django-blog-heroku` still shows the same
-   `AKIA2UC3FDVB5TPQHWXE`, Active.
+   `AKIA…REDACTED (see AWS Console / Heroku config var AWS_ACCESS_KEY_ID)`, Active.
 4. Re-run the account click-ops sweep: the only remaining unmanaged blog artifact should be the
    access key itself (documented above as intentional).
 
