@@ -72,7 +72,18 @@ npx heroku logs -a blogthedata --num 200       # recent dyno logs
 npx heroku ps -a blogthedata                   # dyno status
 ```
 
-Auto-deploys from GitHub `master` on push — the quality gate runs locally in the pre-push hook (`scripts/prepush.sh`); there is no GitHub Actions status check anymore. No Heroku-side build customization, Procfile + buildpacks only.
+Deploy is **local**. GitHub `master` no longer auto-deploys — the Heroku deploy method was switched off GitHub integration to "Heroku Git". Instead, the `origin` remote carries **two push URLs**: GitHub and `https://git.heroku.com/blogthedata.git`. A single `git push origin master` fans out to both inside one push operation (Heroku builds on the `master` push), so there is no separate deploy command and nothing for the pre-push hook to recurse into — the hook (`scripts/prepush.sh`) only runs the lint/test gate, which blocks **both** pushes if it fails.
+
+One-time setup on each clone (the push URLs live in local `.git/config`, not in the repo), after `npx heroku login` so git is authenticated to `git.heroku.com`:
+
+```bash
+git remote set-url --add --push origin git@github.com:jsolly/awesome-django-blog.git
+git remote set-url --add --push origin https://git.heroku.com/blogthedata.git
+# verify — `git remote -v` should list both under (push):
+git remote -v
+```
+
+(Adding any explicit push URL disables the implicit fetch-URL fallback for pushing, which is why GitHub must be listed explicitly too.) Heroku ignores pushes to any branch other than `main`/`master`, so feature-branch pushes fan out harmlessly. `FLEET_SKIP_PREPUSH=1 git push` skips the gate. There is no GitHub Actions status check. No Heroku-side build customization, Procfile + buildpacks only.
 
 **S3 access** (django-storages → S3 + CloudFront, gated on `USE_CLOUD=True`): the Heroku dyno authenticates via a long-lived static IAM key set as Heroku config vars (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_STORAGE_BUCKET_NAME`). The IAM user is **`awesome-django-blog-heroku`** with a single bucket-scoped inline policy `awesome-django-blog-s3-access` — `s3:Get/Put/Delete/ListBucket/ACL` on `arn:aws:s3:::blogthedata` only. **Don't widen.** Heroku doesn't issue OIDC tokens to dynos ([heroku/roadmap#247](https://github.com/heroku/roadmap/issues/247)), so the long-lived key is unavoidable; the narrow policy is the mitigation. AWS console/CLI: use credentials for account `730335616323` via local `AWS_PROFILE` — do not commit profile names in this repo.
 

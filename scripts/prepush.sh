@@ -3,8 +3,15 @@
 #
 # Invoked by .git-hooks/pre-push (core.hooksPath=.git-hooks). Replaces the
 # `build` job of the old .github/workflows/django-test-deploy-master.yaml: the
-# lint + test gate now runs locally on push to master. CodeQL was dropped;
-# deploy is handled by the hosting provider on push to master, unchanged.
+# lint + test gate now runs locally on push to master. CodeQL was dropped.
+#
+# Deploy is no longer a GitHub integration: the Heroku deploy method is now
+# "Heroku Git", and the `origin` remote carries a second push URL pointing at
+# git.heroku.com/blogthedata. A single `git push origin master` therefore fans
+# out to both GitHub and Heroku (Heroku builds on the master push). This hook
+# only GATES that push — it does not itself run any deploy command, so there is
+# no nested `git push` and nothing to recurse into. See AGENTS.md for the
+# one-time `git remote set-url --add --push` setup.
 #
 # Only acts on a non-deleting push to main/master; feature-branch pushes stay
 # fast. Escape hatch: FLEET_SKIP_PREPUSH=1 git push.
