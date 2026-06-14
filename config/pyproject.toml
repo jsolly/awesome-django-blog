@@ -3,6 +3,8 @@ exclude = [
     "apps.py",
     "*/settings/*",
     ]
+
+[tool.ruff.lint]
 ignore = ["E402", "E501", "F403"]
 
 # F403 is ignored because I use * imports in settings files
