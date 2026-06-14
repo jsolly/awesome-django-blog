@@ -26,7 +26,6 @@ To set up the development environment, please follow the instructions in the rea
 
 We encourage open communication and feedback among contributors. If you have any questions or feedback, please do not hesitate to reach out to us via email or through the issue tracker. We also encourage all contributors to be respectful and professional in their interactions with other contributors.
 
-
 Want to work on this with me? DM me
 <a href="https://twitter.com/_jsolly" rel="noopener noreferrer" target="_blank">
 `@_jsolly`</a>

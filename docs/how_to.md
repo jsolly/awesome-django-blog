@@ -1,68 +1,65 @@
 ## Create a new migration
 
-    ```bash
-    $ python3 manage.py makemigrations --name changed_my_model your_app_label
+```bash
+python3 manage.py makemigrations --name changed_my_model your_app_label
 
-    $ python3 manage.py migrate
-    ```
-
+python3 manage.py migrate
+```
 
 ## Overwrite heroku Postgres database with local database
 
-    ```bash
-    # First, list your Heroku apps to find the correct app name
-    heroku apps
-    
-    # Reset the database (replace YOUR_APP_NAME with your actual app name)
-    heroku pg:reset DATABASE --app YOUR_APP_NAME --confirm YOUR_APP_NAME
-    
-    # Get the Postgres URL for your app
-    heroku config:get DATABASE_URL --app YOUR_APP_NAME
-    
-    # Import your local database backup
-    psql <heroku_postgres_url>
-    \i <path_to_local_db_backup.sql>
-    ```
+```bash
+# First, list your Heroku apps to find the correct app name
+heroku apps
 
+# Reset the database (replace YOUR_APP_NAME with your actual app name)
+heroku pg:reset DATABASE --app YOUR_APP_NAME --confirm YOUR_APP_NAME
 
+# Get the Postgres URL for your app
+heroku config:get DATABASE_URL --app YOUR_APP_NAME
+
+# Import your local database backup
+psql <heroku_postgres_url>
+\i <path_to_local_db_backup.sql>
+```
 
 ## Export prod database and restore locally (Untested)
 
-    ```bash
-    # Get database URL from Heroku
-    heroku config:get DATABASE_URL --app your-app-name > ~/.pg_heroku_url
+```bash
+# Get database URL from Heroku
+heroku config:get DATABASE_URL --app your-app-name > ~/.pg_heroku_url
 
-    # Create backup using Heroku Postgres credentials
-    pg_dump $(cat ~/.pg_heroku_url) > ~/code/awesome-django-blog/backups/blogthedata_db_$(date +%d_%m_%Y).sql
+# Create backup using Heroku Postgres credentials
+pg_dump $(cat ~/.pg_heroku_url) > ~/code/awesome-django-blog/backups/blogthedata_db_$(date +%d_%m_%Y).sql
 
-    # Restore locally
-    psql -U postgres
-    postgres=# DROP DATABASE blogthedata;
-    postgres=# CREATE DATABASE blogthedata;
-    postgres=# \q
-    psql blogthedata < ~/code/awesome-django-blog/backups/blogthedata_db_$(date +%d_%m_%Y).sql
+# Restore locally
+psql -U postgres
+postgres=# DROP DATABASE blogthedata;
+postgres=# CREATE DATABASE blogthedata;
+postgres=# \q
+psql blogthedata < ~/code/awesome-django-blog/backups/blogthedata_db_$(date +%d_%m_%Y).sql
 
-    # Optionally sync media files from S3 to local (if using S3 for media storage)
-    aws s3 sync s3://your-bucket-name/media ~/code/awesome-django-blog/mediafiles
-    ```
+# Optionally sync media files from S3 to local (if using S3 for media storage)
+aws s3 sync s3://your-bucket-name/media ~/code/awesome-django-blog/mediafiles
+```
 
 ## Create manual backup of Heroku database
 
-    ```bash
-    # Manual backup using Heroku CLI
-    heroku pg:backups:capture --app your-app-name
+```bash
+# Manual backup using Heroku CLI
+heroku pg:backups:capture --app your-app-name
 
-    # Download latest backup
-    heroku pg:backups:download --app your-app-name
+# Download latest backup
+heroku pg:backups:download --app your-app-name
 
-    # List existing backups
-    heroku pg:backups --app your-app-name
-    ```
+# List existing backups
+heroku pg:backups --app your-app-name
+```
 
 Note: Heroku Postgres automatically creates periodic backups based on your plan. You can view them in the Heroku dashboard or using `heroku pg:backups --app your-app-name`.
 
-
 ## Send local media files to S3
+
 ``` bash
 # Upload local media files to S3 bucket
 aws s3 sync mediafiles/ s3://your-bucket-name/media
@@ -77,30 +74,28 @@ aws s3 ls s3://your-bucket-name/media/
 aws s3 sync s3://your-bucket-name/media/ mediafiles/
 ```
 
-
 ## Roll back migration
 
-    ```
-    python3 manage.py migrate blog 0011
-    ```
+```bash
+python3 manage.py migrate blog 0011
+```
 
 ## Fake Migration
 
-```
+```bash
 python manage.py migrate --fake blog 0011
 ```
 
 ## Create empty migration
 
-    ```
-    python3 manage.py migrate --empty --name changed_my_model your_app_label
-    ```
-
+```bash
+python3 manage.py migrate --empty --name changed_my_model your_app_label
+```
 
 ## Resolve django-fastdev template errors on admin page
 
-Might be related to https://code.djangoproject.com/ticket/32681 I logged this
-one https://github.com/dmpayton/django-admin-honeypot/issues/90 Add this to
+Might be related to <https://code.djangoproject.com/ticket/32681> I logged this
+one <https://github.com/dmpayton/django-admin-honeypot/issues/90> Add this to
 venv/lib/python3.9/site-packages/django/contrib/admin/sites.py
 
 ```py
@@ -127,15 +122,14 @@ venv/lib/python3.9/site-packages/django/contrib/admin/sites.py
 ```
 
 ## Fix Coveralls Badge updating issue
-https://github.com/lemurheavy/coveralls-public/issues/971#issuecomment-693623226
 
+<https://github.com/lemurheavy/coveralls-public/issues/971#issuecomment-693623226>
 
 ## Syntax highlighting link (Prism)
 
 <!--
 https://prismjs.com/download.html#themes=prism-dark&languages=markup+css+clike+javascript+apacheconf+bash+git+json+python+sql+typescript+yaml
 -->
-
 
 ## Resolve image upload issue (403 from rejected csrf token)
 

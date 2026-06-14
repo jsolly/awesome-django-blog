@@ -5,7 +5,11 @@
   "engines": {
     "node": ">=24"
   },
+  "scripts": {
+    "check:md": "bash scripts/lint-md.sh"
+  },
   "devDependencies": {
-    "heroku": "^11.4.0"
+    "heroku": "^11.4.0",
+    "markdownlint-cli2": "0.22.1"
   }
 }

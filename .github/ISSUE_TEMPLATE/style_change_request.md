@@ -11,9 +11,7 @@ assignees: ""
 
 ### What's your idea to make it better?
 
-
 ### Screenshots
-
 
 ### Record
 

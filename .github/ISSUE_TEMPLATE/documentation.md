@@ -7,7 +7,6 @@ assignees: ""
 ---
 ## What Needs Documenting?
 
-
 ## Record
 
 - [ ] I have read the Contributing Guidelines

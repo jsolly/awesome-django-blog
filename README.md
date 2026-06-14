@@ -9,7 +9,6 @@ Awesome-django-blog is a fully functional blogging platform built using the Djan
 
 ![image](https://github.com/jsolly/awesome-django-blog/assets/9572232/e0066fc2-d68e-4561-b3e4-18ece55e09b2)
 
-
 ---
 
 ## Table of Contents
@@ -36,17 +35,23 @@ python3 manage.py runserver
 ```
 
 ### Seed Posts (Optional)
+
 This command creates sample posts.
+
 ```shell
 python3 manage.py import_posts utilities/seed_posts/posts.json
 ```
 
 ### Default Accounts
-The app comes preinstalled with two users. One is an admin and the other can only add comments to posts. 
 
-**(Username/Password)**: 
+The app comes preinstalled with two users. One is an admin and the other can only add comments to posts.
+
+**(Username/Password)**:
+
 - admin/admin<br>
 - comment_only/comment_only
+
+## Development
 
 ### Coverage
 
@@ -84,13 +89,16 @@ git config core.hooksPath .git-hooks
 The gate logic lives in `scripts/prepush.sh`; a failure aborts the push.
 
 ### Live Reload
+
 If you want to automatically reload the server whenever you make changes to source code, you can set `LIVERELOAD` in the .env file to True. You can learn more about this tool [on their GitHub page](https://github.com/tjwalch/django-livereload-server).
 
 To use livereload, you have to run these commands in TWO SEPARATE terminal windows. Or you can use the included vscode launch.json to run both commands at once.
+
 ```sh
 python3 manage.py runserver
 python3 manage.py livereload
 ```
+
 ---
 
 ## Features
@@ -140,24 +148,24 @@ python3 manage.py livereload
 - Automatic Conversion of images (.png, .jpeg, etc) to .webp for blazingly fast image loads.
 - Badges for formatter and linting
 - Automated, rotating backups of blog posts using local and cloud storage
-- Status page for monitoring uptime and performance of your blog at https://blogthedata.com/status using Apache Echarts.
+- Status page for monitoring uptime and performance of your blog at <https://blogthedata.com/status> using Apache Echarts.
 - Custom 404 and 500 pages that look really cool. So even if your users are lost or your app is broke, they are still having a good time.
-- Canonical domain middleware to force www. prefix and redirect non-www. requests to www.
+- Canonical domain middleware to force <www>. prefix and redirect non-www. requests to www.
 - HTML minification to reduce page weight and improve load times
 
 ## Depreciated Features
 
-- ~~Leaflet.js and OpenLayers maps 🗺~~ (Removed in https://github.com/jsolly/awesome-django-blog/pull/246)
+- ~~Leaflet.js and OpenLayers maps 🗺~~ (Removed in <https://github.com/jsolly/awesome-django-blog/pull/246>)
 - ~~Honeypot Admin page to automatically block IPs trying to login with an admin account~~ (Removed in
-  https://github.com/jsolly/awesome-django-blog/pull/105)
-- ~~Ko-Fi donation button ☕️~~ (removed in https://github.com/jsolly/awesome-django-blog/commit/c857bb7599836c614aff523756bbf1381e0dd948)
+  <https://github.com/jsolly/awesome-django-blog/pull/105>)
+- ~~Ko-Fi donation button ☕️~~ (removed in <https://github.com/jsolly/awesome-django-blog/commit/c857bb7599836c614aff523756bbf1381e0dd948>)
 - ~~Post views and likes~~ (Removed in
-  https://github.com/jsolly/awesome-django-blog/pull/77)
-- ~~Newsletter Sign up 🗞~~ (removed in https://github.com/jsolly/awesome-django-blog/pull/140)
+  <https://github.com/jsolly/awesome-django-blog/pull/77>)
+- ~~Newsletter Sign up 🗞~~ (removed in <https://github.com/jsolly/awesome-django-blog/pull/140>)
 - ~~Github Integration to show active issue backlog without leaving blog~~ (removed
-  in https://github.com/jsolly/awesome-django-blog/pull/121)
+  in <https://github.com/jsolly/awesome-django-blog/pull/121>)
   [commit:5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b](https://github.com/jsolly/awesome-django-blog/commit/5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b))
-- ~~Portfolio page with testimonials, contact me, Web vitals, and more!~~ (removed in https://github.com/jsolly/awesome-django-blog/pull/404)
+- ~~Portfolio page with testimonials, contact me, Web vitals, and more!~~ (removed in <https://github.com/jsolly/awesome-django-blog/pull/404>)
 
 ## Contributing
 

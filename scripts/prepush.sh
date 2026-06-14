@@ -41,6 +41,26 @@ while read -r _local_ref local_sha remote_ref remote_sha; do
 done
 [ -z "$push_to_main" ] && exit 0
 
+# --- Markdown lint -----------------------------------------------------------
+# Run whenever the pushed range touches markdown, BEFORE the docs-only fast path
+# below, so docs-only (and mixed) pushes always lint their markdown and then the
+# fast path still skips the expensive gate + deploy. Cheap. Fail-safe: lint when
+# the range cannot be computed.
+prepush_md_changed() { # <remote_sha> <local_sha>
+  local remote_sha="$1" local_sha="$2" f
+  [ -n "$remote_sha" ] && [ "$remote_sha" != "$ZERO" ] || return 0
+  git cat-file -e "$remote_sha" 2>/dev/null || return 0
+  git merge-base --is-ancestor "$remote_sha" "$local_sha" 2>/dev/null || return 0
+  while IFS= read -r f; do
+    case "$f" in *.md | *.mdx | *.markdown) return 0 ;; esac
+  done < <(git diff --name-only "$remote_sha" "$local_sha")
+  return 1
+}
+if prepush_md_changed "$REMOTE_SHA" "$LOCAL_SHA"; then
+  echo "• markdown lint"
+  bash "$ROOT/scripts/lint-md.sh"
+fi
+
 # --- Doc-only fast path -------------------------------------------------------
 # Skip the full gate when the pushed range touches only documentation, so prose
 # edits don't pay for the lint/type/test battery. Conservative allow-list:

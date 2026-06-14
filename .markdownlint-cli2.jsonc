@@ -1,0 +1,26 @@
+{
+  "config": {
+    // Enable the full default rule set; overrides below opt specific rules out/in.
+    "default": true,
+    // MD013 (line-length): disabled — allow long lines / no hard wrap.
+    "MD013": false,
+    // MD033 (no-inline-html): disabled — permit raw HTML in Markdown.
+    "MD033": false,
+    // MD041 (first-line-h1): disabled — file need not start with a top-level heading.
+    "MD041": false,
+    // MD024 (no-duplicate-heading): only flag duplicate headings under the same
+    // parent, so repeated section names (e.g. "Usage") across different sections are OK.
+    "MD024": { "siblings_only": true }
+  },
+  "ignores": [
+    "node_modules/**",
+    // Archival planning/spec records — not active content, not lint-gated.
+    "docs/plans/**",
+    "docs/specs/**",
+    // Vendor runtime dir (never tracked) — not repo content.
+    ".claude/**",
+    // CLAUDE.md is a symlink to its sibling AGENTS.md (already linted) — skip to avoid double-linting.
+    "CLAUDE.md",
+    "**/CLAUDE.md"
+  ]
+}
