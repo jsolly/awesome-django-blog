@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 # Pre-push gate for awesome-django-blog (Python/Django).
 #
-# Invoked by .git-hooks/pre-push (core.hooksPath=.git-hooks). Replaces the
-# `build` job of the old .github/workflows/django-test-deploy-master.yaml: the
-# lint + test gate now runs locally on push to master. CodeQL was dropped.
+# Invoked by .git-hooks/pre-push (core.hooksPath=.git-hooks). The lint + test
+# gate runs locally on push to master.
 #
 # Deploy is no longer a GitHub integration: the Heroku deploy method is now
 # "Heroku Git", and the `origin` remote carries a second push URL pointing at
