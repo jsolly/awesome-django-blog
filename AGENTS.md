@@ -83,7 +83,7 @@ git remote set-url --add --push origin https://git.heroku.com/blogthedata.git
 git remote -v
 ```
 
-(Adding any explicit push URL disables the implicit fetch-URL fallback for pushing, which is why GitHub must be listed explicitly too.) Heroku ignores pushes to any branch other than `main`/`master`, so feature-branch pushes fan out harmlessly. `FLEET_SKIP_PREPUSH=1 git push` skips the gate. There is no GitHub Actions status check. No Heroku-side build customization, Procfile + buildpacks only.
+(Adding any explicit push URL disables the implicit fetch-URL fallback for pushing, which is why GitHub must be listed explicitly too.) Heroku ignores pushes to any branch other than `main`/`master`, so feature-branch pushes fan out harmlessly. `FLEET_SKIP_PREPUSH=1 git push` skips the gate. No Heroku-side build customization, Procfile + buildpacks only.
 
 **S3 access** (django-storages → S3 + CloudFront, gated on `USE_CLOUD=True`): the Heroku dyno authenticates via a long-lived static IAM key set as Heroku config vars (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_STORAGE_BUCKET_NAME`). The IAM user is **`awesome-django-blog-heroku`** with a single bucket-scoped inline policy `awesome-django-blog-s3-access` — `s3:Get/Put/Delete/ListBucket/ACL` on `arn:aws:s3:::blogthedata` only. **Don't widen.** Heroku doesn't issue OIDC tokens to dynos ([heroku/roadmap#247](https://github.com/heroku/roadmap/issues/247)), so the long-lived key is unavoidable; the narrow policy is the mitigation. AWS console/CLI: use credentials for account `730335616323` via local `AWS_PROFILE` — do not commit profile names in this repo.
 
