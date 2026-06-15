@@ -6,7 +6,8 @@
     "node": ">=24"
   },
   "scripts": {
-    "check:md": "bash scripts/lint-md.sh"
+    "check:md": "bash scripts/lint-md.sh",
+    "check:yaml": "uvx yamllint@1.38.0 ."
   },
   "devDependencies": {
     "heroku": "^11.4.0",

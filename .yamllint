@@ -1,0 +1,18 @@
+extends: relaxed
+
+ignore: |
+  node_modules/
+  dist/
+  .astro/
+  .aws-sam/
+  .vercel/
+  .claude/
+  .venv/
+  .playwright-cli/
+  .playwright-mcp/
+  .tmp/
+  .npm-cache/
+
+rules:
+  # 80-char max is too tight for YAML carrying URLs, ARNs, and inline scripts.
+  line-length: disable

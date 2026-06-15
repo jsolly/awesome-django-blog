@@ -115,6 +115,8 @@ export SECRET_KEY="Not applicable for tests"
 export ALLOWED_HOSTS="127.0.0.1 localhost"
 export SITE_ID=1
 
+echo "• yaml lint"
+npm run check:yaml
 echo "• ruff lint"
 ruff check --config ./config/pyproject.toml app
 echo "• collectstatic"
