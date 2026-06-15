@@ -86,7 +86,7 @@ The quality gate (ruff, collectstatic, migrate, pytest + coverage) runs locally 
 git config core.hooksPath .git-hooks
 ```
 
-The gate logic lives in `scripts/prepush.sh`; a failure aborts the push.
+The gate logic lives in `.git-hooks/pre-push`; a failure aborts the push.
 
 ### Live Reload
 
@@ -131,7 +131,7 @@ python3 manage.py livereload
 - HTMX for dynamic page updates without a page refresh
 - Robots.txt, security.txt, and sitemap.xml for optimized SEO and security
 - Git hooks for automatic static file generation (manage.py collectstatic)
-- Local pre-push quality gate (lint, collectstatic, migrations, tests + coverage) via `scripts/prepush.sh`. Push with confidence!
+- Local pre-push quality gate (lint, collectstatic, migrations, tests + coverage) via `.git-hooks/pre-push`. Push with confidence!
 - Compatible with Sqllite or postgres databases for fast protyping and production
 - Deploy static assets to Amazon S3 + Cloudfront just by changing a few settings in the .env file.
 - Procfile included for easy deployment with Heroku or other services that use Procfile.

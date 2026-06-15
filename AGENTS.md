@@ -72,7 +72,7 @@ npx heroku logs -a blogthedata --num 200       # recent dyno logs
 npx heroku ps -a blogthedata                   # dyno status
 ```
 
-Deploy is **local**. GitHub `master` no longer auto-deploys — the Heroku deploy method was switched off GitHub integration to "Heroku Git". Instead, the `origin` remote carries **two push URLs**: GitHub and `https://git.heroku.com/blogthedata.git`. A single `git push origin master` fans out to both inside one push operation (Heroku builds on the `master` push), so there is no separate deploy command and nothing for the pre-push hook to recurse into — the hook (`scripts/prepush.sh`) only runs the lint/test gate, which blocks **both** pushes if it fails.
+Deploy is **local**. GitHub `master` no longer auto-deploys — the Heroku deploy method was switched off GitHub integration to "Heroku Git". Instead, the `origin` remote carries **two push URLs**: GitHub and `https://git.heroku.com/blogthedata.git`. A single `git push origin master` fans out to both inside one push operation (Heroku builds on the `master` push), so there is no separate deploy command and nothing for the pre-push hook to recurse into — the hook (`.git-hooks/pre-push`) only runs the lint/test gate, which blocks **both** pushes if it fails.
 
 One-time setup on each clone (the push URLs live in local `.git/config`, not in the repo), after `npx heroku login` so git is authenticated to `git.heroku.com`:
 
