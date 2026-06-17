@@ -3,6 +3,7 @@ from blog.utils import (
     create_context,
     answer_question,
     load_pickle_file,
+    preprocess_text,
 )
 import pandas as pd
 from unittest.mock import patch
@@ -14,6 +15,24 @@ class TestUtils(TestCase, MiddlewareMixin):
     def test_load_pickle_file(self):
         df = load_pickle_file()
         self.assertIsInstance(df, pd.DataFrame)
+
+    def test_preprocess_text_lowercases_strips_noise_and_drops_stopwords(self):
+        # A realistic blog sentence with mixed case, a digit, punctuation, and stopwords.
+        result = preprocess_text(
+            "Django 5 is a popular Python framework for building blogs, and it's fast!"
+        )
+        tokens = result.split()
+        # Lowercased, with digits and punctuation stripped entirely.
+        self.assertEqual(result, result.lower())
+        self.assertFalse(any(ch.isdigit() for ch in result))
+        for punct in (",", "!", "'"):
+            self.assertNotIn(punct, result)
+        # English stopwords are removed...
+        for stopword in ("is", "a", "for", "and"):
+            self.assertNotIn(stopword, tokens)
+        # ...while content words survive.
+        for keyword in ("django", "popular", "python", "framework", "blogs", "fast"):
+            self.assertIn(keyword, tokens)
 
     @patch("blog.utils.load_pickle_file")
     @patch("openai.Embedding.create")

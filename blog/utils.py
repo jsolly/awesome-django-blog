@@ -3,14 +3,12 @@ from typing import List
 from scipy import spatial
 import pickle
 from pathlib import Path
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer, ENGLISH_STOP_WORDS
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 from .models import Post, Similarity
 import string
 import re
-import nltk
-from nltk.corpus import stopwords
 
 
 def load_pickle_file():
@@ -131,9 +129,7 @@ def preprocess_text(text: str) -> str:
     # Remove extra whitespaces
     text = re.sub(r"\s+", " ", text)
     # Remove stopwords
-    nltk.download("stopwords")
-    stop_words = set(stopwords.words("english"))
-    text = " ".join([word for word in text.split() if word not in stop_words])
+    text = " ".join([word for word in text.split() if word not in ENGLISH_STOP_WORDS])
     return text
 
 
