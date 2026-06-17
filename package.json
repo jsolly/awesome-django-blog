@@ -7,7 +7,7 @@
   },
   "scripts": {
     "check:md": "bash scripts/lint-md.sh",
-    "check:yaml": "uvx yamllint@1.38.0 .",
+    "check:yaml": "yamllint .",
     "worktree:init": "bash scripts/worktree-init.sh"
   },
   "devDependencies": {
