@@ -36,6 +36,19 @@ while read -r _local_ref local_sha remote_ref remote_sha; do
 done
 [ -z "$push_to_main" ] && exit 0
 
+# --- Secrets scan ------------------------------------------------------------
+echo "• gitleaks"
+command -v gitleaks &>/dev/null || { echo "✗ gitleaks not installed  →  brew install gitleaks" >&2; exit 1; }
+if [ "$REMOTE_SHA" != "$ZERO" ] && git cat-file -e "$REMOTE_SHA" 2>/dev/null; then
+  gitleaks git --no-banner --log-opts="$REMOTE_SHA..$LOCAL_SHA"
+else
+  _base=$(git rev-parse --verify "refs/remotes/origin/main" 2>/dev/null \
+       || git rev-parse --verify "refs/remotes/origin/master" 2>/dev/null \
+       || echo "")
+  [ -n "$_base" ] && gitleaks git --no-banner --log-opts="$_base..$LOCAL_SHA" \
+                  || gitleaks git --no-banner --log-opts="$LOCAL_SHA"
+fi
+
 # --- Markdown lint -----------------------------------------------------------
 # Run whenever the pushed range touches markdown, BEFORE the docs-only fast path
 # below, so docs-only (and mixed) pushes always lint their markdown and then the
