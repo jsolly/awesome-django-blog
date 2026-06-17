@@ -16,18 +16,13 @@
   <meta name="description" content="{{ description }}" />
 
   <!-- Canonical URL -->
-  {% if request.path == '/' %}
-  <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}">
-  {% else %}
   <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
-  {% endif %}
 
   <!-- Open Graph Meta Tags-->
   <meta property="og:locale" content="en_US">
   {% if not post %}
   <meta property="og:type" content="website">
-  <meta property="og:image"
-    content="{{ request.scheme }}://{{ request.get_host }}{% static 'iPhoneblogthedata.webp' %}">
+  <meta property="og:image" content="{% static 'iPhoneblogthedata.webp' %}">
   <meta property="og:image:alt" content="An Iphone on a table with blogthedata.com on the screen">
   <meta property="og:image:type" content="image/webp">
   <meta property="og:image:width" content="1200">
@@ -40,8 +35,7 @@
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
   {% if not post %}
-  <meta name="twitter:image"
-    content="{{ request.scheme }}://{{ request.get_host }}{% static 'iPhoneblogthedata.webp' %}">
+  <meta name="twitter:image" content="{% static 'iPhoneblogthedata.webp' %}">
   {% endif %}
   <meta name="twitter:site" content="@_jsolly">
   <meta property="twitter:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
