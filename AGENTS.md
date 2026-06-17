@@ -2,7 +2,7 @@
 
 ## Stack
 
-Django 5.1 blogging platform on Python 3.13. SQLite by default, Postgres optional. HTMX for partial updates, CKEditor 5 for authoring, OpenAI for chatbot/title generation. WhiteNoise + optional S3/CloudFront for static/media. Deploys via Procfile (Heroku-style).
+Django 5.2 blogging platform on Python 3.14. SQLite by default, Postgres optional. HTMX for partial updates, CKEditor 5 for authoring, OpenAI for chatbot/title generation. WhiteNoise + optional S3/CloudFront for static/media. Deploys via Procfile (Heroku-style).
 
 ## Common Commands
 
@@ -31,6 +31,9 @@ ruff format app
 
 # Git hooks — pre-push gate (tracked in .git-hooks/, configured like the rest of the fleet)
 git config core.hooksPath .git-hooks
+
+# Worktree provisioning — run once after EnterWorktree / `git worktree add`
+npm run worktree:init               # creates .venv + installs pinned deps (fast on a warm pip cache)
 
 # Seed data — required for many tests since base.py expects existing admin/comment_only users + "uncategorized" category
 python manage.py import_posts utilities/seed_posts/posts.json
@@ -71,6 +74,8 @@ npx heroku releases -a blogthedata --num 5     # last 5 deploys
 npx heroku logs -a blogthedata --num 200       # recent dyno logs
 npx heroku ps -a blogthedata                   # dyno status
 ```
+
+The gate (`.git-hooks/pre-push`) must run against the pinned project deps, never system Python, so it needs a `.venv` (and the pinned `markdownlint-cli2` from `node_modules` for the markdown sub-gate). A fresh git worktree branches from `origin/master` and carries no gitignored files, so it starts without either. Two paths cover that without a manual install of the heavy scientific stack (numpy/scipy/scikit-learn/pandas/matplotlib): for a **code-only** change the gate transparently **borrows the main checkout's `.venv` and `node_modules`** (resolved via the shared git common dir) when the worktree's `requirements.txt` / `package-lock.json` are byte-identical to the main checkout's — zero setup, fully offline. If you **changed those deps** in the worktree the borrowed copy would be stale, so the gate refuses and tells you to run **`npm run worktree:init`**, which builds the worktree its own `.venv` + `node_modules` (fast on warm pip/npm caches). System Python is never used either way.
 
 Deploy is **local**. GitHub `master` no longer auto-deploys — the Heroku deploy method was switched off GitHub integration to "Heroku Git". Instead, the `origin` remote carries **two push URLs**: GitHub and `https://git.heroku.com/blogthedata.git`. A single `git push origin master` fans out to both inside one push operation (Heroku builds on the `master` push), so there is no separate deploy command and nothing for the pre-push hook to recurse into — the hook (`.git-hooks/pre-push`) only runs the lint/test gate, which blocks **both** pushes if it fails.
 

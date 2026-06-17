@@ -104,11 +104,31 @@ fi
 echo "▶ pre-push gate (awesome-django-blog) → $push_to_main"
 
 # The gate must run against the pinned project deps, never system Python.
+# A fresh worktree has no .venv, so borrow the MAIN checkout's (resolved via the
+# shared git common dir) — but ONLY when this tree's requirements.txt is byte-
+# identical, else the borrowed venv would be stale, so refuse. See AGENTS.md for
+# the full rationale and the provisioning escape hatch (npm run worktree:init).
+VENV_ACTIVATE=""
 if [ -f .venv/bin/activate ]; then
-  # shellcheck disable=SC1091
-  . .venv/bin/activate
+  VENV_ACTIVATE=".venv/bin/activate"
 else
-  echo "✗ .venv missing — run: python3 -m venv .venv && .venv/bin/pip install -r requirements.txt" >&2
+  MAIN_ROOT="$(cd "$(dirname "$(git rev-parse --git-common-dir 2>/dev/null)")" 2>/dev/null && pwd || echo "")"
+  if [ -n "$MAIN_ROOT" ] && [ "$MAIN_ROOT" != "$ROOT" ] && [ -f "$MAIN_ROOT/.venv/bin/activate" ]; then
+    if [ -f requirements.txt ] && [ -f "$MAIN_ROOT/requirements.txt" ] \
+       && cmp -s requirements.txt "$MAIN_ROOT/requirements.txt"; then
+      echo "• borrowing main checkout .venv ($MAIN_ROOT) — requirements.txt matches"
+      VENV_ACTIVATE="$MAIN_ROOT/.venv/bin/activate"
+    else
+      echo "✗ no .venv here and the main checkout's deps differ from this tree's — run: npm run worktree:init" >&2
+      exit 1
+    fi
+  fi
+fi
+if [ -n "$VENV_ACTIVATE" ]; then
+  # shellcheck disable=SC1091
+  . "$VENV_ACTIVATE"
+else
+  echo "✗ .venv missing — run: npm run worktree:init  (or: python3 -m venv .venv && .venv/bin/pip install -r requirements.txt)" >&2
   exit 1
 fi
 
