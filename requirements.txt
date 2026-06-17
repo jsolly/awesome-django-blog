@@ -1,6 +1,6 @@
 ## Core Dependencies
 beautifulSoup4==4.12.3
-Django==5.1.15
+Django==5.2.15
 django-ckeditor-5==0.2.15
 django-htmx==1.16.0
 django-resized==1.0.2
@@ -8,7 +8,7 @@ django-robots==6.1
 feedparser==6.0.11
 filetype==1.2.0
 Pillow==12.2.0
-psycopg[binary]==3.2.3
+psycopg[binary]==3.2.10
 psutil==6.1.0
 python-dotenv==1.2.2
 pytz==2023.3
@@ -27,13 +27,13 @@ django-storages==1.14.4
 django-htmlmin==0.11.0
 
 ## GPT Bot dependencies (Distances From Embeddings)
-matplotlib==3.10.1
-numpy==2.2.0
+matplotlib==3.10.9
+numpy==2.3.5
 openai==1.51.0
-pandas==2.2.3
+pandas==2.3.3
 plotly==5.21.0
-scikit-learn==1.5.2
-scipy==1.14.1
+scikit-learn==1.7.2
+scipy==1.17.1
 
 ## Legacy dependencies for migrations
 django-ckeditor==6.4.2
@@ -47,4 +47,4 @@ django-livereload-server==0.5.1
 pre-commit==3.8.0
 pytest==9.0.3
 ruff==0.3.0
-tiktoken==0.8.0 # Creating embeddings
+tiktoken==0.12.0 # Creating embeddings
