@@ -8,7 +8,7 @@ os.environ["USE_CLOUD"] = "False"
 os.environ["SITE_ID"] = "1"
 setup()
 
-load_dotenv()
+load_dotenv(".env.local")
 
 from django.test import TestCase
 from django.test.utils import setup_test_environment

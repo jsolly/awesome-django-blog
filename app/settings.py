@@ -7,7 +7,7 @@ import logging
 if "DYNO" not in os.environ:
     from dotenv import load_dotenv
 
-    load_dotenv()
+    load_dotenv(".env.local")
     
 def get_bool_env(var_name, default=False):
     return str(os.environ.get(var_name, str(default))).lower() == "true"

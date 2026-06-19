@@ -29,7 +29,7 @@ cd awesome-django-blog
 python3 -m venv .venv # Create virtual environment
 source .venv/bin/activate # Activate virtual environment
 pip install -r requirements.txt
-python manage.py setup_env # Creates .env file from .env.example
+python manage.py setup_env # Creates .env.local file from .env.example
 python3 manage.py migrate # Create empty schema (if you are using postgres, you need to create the database first. The default database is sqlite3)
 python3 manage.py runserver
 ```
@@ -90,7 +90,7 @@ The gate logic lives in `.git-hooks/pre-push`; a failure aborts the push.
 
 ### Live Reload
 
-If you want to automatically reload the server whenever you make changes to source code, you can set `LIVERELOAD` in the .env file to True. You can learn more about this tool [on their GitHub page](https://github.com/tjwalch/django-livereload-server).
+If you want to automatically reload the server whenever you make changes to source code, you can set `LIVERELOAD` in the .env.local file to True. You can learn more about this tool [on their GitHub page](https://github.com/tjwalch/django-livereload-server).
 
 To use livereload, you have to run these commands in TWO SEPARATE terminal windows. Or you can use the included vscode launch.json to run both commands at once.
 
@@ -133,7 +133,7 @@ python3 manage.py livereload
 - Git hooks for automatic static file generation (manage.py collectstatic)
 - Local pre-push quality gate (lint, collectstatic, migrations, tests + coverage) via `.git-hooks/pre-push`. Push with confidence!
 - Compatible with Sqllite or postgres databases for fast protyping and production
-- Deploy static assets to Amazon S3 + Cloudfront just by changing a few settings in the .env file.
+- Deploy static assets to Amazon S3 + Cloudfront just by changing a few settings in the .env.local file.
 - Procfile included for easy deployment with Heroku or other services that use Procfile.
 - Optimized for Performance, SEO, and A11Y
 - Latest Django 5.x

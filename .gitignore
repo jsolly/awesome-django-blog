@@ -6,7 +6,8 @@ processed/
 .venv/
 
 # Environ Variables File
-.env
+.env.local
+.env.*.local
 
 # Coverage files
 .coverage

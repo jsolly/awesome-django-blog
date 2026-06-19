@@ -6,15 +6,15 @@ from dotenv import load_dotenv
 from django.core.management.utils import get_random_secret_key
 
 if "DYNO" not in os.environ:
-    load_dotenv()
+    load_dotenv(".env.local")
 
 
 def setup_env():
     env_example_path = Path(".") / ".env.example"
-    env_path = Path(".") / ".env"
+    env_path = Path(".") / ".env.local"
 
     if env_path.exists():
-        print(".env file already exists. Exiting.")
+        print(".env.local file already exists. Exiting.")
         return
 
     if not env_example_path.exists():
@@ -36,10 +36,10 @@ def setup_env():
                     key_value[0] + "=" + key_value[1].split("#")[0].strip() + "\n"
                 )
 
-    print(".env file created with a new SECRET_KEY and other values from .env.example.")
+    print(".env.local file created with a new SECRET_KEY and other values from .env.example.")
 
 
-# Make sure DJANGO_SETTINGS_MODULE is added to .env file
+# Make sure DJANGO_SETTINGS_MODULE is added to .env.local file
 def main():
     if "setup_env" in sys.argv:
         setup_env()

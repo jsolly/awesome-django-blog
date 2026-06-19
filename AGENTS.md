@@ -12,7 +12,7 @@ All commands run from the repo root with `.venv` activated.
 # First-time setup
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-python manage.py setup_env          # creates .env from .env.example with a fresh SECRET_KEY
+python manage.py setup_env          # creates .env.local from .env.example with a fresh SECRET_KEY
 python manage.py migrate
 python manage.py runserver
 
@@ -41,7 +41,7 @@ python manage.py import_posts utilities/seed_posts/posts.json
 # Recompute post-similarity embeddings (writes blog/df.pkl)
 python manage.py recalculate_post_simularities
 
-# Live reload (optional, set LIVERELOAD=True in .env, run in second terminal)
+# Live reload (optional, set LIVERELOAD=True in .env.local, run in second terminal)
 python manage.py livereload
 ```
 
@@ -60,7 +60,7 @@ Key cross-cutting pieces:
 
 - **CSP** is enforced via `django-csp` (`CSP_*` settings in `app/settings.py`). Adding any new external script/style/font/image source requires updating these tuples or it'll be blocked at runtime — symptom is silent breakage in the browser console, not a Django error. `livereload` injects its own CSP entries, gated on `LIVERELOAD=True`.
 - **HTML minification** runs on every response via `django-htmlmin` middleware. Disable in dev settings when debugging template whitespace.
-- **Storage** flips entirely on `USE_CLOUD`. With `USE_CLOUD=True`, default/media/static/CKEditor uploads all route through `app/storage_backends.py` to S3; otherwise FileSystemStorage + WhiteNoise. Tests force `USE_CLOUD=False` regardless of `.env`.
+- **Storage** flips entirely on `USE_CLOUD`. With `USE_CLOUD=True`, default/media/static/CKEditor uploads all route through `app/storage_backends.py` to S3; otherwise FileSystemStorage + WhiteNoise. Tests force `USE_CLOUD=False` regardless of `.env.local`.
 - **CKEditor 5 image uploads** require `CSRF_COOKIE_HTTPONLY = False`. The setting stays commented out in `app/settings.py` until image upload is actively needed.
 - **Status page** (`/status/`) is cached for 60s via `cache_page` in `LocMemCache` (per-process — assumes single-instance deploy; tests can see stale cache).
 - **GPT chatbot** loads `blog/df.pkl` (post embeddings) into memory. Files in `utilities/create_embeddings/` build it; the management command refreshes it.

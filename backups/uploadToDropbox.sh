@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Load the environment variables from .env
-source $(dirname "$0")/../.env
+# Load the environment variables from .env.local
+source $(dirname "$0")/../.env.local
 
 # Set the date for the backup file
 DATE=$(date +"%d_%m_%Y")
