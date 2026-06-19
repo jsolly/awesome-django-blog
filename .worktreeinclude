@@ -1,0 +1,19 @@
+# Gitignored files a fresh worktree needs, copied from the primary checkout.
+# One path/glob per line; `#` comments and blank lines ignored. Globs are
+# expanded against the primary worktree; zero matches is fine.
+#
+# Consumed by two paths that must stay in parity:
+#   - dotagents' WorktreeCreate hook (the EnterWorktree / `--worktree` / subagent path)
+#   - scripts/worktree-init.sh (the manual `git worktree add` path)
+#
+# COPY only — never list node_modules/.venv/dist/caches here. This is a Python
+# repo whose .venv must be a REAL `python -m venv` install (its bin/activate
+# hardcode the worktree path), so the venv is bootstrapped by worktree-init.sh,
+# never copied or symlinked.
+
+# Local secrets/config the Django app reads (app/settings.py -> load_dotenv()).
+# This repo uses a single gitignored `.env`; the `.env.*.local` globs are the
+# fleet convention and harmless here (they match nothing).
+.env
+.env.local
+.env.*.local

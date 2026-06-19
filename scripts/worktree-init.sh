@@ -19,6 +19,46 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
+# --- Allowlist copy (parity with dotagents' WorktreeCreate hook) -------------
+# The hook copies the repo's `.worktreeinclude` gitignored files into worktrees
+# it creates (EnterWorktree / --worktree / subagent isolation). The MANUAL
+# `git worktree add` path bypasses the hook, so do the same copy here. COPY,
+# never symlink (the .venv bootstrap below is the only "real install" — env
+# files are plain config). Non-fatal: a missing manifest or unmatched glob must
+# never block provisioning. Invoked via `|| true` so errexit is suppressed for
+# the whole body (a failed cp can't abort the script).
+copy_worktree_includes() {
+  local manifest="$ROOT/.worktreeinclude"
+  [ -f "$manifest" ] || return 0
+
+  # First `worktree` entry of `git worktree list --porcelain` is the primary
+  # (main) checkout — the source of truth for gitignored local files.
+  local primary
+  # Strip the literal `worktree ` prefix rather than field-splitting — a worktree
+  # path can contain spaces, which `$2` would truncate (silent no-op copy).
+  primary="$(git worktree list --porcelain 2>/dev/null | awk '/^worktree /{sub(/^worktree /, ""); print; exit}')"
+  [ -n "$primary" ] || { echo "⚠ could not resolve primary worktree — skipped .worktreeinclude copy" >&2; return 0; }
+  [ "$primary" != "$ROOT" ] || return 0  # we ARE the primary; nothing to copy
+
+  local line pattern src rel dest copied=0
+  while IFS= read -r line || [ -n "$line" ]; do
+    pattern="${line%%#*}"                       # drop inline/full-line comments
+    pattern="$(printf '%s' "$pattern" | tr -d '[:space:]')"
+    [ -n "$pattern" ] || continue
+    # Glob-expand against the primary; unmatched globs stay literal and are
+    # skipped by the -e test below (tolerate zero matches).
+    for src in "$primary"/$pattern; do
+      [ -e "$src" ] || continue
+      rel="${src#"$primary"/}"
+      dest="$ROOT/$rel"
+      mkdir -p "$(dirname "$dest")"
+      cp -p "$src" "$dest" && { echo "  • copied $rel from primary worktree"; copied=$((copied + 1)); }
+    done
+  done <"$manifest"
+  [ "$copied" -gt 0 ] && echo "✓ copied $copied gitignored file(s) per .worktreeinclude" || true
+}
+copy_worktree_includes || true
+
 # Idempotency keys on a sentinel written only after a SUCCESSFUL install — not
 # on .venv's mere existence. `python -m venv` writes bin/activate before pip
 # runs, so an interrupted install would otherwise look "done" and leave a venv
