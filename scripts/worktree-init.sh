@@ -45,6 +45,13 @@ copy_worktree_includes() {
     pattern="${line%%#*}"                       # drop inline/full-line comments
     pattern="$(printf '%s' "$pattern" | tr -d '[:space:]')"
     [ -n "$pattern" ] || continue
+    # Reject absolute paths and `..` traversal (parity with the WorktreeCreate
+    # hook). .worktreeinclude is repo-controlled, but an entry like
+    # `../../.ssh/id_rsa` would read outside the primary AND, since the
+    # prefix-strip below leaves the `..` in $rel, write outside the worktree.
+    case "/$pattern/" in
+      //* | */../*) echo "  ⚠ skipping unsafe .worktreeinclude entry '$pattern'" >&2; continue ;;
+    esac
     # Glob-expand against the primary; unmatched globs stay literal and are
     # skipped by the -e test below (tolerate zero matches).
     for src in "$primary"/$pattern; do
