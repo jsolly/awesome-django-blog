@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Auto-provision a freshly-created worktree on the MANUAL `git worktree add` path. Thin committed shim over
+# the shared dotagents logic (same "dotagents owns the logic" pattern as .git-hooks/pre-push → gate-lib.sh).
+# See ~/code/dotagents/hooks/post-checkout-provision.sh and rules/worktree-workflow.md.
+#
+# Never fail the checkout: if the shared provisioner is missing (dotagents not present) or errors, we still
+# exit 0 — a non-zero post-checkout makes `git worktree add` itself report failure.
+prov="${DOTAGENTS_POSTCHECKOUT:-$HOME/code/dotagents/hooks/post-checkout-provision.sh}"
+[ -f "$prov" ] && bash "$prov" "$@"
+exit 0
