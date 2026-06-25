@@ -80,7 +80,7 @@ ruff format app
 
 ### Pre-push gate
 
-The quality gate (ruff, collectstatic, migrate, pytest + coverage) runs locally on every push to `master` via the tracked pre-push hook. Wire it up once per clone:
+The quality gate (ruff, collectstatic, migrate, pytest + coverage) runs locally on every push to `main` via the tracked pre-push hook. Wire it up once per clone:
 
 ```shell
 git config core.hooksPath .git-hooks
@@ -171,8 +171,8 @@ python3 manage.py livereload
 
 We ♥️ our contributors.
 
-📕 We expect everyone participating in the community to abide by our [Code of Conduct](https://github.com/jsolly/awesome-django-blog/blob/master/docs/CODE_OF_CONDUCT.md). Please read and follow it. <br>
-🤝 If you'd like to contribute, start by reading our [Contribution Guide](https://github.com/jsolly/awesome-django-blog/blob/master/docs/CONTRIBUTING.md).<br>
+📕 We expect everyone participating in the community to abide by our [Code of Conduct](https://github.com/jsolly/awesome-django-blog/blob/main/docs/CODE_OF_CONDUCT.md). Please read and follow it. <br>
+🤝 If you'd like to contribute, start by reading our [Contribution Guide](https://github.com/jsolly/awesome-django-blog/blob/main/docs/CONTRIBUTING.md).<br>
 👾 Explore some [good first issues](https://github.com/jsolly/awesome-django-blog/labels/good_first_issue).<br>
 
 Let's build great software together.

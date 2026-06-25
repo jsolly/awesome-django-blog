@@ -9,8 +9,8 @@
 #
 # Deploy is NOT in this hook. The Heroku deploy method is "Heroku Git": the
 # `origin` remote carries a second push URL pointing at git.heroku.com/blogthedata,
-# so a single `git push origin master` fans out to GitHub and Heroku (Heroku builds
-# on the master push). This hook only GATES that push — no nested git push, nothing
+# so a single `git push origin main` fans out to GitHub and Heroku (Heroku builds
+# on the main push). This hook only GATES that push — no nested git push, nothing
 # to recurse into. See AGENTS.md for the one-time `git remote set-url --add --push`.
 set -euo pipefail
 
