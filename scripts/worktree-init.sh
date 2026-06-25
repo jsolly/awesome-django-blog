@@ -4,7 +4,7 @@
 #
 # Run after EnterWorktree / `git worktree add`:  npm run worktree:init
 #
-# Fresh worktrees branch from origin/master and carry no gitignored files, so
+# Fresh worktrees branch from origin/main and carry no gitignored files, so
 # .venv does not exist in them. The pre-push gate refuses to run against system
 # Python (it must use the pinned requirements.txt), so a worktree needs either
 # its own .venv (this script) or — for the common code-only change — it transpar-
