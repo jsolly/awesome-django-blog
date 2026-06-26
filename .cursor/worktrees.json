@@ -1,0 +1,5 @@
+{
+  "setup-worktree-unix": [
+    "npm run worktree:init"
+  ]
+}
