@@ -34,8 +34,17 @@ git config core.hooksPath .git-hooks
 
 # Worktree provisioning — run once after EnterWorktree / `git worktree add`
 npm run worktree:init               # creates .venv + installs pinned deps (fast on a warm pip cache)
+# A fresh worktree carries no gitignored state → no local sqlite DB and no collected
+# static manifest. The pre-push gate builds both itself (it runs collectstatic + migrate
+# before pytest), so `git push` is fine after worktree:init alone. But to run the tests
+# or any manage.py command MANUALLY first, build them once — otherwise pytest fails with
+# "no such table" / "Missing staticfiles manifest entry" (DEBUG=False uses
+# ManifestStaticFilesStorage, which requires a collectstatic manifest):
+USE_SQLITE=true python manage.py migrate --noinput   # build the local .sqlite schema
+python manage.py collectstatic --noinput             # build the static manifest
 
-# Seed data — required for many tests since base.py expects existing admin/comment_only users + "uncategorized" category
+# Seed data — for manual `runserver` browsing ONLY. The test suite does NOT need it:
+# tests/base.py self-seeds (creates admin/comment_only/uncategorized + per-test fixtures).
 python manage.py import_posts utilities/seed_posts/posts.json
 
 # Recompute post-similarity embeddings (writes blog/df.pkl)
