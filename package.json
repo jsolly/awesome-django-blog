@@ -3,7 +3,7 @@
   "private": true,
   "description": "Dev tooling only (heroku CLI) — the app itself is Python/Django",
   "engines": {
-    "node": ">=24"
+    "node": "24.x"
   },
   "scripts": {
     "check:md": "bash scripts/lint-md.sh",
