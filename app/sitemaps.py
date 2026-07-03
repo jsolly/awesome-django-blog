@@ -22,7 +22,9 @@ class CategorySitemap(Sitemap):
     priority = 0.6
 
     def items(self):
-        return Category.objects.all()
+        # order_by keeps sitemap pagination deterministic and silences Django's
+        # UnorderedObjectListWarning (Category has no Meta.ordering).
+        return Category.objects.all().order_by("name")
 
     def location(self, obj):
         return obj.get_absolute_url()
