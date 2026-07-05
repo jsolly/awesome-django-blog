@@ -31,6 +31,7 @@ from users.views import (
     MyLogoutView,
     MyPasswordResetView,
     MyPasswordResetDoneView,
+    MyPasswordResetConfirmView,
     MyPasswordResetCompleteView,
 )
 
@@ -118,6 +119,15 @@ class TestUrls(SetUp):
         self.assertEqual(
             get_url("password_reset_done").func.view_class, MyPasswordResetDoneView
         )
+
+    def test_password_reset_confirm_url_is_resolved(self):
+        # The route requires uidb64/token kwargs, so reverse() needs them
+        # (get_url() cannot be used here). Mirror the comment-update pattern.
+        url = reverse(
+            "password_reset_confirm",
+            kwargs={"uidb64": "uid", "token": "reset-token"},
+        )
+        self.assertEqual(resolve(url).func.view_class, MyPasswordResetConfirmView)
 
     def test_password_reset_complete_url_is_resolved(self):
         self.assertEqual(
