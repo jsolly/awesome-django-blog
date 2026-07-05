@@ -119,9 +119,6 @@ class TestUrls(SetUp):
             get_url("password_reset_done").func.view_class, MyPasswordResetDoneView
         )
 
-    # def test_password_reset_confirm_url_is_resolved(self): #TODO
-    #     self.assertEqual(get_url("password_reset_confirm").func.view_class, MyPasswordResetConfirmView)
-
     def test_password_reset_complete_url_is_resolved(self):
         self.assertEqual(
             get_url("password_reset_complete").func.view_class,

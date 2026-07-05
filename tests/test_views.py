@@ -494,9 +494,6 @@ class TestViews(SetUp):
         response = self.client.get(reverse("password_reset_done"))
         self.assertResponseAndTemplate(response, "users/password_reset_done.html")
 
-    # def test_password_reset_confirm_view(self):
-    #     # TODO
-
     def test_password_reset_complete(self):
         response = self.client.get(reverse("password_reset_complete"))
         self.assertResponseAndTemplate(response, "users/password_reset_complete.html")

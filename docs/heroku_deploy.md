@@ -187,7 +187,3 @@ Important Notes:
   dig <your_app_name>.com
   dig www.<your_app_name>.com
   ```
-
-## Export prod database and restore locally
-
-TODO
