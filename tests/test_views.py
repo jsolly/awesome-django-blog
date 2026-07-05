@@ -17,6 +17,9 @@ from unittest.mock import patch
 from django.urls import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.contrib.auth.models import User
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
 
 
 class TestViews(SetUp):
@@ -494,8 +497,26 @@ class TestViews(SetUp):
         response = self.client.get(reverse("password_reset_done"))
         self.assertResponseAndTemplate(response, "users/password_reset_done.html")
 
-    # def test_password_reset_confirm_view(self):
-    #     # TODO
+    def test_password_reset_confirm_view(self):
+        # A valid GET carries a uidb64/token pair; Django's confirm view
+        # validates the token, stashes it in the session, and redirects to the
+        # set-password URL, which renders the same confirm template. follow=True
+        # is required: the per-test self.client does not follow redirects.
+        uidb64 = urlsafe_base64_encode(force_bytes(self.admin_user.pk))
+        token = default_token_generator.make_token(self.admin_user)
+        response = self.client.get(
+            reverse(
+                "password_reset_confirm",
+                kwargs={"uidb64": uidb64, "token": token},
+            ),
+            follow=True,
+        )
+        self.assertResponseAndTemplate(response, "users/password_reset_confirm.html")
+        # The template renders at 200 even for an invalid link, so assert the
+        # valid-token signal explicitly: the initial GET must 302 to the
+        # set-password step and the final view must report a valid link.
+        self.assertEqual(len(response.redirect_chain), 1)
+        self.assertTrue(response.context["validlink"])
 
     def test_password_reset_complete(self):
         response = self.client.get(reverse("password_reset_complete"))
