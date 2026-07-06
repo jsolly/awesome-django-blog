@@ -187,3 +187,76 @@ Important Notes:
   dig <your_app_name>.com
   dig www.<your_app_name>.com
   ```
+
+## Export prod database and restore locally
+
+Production runs on Heroku Postgres, so you cannot restore a prod dump into the
+default local SQLite database. Restore into a **local PostgreSQL** instance and
+point Django at it with `USE_SQLITE=False`.
+
+The Heroku CLI ships as a dev dependency in this repo, so the commands below
+call it through `npx heroku` (run `npm install` first if you haven't).
+
+1. Make sure a local PostgreSQL server is running and create an empty database
+   to restore into:
+
+   ```bash
+   createdb blogthedata_local
+   ```
+
+2. Point your local `.env.local` at that database (see `.env.example` for the
+   full list). The relevant variables are:
+
+   ```bash
+   USE_SQLITE=False
+   DB_ENGINE=django.db.backends.postgresql
+   DB_NAME=blogthedata_local
+   DB_USER=<your_local_pg_user>
+   DB_PASS=<your_local_pg_password>
+   DB_HOST=localhost
+   DB_PORT=5432
+   ```
+
+3. Capture a fresh backup of the production database:
+
+   ```bash
+   npx heroku pg:backups:capture -a <your_app_name>
+   ```
+
+4. Download the backup. This writes a `latest.dump` file to your current
+   directory:
+
+   ```bash
+   npx heroku pg:backups:download -a <your_app_name>
+   ```
+
+5. Restore the dump into your local database. `--clean` drops existing objects
+   first, and `--no-acl --no-owner` skips the Heroku-specific roles and grants
+   that don't exist locally:
+
+   ```bash
+   pg_restore --verbose --clean --no-acl --no-owner \
+     -h localhost -U <your_local_pg_user> -d blogthedata_local latest.dump
+   ```
+
+6. Apply any migrations that are newer than the production snapshot, then start
+   the app to confirm the data loaded:
+
+   ```bash
+   python manage.py migrate
+   python manage.py runserver
+   ```
+
+7. Remove the dump when you're done — it contains production data:
+
+   ```bash
+   rm latest.dump
+   ```
+
+> **Shortcut:** `npx heroku pg:pull` combines steps 3-5 by streaming the prod
+> database straight into a new local one (the target database must **not**
+> already exist):
+>
+> ```bash
+> npx heroku pg:pull DATABASE_URL blogthedata_local -a <your_app_name>
+> ```
