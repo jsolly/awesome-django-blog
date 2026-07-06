@@ -1,4 +1,3 @@
-from openai import Embedding, Completion
 from typing import List
 from scipy import spatial
 import pickle
@@ -7,6 +6,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer, ENGLISH_STOP_WORDS
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 from .models import Post, Similarity
+from .gemini import embed_text, generate_text
 import string
 import re
 
@@ -42,15 +42,13 @@ def distances_from_embeddings(
     return distances
 
 
-def create_context(question, df, max_len=1800, size="ada"):
+def create_context(question, df, max_len=1800):
     """
     Create a context for a question by finding the most similar context from the dataframe
     """
 
     # Get the embeddings for the question
-    q_embeddings = Embedding.create(input=question, engine="text-embedding-ada-002")[
-        "data"
-    ][0]["embedding"]
+    q_embeddings = embed_text(question)
 
     # Get the distances from the embeddings
     df["distances"] = distances_from_embeddings(
@@ -77,13 +75,9 @@ def create_context(question, df, max_len=1800, size="ada"):
 
 
 def answer_question(
-    model="gpt-3.5-turbo-instruct",
     question=None,
     max_len=1800,
-    size="ada",
-    debug=False,
     max_tokens=150,
-    stop_sequence=None,
     df=global_df,
 ):
     """
@@ -93,25 +87,14 @@ def answer_question(
         question,
         df,
         max_len=max_len,
-        size=size,
     )
-    # If debug, print the raw model response
-    # if debug:
-    #     print("Context:\n" + context)
-    #     print("\n\n")
 
-    # Create a completions using the question and context
-    response = Completion.create(
-        prompt=f"Answer the question based on the context below, and if the question can't be answered based on the context, say \"I don't know\"\n\nContext: {context}\n\n---\n\nQuestion: {question}\nAnswer:",
-        temperature=0,
-        max_tokens=max_tokens,
-        top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0,
-        stop=stop_sequence,
-        model=model,
+    prompt = (
+        "Answer the question based on the context below, and if the question "
+        "can't be answered based on the context, say \"I don't know\"\n\n"
+        f"Context: {context}\n\n---\n\nQuestion: {question}\nAnswer:"
     )
-    return response["choices"][0]["text"].strip()
+    return generate_text(prompt, max_output_tokens=max_tokens, temperature=0)
 
 
 def preprocess_text(text: str) -> str:

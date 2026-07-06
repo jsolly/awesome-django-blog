@@ -1,12 +1,10 @@
 # Standard library imports
 import html
 import logging
-import os
 from datetime import datetime
 import shutil
 
 # Third-party imports
-import openai
 import psycopg
 import psutil
 
@@ -35,10 +33,10 @@ from django.views.generic import (
 from .models import Post, Category, Comment
 from .forms import PostForm, CommentForm
 from .utils import answer_question
+from .gemini import generate_text
 from users.models import User
 
 
-openai.api_key = os.environ.get("OPENAI_API_KEY")
 ez_logger = logging.getLogger("ezra_logger")
 
 _LOG_PREVIEW_MAX_CHARS = 500
@@ -123,7 +121,7 @@ class StatusView(TemplateView):
         # Get the disk usage
         disk_usage_info = shutil.disk_usage("/")
         total, used, free = disk_usage_info
-        disk_usage = f"{used // (2 ** 30)}GB / {total // (2 ** 30)}GB"
+        disk_usage = f"{used // (2**30)}GB / {total // (2**30)}GB"
 
         context = {
             "title": "Status | Blogthedata.com",
@@ -157,7 +155,9 @@ class AllPostsView(ListView):
         context = super().get_context_data(*args, **kwargs)
         context["url"] = self.request.path
         context["title"] = "All Posts | Blogthedata.com"
-        context["description"] = "Explore insightful articles on geospatial solutions, cloud-native tech, and more from a seasoned software engineer. Dive into the latest posts now!"
+        context["description"] = (
+            "Explore insightful articles on geospatial solutions, cloud-native tech, and more from a seasoned software engineer. Dive into the latest posts now!"
+        )
         return context
 
 
@@ -181,9 +181,9 @@ class HomeView(ListView):
         context = super().get_context_data(*args, **kwargs)
         context["url"] = self.request.path
         context["title"] = "Solly's Blog | Blogthedata.com"
-        context[
-            "description"
-        ] = "Gain productivity and stay informed on the latest geospatial web dev techniques with blog posts from a geospatial software engineer. Get valuable insights."
+        context["description"] = (
+            "Gain productivity and stay informed on the latest geospatial web dev techniques with blog posts from a geospatial software engineer. Get valuable insights."
+        )
         return context
 
 
@@ -206,9 +206,9 @@ class CategoryView(ListView):
         context["category"] = category
         context["url"] = self.request.path
         context["title"] = f"{category.name.title()} | Blogthedata.com"
-        context[
-            "description"
-        ] = f"Get tips and insights on {category.name.title()} from a geospatial engineer. Read the latest blog posts and stay up-to-date on the latest industry trends."
+        context["description"] = (
+            f"Get tips and insights on {category.name.title()} from a geospatial engineer. Read the latest blog posts and stay up-to-date on the latest industry trends."
+        )
         return context
 
     def get_template_names(self):
@@ -256,9 +256,9 @@ class SearchView(ListView):
         context["searched"] = self.request.GET.get("searched")
         context["num_results"] = self.get_queryset().count()
         context["title"] = f"Search Results for {self.request.GET.get('searched')}"
-        context[
-            "description"
-        ] = f"Search results for {self.request.GET.get('searched')}"
+        context["description"] = (
+            f"Search results for {self.request.GET.get('searched')}"
+        )
         return context
 
 
@@ -282,7 +282,7 @@ class PostDetailView(DetailView):
         context["description"] = self.object.metadesc
         context["comment_form"] = CommentForm()
         context["related_posts"] = related_posts
-        
+
         if self.object.metaimg:
             try:
                 context["metaimg_url"] = self.object.metaimg.url
@@ -435,7 +435,9 @@ class CommentDeleteView(UserPassesTestMixin, View):
         if self.request.htmx:
             if post.comments.count() == 0:
                 oob_swap_command = '<div hx-swap-oob="true" id="no-comments-message">No comments yet</div>'
-                return HttpResponse(oob_swap_command, status=200, reason="Comment deleted successfully")
+                return HttpResponse(
+                    oob_swap_command, status=200, reason="Comment deleted successfully"
+                )
             return HttpResponse(status=200, reason="Comment deleted successfully")
         return redirect("post-detail", slug=post.slug)
 
@@ -444,12 +446,7 @@ def generate_gpt_input_value(request):
     def get_safe_completion(prompt, max_tokens, trigger):
         try:
             completion = (
-                openai.Completion.create(
-                    model="gpt-3.5-turbo-instruct",
-                    prompt=prompt,
-                    max_tokens=max_tokens,
-                    temperature=0.5,
-                )["choices"][0]["text"]
+                generate_text(prompt, max_output_tokens=max_tokens, temperature=0.5)
                 .replace("\n", "")
                 .replace('"', "")
             )
@@ -528,6 +525,12 @@ def answer_question_with_GPT(request):
             },
         )
         raise
-    response = f"<div class='messages__item messages__item--bot'>{completion}</div>"
+    # Escape the model output before reflecting it into HTML: the answer is
+    # driven by untrusted input (the question and RAG context from post bodies),
+    # so a prompt-injection payload must not render as live markup.
+    safe_completion = html.escape(completion)
+    response = (
+        f"<div class='messages__item messages__item--bot'>{safe_completion}</div>"
+    )
 
     return HttpResponse(response)

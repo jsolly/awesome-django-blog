@@ -35,37 +35,42 @@ class TestUtils(TestCase, MiddlewareMixin):
             self.assertIn(keyword, tokens)
 
     @patch("blog.utils.load_pickle_file")
-    @patch("openai.Embedding.create")
-    def test_create_context(self, mock_create, mock_load_pickle_file):
+    @patch("blog.utils.embed_text")
+    def test_create_context(self, mock_embed_text, mock_load_pickle_file):
         mock_load_pickle_file.return_value = pd.DataFrame(
             {
                 "text": ["The capital of the United States is Washington, D.C."],
-                "embeddings": [np.random.random(512)],
+                "embeddings": [np.random.random(1536)],
                 "n_tokens": [10],
                 "content": ["The capital of the United States is Washington, D.C."],
             }
         )
-        mock_create.return_value = {"data": [{"embedding": np.random.random(512)}]}
+        mock_embed_text.return_value = np.random.random(1536)
         context = create_context(
             "What is the capital of the United States of America?",
             mock_load_pickle_file.return_value,
         )
         self.assertIsInstance(context, str)
+        # The selected context must actually carry the source row's content,
+        # not just be some string — otherwise the retrieval logic is untested.
+        self.assertIn("Washington, D.C.", context)
 
     @patch("blog.utils.load_pickle_file")
-    @patch("openai.Embedding.create")
-    def test_create_context_exceed_max_len(self, mock_create, mock_load_pickle_file):
+    @patch("blog.utils.embed_text")
+    def test_create_context_exceed_max_len(
+        self, mock_embed_text, mock_load_pickle_file
+    ):
         mock_load_pickle_file.return_value = pd.DataFrame(
             {
                 "text": ["The capital of the United States is Washington, D.C."]
                 * 200,  # Multiply by 200 to exceed max_len
-                "embeddings": [np.random.random(512)] * 200,
+                "embeddings": [np.random.random(1536)] * 200,
                 "n_tokens": [10] * 200,
                 "content": ["The capital of the United States is Washington, D.C."]
                 * 200,
             }
         )
-        mock_create.return_value = {"data": [{"embedding": np.random.random(512)}]}
+        mock_embed_text.return_value = np.random.random(1536)
         context = create_context(
             "What is the capital of the United States of America?",
             mock_load_pickle_file.return_value,
@@ -73,27 +78,25 @@ class TestUtils(TestCase, MiddlewareMixin):
         self.assertIsInstance(context, str)
         self.assertTrue(len(context.split(" ")) <= 1800)
 
-    @patch("openai.Embedding.create")
-    @patch("openai.Completion.create")
+    @patch("blog.utils.embed_text")
+    @patch("blog.utils.generate_text")
     @patch("blog.utils.load_pickle_file")
     def test_answer_question(
-        self, mock_load_pickle_file, mock_create, mock_embedding_create
+        self, mock_load_pickle_file, mock_generate_text, mock_embed_text
     ):
         df = pd.DataFrame(
             {
                 "text": ["The capital of the United States is Washington, D.C."],
                 "embeddings": [
-                    [0.0 for _ in range(512)]
-                ],  # Assuming embeddings are 512-dimensional
+                    np.random.random(1536)
+                ],  # gemini-embedding-001 is 1536-dimensional
                 "n_tokens": [10],  # Assuming the text has 10 tokens
                 "content": ["The capital of the United States is Washington, D.C."],
             }
         )
         mock_load_pickle_file.return_value = df
-        mock_create.return_value = {"choices": [{"text": "The mocked answer"}]}
-        mock_embedding_create.return_value = {
-            "data": [{"embedding": [0.0 for _ in range(512)]}]
-        }
+        mock_generate_text.return_value = "The mocked answer"
+        mock_embed_text.return_value = list(np.random.random(1536))
 
         answer = answer_question(
             question="What is the capital of the United States of America?", df=df

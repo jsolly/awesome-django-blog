@@ -28,7 +28,7 @@ django-htmlmin==0.11.0
 ## GPT Bot dependencies (Distances From Embeddings)
 matplotlib==3.10.9
 numpy==2.5.1
-openai==1.51.0
+google-genai==2.10.0
 pandas==3.0.3
 plotly==6.8.0
 scikit-learn==1.7.2

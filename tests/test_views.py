@@ -373,7 +373,6 @@ class TestViews(SetUp):
     #     response = self.client.get(category_url, {"page": 2})
     #     self.assertTrue(response.context["page_obj"].has_previous())
 
-
     def test_search_view_blank(self):
         response = self.client.get(reverse("blog-search"))
         self.assertResponseAndTemplate(response, "blog/search_posts.html")
@@ -548,9 +547,9 @@ class TestViews(SetUp):
         response = self.client.get(reverse("security-pgp-key-txt"))
         self.assertEqual(response.status_code, 200)
 
-    @patch("openai.Completion.create")
-    def test_generate_gpt_input_title(self, mock_create):
-        mock_create.return_value = {"choices": [{"text": "mocked response"}]}
+    @patch("blog.views.generate_text")
+    def test_generate_gpt_input_title(self, mock_generate_text):
+        mock_generate_text.return_value = "mocked response"
         headers = {"HTTP_HX-Trigger": "generate-title"}
         response = self.client.post(
             "/generate-with-gpt/", data={"content": "my test blog content"}, **headers
@@ -568,9 +567,11 @@ class TestViews(SetUp):
             "No content found in the post content field", response.content.decode()
         )
 
-    @patch("openai.Completion.create")
-    def test_generate_gpt_input_slug(self, mock_create):
-        mock_create.return_value = {"choices": [{"text": "mocked-response"}]}
+    @patch("blog.views.generate_text")
+    def test_generate_gpt_input_slug(self, mock_generate_text):
+        # Return an un-slugified string so the slug branch's lowercase +
+        # hyphenate transform is what produces the asserted value.
+        mock_generate_text.return_value = "Mocked Response"
         headers = {"HTTP_HX-Trigger": "generate-slug"}
         response = self.client.post(
             "/generate-with-gpt/",
@@ -592,9 +593,9 @@ class TestViews(SetUp):
             "No content found in the post title field", response.content.decode()
         )
 
-    @patch("openai.Completion.create")
-    def test_generate_gpt_input_metadesc(self, mock_create):
-        mock_create.return_value = {"choices": [{"text": "mocked response"}]}
+    @patch("blog.views.generate_text")
+    def test_generate_gpt_input_metadesc(self, mock_generate_text):
+        mock_generate_text.return_value = "mocked response"
         headers = {"HTTP_HX-Trigger": "generate-metadesc"}
         response = self.client.post(
             "/generate-with-gpt/",
@@ -616,13 +617,11 @@ class TestViews(SetUp):
             "No content found in the post content field", response.content.decode()
         )
 
-    @patch("openai.Embedding.create")
-    @patch("openai.Completion.create")
-    def test_answer_question_with_gpt(
-        self, mock_completion_create, mock_embedding_create
-    ):
-        mock_embedding_create.return_value = {"data": [{"embedding": [0.1] * 1536}]}
-        mock_completion_create.return_value = {"choices": [{"text": "mocked response"}]}
+    @patch("blog.utils.embed_text")
+    @patch("blog.utils.generate_text")
+    def test_answer_question_with_gpt(self, mock_generate_text, mock_embed_text):
+        mock_embed_text.return_value = [0.1] * 1536
+        mock_generate_text.return_value = "mocked response"
         response = self.client.post(
             "/answer-with-gpt/", data={"question-text-area": "Test question?"}
         )
