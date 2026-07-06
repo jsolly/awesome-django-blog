@@ -110,44 +110,53 @@ else:
         logger.error(message)
         sys.exit(1)
 
-# Content Security Policy
-CSP_SCRIPT_SRC_ELEM = (
-    "'self'", 
-    "'unsafe-inline'", 
+# Content Security Policy (django-csp 4.0 dict format)
+_CSP_SCRIPT_SRC_ELEM = [
+    "'self'",
+    "'unsafe-inline'",
     STATIC_HOST,
-)
-CSP_SCRIPT_SRC = (
-    "'self'", 
-    "'unsafe-eval'", 
-    "'unsafe-inline'", 
+]
+_CSP_SCRIPT_SRC = [
+    "'self'",
+    "'unsafe-eval'",
+    "'unsafe-inline'",
     STATIC_HOST,
-)
-CSP_CONNECT_SRC = tuple(["'self'"] + FULLY_QUALIFIED_ALLOWED_HOSTS)
+]
+_CSP_CONNECT_SRC = ["'self'"] + FULLY_QUALIFIED_ALLOWED_HOSTS
 
 # Livereload.js is on 127.0.0.1:35729
 # There is never a reason to allow livereload.js in production
 if DEBUG and get_bool_env("LIVERELOAD"):
-    CSP_SCRIPT_SRC_ELEM += ("http://127.0.0.1:35729",)
-    CSP_SCRIPT_SRC += ("http://127.0.0.1:35729",)
-    CSP_CONNECT_SRC += ("ws://127.0.0.1:35729",)
+    _CSP_SCRIPT_SRC_ELEM += ["http://127.0.0.1:35729"]
+    _CSP_SCRIPT_SRC += ["http://127.0.0.1:35729"]
+    _CSP_CONNECT_SRC += ["ws://127.0.0.1:35729"]
 
-CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", STATIC_HOST)
-CSP_MEDIA_SRC = "'self'"
-CSP_IMG_SRC = tuple(["'self'", "data:", "https://openstreetmap.org", "https://*.openstreetmap.org", STATIC_HOST] +
-                    FULLY_QUALIFIED_ALLOWED_HOSTS)
-CSP_FONT_SRC = "'self'"
-CSP_FRAME_SRC = tuple(["'self'"] + 
-                     FULLY_QUALIFIED_ALLOWED_HOSTS +
-                     ["https://youtube.com",
-                      "https://*.youtube.com",
-                      "https://nbviewer.org/",
-                      "https://*.nbviewer.org/"])
-CSP_FRAME_ANCESTORS = ("'self'",)
-CSP_BASE_URI = ("'none'",)
-CSP_FORM_ACTION = "'self'"
-CSP_OBJECT_SRC = ("'self'",)
-CSP_WORKER_SRC = ("'self'", "blob:")
-CSP_EXCLUDE_URL_PREFIXES = "/admin"
+CONTENT_SECURITY_POLICY = {
+    "EXCLUDE_URL_PREFIXES": ["/admin"],
+    "DIRECTIVES": {
+        "script-src-elem": _CSP_SCRIPT_SRC_ELEM,
+        "script-src": _CSP_SCRIPT_SRC,
+        "connect-src": _CSP_CONNECT_SRC,
+        "style-src": ["'self'", "'unsafe-inline'", STATIC_HOST],
+        "media-src": ["'self'"],
+        "img-src": ["'self'", "data:", "https://openstreetmap.org", "https://*.openstreetmap.org", STATIC_HOST]
+        + FULLY_QUALIFIED_ALLOWED_HOSTS,
+        "font-src": ["'self'"],
+        "frame-src": ["'self'"]
+        + FULLY_QUALIFIED_ALLOWED_HOSTS
+        + [
+            "https://youtube.com",
+            "https://*.youtube.com",
+            "https://nbviewer.org/",
+            "https://*.nbviewer.org/",
+        ],
+        "frame-ancestors": ["'self'"],
+        "base-uri": ["'none'"],
+        "form-action": ["'self'"],
+        "object-src": ["'self'"],
+        "worker-src": ["'self'", "blob:"],
+    },
+}
 
 INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
