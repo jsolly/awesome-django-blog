@@ -39,8 +39,8 @@ heroku config:set AWS_ACCESS_KEY_ID=<your-aws-key> -a <your_app_name>
 heroku config:set AWS_SECRET_ACCESS_KEY=<your-aws-secret> -a <your_app_name>
 heroku config:set AWS_STORAGE_BUCKET_NAME=<your-bucket-name> -a <your_app_name>
 
-# OpenAI
-heroku config:set OPENAI_API_KEY=<your-openai-key> -a <your_app_name>
+# Google Gemini
+heroku config:set GEMINI_API_KEY=<your-gemini-key> -a <your_app_name>
 ```
 
 ## Database Setup
