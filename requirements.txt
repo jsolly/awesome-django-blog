@@ -21,13 +21,13 @@ django-csp==3.7
 gunicorn==22.0.0
 django-sri==0.8.0
 whitenoise==6.7.0
-boto3==1.35.55
+boto3==1.43.40
 django-storages==1.14.4
 django-htmlmin==0.11.0
 
 ## GPT Bot dependencies (Distances From Embeddings)
 matplotlib==3.10.9
-numpy==2.3.5
+numpy==2.5.1
 openai==1.51.0
 pandas==3.0.3
 plotly==6.8.0
