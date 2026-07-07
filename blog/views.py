@@ -510,6 +510,14 @@ def generate_gpt_input_value(request):
 @csrf_exempt
 def answer_question_with_GPT(request):
     question = request.POST.get("question-text-area", "")
+    # Guard the paid LLM call: an empty question (send-button click or a
+    # direct POST — the Enter path is already filtered client-side) gets a
+    # canned reply instead of a completion request.
+    if not question.strip():
+        return HttpResponse(
+            "<div class='messages__item messages__item--bot'>"
+            "Please type a question first.</div>"
+        )
     ez_logger.info(
         "GPT question received",
         extra={"question_preview": _bounded_log_preview(question)},

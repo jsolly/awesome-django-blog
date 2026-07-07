@@ -627,3 +627,16 @@ class TestViews(SetUp):
         )
         self.assertEqual(response.status_code, 200)
         self.assertIn("mocked response", response.content.decode())
+
+    @patch("blog.utils.embed_text")
+    @patch("blog.utils.generate_text")
+    def test_answer_question_with_gpt_empty_question_skips_openai(
+        self, mock_generate_text, mock_embed_text
+    ):
+        response = self.client.post(
+            "/answer-with-gpt/", data={"question-text-area": "   \n"}
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("Please type a question first", response.content.decode())
+        mock_generate_text.assert_not_called()
+        mock_embed_text.assert_not_called()
