@@ -58,6 +58,9 @@ body {
   margin: 0;
   line-height: 1.6;
   overflow-x: hidden;
+  /* Inherited default so text outside the :is() element list below (divs,
+     spans, bare text in post content) stays readable in dark mode. */
+  color: var(--secondary-color);
 }
 
 body,
@@ -863,9 +866,7 @@ h2 {
   .word-count,
   label,
   input,
-  form,
-
-) {
+  form) {
   color: var(--secondary-color);
 }
 
