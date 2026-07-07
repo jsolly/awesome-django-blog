@@ -7,11 +7,10 @@
 # full output on red) — live in the lib. This file declares only the Django
 # quality steps plus the repo-specific .venv resolution.
 #
-# Deploy is NOT in this hook. The Heroku deploy method is "Heroku Git": the
-# `origin` remote carries a second push URL pointing at git.heroku.com/blogthedata,
-# so a single `git push origin main` fans out to GitHub and Heroku (Heroku builds
-# on the main push). This hook only GATES that push — no nested git push, nothing
-# to recurse into. See AGENTS.md for the one-time `git remote set-url --add --push`.
+# Deploy is NOT in this hook. Heroku auto-deploys from GitHub main (the Heroku
+# app is connected to the GitHub repo with automatic deploys), so a `main` push
+# or PR merge triggers the production build on Heroku's side. This hook only
+# GATES the push — no nested git push, nothing to recurse into. See AGENTS.md.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"; cd "$ROOT"

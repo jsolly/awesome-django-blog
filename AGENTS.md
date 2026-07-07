@@ -2,7 +2,7 @@
 
 ## Stack
 
-Django 5.2 blogging platform on Python 3.14. SQLite by default, Postgres optional. HTMX for partial updates, CKEditor 5 for authoring, OpenAI for chatbot/title generation. WhiteNoise + optional S3/CloudFront for static/media. Deploys via Procfile (Heroku-style).
+Django 5.2 blogging platform on Python 3.14. SQLite by default, Postgres optional. HTMX for partial updates, CKEditor 5 for authoring, Google Gemini (`blog/gemini.py`) for chatbot/title generation. WhiteNoise + optional S3/CloudFront for static/media. Deploys via Procfile (Heroku-style).
 
 ## Common Commands
 
@@ -86,18 +86,9 @@ npx heroku ps -a blogthedata                   # dyno status
 
 The gate (`.git-hooks/pre-push`) must run against the pinned project deps, never system Python, so it needs a `.venv` (and the pinned `markdownlint-cli2` from `node_modules` for the markdown sub-gate). A fresh git worktree branches from `origin/main` and carries no gitignored files, so it starts without either. Two paths cover that without a manual install of the heavy scientific stack (numpy/scipy/scikit-learn/pandas/matplotlib): for a **code-only** change the gate transparently **borrows the main checkout's `.venv` and `node_modules`** (resolved via the shared git common dir) when the worktree's `requirements.txt` / `package-lock.json` are byte-identical to the main checkout's — zero setup, fully offline. If you **changed those deps** in the worktree the borrowed copy would be stale, so the gate refuses and tells you to run **`npm run worktree:init`**, which builds the worktree its own `.venv` + `node_modules` (fast on warm pip/npm caches). System Python is never used either way.
 
-Deploy is **local**. GitHub `main` no longer auto-deploys — the Heroku deploy method was switched off GitHub integration to "Heroku Git". Instead, the `origin` remote carries **two push URLs**: GitHub and `https://git.heroku.com/blogthedata.git`. A single `git push origin main` fans out to both inside one push operation (Heroku builds on the `main` push), so there is no separate deploy command and nothing for the pre-push hook to recurse into — the hook (`.git-hooks/pre-push`) only runs the lint/test gate, which blocks **both** pushes if it fails.
+Deploy is **automatic from GitHub `main`**: Heroku is connected to the GitHub repo with automatic deploys, so **merging a PR (or any push to `main`) triggers a production build** — there is no local deploy command and no push URL to `git.heroku.com` (the old "Heroku Git" dual-push-URL model is dead; don't re-add push URLs to `.git/config`). The pre-push hook (`.git-hooks/pre-push`) runs the lint/test gate only — it is the last local quality check before a `main` push deploys.
 
-One-time setup on each clone (the push URLs live in local `.git/config`, not in the repo), after `npx heroku login` so git is authenticated to `git.heroku.com`:
-
-```bash
-git remote set-url --add --push origin git@github.com:jsolly/awesome-django-blog.git
-git remote set-url --add --push origin https://git.heroku.com/blogthedata.git
-# verify — `git remote -v` should list both under (push):
-git remote -v
-```
-
-(Adding any explicit push URL disables the implicit fetch-URL fallback for pushing, which is why GitHub must be listed explicitly too.) Heroku ignores pushes to any branch other than `main`/`master`, so feature-branch pushes fan out harmlessly. No Heroku-side build customization, Procfile + buildpacks only.
+**Agents: never merge PRs on this repo.** Because merge = prod deploy and there is no CI or branch protection (GitHub shows PRs as clean without running anything), the human merges after reviewing. Open the PR, report it, and stop — do not run `gh pr merge` in any form (`--auto` merges instantly here). Validate locally via the worktree + pre-push gate before opening the PR; verify a deploy landed with `npx heroku releases` after the human merges. No Heroku-side build customization, Procfile + buildpacks only.
 
 **S3 access** (django-storages → S3 + CloudFront, gated on `USE_CLOUD=True`): the Heroku dyno authenticates via a long-lived static IAM key set as Heroku config vars (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_STORAGE_BUCKET_NAME`). The IAM user is **`awesome-django-blog-heroku`** with a single bucket-scoped inline policy `awesome-django-blog-s3-access` — `s3:Get/Put/Delete/ListBucket/ACL` on `arn:aws:s3:::blogthedata` only. **Don't widen.** Heroku doesn't issue OIDC tokens to dynos ([heroku/roadmap#247](https://github.com/heroku/roadmap/issues/247)), so the long-lived key is unavoidable; the narrow policy is the mitigation. AWS console/CLI: use credentials for account `730335616323` via local `AWS_PROFILE` — do not commit profile names in this repo.
 
