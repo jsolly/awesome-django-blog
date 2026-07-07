@@ -21,20 +21,18 @@ document.addEventListener("DOMContentLoaded", () => {
         textArea.style.height = `${textArea.scrollHeight}px`;
       });
 
+      // Keep the newline out of the textarea so an empty Enter can't grow it;
+      // sending stays on keyup so htmx reads the value before it is cleared.
+      textArea.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" && !event.shiftKey) {
+          event.preventDefault();
+        }
+      });
+
       textArea.addEventListener("keyup", ({ key, shiftKey }) => {
         if (key === "Enter" && !shiftKey) {
           this.onSendButton();
         }
-      });
-
-      const observer = new MutationObserver(() => {
-        textArea.style.height = "auto";
-      });
-
-      observer.observe(textArea, {
-        childList: true,
-        subtree: true,
-        characterData: true,
       });
     }
 
@@ -49,13 +47,12 @@ document.addEventListener("DOMContentLoaded", () => {
     onSendButton() {
       const textField = this.chatBox.querySelector("#question-text-area");
       const text = textField.value.trim();
-      if (text === "" || text === "\n") {
+      textField.value = "";
+      textField.style.height = "auto";
+      if (text === "") {
         return;
       }
       this.updateChatText(text);
-      textField.value = "";
-      textField.style.height = "auto";
-      textField.dispatchEvent(new Event("input"));
     }
 
     updateChatText(text) {
