@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
-# Pre-push gate for awesome-django-blog (Python/Django).
+# Pre-commit gate for awesome-django-blog (Python/Django).
 #
 # Thin shim over the shared fleet gate library (dotagents/gate/gate-lib.sh): the
-# ~100 lines of shared boilerplate — push-ref parsing, the gitleaks secrets scan,
-# markdown-lint-on-change, the doc-only fast path, and run_step (silent on green,
-# full output on red) — live in the lib. This file declares only the Django
-# quality steps plus the repo-specific .venv resolution.
+# ~100 lines of shared boilerplate — the staged secrets scan, markdown-lint-on-
+# change, the doc-only fast path, and run_step (silent on green, full output on
+# red) — live in the lib. This file declares only the Django quality steps plus
+# the repo-specific .venv resolution.
 #
-# Deploy is NOT in this hook. The Heroku deploy method is "Heroku Git": the
-# `origin` remote carries a second push URL pointing at git.heroku.com/blogthedata,
-# so a single `git push origin main` fans out to GitHub and Heroku (Heroku builds
-# on the main push). This hook only GATES that push — no nested git push, nothing
-# to recurse into. See AGENTS.md for the one-time `git remote set-url --add --push`.
+# The gate now fires at COMMIT time (not push). The push itself is ungated —
+# GitHub Actions CI is the backstop that re-runs the battery on the exact commit.
+# Deploy is NOT in this hook: Heroku deploys via its GitHub integration when a
+# PR merges to main, so there is no push-time deploy to gate and nothing to
+# recurse into.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"; cd "$ROOT"
@@ -21,7 +21,7 @@ source "${DOTAGENTS_GATE_LIB:-$HOME/code/dotagents/gate/gate-lib.sh}" || {
   exit 1
 }
 
-gate_begin "awesome-django-blog"   # parse push; gitleaks; md-lint; doc-only fast path; banner; ERR trap
+gate_begin_commit "awesome-django-blog"   # skip-paths; staged gitleaks; md-lint; doc-only fast path; banner; ERR trap
 
 # The gate must run against the pinned project deps, never system Python.
 # A fresh worktree has no .venv, so borrow the MAIN checkout's (resolved via the
@@ -68,7 +68,7 @@ export SITE_ID=1
 gate_require_node
 
 # --- Quality gate (run_step: silent on green, full output + abort on red) ---
-run_step "dep grounding"  gate_check_dep_grounding .git-hooks/pre-push scripts/*.sh
+run_step "dep grounding"  gate_check_dep_grounding .git-hooks/pre-commit scripts/*.sh
 run_step "yaml lint"      npm run check:yaml
 run_step "ruff lint"      ruff check --config ./config/pyproject.toml app
 run_step "collectstatic"  python3 manage.py collectstatic --noinput
@@ -76,4 +76,4 @@ run_step "migrate"        python3 manage.py migrate --noinput
 run_step "pytest + coverage" coverage run --rcfile=config/.coveragerc -m pytest tests
 # Stream the coverage table — it's small and the per-file summary is useful signal.
 coverage report -m --skip-covered --rcfile=config/.coveragerc
-echo "✓ pre-push gate complete"
+echo "✓ pre-commit gate complete"

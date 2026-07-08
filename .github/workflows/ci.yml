@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    name: ci
+    runs-on: ubuntu-latest
+    # Mirror the pre-push gate's test-only Django settings (.git-hooks/pre-push).
+    env:
+      DEBUG: "False"
+      LOGGING: "False"
+      DJANGO_SETTINGS_MODULE: app.settings
+      USE_SQLITE: "True"
+      USE_CLOUD: "False"
+      SECURE_SSL_REDIRECT: "False"
+      SECRET_KEY: "Not applicable for tests"
+      ALLOWED_HOSTS: "127.0.0.1 localhost"
+      SITE_ID: "1"
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version-file: .python-version
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: yaml lint
+        run: yamllint .
+      - name: ruff lint
+        run: ruff check --config ./config/pyproject.toml app
+      - name: collectstatic
+        run: python manage.py collectstatic --noinput
+      - name: migrate
+        run: python manage.py migrate --noinput
+      - name: pytest + coverage
+        run: coverage run --rcfile=config/.coveragerc -m pytest tests
+      - name: coverage report
+        run: coverage report -m --skip-covered --rcfile=config/.coveragerc
