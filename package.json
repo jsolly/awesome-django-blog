@@ -7,7 +7,7 @@
 	},
 	"scripts": {
 		"check:md": "bash scripts/lint-md.sh",
-		"check:yaml": "yamllint .",
+		"check:yaml": "yamllint -s .",
 		"worktree:init": "bash scripts/worktree-init.sh",
 		"check:actions": "bash scripts/check-actions.sh"
 	},
