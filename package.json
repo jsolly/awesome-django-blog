@@ -1,17 +1,20 @@
 {
-  "name": "awesome-django-blog-tooling",
-  "private": true,
-  "description": "Dev tooling only (heroku CLI) — the app itself is Python/Django",
-  "engines": {
-    "node": "24.x"
-  },
-  "scripts": {
-    "check:md": "bash scripts/lint-md.sh",
-    "check:yaml": "yamllint .",
-    "worktree:init": "bash scripts/worktree-init.sh"
-  },
-  "devDependencies": {
-    "heroku": "^11.4.0",
-    "markdownlint-cli2": "0.22.1"
-  }
+	"name": "awesome-django-blog-tooling",
+	"private": true,
+	"description": "Dev tooling only (heroku CLI) — the app itself is Python/Django",
+	"engines": {
+		"node": "24.x"
+	},
+	"scripts": {
+		"check:md": "bash scripts/lint-md.sh",
+		"check:yaml": "yamllint .",
+		"worktree:init": "bash scripts/worktree-init.sh",
+		"check:actions": "bash scripts/check-actions.sh"
+	},
+	"devDependencies": {
+		"github-actionlint": "^1.7.12",
+		"heroku": "^11.4.0",
+		"markdownlint-cli2": "0.22.1",
+		"shellcheck": "^4.1.0"
+	}
 }
