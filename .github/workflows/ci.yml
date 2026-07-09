@@ -42,7 +42,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: yaml lint
-        run: yamllint .
+        run: yamllint -s .
       - name: ruff lint
         run: ruff check --config ./config/pyproject.toml app
       - name: collectstatic
