@@ -5,7 +5,7 @@ django-ckeditor-5==0.2.20
 django-htmx==1.16.0
 django-resized==1.0.2
 django-robots==6.1
-feedparser==6.0.11
+feedparser==6.0.12
 filetype==1.2.0
 Pillow==12.2.0
 psycopg[binary]==3.3.4
