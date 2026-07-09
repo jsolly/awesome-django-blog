@@ -46,5 +46,5 @@ django-livereload-server==0.5.1
 pre-commit==4.6.0
 pytest==9.0.3
 ruff==0.15.18
-tiktoken==0.12.0 # Creating embeddings
+tiktoken==0.13.0 # Creating embeddings
 yamllint==1.38.0 # Pre-push YAML lint (check:yaml); pinned so the gate runs offline (no registry egress needed)
