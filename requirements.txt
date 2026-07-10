@@ -7,7 +7,7 @@ django-resized==1.0.2
 django-robots==6.1
 feedparser==6.0.12
 filetype==1.2.0
-Pillow==12.2.0
+Pillow==12.3.0
 psycopg[binary]==3.3.4
 psutil==7.2.2
 python-dotenv==1.2.2
