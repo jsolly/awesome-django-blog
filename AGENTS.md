@@ -54,7 +54,7 @@ python manage.py recalculate_post_simularities
 python manage.py livereload
 ```
 
-Default seeded accounts: `admin/admin` and `comment_only/comment_only`.
+Default seeded accounts: `admin/admin` and `comment_only/comment_only`. For browser smoke / admin login, use `DEFAULT_USER` / `DEFAULT_PASSWORD` from `.env.local` (see `.env.example`; keep in sync with the seed).
 
 ## Architecture
 
@@ -97,3 +97,11 @@ Deploy is **automatic from GitHub `main`**: Heroku is connected to the GitHub re
 - Ruff config (`config/pyproject.toml`) ignores `E402`, `E501`, `F403` and excludes `apps.py` / `*/settings/*` — these accommodate Django star-imports, top-of-file `setup()` calls in tests, and intentional long lines.
 - Test convention: flat `tests/test_<module>.py` mirroring the source module, classes inheriting `SetUp` from `tests/base.py`.
 - Conventional Commits (`feat(blog): …`, `fix(users): …`).
+
+## Local UI verification
+
+Auth-gated admin/authoring UI (public blog pages need no login). Follow `rules/frontend-verification.md` (fleet smoke: desktop + mobile screenshots, console clean).
+
+- **Dev server:** with `.venv` activated — `python manage.py runserver` → <http://127.0.0.1:8000>
+- **Sign-in:** Django auth with `DEFAULT_USER` and `DEFAULT_PASSWORD` from `.env.local` (see `.env.example`). Keep these in sync with seeded accounts (local defaults: `admin` / `admin` after seed/setup).
+- **Do not** invent credentials or commit `.env.local`.
