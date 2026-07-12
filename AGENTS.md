@@ -1,5 +1,17 @@
 # AGENTS.md
 
+## Ship
+
+Ship profile: `heroku-git`
+
+Integration: `pr-human-merge`
+
+CI owner: `local`
+
+Production URL: <https://www.blogthedata.com>
+
+Deployment: `heroku-github` (Heroku app `blogthedata`, auto-deployed from GitHub `main`)
+
 ## Stack
 
 Django 5.2 blogging platform on Python 3.14. SQLite by default, Postgres optional. HTMX for partial updates, CKEditor 5 for authoring, OpenAI for chatbot/title generation. WhiteNoise + optional S3/CloudFront for static/media. Deploys via Procfile (Heroku-style).
@@ -29,14 +41,14 @@ coverage report -m --skip-covered --rcfile=config/.coveragerc
 ruff check --config ./config/pyproject.toml app
 ruff format app
 
-# Git hooks — pre-push gate (tracked in .git-hooks/, configured like the rest of the fleet)
+# Git hooks — pre-commit gate (tracked in .git-hooks/, configured like the rest of the fleet)
 git config core.hooksPath .git-hooks
 
 # Worktree provisioning — run once after EnterWorktree / `git worktree add`
 npm run worktree:init               # creates .venv + installs pinned deps (fast on a warm pip cache)
 # A fresh worktree carries no gitignored state → no local sqlite DB and no collected
-# static manifest. The pre-push gate builds both itself (it runs collectstatic + migrate
-# before pytest), so `git push` is fine after worktree:init alone. But to run the tests
+# static manifest. The pre-commit gate builds both itself (it runs collectstatic + migrate
+# before pytest), so commits are fine after worktree:init alone. But to run the tests
 # or any manage.py command MANUALLY first, build them once — otherwise pytest fails with
 # "no such table" / "Missing staticfiles manifest entry" (DEBUG=False uses
 # ManifestStaticFilesStorage, which requires a collectstatic manifest):
