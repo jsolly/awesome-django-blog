@@ -39,7 +39,7 @@ django-ckeditor==6.7.3
 
 
 ## Development Dependencies
-coverage==7.15.1
+coverage==7.15.2
 django-coverage-plugin==3.2.2
 django-fastdev==1.13.0
 django-livereload-server==0.5.1
