@@ -1,28 +1,30 @@
-from django.contrib import admin
-from django.contrib.sitemaps.views import sitemap
-from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
+from django.urls import include, path
+
 from app.sitemaps import (
-    PostSitemap,
     CategorySitemap,
+    PostSitemap,
     StaticSitemap,
 )
-from .views import (
-    works_cited_view,
-    privacy_view,
-    security_txt_view,
-    security_pgp_key_view,
-)
 from users.views import (
-    RegisterView,
-    ProfileView,
     MyLoginView,
     MyLogoutView,
-    MyPasswordResetView,
-    MyPasswordResetDoneView,
-    MyPasswordResetConfirmView,
     MyPasswordResetCompleteView,
+    MyPasswordResetConfirmView,
+    MyPasswordResetDoneView,
+    MyPasswordResetView,
+    ProfileView,
+    RegisterView,
+)
+
+from .views import (
+    privacy_view,
+    security_pgp_key_view,
+    security_txt_view,
+    works_cited_view,
 )
 
 sitemaps = {
