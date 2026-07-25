@@ -1,10 +1,8 @@
 name: Auto Merge
 
-# Only PRs labeled ship-auto-merge (added by /ship) get auto-merge — not every open PR.
-# Create the label in GitHub (Settings → Labels) before first use.
-# Job-level label gate: unlabeled PRs skip with ZERO billed runner minutes (label is in
-# the webhook payload — no gh API round-trip). StockTextAlerts uses the same if: on a
-# Blacksmith ARM runner; fleet default is ubuntu-latest.
+# Arm squash auto-merge for non-draft same-repo PRs from a human User who is
+# the repo owner or an org OWNER/MEMBER (you or an agent using your credentials).
+# Excludes Dependabot/bots/forks. Job-level gate → skipped events burn zero minutes.
 
 on:
   pull_request:
@@ -13,7 +11,6 @@ on:
       - reopened
       - synchronize
       - ready_for_review
-      - labeled
 
 permissions:
   contents: write
@@ -26,9 +23,14 @@ jobs:
     if: >-
       github.event.pull_request.draft == false &&
       github.event.pull_request.head.repo.full_name == github.repository &&
-      contains(github.event.pull_request.labels.*.name, 'ship-auto-merge')
+      github.event.pull_request.user.type == 'User' &&
+      (
+        github.event.pull_request.user.login == github.repository_owner ||
+        github.event.pull_request.author_association == 'OWNER' ||
+        github.event.pull_request.author_association == 'MEMBER'
+      )
     steps:
-      - name: Enable auto-merge when orchestrated
+      - name: Enable auto-merge for owner/member PRs
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
