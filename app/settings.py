@@ -1,8 +1,9 @@
-from pathlib import Path
+import logging
 import os
 import sys
+from pathlib import Path
+
 from psycopg import IsolationLevel
-import logging
 
 if "DYNO" not in os.environ:
     from dotenv import load_dotenv
