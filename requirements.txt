@@ -43,7 +43,7 @@ coverage==7.15.2
 django-coverage-plugin==3.2.2
 django-fastdev==1.13.0
 django-livereload-server==0.5.1
-pre-commit==4.6.0
+pre-commit==4.6.1
 pytest==9.1.1
 ruff==0.15.22
 tiktoken==0.13.0 # Creating embeddings
