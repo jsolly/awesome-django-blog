@@ -4,9 +4,9 @@
 
 Ship profile: `heroku-git`
 
-Integration: `pr-human-merge`
+**Integration: branch → PR → CI-gated auto-merge (canonical).** `/ship` babysits CI (watch + fix red), merges when green, then verifies the Heroku release. There is no fire-and-forget path.
 
-CI owner: `local`
+**CI owner: local.** Agent runs the full local gate before push; GitHub CI on the PR is babysat until merge.
 
 Production URL: <https://www.blogthedata.com>
 
@@ -100,7 +100,7 @@ The gate (`.git-hooks/pre-commit`) must run against the pinned project deps, nev
 
 Deploy is **automatic from GitHub `main`**: Heroku is connected to the GitHub repo with automatic deploys, so **merging a PR (or any push to `main`) triggers a production build** — there is no local deploy command and no push URL to `git.heroku.com` (the old "Heroku Git" dual-push-URL model is dead; don't re-add push URLs to `.git/config`). The pre-commit hook runs the lint/test gate only; GitHub Actions CI is the backstop. No Heroku-side build customization, Procfile + buildpacks only.
 
-**Agents: never merge PRs on this repo.** Because merge = prod deploy (Heroku attribution), the human merges after reviewing. Open the PR, report it, and stop — do not run `gh pr merge` in any form. Validate locally via the worktree + pre-commit gate before opening the PR; verify a deploy landed with `npx heroku releases` after the human merges.
+**Agents merge via `/ship`.** Merge still triggers Heroku prod deploy from `main` — that is expected. Validate locally via the worktree + pre-commit gate before opening the PR; after `/ship` merges, verify a deploy landed with `npx heroku releases`.
 
 **S3 access** (django-storages → S3 + CloudFront, gated on `USE_CLOUD=True`): the Heroku dyno authenticates via a long-lived static IAM key set as Heroku config vars (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_STORAGE_BUCKET_NAME`). The IAM user is **`awesome-django-blog-heroku`** with a single bucket-scoped inline policy `awesome-django-blog-s3-access` — `s3:Get/Put/Delete/ListBucket/ACL` on `arn:aws:s3:::blogthedata` only. **Don't widen.** Heroku doesn't issue OIDC tokens to dynos ([heroku/roadmap#247](https://github.com/heroku/roadmap/issues/247)), so the long-lived key is unavoidable; the narrow policy is the mitigation. AWS console/CLI: use credentials for account `730335616323` via local `AWS_PROFILE` — do not commit profile names in this repo.
 
