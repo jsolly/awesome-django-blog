@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
       const dropdownMenu = toggle.nextElementSibling;
       dropdownMenu.classList.toggle("show");
+      toggle.setAttribute(
+        "aria-expanded",
+        String(dropdownMenu.classList.contains("show")),
+      );
     });
   });
 });

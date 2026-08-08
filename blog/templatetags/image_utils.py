@@ -61,3 +61,26 @@ def get_image_url(image_field):
         return f"{settings.STATIC_HOST}/{settings.MEDIA_LOCATION}/{image_field.name}"
     else:
         return f"/mediafiles/{image_field.name}"
+
+
+# Intrinsic size of static/default.webp (Post.metaimg default) — avoid opening storage.
+_DEFAULT_METAIMG_WH = (1207, 1392)
+
+
+@register.simple_tag
+def image_dimension_attrs(image_field, default_width=1200, default_height=630):
+    """Return safe width=/height= attributes for CLS without 500ing on missing media."""
+    if not image_field:
+        return ""
+    name = getattr(image_field, "name", "") or ""
+    if name.endswith("default.webp"):
+        w, h = _DEFAULT_METAIMG_WH
+        return mark_safe(f'width="{w}" height="{h}"')
+    try:
+        w, h = image_field.width, image_field.height
+    except (ValueError, OSError) as exc:
+        logger.warning("image dimensions unavailable; using defaults (%s)", exc)
+        return mark_safe(f'width="{default_width}" height="{default_height}"')
+    if w and h:
+        return mark_safe(f'width="{w}" height="{h}"')
+    return mark_safe(f'width="{default_width}" height="{default_height}"')

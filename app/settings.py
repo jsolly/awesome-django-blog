@@ -112,18 +112,24 @@ else:
         sys.exit(1)
 
 # Content Security Policy (django-csp 4.0 dict format)
+# Cloudflare Web Analytics (auto-injected beacon) — see
+# https://developers.cloudflare.com/web-analytics/faq/#what-do-i-need-to-add-to-my-content-security-policy-csp
+_CF_INSIGHTS_SCRIPT = "https://static.cloudflareinsights.com"
+_CF_INSIGHTS_CONNECT = "https://cloudflareinsights.com"
 _CSP_SCRIPT_SRC_ELEM = [
     "'self'",
     "'unsafe-inline'",
     STATIC_HOST,
+    _CF_INSIGHTS_SCRIPT,
 ]
 _CSP_SCRIPT_SRC = [
     "'self'",
     "'unsafe-eval'",
     "'unsafe-inline'",
     STATIC_HOST,
+    _CF_INSIGHTS_SCRIPT,
 ]
-_CSP_CONNECT_SRC = ["'self'"] + FULLY_QUALIFIED_ALLOWED_HOSTS
+_CSP_CONNECT_SRC = ["'self'", _CF_INSIGHTS_CONNECT] + FULLY_QUALIFIED_ALLOWED_HOSTS
 
 # Livereload.js is on 127.0.0.1:35729
 # There is never a reason to allow livereload.js in production

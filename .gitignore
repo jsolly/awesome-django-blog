@@ -12,6 +12,9 @@ processed/
 # Coverage files
 .coverage
 
+# Local SEO audit scratch (skill `/seo` baselines)
+.seo-audit/
+
 # Temp Files
 __pycache__/
 .DS_Store
