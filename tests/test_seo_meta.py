@@ -41,10 +41,18 @@ class SeoMetaTests(SetUp):
         cards = re.findall(r'<article class="post">.*?</article>', html, re.DOTALL)
         self.assertGreater(len(cards), 0)
         for card in cards:
-            self.assertIn('class="post-card-link"', card)
             self.assertNotIn("aria-label=", card)
-            # No empty href-only anchors left behind by htmlmin.
-            self.assertIsNone(re.search(r'<a href="[^"]+"></a>', card))
+            # AccName must come from visible title text inside the stretched link
+            # (empty <a class="post-card-link"> would still fail Lighthouse link-name).
+            title_link = re.search(
+                r'<a\b[^>]*\bclass="post-card-link"[^>]*>(.*?)</a>',
+                card,
+                re.DOTALL,
+            )
+            self.assertIsNotNone(title_link)
+            self.assertTrue(title_link.group(1).strip())
+            # No empty anchors left behind by htmlmin (attrs/whitespace variants).
+            self.assertIsNone(re.search(r'<a\b[^>]*href="[^"]+"[^>]*>\s*</a>', card))
 
     def test_header_categories_dropdown_has_labelledby_target(self):
         html = self.client.get("/").content.decode()
