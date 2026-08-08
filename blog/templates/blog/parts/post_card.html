@@ -2,51 +2,51 @@
 {% load static %}
 {% load image_utils %}
 
+{# Title link + stretched ::after — avoid wrapping the card in <a>. django-htmlmin #}
+{# splits block-in-anchor into empty nameless <a>s, which tanks Lighthouse link-name. #}
 <article class="post">
-  {# No aria-label: visible title/excerpt already name the link (avoids label-content-name-mismatch). #}
-  <a href="{% url 'post-detail' post.slug %}">
-    <div class="post-card">
-      <div class="post-card-row">
-        <div class="post-card-meta-img-container">
-          <figure>
-            <img src="{% get_image_url post.metaimg %}" alt="{{ post.metaimg_alt_txt }}" class="post-card-img"
-              loading="lazy" {% image_dimension_attrs post.metaimg %}>
-            <figcaption class="visually-hidden">{{ post.metaimg_alt_txt }}</figcaption>
-          </figure>
-        </div>
-        <div class="post-card-content">
-          <div class="post-card-info">
-            <div class="post-body">
-              <div class="post-header">
-                <h2 class="post-title">{{ post.title }}
-                  {% if post.draft %}
-                  <span class="post-draft">(Draft)</span>
-                  {% endif %}
-                </h2>
+  <div class="post-card">
+    <div class="post-card-row">
+      <div class="post-card-meta-img-container">
+        <figure>
+          <img src="{% get_image_url post.metaimg %}" alt="{{ post.metaimg_alt_txt }}" class="post-card-img"
+            loading="lazy" {% image_dimension_attrs post.metaimg %}>
+          <figcaption class="visually-hidden">{{ post.metaimg_alt_txt }}</figcaption>
+        </figure>
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-info">
+          <div class="post-body">
+            <div class="post-header">
+              <h2 class="post-title">
+                <a class="post-card-link" href="{% url 'post-detail' post.slug %}">{{ post.title }}</a>
+                {% if post.draft %}
+                <span class="post-draft">(Draft)</span>
+                {% endif %}
+              </h2>
+            </div>
+            <div class="post-info">
+              <time datetime="{{ post.date_posted|date:" Y-m-d" }}">{{ post.date_posted|date:"F d, Y" }}</time> in {{ post.category.name }}
+              <div class="post-updated">
+                {% if post.date_updated|date:"Ymd" != post.date_posted|date:"Ymd" %}
+                Last updated: <time datetime="{{ post.date_updated|date:" Y-m-d" }}">{{ post.date_updated|date:"F d, Y" }}</time>
+                {% endif %}
               </div>
-              <div class="post-info">
-                <time datetime="{{ post.date_posted|date:" Y-m-d" }}">{{ post.date_posted|date:"F d, Y" }}</time> in {{ post.category.name }}
-                <div class="post-updated">
-                  {% if post.date_updated|date:"Ymd" != post.date_posted|date:"Ymd" %}
-                  Last updated: <time datetime="{{ post.date_updated|date:" Y-m-d" }}">{{ post.date_updated|date:"F d, Y" }}</time>
-                  {% endif %}
-                </div>
-                <div class="post-readtime">
-                  <img src="{% static 'svg/clock.svg' %}" alt="" class="post-readtime-icon" width="12" height="12" />
-                  <span class="post-readtime-text">{{ post.content|readtime }}</span>
-                </div>
-              </div>
-              <div class="post-excerpt">
-                {{ post.snippet|safe }}
+              <div class="post-readtime">
+                <img src="{% static 'svg/clock.svg' %}" alt="" class="post-readtime-icon" width="12" height="12" />
+                <span class="post-readtime-text">{{ post.content|readtime }}</span>
               </div>
             </div>
-            <div class="comment-details">
-              <img src="{% static 'svg/comment-icon.svg' %}" alt="" class="comment-icon" width="20" height="24">
-              <p>{{ post.comments.count }}</p>
+            <div class="post-excerpt">
+              {{ post.snippet|safe }}
             </div>
+          </div>
+          <div class="comment-details">
+            <img src="{% static 'svg/comment-icon.svg' %}" alt="" class="comment-icon" width="20" height="24">
+            <p>{{ post.comments.count }}</p>
           </div>
         </div>
       </div>
     </div>
-  </a>
+  </div>
 </article>

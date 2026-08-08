@@ -29,26 +29,30 @@ class SeoMetaTests(SetUp):
         # Auto-injected CF Insights beacon is blocked without these hosts
         # (Lighthouse Best-Practices / console CSP errors on prod).
         csp = self.client.get("/").headers.get("Content-Security-Policy", "")
-        directives = {
-            part.split(None, 1)[0]: part.split(None, 1)[1]
-            for part in csp.split(";")
-            if part.strip() and " " in part.strip()
-        }
-        script_src = " ".join(
-            directives.get(k, "") for k in ("script-src", "script-src-elem")
+        self.assertRegex(
+            csp, r"script-src(?:-elem)?[^;]*https://static\.cloudflareinsights\.com"
         )
-        self.assertIn("https://static.cloudflareinsights.com", script_src)
-        self.assertIn(
-            "https://cloudflareinsights.com", directives.get("connect-src", "")
-        )
+        self.assertRegex(csp, r"connect-src[^;]*https://cloudflareinsights\.com")
 
-    def test_homepage_post_cards_use_visible_text_not_aria_label(self):
+    def test_homepage_post_cards_use_named_title_link_not_wrapping_anchor(self):
         html = self.client.get("/").content.decode()
-        # Post cards wrap the whole card in <a>; naming comes from visible title text.
+        # Stretched title link (not a wrapping <a>) — htmlmin used to split block-in-anchor
+        # into empty nameless links and tank Lighthouse link-name.
         cards = re.findall(r'<article class="post">.*?</article>', html, re.DOTALL)
         self.assertGreater(len(cards), 0)
         for card in cards:
             self.assertNotIn("aria-label=", card)
+            # AccName must come from visible title text inside the stretched link
+            # (empty <a class="post-card-link"> would still fail Lighthouse link-name).
+            title_link = re.search(
+                r'<a\b[^>]*\bclass="post-card-link"[^>]*>(.*?)</a>',
+                card,
+                re.DOTALL,
+            )
+            self.assertIsNotNone(title_link)
+            self.assertTrue(title_link.group(1).strip())
+            # No empty anchors left behind by htmlmin (attrs/whitespace variants).
+            self.assertIsNone(re.search(r'<a\b[^>]*href="[^"]+"[^>]*>\s*</a>', card))
 
     def test_header_categories_dropdown_has_labelledby_target(self):
         html = self.client.get("/").content.decode()
