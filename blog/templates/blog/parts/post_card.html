@@ -3,13 +3,14 @@
 {% load image_utils %}
 
 <article class="post">
-  <a href="{% url 'post-detail' post.slug %}" aria-label='{{ post.title }}'>
+  {# No aria-label: visible title/excerpt already name the link (avoids label-content-name-mismatch). #}
+  <a href="{% url 'post-detail' post.slug %}">
     <div class="post-card">
       <div class="post-card-row">
         <div class="post-card-meta-img-container">
           <figure>
             <img src="{% get_image_url post.metaimg %}" alt="{{ post.metaimg_alt_txt }}" class="post-card-img"
-              loading="lazy">
+              loading="lazy" {% image_dimension_attrs post.metaimg %}>
             <figcaption class="visually-hidden">{{ post.metaimg_alt_txt }}</figcaption>
           </figure>
         </div>
@@ -31,7 +32,7 @@
                   {% endif %}
                 </div>
                 <div class="post-readtime">
-                  <img src="{% static 'svg/clock.svg' %}" alt="Clock Icon" class="post-readtime-icon" />
+                  <img src="{% static 'svg/clock.svg' %}" alt="" class="post-readtime-icon" width="12" height="12" />
                   <span class="post-readtime-text">{{ post.content|readtime }}</span>
                 </div>
               </div>
@@ -40,7 +41,7 @@
               </div>
             </div>
             <div class="comment-details">
-              <img src="{% static 'svg/comment-icon.svg' %}" alt="Comment Icon" class="comment-icon">
+              <img src="{% static 'svg/comment-icon.svg' %}" alt="" class="comment-icon" width="20" height="24">
               <p>{{ post.comments.count }}</p>
             </div>
           </div>

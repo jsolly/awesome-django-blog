@@ -76,7 +76,8 @@
         {% endif %}
       </h1>
       <div class="meta-img-container">
-        <img id="post-detail-meta-img" src="{% get_image_url post.metaimg %}" alt="{{ post.metadesc }}">
+        <img id="post-detail-meta-img" src="{% get_image_url post.metaimg %}" alt="{{ post.metadesc }}"
+          {% if metaimg_width %}width="{{ metaimg_width }}" height="{{ metaimg_height }}"{% endif %}>
       </div>
       <p class="post-dates sml-margin-top-bottom">
         <time datetime="{{ post.date_posted|date:"Y-m-d" }}">{{ post.date_posted|date:"F d, Y" }}</time> in {{ post.category.name }}
@@ -98,7 +99,7 @@
     {% endif %}
     <div class="sml-margin-top-bottom" id="print-container">
       <a class="btn btn-dark" href="javascript:window.print()">
-        <img id="print-icon" src="{% static 'svg/print-icon.svg' %}" alt="Print this blog post">
+        <img id="print-icon" src="{% static 'svg/print-icon.svg' %}" alt="Print this blog post" width="24" height="24">
         <span id="print-text">Print this post</span>
       </a>
     </div>

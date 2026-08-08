@@ -4,7 +4,7 @@
         <div class="chatbox__support">
             <div class="chatbox__header">
                 <div class="chatbox__image--header">
-                    <img src="{% static 'svg/man-avatar.svg' %}" alt="Ezra's avatar">
+                    <img src="{% static 'svg/man-avatar.svg' %}" alt="Ezra's avatar" width="64" height="64">
                 </div>
                 <div class="chatbox__content--header">
                     <p class="chatbox__heading--header">Ezra</p>
@@ -29,6 +29,7 @@
                 <form id="chatbox-submit">
                     {% csrf_token %}
                     <div class="chatbox__input-container">
+                        <label class="visually-hidden" for="question-text-area">Send a message</label>
                         <textarea name="question-text-area" id="question-text-area" placeholder="Send a message..."
                             hx-trigger="keyup[key === 'Enter' && !shiftKey && target.value.trim() !== '']" hx-post="/answer-with-gpt/"
                             hx-include="#question-text-area" hx-target=".chatbox__messages"
@@ -53,7 +54,7 @@
         </div>
         <div class="chatbox__button">
             <button aria-label="Toggle chatbox">
-                <img id="chatbox-icon" src="{% static 'svg/chatbox-icon.svg' %}" alt="Chatbox icon" />
+                <img id="chatbox-icon" src="{% static 'svg/chatbox-icon.svg' %}" alt="" width="36" height="29" />
             </button>
         </div>
     </div>
