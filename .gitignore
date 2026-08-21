@@ -52,6 +52,7 @@ db.sqlite3-journal
 !.cursor/CLOUD.md
 !.cursor/environment.json
 !.cursor/install-cloud-skills.sh
+!.cursor/aws-oidc-login.sh
 
 
 # Materialized agent config (fetched by .dotagents/bootstrap.sh; not committed)

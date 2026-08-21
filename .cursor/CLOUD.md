@@ -41,3 +41,24 @@ Private laptop-only skills are **not** available here. For UI smoke, follow this
 
 Only hooks committed under this repo's `.cursor/hooks.json` (or team/enterprise hooks) apply.
 User-level hook config from a laptop does not run in cloud.
+
+## AWS reads (same role as the laptop)
+
+`.cursor/aws-oidc-login.sh` runs on `install` **and** `start`. It writes
+`~/.aws/config` with `credential_process` (no static STS keys — those expire in
+1h and Builds do not re-run `install`). Each `aws` call mints a Cursor OIDC JWT
+(`aud: sts.amazonaws.com`) and assumes `arn:aws:iam::730335616323:role/agent-readonly`.
+That is the **same** IAM role laptop agents use via Identity Center `AgentReadOnly` —
+`ReadOnlyAccess` plus the deny-secrets overlay. Do not look for `fleet-deploy` or
+`agent-deploy`; those laptop deploy identities are gone.
+
+After install, `AWS_PROFILE=agent-readonly` is set. Use it for CloudWatch / Lambda
+describe/get/list. `ssm:GetParameter*` and Secrets Manager gets are explicit deny.
+Do **not** invoke `*-live-provider-check` — that grant is CI and human-admin only.
+
+Allow `sts.amazonaws.com` (and regional STS if used) on this environment's network
+policy or assume-role will hang. The role ARN may be a Cursor Environment Variable
+(`AWS_ROLE_ARN`); it is not a secret. Never store long-lived AWS keys.
+
+Claude/Codex cloud OIDC is stubbed until those vendors publish an issuer; then add
+another IAM OIDC provider + trust statement on the **same** `agent-readonly` role.
