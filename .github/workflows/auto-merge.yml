@@ -3,6 +3,17 @@ name: Auto Merge
 # Arm squash auto-merge for non-draft same-repo PRs from a human User who is
 # the repo owner or an org OWNER/MEMBER (you or an agent using your credentials).
 # Excludes Dependabot/bots/forks. Job-level gate → skipped events burn zero minutes.
+#
+# GITHUB_TOKEN merges do not create new workflow runs except workflow_dispatch
+# and repository_dispatch (Triggering a workflow):
+# https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#triggering-a-workflow-from-a-workflow
+# When APP_PRIVATE_KEY + APP_CLIENT_ID (or APP_ID) are set, mint an App
+# installation token (~1h, own identity) so the land is a real push. If unset,
+# keep GITHUB_TOKEN --auto (do not fail). App --auto is primary;
+# GITHUB_TOKEN --auto is the no-secret fallback. Heroku GitHub auto-deploy from
+# `main` needs a real push (GITHUB_TOKEN merge as github-actions[bot]
+# suppresses the push event). REPO_AUTOMATION_TOKEN is a last-resort PAT,
+# not required.
 
 on:
   pull_request:
@@ -30,8 +41,30 @@ jobs:
         github.event.pull_request.author_association == 'MEMBER'
       )
     steps:
+      - name: Mint GitHub App token
+        id: app-token
+        if: ${{ secrets.APP_PRIVATE_KEY != '' && (vars.APP_CLIENT_ID != '' || secrets.APP_CLIENT_ID != '' || vars.APP_ID != '' || secrets.APP_ID != '') }}
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.APP_CLIENT_ID || secrets.APP_CLIENT_ID }}
+          app-id: ${{ vars.APP_ID || secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+
       - name: Enable auto-merge for owner/member PRs
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.REPO_AUTOMATION_TOKEN || secrets.GITHUB_TOKEN }}
+          HAS_APP_TOKEN: ${{ steps.app-token.outputs.token != '' }}
+          HAS_AUTOMATION_TOKEN: ${{ secrets.REPO_AUTOMATION_TOKEN != '' }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: gh pr merge --auto --squash --delete-branch --repo "$GITHUB_REPOSITORY" "$PR_NUMBER"
+        run: |
+          set -euo pipefail
+          if [ "$HAS_APP_TOKEN" = "true" ]; then
+            echo "Arming auto-merge with GitHub App installation token (not GITHUB_TOKEN → push fires)."
+          elif [ "$HAS_AUTOMATION_TOKEN" = "true" ]; then
+            echo "Arming auto-merge with REPO_AUTOMATION_TOKEN (last-resort PAT)."
+          else
+            echo "No App/PAT — arming GITHUB_TOKEN --auto (bot merge may skip push/CI on main)."
+          fi
+          gh pr merge --auto --squash --delete-branch --repo "$GITHUB_REPOSITORY" "$PR_NUMBER"
