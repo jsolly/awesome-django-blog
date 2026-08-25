@@ -12,8 +12,7 @@ name: Auto Merge
 # keep GITHUB_TOKEN --auto (do not fail). App --auto is primary;
 # GITHUB_TOKEN --auto is the no-secret fallback. Heroku GitHub auto-deploy from
 # `main` needs a real push (GITHUB_TOKEN merge as github-actions[bot]
-# suppresses the push event). REPO_AUTOMATION_TOKEN is a last-resort PAT,
-# not required.
+# suppresses the push event). No classic PAT required.
 #
 # Gate the mint step via job env (not `if: secrets.*`). GitHub does not expose
 # the secrets context on `jobs.<job_id>.steps.if`; mapping presence to env
@@ -64,17 +63,14 @@ jobs:
 
       - name: Enable auto-merge for owner/member PRs
         env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.REPO_AUTOMATION_TOKEN || secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.GITHUB_TOKEN }}
           HAS_APP_TOKEN: ${{ steps.app-token.outputs.token != '' }}
-          HAS_AUTOMATION_TOKEN: ${{ secrets.REPO_AUTOMATION_TOKEN != '' }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           set -euo pipefail
           if [ "$HAS_APP_TOKEN" = "true" ]; then
             echo "Arming auto-merge with GitHub App installation token (not GITHUB_TOKEN → push fires)."
-          elif [ "$HAS_AUTOMATION_TOKEN" = "true" ]; then
-            echo "Arming auto-merge with REPO_AUTOMATION_TOKEN (last-resort PAT)."
           else
-            echo "No App/PAT — arming GITHUB_TOKEN --auto (bot merge may skip push/CI on main)."
+            echo "No App credentials — arming GITHUB_TOKEN --auto (bot merge may skip push/CI on main)."
           fi
           gh pr merge --auto --squash --delete-branch --repo "$GITHUB_REPOSITORY" "$PR_NUMBER"
