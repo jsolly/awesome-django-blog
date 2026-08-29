@@ -2,7 +2,6 @@ from .models import Category, Post
 from django.db.models import Count
 from django.urls import resolve
 from django.urls import reverse, Resolver404
-from django.shortcuts import get_object_or_404
 
 
 def category_renderer(request):
@@ -24,7 +23,13 @@ def breadcrumbs(request):
     except Resolver404:
         return {"breadcrumbs": []}
     if match.url_name == "blog-category":
-        category = get_object_or_404(Category, slug=match.kwargs["slug"])
+        # Never 404 from a context processor: a missing category already 404s in
+        # the view; raising Http404 here turns that into a 500 while rendering
+        # the error page (live symptom: leftover /post/... and unknown
+        # /category/... slugs).
+        category = Category.objects.filter(slug=match.kwargs["slug"]).first()
+        if category is None:
+            return {"breadcrumbs": breadcrumbs}
         breadcrumbs.append(
             {
                 "name": category.name,
@@ -32,7 +37,9 @@ def breadcrumbs(request):
             }
         )
     elif match.url_name == "post-detail":
-        post = get_object_or_404(Post, slug=match.kwargs["slug"])
+        post = Post.objects.filter(slug=match.kwargs["slug"]).first()
+        if post is None:
+            return {"breadcrumbs": breadcrumbs}
         breadcrumbs.append(
             {
                 "name": post.category.name,

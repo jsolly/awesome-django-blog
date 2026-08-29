@@ -66,6 +66,26 @@ class SeoMetaTests(SetUp):
             r'<label\b[^>]*\bfor="question-text-area"[^>]*>\s*Send a message\s*</label>',
         )
 
+    def test_chatbox_powered_by_uses_canonical_home_href(self):
+        html = self.client.get("/").content.decode()
+        self.assertNotIn("https://blogthedata.com", html)
+        self.assertRegex(
+            html,
+            r'Powered by <a href="/">Blogthedata</a>',
+        )
+
+    def test_homepage_lcp_image_has_fetchpriority_high(self):
+        html = self.client.get("/").content.decode()
+        img = re.search(r"<img\b[^>]*\bid=\"about-me-image\"[^>]*>", html)
+        self.assertIsNotNone(img)
+        self.assertIn('fetchpriority="high"', img.group(0))
+
+    def test_post_detail_about_me_image_is_not_fetchpriority_high(self):
+        html = self.client.get(self.first_post.get_absolute_url()).content.decode()
+        img = re.search(r"<img\b[^>]*\bid=\"about-me-image\"[^>]*>", html)
+        self.assertIsNotNone(img)
+        self.assertNotIn("fetchpriority", img.group(0))
+
     def test_homepage_canonical_points_at_root_with_trailing_slash(self):
         html = self.client.get("/").content.decode()
         self.assertEqual(_canonical_hrefs(html), ["http://testserver/"])
@@ -101,7 +121,9 @@ class SeoMetaTests(SetUp):
         )
 
         crumbs = parsed["BreadcrumbList"]["itemListElement"]
-        self.assertEqual([c["position"] for c in crumbs], list(range(1, len(crumbs) + 1)))
+        self.assertEqual(
+            [c["position"] for c in crumbs], list(range(1, len(crumbs) + 1))
+        )
         self.assertEqual(crumbs[0]["name"], "Home")
         self.assertEqual(crumbs[-1]["name"], self.first_post.title)
         self.assertTrue(all(c["item"].startswith("http://testserver/") for c in crumbs))

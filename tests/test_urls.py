@@ -21,6 +21,7 @@ from blog.views import (
 
 from app.views import (
     works_cited_view,
+    privacy_view,
     security_txt_view,
     security_pgp_key_view,
 )
@@ -101,6 +102,11 @@ class TestUrls(SetUp):
 
     def test_works_cited_url_is_resolved(self):
         self.assertEqual(resolve(reverse("works-cited")).func, works_cited_view)
+        self.assertEqual(reverse("works-cited"), "/works-cited/")
+
+    def test_privacy_url_is_resolved(self):
+        self.assertEqual(resolve(reverse("privacy")).func, privacy_view)
+        self.assertEqual(reverse("privacy"), "/privacy/")
 
     def test_security_txt_url_is_resolved(self):
         self.assertEqual(get_url("security-txt").func, security_txt_view)

@@ -67,3 +67,15 @@ class TestContextProcessors(SetUp):
         request = self.factory.get("/invalid-url/")
         result = breadcrumbs(request)
         self.assertEqual(len(result["breadcrumbs"]), 0)
+
+    def test_missing_post_breadcrumb_does_not_raise(self):
+        request = self.factory.get("/post/how-to-leverage-closed-loops/")
+        result = breadcrumbs(request)
+        self.assertEqual(len(result["breadcrumbs"]), 1)
+        self.assertEqual(result["breadcrumbs"][0]["name"], "Home")
+
+    def test_missing_category_breadcrumb_does_not_raise(self):
+        request = self.factory.get("/category/does-not-exist-xyz/")
+        result = breadcrumbs(request)
+        self.assertEqual(len(result["breadcrumbs"]), 1)
+        self.assertEqual(result["breadcrumbs"][0]["name"], "Home")

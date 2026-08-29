@@ -81,6 +81,16 @@ class TestViews(SetUp):
         response = self.client.get(draft_post_detail_url)
         self.assertEqual(response.status_code, 404)
 
+    def test_missing_post_returns_404_not_500(self):
+        response = self.client.get("/post/how-to-leverage-closed-loops/", follow=False)
+        self.assertEqual(response.status_code, 404)
+        self.assertTemplateUsed(response, "404.html")
+
+    def test_missing_category_returns_404_not_500(self):
+        response = self.client.get("/category/does-not-exist-xyz/", follow=False)
+        self.assertEqual(response.status_code, 404)
+        self.assertTemplateUsed(response, "404.html")
+
     def test_post_detail_view_admin_user_sees_draft_post(self):
         self.client.login(
             username=self.admin_user.username, password=self.admin_user_password
@@ -399,6 +409,8 @@ class TestViews(SetUp):
     def test_register_view_happy_path(self):
         response = self.client.get(reverse("register"))
         self.assertResponseAndTemplate(response, "users/register.html")
+        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex, nofollow")
+        self.assertIn("noindex, nofollow", response.content.decode())
         self.assertIsInstance(response.context["form"], UserRegisterForm)
 
         data = {
@@ -480,6 +492,9 @@ class TestViews(SetUp):
     def test_login_view(self):
         response = self.client.get(reverse("login"))
         self.assertResponseAndTemplate(response, "users/login.html")
+        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex, nofollow")
+        self.assertIn('name="robots"', response.content.decode())
+        self.assertIn("noindex, nofollow", response.content.decode())
 
     def test_logout_view(self):
         self.client.login(
@@ -538,6 +553,17 @@ class TestViews(SetUp):
     def test_privacy_view(self):
         response = self.client.get(reverse("privacy"))
         self.assertEqual(response.status_code, 200)
+
+    def test_privacy_and_works_cited_append_slash(self):
+        for bare, slashed in (
+            ("/privacy", "/privacy/"),
+            ("/works-cited", "/works-cited/"),
+        ):
+            redirect = self.client.get(bare, follow=False)
+            self.assertEqual(redirect.status_code, 301)
+            self.assertEqual(redirect["Location"], slashed)
+            ok = self.client.get(slashed, follow=False)
+            self.assertEqual(ok.status_code, 200)
 
     def test_security_txt_view(self):
         response = self.client.get(reverse("security-txt"))
