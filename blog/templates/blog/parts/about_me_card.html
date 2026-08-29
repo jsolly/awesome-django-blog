@@ -3,7 +3,8 @@
   <div class="post-card-row">
     <figure class="post-card-meta-img-container">
       <img id="about-me-image" src="{% static 'default.webp' %}" class="post-card-img about-me-image"
-        alt="John Solly Profile Picture" width="1207" height="1392" />
+        alt="John Solly Profile Picture" width="1207" height="1392"
+        {% if request.resolver_match and request.resolver_match.url_name == "home" %}fetchpriority="high"{% endif %} />
       <figcaption class="visually-hidden">
         John Solly Profile Picture
       </figcaption>

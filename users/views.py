@@ -9,7 +9,28 @@ from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 
 
-class RegisterView(FormView):
+class NoIndexMixin:
+    """Crawlable noindex for auth pages that stay linked in the global nav.
+
+    robots.txt still Disallows /login and /register (prod django-robots rows).
+    This meta + header is the cheap harden so a future crawl/allow sees noindex
+    instead of an indexable form. Do not remove the pages.
+    """
+
+    robots = "noindex, nofollow"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["robots"] = self.robots
+        return context
+
+    def render_to_response(self, context, **response_kwargs):
+        response = super().render_to_response(context, **response_kwargs)
+        response["X-Robots-Tag"] = self.robots
+        return response
+
+
+class RegisterView(NoIndexMixin, FormView):
     form_class = UserRegisterForm
     success_url = reverse_lazy("login")
     template_name = "users/register.html"
@@ -22,9 +43,9 @@ class RegisterView(FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Register | Blogthedata.com"
-        context[
-            "description"
-        ] = "Register for an account on blogthedata.com. It's free!"
+        context["description"] = (
+            "Register for an account on blogthedata.com. It's free!"
+        )
         return context
 
     def form_valid(self, form):
@@ -68,7 +89,7 @@ class ProfileView(TemplateView):
         return self.render_to_response(self.get_context_data())
 
 
-class MyLoginView(auth_views.LoginView):
+class MyLoginView(NoIndexMixin, auth_views.LoginView):
     template_name = "users/login.html"
 
     def dispatch(self, request, *args, **kwargs):
@@ -79,19 +100,20 @@ class MyLoginView(auth_views.LoginView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["title"] = "Login | Blogthedata.com"
-        context[
-            "description"
-        ] = "Login to your account on blogthedata.com to access your profile and more!"
+        context["description"] = (
+            "Login to your account on blogthedata.com to access your profile and more!"
+        )
         return context
 
 
 class MyLogoutView(auth_views.LogoutView):
     template_name = "users/logout.html"
-    http_method_names = ['get', 'post']
-    
+    http_method_names = ["get", "post"]
+
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             from django.contrib.auth import logout
+
             logout(request)
             messages.success(request, "You have been logged out successfully!")
         return super().get(request, *args, **kwargs)
@@ -119,9 +141,9 @@ class MyPasswordResetDoneView(auth_views.PasswordResetDoneView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["title"] = "Reset Password Email Sent | Blogthedata.com"
-        context[
-            "description"
-        ] = "Your password reset email for blogthedata.com has been sent!"
+        context["description"] = (
+            "Your password reset email for blogthedata.com has been sent!"
+        )
         return context
 
 
@@ -133,9 +155,9 @@ class MyPasswordResetConfirmView(
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["title"] = "Reset Password Confirm | Blogthedata.com"
-        context[
-            "description"
-        ] = "Are you sure you want to reset your password for blogthedata.com?"
+        context["description"] = (
+            "Are you sure you want to reset your password for blogthedata.com?"
+        )
         return context
 
 

@@ -1,4 +1,5 @@
 from django.contrib.sitemaps import Sitemap
+from django.db.models import Count, Q
 from django.urls import reverse
 
 from blog.models import Category, Post
@@ -23,9 +24,17 @@ class CategorySitemap(Sitemap):
     priority = 0.6
 
     def items(self):
-        # order_by keeps sitemap pagination deterministic and silences Django's
+        # Exclude empty / draft-only categories (GSC was indexing
+        # /category/uncategorized/ with zero public posts). order_by keeps
+        # sitemap pagination deterministic and silences Django's
         # UnorderedObjectListWarning (Category has no Meta.ordering).
-        return Category.objects.all().order_by("name")
+        return (
+            Category.objects.annotate(
+                active_post_count=Count("post", filter=Q(post__draft=False))
+            )
+            .filter(active_post_count__gt=0)
+            .order_by("name")
+        )
 
     def location(self, obj):
         return obj.get_absolute_url()
@@ -37,11 +46,11 @@ class StaticSitemap(Sitemap):
 
     def items(self):
         return [
-            'home',
-            'works-cited',
-            'privacy',
-            'status',
-            'all-posts',
+            "home",
+            "works-cited",
+            "privacy",
+            "status",
+            "all-posts",
         ]
 
     def location(self, item):
