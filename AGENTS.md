@@ -8,6 +8,8 @@ Ship profile: `heroku-git`
 
 **CI owner: local.** Agent runs the full local gate before push; GitHub CI on the PR is babysat until merge.
 
+The auto-merge bot waits for this repo's `ci` check (workflow `CI`) before squash-merging. This Free-plan private repo cannot set required status checks, so GitHub `--auto` is not used. Do not add GitHub branch protection or rulesets.
+
 Production URL: <https://www.blogthedata.com>
 
 Deployment: `heroku-github` (Heroku app `blogthedata`, auto-deployed from GitHub `main`)

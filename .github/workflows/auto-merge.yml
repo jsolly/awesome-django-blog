@@ -1,18 +1,35 @@
 name: Auto Merge
 
-# Arm squash auto-merge for non-draft same-repo PRs from a human User who is
-# the repo owner or an org OWNER/MEMBER (you or an agent using your credentials).
-# Excludes Dependabot/bots/forks. Job-level gate → skipped events burn zero minutes.
+# Squash-merge non-draft same-repo PRs from a human User who is the repo
+# owner or an org OWNER/MEMBER (you or an agent using your credentials).
+# Excludes Dependabot/bots/forks.
+#
+# Do not use `gh pr merge --auto`. GitHub --auto only waits for *required*
+# status checks. This Free-plan private repo cannot set required checks, so
+# --auto can squash before the `ci` job starts (observed: jsolly/shared-infra
+# #38). The auto-merge bot waits for this repo's `ci` check (workflow name
+# `CI`, job/check name `ci`) because Free private repos cannot set required
+# checks. Merge only when eligible AND that check has conclusion success AND
+# the success is for a SHA that equals the open PR's current head. Otherwise
+# exit 0. Failed/cancelled CI, push-to-main CI with no open PR, and green CI
+# for a stale SHA after a new push: do not merge.
+#
+# pull_request (opened/reopened/synchronize/ready_for_review): re-check in
+# case `ci` is already green (e.g. ready_for_review after CI).
+# workflow_run of `CI` [completed]: merge after CI finishes.
+# github.event.workflow_run.pull_requests is often empty (push-triggered CI;
+# some pull_request-triggered runs) — resolve the PR from the CI head SHA
+# via `gh pr list`.
 #
 # GITHUB_TOKEN merges do not create new workflow runs except workflow_dispatch
 # and repository_dispatch (Triggering a workflow):
 # https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#triggering-a-workflow-from-a-workflow
 # When APP_PRIVATE_KEY + APP_CLIENT_ID (or APP_ID) are set, mint an App
 # installation token (~1h, own identity) so the land is a real push. If unset,
-# keep GITHUB_TOKEN --auto (do not fail). App --auto is primary;
-# GITHUB_TOKEN --auto is the no-secret fallback. Heroku GitHub auto-deploy from
-# `main` needs a real push (GITHUB_TOKEN merge as github-actions[bot]
-# suppresses the push event). No classic PAT required.
+# keep GITHUB_TOKEN (do not fail). App token is primary; GITHUB_TOKEN is the
+# no-secret fallback. Heroku GitHub auto-deploy from `main` needs a real push
+# (GITHUB_TOKEN merge as github-actions[bot] suppresses the push event). No
+# classic PAT required.
 #
 # Gate the mint step via job env (not `if: secrets.*`). GitHub does not expose
 # the secrets context on `jobs.<job_id>.steps.if`; mapping presence to env
@@ -25,23 +42,37 @@ on:
       - reopened
       - synchronize
       - ready_for_review
+  workflow_run:
+    workflows:
+      - CI
+    types:
+      - completed
 
 permissions:
   contents: write
   pull-requests: write
   issues: write
+  checks: read
 
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
     if: >-
-      github.event.pull_request.draft == false &&
-      github.event.pull_request.head.repo.full_name == github.repository &&
-      github.event.pull_request.user.type == 'User' &&
       (
-        github.event.pull_request.user.login == github.repository_owner ||
-        github.event.pull_request.author_association == 'OWNER' ||
-        github.event.pull_request.author_association == 'MEMBER'
+        github.event_name == 'pull_request' &&
+        github.event.pull_request.draft == false &&
+        github.event.pull_request.head.repo.full_name == github.repository &&
+        github.event.pull_request.user.type == 'User' &&
+        (
+          github.event.pull_request.user.login == github.repository_owner ||
+          github.event.pull_request.author_association == 'OWNER' ||
+          github.event.pull_request.author_association == 'MEMBER'
+        )
+      ) ||
+      (
+        github.event_name == 'workflow_run' &&
+        github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.event == 'pull_request'
       )
     env:
       HAS_APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY != '' }}
@@ -61,16 +92,123 @@ jobs:
           permission-contents: write
           permission-pull-requests: write
 
-      - name: Enable auto-merge for owner/member PRs
+      - name: Merge owner/member PR when ci is green on current head
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token || secrets.GITHUB_TOKEN }}
+          GH_READ_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HAS_APP_TOKEN: ${{ steps.app-token.outputs.token != '' }}
+          EVENT_NAME: ${{ github.event_name }}
+          REPO_OWNER: ${{ github.repository_owner }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
+          CI_CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+          CI_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+          CI_PULL_REQUESTS: ${{ toJSON(github.event.workflow_run.pull_requests) }}
+          CI_CHECK_NAME: ci
         run: |
           set -euo pipefail
-          if [ "$HAS_APP_TOKEN" = "true" ]; then
-            echo "Arming auto-merge with GitHub App installation token (not GITHUB_TOKEN → push fires)."
-          else
-            echo "No App credentials — arming GITHUB_TOKEN --auto (bot merge may skip push/CI on main)."
+
+          read_gh() {
+            GH_TOKEN="$GH_READ_TOKEN" gh "$@"
+          }
+
+          not_merging() {
+            echo "$* — not merging"
+            exit 0
+          }
+
+          if [ "$EVENT_NAME" = "workflow_run" ] && [ "${CI_CONCLUSION:-}" != "success" ]; then
+            not_merging "CI conclusion=${CI_CONCLUSION:-unset}"
           fi
-          gh pr merge --auto --squash --delete-branch --repo "$GITHUB_REPOSITORY" "$PR_NUMBER"
+
+          pr_number=""
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            pr_number="${PR_NUMBER:-}"
+          else
+            # workflow_run.pull_requests is often empty. Resolve by CI head SHA.
+            if [ -z "${CI_HEAD_SHA:-}" ]; then
+              not_merging "No workflow_run head SHA"
+            fi
+            listed="$(read_gh pr list --repo "$GITHUB_REPOSITORY" --state open --limit 100 \
+              --json number,headRefOid)"
+            pr_number="$(printf '%s' "$listed" | jq -r --arg sha "$CI_HEAD_SHA" \
+              '[.[] | select(.headRefOid == $sha) | .number] | unique | if length == 1 then .[0] else empty end')"
+            if [ -z "$pr_number" ] && [ -n "${CI_PULL_REQUESTS:-}" ] \
+              && [ "$CI_PULL_REQUESTS" != "null" ] && [ "$CI_PULL_REQUESTS" != "[]" ]; then
+              echo "gh pr list missed SHA $CI_HEAD_SHA — trying workflow_run.pull_requests"
+              event_nums="$(printf '%s' "$CI_PULL_REQUESTS" | jq -r '.[].number // empty')"
+              while IFS= read -r cand; do
+                [ -n "$cand" ] || continue
+                if ! cand_sha="$(read_gh api "repos/${GITHUB_REPOSITORY}/pulls/${cand}" --jq .head.sha)"; then
+                  echo "Could not read PR #${cand}; skipping"
+                  continue
+                fi
+                if [ "$cand_sha" = "$CI_HEAD_SHA" ]; then
+                  if [ -n "$pr_number" ] && [ "$pr_number" != "$cand" ]; then
+                    not_merging "Ambiguous PRs #$pr_number and #$cand for SHA $CI_HEAD_SHA"
+                  fi
+                  pr_number="$cand"
+                fi
+              done <<< "$event_nums"
+            fi
+          fi
+
+          if [ -z "$pr_number" ]; then
+            not_merging "No open PR with current head ${CI_HEAD_SHA:-unknown}"
+          fi
+
+          if ! pr_json="$(read_gh api "repos/${GITHUB_REPOSITORY}/pulls/${pr_number}")"; then
+            not_merging "PR #${pr_number} not found"
+          fi
+
+          draft="$(printf '%s' "$pr_json" | jq -r '.draft')"
+          state="$(printf '%s' "$pr_json" | jq -r '.state')"
+          user_type="$(printf '%s' "$pr_json" | jq -r '.user.type')"
+          user_login="$(printf '%s' "$pr_json" | jq -r '.user.login')"
+          assoc="$(printf '%s' "$pr_json" | jq -r '.author_association')"
+          head_repo="$(printf '%s' "$pr_json" | jq -r '.head.repo.full_name')"
+          head_sha="$(printf '%s' "$pr_json" | jq -r '.head.sha')"
+
+          if [ "$state" != "open" ]; then
+            not_merging "PR #${pr_number} state=${state}"
+          fi
+          if [ "$draft" != "false" ]; then
+            not_merging "PR #${pr_number} is draft"
+          fi
+          if [ "$head_repo" != "$GITHUB_REPOSITORY" ]; then
+            not_merging "PR #${pr_number} head repo ${head_repo} is not ${GITHUB_REPOSITORY}"
+          fi
+          if [ "$user_type" != "User" ]; then
+            not_merging "PR #${pr_number} author type=${user_type}"
+          fi
+          if [ "$user_login" != "$REPO_OWNER" ] && [ "$assoc" != "OWNER" ] && [ "$assoc" != "MEMBER" ]; then
+            not_merging "PR #${pr_number} login=${user_login} association=${assoc} is not owner/member"
+          fi
+
+          if [ "$EVENT_NAME" = "workflow_run" ] && [ "$head_sha" != "$CI_HEAD_SHA" ]; then
+            not_merging "CI SHA ${CI_HEAD_SHA} != PR #${pr_number} head ${head_sha} (stale)"
+          fi
+
+          checks="$(read_gh api "repos/${GITHUB_REPOSITORY}/commits/${head_sha}/check-runs?per_page=100")"
+          latest_ci="$(printf '%s' "$checks" | jq -c --arg name "$CI_CHECK_NAME" '
+            [.check_runs[] | select(.name == $name and .status == "completed")]
+            | sort_by(.completed_at // "")
+            | last
+          ')"
+          if [ -z "$latest_ci" ] || [ "$latest_ci" = "null" ]; then
+            not_merging "No completed '${CI_CHECK_NAME}' check on ${head_sha}"
+          fi
+          ci_conclusion="$(printf '%s' "$latest_ci" | jq -r '.conclusion')"
+          ci_sha="$(printf '%s' "$latest_ci" | jq -r '.head_sha')"
+          if [ "$ci_conclusion" != "success" ]; then
+            not_merging "'${CI_CHECK_NAME}' conclusion=${ci_conclusion} on ${head_sha}"
+          fi
+          if [ "$ci_sha" != "$head_sha" ]; then
+            not_merging "'${CI_CHECK_NAME}' SHA ${ci_sha} != PR head ${head_sha}"
+          fi
+
+          if [ "$HAS_APP_TOKEN" = "true" ]; then
+            echo "Merging PR #${pr_number} with GitHub App installation token (not GITHUB_TOKEN → push fires)."
+          else
+            echo "No App credentials — merging PR #${pr_number} with GITHUB_TOKEN (bot merge may skip push/CI on main)."
+          fi
+          gh pr merge --squash --delete-branch --repo "$GITHUB_REPOSITORY" "$pr_number"
