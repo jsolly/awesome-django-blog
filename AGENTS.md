@@ -16,7 +16,7 @@ Deployment: `heroku-github` (Heroku app `blogthedata`, auto-deployed from GitHub
 
 ## Stack
 
-Django 5.2 blogging platform on Python 3.14. SQLite by default, Postgres optional. HTMX for partial updates, CKEditor 5 for authoring, OpenAI for chatbot/title generation. WhiteNoise + optional S3/CloudFront for static/media. Deploys via Procfile (Heroku-style).
+Django 6.1 blogging platform on Python 3.14. SQLite by default, Postgres optional. HTMX for partial updates, CKEditor 5 for authoring, OpenAI for chatbot/title generation. WhiteNoise + optional S3/CloudFront for static/media. Deploys via Procfile (Heroku-style).
 
 ## Common Commands
 

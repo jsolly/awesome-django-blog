@@ -13,8 +13,8 @@
 	},
 	"devDependencies": {
 		"github-actionlint": "^1.7.12",
-		"heroku": "^11.4.0",
-		"markdownlint-cli2": "0.22.1",
+		"heroku": "^11.10.0",
+		"markdownlint-cli2": "0.23.2",
 		"shellcheck": "^4.1.0"
 	}
 }
