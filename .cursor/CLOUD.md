@@ -3,39 +3,43 @@
 This file is read by Cloud / Background Agents only (local IDE chat ignores it).
 Repo `AGENTS.md` still applies first; this file overlays cloud-specific facts.
 
-## Public agent-skills package (mirror)
+## Skills package (private checkout)
 
-`.cursor/install-cloud-skills.sh` (via `.cursor/environment.json` `install`) shallow-clones
-<https://github.com/jsolly/agent-skills> and installs the **full published package**:
+`.cursor/install-cloud-skills.sh` (via `.cursor/environment.json` `install`) copies
+**skills, agents, and cited rules** from a private `dotagents` checkout into VM
+home paths. Preferred source is a host-local tree (`DOTAGENTS_ROOT`, or this
+repo when the installer is running from it). If none is present it may shallow-
+clone `jsolly/dotagents`. There is no public skills mirror.
 
 | Artifact | VM path | Notes |
 | --- | --- | --- |
 | Skills | `~/.cursor/skills/` | Same discovery as laptop `~/.cursor/skills` |
 | Agents | `~/.cursor/agents/` | One `.md` file per reviewer/scanner agent |
-| Cited rules | `~/.cursor/agent-skills-package/rules/` | **Read from here** when a skill cites `rules/<name>.md` |
+| Cited rules | `~/.cursor/dotagents-package/rules/` | **Read from here** when a skill cites `rules/<name>.md` |
 
-Source is the sanitized public mirror — **not** private `~/code/dotagents`.
+Laptop-only skills (see `skills/laptop-only.txt`) are **not** installed on cloud.
 
-There is **no** `~/code/dotagents` on this VM. Do not look for it or claim child repos inherit it.
-Do **not** vendor the private dotagents tree into this repo.
+There is **no** `~/code/dotagents` on this VM unless the current repo *is*
+dotagents. Do not look for a laptop home wiring path or claim child repos inherit
+it. Do **not** vendor the private dotagents tree into this repo.
 
 `~/.cursor/rules` from a laptop home is **not** auto-applied on cloud. User Rules + repo
 `AGENTS.md` + this file carry policy; skills that cite rules must read the copies under
-`~/.cursor/agent-skills-package/rules/`.
+`~/.cursor/dotagents-package/rules/`.
 
 ## Laptop-only (not on cloud)
 
-- `scripts/install-local-agent-runtime.sh` and `scripts/doctor-agents.sh`
+- `setup/install-local-agent-runtime.sh` and `setup/doctor-agents.sh`
 - User-level `~/.cursor/hooks.json` and other home hooks/guards
-- Private skills (e.g. `verify-ui`, `publish-skills`, family-memory)
+- Laptop-only skills (e.g. `setup-personal-machine`, `create-lambda`)
 
 ## Skills / slash commands
 
 If slash-skill autocomplete is empty on a **follow-up** turn, invoke the skill by name in prose
 (known Agents Window bug; typed invoke still works).
 
-Private laptop-only skills are **not** available here. For UI smoke, follow this repo's
-`AGENTS.md` **Local UI verification** stanza — do not invent `/verify-ui` when that skill is absent.
+`/verify-ui` ships in this package — use it for UI smoke when the skill is present. If it is
+missing, follow this repo's `AGENTS.md` **Local UI verification** stanza instead.
 
 ## Hooks / guards
 
