@@ -32,7 +32,7 @@ google-genai==2.20.0
 pandas==3.0.5
 plotly==7.0.0
 scikit-learn==1.9.0
-scipy==1.18.0
+scipy==1.18.1
 
 ## Legacy dependencies for migrations
 django-ckeditor==6.7.3
