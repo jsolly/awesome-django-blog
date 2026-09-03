@@ -2,7 +2,7 @@
 
 ![CodeStyle](https://img.shields.io/badge/ruff-orange?logo=ruff&label=code-style)
 ![Linting](https://img.shields.io/badge/ruff-orange?logo=ruff&label=linting)
-![PythonVersion](https://img.shields.io/badge/3.13-yellow?logo=Python&logoColor=yellow&label=Python)
+![PythonVersion](https://img.shields.io/badge/3.14-yellow?logo=Python&logoColor=yellow&label=Python)
 [![License](https://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 Awesome-django-blog is a fully functional blogging platform built using the Django web framework. It includes features such as creating and managing blog posts, comments, and categories, as well as user authentication and authorization.
@@ -23,7 +23,7 @@ Awesome-django-blog is a fully functional blogging platform built using the Djan
 ## Installation
 
 ```shell
-# first install Python 3.13.x
+# first install Python 3.14.x
 git clone https://github.com/jsolly/awesome-django-blog.git
 cd awesome-django-blog
 python3 -m venv .venv # Create virtual environment
@@ -136,7 +136,7 @@ python3 manage.py livereload
 - Deploy static assets to Amazon S3 + Cloudfront just by changing a few settings in the .env.local file.
 - Procfile included for easy deployment with Heroku or other services that use Procfile.
 - Optimized for Performance, SEO, and A11Y
-- Latest Django 5.x
+- Latest Django 6.1
 - Unit test coverage measured on every push (coverage.py) for a maintainable codebase
 - 100% linted with [ruff](https://pypi.org/project/ruff/) and PEP8 compliant for beautiful Python code.
 - pip dependency checks with [Dependabot](https://github.com/dependabot) for automated security and updates.
