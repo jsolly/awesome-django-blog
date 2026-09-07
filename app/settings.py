@@ -358,6 +358,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+
 if USE_CLOUD:
     AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
@@ -399,8 +401,6 @@ else:
     MEDIA_LOCATION = "mediafiles"
     MEDIA_URL = f"{STATIC_HOST}/mediafiles/"
     MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
-
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
     STORAGES = {
         "default": {
@@ -591,7 +591,7 @@ CKEDITOR_5_CONFIGS = {
     },
 }
 
-CKEDITOR_5_CUSTOM_CSS = f"{STATIC_URL}django_ckeditor_5/ckeditor_custom.css"
+CKEDITOR_5_CUSTOM_CSS = "django_ckeditor_5/ckeditor_custom.css"
 
 # Make sure APPEND_SLASH is set
 APPEND_SLASH = True
