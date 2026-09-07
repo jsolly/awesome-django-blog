@@ -1,5 +1,7 @@
 import json
 import re
+from html import unescape
+from urllib.parse import parse_qs, urlsplit
 
 from django.templatetags.static import static
 
@@ -24,6 +26,29 @@ def _meta_content(html, attr, value):
 class SeoMetaTests(SetUp):
     """Locks in the SEO head fixes: clean canonical, un-prefixed social image,
     a single canonical on /all-posts/, and valid JSON-LD on post pages."""
+
+    def test_share_links_preserve_reserved_characters_in_query_values(self):
+        self.first_post.title = "100% faster & safer? C++ / Python #1 | café"
+        self.first_post.metadesc = "A&B + 50% = progress #today"
+        self.first_post.save()
+        path = self.first_post.get_absolute_url() + "?from=a%26b&mode=one"
+        html = self.client.get(path).content.decode()
+        expected_url = f"http://testserver{path}"
+        for label, title_key in (("X", "text"), ("Reddit", "title"), ("LinkedIn", "title")):
+            with self.subTest(service=label):
+                tag = next(
+                    tag for tag in re.findall(r"<a\b[^>]*>", html)
+                    if f'aria-label="Share on {label}"' in tag
+                )
+                href = unescape(re.search(r'href="([^"]+)"', tag).group(1))
+                url = urlsplit(href)
+                query = parse_qs(url.query)
+                self.assertEqual(query[title_key], [self.first_post.title])
+                self.assertEqual(query["url"], [expected_url])
+                self.assertEqual(url.fragment, "")
+                if label == "LinkedIn":
+                    self.assertEqual(query["summary"], [self.first_post.metadesc])
+                    self.assertEqual(query["source"], [expected_url])
 
     def test_csp_allows_cloudflare_web_analytics_beacon(self):
         # Auto-injected CF Insights beacon is blocked without these hosts
