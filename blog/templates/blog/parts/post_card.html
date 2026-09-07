@@ -43,7 +43,7 @@
           </div>
           <div class="comment-details">
             <img src="{% static 'svg/comment-icon.svg' %}" alt="" class="comment-icon" width="20" height="24">
-            <p>{{ post.comments.count }}</p>
+            <p>{{ post|comment_count }}</p>
           </div>
         </div>
       </div>
