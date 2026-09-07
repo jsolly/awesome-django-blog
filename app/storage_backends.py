@@ -1,27 +1,24 @@
 import logging
+from urllib.parse import urlsplit
 
 from django.conf import settings
+from django.contrib.staticfiles.storage import ManifestFilesMixin
 from django.core.files.storage import FileSystemStorage
 from storages.backends.s3boto3 import S3Boto3Storage
 
 logger = logging.getLogger(__name__)
 
 
-class StaticStorage(S3Boto3Storage):
+class StaticStorage(ManifestFilesMixin, S3Boto3Storage):
     location = "static"
     default_acl = "public-read"
     file_overwrite = True
 
-    def url(self, name):
-        """Override url method to use CloudFront domain"""
-        logger.debug(f"StaticStorage.url called for {name}")
+    def __init__(self, *args, **kwargs):
+        # Let Django resolve the content-hashed filename before S3 builds the URL.
         if settings.USE_CLOUD and settings.STATIC_HOST:
-            url = f"{settings.STATIC_HOST}/{self.location}/{name}"
-            logger.debug(f"Returning CloudFront URL: {url}")
-            return url
-        url = super().url(name)
-        logger.debug(f"Returning S3 URL: {url}")
-        return url
+            kwargs.setdefault("custom_domain", urlsplit(settings.STATIC_HOST).netloc)
+        super().__init__(*args, **kwargs)
 
 
 class PublicMediaStorage(S3Boto3Storage):
@@ -83,4 +80,3 @@ class PostImageStorageLocal(PostImageStorageBase, FileSystemStorage):
     def _save(self, name, content):
         name = self.get_upload_path(name)
         return super()._save(name, content)
-
