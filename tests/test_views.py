@@ -133,7 +133,10 @@ class TestViews(SetUp):
             )
             self.assertEqual(response.status_code, 200)
             if post.comments.exists():
-                self.assertEqual(response.content, b"")
+                # Minification may wrap an empty fragment in an HTML document.
+                soup = BeautifulSoup(response.content, "html.parser")
+                self.assertEqual(soup.get_text(strip=True), "")
+                self.assertIsNone(soup.select_one("li, form, #no-comments-message"))
             else:
                 soup = BeautifulSoup(response.content, "html.parser")
                 placeholder = soup.select_one("#no-comments-message")
