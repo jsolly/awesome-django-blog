@@ -1,8 +1,9 @@
+import logging
+import re
+
 from django import template
 from django.conf import settings
 from django.utils.safestring import mark_safe
-import re
-import logging
 
 from blog.image_dimensions import DEFAULT_METAIMG_DIMENSIONS, is_default_metaimg
 
@@ -66,19 +67,32 @@ def get_image_url(image_field):
 
 
 @register.simple_tag
-def image_dimension_attrs(image_field, default_width=1200, default_height=630):
-    """Return safe width=/height= attributes for CLS without 500ing on missing media."""
+def image_dimension_attrs(image_field):
+    """Return persisted intrinsic dimensions without opening image storage.
+
+    Uploaded post images have their dimensions recorded on ``Post`` after the
+    resized file is saved.  Legacy rows are populated by the explicit
+    ``backfill_post_image_dimensions`` command.  The default image is a known
+    static asset and can be handled without a storage read even before that
+    backfill has run.
+    """
     if not image_field:
         return ""
+
+    post = getattr(image_field, "instance", None)
+    width = getattr(post, "metaimg_width", None)
+    height = getattr(post, "metaimg_height", None)
+    if width and height:
+        return mark_safe(f'width="{width}" height="{height}"')
+
     name = getattr(image_field, "name", "") or ""
     if is_default_metaimg(name):
         w, h = DEFAULT_METAIMG_DIMENSIONS
         return mark_safe(f'width="{w}" height="{h}"')
-    try:
-        w, h = image_field.width, image_field.height
-    except (ValueError, OSError) as exc:
-        logger.warning("image dimensions unavailable; using defaults (%s)", exc)
-        return mark_safe(f'width="{default_width}" height="{default_height}"')
-    if w and h:
-        return mark_safe(f'width="{w}" height="{h}"')
-    return mark_safe(f'width="{default_width}" height="{default_height}"')
+
+    logger.error(
+        "post image dimensions are missing; run backfill_post_image_dimensions "
+        "before serving this image (%s)",
+        name,
+    )
+    return ""

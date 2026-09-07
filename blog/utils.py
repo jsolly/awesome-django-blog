@@ -126,8 +126,16 @@ def getPostChunks(post: Post, chunk_size: int = 1800) -> list:
 
 
 def compute_similarity(post_id: int) -> None:
-    post = Post.objects.get(id=post_id)
-    other_posts = Post.objects.exclude(id=post_id).exclude(content="")
+    # Keep this projection limited to fields that existed before the image
+    # dimension migration.  The 0043 data migration calls this function while
+    # the current model may already contain additive columns that are not in
+    # the database yet.
+    post = Post.objects.only("id", "title", "content").get(id=post_id)
+    other_posts = (
+        Post.objects.only("id", "content")
+        .exclude(id=post_id)
+        .exclude(content="")
+    )
 
     if not other_posts.exists():
         return
@@ -168,7 +176,7 @@ def compute_similarity(post_id: int) -> None:
         )
         Similarity.objects.update_or_create(
             post1=post,
-            post2=Post.objects.get(pk=pk),
+            post2=Post.objects.only("id").get(pk=pk),
             defaults={
                 "score": cosine_sim[0][idx - 1]
             },  # Adjust index for cosine_sim offset

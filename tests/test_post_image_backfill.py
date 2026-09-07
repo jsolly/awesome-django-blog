@@ -34,6 +34,21 @@ def dimensions_for(post_id):
 
 
 class PostImageBackfillTests(SetUp):
+    def test_consumer_migration_changes_state_without_database_operations(self):
+        migration = import_module(
+            "blog.migrations.0046_post_metaimg_dimensions_state"
+        ).Migration
+        operation = migration.operations[0]
+        self.assertEqual(operation.database_operations, [])
+        self.assertEqual(
+            {field.name for field in operation.state_operations},
+            {"metaimg_width", "metaimg_height"},
+        )
+        self.assertTrue(
+            all(isinstance(field, migrations.AddField) and field.field.null
+                for field in operation.state_operations)
+        )
+
     def test_schema_migration_only_adds_nullable_columns(self):
         migration = import_module(
             "blog.migrations.0045_post_metaimg_dimensions"
@@ -149,3 +164,25 @@ class PostImageBackfillTests(SetUp):
             command._write_rows(connection, "default", validated)
 
         self.assertEqual(dimensions_for(post.pk), (None, None))
+
+    def test_force_backfill_reconciles_old_runtime_image_replacement(self):
+        post = create_unique_post()
+        call_command("backfill_post_image_dimensions", force=True)
+        original_dimensions = dimensions_for(post.pk)
+        storage = post._meta.get_field("metaimg").storage
+        replacement_name = storage.save(
+            "post_metaimgs/old-runtime-replacement.png",
+            image_upload("replacement.png", (640, 320)),
+        )
+        self.addCleanup(lambda: storage.delete(replacement_name))
+        # The Stage1 model can replace the image without updating new columns.
+        with connection.cursor() as cursor:
+            cursor.execute(
+                "UPDATE blog_post SET metaimg = %s WHERE id = %s",
+                [replacement_name, post.pk],
+            )
+
+        call_command("backfill_post_image_dimensions")
+        self.assertEqual(dimensions_for(post.pk), original_dimensions)
+        call_command("backfill_post_image_dimensions", force=True)
+        self.assertEqual(dimensions_for(post.pk), (640, 320))

@@ -13,7 +13,7 @@ from django.conf import settings
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.db import connection
-from django.db.models import Q
+from django.db.models import Count, Q
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import render_to_string
@@ -35,6 +35,7 @@ from .forms import PostForm, CommentForm
 from .utils import answer_question
 from .gemini import generate_text
 from users.models import User
+from .image_dimensions import DEFAULT_METAIMG_DIMENSIONS, is_default_metaimg
 
 
 ez_logger = logging.getLogger("ezra_logger")
@@ -149,7 +150,11 @@ class AllPostsView(ListView):
     context_object_name = "posts"  # The default is object_list
 
     def get_queryset(self):
-        return Post.objects.active()
+        return (
+            Post.objects.active()
+            .select_related("category")
+            .annotate(card_comment_count=Count("comments"))
+        )
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -284,26 +289,35 @@ class PostDetailView(DetailView):
         context["related_posts"] = related_posts
 
         if self.object.metaimg:
-            try:
-                context["metaimg_url"] = self.object.metaimg.url
-                context["metaimg_width"] = self.object.metaimg.width
-                context["metaimg_height"] = self.object.metaimg.height
-            except (ValueError, OSError) as exc:
-                ez_logger.warning(
-                    "Post meta image unavailable; using defaults",
+            context["metaimg_url"] = self.object.metaimg.url
+            metaimg_dimensions = (
+                self.object.metaimg_width,
+                self.object.metaimg_height,
+            )
+            if not all(metaimg_dimensions) and is_default_metaimg(
+                self.object.metaimg.name
+            ):
+                metaimg_dimensions = DEFAULT_METAIMG_DIMENSIONS
+
+            if all(metaimg_dimensions):
+                context["metaimg_width"], context["metaimg_height"] = (
+                    metaimg_dimensions
+                )
+            else:
+                ez_logger.error(
+                    "Post meta image dimensions are missing; run "
+                    "backfill_post_image_dimensions before serving this image",
                     extra={
                         "post_slug": self.object.slug,
                         "metaimg_name": self.object.metaimg.name,
-                        "error": str(exc),
                     },
                 )
-                context["metaimg_url"] = ""
-                context["metaimg_width"] = 1200
-                context["metaimg_height"] = 630
+                context["metaimg_width"] = ""
+                context["metaimg_height"] = ""
         else:
             context["metaimg_url"] = ""
-            context["metaimg_width"] = 1200
-            context["metaimg_height"] = 630
+            context["metaimg_width"] = ""
+            context["metaimg_height"] = ""
 
         return context
 
