@@ -14,6 +14,7 @@ from .utils import (
 from unittest.mock import patch
 
 # Third-Party Imports
+from bs4 import BeautifulSoup
 from django.urls import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.contrib.auth.models import User
@@ -75,6 +76,73 @@ class TestViews(SetUp):
         test_post_detail_url = reverse("post-detail", args=[self.first_post.slug])
         response = self.client.get(test_post_detail_url)
         self.assertResponseAndTemplate(response, "blog/post/post_detail.html")
+
+    def test_comment_list_and_form_remain_separate_in_both_states(self):
+        post = create_unique_post()
+        self.client.force_login(self.admin_user)
+        for comment_count in (0, 1):
+            with self.subTest(comment_count=comment_count):
+                response = self.client.get(post.get_absolute_url())
+                self.assertEqual(response.status_code, 200)
+                soup = BeautifulSoup(response.content, "html.parser")
+                section = soup.select_one("#comments-section")
+                comments = section.select_one("#comments-list")
+                children = comments.find_all(recursive=False)
+                self.assertEqual(len(children), comment_count)
+                self.assertTrue(all(child.name == "li" for child in children))
+                placeholder = section.select_one("#no-comments-message")
+                form = section.select_one("#create-comments-section form")
+                self.assertIs(placeholder.parent, section)
+                self.assertIs(form.parent.parent, section)
+                self.assertEqual(form["hx-target"], "#comments-list")
+                self.assertEqual(bool(placeholder.get_text(strip=True)), comment_count == 0)
+                if comment_count:
+                    delete_form = comments.select_one(".comment-delete-form")
+                    self.assertEqual(delete_form["hx-swap"], "outerHTML")
+            if not comment_count:
+                create_comment(post)
+
+    def test_anonymous_comment_section_keeps_login_outside_list(self):
+        post = create_unique_post()
+        soup = BeautifulSoup(self.client.get(post.get_absolute_url()).content, "html.parser")
+        section = soup.select_one("#comments-section")
+        self.assertEqual(section.select_one("#comments-list").find_all(recursive=False), [])
+        self.assertIs(section.select_one("#login-button").parent.parent, section)
+        self.assertIsNone(section.select_one("form"))
+
+    def test_htmx_comment_empty_state_transitions(self):
+        post = create_unique_post()
+        self.client.force_login(self.admin_user)
+        for count in (1, 2):
+            response = self.client.post(
+                reverse("comment-create", args=[post.slug]),
+                {"content": f"Comment {count}"}, HTTP_HX_REQUEST="true",
+            )
+            self.assertEqual(response.status_code, 200)
+            soup = BeautifulSoup(response.content, "html.parser")
+            self.assertEqual(len(soup.select("li.comment")), 1)
+            self.assertIsNone(soup.select_one("#create-comments-section"))
+            placeholder = soup.select_one("#no-comments-message")
+            self.assertEqual(placeholder is not None, count == 1)
+            if placeholder:
+                self.assertEqual(placeholder["hx-swap-oob"], "true")
+                self.assertEqual(placeholder.get_text(strip=True), "")
+        for comment in list(post.comments.all()):
+            response = self.client.delete(
+                reverse("comment-delete", args=[comment.id]), HTTP_HX_REQUEST="true",
+            )
+            self.assertEqual(response.status_code, 200)
+            if post.comments.exists():
+                # Minification may wrap an empty fragment in an HTML document.
+                soup = BeautifulSoup(response.content, "html.parser")
+                self.assertEqual(soup.get_text(strip=True), "")
+                self.assertIsNone(soup.select_one("li, form, #no-comments-message"))
+            else:
+                soup = BeautifulSoup(response.content, "html.parser")
+                placeholder = soup.select_one("#no-comments-message")
+                self.assertEqual(placeholder["hx-swap-oob"], "true")
+                self.assertIn("No comments yet", placeholder.get_text())
+                self.assertIsNone(soup.select_one("li"))
 
     def test_post_detail_view_anonymous_draft_post(self):
         draft_post_detail_url = reverse("post-detail", args=[self.draft_post.slug])

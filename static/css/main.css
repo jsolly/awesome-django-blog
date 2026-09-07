@@ -582,13 +582,13 @@ figure {
 
 .btn-dark {
   color: var(--muted-white);
-  background-color: #6c757d;
-  border: 1px solid #6c757d;
+  background-color: #5c636a;
+  border: 1px solid #5c636a;
 }
 
 .btn-dark:hover {
-  background-color: #5c636a;
-  border-color: #5c636a;
+  background-color: #495057;
+  border-color: #495057;
 }
 
 .btn-dark-outline {
@@ -683,15 +683,15 @@ figure {
 }
 
 .resp-sharing-button__link.reddit {
-  background-color: #5f99cf;
+  background-color: #336b9f;
 }
 
 .resp-sharing-button__link.linkedin {
-  background-color: #0077b5;
+  background-color: #00699f;
 }
 
 .resp-sharing-button__link:hover {
-  background-color: #0069d9;
+  background-color: #005cbf;
 }
 
 .resp-sharing-button__link.linkedin:hover .resp-sharing-button__icon {
@@ -776,6 +776,14 @@ label[for="id_draft"] {
 /* =============
    Images
 ============= */
+
+#post-detail-meta-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
 
 .meta-img-container {
   display: flex;
@@ -1261,7 +1269,7 @@ video {
 }
 
 #breadcrumbs {
-  color: #6c757d;
+  color: #5c636a;
 }
 
 #scroll-to-top {
