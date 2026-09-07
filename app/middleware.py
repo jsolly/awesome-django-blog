@@ -1,4 +1,22 @@
+import os
+import re
+
 from django.http import HttpResponsePermanentRedirect
+
+
+class ReleaseIdMiddleware:
+    """Expose Heroku's build identity, including redirects and error responses."""
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+        commit = os.environ.get("HEROKU_BUILD_COMMIT", "")
+        # Local or unconfigured runtimes must never look like a verified release.
+        self.release_id = commit if re.fullmatch(r"[0-9a-f]{40}", commit) else "dev"
+
+    def __call__(self, request):
+        response = self.get_response(request)
+        response["x-release-id"] = self.release_id
+        return response
 
 
 class WwwRedirectMiddleware:
@@ -18,4 +36,4 @@ class WwwRedirectMiddleware:
             return HttpResponsePermanentRedirect(
                 f"{request.scheme}://www.{host}{request.get_full_path()}"
             )
-        return self.get_response(request) 
+        return self.get_response(request)
