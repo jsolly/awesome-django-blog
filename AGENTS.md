@@ -119,3 +119,5 @@ Auth-gated admin/authoring UI (public blog pages need no login). Follow `rules/f
 - **Dev server:** with `.venv` activated — `python manage.py runserver` → <http://127.0.0.1:8000>
 - **Sign-in:** Django auth with `DEFAULT_USER` and `DEFAULT_PASSWORD` from `.env.local` (see `.env.example`). Keep these in sync with seeded accounts (local defaults: `admin` / `admin` after seed/setup).
 - **Do not** invent credentials or commit `.env.local`.
+
+The pre-commit gate verifies the active Python minor version and installed package versions against `.python-version` and `requirements.txt`, including when it borrows the primary checkout's `.venv`. Matching requirements files alone do not prove the environment is current. Drift fails before tests; refresh the active environment with `python -m pip install -r requirements.txt`.
