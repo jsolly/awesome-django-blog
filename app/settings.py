@@ -591,7 +591,7 @@ CKEDITOR_5_CONFIGS = {
     },
 }
 
-CKEDITOR_5_CUSTOM_CSS = f"{STATIC_URL}django_ckeditor_5/ckeditor_custom.css"
+CKEDITOR_5_CUSTOM_CSS = "django_ckeditor_5/ckeditor_custom.css"
 
 # Make sure APPEND_SLASH is set
 APPEND_SLASH = True
