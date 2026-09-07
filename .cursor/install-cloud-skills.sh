@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
-# Install skills, agents, and cited rules from a private dotagents checkout into
-# Cursor Cloud Agent home paths.
+# Install skills, agents, cited rules, and the connector/plugin catalog from a private dotagents
+# checkout into Cursor Cloud Agent home paths.
 # Skills → ~/.cursor/skills; agents → ~/.cursor/agents;
-# cited rules → ~/.cursor/dotagents-package/rules
+# cited rules → ~/.cursor/dotagents-package/rules;
+# mcps/catalog.json → ~/.cursor/dotagents-package/mcps (so /integration-verify can reconcile live
+# connectors/plugins against the canon on a VM with no laptop checkout)
 # Idempotent: safe to re-run from environment.json install/update.
 #
 # Source (first match):
@@ -21,6 +23,7 @@ set -euo pipefail
 SKILLS_HOME="${CURSOR_CLOUD_SKILLS_HOME:-${HOME}/.cursor/skills}"
 AGENTS_HOME="${CURSOR_CLOUD_AGENTS_HOME:-${HOME}/.cursor/agents}"
 RULES_HOME="${CURSOR_CLOUD_PACKAGE_RULES:-${HOME}/.cursor/dotagents-package/rules}"
+MCPS_HOME="${CURSOR_CLOUD_PACKAGE_MCPS:-${HOME}/.cursor/dotagents-package/mcps}"
 
 looks_like_dotagents() {
   local root="$1"
@@ -112,7 +115,7 @@ else
     echo "cloud-package: ERROR — set DOTAGENTS_ROOT to a host-local checkout of the private dotagents repo (laptop: ~/code/dotagents)." >&2
     exit 1
   fi
-  git -C "$clone_tmp/dotagents" sparse-checkout set skills agents rules
+  git -C "$clone_tmp/dotagents" sparse-checkout set skills agents rules mcps
   root="$clone_tmp/dotagents"
   if ! looks_like_dotagents "$root"; then
     echo "cloud-package: ERROR — clone at $root is not a dotagents checkout" >&2
@@ -200,4 +203,25 @@ if [[ "$installed_rules" -eq 0 ]]; then
   exit 1
 fi
 
-echo "cloud-package: done (${installed_skills} skill(s), ${skipped_excluded} laptop-only skipped, ${installed_agents} agent file(s), ${installed_rules} rule file(s))"
+# --- connector/plugin catalog ---
+# The cloud-first canon for MCP servers and marketplace plugins. Copied (not required) so an older
+# checkout still installs skills — a missing catalog degrades /integration-verify's reconciliation to
+# "canon unavailable", which the receipt discloses rather than inventing green.
+installed_catalog=0
+src_catalog="$root/mcps/catalog.json"
+if [[ -f "$src_catalog" ]]; then
+  mkdir -p "$MCPS_HOME"
+  cp -f "$src_catalog" "$MCPS_HOME/catalog.json"
+  installed_catalog=1
+  echo "cloud-package: installed connector catalog → ${MCPS_HOME}/catalog.json"
+  if [[ -f "$root/mcps/README.md" ]]; then
+    cp -f "$root/mcps/README.md" "$MCPS_HOME/README.md"
+  fi
+else
+  # These two files are installer-owned. An older checkout must not leave a
+  # previous revision looking like current canon to integration-verify.
+  rm -f "$MCPS_HOME/catalog.json" "$MCPS_HOME/README.md"
+  echo "cloud-package: WARN — no mcps/catalog.json in $root; /integration-verify cannot reconcile connectors against the canon" >&2
+fi
+
+echo "cloud-package: done (${installed_skills} skill(s), ${skipped_excluded} laptop-only skipped, ${installed_agents} agent file(s), ${installed_rules} rule file(s), ${installed_catalog} catalog file(s))"

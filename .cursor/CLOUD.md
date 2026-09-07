@@ -16,6 +16,7 @@ clone `jsolly/dotagents`. There is no public skills mirror.
 | Skills | `~/.cursor/skills/` | Same discovery as laptop `~/.cursor/skills` |
 | Agents | `~/.cursor/agents/` | One `.md` file per reviewer/scanner agent |
 | Cited rules | `~/.cursor/dotagents-package/rules/` | **Read from here** when a skill cites `rules/<name>.md` |
+| Connector catalog | `~/.cursor/dotagents-package/mcps/catalog.json` | Canonical connector expectations; verify runtime authentication separately |
 
 Laptop-only skills (see `skills/laptop-only.txt`) are **not** installed on cloud.
 
@@ -26,6 +27,26 @@ it. Do **not** vendor the private dotagents tree into this repo.
 `~/.cursor/rules` from a laptop home is **not** auto-applied on cloud. User Rules + repo
 `AGENTS.md` + this file carry policy; skills that cite rules must read the copies under
 `~/.cursor/dotagents-package/rules/`.
+
+## Durable planning and human handoffs
+
+When this harness lacks a usable native planning mode, load
+`~/.cursor/skills/persist-todos-in-todoist/SKILL.md` for durable Todoist outcomes,
+cooperative claims and human handoffs. Human actions and ad hoc work outside a
+repo also use that skill. A supported native repo plan needs no Todoist mirror;
+reconsider this integration when Cursor Cloud or Grok Bot gains native planning.
+Reconcile already-tracked commitments regardless of the current harness.
+
+For Todoist-backed work, load the expected John user ID and email from the
+installed private persistence skill. Require both user-info fields to match
+before queue pickup or writes; missing private identity policy or an account
+mismatch stops Todoist work and is reported. Then read a known shared task and
+all its comments;
+shared-task visibility alone is not identity proof. Discover only work in this repo or assigned
+role, inside existing authorization. Missing tracker access blocks unattended
+Todoist pickup; explicitly requested read-only analysis may continue with an
+honest unsynced status. Native repo plans without a Todoist obligation do not
+require the connector. Catalog installation is not authentication proof.
 
 ## Laptop-only (not on cloud)
 
