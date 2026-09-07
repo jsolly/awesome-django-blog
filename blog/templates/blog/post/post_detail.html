@@ -112,22 +112,12 @@
 <section id="comments-section" class="content-section sml-margin-top-bottom">
   <h2>Comments</h2>
   <ul id="comments-list">
-    {% if post.comments.count > 0 %}
     {% for comment in post.comments.all %}
     {% include 'blog/comment/comment_item.html' %}
     {% endfor %}
-    <li class="comment sml-margin-top-bottom">
-      <!-- Create Comments Section-->
-    {% include 'blog/comment/add_comment.html' %}
-    </li>
   </ul>
-
-  {% else %}
-  <div id="no-comments-message">
-    <li class="comment">No comments yet.</li>
-    {% include 'blog/comment/add_comment.html' %}
-  </div>
-  {% endif %}
+  <div id="no-comments-message">{% if not post.comments.count %}No comments yet.{% endif %}</div>
+  {% include 'blog/comment/add_comment.html' %}
 </section>
 
 
