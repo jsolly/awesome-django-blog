@@ -14,6 +14,8 @@ Production URL: <https://www.blogthedata.com>
 
 Deployment: `heroku-github` (Heroku app `blogthedata`, auto-deployed from GitHub `main`)
 
+Production responses expose `x-release-id` from Heroku's `HEROKU_BUILD_COMMIT`. Enable the app's `runtime-dyno-metadata` and `runtime-dyno-build-metadata` labs flags for this value. Missing or invalid metadata produces `dev`, which fails `/ship` verification. Require the header to resolve to the merge commit or a descendant; HTTP 200 or a successful build alone is insufficient.
+
 ## Stack
 
 Django 6.1 blogging platform on Python 3.14. SQLite by default, Postgres optional. HTMX for partial updates, CKEditor 5 for authoring, OpenAI for chatbot/title generation. WhiteNoise + optional S3/CloudFront for static/media. Deploys via Procfile (Heroku-style).
