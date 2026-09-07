@@ -80,13 +80,13 @@ ruff format app
 
 ### Pre-push gate
 
-The quality gate (ruff, collectstatic, migrate, pytest + coverage) runs locally on every push to `main` via the tracked pre-push hook. Wire it up once per clone:
+The quality gate (ruff, collectstatic, migrate, pytest + coverage) runs locally on every commit via the tracked pre-commit hook. Wire it up once per clone:
 
 ```shell
 git config core.hooksPath .git-hooks
 ```
 
-The gate logic lives in `.git-hooks/pre-push`; a failure aborts the push.
+The gate logic lives in `.git-hooks/pre-commit`; a failure aborts the commit.
 
 ### Live Reload
 
@@ -131,7 +131,7 @@ python3 manage.py livereload
 - HTMX for dynamic page updates without a page refresh
 - Robots.txt, security.txt, and sitemap.xml for optimized SEO and security
 - Git hooks for automatic static file generation (manage.py collectstatic)
-- Local pre-push quality gate (lint, collectstatic, migrations, tests + coverage) via `.git-hooks/pre-push`. Push with confidence!
+- Local pre-commit quality gate (lint, collectstatic, migrations, tests + coverage) via `.git-hooks/pre-commit`. Push with confidence!
 - Compatible with Sqllite or postgres databases for fast protyping and production
 - Deploy static assets to Amazon S3 + Cloudfront just by changing a few settings in the .env.local file.
 - Procfile included for easy deployment with Heroku or other services that use Procfile.

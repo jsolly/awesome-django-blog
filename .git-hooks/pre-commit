@@ -52,6 +52,10 @@ else
   exit 1
 fi
 
+# Validate the actual environment before trusting a borrowed or existing venv.
+run_step "Python runtime + dependency pins" python3 scripts/check-python-pins.py
+run_step "Python dependency compatibility" python3 -m pip check
+
 # Test-only Django settings (mirror the old workflow env).
 export DEBUG=False
 export LOGGING=False
