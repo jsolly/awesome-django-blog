@@ -4,6 +4,8 @@ from django.utils.safestring import mark_safe
 import re
 import logging
 
+from blog.image_dimensions import DEFAULT_METAIMG_DIMENSIONS, is_default_metaimg
+
 logger = logging.getLogger(__name__)
 register = template.Library()
 
@@ -63,18 +65,14 @@ def get_image_url(image_field):
         return f"/mediafiles/{image_field.name}"
 
 
-# Intrinsic size of static/default.webp (Post.metaimg default) — avoid opening storage.
-_DEFAULT_METAIMG_WH = (1207, 1392)
-
-
 @register.simple_tag
 def image_dimension_attrs(image_field, default_width=1200, default_height=630):
     """Return safe width=/height= attributes for CLS without 500ing on missing media."""
     if not image_field:
         return ""
     name = getattr(image_field, "name", "") or ""
-    if name.endswith("default.webp"):
-        w, h = _DEFAULT_METAIMG_WH
+    if is_default_metaimg(name):
+        w, h = DEFAULT_METAIMG_DIMENSIONS
         return mark_safe(f'width="{w}" height="{h}"')
     try:
         w, h = image_field.width, image_field.height

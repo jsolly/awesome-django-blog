@@ -130,7 +130,7 @@
   <ul class="social-share">
     <li>
       <a class="resp-sharing-button__link x"
-        href="https://twitter.com/intent/tweet/?text={{ post.title }}&amp;url={{ request.build_absolute_uri }}"
+        href="https://twitter.com/intent/tweet/?text={{ post.title|urlencode:'' }}&amp;url={{ request.build_absolute_uri|urlencode:'' }}"
         target="_blank" rel="noopener noreferrer" aria-label="Share on X">
         <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
           <img class="social-share-btn" src="{% static 'svg/x-share-btn.svg' %}" alt="X">
@@ -140,7 +140,7 @@
     </li>
     <li>
       <a class="resp-sharing-button__link reddit"
-        href="https://reddit.com/submit/?url={{ request.build_absolute_uri }}&amp;resubmit=true&amp;title={{ post.title }}"
+        href="https://reddit.com/submit/?url={{ request.build_absolute_uri|urlencode:'' }}&amp;resubmit=true&amp;title={{ post.title|urlencode:'' }}"
         target="_blank" rel="noopener" aria-label="Share on Reddit">
         <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
           <img class="social-share-btn" src="{% static 'svg/reddit-share-btn.svg' %}" alt="Reddit">
@@ -150,7 +150,7 @@
     </li>
     <li>
       <a class="resp-sharing-button__link linkedin"
-        href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ request.build_absolute_uri }}&amp;title={{ post.title }}&amp;summary={{ post.metadesc }}&amp;source={{ request.build_absolute_uri }}"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ request.build_absolute_uri|urlencode:'' }}&amp;title={{ post.title|urlencode:'' }}&amp;summary={{ post.metadesc|default_if_none:''|urlencode:'' }}&amp;source={{ request.build_absolute_uri|urlencode:'' }}"
         target="_blank" rel="noopener" aria-label="Share on LinkedIn">
         <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solidcircle">
           <img class="social-share-btn" src="{% static 'svg/linkedin-share-btn.svg' %}" alt="LinkedIn">
