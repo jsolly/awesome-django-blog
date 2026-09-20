@@ -131,3 +131,11 @@ its recorded checkout tree exactly matches the landed tree, using
 `scripts/ci-verified-tree.sh` from dotagents. Missing proof runs full CI;
 manual runs always validate. Job names and deployment triggers stay intact.
 Canonical contract: `~/code/dotagents/templates/github/verified-tree-ci.md`.
+
+## Dependabot CI
+
+Ordinary Dependabot PR events allocate no validation runners. A manually invoked
+`/optimize-workspace` requests full PR checks with `deps:ci:<full-head-SHA>`.
+Deferred checks cannot satisfy the real `ci` requirement. New commits need a new
+request; skipped or absent checks never authorize a dependency merge. See the
+canonical `dotagents/skills/optimize-workspace/references/dependencies.md`.

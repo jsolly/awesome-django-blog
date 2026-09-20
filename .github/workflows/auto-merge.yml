@@ -56,24 +56,28 @@ permissions:
 
 jobs:
   auto-merge:
-    runs-on: ubuntu-latest
     if: >-
+      (github.event_name != 'workflow_run' ||
+      (github.event.workflow_run.display_title != 'Deferred validation' &&
+       github.event.workflow_run.actor.login != 'dependabot[bot]')) && (
       (
-        github.event_name == 'pull_request' &&
-        github.event.pull_request.draft == false &&
-        github.event.pull_request.head.repo.full_name == github.repository &&
-        github.event.pull_request.user.type == 'User' &&
-        (
-          github.event.pull_request.user.login == github.repository_owner ||
-          github.event.pull_request.author_association == 'OWNER' ||
-          github.event.pull_request.author_association == 'MEMBER'
-        )
-      ) ||
-      (
-        github.event_name == 'workflow_run' &&
-        github.event.workflow_run.conclusion == 'success' &&
-        github.event.workflow_run.event == 'pull_request'
+              github.event_name == 'pull_request' &&
+              github.event.pull_request.draft == false &&
+              github.event.pull_request.head.repo.full_name == github.repository &&
+              github.event.pull_request.user.type == 'User' &&
+              (
+                github.event.pull_request.user.login == github.repository_owner ||
+                github.event.pull_request.author_association == 'OWNER' ||
+                github.event.pull_request.author_association == 'MEMBER'
+              )
+            ) ||
+            (
+              github.event_name == 'workflow_run' &&
+              github.event.workflow_run.conclusion == 'success' &&
+              github.event.workflow_run.event == 'pull_request'
+            )
       )
+    runs-on: ubuntu-latest
     env:
       HAS_APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY != '' }}
       HAS_APP_CLIENT_ID: ${{ vars.APP_CLIENT_ID != '' || secrets.APP_CLIENT_ID != '' }}
