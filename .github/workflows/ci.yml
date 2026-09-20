@@ -1,12 +1,22 @@
 name: CI
+run-name: >-
+  ${{ (github.event_name != 'pull_request' ||
+  (github.event.action != 'labeled' && github.event.pull_request.user.login != 'dependabot[bot]') ||
+  (github.event.action == 'labeled' &&
+   github.event.label.name == format('deps:ci:{0}', github.event.pull_request.head.sha))) && format('{0} validation', github.workflow) || 'Deferred validation' }}
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, labeled]
   push:
     branches: [main]
 
 concurrency:
-  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: >-
+    ${{ (github.event_name != 'pull_request' ||
+    (github.event.action != 'labeled' && github.event.pull_request.user.login != 'dependabot[bot]') ||
+    (github.event.action == 'labeled' &&
+     github.event.label.name == format('deps:ci:{0}', github.event.pull_request.head.sha))) && format('ci-{0}-{1}-{2}', github.workflow, github.event.pull_request.number || github.ref, github.event_name) || format('deferred-{0}', github.run_id) }}
   cancel-in-progress: true
 
 permissions:
@@ -16,7 +26,16 @@ permissions:
 
 jobs:
   ci:
-    name: ci
+    name: >-
+      ${{ (github.event_name != 'pull_request' ||
+      (github.event.action != 'labeled' && github.event.pull_request.user.login != 'dependabot[bot]') ||
+      (github.event.action == 'labeled' &&
+       github.event.label.name == format('deps:ci:{0}', github.event.pull_request.head.sha))) && 'ci' || 'ci-deferred' }}
+    if: >-
+      github.event_name != 'pull_request' ||
+      (github.event.action != 'labeled' && github.event.pull_request.user.login != 'dependabot[bot]') ||
+      (github.event.action == 'labeled' &&
+       github.event.label.name == format('deps:ci:{0}', github.event.pull_request.head.sha))
     runs-on: ubuntu-latest
     # Mirror the pre-push gate's test-only Django settings (.git-hooks/pre-push).
     env:
