@@ -123,3 +123,11 @@ Auth-gated admin/authoring UI (public blog pages need no login). Follow `rules/f
 - **Do not** invent credentials or commit `.env.local`.
 
 The pre-commit gate verifies the active Python minor version and installed package versions against `.python-version` and `requirements.txt`, including when it borrows the primary checkout's `.venv`. Matching requirements files alone do not prove the environment is current. Drift fails before tests; refresh the active environment with `python -m pip install -r requirements.txt`.
+
+## Verified-tree CI
+
+PRs run the full CI suite. Post-merge CI reuses a successful PR run only when
+its recorded checkout tree exactly matches the landed tree, using
+`scripts/ci-verified-tree.sh` from dotagents. Missing proof runs full CI;
+manual runs always validate. Job names and deployment triggers stay intact.
+Canonical contract: `~/code/dotagents/templates/github/verified-tree-ci.md`.

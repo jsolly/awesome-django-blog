@@ -10,6 +10,8 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
+  actions: read
+  pull-requests: read
   contents: read
 
 jobs:
@@ -29,27 +31,55 @@ jobs:
       SITE_ID: "1"
     steps:
       - uses: actions/checkout@v7
+      - name: Check for a validated PR tree
+        id: verified-tree
+        timeout-minutes: 1
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/ci-verified-tree.sh
       - uses: actions/setup-node@v7
+        if: steps.verified-tree.outputs.run_full != 'false'
         with:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
+        if: steps.verified-tree.outputs.run_full != 'false'
       - run: npm run check:actions
+        if: steps.verified-tree.outputs.run_full != 'false'
       - uses: actions/setup-python@v7
+        if: steps.verified-tree.outputs.run_full != 'false'
         with:
           python-version-file: .python-version
           cache: pip
       - name: Install dependencies
+        if: steps.verified-tree.outputs.run_full != 'false'
         run: pip install -r requirements.txt
       - name: yaml lint
+        if: steps.verified-tree.outputs.run_full != 'false'
         run: yamllint -s .
       - name: ruff lint
+        if: steps.verified-tree.outputs.run_full != 'false'
         run: ruff check --config ./config/pyproject.toml app
       - name: collectstatic
+        if: steps.verified-tree.outputs.run_full != 'false'
         run: python manage.py collectstatic --noinput
       - name: migrate
+        if: steps.verified-tree.outputs.run_full != 'false'
         run: python manage.py migrate --noinput
       - name: pytest + coverage
+        if: steps.verified-tree.outputs.run_full != 'false'
         run: coverage run --rcfile=config/.coveragerc -m pytest tests
       - name: coverage report
+        if: steps.verified-tree.outputs.run_full != 'false'
         run: coverage report -m --skip-covered --rcfile=config/.coveragerc
+      - name: Record validated PR tree
+        if: >-
+          success() && github.event_name == 'pull_request' &&
+          steps.verified-tree.outputs.tree != ''
+        uses: actions/upload-artifact@v7
+        with:
+          name: ci-tree-v1-${{ github.job }}-${{ steps.verified-tree.outputs.tree }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/ci-tree-${{ github.job }}.txt
+          if-no-files-found: error
+          retention-days: 7
