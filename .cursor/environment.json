@@ -1,4 +1,7 @@
 {
-	"install": "bash .cursor/install-cloud-skills.sh && bash .cursor/aws-oidc-login.sh",
-	"start": "bash .cursor/aws-oidc-login.sh"
+	"install": "export DOTAGENTS_GATE_LIB=\"$HOME/.cursor/dotagents-package/gate/gate-lib.sh\" && bash .cursor/install-cloud-skills.sh && bash .cursor/aws-oidc-login.sh",
+	"start": "export DOTAGENTS_GATE_LIB=\"$HOME/.cursor/dotagents-package/gate/gate-lib.sh\" && bash .cursor/aws-oidc-login.sh",
+	"repositoryDependencies": [
+		"github.com/jsolly/dotagents"
+	]
 }
