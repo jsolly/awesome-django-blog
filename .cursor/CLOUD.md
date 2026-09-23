@@ -22,6 +22,15 @@ before anonymous HTTPS clone works. There is no public skills mirror.
 | Connector catalog | `~/.cursor/dotagents-package/mcps/catalog.json` | The cloud-first canon for MCP servers + marketplace plugins. `/optimize-workspaces` reconciles the live session against it — no laptop checkout needed |
 | Pre-commit gate lib | `~/.cursor/dotagents-package/gate/gate-lib.sh` | Canonical copy. Export `DOTAGENTS_GATE_LIB` to this path. Child `.git-hooks/pre-commit` shims source `${DOTAGENTS_GATE_LIB:-$HOME/code/dotagents/gate/gate-lib.sh}` |
 
+### Agents / Review Task fallback
+
+`~/.cursor/agents/` is installed on Cloud, but Task `subagent_type` names are
+laptop/IDE-oriented and often unavailable here. Cloud `/ship` uses
+`general-purpose` Tasks that each read `~/.cursor/agents/<name>.md` and follow
+that lens plus `skills/ship/references/output-contract.md`. Same roster names
+and depth gates as `skills/ship/references/review-roster.md` — do not invent
+parallel lenses.
+
 Laptop-only skills (see `skills/laptop-only.txt`) are **not** installed on cloud.
 
 There is **no** full `~/code/dotagents` checkout on this VM unless the current
