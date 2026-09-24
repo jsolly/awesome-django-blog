@@ -126,10 +126,13 @@ The pre-commit gate verifies the active Python minor version and installed packa
 
 ## Production smoke
 
-The **Production smoke** workflow waits for the intended Heroku release at
-<https://www.blogthedata.com> and checks public article reading and GET search.
+The **Production smoke** workflow starts after a successful Heroku deployment
+status for the `blogthedata` environment. It verifies the intended release at
+<https://www.blogthedata.com>, public article reading and GET search.
 `npm run smoke:production` never logs in, posts comments, edits content or calls
 GPT endpoints. Heroku GitHub deployment and existing PR CI stay unchanged.
+Heroku waits for CI before deploying, so smoke must start from the successful
+deployment event, never from pre-deployment CI. Keep `wait_for_ci` enabled.
 
 `/ship` must follow the exact release's Production smoke run to success and
 record its URL. Missing, failed, cancelled, skipped or timed-out runs are not

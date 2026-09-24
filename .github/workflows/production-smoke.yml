@@ -1,10 +1,7 @@
 name: Production smoke
-run-name: Production smoke ${{ github.event.workflow_run.head_sha || inputs.release_sha }} ${{ github.event.workflow_run.id || inputs.request_id }}
+run-name: Production smoke ${{ github.event.deployment.sha || inputs.release_sha }} ${{ github.event.deployment.id || inputs.request_id }}
 on:
-  workflow_run:
-    workflows: [CI]
-    types: [completed]
-    branches: [main]
+  deployment_status:
   workflow_dispatch:
     inputs:
       release_sha:
@@ -22,22 +19,22 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: production-smoke-${{ github.event.workflow_run.head_sha || inputs.release_sha }}-${{ github.event.workflow_run.id || inputs.request_id }}
+  group: production-smoke-${{ github.event.deployment.sha || inputs.release_sha }}-${{ github.event.deployment.id || inputs.request_id }}
   cancel-in-progress: false
 jobs:
   smoke:
     if: >-
       (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
-      (github.event.workflow_run.conclusion == 'success' &&
-       github.event.workflow_run.head_branch == 'main' &&
-       github.event.workflow_run.head_repository.full_name == github.repository &&
-       (github.event.workflow_run.event == 'push' || github.event.workflow_run.event == 'workflow_dispatch'))
+      (github.event_name == 'deployment_status' &&
+       github.event.deployment_status.state == 'success' &&
+       github.event.deployment.environment == 'blogthedata' &&
+       github.event.deployment.task == 'deploy')
     runs-on: ubuntu-latest
     timeout-minutes: 18
     env:
-      PRODUCTION_SMOKE_SHA: ${{ github.event.workflow_run.head_sha || inputs.release_sha }}
+      PRODUCTION_SMOKE_SHA: ${{ github.event.deployment.sha || inputs.release_sha }}
       PRODUCTION_SMOKE_SERVER_SHA: ${{ inputs.server_sha }}
-      PRODUCTION_SMOKE_REQUEST_ID: ${{ github.event.workflow_run.id || inputs.request_id }}
+      PRODUCTION_SMOKE_REQUEST_ID: ${{ github.event.deployment.id || inputs.request_id }}
     steps:
       - uses: actions/checkout@v4
         with:
