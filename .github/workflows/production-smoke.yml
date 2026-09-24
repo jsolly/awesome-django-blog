@@ -1,0 +1,74 @@
+name: Production smoke
+run-name: Production smoke ${{ github.event.workflow_run.head_sha || inputs.release_sha }} ${{ github.event.workflow_run.id || inputs.request_id }}
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      release_sha:
+        description: Full merged client commit SHA
+        required: true
+        type: string
+      server_sha:
+        description: Full separately deployed server commit SHA (when applicable)
+        required: false
+        type: string
+      request_id:
+        description: Unique UUID for this verification request
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: production-smoke-${{ github.event.workflow_run.head_sha || inputs.release_sha }}-${{ github.event.workflow_run.id || inputs.request_id }}
+  cancel-in-progress: false
+jobs:
+  smoke:
+    if: >-
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_branch == 'main' &&
+       github.event.workflow_run.head_repository.full_name == github.repository &&
+       (github.event.workflow_run.event == 'push' || github.event.workflow_run.event == 'workflow_dispatch'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    env:
+      PRODUCTION_SMOKE_SHA: ${{ github.event.workflow_run.head_sha || inputs.release_sha }}
+      PRODUCTION_SMOKE_SERVER_SHA: ${{ inputs.server_sha }}
+      PRODUCTION_SMOKE_REQUEST_ID: ${{ github.event.workflow_run.id || inputs.request_id }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Validate intended release
+        run: |
+          node --input-type=module <<'JS'
+          import { execFileSync } from 'node:child_process';
+          const sha = process.env.PRODUCTION_SMOKE_SHA;
+          if (!/^[a-f0-9]{40}$/i.test(sha)) throw new Error('Full SHA required');
+          if (!/^[a-zA-Z0-9_-]{1,100}$/.test(process.env.PRODUCTION_SMOKE_REQUEST_ID)) throw new Error('Invalid request ID');
+          if (process.env.PRODUCTION_SMOKE_SERVER_SHA && !/^[a-f0-9]{40}$/i.test(process.env.PRODUCTION_SMOKE_SERVER_SHA)) throw new Error('Invalid server SHA');
+          execFileSync('git', ['merge-base', '--is-ancestor', sha, 'origin/main']);
+          execFileSync('git', ['checkout', '--detach', sha]);
+          JS
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npx --no-install playwright install --with-deps chromium
+      - run: npm run smoke:scenario-contract --if-present
+      - run: node scripts/production-smoke.mjs
+        env:
+          PRODUCTION_SMOKE_GITHUB_TOKEN: ${{ github.token }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: production-smoke-${{ env.PRODUCTION_SMOKE_SHA }}-${{ env.PRODUCTION_SMOKE_REQUEST_ID }}
+          path: production-smoke-artifacts/
+          if-no-files-found: warn
+          retention-days: 14

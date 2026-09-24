@@ -1,7 +1,7 @@
 {
 	"name": "awesome-django-blog-tooling",
 	"private": true,
-	"description": "Dev tooling only (heroku CLI) — the app itself is Python/Django",
+	"description": "Dev tooling only (heroku CLI) \u2014 the app itself is Python/Django",
 	"engines": {
 		"node": "24.x"
 	},
@@ -10,12 +10,15 @@
 		"check:yaml": "yamllint -s .",
 		"worktree:init": "bash scripts/worktree-init.sh",
 		"check:actions": "bash scripts/check-actions.sh",
-		"gate": "FLEET_DOC_FAST=0 bash .git-hooks/pre-commit"
+		"gate": "FLEET_DOC_FAST=0 bash .git-hooks/pre-commit",
+		"smoke:production": "node scripts/production-smoke.mjs",
+		"smoke:scenario-contract": "node --test scripts/production-smoke-scenario.test.mjs"
 	},
 	"devDependencies": {
 		"github-actionlint": "^1.7.12",
 		"heroku": "^11.10.0",
-		"markdownlint-cli2": "0.23.2"
+		"markdownlint-cli2": "0.23.2",
+		"playwright": "1.63.0"
 	},
 	"overrides": {
 		"adm-zip": "0.6.0"
