@@ -124,6 +124,20 @@ Auth-gated admin/authoring UI (public blog pages need no login). Follow `rules/f
 
 The pre-commit gate verifies the active Python minor version and installed package versions against `.python-version` and `requirements.txt`, including when it borrows the primary checkout's `.venv`. Matching requirements files alone do not prove the environment is current. Drift fails before tests; refresh the active environment with `python -m pip install -r requirements.txt`.
 
+## Production smoke
+
+The **Production smoke** workflow waits for the intended Heroku release at
+<https://www.blogthedata.com> and checks public article reading and GET search.
+`npm run smoke:production` never logs in, posts comments, edits content or calls
+GPT endpoints. Heroku GitHub deployment and existing PR CI stay unchanged.
+
+`/ship` must follow the exact release's Production smoke run to success and
+record its URL. Missing, failed, cancelled, skipped or timed-out runs are not
+success. If the automatic trigger is missing, dispatch the workflow on `main`
+with the full release SHA and a unique request ID, then follow that specific run.
+Browser traces, screenshots and release receipts are saved under
+`production-smoke-artifacts/` and uploaded even on failure.
+
 ## Verified-tree CI
 
 PRs run the full CI suite. Post-merge CI reuses a successful PR run only when
