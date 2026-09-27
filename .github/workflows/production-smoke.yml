@@ -29,7 +29,7 @@ jobs:
        github.event.deployment_status.state == 'success' &&
        github.event.deployment.environment == 'blogthedata' &&
        github.event.deployment.task == 'deploy')
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 18
     env:
       PRODUCTION_SMOKE_SHA: ${{ github.event.deployment.sha || inputs.release_sha }}

@@ -36,7 +36,7 @@ jobs:
       (github.event.action != 'labeled' && github.event.pull_request.user.login != 'dependabot[bot]') ||
       (github.event.action == 'labeled' &&
        github.event.label.name == format('deps:ci:{0}', github.event.pull_request.head.sha))
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     # Mirror the pre-push gate's test-only Django settings (.git-hooks/pre-push).
     env:
       DEBUG: "False"
