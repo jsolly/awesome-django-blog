@@ -142,6 +142,25 @@ After install, `AWS_PROFILE=agent-readonly` is set. Use it for CloudWatch / Lamb
 describe/get/list. `ssm:GetParameter*` and Secrets Manager gets are explicit deny.
 Do **not** invoke `*-live-provider-check` — that grant is CI and human-admin only.
 
+## Infra plan (read-only change set)
+
+`/optimize-workspaces` runs `npm run plan:infra -- --json` as `agent-readonly`
+when this repo defines that script (`skills/optimize-workspaces/references/infra-plan.md`).
+The script may create a CloudFormation change set, print it, and delete it.
+It must not call `ExecuteChangeSet`. Do not run `npm run deploy:infra`,
+`sam deploy`, or `aws cloudformation execute-change-set`. A `CreateChangeSet`
+denial is reported once.
+On this VM, run the command only in the current workspace when that checkout
+is the fleet repo. Do not clone other fleet repos onto this VM to plan them.
+A template with no `plan:infra` or `check:infra-drift` script is a boardable gap, not a failed run.
+`check:infra-drift` compares the last `deploy:infra` stack tag with the latest
+infra-input commit and warns. It does not block pre-commit or CI. On `main`,
+the aws-sam CI template reads its JSON and writes `deploy:infra pending`
+to the job summary. When you change a template, Terraform file, or CDK app,
+say in the PR body and the final report that a manual infra deploy is needed
+after merge, and include plan output when `plan:infra` exists.
+Pending changes mean `John runs deploy:infra after reviewing`.
+
 Allow `sts.amazonaws.com` (and regional STS if used) on this environment's network
 policy or assume-role will hang. The role ARN may be a Cursor Environment Variable
 (`AWS_ROLE_ARN`); it is not a secret. Never store long-lived AWS keys.
