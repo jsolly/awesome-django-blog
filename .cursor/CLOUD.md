@@ -139,7 +139,16 @@ That is the **same** IAM role laptop agents use via Identity Center `AgentReadOn
 `agent-deploy`; those laptop deploy identities are gone.
 
 After install, `AWS_PROFILE=agent-readonly` is set. Use it for CloudWatch / Lambda
-describe/get/list. `ssm:GetParameter*` and Secrets Manager gets are explicit deny.
+describe/get/list. The approved policy permits only batch `ssm:GetParameters`
+for `/shared-infra/alert-topic-arn` and `/asset-notify/email-from` in `us-east-1`,
+account `730335616323`, so CloudFormation previews can resolve nonsecret config.
+Other SSM parameter reads remain denied, including singular/history/path reads.
+The two names also deny other actions and KMS decryption scoped to their parameter
+ARN encryption context; Secrets Manager secret-value reads remain denied.
+Versions or labels of these same parameter ARNs are not separately excluded by
+IAM resource matching, so keep their version history nonsecret.
+The exception becomes live only after John's reviewed infra deploy; a denied
+preview is still reported once, never bypassed. See `rules/agent-cloud-access.md`.
 Do **not** invoke `*-live-provider-check` — that grant is CI and human-admin only.
 
 ## Infra plan (read-only change set)
