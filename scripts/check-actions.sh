@@ -8,7 +8,8 @@
 # Copy into each workflow repo as scripts/check-actions.sh, then:
 #   "check:actions": "bash scripts/check-actions.sh"
 # in package.json, plus `run_step "actionlint" npm run check:actions` in
-# .git-hooks/pre-commit and `- run: npm run check:actions` in ci.yml.
+# .git-hooks/pre-commit. A ci.yml that runs `npm run gate` gets it from the gate;
+# otherwise add `- run: npm run check:actions` to ci.yml.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
