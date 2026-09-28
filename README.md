@@ -78,7 +78,7 @@ ruff check --config ./config/pyproject.toml app
 ruff format app
 ```
 
-### Pre-push gate
+### Pre-commit gate
 
 The quality gate (ruff, collectstatic, migrate, pytest + coverage) runs locally on every commit via the tracked pre-commit hook. Wire it up once per clone:
 

@@ -44,7 +44,7 @@ jobs:
         )
       )
     runs-on: ubuntu-24.04-arm
-    # Mirror the pre-push gate's test-only Django settings (.git-hooks/pre-push).
+    # Mirror the pre-commit gate's test-only Django settings (.git-hooks/pre-commit).
     env:
       DEBUG: "False"
       LOGGING: "False"
