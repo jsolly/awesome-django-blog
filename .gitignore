@@ -59,3 +59,7 @@ db.sqlite3-journal
 
 # Production browser smoke diagnostics
 production-smoke-artifacts/
+
+# Claude desktop nests session worktrees here; committed so tools that read only
+# .gitignore (Biome, markdownlint globs) skip them. Fleet canon: new-solly-repo row 13.
+.claude/worktrees/
