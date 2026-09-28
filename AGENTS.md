@@ -4,11 +4,9 @@
 
 Ship profile: `heroku-git`
 
-**Integration: branch → PR → CI-gated auto-merge (canonical).** `/ship` babysits CI (watch + fix red), merges when green, then verifies the Heroku release. There is no fire-and-forget path.
+**Integration: branch → PR → merge on green `CI / ci`.** `/ship` opens the PR and merges it once `ci` passes on the head — native auto-merge where the base branch's ruleset requires `ci`, otherwise a head-pinned manual squash (`~/code/dotagents/skills/ship/references/git-discipline.md` → Server-side gate). Agents never push to `main`, change rulesets, or admin-merge. After merge, `/ship` verifies the Heroku release.
 
 **CI owner: local.** Agent runs the full local gate before push; GitHub CI on the PR is babysat until merge.
-
-The auto-merge bot waits for this repo's `ci` check (workflow `CI`) before squash-merging. This Free-plan private repo cannot set required status checks, so GitHub `--auto` is not used. Do not add GitHub branch protection or rulesets.
 
 Production URL: <https://www.blogthedata.com>
 
