@@ -5,15 +5,15 @@
 # cited rules → ~/.cursor/dotagents-package/rules;
 # mcps/catalog.json → ~/.cursor/dotagents-package/mcps (so /optimize-workspaces can reconcile live
 # connectors/plugins against the canon on a VM with no laptop checkout);
-# gate/gate-lib.sh → ~/.cursor/dotagents-package/gate/gate-lib.sh (DOTAGENTS_GATE_LIB) plus a
-# stub symlink at ~/code/dotagents/gate/gate-lib.sh so child-repo pre-commit shims that
-# default to that path still work. The stub is not a full checkout.
+# gate/gate-lib.sh → ~/.cursor/dotagents-package/gate/gate-lib.sh plus a stub symlink at
+# ~/code/dotagents/gate/gate-lib.sh, the default path child-repo pre-commit shims source
+# (`${DOTAGENTS_GATE_LIB:-$HOME/code/dotagents/gate/gate-lib.sh}`), so no env export or
+# shell-profile edit is needed. The stub is not a full checkout.
 # Idempotent: safe to re-run from environment.json install/update.
 #
 # Source (first match):
 #   1. $DOTAGENTS_ROOT if it looks like this repo
-#   2. The checkout that contains this script, if it looks like this repo
-#      (templates/cloud-agent/ or a .cursor/ copy inside dotagents itself)
+#   2. The checkout that contains this script (templates/cloud-agent/), if it looks like this repo
 #   3. $HOME/code/dotagents if it looks like this repo (skills+agents+rules; a
 #      gate-lib stub alone does not count)
 #   4. Fetch this private repo ($DOTAGENTS_CLONE_URL, default
@@ -21,21 +21,27 @@
 #      has, then falling back to git clone:
 #        a. gh api tarball
 #        b. gh repo clone (shallow, sparse)
-#        c. git clone --depth 1 --sparse (same as the historical fallback)
+#        c. git clone --depth 1 --sparse
 # Never clones a public skills mirror. Does not vendor the full private tree
 # into the child repo working tree — copies only into VM home paths.
+# Every input (skills, agents, rules, skills/laptop-only.txt, mcps/catalog.json,
+# gate/gate-lib.sh) is required; a checkout missing one fails before anything is installed.
 # Laptop-only skills stay off cloud VMs (skills/laptop-only.txt).
-# skills/work-excluded.txt is a same-name alias for already-copied child installers.
-# Re-runs prune dest skill dirs that are retired or now laptop-only so a leftover
-# copied playbook (for example a deleted skills/integration-verify) cannot stay loadable.
+# Re-runs prune dest skill dirs that are retired or now laptop-only, and agent/rule *.md
+# files a previous run installed (per the dest dir's own .dotagents-installed manifest) that
+# left the source, so a leftover copied playbook (for example a deleted skills/integration-verify)
+# or retired agent/rule cannot stay loadable. Agents/rules it never installed are left alone.
 set -euo pipefail
 
+PACKAGE_HOME="${HOME}/.cursor/dotagents-package"
 SKILLS_HOME="${CURSOR_CLOUD_SKILLS_HOME:-${HOME}/.cursor/skills}"
 AGENTS_HOME="${CURSOR_CLOUD_AGENTS_HOME:-${HOME}/.cursor/agents}"
-RULES_HOME="${CURSOR_CLOUD_PACKAGE_RULES:-${HOME}/.cursor/dotagents-package/rules}"
-MCPS_HOME="${CURSOR_CLOUD_PACKAGE_MCPS:-${HOME}/.cursor/dotagents-package/mcps}"
-GATE_HOME="${CURSOR_CLOUD_PACKAGE_GATE:-${HOME}/.cursor/dotagents-package/gate}"
+RULES_HOME="${CURSOR_CLOUD_PACKAGE_RULES:-${PACKAGE_HOME}/rules}"
+MCPS_HOME="${CURSOR_CLOUD_PACKAGE_MCPS:-${PACKAGE_HOME}/mcps}"
+GATE_HOME="${CURSOR_CLOUD_PACKAGE_GATE:-${PACKAGE_HOME}/gate}"
 GATE_LIB_PATH="${GATE_HOME}/gate-lib.sh"
+# Each agent/rule dest dir keeps its own install manifest, so overridden dests never share one.
+INSTALL_MANIFEST_NAME=".dotagents-installed"
 # Sparse fetch set. skills+agents+rules are required for looks_like_dotagents;
 # mcps carries the connector catalog; gate carries gate-lib.sh for child pre-commits.
 CLOUD_SPARSE_DIRS=(skills agents rules mcps gate)
@@ -55,7 +61,6 @@ looks_like_dotagents() {
 
 append_skip_names() {
   local file="$1"
-  [[ -f "$file" ]] || return 0
   local line
   while IFS= read -r line || [[ -n "$line" ]]; do
     line="${line%%#*}"
@@ -70,9 +75,6 @@ read_laptop_only() {
   local root="$1"
   LAPTOP_ONLY=()
   append_skip_names "$root/skills/laptop-only.txt"
-  # Alias: already-copied child-repo installers still read work-excluded.txt
-  # from a clone of this repo. Union so either filename skips the same skills.
-  append_skip_names "$root/skills/work-excluded.txt"
 }
 
 is_laptop_only() {
@@ -100,12 +102,6 @@ resolve_root() {
   script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
   # templates/cloud-agent/install-cloud-skills.sh → repo root
   repo="$(cd "$script_dir/../.." && pwd)"
-  if looks_like_dotagents "$repo"; then
-    printf '%s\n' "$repo"
-    return 0
-  fi
-  # .cursor/install-cloud-skills.sh inside a dotagents checkout
-  repo="$(cd "$script_dir/.." && pwd)"
   if looks_like_dotagents "$repo"; then
     printf '%s\n' "$repo"
     return 0
@@ -182,9 +178,7 @@ unpack_github_tarball() {
   done < <(tar -tzf "$tarball")
   [[ -n "$prefix" ]] || return 1
   mkdir -p "$dest"
-  for d in "${CLOUD_SPARSE_DIRS[@]}"; do
-    tar -xzf "$tarball" -C "$dest" --strip-components=1 "${prefix}/${d}" 2>/dev/null || true
-  done
+  tar -xzf "$tarball" -C "$dest" --strip-components=1 "${CLOUD_SPARSE_DIRS[@]/#/${prefix}/}" || return 1
   looks_like_dotagents "$dest"
 }
 
@@ -234,29 +228,14 @@ fetch_failed() {
   exit 1
 }
 
-append_gate_exports() {
-  local rc="$1"
-  touch "$rc"
-  if ! grep -q 'DOTAGENTS_GATE_LIB=' "$rc" 2>/dev/null; then
-    cat >>"$rc" <<EOF
-
-# Cloud Agent shared pre-commit gate lib (not a ~/code/dotagents checkout)
-export DOTAGENTS_GATE_LIB="${GATE_LIB_PATH}"
-EOF
-  fi
-}
-
 install_gate_lib() {
   local src="$1/gate/gate-lib.sh"
   local stub="${HOME}/code/dotagents/gate/gate-lib.sh"
   mkdir -p "$GATE_HOME"
   cp -f "$src" "$GATE_LIB_PATH"
-  export DOTAGENTS_GATE_LIB="$GATE_LIB_PATH"
-  append_gate_exports "${HOME}/.bashrc"
-  append_gate_exports "${HOME}/.profile"
-  # Child shims default to $HOME/code/dotagents/gate/gate-lib.sh. A stub symlink
-  # keeps git hooks working when DOTAGENTS_GATE_LIB is unset (non-login bash -c).
-  # Do not replace a real checkout's gate-lib.sh (looks_like_dotagents).
+  # Child shims default to $HOME/code/dotagents/gate/gate-lib.sh, which works in every
+  # shell (including non-login `bash -c` git hooks). A real ~/code/dotagents checkout
+  # already provides it (and resolve_root installs from that checkout); never replace it.
   if ! looks_like_dotagents "${HOME}/code/dotagents"; then
     mkdir -p "$(dirname "$stub")"
     ln -sfn "$GATE_LIB_PATH" "$stub"
@@ -298,13 +277,19 @@ else
   fi
 fi
 
-read_laptop_only "$root"
-
+# looks_like_dotagents already required skills/, agents/, and rules/ on every root path.
 src_skills="$root/skills"
-if [[ ! -d "$src_skills" ]]; then
-  echo "cloud-package: ERROR — no skills/ directory in checkout $root" >&2
-  exit 1
-fi
+# Child pre-commits source the gate lib, /optimize-workspaces reconciles against the
+# catalog, and an absent skip list would ship every laptop-only skill, so a checkout
+# without any of them is not installable.
+for required in skills/laptop-only.txt mcps/catalog.json gate/gate-lib.sh; do
+  if [[ ! -f "$root/$required" ]]; then
+    echo "cloud-package: ERROR — no ${required} in checkout $root" >&2
+    exit 1
+  fi
+done
+
+read_laptop_only "$root"
 
 # Currently shipped = source SKILL.md and not laptop-only. Copy and prune
 # both use this so a new skip reason cannot leave a leftover dest loadable.
@@ -383,80 +368,64 @@ for dest_path in "$SKILLS_HOME"/*; do
 done
 shopt -u nullglob
 
-# --- agents ---
-src_agents="$root/agents"
-installed_agents=0
-if [[ ! -d "$src_agents" ]]; then
-  echo "cloud-package: ERROR — no agents/ in checkout $root" >&2
-  exit 1
-fi
-mkdir -p "$AGENTS_HOME"
-shopt -s nullglob
-for agent_file in "$src_agents"/*.md; do
-  name="$(basename "$agent_file")"
-  dest="$AGENTS_HOME/$name"
-  cp -f "$agent_file" "$dest"
-  installed_agents=$((installed_agents + 1))
-  echo "cloud-package: installed agent ${name} → ${dest}"
-done
-shopt -u nullglob
-if [[ "$installed_agents" -eq 0 ]]; then
-  echo "cloud-package: ERROR — agents/ present but empty at $src_agents" >&2
-  exit 1
-fi
+# Copy every source <kind> *.md into its dest, then prune only files this installer put there
+# on a previous run. Installed names are recorded in <dest>/.dotagents-installed (a dotfile, so
+# the *.md copy never ships it and the name filter never prunes it); a name from the previous
+# manifest that left the source is removed. Anything else in the dest (a
+# user-authored agent, another tool's rule, non-Markdown notes) is never touched, and a first
+# run with no manifest prunes nothing. An empty source dir fails closed.
+sync_md_dir() {
+  local src_dir="$1" dest_dir="$2" kind="$3"
+  local manifest="${dest_dir}/${INSTALL_MANIFEST_NAME}"
+  local file name installed=0 pruned=0
+  local -a names=()
+  mkdir -p "$dest_dir"
+  shopt -s nullglob
+  for file in "$src_dir"/*.md; do
+    name="$(basename "$file")"
+    cp -f "$file" "$dest_dir/$name"
+    names+=("$name")
+    installed=$((installed + 1))
+    echo "cloud-package: installed ${kind} ${name} → ${dest_dir}/${name}"
+  done
+  shopt -u nullglob
+  if [[ "$installed" -eq 0 ]]; then
+    echo "cloud-package: ERROR — ${kind}s dir present but empty at $src_dir" >&2
+    exit 1
+  fi
+  if [[ -f "$manifest" ]]; then
+    while IFS= read -r name || [[ -n "$name" ]]; do
+      # Only plain *.md basenames this installer could have written.
+      [[ "$name" == *.md && "$name" != */* && "$name" != .* ]] || continue
+      [[ -e "$src_dir/$name" ]] && continue
+      [[ -e "$dest_dir/$name" || -L "$dest_dir/$name" ]] || continue
+      rm -f -- "${dest_dir:?}/$name"
+      pruned=$((pruned + 1))
+      echo "cloud-package: pruned retired ${kind} ${name}"
+    done <"$manifest"
+  fi
+  printf '%s\n' "${names[@]}" >"${manifest}.tmp"
+  mv -f "${manifest}.tmp" "$manifest"
+  echo "cloud-package: ${kind}s: ${installed} installed, ${pruned} retired pruned"
+}
 
-# --- cited rules ---
-src_rules="$root/rules"
-installed_rules=0
-if [[ ! -d "$src_rules" ]]; then
-  echo "cloud-package: ERROR — no rules/ in checkout $root" >&2
-  exit 1
-fi
-mkdir -p "$RULES_HOME"
-shopt -s nullglob
-for rule_file in "$src_rules"/*.md; do
-  name="$(basename "$rule_file")"
-  dest="$RULES_HOME/$name"
-  cp -f "$rule_file" "$dest"
-  installed_rules=$((installed_rules + 1))
-  echo "cloud-package: installed rule ${name} → ${dest}"
-done
-shopt -u nullglob
-if [[ "$installed_rules" -eq 0 ]]; then
-  echo "cloud-package: ERROR — rules/ present but empty at $src_rules" >&2
-  exit 1
-fi
+sync_md_dir "$root/agents" "$AGENTS_HOME" agent
+sync_md_dir "$root/rules" "$RULES_HOME" rule
 
 # --- connector/plugin catalog ---
-# The cloud-first canon for MCP servers and marketplace plugins. Copied (not required) so an older
-# checkout still installs skills — a missing catalog degrades /optimize-workspaces's reconciliation to
-# "canon unavailable", which the receipt discloses rather than inventing green.
-installed_catalog=0
-src_catalog="$root/mcps/catalog.json"
-if [[ -f "$src_catalog" ]]; then
-  mkdir -p "$MCPS_HOME"
-  cp -f "$src_catalog" "$MCPS_HOME/catalog.json"
-  installed_catalog=1
-  echo "cloud-package: installed connector catalog → ${MCPS_HOME}/catalog.json"
-  if [[ -f "$root/mcps/README.md" ]]; then
-    cp -f "$root/mcps/README.md" "$MCPS_HOME/README.md"
-  fi
+# The cloud-first canon for MCP servers and marketplace plugins (presence checked above).
+mkdir -p "$MCPS_HOME"
+cp -f "$root/mcps/catalog.json" "$MCPS_HOME/catalog.json"
+echo "cloud-package: installed connector catalog → ${MCPS_HOME}/catalog.json"
+if [[ -f "$root/mcps/README.md" ]]; then
+  cp -f "$root/mcps/README.md" "$MCPS_HOME/README.md"
 else
-  # These two files are installer-owned. An older checkout must not leave a
-  # previous revision looking like current canon to /optimize-workspaces.
-  rm -f "$MCPS_HOME/catalog.json" "$MCPS_HOME/README.md"
-  echo "cloud-package: WARN — no mcps/catalog.json in $root; /optimize-workspaces cannot reconcile connectors against the canon" >&2
+  # Installer-owned: never leave a previous revision's policy doc beside the new canon.
+  rm -f "$MCPS_HOME/README.md"
 fi
 
 # --- shared pre-commit gate lib ---
-# Self-contained (gate/ has no siblings). Missing lib warns; skill install still succeeds so an
-# older checkout can boot. Child repos must not vendor a local copy of gate-lib.sh.
-installed_gate=0
-if [[ -f "$root/gate/gate-lib.sh" ]]; then
-  install_gate_lib "$root"
-  installed_gate=1
-else
-  echo "cloud-package: WARN — no gate/gate-lib.sh in $root; child-repo pre-commits that source DOTAGENTS_GATE_LIB will fail. Do not hand-copy gate-lib.sh into the child working tree." >&2
-fi
+# Presence checked above. Child repos must not vendor a local copy of gate-lib.sh.
+install_gate_lib "$root"
 
-echo "cloud-package: done (${installed_skills} skill(s), ${skipped_excluded} laptop-only skipped, ${pruned_skills} retired skill(s) pruned, ${installed_agents} agent file(s), ${installed_rules} rule file(s), ${installed_catalog} catalog file(s), ${installed_gate} gate lib(s))"
+echo "cloud-package: done (${installed_skills} skill(s), ${skipped_excluded} laptop-only skipped, ${pruned_skills} retired skill(s) pruned, agents + rules + catalog + gate lib installed)"

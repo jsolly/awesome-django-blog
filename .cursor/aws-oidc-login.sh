@@ -258,15 +258,6 @@ if [[ "${on_cursor_host:-0}" -eq 1 ]]; then
   exit 1
 fi
 
-if [[ -n "${CLAUDE_CODE:-}" || -n "${CLAUDE_CODE_REMOTE:-}" || -n "${ANTHROPIC_CLOUD_AGENT:-}" ]]; then
-  log "Claude cloud OIDC issuer not configured yet; skip"
-  exit 0
-fi
-
-if [[ -n "${CODEX_CLOUD:-}" || -n "${OPENAI_CODEX_CLOUD:-}" ]]; then
-  log "Codex cloud OIDC issuer not configured yet; skip"
-  exit 0
-fi
-
+# Other vendors (Claude, Codex) have no published VM OIDC issuer yet; they land here too.
 log "no cloud-agent OIDC identity; skip"
 exit 0

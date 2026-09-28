@@ -20,7 +20,7 @@ before anonymous HTTPS clone works. There is no public skills mirror.
 | Agents | `~/.cursor/agents/` | One `.md` file per reviewer/scanner agent |
 | Cited rules | `~/.cursor/dotagents-package/rules/` | **Read from here** when a skill cites `rules/<name>.md` |
 | Connector catalog | `~/.cursor/dotagents-package/mcps/catalog.json` | The cloud-first canon for MCP servers + marketplace plugins. `/optimize-workspaces` reconciles the live session against it — no laptop checkout needed |
-| Pre-commit gate lib | `~/.cursor/dotagents-package/gate/gate-lib.sh` | Canonical copy. Export `DOTAGENTS_GATE_LIB` to this path. Child `.git-hooks/pre-commit` shims source `${DOTAGENTS_GATE_LIB:-$HOME/code/dotagents/gate/gate-lib.sh}` |
+| Pre-commit gate lib | `~/.cursor/dotagents-package/gate/gate-lib.sh` | Canonical copy. Child `.git-hooks/pre-commit` shims source `${DOTAGENTS_GATE_LIB:-$HOME/code/dotagents/gate/gate-lib.sh}`; the default path is a stub symlink to this copy, so no `DOTAGENTS_GATE_LIB` export is needed |
 
 ### Agents / Review Task fallback
 
@@ -34,9 +34,9 @@ parallel lenses.
 Laptop-only skills (see `skills/laptop-only.txt`) are **not** installed on cloud.
 
 There is **no** full `~/code/dotagents` checkout on this VM unless the current
-repo *is* dotagents. The installer may plant a **stub symlink** at
+repo *is* dotagents. The installer plants a **stub symlink** at
 `~/code/dotagents/gate/gate-lib.sh` so child pre-commits' default source path
-resolves when `DOTAGENTS_GATE_LIB` is unset (non-login `bash -c` / git hooks).
+resolves in every shell (non-login `bash -c` / git hooks) with `DOTAGENTS_GATE_LIB` unset.
 The installer does **not** replace `gate-lib.sh` inside a real `~/code/dotagents`
 checkout. That stub is **not** a laptop tree — do not look for skills there, do not claim
 child repos inherit home wiring, and do **not** hand-copy `gate-lib.sh` into
@@ -45,8 +45,7 @@ this repo. Do **not** vendor the private dotagents tree into this repo.
 `.cursor/environment.json` sets `repositoryDependencies` to
 `github.com/jsolly/dotagents` so the generated GitHub token can include that
 private repo (it does **not** auto-clone). The Cursor GitHub App must allowlist
-`jsolly/dotagents`. `install` / `start` also export `DOTAGENTS_GATE_LIB` to the
-canonical package path.
+`jsolly/dotagents`.
 
 `~/.cursor/rules` from a laptop home is **not** auto-applied on cloud. User Rules + repo
 `AGENTS.md` + this file carry policy; skills that cite rules must read the copies under
@@ -84,7 +83,7 @@ require the connector. Catalog installation is not authentication proof.
 ## Laptop-only (not on cloud)
 
 - `setup/install-local-agent-runtime.sh` and `setup/doctor-agents.sh`
-- User-level `~/.cursor/hooks.json` and other home hooks/guards
+- User-level `~/.cursor/hooks.json` and other home hooks
 - Laptop-only skills (e.g. `setup-personal-machine`, `solly-create-skill`)
 
 ## Skills / slash commands
@@ -123,7 +122,7 @@ last resort, never the default. There is no outbound skill to load (the former o
 `~/.cursor/dotagents-package/rules/outbound-identity.md` for the hold-surface order and the receipt
 before claiming `done`, `holding`, or `sent`.
 
-## Hooks / guards
+## Hooks
 
 Only hooks committed under this repo's `.cursor/hooks.json` (or team/enterprise hooks) apply.
 User-level hook config from a laptop does not run in cloud.
@@ -139,16 +138,10 @@ That is the **same** IAM role laptop agents use via Identity Center `AgentReadOn
 `agent-deploy`; those laptop deploy identities are gone.
 
 After install, `AWS_PROFILE=agent-readonly` is set. Use it for CloudWatch / Lambda
-describe/get/list. The approved policy permits only batch `ssm:GetParameters`
-for `/shared-infra/alert-topic-arn` and `/asset-notify/email-from` in `us-east-1`,
-account `730335616323`, so CloudFormation previews can resolve nonsecret config.
-Other SSM parameter reads remain denied, including singular/history/path reads.
-The two names also deny other actions and KMS decryption scoped to their parameter
-ARN encryption context; Secrets Manager secret-value reads remain denied.
-Versions or labels of these same parameter ARNs are not separately excluded by
-IAM resource matching, so keep their version history nonsecret.
-The exception becomes live only after John's reviewed infra deploy; a denied
-preview is still reported once, never bypassed. See `rules/agent-cloud-access.md`.
+describe/get/list. Secret reads (SSM parameters, Secrets Manager values) are denied
+except the narrow nonsecret configuration exception defined in
+`~/.cursor/dotagents-package/rules/agent-cloud-access.md` — read that rule for the exact
+parameters and actions. A denied read is reported once, never bypassed.
 Do **not** invoke `*-live-provider-check` — that grant is CI and human-admin only.
 
 ## Infra plan (read-only change set)
