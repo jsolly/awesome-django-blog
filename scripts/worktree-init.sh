@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-# Provision a checkout (especially a fresh git worktree) so the pre-push gate can
+# Provision a checkout (especially a fresh git worktree) so the pre-commit gate can
 # run: create a .venv against the repo-pinned Python and install the pinned deps.
 #
 # Run after EnterWorktree / `git worktree add`:  npm run worktree:init
 #
 # Fresh worktrees branch from origin/main and carry no gitignored files, so
-# .venv does not exist in them. The pre-push gate refuses to run against system
+# .venv does not exist in them. The pre-commit gate refuses to run against system
 # Python (it must use the pinned requirements.txt), so a worktree needs either
 # its own .venv (this script) or — for the common code-only change — it transpar-
-# ently borrows the main checkout's .venv (see .git-hooks/pre-push). Use this
+# ently borrows the main checkout's .venv (see .git-hooks/pre-commit). Use this
 # script when you've changed requirements.txt, since the borrowed venv would then
 # be stale and the hook will refuse to reuse it.
 #
@@ -111,7 +111,7 @@ echo "• installing pinned deps (requirements.txt) — fast on a warm pip cache
 .venv/bin/pip install --upgrade pip --quiet
 .venv/bin/pip install -r requirements.txt
 
-# The pre-push gate also runs the markdown sub-gate via the pinned dev tooling
+# The pre-commit gate also runs the markdown sub-gate via the pinned dev tooling
 # (markdownlint-cli2). Install node_modules so it runs offline too; npm ci is
 # fast on a warm npm cache. lint-md.sh can otherwise borrow the main checkout's
 # binary, but a fully-provisioned worktree is self-contained.
@@ -124,4 +124,4 @@ fi
 
 # Mark complete only now, after deps installed — see SENTINEL note above.
 touch "$SENTINEL"
-echo "✓ worktree provisioned — pre-push gate can now run in $ROOT"
+echo "✓ worktree provisioned — pre-commit gate can now run in $ROOT"

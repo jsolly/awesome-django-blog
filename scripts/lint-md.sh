@@ -3,7 +3,7 @@
 # Pass --fix to auto-fix violations: bash scripts/lint-md.sh --fix
 #
 # Prefer the locally installed binary (`npm ci`, run by the installer): it runs offline, so the
-# pre-push gate needs no registry egress. Only if the tool isn't installed do we fall back to npx
+# pre-commit gate needs no registry egress. Only if the tool isn't installed do we fall back to npx
 # — which fetches from the registry and so needs network. Keep the fallback's @0.22.1 pin in sync
 # with package.json.
 set -euo pipefail
@@ -12,7 +12,7 @@ bin="node_modules/.bin/markdownlint-cli2"
 if [[ -x "$bin" ]]; then
   cmd=("$bin")
 else
-  # Fresh worktrees carry no node_modules. Mirror the pre-push .venv borrow:
+  # Fresh worktrees carry no node_modules. Mirror the pre-commit .venv borrow:
   # reuse the MAIN checkout's binary when package-lock.json is byte-identical
   # (offline, zero setup); else fall back to npx. See AGENTS.md for rationale.
   main_root="$(cd "$(dirname "$(git rev-parse --git-common-dir 2>/dev/null)")" 2>/dev/null && pwd || echo "")"

@@ -14,12 +14,14 @@
 # recurse into.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"; cd "$ROOT"
 # shellcheck source=/dev/null
 source "${DOTAGENTS_GATE_LIB:-$HOME/code/dotagents/gate/gate-lib.sh}" || {
   echo "✗ dotagents gate-lib not found (expected ~/code/dotagents/gate/gate-lib.sh) — re-run install-local-agent-runtime.sh." >&2
   exit 1
 }
+# Gate the tree being committed, not this copy's: under an absolute core.hooksPath (Claude
+# desktop worktrees) this re-execs the committing tree's own hook; it sets ROOT and cd's.
+gate_enter_committing_tree "${BASH_SOURCE[0]}"
 
 gate_begin_commit "awesome-django-blog"   # skip-paths; staged gitleaks; md-lint; doc-only fast path; banner; ERR trap
 
