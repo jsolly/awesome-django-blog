@@ -150,8 +150,9 @@ Canonical contract: `~/code/dotagents/templates/github/verified-tree-ci.md`.
 ## Dependabot CI
 
 Dependabot PR events allocate no validation runners until a manually invoked
-`/optimize-workspaces drain` applies the `ow-ci` label. That label starts the
-real `ci` check, and later pushes to the labeled PR run it too. Deferred runs
+`/optimize-workspaces drain` applies the `ow-ci` label. Only the `labeled`
+event that adds `ow-ci` runs the real `ci` check. Later Dependabot pushes defer
+again until a drain re-kicks the new head (remove, then add `ow-ci`). Deferred runs
 report `ci-deferred` and cannot satisfy the required `ci` check. Skipped or
 absent checks never authorize a dependency merge. See the Dependabot CI kick in
 the canonical `dotagents/skills/optimize-workspaces/references/pr-drain.md`.
