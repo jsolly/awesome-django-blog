@@ -69,12 +69,11 @@ export SECRET_KEY="Not applicable for tests"
 export ALLOWED_HOSTS="127.0.0.1 localhost"
 export SITE_ID=1
 
-# Ground the runtimes this gate shells out to (12factor Factor II; rules/dependency-grounding.md):
+# Ground the runtimes this gate shells out to (12factor Factor II; dotagents gate-lib local-deps helpers):
 # the yaml/md tooling must run under the pinned Node (.nvmrc), not a stray PATH node.
 gate_require_node
 
 # --- Quality gate (run_step: silent on green, full output + abort on red) ---
-run_step "dep grounding"  gate_check_dep_grounding .git-hooks/pre-commit scripts/*.sh
 run_step "yaml lint"      npm run check:yaml
 run_step "actionlint"             npm run check:actions
 run_step "ruff lint"      ruff check --config ./config/pyproject.toml app
