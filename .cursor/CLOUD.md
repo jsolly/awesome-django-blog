@@ -146,8 +146,9 @@ Do **not** invoke `*-live-provider-check` — that grant is CI and human-admin o
 
 ## Infra plan (read-only change set)
 
-`/optimize-workspaces` runs `npm run plan:infra -- --json` as `agent-readonly`
-when this repo defines that script (`skills/optimize-workspaces/references/infra-plan.md`).
+`/optimize-workspaces` runs `npm run plan:infra -- --json --out <file>` through
+`gate_with_readonly_aws`, which gives the script only minted `agent-readonly`
+credentials, when this repo defines that script (`skills/optimize-workspaces/references/infra-plan.md`).
 The script may create a CloudFormation change set, print it, and delete it.
 It must not call `ExecuteChangeSet`. Do not run `npm run deploy:infra`,
 `sam deploy`, or `aws cloudformation execute-change-set`. A `CreateChangeSet`
@@ -155,10 +156,13 @@ denial is reported once.
 On this VM, run the command only in the current workspace when that checkout
 is the fleet repo. Do not clone other fleet repos onto this VM to plan them.
 A template with no `plan:infra` or `check:infra-drift` script is a boardable gap, not a failed run.
-`check:infra-drift` compares the last `deploy:infra` stack tag with the latest
-infra-input commit and warns. It does not block pre-commit or CI. On `main`,
-the aws-sam CI template reads its JSON and writes `deploy:infra pending`
-to the job summary. When you change a template, Terraform file, or CDK app,
+`check:infra-drift` compares the `InfraDeployCommit` stack tag, which only
+`deploy:infra` writes, with `main`'s infra inputs and warns. It does not block
+pre-commit or CI, but this repo's Deploy may hard-refuse while that tag lags;
+that refusal is John's hand-off, not a fix-red cycle. The `ci`
+workflow holds no AWS identity and runs no drift step; where Deploy carries the
+aws-sam infra gate, that gate is the enforcing check, and `deploy:infra pending` surfaces from this command and
+the `/optimize-workspaces` infra drift row. When you change a template, Terraform file, or CDK app,
 say in the PR body and the final report that a manual infra deploy is needed
 after merge, and include plan output when `plan:infra` exists.
 Pending changes mean `John runs deploy:infra after reviewing`.
