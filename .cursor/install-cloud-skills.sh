@@ -482,4 +482,19 @@ fi
 # Presence checked above. Child repos must not vendor a local copy of gate-lib.sh.
 install_gate_lib "$root"
 
+# The gate scans only with gitleaks at gate-lib's GATE_GITLEAKS_VERSION (the release CI pins) and
+# refuses any other. Install it with mise when the VM has mise; otherwise say loudly that gated
+# commits here will be refused, so a Cloud Agent learns it now rather than at its first commit.
+gl_pin=""
+while IFS= read -r gl_line; do
+  [[ "$gl_line" == GATE_GITLEAKS_VERSION=* ]] && { gl_pin="${gl_line#*=}"; break; }
+done < "$GATE_LIB_PATH"
+if [[ -n "$gl_pin" ]] && "$BASH" -c 'source "$1" && gate__gitleaks_bin' _ "$GATE_LIB_PATH" >/dev/null 2>&1; then
+  echo "cloud-package: gitleaks ${gl_pin} available to the gate"
+elif [[ -n "$gl_pin" ]] && command -v mise >/dev/null 2>&1 && ( cd "$HOME" && mise use -g "gitleaks@${gl_pin}" ); then
+  echo "cloud-package: installed gitleaks ${gl_pin} with mise for the gate"
+else
+  echo "cloud-package: WARN — gitleaks ${gl_pin:-(no pin in gate-lib)} is not available and mise could not install it; the gate refuses gated commits on this VM until it is (install that release on PATH)" >&2
+fi
+
 echo "cloud-package: done (${installed_skills} skill(s), ${skipped_excluded} laptop-only skipped, ${pruned_skills} retired skill(s) pruned, agents + rules + catalog + gate lib installed)"
