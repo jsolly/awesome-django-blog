@@ -6,6 +6,7 @@
 # pre-commit gate needs no registry egress. Only if the tool isn't installed do we fall back to npx
 # — which fetches from the registry and so needs network. Keep the fallback's @0.22.1 pin in sync
 # with package.json.
+((BASH_VERSINFO[0] >= 5)) || { echo "✗ $0 requires Bash >= 5, not $BASH_VERSION. Fix: brew install bash; rerun bash ~/code/dotagents/setup/install-local-agent-runtime.sh; open a new shell." >&2; exit 1; }
 set -euo pipefail
 cd "$(dirname "$0")/.."
 bin="node_modules/.bin/markdownlint-cli2"

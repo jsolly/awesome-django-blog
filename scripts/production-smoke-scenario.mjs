@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 
 export const productionUrl = 'https://www.blogthedata.com';
 
-export async function smoke({ page }) {
+export async function smoke({ page, verifyHttp }) {
   await page.getByRole('heading', { name: 'Latest Posts!', exact: true }).waitFor();
   const post = page.locator('a.post-card-link').first();
   const title = (await post.textContent()).trim();
@@ -12,6 +12,7 @@ export async function smoke({ page }) {
   await page.waitForURL(new URL(postPath, productionUrl).href);
   assert.equal(await page.locator('article h1').evaluate(heading => [...heading.childNodes].filter(node => node.nodeType === Node.TEXT_NODE).map(node => node.textContent).join('').trim()), title, 'article title matches the selected post');
   assert.ok((await page.locator('article .post-text').textContent()).trim().length > 0, 'article body is not empty');
+  await verifyHttp(new URL(postPath, productionUrl).href);
   await page.goto(`${productionUrl}/all-posts/`);
   await page.getByRole('heading', { name: 'All Posts!', exact: true }).waitFor();
   await page.getByRole('searchbox', { name: 'Search', exact: true }).fill(title);
@@ -21,4 +22,5 @@ export async function smoke({ page }) {
   const result = page.locator('a.post-card-link').filter({ hasText: title }).first();
   await result.waitFor();
   assert.equal(await result.getAttribute('href'), postPath, 'search finds the article just read');
+  await verifyHttp(page.url());
 }
