@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+((BASH_VERSINFO[0] >= 5)) || { echo "✗ $0 requires Bash >= 5, not $BASH_VERSION. Fix: brew install bash; rerun bash ~/code/dotagents/setup/install-local-agent-runtime.sh; open a new shell." >&2; exit 1; }
 
 # Set the date for the backup file
 DATE=$(date +"%d_%m_%Y")

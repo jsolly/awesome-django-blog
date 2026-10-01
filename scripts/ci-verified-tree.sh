@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Canonical source: jsolly/dotagents templates/github/ci-verified-tree.sh.
-# Run immediately after the default checkout, before validation mutates files.
+# Run right after the checkout and the secrets scan, before validation mutates files.
 # Evidence is an artifact name from the latest PR run of this same workflow.
 # Any missing/ambiguous evidence means full validation, never an unproven skip.
 set -euo pipefail

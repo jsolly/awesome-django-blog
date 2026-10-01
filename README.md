@@ -80,13 +80,19 @@ ruff format app
 
 ### Pre-commit gate
 
-The quality gate (ruff, collectstatic, migrate, pytest + coverage) runs locally on every commit via the tracked pre-commit hook. Wire it up once per clone:
+The quality gate runs Bash-floor checks, lint, the public smoke scenario contract,
+collectstatic, migrations, pytest and coverage on every commit. Install the
+pinned Node tooling in this checkout:
 
 ```shell
-git config core.hooksPath .git-hooks
+npm ci
+npm run gate
 ```
 
-The gate logic lives in `.git-hooks/pre-commit`; a failure aborts the commit.
+The dotagents installer configures the trusted hook dispatcher. See
+[Git hooks in AGENTS.md](AGENTS.md#git-hooks) for setup and approval of your own
+hook edits. The gate logic lives in `.git-hooks/pre-commit`; a failure aborts
+the commit.
 
 ### Live Reload
 
@@ -131,7 +137,7 @@ python3 manage.py livereload
 - HTMX for dynamic page updates without a page refresh
 - Robots.txt, security.txt, and sitemap.xml for optimized SEO and security
 - Git hooks for automatic static file generation (manage.py collectstatic)
-- Local pre-commit quality gate (lint, collectstatic, migrations, tests + coverage) via `.git-hooks/pre-commit`. Push with confidence!
+- Local pre-commit quality gate (bash floor, lint, collectstatic, migrations, tests + coverage) via `.git-hooks/pre-commit`. Push with confidence!
 - Compatible with Sqllite or postgres databases for fast protyping and production
 - Deploy static assets to Amazon S3 + Cloudfront just by changing a few settings in the .env.local file.
 - Procfile included for easy deployment with Heroku or other services that use Procfile.

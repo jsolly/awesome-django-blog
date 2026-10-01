@@ -1,16 +1,14 @@
 name: Production smoke
-run-name: Production smoke ${{ github.event.deployment.sha || inputs.release_sha }} ${{ github.event.deployment.id || inputs.request_id }}
+# Every deployment status (pending, in_progress, success, inactive) starts a run; only success and manual runs
+# carry the title /ship's follower discovers, so it never follows a skipped sibling.
+run-name: ${{ github.event_name == 'workflow_dispatch' && format('Production smoke {0} {1}', inputs.release_sha, inputs.request_id) || (github.event.deployment_status.state == 'success' && format('Production smoke {0} {1}', github.event.deployment.sha, github.event.deployment.id)) || format('Production smoke status {0} {1}', github.event.deployment_status.state, github.event.deployment.id) }}
 on:
   deployment_status:
   workflow_dispatch:
     inputs:
       release_sha:
-        description: Full merged client commit SHA
+        description: Full SHA of the production release to verify
         required: true
-        type: string
-      server_sha:
-        description: Full separately deployed server commit SHA (when applicable)
-        required: false
         type: string
       request_id:
         description: Unique UUID for this verification request
@@ -19,53 +17,39 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: production-smoke-${{ github.event.deployment.sha || inputs.release_sha }}-${{ github.event.deployment.id || inputs.request_id }}
+  group: production-smoke-${{ github.event.deployment.id || inputs.request_id }}-${{ github.event.deployment_status.state || 'manual' }}
   cancel-in-progress: false
 jobs:
   smoke:
+    # Replace blogthedata with the host's production deployment environment name.
     if: >-
       (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
       (github.event_name == 'deployment_status' &&
        github.event.deployment_status.state == 'success' &&
-       github.event.deployment.environment == 'blogthedata' &&
-       github.event.deployment.task == 'deploy')
+       github.event.deployment.environment == 'blogthedata')
     runs-on: ubuntu-24.04-arm
-    timeout-minutes: 18
+    timeout-minutes: 15
     env:
-      PRODUCTION_SMOKE_SHA: ${{ github.event.deployment.sha || inputs.release_sha }}
-      PRODUCTION_SMOKE_SERVER_SHA: ${{ inputs.server_sha }}
+      PRODUCTION_SMOKE_RELEASE_SHA: ${{ github.event.deployment.sha || inputs.release_sha }}
       PRODUCTION_SMOKE_REQUEST_ID: ${{ github.event.deployment.id || inputs.request_id }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
-          ref: main
-          fetch-depth: 0
+          # The deployed commit's scenario, so a later merge's assertions never test an older build.
+          ref: ${{ github.event.deployment.sha || inputs.release_sha }}
           persist-credentials: false
-      - name: Validate intended release
-        run: |
-          node --input-type=module <<'JS'
-          import { execFileSync } from 'node:child_process';
-          const sha = process.env.PRODUCTION_SMOKE_SHA;
-          if (!/^[a-f0-9]{40}$/i.test(sha)) throw new Error('Full SHA required');
-          if (!/^[a-zA-Z0-9_-]{1,100}$/.test(process.env.PRODUCTION_SMOKE_REQUEST_ID)) throw new Error('Invalid request ID');
-          if (process.env.PRODUCTION_SMOKE_SERVER_SHA && !/^[a-f0-9]{40}$/i.test(process.env.PRODUCTION_SMOKE_SERVER_SHA)) throw new Error('Invalid server SHA');
-          execFileSync('git', ['merge-base', '--is-ancestor', sha, 'origin/main']);
-          execFileSync('git', ['checkout', '--detach', sha]);
-          JS
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
       - run: npx --no-install playwright install --with-deps chromium
-      - run: npm run smoke:scenario-contract --if-present
+      - run: npm run smoke:scenario-contract
       - run: node scripts/production-smoke.mjs
-        env:
-          PRODUCTION_SMOKE_GITHUB_TOKEN: ${{ github.token }}
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
-          name: production-smoke-${{ env.PRODUCTION_SMOKE_SHA }}-${{ env.PRODUCTION_SMOKE_REQUEST_ID }}
+          name: production-smoke-${{ env.PRODUCTION_SMOKE_REQUEST_ID }}
           path: production-smoke-artifacts/
           if-no-files-found: warn
           retention-days: 14

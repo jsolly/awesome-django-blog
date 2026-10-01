@@ -1,5 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
+((BASH_VERSINFO[0] >= 5)) || { echo "✗ $0 requires Bash >= 5, not $BASH_VERSION. Fix: brew install bash; rerun bash ~/code/dotagents/setup/install-local-agent-runtime.sh; open a new shell." >&2; exit 1; }
 PARAMS=('-m 6 -q 70 -mt -af -progress')
 
 if [ $# -ne 0 ]; then

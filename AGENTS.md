@@ -4,15 +4,15 @@
 
 Ship profile: `heroku-git`
 
-**Integration: branch → PR → merge on green `CI / ci`.** `/ship` opens the PR, arms native auto-merge as the backstop where the base branch's ruleset requires `ci`, and runs the head-pinned squash itself as soon as `ci` passes on the head (`~/code/dotagents/skills/ship/references/git-discipline.md` → Merge a same-repo self PR). Agents never push to `main`, change rulesets, or admin-merge. After merge, `/ship` verifies the Heroku release.
+**Integration: branch → PR → merge on green `CI / ci`.** `/ship` merges per `skills/ship/references/git-discipline.md` → Merge a same-repo self PR (read the installed `/ship` reference). Agents never push to `main`, change rulesets, or admin-merge.
 
-**CI owner: local.** Agent runs the full local gate before push; GitHub CI on the PR is babysat until merge.
+Local gate before push: `npm run gate` (full working-tree checks, including an empty index).
 
 Production URL: <https://www.blogthedata.com>
 
 Deployment: `heroku-github` (Heroku app `blogthedata`, auto-deployed from GitHub `main`)
 
-Production responses expose `x-release-id` from Heroku's `HEROKU_BUILD_COMMIT`. Enable the app's `runtime-dyno-metadata` and `runtime-dyno-build-metadata` labs flags for this value. Missing or invalid metadata produces `dev`, which fails `/ship` verification. Require the header to resolve to the merge commit or a descendant; HTTP 200 or a successful build alone is insufficient.
+A successful Heroku production deployment is the release. After merge, `/ship` follows the production smoke for that release, which checks public article reading and GET search.
 
 ## Stack
 
@@ -42,9 +42,6 @@ coverage report -m --skip-covered --rcfile=config/.coveragerc
 # Lint / format (ruff config is in config/pyproject.toml, NOT root)
 ruff check --config ./config/pyproject.toml app
 ruff format app
-
-# Git hooks — pre-commit gate (tracked in .git-hooks/, configured like the rest of the fleet)
-git config core.hooksPath .git-hooks
 
 # Worktree provisioning — run once after EnterWorktree / `git worktree add`
 npm run worktree:init               # creates .venv + installs pinned deps (fast on a warm pip cache)
@@ -156,3 +153,11 @@ again until a drain re-kicks the new head (remove, then add `ow-ci`). Deferred r
 report `ci-deferred` and cannot satisfy the required `ci` check. Skipped or
 absent checks never authorize a dependency merge. See the Dependabot CI kick in
 the canonical `dotagents/skills/optimize-workspaces/references/pr-drain.md`.
+
+## Git hooks
+
+`core.hooksPath` is the dotagents dispatcher `~/.local/share/dotagents/hooks`, installed and set by the dotagents installers. Never point it at `.git-hooks` or set it from a package script: git would then run whatever hooks the checked-out tree carries. The dispatcher serves only `pre-commit`, and runs this repo’s tracked `.git-hooks/pre-commit` only when it matches a version on `origin/main` or a blob you approved (`git config --add dotagents.trustedHook <blob>`, printed by the refusal; approve only your own edit). Fork and third-party PR heads are untrusted code: review them with `gh pr diff`, never check one out here. Canon: dotagents `rules/agent-cloud-access.md` → GitHub.
+
+## Fleet rollout
+
+Changes inside this repo ship normally. For changes other repos must adopt, link the merged PR on the one existing dotagents Todoist fleet-rollout task. Do not start that rollout or spawn per-repo chips, PRs or tasks from here. John authorizes one lead to walk the fleet after canon settles. Follow the installed `persist-todos-in-todoist` skill → Fleet rollout.

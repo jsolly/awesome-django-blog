@@ -24,9 +24,6 @@
     "docs/plans/**",
     "docs/specs/**",
     // Vendor runtime dir (never tracked) — not repo content.
-    ".claude/**",
-    // CLAUDE.md is a symlink to its sibling AGENTS.md (already linted) — skip to avoid double-linting.
-    "CLAUDE.md",
-    "**/CLAUDE.md"
+    ".claude/**"
   ]
 }
