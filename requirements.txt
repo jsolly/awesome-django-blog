@@ -30,7 +30,7 @@ matplotlib==3.11.2
 numpy==2.5.3
 google-genai==2.23.0
 pandas==3.0.5
-plotly==7.0.0
+plotly==7.1.0
 scikit-learn==1.9.1
 scipy==1.18.1
 
