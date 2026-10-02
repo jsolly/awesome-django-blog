@@ -1,7 +1,6 @@
 ---
 slug: gis-job-search-resources
-title: "Find Your Dream Job: A Guide to Job Searching and Interviewing [CMS
-  rehearsal]"
+title: "Find Your Dream Job: A Guide to Job Searching and Interviewing"
 category: resources
 description: Find your dream job with this guide on job searching, researching
   companies, interviewing, and resumes/cover letters.
