@@ -1,9 +1,9 @@
 # Astro migration and cutover
 
 Production still runs the legacy application on Heroku. The replacement on
-`codex/astro-svelte-pagescms` remains unmerged and undeployed. The CMS rehearsal,
-final content reconciliation, independent backups and hosting/DNS steps
-below remain required. Heroku automatic deploys were disabled and verified after
+`codex/astro-svelte-pagescms` remains unmerged and undeployed. The CMS rehearsal
+and frozen final-source reconciliation are complete. Independent durable backup
+recovery and hosting/DNS steps below remain required. Heroku automatic deploys were disabled and verified after
 a reload on October 2, 2026; the existing serving release remains available for rollback.
 
 ## Architecture decisions
@@ -38,7 +38,10 @@ image metadata, slug case and ranked related associations are retained for the
 publication, authorship, category, legacy identity and ranked associations. The receipt at
 `src/content/migration-receipt.json` records source SHA-256 and stable URLs.
 
-The private source is `.migration-work/source-2026-10-02.json`. This ignored
+John confirmed publishing frozen on October 2, 2026. The final private source is
+`.migration-work/final-2026-10-02T1742Z/source-final.json`; all 496 exported records
+match the earlier snapshot semantically. Its raw-file digest is recorded in
+`src/content/migration-receipt.json`. The earlier snapshot is retained too. This ignored
 local evidence is not an independent production backup. Git history preserves
 legacy code; ignored SQLite, media, virtualenv and exports were retained.
 Tracked server apps/tests/migrations, requirements, Heroku entrypoints,
@@ -52,7 +55,7 @@ Commands run from `/Users/johnsolly/code/awesome-django-blog`.
 npm ci
 npx --no-install playwright install chromium
 npm run gate
-npm run verify:migration -- .migration-work/source-2026-10-02.json
+npm run verify:migration -- .migration-work/final-2026-10-02T1742Z/source-final.json
 npm run preview
 ```
 
@@ -145,10 +148,14 @@ grants and binding terms still need approval when presented. No teardown is auth
 1. Freeze publishing in the old application. Record the current Heroku release/version/full SHA,
    original DNS records and a successful old-host article/search check. Make an
    independent database backup and retain media outside this checkout. Heroku
-   backup b001 was captured and restored locally on October 2; all 106 posts and
-   six categories matched the source export after matching the export’s millisecond timestamp precision.
+   backup b002 was captured after John's freeze and restored locally on October 2.
+   All exported fields across 106 posts, six categories, 379 similarity rows,
+   two redirects and three sites matched the final source after matching its
+   millisecond timestamp precision. The isolated cluster had no TCP listener and
+   was stopped and removed; the earlier b001 recovery evidence is retained too.
    The local S3 copy contains 1,009 files, 101,335,569 bytes. These local artifacts
-   still require independent durable retention and a frozen final inventory. Record S3 bucket/object inventory,
+   match the frozen final inventory, with no added, removed or changed objects.
+   They still require independent durable retention and exact-version recovery. Record S3 bucket/object inventory,
    versioning/backup status and a recovery copy; GitHub is not a backup for S3.
 2. Re-export content, categories, similarities, redirects and sites. Import into
    a new empty scratch directory and reconcile changed articles with the CMS files.
@@ -203,9 +210,10 @@ npx --yes heroku@11.10.0 run --no-tty -a blogthedata -- python manage.py dumpdat
 Move the DB/media backups to durable independent storage and record their receipt
 before cutover. Domain records are unavailable until the domains are added;
 use Vercel's actual supplied records rather than guessed commands.
-The prepared private S3 configuration and exact human infrastructure step are in
-[migration-backups.md](migration-backups.md). This infrastructure is not deployed;
-manual creation is required after review.
+The private S3 configuration and creation history are in
+[migration-backups.md](migration-backups.md). The CloudFormation stack is created
+and verified. The remaining backup gate is uploading the frozen recovery bundle
+and proving recovery from its exact S3 version before cutover.
 
 For the media backup, use your existing authorized AWS profile and confirm
 `aws sts get-caller-identity` reports account `730335616323`. The commands below
