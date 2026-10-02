@@ -146,7 +146,9 @@ test('feeds follow current published metadata and retain canonical identities', 
   const atom = load(await readFile('dist/atom', 'utf8'), { xml: true });
   const config = await readJson('vercel.json');
   for (const [path, mime] of [['rss', 'application/rss+xml'], ['atom', 'application/atom+xml']]) {
-    assert.ok(config.headers.find(entry => entry.source === `/${path}/:path*`).headers.some(header => header.key === 'Content-Type' && header.value.startsWith(mime)));
+    for (const source of [`/${path}`, `/${path}/`]) {
+      assert.ok(config.headers.find(entry => entry.source === source)?.headers.some(header => header.key === 'Content-Type' && header.value.startsWith(mime)), `${source} declares its feed MIME type`);
+    }
   }
   assert.deepEqual(rss('item').toArray().map(item => ({ title: rss(item).find('title').text(), link: rss(item).find('link').text(), guid: rss(item).find('guid').text(), description: rss(item).find('description').text() })), posts.map(post => ({ title: post.title, link: `https://www.blogthedata.com/post/${post.slug}/`, guid: `https://www.blogthedata.com/post/${post.slug}/`, description: post.description })));
   assert.deepEqual(atom('entry').toArray().map(entry => ({ title: atom(entry).find('title').text(), link: atom(entry).find('link').attr('href'), id: atom(entry).find('id').text(), updated: atom(entry).find('updated').text(), author: atom(entry).find('author name').text() })), posts.map(post => ({ title: post.title, link: `https://www.blogthedata.com/post/${post.slug}/`, id: `https://www.blogthedata.com/post/${post.slug}/`, updated: new Date(post.published).toISOString(), author: post.feedAuthor })));

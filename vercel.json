@@ -41,7 +41,7 @@
       ]
     },
     {
-      "source": "/rss/:path*",
+      "source": "/rss",
       "headers": [
         {
           "key": "Content-Type",
@@ -50,7 +50,25 @@
       ]
     },
     {
-      "source": "/atom/:path*",
+      "source": "/rss/",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/rss+xml; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "/atom",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/atom+xml; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "/atom/",
       "headers": [
         {
           "key": "Content-Type",
