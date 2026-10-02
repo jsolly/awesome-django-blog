@@ -72,7 +72,7 @@ test('wrapper pins the stack and owner, propagates check failures and never call
       assert.equal(checked.stderr.includes('npm run protect:stacks'), rc === 1);
       const applied = run([], rc);
       assert.equal(applied.status, rc);
-      assert.equal(applied.stdout, `apply jsolly/awesome-django-blog ${pairs}\n`);
+      assert.equal(applied.stdout, `apply jsolly/awesome-blog ${pairs}\n`);
     }
     for (const extra of [{ DOTAGENTS_GATE_LIB: join(fixture, 'missing') }, { STALE_LIB: '1' }, { NO_AWS: '1' }]) {
       const result = run(['--check'], 0, extra);

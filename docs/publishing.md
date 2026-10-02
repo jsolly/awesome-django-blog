@@ -1,7 +1,7 @@
 # Publishing with PagesCMS
 
 Use [hosted PagesCMS](https://app.pagescms.org) after granting its GitHub App access
-only to `jsolly/awesome-django-blog`. Choose an editorial branch made from current
+only to `jsolly/awesome-blog`. Choose an editorial branch made from current
 `main`. Saves create commits on that branch; production changes only after a PR
 passes `CI / ci` and merges. Start each subsequent branch from updated `main`.
 Do not edit protected `main` directly or weaken branch protection.
@@ -57,7 +57,7 @@ Code/table/frame article saves and reopens are verified, including exact bodies,
 fractional timestamps, timezone offsets, remote images and unmanaged keys.
 Category creation, image upload, actual draft exclusion and published output
 are also verified. The isolated
-[rehearsal PR #679](https://github.com/jsolly/awesome-django-blog/pull/679) passed
+[rehearsal PR #679](https://github.com/jsolly/awesome-blog/pull/679) passed
 the actual required `CI / ci` check and closed without merging its fixtures.
 Timestamps
 and cover-image paths use string fields after the rehearsal exposed destructive

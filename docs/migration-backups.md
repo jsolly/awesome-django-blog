@@ -23,7 +23,7 @@ confirmed its exact committed template and stack policy, termination protection,
 CloudFormation-managed bucket/policy, encryption, versioning, ownership, private
 access, TLS enforcement and 30-day Governance retention. The agent's AWS identity
 remains read-only. The following are the reviewed creation commands, run by John
-from `/Users/johnsolly/code/awesome-django-blog` in his own
+from `/Users/johnsolly/code/awesome-blog` in his own
 terminal. Authenticate with your existing MFA-gated administrator profile for account
 `730335616323`; keep local profile names outside Git. These commands assume that
 authenticated human terminal. Do not run them in an agent shell or change its
@@ -31,7 +31,7 @@ AWS configuration.
 
 ```bash
 aws sts get-caller-identity
-aws cloudformation create-stack --stack-name blogthedata-migration-backups --region us-east-1 --enable-termination-protection --stack-policy-body file:///Users/johnsolly/code/awesome-django-blog/aws/migration-backups/stack-policy.json --template-body file:///Users/johnsolly/code/awesome-django-blog/aws/migration-backups/template.json --tags Key=Project,Value=blogthedata Key=Purpose,Value=migration-recovery
+aws cloudformation create-stack --stack-name blogthedata-migration-backups --region us-east-1 --enable-termination-protection --stack-policy-body file:///Users/johnsolly/code/awesome-blog/aws/migration-backups/stack-policy.json --template-body file:///Users/johnsolly/code/awesome-blog/aws/migration-backups/template.json --tags Key=Project,Value=blogthedata Key=Purpose,Value=migration-recovery
 aws cloudformation wait stack-create-complete --stack-name blogthedata-migration-backups --region us-east-1
 ```
 

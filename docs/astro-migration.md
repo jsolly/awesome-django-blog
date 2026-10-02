@@ -1,15 +1,16 @@
 # Astro migration and cutover
 
-Production still runs the legacy application on Heroku. The reviewed replacement
-landed on protected `main` in [PR #677](https://github.com/jsolly/awesome-django-blog/pull/677)
+Production is live on Vercel at <https://www.blogthedata.com>. The reviewed replacement
+landed on protected `main` in [PR #677](https://github.com/jsolly/awesome-blog/pull/677)
 at `ff5c534034a11dc50cb18316cc1758df0a03267f`. Its landed tree matches the reviewed
-PR tree; [main CI](https://github.com/jsolly/awesome-django-blog/actions/runs/37048700608)
+PR tree; [main CI](https://github.com/jsolly/awesome-blog/actions/runs/37048700608)
 reused that tree's successful validation. The CMS rehearsal, frozen final-source
-reconciliation and independent durable backup recovery are complete. Vercel is
-connected to production Git branch `main`, but linking created no deployment.
-Hosting/DNS verification below remains required. Heroku automatic deploys were
-disabled and verified after a reload on October 2, 2026; the existing serving
-release remains available for rollback.
+reconciliation and independent durable backup recovery are complete. Canonical
+DNS, HTTPS, exact-release manual Production smoke and the complete public-content
+audit passed. The repository is now `jsolly/awesome-blog`; renamed-repository
+automatic smoke and hosted CMS verification remain required. Heroku automatic
+deploys are disabled; release v315 remains available for rollback. Publishing
+stays frozen until John accepts the initial rollback window.
 
 ## Architecture decisions
 
@@ -54,7 +55,7 @@ CKEditor/HTMX/chart assets, AI embeddings, obsolete Linode backup scripts and
 Python tooling were removed. Node tooling, CI, Dependabot and active docs replaced
 their consumers together. No production resource or data was deleted.
 
-Commands run from `/Users/johnsolly/code/awesome-django-blog`.
+Commands run from `/Users/johnsolly/code/awesome-blog`.
 
 ```bash
 npm ci
@@ -108,14 +109,14 @@ cutover audit separately verifies the documented missing target remains a 404.
 ## Required CMS rehearsal
 
 Use the [PagesCMS GitHub App](https://app.pagescms.org) to access
-`jsolly/awesome-django-blog`. Prefer repository-scoped access for a new installation;
+`jsolly/awesome-blog`. Prefer repository-scoped access for a new installation;
 do not alter unrelated access on an existing installation. For the initial rehearsal, select a separate
 editorial branch based on the reviewed migration head, where `.pages.yml` exists.
 After cutover, start editorial branches from current main. Never weaken
 protected-main policy. Authentication, isolated branch creation, editor access and a
 code/table/frame article saves and reopens, category creation, media upload and
 draft-to-published output are verified. The isolated
-[rehearsal PR #679](https://github.com/jsolly/awesome-django-blog/pull/679) passed
+[rehearsal PR #679](https://github.com/jsolly/awesome-blog/pull/679) passed
 the actual required `CI / ci` check and closed without merging its fixtures.
 Initial inspection found
 that date fields reinitialized legacy ISO timestamps and image fields treated
@@ -146,15 +147,26 @@ hosted CMS changes it anyway, stop publishing and repair the schema before cutov
 The inspected Vercel team is `jsolly's projects`, ID
 `team_T8yHg0aDz7nCbyBgJh5a2saR`. Project `blogthedata`, ID
 `prj_QxSNy3z51xOp295HUvPfDa1JY9h8`, is connected to GitHub repository
-`jsolly/awesome-django-blog`, repository ID `286148731`, with production branch
+`jsolly/awesome-blog`, repository ID `286148731`, with production branch
 `main`. The persisted configuration was read back on October 2, 2026: Astro,
 Node 24, `npm ci`, `npm run build`, output `dist`, project previews disabled,
 and Vercel authentication on deployment URLs while custom domains remain public.
-The connection itself created no deployment or GitHub deployment event. A reviewed
-change through protected `main` supplies the first production Git event; verify
-the resulting deployment, project-domain behavior and full SHA before applying
-DNS changes. Heroku automatic deploys remain disabled, with the serving release
-retained for rollback.
+The canonical DNS cutover completed on October 2, 2026. Both Cloudflare CNAMEs
+point to Vercel with DNS-only service and TTL Auto; the Google verification TXT
+record is unchanged. HTTPS validates and the apex redirects to www, preserving
+the requested path and query. Git production deployment
+`dpl_4vJESG2KYmB6KvVThp4twNKC9Yrn` served full SHA
+`4e0347ba886dbe36e1e02cf85ea80a67bec78765`. Its
+[canonical Production smoke](https://github.com/jsolly/awesome-blog/actions/runs/37072840179)
+passed through the manual fallback. The complete live audit passed all 106
+articles and their bare URLs, 13 other pages, 241 referenced assets, four feed
+forms and both historical aliases in both URL forms, including the documented
+pre-existing 404. Automatic smoke was skipped before the environment variable
+was saved. John then saved `VERCEL_PRODUCTION_ENVIRONMENT=Production` and renamed
+the same repository, ID `286148731`, to `awesome-blog`. The next renamed-repository
+Git release must prove automatic smoke and the hosted CMS integration.
+Heroku automatic deploys remain disabled; release v315 and its database/media
+are retained. Publishing stays frozen until John accepts the initial rollback window.
 John explicitly authorized migration backups and admin activities on October 2,
 2026. The agent can perform these steps using available authorized access.
 Sign-in and any required human input use Chrome. New security-sensitive access
@@ -183,7 +195,7 @@ grants and binding terms still need approval when presented. No teardown is auth
 3. Disable Heroku automatic deploys for `blogthedata` in its GitHub deployment
    settings, retaining the serving release/database. Record the setting before
    allowing `/ship` to merge this runtime replacement after green `CI / ci`.
-4. Connect `jsolly/awesome-django-blog` to the existing Vercel project after the
+4. Connect `jsolly/awesome-blog` to the existing Vercel project after the
    reviewed Astro replacement lands on `main`. Use Astro, production branch
    `main`, Node 24, install `npm ci`, build `npm run build`, output `dist`.
    Confirm `vercel.json` suppresses all other Git refs. Keep protected main and
@@ -237,7 +249,7 @@ version has passed the required database and media checks.
 For the media backup, use your existing authorized AWS profile and confirm
 `aws sts get-caller-identity` reports account `730335616323`. The commands below
 download current objects only and do not modify S3. Run them during the publishing
-freeze, from `/Users/johnsolly/code/awesome-django-blog`, into new destinations.
+freeze, from `/Users/johnsolly/code/awesome-blog`, into new destinations.
 [AWS sync](https://docs.aws.amazon.com/cli/latest/reference/s3/sync.html) downloads
 objects; [the inventory command](https://docs.aws.amazon.com/cli/latest/reference/s3api/list-objects-v2.html)
 uses the CLI's default pagination. Do not add `--no-paginate` or `--max-items`.
@@ -268,8 +280,11 @@ versioning, retention or IAM settings are changed by this procedure.
 `/release.json` embeds the full build commit SHA. Production smoke waits until the
 canonical site serves that exact SHA, then checks article reading, GET search,
 RSS/Atom MIME and mobile navigation. It uses only public GETs and browser reads.
-Receipts, traces and screenshots upload even on failure. Production smoke has not
-been run against Vercel because no deployment exists.
+Receipts, traces and screenshots upload even on failure. The canonical manual
+[Production smoke](https://github.com/jsolly/awesome-blog/actions/runs/37072840179)
+passed for the Vercel release recorded above. Automatic smoke on the next
+renamed-repository Git production release and hosted CMS verification remain
+required before initial rollback acceptance.
 
 During the freeze, restore the recorded original DNS routing to the retained
 Heroku release, then verify canonical reading/search. Keep deployment receipts for

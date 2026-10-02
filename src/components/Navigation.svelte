@@ -10,9 +10,9 @@
 <nav id="mobile-navigation" class:collapsed={hydrated && !open} aria-label="Main navigation">
   <a href="/all-posts/">All posts</a>
   <a href="/rss/">RSS</a>
-  <a href="https://github.com/jsolly/awesome-django-blog">GitHub</a>
+  <a href="https://github.com/jsolly/awesome-blog">GitHub</a>
   <div class="mobile-categories">
-    {#each categories as category}
+    {#each categories as category (category.slug)}
       <a href={`/category/${category.slug}/`}>{category.name} <span>{category.count}</span></a>
     {/each}
   </div>
