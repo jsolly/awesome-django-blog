@@ -1,6 +1,6 @@
 ---
 slug: Adding-code-snippets-ckeditor
-title: "Adding Code Snippets to ckeditor: A Step-by-Step Guide [CMS rehearsal]"
+title: "Adding Code Snippets to ckeditor: A Step-by-Step Guide"
 category: web-dev
 description: Learn how to quickly and easily add Code Snippets and plugins to
   ckeditor. Follow this guide to install plugins and format code snippets in
@@ -12,7 +12,7 @@ imageAlt: List of languages available to snippet. Python, CSSS, YAML, JSON, Git,
 imageWidth: 170
 imageHeight: 197
 published: 2021-12-31T07:20:23Z
-updated: 2021-12-31T07:20:23Z
+updated: 2021-12-31T02:20:23.123456-05:00
 author: John Solly
 feedAuthor: John_Solly
 legacyAuthorId: 2
