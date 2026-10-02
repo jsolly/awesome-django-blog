@@ -35,6 +35,8 @@ Every recipe includes **Tabular Recipe Notation (TRN)**, the recipe-summary form
 
 ## Pick tonight's dinner
 
+<!-- recipe-generated:table:overview:begin -->
+
 <div class="recipe-table-scroll">
 <table>
 <thead><tr><th scope="col">Meal</th><th scope="col">Group</th><th scope="col">Appliance</th><th scope="col">Hands-on min</th><th scope="col">Total min</th><th scope="col">Attention and finish checks</th></tr></thead>
@@ -54,6 +56,8 @@ Every recipe includes **Tabular Recipe Notation (TRN)**, the recipe-summary form
 </tbody>
 </table>
 </div>
+
+<!-- recipe-generated:table:overview:end -->
 
 For the quickest dinner, choose salmon. For a mixed keto household, choose fajitas. For a vegetarian dinner, choose the harissa bowls with their full yogurt portion. For something that is closest to a literal dump-and-go meal, choose the moist chicken and lentil bake.
 
@@ -83,6 +87,8 @@ For keto portions, the calculated target is 10 g net carbs or less. Net carbs he
 
 Calculations use [USDA FoodData Central](https://fdc.nal.usda.gov/download-datasets/) and the specified manufacturer labels. They are rounded estimates, not lab measurements. Brands, meat fat, drained yields, and retained cooking liquid vary. Calories are shown because some of these are lighter dinners. Add food to suit your appetite; count any additions separately.
 
+<!-- recipe-generated:table:nutrition:begin -->
+
 <div class="recipe-table-scroll">
 <table>
 <thead><tr><th scope="col">Meal, one quarter of recipe</th><th scope="col">kcal</th><th scope="col">Protein g</th><th scope="col">Total carbs g</th><th scope="col">Fiber g</th><th scope="col">Net carbs g</th></tr></thead>
@@ -103,7 +109,13 @@ Calculations use [USDA FoodData Central](https://fdc.nal.usda.gov/download-datas
 </table>
 </div>
 
+<!-- recipe-generated:table:nutrition:end -->
+
 ## 1. Keto meals
+
+<!-- recipe-generated:recipe:lemon-salmon-and-asparagus:begin -->
+
+<div id="lemon-salmon-and-asparagus"></div>
 
 ### Lemon salmon and asparagus
 
@@ -161,6 +173,12 @@ If either basket cannot hold its full batch, use two half-sheet pans at 425°F: 
 - [Instant Pot salmon and asparagus example](https://instantpot.com/blogs/recipes/super-easy-roast-salmon-and-asparagus)
 
 These sources support safety, labels or comparable cooking methods; this exact recipe has not been kitchen-tested.
+
+<!-- recipe-generated:recipe:lemon-salmon-and-asparagus:end -->
+
+<!-- recipe-generated:recipe:smoky-chicken-thighs-and-broccoli:begin -->
+
+<div id="smoky-chicken-thighs-and-broccoli"></div>
 
 ### Smoky chicken thighs and broccoli
 
@@ -222,6 +240,12 @@ If baskets cannot hold the batch, use two oven pans at 425°F for about 20–25 
 
 These sources support safety, labels or comparable cooking methods; this exact recipe has not been kitchen-tested.
 
+<!-- recipe-generated:recipe:smoky-chicken-thighs-and-broccoli:end -->
+
+<!-- recipe-generated:recipe:pesto-cod-and-zucchini:begin -->
+
+<div id="pesto-cod-and-zucchini"></div>
+
 ### Pesto cod and zucchini
 
 <figure class="recipe-illustration"><img src="/media/recipes/pesto-cod-and-zucchini-960.webp" width="960" height="720" srcset="/media/recipes/pesto-cod-and-zucchini-480.webp 480w, /media/recipes/pesto-cod-and-zucchini-960.webp 960w, /media/recipes/pesto-cod-and-zucchini-1440.webp 1440w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of pesto-topped cod with roasted zucchini and hemp hearts." loading="lazy" decoding="async" /><figcaption>AI-generated illustration; appearance and portions are approximate.</figcaption></figure>
@@ -276,6 +300,12 @@ Separating wet zucchini keeps cod from steaming in vegetable liquid; pesto stays
 - [DeLallo basil pesto label](https://www.delallo.com/pesto-squeeze-bottle/)
 
 These sources support safety, labels or comparable cooking methods; this exact recipe has not been kitchen-tested.
+
+<!-- recipe-generated:recipe:pesto-cod-and-zucchini:end -->
+
+<!-- recipe-generated:recipe:spinach-feta-and-hemp-frittata:begin -->
+
+<div id="spinach-feta-and-hemp-frittata"></div>
 
 ### Spinach, feta, and hemp frittata
 
@@ -338,9 +368,13 @@ Dry spinach prevents a watery center; feta, hemp, and yeast add savory depth.
 
 These sources support safety, labels or comparable cooking methods; this exact recipe has not been kitchen-tested.
 
+<!-- recipe-generated:recipe:spinach-feta-and-hemp-frittata:end -->
+
 ## 2. One keto main, an easy family add-on
 
 Prepare the same main for everyone. Keep starch separate until plating. The timelines allow heating one starch choice while the main cooks, and include its brief handling. They do not include cooking dry rice from scratch.
+
+<!-- recipe-generated:table:family:begin -->
 
 <div class="recipe-table-scroll">
 <table>
@@ -354,7 +388,13 @@ Prepare the same main for everyone. Keep starch separate until plating. The time
 </table>
 </div>
 
+<!-- recipe-generated:table:family:end -->
+
 The table uses generic USDA portions. A branded rice pouch or larger bread can differ substantially. Use its label, weigh the stated portion if needed, and heat according to the package. For four people taking 80 g rice each, buy at least 320 g cooked rice; two common 250 g pouches are enough. For bread, use ready-to-eat bread warmed briefly, not a separate baking project. Do not add all starch options at once and assume the same prep time.
+
+<!-- recipe-generated:recipe:shawarma-chicken-bowls:begin -->
+
+<div id="shawarma-chicken-bowls"></div>
 
 ### Shawarma chicken bowls
 
@@ -421,6 +461,12 @@ Warm spices coat small chicken pieces and cauliflower; cold lemon yogurt balance
 
 These sources support safety, labels or comparable cooking methods; this exact recipe has not been kitchen-tested.
 
+<!-- recipe-generated:recipe:shawarma-chicken-bowls:end -->
+
+<!-- recipe-generated:recipe:sheet-pan-chicken-fajitas:begin -->
+
+<div id="sheet-pan-chicken-fajitas"></div>
+
 ### Sheet-pan chicken fajitas
 
 <figure class="recipe-illustration"><img src="/media/recipes/sheet-pan-chicken-fajitas-960.webp" width="960" height="720" srcset="/media/recipes/sheet-pan-chicken-fajitas-480.webp 480w, /media/recipes/sheet-pan-chicken-fajitas-960.webp 960w, /media/recipes/sheet-pan-chicken-fajitas-1440.webp 1440w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of chicken fajita strips, peppers, avocado, lettuce and yogurt in a bowl." loading="lazy" decoding="async" /><figcaption>AI-generated illustration; appearance and portions are approximate. Keto base shown; family starch is separate.</figcaption></figure>
@@ -483,6 +529,12 @@ Roasting spaced strips concentrates pepper flavor; lime, avocado, and yogurt rou
 - [USDA poultry handling guidance](https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/poultry/chicken-farm-table)
 
 These sources support safety, labels or comparable cooking methods; this exact recipe has not been kitchen-tested.
+
+<!-- recipe-generated:recipe:sheet-pan-chicken-fajitas:end -->
+
+<!-- recipe-generated:recipe:salsa-verde-shredded-chicken:begin -->
+
+<div id="salsa-verde-shredded-chicken"></div>
 
 ### Salsa verde shredded chicken
 
@@ -549,6 +601,12 @@ Salsa after pressure cooking keeps its tang and meets the cooker’s need for th
 - [Herdez salsa verde label](https://www.salsas.com/herdez/products/salsas/salsa-verde/)
 
 These sources support safety, labels or comparable cooking methods; this exact recipe has not been kitchen-tested.
+
+<!-- recipe-generated:recipe:salsa-verde-shredded-chicken:end -->
+
+<!-- recipe-generated:recipe:greek-turkey-patties:begin -->
+
+<div id="greek-turkey-patties"></div>
 
 ### Greek turkey patties
 
@@ -617,7 +675,13 @@ If patties do not fit with gaps, bake on half-sheet pans at 425°F for about 18�
 
 These sources support safety, labels or comparable cooking methods; this exact recipe has not been kitchen-tested.
 
+<!-- recipe-generated:recipe:greek-turkey-patties:end -->
+
 ## 3. Non-keto meals
+
+<!-- recipe-generated:recipe:tomato-lentil-and-chicken-bake:begin -->
+
+<div id="tomato-lentil-and-chicken-bake"></div>
 
 ### Tomato, lentil, and chicken bake
 
@@ -679,6 +743,12 @@ A tight foil cover and tomato liquid keep precooked chicken moist while lentils 
 
 These sources support safety, labels or comparable cooking methods; this exact recipe has not been kitchen-tested.
 
+<!-- recipe-generated:recipe:tomato-lentil-and-chicken-bake:end -->
+
+<!-- recipe-generated:recipe:harissa-chickpea-and-cauliflower-bowls:begin -->
+
+<div id="harissa-chickpea-and-cauliflower-bowls"></div>
+
 ### Harissa chickpea and cauliflower bowls
 
 <figure class="recipe-illustration"><img src="/media/recipes/harissa-chickpea-and-cauliflower-bowls-960.webp" width="960" height="720" srcset="/media/recipes/harissa-chickpea-and-cauliflower-bowls-480.webp 480w, /media/recipes/harissa-chickpea-and-cauliflower-bowls-960.webp 960w, /media/recipes/harissa-chickpea-and-cauliflower-bowls-1440.webp 1440w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of chickpeas and roasted cauliflower over harissa yogurt with hemp hearts." loading="lazy" decoding="async" /><figcaption>AI-generated illustration; appearance and portions are approximate.</figcaption></figure>
@@ -737,6 +807,12 @@ Cumin-roasted cauliflower and soft-centered chickpeas meet a cold lemon-harissa 
 - [Mina mild harissa](https://mina.co/products/mina-harissa-mild)
 
 These sources support safety, labels or comparable cooking methods; this exact recipe has not been kitchen-tested.
+
+<!-- recipe-generated:recipe:harissa-chickpea-and-cauliflower-bowls:end -->
+
+<!-- recipe-generated:recipe:lemon-chicken-potatoes-and-green-beans:begin -->
+
+<div id="lemon-chicken-potatoes-and-green-beans"></div>
 
 ### Lemon chicken, potatoes, and green beans
 
@@ -802,6 +878,12 @@ The same lemon, garlic and oregano oil seasons the chicken and both vegetables. 
 
 These sources support safety, labels or comparable cooking methods; this exact recipe has not been kitchen-tested.
 
+<!-- recipe-generated:recipe:lemon-chicken-potatoes-and-green-beans:end -->
+
+<!-- recipe-generated:recipe:sheet-pan-gnocchi-white-beans-and-broccoli:begin -->
+
+<div id="sheet-pan-gnocchi-white-beans-and-broccoli"></div>
+
 ### Sheet-pan gnocchi, white beans, and broccoli
 
 <figure class="recipe-illustration"><img src="/media/recipes/sheet-pan-gnocchi-white-beans-and-broccoli-960.webp" width="960" height="720" srcset="/media/recipes/sheet-pan-gnocchi-white-beans-and-broccoli-480.webp 480w, /media/recipes/sheet-pan-gnocchi-white-beans-and-broccoli-960.webp 960w, /media/recipes/sheet-pan-gnocchi-white-beans-and-broccoli-1440.webp 1440w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of roasted gnocchi, white beans, broccoli, tomatoes and Parmesan." loading="lazy" decoding="async" /><figcaption>AI-generated illustration; appearance and portions are approximate.</figcaption></figure>
@@ -864,6 +946,8 @@ Roasted shelf-stable gnocchi stays tender inside; later beans avoid drying, whil
 - [DeLallo sheet-pan gnocchi method](https://www.delallo.com/recipe/sheet-pan-pesto-gnocchi/)
 
 These sources support safety, labels or comparable cooking methods; this exact recipe has not been kitchen-tested.
+
+<!-- recipe-generated:recipe:sheet-pan-gnocchi-white-beans-and-broccoli:end -->
 
 ## Use the boosters where they help
 

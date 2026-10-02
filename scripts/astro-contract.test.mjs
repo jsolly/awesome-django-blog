@@ -162,7 +162,8 @@ test('recipe route retains a complete sanitized no-JavaScript guide and first-pa
   assert.equal($('#recipe-static .trn-table').length, 12);
   assert.equal($('#recipe-static .trn-scroll[tabindex="0"][role="region"]').length, 12);
   assert.equal($('#recipe-static .recipe-table-scroll table').length, 3);
-  assert.deepEqual($('#recipe-static h3').toArray().map(heading => $(heading).attr('id')), recipes.map(recipe => recipe.id));
+  assert.deepEqual($('#recipe-static h3').toArray().map(heading => $(heading).clone().find('.heading-link').remove().end().text()).sort(), recipes.map(recipe => recipe.title).sort());
+  for (const recipe of recipes) assert.equal($(`#recipe-static [id="${recipe.id}"]`).length, 1, `Missing stable recipe anchor: ${recipe.id}`);
   assert.match($('#recipe-static').text(), /not kitchen-tested/u);
   assert.match($('.image-disclosure').text(), /AI-generated illustrations/u);
   for (const recipe of recipes) {

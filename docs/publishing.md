@@ -48,8 +48,10 @@ Automatic branch previews are disabled; use local preview unless John explicitly
 authorizes the fleet's opt-in preview workflow.
 
 Before first production cutover, rehearse save/reopen of existing table/code/frame
-articles, new category/image/draft, and a PR publish. Hosted CMS authentication and
-its actual save behavior have not been verified by the local implementation.
+articles, new category/image/draft, and a PR publish. Hosted CMS authentication, branch creation and editor access have been verified.
+Actual save/reopen, upload and publishing behavior remains to be proved. Timestamps
+and cover-image paths use string fields after the rehearsal exposed destructive
+date initialization and unsupported external-image controls.
 
 ## Content validation
 

@@ -100,7 +100,11 @@ Use the [PagesCMS GitHub App](https://app.pagescms.org) to access
 do not alter unrelated access on an existing installation. For the initial rehearsal, select a separate
 editorial branch based on the reviewed migration head, where `.pages.yml` exists.
 After cutover, start editorial branches from current main. Never weaken
-protected-main policy. The authenticated rehearsal remains unrun.
+protected-main policy. Authentication, isolated branch creation and editor access are verified. Save/reopen,
+media upload and the publish rehearsal remain required. Initial inspection found
+that date fields reinitialized legacy ISO timestamps and image fields treated
+CloudFront URLs as GitHub paths. Timestamps now use validated ISO strings; cover
+images use a URL/media-path string with uploads through the Media sidebar.
 
 1. Save and reopen existing table, code and iframe posts. Compare the source diff,
    metadata, timestamps, media URLs and unmanaged legacy keys. Confirm source body
@@ -164,7 +168,13 @@ grants and binding terms still need approval when presented. No teardown is auth
    on `main` with the full deployed SHA and a unique UUID request ID. Record its
    run URL, release SHA and deployment URL. A skipped/stale/missing/failed run is
    incomplete. Verify every existing article URL and media after cutover.
-8. End the freeze only after the checks pass and John closes the initial rollback
+8. After verifying the cutover, rename the GitHub repository to `awesome-blog`
+   and move the local checkout to `/Users/johnsolly/code/awesome-blog`. Update origin,
+   PagesCMS, Vercel Git linkage, CI ownership checks and documentation. Recheck
+   publishing and production against the renamed repository. Preserve existing
+   article text and URLs containing old technology names. Remove all remaining
+   framework references from active tooling and documentation.
+9. End the freeze only after the checks pass and John closes the initial rollback
    window. Retain Heroku/database/S3/CloudFront/IAM until separately authorized
    retirement. No teardown commands are included in this migration.
 

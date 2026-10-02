@@ -38,6 +38,11 @@ except the generated excerpt, and preserves editorial guidance. It also updates 
 writing files and runs in the app gate. Review editorial advice when the method,
 food state, capacity or nutrition changes; generated sections cannot do that.
 
+Keep the `recipe-generated` begin/end comments around generated regions. Recipe
+regions use stable recipe IDs; the three comparison tables each have their own
+key. Titles and region order can change without changing ownership. Add editorial
+content outside these comments; it remains untouched, including HTML tables.
+
 The article retains `/post/15-minute-dump-and-go-instant-pot-recipes/`. Its route
 uses `RecipeExperience.astro` with the host-sanitized article as a complete
 fallback that stays visible until the interactive library hydrates successfully.
