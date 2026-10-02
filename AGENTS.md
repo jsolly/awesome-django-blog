@@ -64,8 +64,12 @@ invoked drain adds `ow-ci`; skipped checks cannot satisfy `ci`.
 Canonical production URL: <https://www.blogthedata.com>. Vercel production branch
 is `main`, install `npm ci`, build `npm run build`, output `dist`, Node 24.
 `vercel.json` disables other Git refs and supplies redirects/security/feed MIME.
-Vercel project `blogthedata` has been provisioned without a Git connection or
-deployment. Current production is the legacy Heroku app `blogthedata`. Heroku
+Vercel project `blogthedata` is connected to GitHub production branch `main`;
+project previews are disabled and deployment protection remains enabled. Linking
+the repository did not create a deployment. The first protected-main change after
+linking must produce a successful production deployment. Verify its project-domain
+behavior and full SHA before domain cutover; canonical smoke follows DNS changes.
+Current production is the legacy Heroku app `blogthedata`. Heroku
 automatic deploys are disabled, and the existing release is retained for rollback. Follow [the cutover runbook](docs/astro-migration.md).
 
 A release requires successful production deployment plus that exact SHA's canonical
@@ -93,8 +97,9 @@ John authorized migration backups and hosting administration. Infrastructure dep
 production DB writes and destructive cloud changes remain John's human operations. Keep Heroku/database/S3/CloudFront/IAM
 resources intact through the cutover and rollback window. The AWS bucket is
 `blogthedata` in account `730335616323`; do not widen the retained bucket-scoped
-policy. All new AWS resources must be defined with CloudFormation. The recovery bucket is
-a manual prerequisite; the frontend needs no AWS credentials. Do not delete
+policy. All new AWS resources must be defined with CloudFormation. The recovery
+bucket has been provisioned through CloudFormation and its exact-version database
+and media recovery verified; the frontend needs no AWS credentials. Do not delete
 ignored exports or local rollback state. See the runbook for independent backups.
 
 Cross-repo rules remain canon in dotagents; this task does not authorize fleet

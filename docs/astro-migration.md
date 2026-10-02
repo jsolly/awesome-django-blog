@@ -1,10 +1,15 @@
 # Astro migration and cutover
 
-Production still runs the legacy application on Heroku. The replacement on
-`codex/astro-svelte-pagescms` remains unmerged and undeployed. The CMS rehearsal
-and frozen final-source reconciliation are complete. Independent durable backup
-recovery is verified; hosting/DNS steps below remain required. Heroku automatic deploys were disabled and verified after
-a reload on October 2, 2026; the existing serving release remains available for rollback.
+Production still runs the legacy application on Heroku. The reviewed replacement
+landed on protected `main` in [PR #677](https://github.com/jsolly/awesome-django-blog/pull/677)
+at `ff5c534034a11dc50cb18316cc1758df0a03267f`. Its landed tree matches the reviewed
+PR tree; [main CI](https://github.com/jsolly/awesome-django-blog/actions/runs/37048700608)
+reused that tree's successful validation. The CMS rehearsal, frozen final-source
+reconciliation and independent durable backup recovery are complete. Vercel is
+connected to production Git branch `main`, but linking created no deployment.
+Hosting/DNS verification below remains required. Heroku automatic deploys were
+disabled and verified after a reload on October 2, 2026; the existing serving
+release remains available for rollback.
 
 ## Architecture decisions
 
@@ -136,10 +141,16 @@ hosted CMS changes it anyway, stop publishing and repair the schema before cutov
 
 The inspected Vercel team is `jsolly's projects`, ID
 `team_T8yHg0aDz7nCbyBgJh5a2saR`. Project `blogthedata`, ID
-`prj_QxSNy3z51xOp295HUvPfDa1JY9h8`, was created without a Git connection or
-deployment on October 2, 2026. It uses Astro, Node 24, `npm ci`, `npm run build`
-and output `dist`; project previews are disabled. Heroku automatic deploys were
-disabled and the dashboard setting verified after a reload the same day.
+`prj_QxSNy3z51xOp295HUvPfDa1JY9h8`, is connected to GitHub repository
+`jsolly/awesome-django-blog`, repository ID `286148731`, with production branch
+`main`. The persisted configuration was read back on October 2, 2026: Astro,
+Node 24, `npm ci`, `npm run build`, output `dist`, project previews disabled,
+and Vercel authentication on deployment URLs while custom domains remain public.
+The connection itself created no deployment or GitHub deployment event. A reviewed
+change through protected `main` supplies the first production Git event; verify
+the resulting deployment, project-domain behavior and full SHA before applying
+DNS changes. Heroku automatic deploys remain disabled, with the serving release
+retained for rollback.
 John explicitly authorized migration backups and admin activities on October 2,
 2026. The agent can perform these steps using available authorized access.
 Sign-in and any required human input use Chrome. New security-sensitive access
