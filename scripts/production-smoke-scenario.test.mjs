@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { chromium } from 'playwright';
-import { productionUrl, smoke, verifyRelease, verifyFeeds } from './production-smoke-scenario.mjs';
+import { productionUrl, smoke, verifyRelease, verifyFeeds, verifyCanonicalRoutes } from './production-smoke-scenario.mjs';
+import historicalRedirects from '../src/content/redirects.json' with { type: 'json' };
+import migrationReceipt from '../src/content/migration-receipt.json' with { type: 'json' };
 import { runSmoke } from './production-smoke.mjs';
 
 test('an article page with no article body fails the public reading smoke', async () => {
@@ -45,13 +47,21 @@ test('public article, GET search, feeds and mobile navigation are read-only', as
     await page.goto(productionUrl);
     await smoke({ page, verifyHttp: async url => {
       checked.push(url);
-      const atom = url.endsWith('/atom/');
-      return new Response(atom ? '<feed></feed>' : '<rss></rss>', { headers: { 'content-type': atom ? 'application/atom+xml' : 'application/rss+xml' } });
+      const atom = new URL(url).pathname.replace(/\/$/u, '') === '/atom';
+      const response = new Response(atom ? '<feed></feed>' : '<rss></rss>', { headers: { 'content-type': atom ? 'application/atom+xml' : 'application/rss+xml' } });
+      const rule = historicalRedirects.find(rule => rule.source.replace(/\/$/u, '') === new URL(url).pathname.replace(/\/$/u, ''));
+      const finalPath = rule ? `${rule.destination.replace(/\/$/u, '')}/` : new URL(url).pathname === '/post/example' ? '/post/example/' : new URL(url).pathname;
+      Object.defineProperty(response, 'url', { value: `${productionUrl}${finalPath}` });
+      return response;
     } });
     assert.deepEqual(checked, [
       `${productionUrl}/post/example/`,
+      `${productionUrl}/post/example`,
+      ...historicalRedirects.filter(rule => migrationReceipt.publishedPaths.includes(`${rule.destination.replace(/\/$/u, '')}/`)).flatMap(rule => [`${productionUrl}${rule.source.replace(/\/$/u, '')}`, `${productionUrl}${rule.source.replace(/\/$/u, '')}/`]),
       `${productionUrl}/search/?searched=Example+post`,
+      `${productionUrl}/rss`,
       `${productionUrl}/rss/`,
+      `${productionUrl}/atom`,
       `${productionUrl}/atom/`,
     ]);
   } finally {
@@ -82,4 +92,28 @@ test('release readiness rejects stale builds before launching a browser', async 
 
 test('feed smoke rejects a successful HTML response in place of XML', async () => {
   await assert.rejects(verifyFeeds({ verifyHttp: async () => new Response('<html></html>', { headers: { 'content-type': 'text/html' } }) }), /XML feed MIME/u);
+});
+
+test('canonical route smoke rejects broken and misdirected historical links', async () => {
+  const routes = [{ source: '/post/example', destination: '/post/example/' },
+    ...historicalRedirects.filter(rule => migrationReceipt.publishedPaths.includes(`${rule.destination.replace(/\/$/u, '')}/`)).flatMap(rule => [
+      { source: rule.source.replace(/\/$/u, ''), destination: `${rule.destination.replace(/\/$/u, '')}/` },
+      { source: `${rule.source.replace(/\/$/u, '')}/`, destination: `${rule.destination.replace(/\/$/u, '')}/` },
+    ])];
+  for (const broken of routes) {
+    for (const failure of ['404', 'wrong destination']) {
+      const checked = [];
+      await assert.rejects(verifyCanonicalRoutes({ postPath: '/post/example/', verifyHttp: async url => {
+        const path = new URL(url).pathname;
+        checked.push(path);
+        const route = routes.find(route => route.source === path);
+        assert.ok(route, 'Unexpected smoke request');
+        const inject = path === broken.source;
+        const response = new Response('', { status: inject && failure === '404' ? 404 : 200 });
+        Object.defineProperty(response, 'url', { value: `${productionUrl}${inject && failure === 'wrong destination' ? '/post/wrong/' : route.destination}` });
+        return response;
+      } }), failure === '404' ? /route is readable/u : /reaches its canonical article/u);
+      assert.ok(checked.includes(broken.source), `Failure fixture reached ${broken.source}`);
+    }
+  }
 });

@@ -100,6 +100,10 @@ Historical aliases are in `src/content/redirects.json` and `vercel.json`. The
 closed-loop alias already ended at a missing article on the old production site,
 verified October 2. Its recorded destination remains; no new article was invented.
 The favorite-podcasts alias still targets its existing published article.
+Vercel enforces Astro's trailing slash URLs, including normalized alias sources
+and destinations. Bare article URLs redirect to their canonical directory route.
+The production smoke checks the readable alias and both feed URL forms; the full
+cutover audit separately verifies the documented missing target remains a 404.
 
 ## Required CMS rehearsal
 

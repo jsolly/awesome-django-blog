@@ -91,7 +91,13 @@ test('historical redirects retain canonical-site paths and have matching Vercel 
   for (const field of ['old_path', 'new_path']) assert.throws(() => convertExport([...records, aliases[0], { ...aliases[1], fields: { ...aliases[1].fields, [field]: '//evil/' } }]), /Unsupported redirect/u);
   const config = await readJson('vercel.json');
   const imported = await readJson('src/content/redirects.json');
-  for (const redirect of imported) assert.ok(config.redirects.some(rule => rule.source === redirect.source && rule.destination === redirect.destination && rule.permanent));
+  assert.equal(config.trailingSlash, true, 'Vercel must canonicalize bare article/alias destinations to Astro directory URLs');
+  const directoryPath = path => `${path.replace(/\/$/u, '')}/`;
+  for (const redirect of imported) assert.ok(config.redirects.some(rule => rule.source === directoryPath(redirect.source) && rule.destination === directoryPath(redirect.destination) && rule.permanent));
+  const { publishedPaths } = await readJson('src/content/migration-receipt.json');
+  assert.deepEqual(imported.filter(rule => !publishedPaths.includes(directoryPath(rule.destination))), [{
+    source: '/post/how-to-leverage-closed-loops', destination: '/post/stop-asking-questions-to-save-time', legacyId: 3,
+  }], 'Only the documented pre-existing missing alias target may remain unresolved');
 });
 
 test('static CSP permits emitted hydration scripts by hash and has no permissive script rule', async () => {
