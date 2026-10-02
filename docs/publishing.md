@@ -55,7 +55,11 @@ Before first production cutover, rehearse save/reopen of existing table/code/fra
 articles, new category/image/draft, and a PR publish. Hosted CMS authentication, branch creation and editor access have been verified.
 Code/table/frame article saves and reopens are verified, including exact bodies,
 fractional timestamps, timezone offsets, remote images and unmanaged keys.
-Media upload and publishing behavior remain to be proved. Timestamps
+Category creation, image upload, actual draft exclusion and published output
+are also verified. The isolated
+[rehearsal PR #679](https://github.com/jsolly/awesome-django-blog/pull/679) passed
+the actual required `CI / ci` check and closed without merging its fixtures.
+Timestamps
 and cover-image paths use string fields after the rehearsal exposed destructive
 date initialization and unsupported external-image controls.
 

@@ -101,8 +101,11 @@ do not alter unrelated access on an existing installation. For the initial rehea
 editorial branch based on the reviewed migration head, where `.pages.yml` exists.
 After cutover, start editorial branches from current main. Never weaken
 protected-main policy. Authentication, isolated branch creation, editor access and a
-code/table/frame article saves and reopens are verified. Media upload and the
-publish rehearsal remain required. Initial inspection found
+code/table/frame article saves and reopens, category creation, media upload and
+draft-to-published output are verified. The isolated
+[rehearsal PR #679](https://github.com/jsolly/awesome-django-blog/pull/679) passed
+the actual required `CI / ci` check and closed without merging its fixtures.
+Initial inspection found
 that date fields reinitialized legacy ISO timestamps and image fields treated
 CloudFront URLs as GitHub paths. Timestamps now use validated ISO strings; cover
 images use a URL/media-path string with uploads through the Media sidebar.
