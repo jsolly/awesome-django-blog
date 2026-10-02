@@ -3,7 +3,7 @@
 Production still runs the legacy application on Heroku. The replacement on
 `codex/astro-svelte-pagescms` remains unmerged and undeployed. The CMS rehearsal
 and frozen final-source reconciliation are complete. Independent durable backup
-recovery and hosting/DNS steps below remain required. Heroku automatic deploys were disabled and verified after
+recovery is verified; hosting/DNS steps below remain required. Heroku automatic deploys were disabled and verified after
 a reload on October 2, 2026; the existing serving release remains available for rollback.
 
 ## Architecture decisions
@@ -155,7 +155,11 @@ grants and binding terms still need approval when presented. No teardown is auth
    was stopped and removed; the earlier b001 recovery evidence is retained too.
    The local S3 copy contains 1,009 files, 101,335,569 bytes. These local artifacts
    match the frozen final inventory, with no added, removed or changed objects.
-   They still require independent durable retention and exact-version recovery. Record S3 bucket/object inventory,
+   John uploaded the frozen bundle to the independent backup bucket; exact-version
+   retrieval, checksum/retention checks, all-media verification and database recovery
+   passed. Image and PDF samples were opened from that downloaded version. The
+   version and recovery receipt are recorded in [migration-backups.md](migration-backups.md).
+   Record S3 bucket/object inventory,
    versioning/backup status and a recovery copy; GitHub is not a backup for S3.
 2. Re-export content, categories, similarities, redirects and sites. Import into
    a new empty scratch directory and reconcile changed articles with the CMS files.
@@ -212,8 +216,8 @@ before cutover. Domain records are unavailable until the domains are added;
 use Vercel's actual supplied records rather than guessed commands.
 The private S3 configuration and creation history are in
 [migration-backups.md](migration-backups.md). The CloudFormation stack is created
-and verified. The remaining backup gate is uploading the frozen recovery bundle
-and proving recovery from its exact S3 version before cutover.
+and verified. The frozen recovery bundle is uploaded; recovery from its exact S3
+version has passed the required database and media checks.
 
 For the media backup, use your existing authorized AWS profile and confirm
 `aws sts get-caller-identity` reports account `730335616323`. The commands below

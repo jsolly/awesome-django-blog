@@ -61,7 +61,22 @@ final frozen package is under `.migration-work/final-2026-10-02T1742Z/` in this
 checkout. Both remain private and ignored by Git. Final backup b002 has passed an
 isolated local restore against all five exported models. All 1,010 live media
 objects match the earlier inventory; 1,009 files totaling 101,335,569 bytes have
-fresh SHA-256 checksums. Earlier recovery receipts are retained too. Independent
-durable upload and exact-version remote recovery remain required.
+fresh SHA-256 checksums. Earlier recovery receipts are retained too.
+
+John uploaded `migrations/2026-10-02T1742Z/recovery-bundle.tar.gz` to the backup
+bucket. Its version is `A7Eg62qqtUAxYJySvCGI2aoWGcB41w2W`, size 73,873,206 bytes,
+and SHA-256 `233bd84e4325f767eb2a9b1d527b0730255f89a2d3b9f0e6e77ff63ab2cb8832`.
+Exact-version reads confirmed AES256 encryption, the expected checksum/metadata,
+and Governance retention until `2026-11-01T18:19:35.530Z`. Downloading that exact
+version into a fresh private directory passed whole-bundle, manifest, safe-member
+and every-media-file checks. The downloaded database restored in an isolated
+Unix-only PostgreSQL cluster; all exported fields across all five models matched,
+and the temporary cluster was stopped and removed. Image and PDF samples were
+retrieved from the downloaded media archive and visually verified.
+
+Independent durable backup recovery is complete. Its private aggregate receipt is
+`.migration-work/final-2026-10-02T1742Z/durable-recovery-receipt.json`; exact-version
+responses, downloaded payload, restore logs and sample renders are retained under
+the adjacent `remote-version-ai4j__pl/` directory.
 Do not mark independent backup storage complete until the exact remote versions
 have passed retrieval and recovery checks.
