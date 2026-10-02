@@ -18,6 +18,4 @@ This page verifies the isolated publishing flow and will never be merged into th
 
 ![Migration test image](/media/cms-rehearsal.webp)
 
-| Check | Result |
-| --- | --- |
-| Markdown table | retained |
+<table><thead><tr><th scope="col">Check</th><th scope="col">Result</th></tr></thead><tbody><tr><td>HTML table</td><td>Retained</td></tr></tbody></table>
