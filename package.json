@@ -24,7 +24,10 @@
     "gate:app": "npm run recipes:check && npm run check:app && npm run build && npm run test:astro && npm run test:recipes && npm run verify:drafts && npm run verify:identities",
     "recipes:sync": "node scripts/recipes/sync-recipe-article.mjs && node scripts/recipes/sync-assistant-data.mjs",
     "recipes:check": "node scripts/recipes/sync-recipe-article.mjs --check && node scripts/recipes/sync-assistant-data.mjs --check",
-    "test:recipes": "node --test src/components/recipes/*.test.mjs scripts/migration-rewrites.test.mjs"
+    "test:recipes": "node --test src/components/recipes/*.test.mjs scripts/migration-rewrites.test.mjs",
+    "protect:stacks": "bash scripts/protect-stacks.sh",
+    "check:stack-protection": "bash scripts/protect-stacks.sh --check",
+    "test:stack-protection": "node --test scripts/stack-protection.test.mjs"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
