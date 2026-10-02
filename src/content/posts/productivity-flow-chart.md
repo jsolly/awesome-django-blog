@@ -1,28 +1,30 @@
 ---
 slug: productivity-flow-chart
-title: "Creating Unique Content: Applying the Eisenhower Matrix"
+title: "Creating Unique Content: Applying the Eisenhower Matrix [CMS rehearsal]"
 category: productivity
-description: Discover the unique value you can offer through content creation using the Eisenhower Matrix. Prioritize the most important tasks and create truly unique.
+description: Discover the unique value you can offer through content creation
+  using the Eisenhower Matrix. Prioritize the most important tasks and create
+  truly unique.
 draft: false
 image: https://d1d7p8ufhgz4ld.cloudfront.net/media/post_metaimgs/flowchart.webp
 legacyImage: post_metaimgs/flowchart.webp
 imageAlt: Meta Image
-imageAttribution: ""
 imageWidth: 307
 imageHeight: 347
-published: "2022-03-16T16:54:22Z"
-updated: "2022-03-16T16:54:22Z"
+published: 2022-03-16T16:54:22Z
+updated: 2022-03-16T16:54:22Z
 author: John Solly
 feedAuthor: John_Solly
 legacyAuthorId: 2
-excerpt: <p>Discover the unique value you can offer through content creation using the Eisenhower Matrix. Prioritize the most important tasks and create truly unique ones.</p>
+excerpt: <p>Discover the unique value you can offer through content creation
+  using the Eisenhower Matrix. Prioritize the most important tasks and create
+  truly unique ones.</p>
 legacyId: 26
 related:
   - emotional-intelligence-book-executive-summary
   - 12-questions-you-should-ask-at-your-next-interview
   - timeless-phrases-sayings
 ---
-
 Content creation is tricky because even if you write high-quality posts, they’re utter trash if you're just re-inventing the wheel. Your best course of action is to produce things you are uniquely fit to create; Offer value that many find valuable and can’t discover anywhere else.
 
 We live in a time-scarce world. Whenever we do something, we choose not to do a myriad of other things. The most significant item on your agenda should be the most important task. See <a target="_blank" rel="noopener noreferrer" href="https://www.productplan.com/glossary/eisenhower-matrix/">this article on the Eisenhower Matrix</a> to learn more.
