@@ -1,10 +1,4 @@
-import { parseFrontmatter } from 'astro/markdown';
 import { stringify } from 'yaml';
-
-export function parsePost(source) {
-  const { frontmatter, content } = parseFrontmatter(source);
-  return { ...frontmatter, body: content.trim() };
-}
 
 export function serializePost(post) {
   const { body, ...metadata } = post;

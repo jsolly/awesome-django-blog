@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import { convertExport } from './import-legacy.mjs';
-import { parsePost } from './content-files.mjs';
+import { parsePost } from '../src/lib/frontmatter.ts';
 import { articleSignature } from './article-signature.mjs';
 import { sourceSignature } from './source-signature.mjs';
 import { load } from 'cheerio';
