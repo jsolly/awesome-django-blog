@@ -22,7 +22,8 @@ for (const [name, entries, extension] of [['posts', posts, 'md'], ['categories',
 assert.deepEqual(JSON.parse(await readFile('src/content/redirects.json', 'utf8')), redirects);
 const config = JSON.parse(await readFile('vercel.json', 'utf8'));
 for (const redirect of redirects) {
-  assert.ok(config.redirects.some(rule => rule.source === redirect.source && rule.destination === redirect.destination && rule.permanent), `Missing Vercel redirect: ${redirect.source}`);
+  const directoryPath = path => `${path.replace(/\/$/u, '')}/`;
+  assert.ok(config.redirects.some(rule => rule.source === directoryPath(redirect.source) && rule.destination === directoryPath(redirect.destination) && rule.permanent), `Missing Vercel redirect: ${redirect.source}`);
 }
 for (const [name, entries] of [['posts', posts], ['categories', categories]]) {
   for (const entry of entries) {
