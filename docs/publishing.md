@@ -33,6 +33,10 @@ timezone, such as `2026-10-02T14:00:00Z`. Preserve an existing publication times
 update `updated` when editing a post. The build rejects invalid or timezone-free
 timestamps. String fields preserve seconds, fractional precision and timezone
 instead of roundtripping them through the CMS's minute-resolution date control.
+Quoted and unquoted YAML timestamps have the same meaning. The post loader reads
+YAML 1.2 source values before schema validation, so the CMS's serialization does
+not silently convert or truncate those strings. Empty optional fields may be
+omitted on save; the declared defaults preserve their public meaning.
 Keep published slugs and their case unchanged.
 Category slugs are equally stable. Choose up to three related posts manually; there
 is no embedding service. Unmanaged legacy IDs/image paths remain for reconciliation.
@@ -49,7 +53,9 @@ authorizes the fleet's opt-in preview workflow.
 
 Before first production cutover, rehearse save/reopen of existing table/code/frame
 articles, new category/image/draft, and a PR publish. Hosted CMS authentication, branch creation and editor access have been verified.
-Actual save/reopen, upload and publishing behavior remains to be proved. Timestamps
+Code/table/frame article saves and reopens are verified, including exact bodies,
+fractional timestamps, timezone offsets, remote images and unmanaged keys.
+Media upload and publishing behavior remain to be proved. Timestamps
 and cover-image paths use string fields after the rehearsal exposed destructive
 date initialization and unsupported external-image controls.
 

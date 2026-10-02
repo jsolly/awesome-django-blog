@@ -6,7 +6,8 @@ import { join } from 'node:path';
 import { parseDocument } from 'yaml';
 import { convertExport, importExport } from './import-legacy.mjs';
 import { articleHtml, plainText, headingId } from '../src/lib/html.ts';
-import { parsePost, serializePost } from './content-files.mjs';
+import { parsePost } from '../src/lib/frontmatter.ts';
+import { serializePost } from './content-files.mjs';
 import { articleSignature } from './article-signature.mjs';
 import { verifyMediaBackup } from './verify-media-backup.mjs';
 import { load } from 'cheerio';
@@ -20,6 +21,18 @@ const records = [
   { model: 'blog.category', pk: 1, fields: { slug: 'Geodev', name: 'Geo Dev', description: 'Spatial development' } },
   { model: 'blog.post', pk: 3, fields: { slug: 'Some-Post', title: 'A < B', category: 1, author: 2, snippet: '<p>Authored card excerpt</p>', metadesc: 'Description', draft: false, metaimg: 'post_metaimgs/test.webp', metaimg_width: 10, metaimg_height: 20, metaimg_alt_txt: 'Image', metaimg_attribution: 'Author', content: '<table><tr><td>Exact HTML &amp; text</td></tr></table>', date_posted: '2024-01-02T00:00:00Z', date_updated: '2025-01-02T00:00:00Z' } },
 ];
+
+test('CMS YAML timestamps preserve exact source strings whether quoted or unquoted', () => {
+  const timestamp = '2026-10-02T14:00:23.123456-04:00';
+  for (const value of [timestamp, `"${timestamp}"`]) {
+    const post = parsePost(`---\npublished: ${value}\nupdated: ${value}\ndraft: false\nlegacyId: 42\n---\n\n<pre><code>  kept\n</code></pre>\n`);
+    assert.equal(post.published, timestamp);
+    assert.equal(post.updated, timestamp);
+    assert.equal(post.draft, false);
+    assert.equal(post.legacyId, 42);
+    assert.equal(post.body, '<pre><code>  kept\n</code></pre>');
+  }
+});
 
 test('import preserves body, slug case, category and dates; never overwrites an edited collection', async () => {
   const { posts } = convertExport(records);

@@ -1,11 +1,12 @@
 import { defineCollection } from 'astro:content';
 import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
+import { postLoader } from './lib/post-loader';
 
 const slug = z.string().regex(/^[A-Za-z0-9_-]+$/);
-const timestamp = z.string().datetime({ offset: true }).pipe(z.coerce.date());
+const timestamp = z.iso.datetime({ offset: true }).pipe(z.coerce.date());
 const posts = defineCollection({
-  loader: glob({ pattern: '*.md', base: './src/content/posts', generateId: ({ entry }) => entry }),
+  loader: postLoader(),
   schema: z.object({
     slug, title: z.string().min(1), category: slug, description: z.string(),
     draft: z.boolean().default(true), image: z.string().default('/media/default.webp'),
