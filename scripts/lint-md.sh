@@ -4,7 +4,7 @@
 #
 # Prefer the locally installed binary (`npm ci`, run by the installer): it runs offline, so the
 # pre-commit gate needs no registry egress. Only if the tool isn't installed do we fall back to npx
-# — which fetches from the registry and so needs network. Keep the fallback's @0.22.1 pin in sync
+# — which fetches from the registry and so needs network. Keep the fallback's @0.23.3 pin in sync
 # with package.json.
 ((BASH_VERSINFO[0] >= 5)) || { echo "✗ $0 requires Bash >= 5, not $BASH_VERSION. Fix: brew install bash; rerun bash ~/code/dotagents/setup/install-local-agent-runtime.sh; open a new shell." >&2; exit 1; }
 set -euo pipefail
@@ -13,7 +13,7 @@ bin="node_modules/.bin/markdownlint-cli2"
 if [[ -x "$bin" ]]; then
   cmd=("$bin")
 else
-  # Fresh worktrees carry no node_modules. Mirror the pre-commit .venv borrow:
+  # Fresh worktrees carry no node_modules. Reuse identical tooling from the primary checkout:
   # reuse the MAIN checkout's binary when package-lock.json is byte-identical
   # (offline, zero setup); else fall back to npx. See AGENTS.md for rationale.
   main_root="$(cd "$(dirname "$(git rev-parse --git-common-dir 2>/dev/null)")" 2>/dev/null && pwd || echo "")"
@@ -25,7 +25,7 @@ else
     cmd=("$main_bin")
   else
     echo "lint-md: $bin not found — run 'npm run worktree:init' (or 'npm ci'). Falling back to npx (fetches from the registry)." >&2
-    cmd=(npx --yes markdownlint-cli2@0.22.1)
+    cmd=(npx --yes markdownlint-cli2@0.23.3)
   fi
 fi
 exec "${cmd[@]}" "$@" "**/*.md"

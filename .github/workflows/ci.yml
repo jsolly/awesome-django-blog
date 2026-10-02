@@ -38,17 +38,6 @@ jobs:
       (github.event.action != 'labeled' && github.event.pull_request.user.login != 'dependabot[bot]') ||
       (github.event.action == 'labeled' && github.event.label.name == 'ow-ci')
     runs-on: ubuntu-24.04-arm
-    # Mirror the pre-commit gate's test-only Django settings (.git-hooks/pre-commit).
-    env:
-      DEBUG: "False"
-      LOGGING: "False"
-      DJANGO_SETTINGS_MODULE: app.settings
-      USE_SQLITE: "True"
-      USE_CLOUD: "False"
-      SECURE_SSL_REDIRECT: "False"
-      SECRET_KEY: "Not applicable for tests"
-      ALLOWED_HOSTS: "127.0.0.1 localhost"
-      SITE_ID: "1"
     steps:
       - uses: actions/checkout@v7
         with:
@@ -146,32 +135,15 @@ jobs:
         if: steps.verified-tree.outputs.run_full != 'false'
       - run: npm run check:md
         if: steps.verified-tree.outputs.run_full != 'false'
-      - uses: actions/setup-python@v7
+      - run: npm run check:yaml
         if: steps.verified-tree.outputs.run_full != 'false'
-        with:
-          python-version-file: .python-version
-          cache: pip
-      - name: Install dependencies
+      - run: npx --no-install playwright install --with-deps chromium
         if: steps.verified-tree.outputs.run_full != 'false'
-        run: pip install -r requirements.txt
-      - name: yaml lint
+      - run: npm run smoke:scenario-contract
         if: steps.verified-tree.outputs.run_full != 'false'
-        run: yamllint -s .
-      - name: ruff lint
+      - name: Astro and Svelte validation
         if: steps.verified-tree.outputs.run_full != 'false'
-        run: ruff check --config ./config/pyproject.toml app
-      - name: collectstatic
-        if: steps.verified-tree.outputs.run_full != 'false'
-        run: python manage.py collectstatic --noinput
-      - name: migrate
-        if: steps.verified-tree.outputs.run_full != 'false'
-        run: python manage.py migrate --noinput
-      - name: pytest + coverage
-        if: steps.verified-tree.outputs.run_full != 'false'
-        run: coverage run --rcfile=config/.coveragerc -m pytest tests
-      - name: coverage report
-        if: steps.verified-tree.outputs.run_full != 'false'
-        run: coverage report -m --skip-covered --rcfile=config/.coveragerc
+        run: npm run gate:app
       - name: Record validated PR tree
         if: >-
           success() && github.event_name == 'pull_request' &&

@@ -16,8 +16,8 @@
 
 ## Checklist
 
-- [ ] I have read the [contributing guidelines](link_to_contributing_guidelines)
-- [ ] I have added tests to cover my changes and they all pass in addition to the existing tests.
+- [ ] I have read the [contributing guidelines](CONTRIBUTING.md)
+- [ ] I have run the required gate and documented relevant validation.
 - [ ] I have added documentation for my changes (if appropriate)
 
 ## Additional Information

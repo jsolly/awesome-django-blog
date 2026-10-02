@@ -1,0 +1,8 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostCards from '../../components/PostCards.svelte';
+import { blogContent } from '../../lib/content';
+import { cards } from '../../lib/cards';
+const { posts, categories } = await blogContent();
+---
+<Base title="All posts"><h1>All Posts!</h1><p>{posts.length} articles on development, spatial computing and productivity.</p><PostCards posts={cards(posts, categories)} /></Base>

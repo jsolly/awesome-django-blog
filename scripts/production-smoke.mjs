@@ -1,4 +1,5 @@
-// Canonical source: dotagents/templates/github/production-smoke.mjs
+// Based on dotagents/templates/github/production-smoke.mjs; this repo requires
+// an exact static build marker before public behavior can establish a release.
 import { mkdir, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -68,6 +69,7 @@ export async function runSmoke({
 		for (;;) {
 			try {
 				await verifyHttp(scenario.productionUrl);
+				await scenario.verifyRelease({ verifyHttp, releaseSha: receipt.releaseSha });
 				break;
 			} catch (error) {
 				if (Date.now() >= deadline) {

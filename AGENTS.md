@@ -1,163 +1,98 @@
 # AGENTS.md
 
-## Ship
+## Stack and structure
 
-Ship profile: `heroku-git`
+Static Astro + Svelte + PagesCMS blog, Node 24. `src/content/posts/*.md` holds
+Markdown with YAML frontmatter; category JSON is in `src/content/categories`.
+`src/content.config.ts` validates metadata and uses file paths as loader IDs, so
+`src/lib/content.ts` sees and rejects all duplicate post/category slugs before
+filtering drafts. `src/lib/html.ts` sanitizes rendered
+HTML and preserves the original heading fragment algorithm. Keep that behavior.
 
-**Integration: branch → PR → merge on green `CI / ci`.** `/ship` merges per `skills/ship/references/git-discipline.md` → Merge a same-repo self PR (read the installed `/ship` reference). Agents never push to `main`, change rulesets, or admin-merge.
+Astro builds public routes in `src/pages`. Svelte handles navigation, GET search
+and query pagination. Client data must contain published posts only. Assets are
+bundled or first-party; no CDN runtime CSS/JS. Existing S3/CloudFront article media
+remains public. Do not introduce database/auth/AI backends without a new scope decision.
 
-Local gate before push: `npm run gate` (full working-tree checks, including an empty index).
+`.pages.yml` uses a Markdown code editor, structured metadata, new-post draft
+labels and `settings.content.merge: true` to preserve unmanaged reconciliation keys.
+Do not replace the body with WYSIWYG without a verified complex-article roundtrip.
+Legacy slugs are case-sensitive and stable. Preserve author names, timestamps,
+excerpts and related links. CommonMark is configured without smart punctuation or
+GFM autolinking; complex authored HTML is retained and sanitized.
 
-Production URL: <https://www.blogthedata.com>
+## Commands
 
-Deployment: `heroku-github` (Heroku app `blogthedata`, auto-deployed from GitHub `main`)
-
-A successful Heroku production deployment is the release. After merge, `/ship` follows the production smoke for that release, which checks public article reading and GET search.
-
-## Stack
-
-Django 6.1 blogging platform on Python 3.14. SQLite by default, Postgres optional. HTMX for partial updates, CKEditor 5 for authoring, OpenAI for chatbot/title generation. WhiteNoise + optional S3/CloudFront for static/media. Deploys via Procfile (Heroku-style).
-
-## Common Commands
-
-All commands run from the repo root with `.venv` activated.
-
-```bash
-# First-time setup
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-python manage.py setup_env          # creates .env.local from .env.example with a fresh SECRET_KEY
-python manage.py migrate
-python manage.py runserver
-
-# Tests (pytest, uses tests/base.py SetUp class)
-pytest tests                        # full suite
-pytest tests/test_views.py          # single file
-pytest tests/test_views.py::PostDetailViewTests::test_post_detail_view_uses_correct_template  # single test
-
-# Coverage
-coverage run --rcfile=config/.coveragerc -m pytest tests
-coverage report -m --skip-covered --rcfile=config/.coveragerc
-
-# Lint / format (ruff config is in config/pyproject.toml, NOT root)
-ruff check --config ./config/pyproject.toml app
-ruff format app
-
-# Worktree provisioning — run once after EnterWorktree / `git worktree add`
-npm run worktree:init               # creates .venv + installs pinned deps (fast on a warm pip cache)
-# A fresh worktree carries no gitignored state → no local sqlite DB and no collected
-# static manifest. The pre-commit gate builds both itself (it runs collectstatic + migrate
-# before pytest), so commits are fine after worktree:init alone. But to run the tests
-# or any manage.py command MANUALLY first, build them once — otherwise pytest fails with
-# "no such table" / "Missing staticfiles manifest entry" (DEBUG=False uses
-# ManifestStaticFilesStorage, which requires a collectstatic manifest):
-USE_SQLITE=true python manage.py migrate --noinput   # build the local .sqlite schema
-python manage.py collectstatic --noinput             # build the static manifest
-
-# Seed data — for manual `runserver` browsing ONLY. The test suite does NOT need it:
-# tests/base.py self-seeds (creates admin/comment_only/uncategorized + per-test fixtures).
-python manage.py import_posts utilities/seed_posts/posts.json
-
-# Recompute post-similarity embeddings (writes blog/df.pkl)
-python manage.py recalculate_post_simularities
-
-# Live reload (optional, set LIVERELOAD=True in .env.local, run in second terminal)
-python manage.py livereload
-```
-
-Default seeded accounts: `admin/admin` and `comment_only/comment_only`. For browser smoke / admin login, use `DEFAULT_USER` / `DEFAULT_PASSWORD` from `.env.local` (see `.env.example`; keep in sync with the seed).
-
-## Architecture
-
-Three Django apps plus a project package:
-
-- **`app/`** — project config. Single-module `settings.py` (not a package; `DJANGO_SETTINGS_MODULE=app.settings`). Contains URL root, ASGI/WSGI, custom `WwwRedirectMiddleware`, `storage_backends.py` (S3 variants for public/private/post-image/static), and `sitemaps.py`.
-- **`blog/`** — domain core. Models: `Category`, `Post` (CKEditor5 content, ResizedImageField → WEBP), `Comment`. Class-based views in `views.py` cover CRUD, search, status page, and two GPT endpoints (`generate-with-gpt`, `answer-with-gpt`). Post-similarity uses a pickled DataFrame at `blog/df.pkl` produced by the `recalculate_post_simularities` management command — don't regenerate casually.
-- **`users/`** — auth views, profile, password reset. Wraps Django's built-in auth views with custom templates.
-- **`tests/`** — flat pytest suite at repo root (NOT inside each app). All test classes inherit from `tests.base.SetUp`, which forces `USE_SQLITE=True` / `USE_CLOUD=False` at import time and pre-creates `admin`, `comment_only`, default `uncategorized` category, and a `first_post`/`first_comment`. Use `tests/utils.py` (`create_unique_post`, `create_comment`) instead of building fixtures inline. The `tearDown` deletes all `Post` rows between tests — **treat each test as starting from zero `Post` rows**; rebuild fixtures via `tests/utils.py`.
-
-Key cross-cutting pieces:
-
-- **CSP** is enforced via `django-csp` (`CSP_*` settings in `app/settings.py`). Adding any new external script/style/font/image source requires updating these tuples or it'll be blocked at runtime — symptom is silent breakage in the browser console, not a Django error. `livereload` injects its own CSP entries, gated on `LIVERELOAD=True`.
-- **HTML minification** runs on every response via `django-htmlmin` middleware. Disable in dev settings when debugging template whitespace.
-- **Storage** flips entirely on `USE_CLOUD`. With `USE_CLOUD=True`, default/media/static/CKEditor uploads all route through `app/storage_backends.py` to S3; otherwise FileSystemStorage + WhiteNoise. Tests force `USE_CLOUD=False` regardless of `.env.local`.
-- **CKEditor 5 image uploads** require `CSRF_COOKIE_HTTPONLY = False`. The setting stays commented out in `app/settings.py` until image upload is actively needed.
-- **Status page** (`/status/`) is cached for 60s via `cache_page` in `LocMemCache` (per-process — assumes single-instance deploy; tests can see stale cache).
-- **GPT chatbot** loads `blog/df.pkl` (post embeddings) into memory. Files in `utilities/create_embeddings/` build it; the management command refreshes it.
-
-## Deploy & operations
-
-Heroku CLI is a devDependency of this repo (`package.json`; run `npm install` once, Node 24 per `.nvmrc`) — invoke it via `npx heroku` rather than reaching for the dashboard. App is **`blogthedata`** in the `Personal` team. Auth: `npx heroku login` (browser flow).
+Commands run from `/Users/johnsolly/code/awesome-django-blog`.
 
 ```bash
-npx heroku releases -a blogthedata --num 5     # last 5 deploys
-npx heroku logs -a blogthedata --num 200       # recent dyno logs
-npx heroku ps -a blogthedata                   # dyno status
+npm ci
+npx --no-install playwright install chromium
+npm run gate
+npm run dev
+npm run build
+npm run preview
 ```
 
-The gate (`.git-hooks/pre-commit`) must run against the pinned project deps, never system Python, so it needs a `.venv` (and the pinned `markdownlint-cli2` from `node_modules` for the markdown sub-gate). A fresh git worktree branches from `origin/main` and carries no gitignored files, so it starts without either. Two paths cover that without a manual install of the heavy scientific stack (numpy/scipy/scikit-learn/pandas/matplotlib): for a **code-only** change the gate transparently **borrows the main checkout's `.venv` and `node_modules`** (resolved via the shared git common dir) when the worktree's `requirements.txt` / `package-lock.json` are byte-identical to the main checkout's — zero setup, fully offline. If you **changed those deps** in the worktree the borrowed copy would be stale, so the gate refuses and tells you to run **`npm run worktree:init`**, which builds the worktree its own `.venv` + `node_modules` (fast on warm pip/npm caches). System Python is never used either way.
+`npm run gate:app` checks Astro/Svelte, builds, runs content/route contracts and
+proves a real draft's content and slug are absent from all built assets and routes,
+rejects identical duplicate post/category files, then restores the normal build.
+`npm run gate` additionally checks secrets, Bash, YAML, Actions, Markdown and
+read-only production-smoke contracts. It validates the full working tree even with
+an empty index. It needs the installed dotagents gate library, Bash 5, actionlint,
+gitleaks and pinned Node dependencies. Use `npm run worktree:init` for fresh checkouts.
+Never set `core.hooksPath`; the trusted dotagents dispatcher owns it.
 
-Deploy is **automatic from GitHub `main`**: Heroku is connected to the GitHub repo with automatic deploys, so **merging a PR (or any push to `main`) triggers a production build** — there is no local deploy command and no push URL to `git.heroku.com` (the old "Heroku Git" dual-push-URL model is dead; don't re-add push URLs to `.git/config`). The pre-commit hook runs the lint/test gate only; GitHub Actions CI is the backstop. No Heroku-side build customization, Procfile + buildpacks only.
+The importer `scripts/import-django.mjs` writes only to an empty destination.
+`npm run verify:migration -- .migration-work/source-2026-10-02.json` compares the
+actual build against the private authoritative source; its source oracle must not
+use the application's converter or renderer. Private export evidence stays ignored.
+Git history keeps legacy code; ignored SQLite, virtualenv and media state is retained.
 
-**Agents merge via `/ship`.** Merge still triggers Heroku prod deploy from `main` — that is expected. Validate locally via the worktree + pre-commit gate before opening the PR; after `/ship` merges, verify a deploy landed with `npx heroku releases`.
+## Ship and release
 
-**S3 access** (django-storages → S3 + CloudFront, gated on `USE_CLOUD=True`): the Heroku dyno authenticates via a long-lived static IAM key set as Heroku config vars (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_STORAGE_BUCKET_NAME`). The IAM user is **`awesome-django-blog-heroku`** with a single bucket-scoped inline policy `awesome-django-blog-s3-access` — `s3:Get/Put/Delete/ListBucket/ACL` on `arn:aws:s3:::blogthedata` only. **Don't widen.** Heroku doesn't issue OIDC tokens to dynos ([heroku/roadmap#247](https://github.com/heroku/roadmap/issues/247)), so the long-lived key is unavoidable; the narrow policy is the mitigation. AWS console/CLI: use credentials for account `730335616323` via local `AWS_PROFILE` — do not commit profile names in this repo.
+Ship profile: `vercel-static` (cutover pending).
 
-## Conventions
+Integration is branch → PR → merge on green `CI / ci`. Start new work from freshly
+fetched `origin/main`. Every remote push and PR runs through `/ship`; never push
+`main`, edit rulesets, admin-merge, or arm automatic previews. CI retains exact-tree
+proof; manual CI runs always validate. Dependabot remains deferred until a manually
+invoked drain adds `ow-ci`; skipped checks cannot satisfy `ci`.
 
-- Ruff config (`config/pyproject.toml`) ignores `E402`, `E501`, `F403` and excludes `apps.py` / `*/settings/*` — these accommodate Django star-imports, top-of-file `setup()` calls in tests, and intentional long lines.
-- Test convention: flat `tests/test_<module>.py` mirroring the source module, classes inheriting `SetUp` from `tests/base.py`.
-- Conventional Commits (`feat(blog): …`, `fix(users): …`).
+Canonical production URL: <https://www.blogthedata.com>. Vercel production branch
+is `main`, install `npm ci`, build `npm run build`, output `dist`, Node 24.
+`vercel.json` disables other Git refs and supplies redirects/security/feed MIME.
+No Vercel project has been provisioned for this repo yet. Current production is
+still Django on Heroku app `blogthedata`; **disable Heroku auto deploy before merging
+this runtime replacement**. Follow [the cutover runbook](docs/astro-migration.md).
 
-## Local UI verification
+A release requires successful production deployment plus that exact SHA's canonical
+production smoke. `/release.json` records `VERCEL_GIT_COMMIT_SHA` (CI/local use
+`GITHUB_SHA`/Git HEAD). Smoke rejects stale releases before public reading, GET
+search, RSS/Atom MIME and mobile navigation. It performs no authenticated writes.
+Set the GitHub repository variable `VERCEL_PRODUCTION_ENVIRONMENT` only after
+observing the Vercel project's actual production environment. Heroku events are
+excluded. Missing, skipped, failed or timed-out smoke is incomplete; dispatch the
+workflow on `main` with the full deployed SHA and a unique request ID as fallback.
+Record deployment and smoke URLs. Artifacts upload even on failure.
 
-Auth-gated admin/authoring UI (public blog pages need no login). Follow `rules/frontend-verification.md` (fleet smoke: desktop + mobile screenshots, console clean).
+## UI verification
 
-- **Dev server:** with `.venv` activated — `python manage.py runserver` → <http://127.0.0.1:8000>
-- **Sign-in:** Django auth with `DEFAULT_USER` and `DEFAULT_PASSWORD` from `.env.local` (see `.env.example`). Keep these in sync with seeded accounts (local defaults: `admin` / `admin` after seed/setup).
-- **Do not** invent credentials or commit `.env.local`.
+Use the installed `verify-ui` skill and `rules/frontend-verification.md` after
+observable changes. Preview: <http://127.0.0.1:4321>, no login. Check desktop and
+mobile pixels, console, navigation, pagination, GET search, article reading,
+heading links and print. Complex-content changes additionally require recipe table,
+code and iframe checks in both viewports. Screenshots/evidence belong in ignored
+`.migration-work` or a temporary directory.
 
-The pre-commit gate verifies the active Python minor version and installed package versions against `.python-version` and `requirements.txt`, including when it borrows the primary checkout's `.venv`. Matching requirements files alone do not prove the environment is current. Drift fails before tests; refresh the active environment with `python -m pip install -r requirements.txt`.
+## Cloud and data safety
 
-## Production smoke
+Project creation, DNS, infrastructure deployment, production DB writes and destructive
+cloud changes are John's human operations. Keep Heroku/database/S3/CloudFront/IAM
+resources intact through the cutover and rollback window. The AWS bucket is
+`blogthedata` in account `730335616323`; do not widen the retained bucket-scoped
+policy. No new AWS service or frontend AWS credential is needed. Do not delete
+ignored exports or local rollback state. See the runbook for independent backups.
 
-The **Production smoke** workflow starts after a successful Heroku deployment
-status for the `blogthedata` environment. It verifies the intended release at
-<https://www.blogthedata.com>, public article reading and GET search.
-`npm run smoke:production` never logs in, posts comments, edits content or calls
-GPT endpoints. Heroku GitHub deployment and existing PR CI stay unchanged.
-Heroku waits for CI before deploying, so smoke must start from the successful
-deployment event, never from pre-deployment CI. Keep `wait_for_ci` enabled.
-
-`/ship` must follow the exact release's Production smoke run to success and
-record its URL. Missing, failed, cancelled, skipped or timed-out runs are not
-success. If the automatic trigger is missing, dispatch the workflow on `main`
-with the full release SHA and a unique request ID, then follow that specific run.
-Browser traces, screenshots and release receipts are saved under
-`production-smoke-artifacts/` and uploaded even on failure.
-
-## Verified-tree CI
-
-PRs run the full CI suite. Post-merge CI reuses a successful PR run only when
-its recorded checkout tree exactly matches the landed tree, using
-`scripts/ci-verified-tree.sh` from dotagents. Missing proof runs full CI;
-manual runs always validate. Job names and deployment triggers stay intact.
-Canonical contract: `~/code/dotagents/templates/github/verified-tree-ci.md`.
-
-## Dependabot CI
-
-Dependabot PR events allocate no validation runners until a manually invoked
-`/optimize-workspaces drain` applies the `ow-ci` label. Only the `labeled`
-event that adds `ow-ci` runs the real `ci` check. Later Dependabot pushes defer
-again until a drain re-kicks the new head (remove, then add `ow-ci`). Deferred runs
-report `ci-deferred` and cannot satisfy the required `ci` check. Skipped or
-absent checks never authorize a dependency merge. See the Dependabot CI kick in
-the canonical `dotagents/skills/optimize-workspaces/references/pr-drain.md`.
-
-## Git hooks
-
-`core.hooksPath` is the dotagents dispatcher `~/.local/share/dotagents/hooks`, installed and set by the dotagents installers. Never point it at `.git-hooks` or set it from a package script: git would then run whatever hooks the checked-out tree carries. The dispatcher serves only `pre-commit`, and runs this repo’s tracked `.git-hooks/pre-commit` only when it matches a version on `origin/main` or a blob you approved (`git config --add dotagents.trustedHook <blob>`, printed by the refusal; approve only your own edit). Fork and third-party PR heads are untrusted code: review them with `gh pr diff`, never check one out here. Canon: dotagents `rules/agent-cloud-access.md` → GitHub.
-
-## Fleet rollout
-
-Changes inside this repo ship normally. For changes other repos must adopt, link the merged PR on the one existing dotagents Todoist fleet-rollout task. Do not start that rollout or spawn per-repo chips, PRs or tasks from here. John authorizes one lead to walk the fleet after canon settles. Follow the installed `persist-todos-in-todoist` skill → Fleet rollout.
+Cross-repo rules remain canon in dotagents; this task does not authorize fleet
+rollouts or edits in other repositories. Shared recall and fleet policies apply.

@@ -12,7 +12,7 @@ assignees: ""
 ### File Name
 <!-- Enter the path to the file or files that you want to refactor.
 
-for example: `blog/views.py` -->
+for example: `src/lib/content.ts` -->
 
 ### Record
 
