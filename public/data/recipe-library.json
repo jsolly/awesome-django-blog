@@ -1,0 +1,4802 @@
+{
+  "schemaVersion": 1,
+  "baseServings": 4,
+  "settings": {
+    "servings": 4,
+    "familyDiners": 0,
+    "units": "us"
+  },
+  "disclaimer": "These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.",
+  "measurementPolicy": "Small seasoning and finishing amounts use spoon measures even in metric mode. Internal model weights are estimates, not a requirement to weigh tiny amounts.",
+  "recipes": [
+    {
+      "recipeId": "lemon-salmon-and-asparagus",
+      "title": "Lemon salmon and asparagus",
+      "group": "keto",
+      "servings": 4,
+      "units": "us",
+      "familyDiners": 0,
+      "cookingFlow": {
+        "notation": "Tabular Recipe Notation (TRN)",
+        "prep": [
+          "Preheat both air fryers to 390°F. Start both baskets together; remove each component at its own endpoint.",
+          "Use uncrowded baskets with room for the full batch; keep 1-inch-thick salmon fillets apart and medium asparagus out of a dense pile."
+        ],
+        "columns": 4,
+        "rows": [
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 ½ lb",
+              "name": "Skin-on salmon fillets",
+              "state": "raw, thawed; individual fillets about 1 inch thick",
+              "essentialState": true
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "Pat thawed, 1-inch-thick salmon fillets dry."
+            },
+            {
+              "kind": "operation",
+              "col": 2,
+              "colspan": 1,
+              "rowspan": 6,
+              "text": "Rub dry salmon with oil, garlic, salt, pepper and zest. Then: Salmon basket: skin-side down with gaps; air fry at 390°F for 10–14 min, check at 10 min; reach 145°F."
+            },
+            {
+              "kind": "operation",
+              "col": 3,
+              "colspan": 1,
+              "rowspan": 12,
+              "text": "Plate salmon and asparagus separately; finish both with lemon juice and hemp."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "1 tbsp",
+              "name": "Olive oil",
+              "state": "as purchased",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "½ tsp",
+              "name": "Garlic powder",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "¼ tsp",
+              "name": "Fine salt",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "to taste",
+              "name": "Black pepper",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "1 tsp",
+              "name": "Lemon zest",
+              "state": "finely grated",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 lb",
+              "name": "Asparagus",
+              "state": "trimmed, medium stalks",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 2,
+              "rowspan": 4,
+              "text": "Toss trimmed, medium asparagus with oil, garlic and salt. Then: Asparagus basket: spread without a dense pile; air fry at 390°F for 7–10 min, check at 7 min; remove when ready."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tbsp",
+              "name": "Olive oil",
+              "state": "as purchased",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "½ tsp",
+              "name": "Garlic powder",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "¼ tsp",
+              "name": "Fine salt",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 3,
+              "rowspan": 1,
+              "text": "2 tbsp",
+              "name": "Lemon juice",
+              "state": "fresh or bottled, unsweetened",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 3,
+              "rowspan": 1,
+              "text": "2 tbsp",
+              "name": "Hemp hearts",
+              "state": "hulled",
+              "essentialState": false
+            }
+          ]
+        ]
+      },
+      "summary": "Two air fryers let the salmon and asparagus finish at their own endpoints.",
+      "activeMinutes": 8,
+      "totalTime": "20–25 min",
+      "attentionSummary": "No mid-cook action; remove fish and asparagus separately at their endpoints.",
+      "capacity": "The listed pan and basket capacity, cook times, and thermometer endpoint are for four servings.",
+      "timingNote": "Ingredients are scaled; keep food thickness, spacing, settings and safe endpoints fixed. Timings assume the four-serving batch and specified shortcuts. More food can require additional batches.",
+      "equipment": [
+        "Two air fryers with room for four fillets in one basket and 454 g asparagus in the other",
+        "Instant-read thermometer"
+      ],
+      "ingredients": [
+        {
+          "quantity": "1 ½ lb",
+          "name": "Skin-on salmon fillets",
+          "state": "raw, thawed; individual fillets about 1 inch thick",
+          "note": "Choose individual fillets about 170 g (6 oz) each, keeping the stated thickness."
+        },
+        {
+          "quantity": "1 lb",
+          "name": "Asparagus",
+          "state": "trimmed, medium stalks",
+          "note": ""
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Olive oil",
+          "state": "as purchased",
+          "note": "Half to asparagus; half to salmon. All oil counted in nutrition."
+        },
+        {
+          "quantity": "1 tsp",
+          "name": "Garlic powder",
+          "state": "dry",
+          "note": "Divide equally."
+        },
+        {
+          "quantity": "½ tsp",
+          "name": "Fine salt",
+          "state": "dry",
+          "note": "Use the proportional split described in the method. Black pepper is to taste."
+        },
+        {
+          "quantity": "to taste",
+          "name": "Black pepper",
+          "state": "dry",
+          "note": "To taste; quantity intentionally unspecified in source."
+        },
+        {
+          "quantity": "1 tsp",
+          "name": "Lemon zest",
+          "state": "finely grated",
+          "note": "Use finely grated zest."
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Lemon juice",
+          "state": "fresh or bottled, unsweetened",
+          "note": "Nutrition uses 15 g per tablespoon; use the scaled total."
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Hemp hearts",
+          "state": "hulled",
+          "note": "Use hulled hemp hearts in the measured portion."
+        }
+      ],
+      "familyIngredient": null,
+      "familyOptions": [],
+      "steps": [
+        {
+          "title": "Prepare",
+          "text": "Preheat both fryers to 390°F. Toss asparagus with half the oil, half the garlic, and half the salt. Spread in one basket without a dense pile."
+        },
+        {
+          "title": "Cook",
+          "text": "Pat salmon dry. Rub with remaining oil, garlic, salt, pepper, and zest. Put skin-side down in the other basket with gaps between fillets. Start both together."
+        },
+        {
+          "title": "Finish",
+          "text": "Check asparagus at 7 minutes; medium stalks usually need 7–10. Check salmon at 10 minutes; allow 10–14 to reach 145°F. Remove each when ready. Finish with lemon juice and hemp."
+        }
+      ],
+      "timeline": [
+        {
+          "phase": "Preheat and load",
+          "duration": "6–8 min",
+          "attention": "Toss and load separate baskets; preheat overlaps prep."
+        },
+        {
+          "phase": "Air fry together",
+          "duration": "7–14 min",
+          "attention": "Check asparagus at 7 min and salmon at 10 min; remove each separately."
+        },
+        {
+          "phase": "Finish",
+          "duration": "2 min",
+          "attention": "Check fish at 145°F; add lemon and hemp."
+        }
+      ],
+      "tips": [
+        "Thin asparagus needs an earlier check.",
+        "Keep the fillets skin-side down and apart."
+      ],
+      "fallback": "If either basket cannot hold its full batch, use two half-sheet pans at 425°F: fish about 12–18 min, asparagus 10–15 min; allow 25–35 min total.",
+      "limitations": [
+        "Basket fit and actual thickness can change the time; first cook has not been kitchen-tested.",
+        "Check every packaged ingredient label for additional allergens; this data is not an allergy guarantee."
+      ],
+      "sources": [
+        {
+          "title": "USDA FoodData Central source data",
+          "url": "https://fdc.nal.usda.gov/download-datasets/"
+        },
+        {
+          "title": "FoodSafety.gov safe minimum temperatures",
+          "url": "https://www.foodsafety.gov/food-safety-charts/safe-minimum-internal-temperatures"
+        },
+        {
+          "title": "Instant Pot salmon and asparagus example",
+          "url": "https://instantpot.com/blogs/recipes/super-easy-roast-salmon-and-asparagus"
+        }
+      ],
+      "nutrition": {
+        "kcal": 468.07025,
+        "protein_g": 38.9510125,
+        "carbs_g": 5.998457500000001,
+        "fiber_g": 2.7287500000000002,
+        "net_carbs_g": 3.2697075000000004
+      },
+      "familyNutrition": null,
+      "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
+      "allergens": [
+        "fish"
+      ],
+      "flavorRationale": "Lemon brightens the salmon; hemp adds a mild nutty finish without another cooking step.",
+      "disclaimer": "These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.",
+      "leftovers": "Refrigerate in shallow containers within two hours, or one hour above 90°F. Use within 3–4 days or freeze; reheat to 165°F. Keep cold greens and yogurt separate.",
+      "safety": "Prepare cold sides first. Keep raw-poultry tools separate; use clean serving utensils. Probe more than one thick piece. A timer is not a doneness test.",
+      "image": {
+        "src": "/media/recipes/lemon-salmon-and-asparagus-960.webp",
+        "width": 960,
+        "height": 720,
+        "cardSrc": "/media/recipes/lemon-salmon-and-asparagus-480.webp",
+        "cardSrcset": "/media/recipes/lemon-salmon-and-asparagus-480.webp 480w, /media/recipes/lemon-salmon-and-asparagus-960.webp 960w",
+        "detailSrcset": "/media/recipes/lemon-salmon-and-asparagus-480.webp 480w, /media/recipes/lemon-salmon-and-asparagus-960.webp 960w, /media/recipes/lemon-salmon-and-asparagus-1440.webp 1440w",
+        "alt": "Illustration of salmon with roasted asparagus, lemon and hemp hearts.",
+        "caption": "AI-generated illustration; appearance and portions are approximate."
+      }
+    },
+    {
+      "recipeId": "smoky-chicken-thighs-and-broccoli",
+      "title": "Smoky chicken thighs and broccoli",
+      "group": "keto",
+      "servings": 4,
+      "units": "us",
+      "familyDiners": 0,
+      "cookingFlow": {
+        "notation": "Tabular Recipe Notation (TRN)",
+        "prep": [
+          "Preheat both air fryers to 390°F. Start chicken first; start broccoli 5 min later.",
+          "Keep broccoli and clean serving tools away from raw chicken and its bowl. Use uncrowded baskets; thighs must be unfolded and no more than ¾ inch thick."
+        ],
+        "columns": 4,
+        "rows": [
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 ½ lb",
+              "name": "Boneless skinless chicken thighs",
+              "state": "raw, thawed, unfolded; no more than ¾ inch thick",
+              "essentialState": true
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 2,
+              "rowspan": 7,
+              "text": "Separate raw-poultry bowl: coat unfolded thighs with oil, paprika, garlic, oregano, salt and pepper. Then: Chicken basket: smooth-side up, no overlap; air fry at 390°F for 16–22 min; thickest pieces must reach 165°F."
+            },
+            {
+              "kind": "operation",
+              "col": 3,
+              "colspan": 1,
+              "rowspan": 12,
+              "text": "Plate cooked chicken and finished broccoli as separate components with clean serving tools."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tbsp",
+              "name": "Olive oil",
+              "state": "as purchased",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tsp",
+              "name": "Smoked paprika",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tsp",
+              "name": "Garlic powder",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "½ tsp",
+              "name": "Dried oregano",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "½ tsp",
+              "name": "Fine salt",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "to taste",
+              "name": "Black pepper",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 lb",
+              "name": "Broccoli florets",
+              "state": "fresh, about 1½ inches across",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 1,
+              "rowspan": 3,
+              "text": "Toss 1½-inch broccoli florets with oil and salt; load without crowding. Then: Broccoli basket: start 5 min after chicken; air fry at 390°F for 10–14 min, shake once halfway; stems fork-tender, crowns lightly browned."
+            },
+            {
+              "kind": "operation",
+              "col": 2,
+              "colspan": 1,
+              "rowspan": 5,
+              "text": "Finish cooked broccoli with lemon juice and nutritional yeast."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tbsp",
+              "name": "Olive oil",
+              "state": "as purchased",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "¼ tsp",
+              "name": "Fine salt",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "1 tbsp",
+              "name": "Lemon juice",
+              "state": "fresh or bottled, unsweetened",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "2 tbsp",
+              "name": "Nutritional yeast",
+              "state": "flakes",
+              "essentialState": false
+            }
+          ]
+        ]
+      },
+      "summary": "Chicken starts five minutes before broccoli; shake broccoli once.",
+      "activeMinutes": 12,
+      "totalTime": "25–35 min",
+      "attentionSummary": "Start broccoli five minutes after chicken; shake broccoli once.",
+      "capacity": "The listed pan and basket capacity, cook times, and thermometer endpoint are for four servings.",
+      "timingNote": "Ingredients are scaled; keep food thickness, spacing, settings and safe endpoints fixed. Timings assume the four-serving batch and specified shortcuts. More food can require additional batches.",
+      "equipment": [
+        "Two air fryers with uncrowded baskets",
+        "Instant-read thermometer",
+        "Separate raw-poultry bowl and clean serving tools"
+      ],
+      "ingredients": [
+        {
+          "quantity": "1 ½ lb",
+          "name": "Boneless skinless chicken thighs",
+          "state": "raw, thawed, unfolded; no more than ¾ inch thick",
+          "note": ""
+        },
+        {
+          "quantity": "1 lb",
+          "name": "Broccoli florets",
+          "state": "fresh, about 1½ inches across",
+          "note": ""
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Olive oil",
+          "state": "as purchased",
+          "note": "Half to broccoli; half to chicken. All oil counted in nutrition."
+        },
+        {
+          "quantity": "1 tsp",
+          "name": "Smoked paprika",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "1 tsp",
+          "name": "Garlic powder",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "½ tsp",
+          "name": "Dried oregano",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "¾ tsp",
+          "name": "Fine salt",
+          "state": "dry",
+          "note": "Use the proportional split described in the method. Black pepper is to taste."
+        },
+        {
+          "quantity": "to taste",
+          "name": "Black pepper",
+          "state": "dry",
+          "note": "To taste; quantity unspecified."
+        },
+        {
+          "quantity": "1 tbsp",
+          "name": "Lemon juice",
+          "state": "fresh or bottled, unsweetened",
+          "note": "Nutrition uses 15 g per tablespoon; use the scaled total."
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Nutritional yeast",
+          "state": "flakes",
+          "note": "Add after cooking; brand density varies."
+        }
+      ],
+      "familyIngredient": null,
+      "familyOptions": [],
+      "steps": [
+        {
+          "title": "Prepare",
+          "text": "Preheat both fryers to 390°F. Toss broccoli with half the oil and one third of the salt; load one basket without crowding. In a separate bowl coat chicken with the remaining oil and salt, paprika, garlic, oregano, and pepper."
+        },
+        {
+          "title": "Cook",
+          "text": "Put unfolded thighs smooth-side up in the other basket without overlapping. Start chicken. Five minutes later, start broccoli."
+        },
+        {
+          "title": "Finish",
+          "text": "Shake broccoli once halfway through its 10–14-minute cook. Chicken usually needs 16–22 minutes; check the thickest pieces for 165°F. No chicken flip is required, though the underside browns less. Finish broccoli with lemon and nutritional yeast. Broccoli is ready when stems are fork-tender and crowns are lightly browned; time alone is not its endpoint."
+        }
+      ],
+      "timeline": [
+        {
+          "phase": "Preheat and load chicken",
+          "duration": "7–9 min",
+          "attention": "Start chicken first; preheat overlaps prep."
+        },
+        {
+          "phase": "Start broccoli",
+          "duration": "5 min after chicken",
+          "attention": "Load broccoli basket."
+        },
+        {
+          "phase": "Cook",
+          "duration": "Chicken 16–22 min; broccoli 10–14 min",
+          "attention": "Shake broccoli once halfway; check chicken thickest pieces for 165°F."
+        },
+        {
+          "phase": "Finish",
+          "duration": "2 min",
+          "attention": "Add lemon and yeast after cooking."
+        }
+      ],
+      "tips": [
+        "Chicken underside browns less without a flip.",
+        "Keep yeast out of the fryer to avoid scorching."
+      ],
+      "fallback": "If baskets cannot hold the batch, use two oven pans at 425°F for about 20–25 min; allow 35–40 min total and check chicken for 165°F.",
+      "limitations": [
+        "Smaller fryer baskets require the oven fallback or extra batches.",
+        "Check every packaged ingredient label for additional allergens; this data is not an allergy guarantee."
+      ],
+      "sources": [
+        {
+          "title": "USDA FoodData Central source data",
+          "url": "https://fdc.nal.usda.gov/download-datasets/"
+        },
+        {
+          "title": "FoodSafety.gov safe minimum temperatures",
+          "url": "https://www.foodsafety.gov/food-safety-charts/safe-minimum-internal-temperatures"
+        },
+        {
+          "title": "Bob's Red Mill nutritional yeast label",
+          "url": "https://www.bobsredmill.com/product/nutritional-yeast"
+        },
+        {
+          "title": "USDA poultry handling guidance",
+          "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/poultry/chicken-farm-table"
+        }
+      ],
+      "nutrition": {
+        "kcal": 316.803,
+        "protein_g": 37.85664249999999,
+        "carbs_g": 9.505399999999998,
+        "fiber_g": 3.7858,
+        "net_carbs_g": 5.719599999999998
+      },
+      "familyNutrition": null,
+      "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
+      "allergens": [],
+      "flavorRationale": "Smoked paprika and oregano season the thighs while lemon and yeast sharpen the broccoli after cooking.",
+      "disclaimer": "These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.",
+      "leftovers": "Refrigerate in shallow containers within two hours, or one hour above 90°F. Use within 3–4 days or freeze; reheat to 165°F. Keep cold greens and yogurt separate.",
+      "safety": "Prepare cold sides first. Keep raw-poultry tools separate; use clean serving utensils. Probe more than one thick piece. A timer is not a doneness test.",
+      "image": {
+        "src": "/media/recipes/smoky-chicken-thighs-and-broccoli-960.webp",
+        "width": 960,
+        "height": 720,
+        "cardSrc": "/media/recipes/smoky-chicken-thighs-and-broccoli-480.webp",
+        "cardSrcset": "/media/recipes/smoky-chicken-thighs-and-broccoli-480.webp 480w, /media/recipes/smoky-chicken-thighs-and-broccoli-960.webp 960w",
+        "detailSrcset": "/media/recipes/smoky-chicken-thighs-and-broccoli-480.webp 480w, /media/recipes/smoky-chicken-thighs-and-broccoli-960.webp 960w, /media/recipes/smoky-chicken-thighs-and-broccoli-1440.webp 1440w",
+        "alt": "Illustration of smoky chicken thighs and browned broccoli with nutritional yeast.",
+        "caption": "AI-generated illustration; appearance and portions are approximate."
+      }
+    },
+    {
+      "recipeId": "pesto-cod-and-zucchini",
+      "title": "Pesto cod and zucchini",
+      "group": "keto",
+      "servings": 4,
+      "units": "us",
+      "familyDiners": 0,
+      "cookingFlow": {
+        "notation": "Tabular Recipe Notation (TRN)",
+        "prep": [
+          "Heat oven to 425°F on bake. Use two separate 18×13-inch rimmed metal half-sheet pans.",
+          "Start zucchini first; add fish pan 6 min later. Remove each pan at its own endpoint and serve promptly."
+        ],
+        "columns": 4,
+        "rows": [
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 ½ lb",
+              "name": "Cod fillets",
+              "state": "raw, thawed; individual fillets about 1 inch thick",
+              "essentialState": true
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 1,
+              "rowspan": 2,
+              "text": "Pat thawed, 1-inch-thick cod dry; rub with oil and place on its own pan. Then: Fish pan: add 6 min after zucchini; roast at 425°F for 12–18 min, check at 12 min of fish cooking; reach 145°F."
+            },
+            {
+              "kind": "operation",
+              "col": 2,
+              "colspan": 1,
+              "rowspan": 3,
+              "text": "Spoon pesto over cooked fish after roasting."
+            },
+            {
+              "kind": "operation",
+              "col": 3,
+              "colspan": 1,
+              "rowspan": 9,
+              "text": "Plate pesto-topped cod and zucchini separately; finish both with lemon juice and hemp."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "½ tbsp",
+              "name": "Olive oil",
+              "state": "as purchased",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "45 g",
+              "name": "DeLallo basil pesto",
+              "state": "squeeze-bottle, as sold",
+              "essentialState": true
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 ½ lb",
+              "name": "Zucchini",
+              "state": "fresh, sliced into ½-inch half-moons",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 2,
+              "rowspan": 4,
+              "text": "Toss ½-inch zucchini half-moons with oil, salt and pepper; spread on separate pan. Then: Zucchini pan: roast at 425°F for 18–23 min; check at 18 min of zucchini cooking; browned edges and tender center."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 ½ tbsp",
+              "name": "Olive oil",
+              "state": "as purchased",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "¼ tsp",
+              "name": "Fine salt",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "to taste",
+              "name": "Black pepper",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 3,
+              "rowspan": 1,
+              "text": "1 tbsp",
+              "name": "Lemon juice",
+              "state": "fresh or bottled, unsweetened",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 3,
+              "rowspan": 1,
+              "text": "2 tbsp",
+              "name": "Hemp hearts",
+              "state": "hulled",
+              "essentialState": false
+            }
+          ]
+        ]
+      },
+      "summary": "Separate oven pans keep moisture from zucchini away from cod.",
+      "activeMinutes": 11,
+      "totalTime": "30–40 min",
+      "attentionSummary": "One scheduled fish-pan addition, then separate vegetable/fish endpoint checks.",
+      "capacity": "The listed pan and basket capacity, cook times, and thermometer endpoint are for four servings.",
+      "timingNote": "Ingredients are scaled; keep food thickness, spacing, settings and safe endpoints fixed. Timings assume the four-serving batch and specified shortcuts. More food can require additional batches.",
+      "equipment": [
+        "Oven at 425°F on bake",
+        "Two 18×13-inch rimmed metal half-sheet pans",
+        "Instant-read thermometer"
+      ],
+      "ingredients": [
+        {
+          "quantity": "1 ½ lb",
+          "name": "Cod fillets",
+          "state": "raw, thawed; individual fillets about 1 inch thick",
+          "note": "Choose individual fillets about 170 g (6 oz) each, keeping the stated thickness."
+        },
+        {
+          "quantity": "1 ½ lb",
+          "name": "Zucchini",
+          "state": "fresh, sliced into ½-inch half-moons",
+          "note": ""
+        },
+        {
+          "quantity": "45 g",
+          "name": "DeLallo basil pesto",
+          "state": "squeeze-bottle, as sold",
+          "note": "Weigh the scaled amount; do not infer tablespoons from the unusual label volume. Substitute at most 2 g net carbs per 30 g."
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Olive oil",
+          "state": "as purchased",
+          "note": "Three quarters to zucchini; remainder to fish. All oil counted in nutrition."
+        },
+        {
+          "quantity": "¼ tsp",
+          "name": "Fine salt",
+          "state": "dry",
+          "note": "Use the measured salt in the zucchini seasoning."
+        },
+        {
+          "quantity": "to taste",
+          "name": "Black pepper",
+          "state": "dry",
+          "note": "To taste; quantity unspecified."
+        },
+        {
+          "quantity": "1 tbsp",
+          "name": "Lemon juice",
+          "state": "fresh or bottled, unsweetened",
+          "note": "Nutrition uses 15 g per tablespoon; use the scaled total."
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Hemp hearts",
+          "state": "hulled",
+          "note": "Use hulled hemp hearts in the measured portion."
+        }
+      ],
+      "familyIngredient": null,
+      "familyOptions": [],
+      "steps": [
+        {
+          "title": "Prepare",
+          "text": "Heat the oven to 425°F. Toss zucchini with three quarters of the oil, salt, and pepper. Spread on one half-sheet pan. Pat fish dry, rub with the remaining oil, and place on the other pan."
+        },
+        {
+          "title": "Cook",
+          "text": "Start the zucchini pan first. After 6 minutes, add the fish pan. Check zucchini from 18 minutes of its own cooking time for browned edges and a tender center; allow about 18–23 minutes. Check fish after 12 minutes of its own cooking time; allow about 12–18 minutes to reach 145°F. Remove each pan at its endpoint and serve promptly. If either needs longer, keep checking; do not overcook the fish to match the vegetables."
+        },
+        {
+          "title": "Finish",
+          "text": "Spoon pesto over cooked fish. Finish fish and zucchini with lemon and hemp. Applying pesto after cooking keeps its basil flavor and avoids burning the sauce."
+        }
+      ],
+      "timeline": [
+        {
+          "phase": "Preheat and load zucchini",
+          "duration": "10–12 min",
+          "attention": "Preheat overlaps prep; fish and zucchini get separate pans."
+        },
+        {
+          "phase": "Give zucchini a head start",
+          "duration": "6 min",
+          "attention": "Add fish pan after 6 minutes: one scheduled main-appliance action."
+        },
+        {
+          "phase": "Finish both pans",
+          "duration": "Fish 12–18 min; zucchini 18–23 min total roast",
+          "attention": "Check zucchini for browned edges and tenderness; fish must reach 145°F. Remove separately at their endpoints."
+        },
+        {
+          "phase": "Finish",
+          "duration": "2 min",
+          "attention": "Spoon pesto on fish; add lemon and hemp and serve promptly."
+        }
+      ],
+      "tips": [
+        "The six-minute vegetable head start reduces the fish holding time; doneness still decides when each pan comes out.",
+        "Pesto goes on after cooking to protect basil flavor."
+      ],
+      "fallback": "",
+      "limitations": [
+        "Pesto substitution needs no more than 2 g net carbs per 30 g to preserve the keto estimate.",
+        "Two-pans and conventional bake are assumed.",
+        "Pesto may contain tree nuts or other allergens; verify the specific jar label. This data is not an allergy guarantee.",
+        "The six-minute head start is a design adjustment, not a tested synchronization guarantee."
+      ],
+      "sources": [
+        {
+          "title": "USDA FoodData Central source data",
+          "url": "https://fdc.nal.usda.gov/download-datasets/"
+        },
+        {
+          "title": "FoodSafety.gov safe minimum temperatures",
+          "url": "https://www.foodsafety.gov/food-safety-charts/safe-minimum-internal-temperatures"
+        },
+        {
+          "title": "DeLallo basil pesto label",
+          "url": "https://www.delallo.com/pesto-squeeze-bottle/"
+        }
+      ],
+      "nutrition": {
+        "kcal": 327.695,
+        "protein_g": 33.925125,
+        "carbs_g": 7.104249999999999,
+        "fiber_g": 2.2862500000000003,
+        "net_carbs_g": 4.817999999999998
+      },
+      "familyNutrition": null,
+      "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
+      "allergens": [
+        "fish",
+        "milk",
+        "tree-nuts"
+      ],
+      "flavorRationale": "Separating wet zucchini keeps cod from steaming in vegetable liquid; pesto stays fresh when added after heat.",
+      "disclaimer": "These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.",
+      "leftovers": "Refrigerate in shallow containers within two hours, or one hour above 90°F. Use within 3–4 days or freeze; reheat to 165°F. Keep cold greens and yogurt separate.",
+      "safety": "Prepare cold sides first. Keep raw-poultry tools separate; use clean serving utensils. Probe more than one thick piece. A timer is not a doneness test.",
+      "image": {
+        "src": "/media/recipes/pesto-cod-and-zucchini-960.webp",
+        "width": 960,
+        "height": 720,
+        "cardSrc": "/media/recipes/pesto-cod-and-zucchini-480.webp",
+        "cardSrcset": "/media/recipes/pesto-cod-and-zucchini-480.webp 480w, /media/recipes/pesto-cod-and-zucchini-960.webp 960w",
+        "detailSrcset": "/media/recipes/pesto-cod-and-zucchini-480.webp 480w, /media/recipes/pesto-cod-and-zucchini-960.webp 960w, /media/recipes/pesto-cod-and-zucchini-1440.webp 1440w",
+        "alt": "Illustration of pesto-topped cod with roasted zucchini and hemp hearts.",
+        "caption": "AI-generated illustration; appearance and portions are approximate."
+      }
+    },
+    {
+      "recipeId": "spinach-feta-and-hemp-frittata",
+      "title": "Spinach, feta, and hemp frittata",
+      "group": "keto",
+      "servings": 4,
+      "units": "us",
+      "familyDiners": 0,
+      "cookingFlow": {
+        "notation": "Tabular Recipe Notation (TRN)",
+        "prep": [
+          "Heat oven to 375°F on bake. Microwave spinach during preheating; never squeeze hot spinach with bare hands.",
+          "Use one 9-inch square metal dish, at least 2 inches deep, for 2 or 4 servings; use two matching dishes for 6 or 8. Keep the mixture no deeper than the original four-serving layer."
+        ],
+        "columns": 5,
+        "rows": [
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "12 count",
+              "name": "Large eggs",
+              "state": "as purchased",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 1,
+              "rowspan": 5,
+              "text": "Bowl: whisk eggs, water, garlic, salt and pepper."
+            },
+            {
+              "kind": "operation",
+              "col": 2,
+              "colspan": 1,
+              "rowspan": 9,
+              "text": "Stir squeezed spinach, feta, hemp and yeast into whisked eggs."
+            },
+            {
+              "kind": "operation",
+              "col": 3,
+              "colspan": 1,
+              "rowspan": 10,
+              "text": "Transfer to selected greased dishes; divide so the mixture is no deeper than the original four-serving layer. Then: Bake at 375°F for 25–30 min for the four-serving layer; at 2 servings check from 18 min; center set and 160°F. Then: Rest frittata 3 min, then cut into the selected number of equal adult portions."
+            },
+            {
+              "kind": "operation",
+              "col": 4,
+              "colspan": 1,
+              "rowspan": 13,
+              "text": "Plate equal adult portions of rested frittata with the separate dressed-greens salad."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "⅓ cup",
+              "name": "Water",
+              "state": "potable",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "½ tsp",
+              "name": "Garlic powder",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "¼ tsp",
+              "name": "Fine salt",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "to taste",
+              "name": "Black pepper",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 lb",
+              "name": "Frozen chopped spinach",
+              "state": "package weight before thawing and squeezing",
+              "essentialState": true
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "Microwave spinach according to package directions. Then: Fine-mesh sieve: cool spinach until safe to handle, then press very dry with a spoon."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "½ cup",
+              "name": "Crumbled feta",
+              "state": "as sold",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "4 tbsp",
+              "name": "Hemp hearts",
+              "state": "hulled",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "2 tbsp",
+              "name": "Nutritional yeast",
+              "state": "flakes",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "⅓ tbsp",
+              "name": "Olive oil",
+              "state": "as purchased",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "Grease selected metal baking dishes with oil."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "5 oz",
+              "name": "Salad greens",
+              "state": "washed, ready to eat",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 3,
+              "rowspan": 3,
+              "text": "Clean bowl, during baking: toss ready-to-eat greens with oil and lemon juice."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tbsp",
+              "name": "Olive oil",
+              "state": "as purchased",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tbsp",
+              "name": "Lemon juice",
+              "state": "fresh or bottled, unsweetened",
+              "essentialState": false
+            }
+          ]
+        ]
+      },
+      "summary": "A baked egg dinner with a cold salad assembled while it cooks.",
+      "activeMinutes": 15,
+      "totalTime": "40–50 min",
+      "attentionSummary": "No mid-cook action; toss salad while the frittata bakes.",
+      "capacity": "The listed pan and basket capacity, cook times, and thermometer endpoint are for four servings.",
+      "timingNote": "Ingredients are scaled; keep food thickness, spacing, settings and safe endpoints fixed. Timings assume the four-serving batch and specified shortcuts. More food can require additional batches.",
+      "equipment": [
+        "Oven at 375°F on bake",
+        "Microwave for spinach",
+        "9-inch square metal baking dish at least 2 inches deep",
+        "Instant-read thermometer",
+        "Scaling: at six or eight servings use two matching 9-inch square metal dishes, dividing the mixture to preserve original depth; oven loading can increase total time. At two servings the thinner layer may finish earlier; check the center without blindly halving the timer."
+      ],
+      "ingredients": [
+        {
+          "quantity": "12 count",
+          "name": "Large eggs",
+          "state": "as purchased",
+          "note": ""
+        },
+        {
+          "quantity": "⅓ cup",
+          "name": "Water",
+          "state": "potable",
+          "note": "Mix into the eggs."
+        },
+        {
+          "quantity": "1 lb",
+          "name": "Frozen chopped spinach",
+          "state": "package weight before thawing and squeezing",
+          "note": "Heat according to package directions, cool until safe to handle and press very dry in a sieve. · Buy 1 × 16 oz (454 g) packages; measure out the required weight."
+        },
+        {
+          "quantity": "½ cup",
+          "name": "Crumbled feta",
+          "state": "as sold",
+          "note": "Cheese label and rennet vary."
+        },
+        {
+          "quantity": "4 tbsp",
+          "name": "Hemp hearts",
+          "state": "hulled",
+          "note": "Use hulled hemp hearts in the measured portion."
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Nutritional yeast",
+          "state": "flakes",
+          "note": "Mix into eggs; brand density varies."
+        },
+        {
+          "quantity": "½ tsp",
+          "name": "Garlic powder",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "¼ tsp",
+          "name": "Fine salt",
+          "state": "dry",
+          "note": "Use the measured salt in the egg mixture; feta adds salt too."
+        },
+        {
+          "quantity": "to taste",
+          "name": "Black pepper",
+          "state": "dry",
+          "note": "To taste; quantity unspecified."
+        },
+        {
+          "quantity": "1 ⅓ tbsp",
+          "name": "Olive oil",
+          "state": "as purchased",
+          "note": "One quarter for dish; three quarters for salad. Base batch is 1 tsp + 1 tbsp, all counted in nutrition."
+        },
+        {
+          "quantity": "5 oz",
+          "name": "Salad greens",
+          "state": "washed, ready to eat",
+          "note": "Buy by scaled edible weight."
+        },
+        {
+          "quantity": "1 tbsp",
+          "name": "Lemon juice",
+          "state": "fresh or bottled, unsweetened",
+          "note": "Nutrition uses 15 g per tablespoon; use the scaled total."
+        }
+      ],
+      "familyIngredient": null,
+      "familyOptions": [],
+      "steps": [
+        {
+          "title": "Prepare",
+          "text": "Heat the oven to 375°F. Heat spinach in the microwave according to its package during preheating, then let it cool until safe to handle and press very dry in a fine-mesh sieve with a spoon. Do not squeeze hot spinach with bare hands. Use one quarter of the oil to grease one 9-inch square metal dish for two or four servings, or two matching dishes for six or eight; each must be at least 2 inches deep."
+        },
+        {
+          "title": "Cook",
+          "text": "Whisk eggs, water, garlic, salt, and pepper. Stir in squeezed spinach, feta, hemp, and yeast. Divide between the selected dishes so the mixture is no deeper than the original four-serving layer."
+        },
+        {
+          "title": "Finish",
+          "text": "For the original four-serving layer, bake about 25–30 minutes; for the thinner two-serving layer, begin checking at 18 minutes, until the center is set and reaches 160°F. Toss greens with the remaining oil and lemon during baking. Rest the frittata for 3 minutes before cutting into the selected number of equal adult portions."
+        }
+      ],
+      "timeline": [
+        {
+          "phase": "Preheat, thaw, and mix",
+          "duration": "12–15 min",
+          "attention": "Microwave spinach per package, cool enough to handle and press dry while preheating; oil dish and whisk mixture. Cooling or thawing delays can add time."
+        },
+        {
+          "phase": "Bake",
+          "duration": "25–30 min",
+          "attention": "No mid-cook action; make salad during bake. Check center for 160°F."
+        },
+        {
+          "phase": "Rest and serve",
+          "duration": "3 min",
+          "attention": "Cut into the selected number of equal adult portions."
+        }
+      ],
+      "tips": [
+        "Squeezing spinach very dry matters more than extending the bake.",
+        "Package spinach weight is before squeezing; drained nutrient retention is uncertain.",
+        "Feta can use animal rennet. For a vegetarian version, check for vegetarian or microbial rennet; the generic cheese label is not verified here."
+      ],
+      "fallback": "",
+      "limitations": [
+        "Actual spinach drain and center cook time need a first cook.",
+        "Check every packaged ingredient label for additional allergens; this data is not an allergy guarantee.",
+        "Allow 40–50 minutes; safe spinach handling, thawing and pressing can extend prep. Two servings bake in a thinner layer: start checking the center at 18 minutes rather than assuming the four-serving time."
+      ],
+      "sources": [
+        {
+          "title": "USDA FoodData Central source data",
+          "url": "https://fdc.nal.usda.gov/download-datasets/"
+        },
+        {
+          "title": "FoodSafety.gov safe minimum temperatures",
+          "url": "https://www.foodsafety.gov/food-safety-charts/safe-minimum-internal-temperatures"
+        },
+        {
+          "title": "Bob's Red Mill nutritional yeast label",
+          "url": "https://www.bobsredmill.com/product/nutritional-yeast"
+        }
+      ],
+      "nutrition": {
+        "kcal": 407.82512499999996,
+        "protein_g": 30.294331249999995,
+        "carbs_g": 9.911378749999999,
+        "fiber_g": 4.983125,
+        "net_carbs_g": 4.928253749999999
+      },
+      "familyNutrition": null,
+      "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
+      "allergens": [
+        "egg",
+        "milk"
+      ],
+      "flavorRationale": "Dry spinach prevents a watery center; feta, hemp, and yeast add savory depth.",
+      "disclaimer": "These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.",
+      "leftovers": "Refrigerate in shallow containers within two hours, or one hour above 90°F. Use within 3–4 days or freeze; reheat to 165°F. Keep cold greens and yogurt separate.",
+      "safety": "Prepare cold sides first. Keep raw-poultry tools separate; use clean serving utensils. Probe more than one thick piece. A timer is not a doneness test.",
+      "image": {
+        "src": "/media/recipes/spinach-feta-and-hemp-frittata-960.webp",
+        "width": 960,
+        "height": 720,
+        "cardSrc": "/media/recipes/spinach-feta-and-hemp-frittata-480.webp",
+        "cardSrcset": "/media/recipes/spinach-feta-and-hemp-frittata-480.webp 480w, /media/recipes/spinach-feta-and-hemp-frittata-960.webp 960w",
+        "detailSrcset": "/media/recipes/spinach-feta-and-hemp-frittata-480.webp 480w, /media/recipes/spinach-feta-and-hemp-frittata-960.webp 960w, /media/recipes/spinach-feta-and-hemp-frittata-1440.webp 1440w",
+        "alt": "Illustration of spinach, feta and hemp frittata beside leafy salad.",
+        "caption": "AI-generated illustration; appearance and portions are approximate."
+      }
+    },
+    {
+      "recipeId": "shawarma-chicken-bowls",
+      "title": "Shawarma chicken bowls",
+      "group": "shared",
+      "servings": 4,
+      "units": "us",
+      "familyDiners": 0,
+      "cookingFlow": {
+        "notation": "Tabular Recipe Notation (TRN)",
+        "prep": [
+          "Heat oven to 425°F on bake; use two 18×13-inch half-sheet pans.",
+          "Prepare cold sides and yogurt sauce before raw chicken; keep greens and clean tools away from raw-poultry tools.",
+          "Reserve a small pinch of the measured salt and ¼ of the measured garlic for sauce."
+        ],
+        "columns": 4,
+        "rows": [
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "5.3 oz",
+              "name": "Cucumber",
+              "state": "fresh, diced",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 2,
+              "rowspan": 2,
+              "text": "Prepare cucumber and greens first with clean tools; keep cold."
+            },
+            {
+              "kind": "operation",
+              "col": 3,
+              "colspan": 1,
+              "rowspan": 17,
+              "text": "Plate shawarma bowls: greens, cucumber, cooked chicken and cauliflower, yogurt sauce and remaining lemon."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "5 oz",
+              "name": "Salad greens",
+              "state": "washed, ready to eat",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "½ cup",
+              "name": "Plain strained Greek yogurt",
+              "state": "plain, strained",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 2,
+              "rowspan": 4,
+              "text": "Mix yogurt sauce in a clean bowl before raw chicken."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "¼ tsp",
+              "name": "Garlic powder",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "Small pinch from ¾ tsp",
+              "name": "Fine salt",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tbsp",
+              "name": "Lemon juice",
+              "state": "fresh or bottled, unsweetened",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "2 tbsp",
+              "name": "Olive oil",
+              "state": "as purchased",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 1,
+              "rowspan": 8,
+              "text": "Mix spiced oil in a clean bowl before raw chicken."
+            },
+            {
+              "kind": "operation",
+              "col": 2,
+              "colspan": 1,
+              "rowspan": 10,
+              "text": "Split spiced oil equally: toss cauliflower on one pan; coat chicken in a separate raw-poultry bowl and spread on the other pan. Then: Roast separate pans at 425°F for 18–23 min: largest chicken pieces 165°F, cauliflower tender. Swap racks halfway only if browning unevenly."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "2 tsp",
+              "name": "Ground cumin",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tsp",
+              "name": "Smoked paprika",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "¾ tsp",
+              "name": "Garlic powder",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "½ tsp",
+              "name": "Ground turmeric",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "¼ tsp",
+              "name": "Ground cinnamon",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "Remainder of ¾ tsp",
+              "name": "Fine salt",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "to taste",
+              "name": "Black pepper",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "1 lb",
+              "name": "Cauliflower florets",
+              "state": "fresh, about 1 inch across",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "1 ½ lb",
+              "name": "Boneless skinless chicken thighs",
+              "state": "raw, thawed, cut into 1-inch pieces",
+              "essentialState": true
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 3,
+              "rowspan": 1,
+              "text": "1 tbsp",
+              "name": "Lemon juice",
+              "state": "fresh or bottled, unsweetened",
+              "essentialState": false
+            }
+          ]
+        ]
+      },
+      "summary": "Spiced chicken and cauliflower roast on separate pans; starch stays on family plates.",
+      "activeMinutes": 14,
+      "totalTime": "30–40 min",
+      "attentionSummary": "Heat one separate starch while roasting; optional rack swap.",
+      "capacity": "The listed pan and basket capacity, cook times, and thermometer endpoint are for four servings.",
+      "timingNote": "Ingredients are scaled; keep food thickness, spacing, settings and safe endpoints fixed. Timings assume the four-serving batch and specified shortcuts. More food can require additional batches.",
+      "equipment": [
+        "Oven at 425°F on bake",
+        "Two 18×13-inch half-sheet pans",
+        "Instant-read thermometer",
+        "Microwave for ready-to-eat family rice or briefly warmed pita, if serving non-keto diners"
+      ],
+      "ingredients": [
+        {
+          "quantity": "1 ½ lb",
+          "name": "Boneless skinless chicken thighs",
+          "state": "raw, thawed, cut into 1-inch pieces",
+          "note": ""
+        },
+        {
+          "quantity": "1 lb",
+          "name": "Cauliflower florets",
+          "state": "fresh, about 1 inch across",
+          "note": ""
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Olive oil",
+          "state": "as purchased",
+          "note": "Half of spiced oil to cauliflower; half to chicken. All oil counted in nutrition."
+        },
+        {
+          "quantity": "2 tsp",
+          "name": "Ground cumin",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "1 tsp",
+          "name": "Smoked paprika",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "1 tsp",
+          "name": "Garlic powder",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "½ tsp",
+          "name": "Ground turmeric",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "¼ tsp",
+          "name": "Ground cinnamon",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "¾ tsp",
+          "name": "Fine salt",
+          "state": "dry",
+          "note": "Use the proportional split described in the method. Black pepper is to taste."
+        },
+        {
+          "quantity": "to taste",
+          "name": "Black pepper",
+          "state": "dry",
+          "note": "To taste; quantity unspecified."
+        },
+        {
+          "quantity": "½ cup",
+          "name": "Plain strained Greek yogurt",
+          "state": "plain, strained",
+          "note": "At least 9 g protein and no more than 4 g total carbs per 100 g; regular yogurt changes nutrition."
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Lemon juice",
+          "state": "fresh or bottled, unsweetened",
+          "note": "Nutrition uses 15 g per tablespoon; use the scaled total."
+        },
+        {
+          "quantity": "5.3 oz",
+          "name": "Cucumber",
+          "state": "fresh, diced",
+          "note": ""
+        },
+        {
+          "quantity": "5 oz",
+          "name": "Salad greens",
+          "state": "washed, ready to eat",
+          "note": "Buy by scaled edible weight."
+        }
+      ],
+      "familyIngredient": null,
+      "familyOptions": [
+        {
+          "choiceId": "rice_half_cup",
+          "label": "Cooked rice",
+          "quantityPerPerson": "½ cup",
+          "name": "Cooked rice",
+          "state": "fully cooked, ready to heat",
+          "note": "About ½ cup per non-keto diner; heat ready-cooked rice. Buy at least 320 g for four.",
+          "nutritionAddedPerPerson": {
+            "kcal": 104,
+            "protein_g": 2.1519999999999997,
+            "carbs_g": 22.536000000000005,
+            "fiber_g": 0.32,
+            "net_carbs_g": 22.216000000000005
+          },
+          "allergens": []
+        },
+        {
+          "choiceId": "pita_one",
+          "label": "Pita",
+          "quantityPerPerson": "1 count",
+          "name": "Pita",
+          "state": "ready to eat; warm briefly",
+          "note": "One ready-to-eat 60 g pita per non-keto diner; warm briefly. Contains wheat; check package.",
+          "nutritionAddedPerPerson": {
+            "kcal": 165,
+            "protein_g": 5.46,
+            "carbs_g": 33.42,
+            "fiber_g": 1.32,
+            "net_carbs_g": 32.1
+          },
+          "allergens": [
+            "wheat"
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "title": "Prepare",
+          "text": "Heat the oven to 425°F. Prepare cucumber and greens first. Reserve a small pinch of the measured salt and one quarter of the measured garlic for the yogurt sauce; mix these with the yogurt and half the lemon before handling raw chicken. Mix oil with remaining spices, salt and pepper. Toss cauliflower with half this mixture on one pan; toss chicken with the rest in a separate bowl and spread on the other."
+        },
+        {
+          "title": "Cook",
+          "text": "Roast for 18–23 minutes, checking the largest chicken pieces for 165°F and cauliflower for tenderness. If your oven browns unevenly, swap racks halfway."
+        },
+        {
+          "title": "Finish",
+          "text": "Near the end of roasting, if serving non-keto diners, microwave ready-to-eat rice or briefly warm the chosen pita according to its package. Assemble greens, cucumber, chicken and cauliflower. Add the prepared yogurt sauce and remaining lemon. Put starch on family plates only."
+        }
+      ],
+      "timeline": [
+        {
+          "phase": "Preheat and load",
+          "duration": "10–12 min",
+          "attention": "Prepare cold sides and seasoned yogurt sauce first; split remaining spice oil between cauliflower and chicken."
+        },
+        {
+          "phase": "Roast",
+          "duration": "18–23 min",
+          "attention": "Check largest chicken pieces for 165°F and cauliflower for browned edges and tenderness; optional rack swap if browning unevenly. Heat ready family starch near serving."
+        },
+        {
+          "phase": "Finish",
+          "duration": "2 min",
+          "attention": "Assemble with prepared yogurt sauce and remaining lemon; starch on family plates only."
+        }
+      ],
+      "tips": [
+        "Cut chicken into 1-inch pieces; no marinade wait.",
+        "Keep ready-to-eat greens away from raw-poultry tools."
+      ],
+      "fallback": "",
+      "limitations": [
+        "Family starch adds calories and carbs only to the plates that receive it.",
+        "Check every packaged ingredient label for additional allergens; this data is not an allergy guarantee."
+      ],
+      "sources": [
+        {
+          "title": "USDA FoodData Central source data",
+          "url": "https://fdc.nal.usda.gov/download-datasets/"
+        },
+        {
+          "title": "FoodSafety.gov safe minimum temperatures",
+          "url": "https://www.foodsafety.gov/food-safety-charts/safe-minimum-internal-temperatures"
+        },
+        {
+          "title": "USDA poultry handling guidance",
+          "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/poultry/chicken-farm-table"
+        }
+      ],
+      "nutrition": {
+        "kcal": 338.650625,
+        "protein_g": 39.73220624999999,
+        "carbs_g": 11.59100375,
+        "fiber_g": 3.7775875,
+        "net_carbs_g": 7.81341625
+      },
+      "familyNutrition": null,
+      "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
+      "allergens": [
+        "milk"
+      ],
+      "flavorRationale": "Warm spices coat small chicken pieces and cauliflower; cold lemon yogurt balances them.",
+      "disclaimer": "These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.",
+      "leftovers": "Refrigerate in shallow containers within two hours, or one hour above 90°F. Use within 3–4 days or freeze; reheat to 165°F. Keep cold greens and yogurt separate.",
+      "safety": "Prepare cold sides first. Keep raw-poultry tools separate; use clean serving utensils. Probe more than one thick piece. A timer is not a doneness test.",
+      "image": {
+        "src": "/media/recipes/shawarma-chicken-bowls-960.webp",
+        "width": 960,
+        "height": 720,
+        "cardSrc": "/media/recipes/shawarma-chicken-bowls-480.webp",
+        "cardSrcset": "/media/recipes/shawarma-chicken-bowls-480.webp 480w, /media/recipes/shawarma-chicken-bowls-960.webp 960w",
+        "detailSrcset": "/media/recipes/shawarma-chicken-bowls-480.webp 480w, /media/recipes/shawarma-chicken-bowls-960.webp 960w, /media/recipes/shawarma-chicken-bowls-1440.webp 1440w",
+        "alt": "Illustration of shawarma-spiced chicken, cauliflower, cucumber and yogurt over greens.",
+        "caption": "AI-generated illustration; appearance and portions are approximate. Keto base shown; family starch is separate."
+      }
+    },
+    {
+      "recipeId": "sheet-pan-chicken-fajitas",
+      "title": "Sheet-pan chicken fajitas",
+      "group": "shared",
+      "servings": 4,
+      "units": "us",
+      "familyDiners": 0,
+      "cookingFlow": {
+        "notation": "Tabular Recipe Notation (TRN)",
+        "prep": [
+          "Heat oven to 425°F on bake; use two 18×13-inch half-sheet pans.",
+          "Prepare lettuce and avocado before raw poultry; keep cold sides and clean tools away from raw-poultry equipment."
+        ],
+        "columns": 5,
+        "rows": [
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "5 oz",
+              "name": "Shredded lettuce",
+              "state": "washed, ready to eat",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 3,
+              "rowspan": 2,
+              "text": "Prepare lettuce and avocado first with clean tools; keep cold."
+            },
+            {
+              "kind": "operation",
+              "col": 4,
+              "colspan": 1,
+              "rowspan": 13,
+              "text": "Plate fajita bowls with cold lettuce, lime-finished filling, avocado and yogurt."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "5.3 oz",
+              "name": "Avocado flesh",
+              "state": "fresh, sliced; flesh weight",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "2 tbsp",
+              "name": "Olive oil",
+              "state": "as purchased",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 1,
+              "rowspan": 6,
+              "text": "Mix seasoned oil in a clean bowl before raw chicken."
+            },
+            {
+              "kind": "operation",
+              "col": 2,
+              "colspan": 1,
+              "rowspan": 9,
+              "text": "Toss peppers and onion with half the seasoned oil; coat chicken separately with the rest. Spread on two half-sheet pans in a single layer, pieces apart. Then: Bake at 425°F for 18–22 min; largest chicken strips must reach 165°F. No stir if spaced; swap racks halfway if needed."
+            },
+            {
+              "kind": "operation",
+              "col": 3,
+              "colspan": 1,
+              "rowspan": 10,
+              "text": "Finish cooked fajita filling with lime."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "2 tsp",
+              "name": "Mild chili powder blend",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tsp",
+              "name": "Ground cumin",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tsp",
+              "name": "Smoked paprika",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "½ tsp",
+              "name": "Garlic powder",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "½ tsp",
+              "name": "Fine salt",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "10.6 oz",
+              "name": "Bell pepper",
+              "state": "fresh, sliced into ¼-inch strips",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "2.1 oz",
+              "name": "Onion",
+              "state": "fresh, sliced into ¼-inch strips",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "1 ½ lb",
+              "name": "Boneless skinless chicken thighs",
+              "state": "raw, thawed; strips about 1 inch wide, no more than ¾ inch thick",
+              "essentialState": true
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 3,
+              "rowspan": 1,
+              "text": "2 tbsp",
+              "name": "Lime juice",
+              "state": "fresh or bottled, unsweetened",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 4,
+              "rowspan": 1,
+              "text": "¼ cup",
+              "name": "Plain strained Greek yogurt",
+              "state": "plain, strained",
+              "essentialState": false
+            }
+          ]
+        ]
+      },
+      "summary": "Two spacious pans roast chicken and peppers; heat tortillas only for non-keto plates.",
+      "activeMinutes": 14,
+      "totalTime": "30–40 min",
+      "attentionSummary": "Heat tortillas during the roast; optional rack swap.",
+      "capacity": "The listed pan and basket capacity, cook times, and thermometer endpoint are for four servings.",
+      "timingNote": "Ingredients are scaled; keep food thickness, spacing, settings and safe endpoints fixed. Timings assume the four-serving batch and specified shortcuts. More food can require additional batches.",
+      "equipment": [
+        "Oven at 425°F on bake",
+        "Two 18×13-inch half-sheet pans",
+        "Instant-read thermometer",
+        "Microwave for family tortillas"
+      ],
+      "ingredients": [
+        {
+          "quantity": "1 ½ lb",
+          "name": "Boneless skinless chicken thighs",
+          "state": "raw, thawed; strips about 1 inch wide, no more than ¾ inch thick",
+          "note": ""
+        },
+        {
+          "quantity": "10.6 oz",
+          "name": "Bell pepper",
+          "state": "fresh, sliced into ¼-inch strips",
+          "note": "Buy by the scaled edible weight; produce size varies."
+        },
+        {
+          "quantity": "2.1 oz",
+          "name": "Onion",
+          "state": "fresh, sliced into ¼-inch strips",
+          "note": "Buy by the scaled edible weight; produce size varies."
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Olive oil",
+          "state": "as purchased",
+          "note": "Half of spiced oil on vegetables; half on chicken. All oil counted in nutrition."
+        },
+        {
+          "quantity": "2 tsp",
+          "name": "Mild chili powder blend",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "1 tsp",
+          "name": "Ground cumin",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "1 tsp",
+          "name": "Smoked paprika",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "½ tsp",
+          "name": "Garlic powder",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "½ tsp",
+          "name": "Fine salt",
+          "state": "dry",
+          "note": "Use the proportional split described in the method. Black pepper is to taste."
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Lime juice",
+          "state": "fresh or bottled, unsweetened",
+          "note": "Nutrition uses 15 g per tablespoon; use the scaled total."
+        },
+        {
+          "quantity": "5 oz",
+          "name": "Shredded lettuce",
+          "state": "washed, ready to eat",
+          "note": "Buy by scaled edible weight."
+        },
+        {
+          "quantity": "5.3 oz",
+          "name": "Avocado flesh",
+          "state": "fresh, sliced; flesh weight",
+          "note": ""
+        },
+        {
+          "quantity": "¼ cup",
+          "name": "Plain strained Greek yogurt",
+          "state": "plain, strained",
+          "note": "At least 9 g protein and no more than 4 g total carbs per 100 g; regular yogurt changes nutrition."
+        }
+      ],
+      "familyIngredient": null,
+      "familyOptions": [
+        {
+          "choiceId": "corn_tortillas_two",
+          "label": "Corn tortillas",
+          "quantityPerPerson": "2 count",
+          "name": "Corn tortillas",
+          "state": "ready to eat; warm according to package",
+          "note": "Two 6-inch tortillas totaling about 50 g per non-keto diner; check the package for wheat or gluten cross-contact. Serve alongside the bowl or fill with part of the filling; two small tortillas will not hold the whole meal.",
+          "nutritionAddedPerPerson": {
+            "kcal": 109,
+            "protein_g": 2.85,
+            "carbs_g": 22.32,
+            "fiber_g": 3.15,
+            "net_carbs_g": 19.17
+          },
+          "allergens": []
+        }
+      ],
+      "steps": [
+        {
+          "title": "Prepare",
+          "text": "Heat the oven to 425°F. Prepare lettuce and avocado first. Mix oil, spices, and salt. Toss peppers and onion with half the mixture. Coat chicken separately with the rest."
+        },
+        {
+          "title": "Cook",
+          "text": "Divide chicken and vegetables between two half-sheet pans in a single layer, keeping pieces apart. Bake about 18–22 minutes, until the largest chicken strips reach 165°F. No stir is needed if there is enough space; swap racks halfway if needed for your oven."
+        },
+        {
+          "title": "Finish",
+          "text": "Finish with lime. Make keto bowls with lettuce, filling, avocado, and yogurt. Near the end of cooking, if serving non-keto diners, heat tortillas in the microwave according to their package for family portions; keep them wrapped until serving. Serve the measured two tortillas alongside each family bowl or fill them with part of the mixture; the full bowl portion is larger than two small tacos."
+        }
+      ],
+      "timeline": [
+        {
+          "phase": "Preheat and load",
+          "duration": "10–12 min",
+          "attention": "Prepare lettuce and avocado before raw poultry; separate chicken and vegetables on pans."
+        },
+        {
+          "phase": "Roast",
+          "duration": "18–22 min",
+          "attention": "Check largest chicken strips for 165°F; swap racks if needed. Heat tortillas during cook."
+        },
+        {
+          "phase": "Finish",
+          "duration": "2 min",
+          "attention": "Add lime; assemble measured keto bowls and separate family tortillas."
+        }
+      ],
+      "tips": [
+        "Measured peppers, onion, avocado, and yogurt preserve the stated keto nutrition.",
+        "Keep pieces separate so they roast rather than steam."
+      ],
+      "fallback": "",
+      "limitations": [
+        "Chili powder blends vary by brand and allergen label; inspect package.",
+        "Check every packaged ingredient label for additional allergens; this data is not an allergy guarantee."
+      ],
+      "sources": [
+        {
+          "title": "USDA FoodData Central source data",
+          "url": "https://fdc.nal.usda.gov/download-datasets/"
+        },
+        {
+          "title": "FoodSafety.gov safe minimum temperatures",
+          "url": "https://www.foodsafety.gov/food-safety-charts/safe-minimum-internal-temperatures"
+        },
+        {
+          "title": "USDA poultry handling guidance",
+          "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/poultry/chicken-farm-table"
+        }
+      ],
+      "nutrition": {
+        "kcal": 378.40987500000006,
+        "protein_g": 37.46079875,
+        "carbs_g": 13.00818125,
+        "fiber_g": 5.878475,
+        "net_carbs_g": 7.12970625
+      },
+      "familyNutrition": null,
+      "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
+      "allergens": [
+        "milk"
+      ],
+      "flavorRationale": "Roasting spaced strips concentrates pepper flavor; lime, avocado, and yogurt round out the bowl.",
+      "disclaimer": "These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.",
+      "leftovers": "Refrigerate in shallow containers within two hours, or one hour above 90°F. Use within 3–4 days or freeze; reheat to 165°F. Keep cold greens and yogurt separate.",
+      "safety": "Prepare cold sides first. Keep raw-poultry tools separate; use clean serving utensils. Probe more than one thick piece. A timer is not a doneness test.",
+      "image": {
+        "src": "/media/recipes/sheet-pan-chicken-fajitas-960.webp",
+        "width": 960,
+        "height": 720,
+        "cardSrc": "/media/recipes/sheet-pan-chicken-fajitas-480.webp",
+        "cardSrcset": "/media/recipes/sheet-pan-chicken-fajitas-480.webp 480w, /media/recipes/sheet-pan-chicken-fajitas-960.webp 960w",
+        "detailSrcset": "/media/recipes/sheet-pan-chicken-fajitas-480.webp 480w, /media/recipes/sheet-pan-chicken-fajitas-960.webp 960w, /media/recipes/sheet-pan-chicken-fajitas-1440.webp 1440w",
+        "alt": "Illustration of chicken fajita strips, peppers, avocado, lettuce and yogurt in a bowl.",
+        "caption": "AI-generated illustration; appearance and portions are approximate. Keto base shown; family starch is separate."
+      }
+    },
+    {
+      "recipeId": "salsa-verde-shredded-chicken",
+      "title": "Salsa verde shredded chicken",
+      "group": "shared",
+      "servings": 4,
+      "units": "us",
+      "familyDiners": 0,
+      "cookingFlow": {
+        "notation": "Tabular Recipe Notation (TRN)",
+        "prep": [
+          "Use the whole listed thin-broth minimum; follow your model’s higher minimum if required and stay below PC MAX.",
+          "Pressure countdown starts after pressurization; do not leave the operating cooker unattended.",
+          "Prepare slaw and avocado during pressure build; keep cold sides away from raw-poultry equipment."
+        ],
+        "columns": 4,
+        "rows": [
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "375 ml",
+              "name": "Low-sodium chicken broth",
+              "state": "thin, water-based",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 1,
+              "rowspan": 4,
+              "text": "Load thin broth, cumin, garlic and separated thighs into Duo 6QT; leave salsa out. Seal; Keep Warm off. Cook on high pressure for 8 min. Then: Leave valve at Seal for 10 min after cooking; vent per manual, clear of steam. Open only after float valve drops. Then: Check thickest thighs for 165°F; if needed finish in liquid and recheck. Lift to clean board and shred; slice or chop safely cooked thighs if resistant."
+            },
+            {
+              "kind": "operation",
+              "col": 2,
+              "colspan": 1,
+              "rowspan": 6,
+              "text": "Mix chicken with salsa, remaining lime and only enough cooked broth to moisten; reserve excess broth, no reduction."
+            },
+            {
+              "kind": "operation",
+              "col": 3,
+              "colspan": 1,
+              "rowspan": 10,
+              "text": "Plate salsa-verde chicken over cold slaw, with avocado."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tsp",
+              "name": "Ground cumin",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "½ tsp",
+              "name": "Garlic powder",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 ½ lb",
+              "name": "Boneless skinless chicken thighs",
+              "state": "raw, thawed, separated and unfolded",
+              "essentialState": true
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "½ cup",
+              "name": "Herdez mild salsa verde",
+              "state": "jarred, added after cooking",
+              "essentialState": true
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "1 tbsp",
+              "name": "Lime juice",
+              "state": "fresh or bottled, unsweetened",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 lb",
+              "name": "Shredded cabbage",
+              "state": "plain, no carrots or dressing",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 2,
+              "rowspan": 3,
+              "text": "During pressure build, toss cabbage with yogurt and half the lime in a clean bowl; let stand during cooking."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "¼ cup",
+              "name": "Plain strained Greek yogurt",
+              "state": "plain, strained",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tbsp",
+              "name": "Lime juice",
+              "state": "fresh or bottled, unsweetened",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "5.3 oz",
+              "name": "Avocado flesh",
+              "state": "fresh, diced; flesh weight",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "Prepare avocado with clean tools during pressure build; keep separate from raw-poultry equipment."
+            }
+          ]
+        ]
+      },
+      "summary": "Pressure-cooked thighs get salsa after cooking; cold slaw and rice fit into pressure time.",
+      "activeMinutes": 15,
+      "totalTime": "40–45 min expected; pressure buildup can take longer",
+      "attentionSummary": "Controlled pressure release, safety check, and shredding at the end; time has a long tail.",
+      "capacity": "The listed pan and basket capacity, cook times, and thermometer endpoint are for four servings.",
+      "timingNote": "Ingredients are scaled; keep food thickness, spacing, settings and safe endpoints fixed. Timings assume the four-serving batch and specified shortcuts. More food can require additional batches.",
+      "equipment": [
+        "Instant Pot Duo 6QT covered by Duo V5 manual",
+        "Clean board and shredding forks",
+        "Instant-read thermometer",
+        "Microwave for ready-to-eat family rice, if serving non-keto diners"
+      ],
+      "ingredients": [
+        {
+          "quantity": "1 ½ lb",
+          "name": "Boneless skinless chicken thighs",
+          "state": "raw, thawed, separated and unfolded",
+          "note": ""
+        },
+        {
+          "quantity": "375 ml",
+          "name": "Low-sodium chicken broth",
+          "state": "thin, water-based",
+          "note": "Duo 6QT V5 minimum; use your model’s higher minimum if required and stay below PC MAX. Nutrition conservatively counts all broth. Measure in mL in either mode: US cups and the manual’s nominal cup measure differ. Nutrition uses this minimum; a higher model minimum adds broth nutrients."
+        },
+        {
+          "quantity": "½ cup",
+          "name": "Herdez mild salsa verde",
+          "state": "jarred, added after cooking",
+          "note": "Substitute at most 2 g total carbs per 31 g; add only after pressure cooking."
+        },
+        {
+          "quantity": "1 tsp",
+          "name": "Ground cumin",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "½ tsp",
+          "name": "Garlic powder",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Lime juice",
+          "state": "fresh or bottled, unsweetened",
+          "note": "Nutrition uses 15 g per tablespoon; use the scaled total."
+        },
+        {
+          "quantity": "1 lb",
+          "name": "Shredded cabbage",
+          "state": "plain, no carrots or dressing",
+          "note": ""
+        },
+        {
+          "quantity": "5.3 oz",
+          "name": "Avocado flesh",
+          "state": "fresh, diced; flesh weight",
+          "note": ""
+        },
+        {
+          "quantity": "¼ cup",
+          "name": "Plain strained Greek yogurt",
+          "state": "plain, strained",
+          "note": "At least 9 g protein and no more than 4 g total carbs per 100 g; regular yogurt changes nutrition."
+        }
+      ],
+      "familyIngredient": null,
+      "familyOptions": [
+        {
+          "choiceId": "rice_half_cup",
+          "label": "Cooked rice",
+          "quantityPerPerson": "½ cup",
+          "name": "Cooked rice",
+          "state": "fully cooked, ready to heat",
+          "note": "About ½ cup per non-keto diner; heat ready-cooked rice. Buy at least 320 g for four.",
+          "nutritionAddedPerPerson": {
+            "kcal": 104,
+            "protein_g": 2.1519999999999997,
+            "carbs_g": 22.536000000000005,
+            "fiber_g": 0.32,
+            "net_carbs_g": 22.216000000000005
+          },
+          "allergens": []
+        }
+      ],
+      "steps": [
+        {
+          "title": "Prepare",
+          "text": "Put the broth, cumin, garlic, and separated thighs in the Duo 6QT. Leave salsa out. Seal, switch Keep Warm off, and set high pressure for 8 minutes. The broth amount is the 6QT minimum; follow your model’s higher minimum if required and stay under PC MAX."
+        },
+        {
+          "title": "Cook",
+          "text": "During pressurization, prepare avocado and mix cabbage with yogurt and half the lime. If serving non-keto diners, leave ready-to-eat family rice for microwave heating near serving, according to its package. Keep cold sides away from raw-poultry equipment."
+        },
+        {
+          "title": "Finish",
+          "text": "When pressure cooking ends, leave the valve at Seal for 10 minutes. Then vent according to your manual, keeping clear of steam. Open only after the float valve drops. Check the thickest thighs for 165°F. If needed, finish cooking in the liquid and recheck; that adds time."
+        },
+        {
+          "title": "Serve",
+          "text": "Lift onto a clean board and shred. If safely cooked thighs resist shredding, slice or chop them rather than forcing a longer cook for texture alone. Mix with salsa, remaining lime, and only enough broth to moisten. Divide over slaw with avocado. Near serving, if needed, microwave family rice per package and add only to family bowls. Reserve excess broth; no reduction is required."
+        }
+      ],
+      "timeline": [
+        {
+          "phase": "Load and pressurize",
+          "duration": "3 min load + 10–15 min expected pressure build",
+          "attention": "Broth, spices, thighs only; seal and turn Keep Warm off. Make slaw during build; heat ready family rice near serving."
+        },
+        {
+          "phase": "Pressure cook",
+          "duration": "8 min high pressure",
+          "attention": "Countdown starts after pressure is reached."
+        },
+        {
+          "phase": "Release",
+          "duration": "10 min natural + about 2 min controlled vent/check",
+          "attention": "Leave sealed for 10 min; vent per manual, open only after float drops. Probe thighs for 165°F."
+        },
+        {
+          "phase": "Shred and plate",
+          "duration": "about 6 min",
+          "attention": "Shred on clean board, or slice safely cooked thighs if resistant; mix salsa, lime and only enough broth to moisten. Heat ready family rice near serving."
+        }
+      ],
+      "tips": [
+        "Keep salsa out of the pressure phase so the thin broth meets the cooker minimum.",
+        "Keep raw-poultry gear away from cold slaw.",
+        "Reserve excess broth; no reduction needed.",
+        "The slaw is lightly dressed rather than creamy. Toss thoroughly and allow it to sit during cooking; check the first-cook texture before changing yogurt or lime amounts."
+      ],
+      "fallback": "",
+      "limitations": [
+        "40–45 min is an expected planning estimate, not a hard bound. The manual permits pressure building up to 30 min, which can make the same meal about 59 min.",
+        "Follow your exact model’s liquid minimum, PC MAX, venting, and float-valve instructions. Do not leave the operating cooker unattended.",
+        "Custom 8+10 timing and shreddability need a first cook.",
+        "Check chicken broth and salsa labels for allergens; the listed milk allergen comes from yogurt. This data is not an allergy guarantee."
+      ],
+      "sources": [
+        {
+          "title": "USDA FoodData Central source data",
+          "url": "https://fdc.nal.usda.gov/download-datasets/"
+        },
+        {
+          "title": "FoodSafety.gov safe minimum temperatures",
+          "url": "https://www.foodsafety.gov/food-safety-charts/safe-minimum-internal-temperatures"
+        },
+        {
+          "title": "Instant Pot Duo V5 manual",
+          "url": "https://p.widencdn.net/bbdh9b/113-0059-01_110-0043-01_112-0170-01_113-0011-01_112-0010-01_110-0003-01_IB_DuoV5_MANUAL_399-1235-03US_US_R42-FINAL-09-30-2025_Lo.pdf"
+        },
+        {
+          "title": "Instant Pot no-brown chicken thigh analogue",
+          "url": "https://instantpot.com/blogs/recipes/chicken-thighs-with-island-salsa"
+        },
+        {
+          "title": "Herdez salsa verde label",
+          "url": "https://www.salsas.com/herdez/products/salsas/salsa-verde/"
+        }
+      ],
+      "nutrition": {
+        "kcal": 326.713875,
+        "protein_g": 38.58143375,
+        "carbs_g": 13.87458875,
+        "fiber_g": 5.470000000000001,
+        "net_carbs_g": 8.404588749999998
+      },
+      "familyNutrition": null,
+      "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
+      "allergens": [
+        "milk"
+      ],
+      "flavorRationale": "Salsa after pressure cooking keeps its tang and meets the cooker’s need for thin liquid during pressure buildup.",
+      "disclaimer": "These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.",
+      "leftovers": "Refrigerate in shallow containers within two hours, or one hour above 90°F. Use within 3–4 days or freeze; reheat to 165°F. Keep cold greens and yogurt separate.",
+      "safety": "Prepare cold sides first. Keep raw-poultry tools separate; use clean serving utensils. Probe more than one thick piece. A timer is not a doneness test.",
+      "image": {
+        "src": "/media/recipes/salsa-verde-shredded-chicken-960.webp",
+        "width": 960,
+        "height": 720,
+        "cardSrc": "/media/recipes/salsa-verde-shredded-chicken-480.webp",
+        "cardSrcset": "/media/recipes/salsa-verde-shredded-chicken-480.webp 480w, /media/recipes/salsa-verde-shredded-chicken-960.webp 960w",
+        "detailSrcset": "/media/recipes/salsa-verde-shredded-chicken-480.webp 480w, /media/recipes/salsa-verde-shredded-chicken-960.webp 960w, /media/recipes/salsa-verde-shredded-chicken-1440.webp 1440w",
+        "alt": "Illustration of green-salsa shredded chicken with cabbage slaw and avocado.",
+        "caption": "AI-generated illustration; appearance and portions are approximate. Keto base shown; family starch is separate."
+      }
+    },
+    {
+      "recipeId": "greek-turkey-patties",
+      "title": "Greek turkey patties",
+      "group": "shared",
+      "servings": 4,
+      "units": "us",
+      "familyDiners": 0,
+      "cookingFlow": {
+        "notation": "Tabular Recipe Notation (TRN)",
+        "prep": [
+          "Preheat both air fryers to 380°F; cold-fit four base-batch patties per basket with gaps (roughly 8×8 inches usable flat space each).",
+          "Prepare cucumber, greens and lemon yogurt before raw turkey; use clean serving tools.",
+          "If scaled egg is half an egg: beat one whole egg and weigh about 25 g.",
+          "If patties do not fit, use half-sheet pan(s) at 425°F for 18–22 min; check every patty for 165°F."
+        ],
+        "columns": 4,
+        "rows": [
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "10.6 oz",
+              "name": "Cucumber",
+              "state": "fresh, diced",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 2,
+              "rowspan": 2,
+              "text": "Prepare cucumber and greens first with clean tools; keep cold."
+            },
+            {
+              "kind": "operation",
+              "col": 3,
+              "colspan": 1,
+              "rowspan": 13,
+              "text": "Plate two cooked turkey patties per adult with cold cucumber, greens and lemon-yogurt sauce."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "5 oz",
+              "name": "Salad greens",
+              "state": "washed, ready to eat",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "½ cup",
+              "name": "Plain strained Greek yogurt",
+              "state": "plain, strained",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 2,
+              "rowspan": 2,
+              "text": "Mix yogurt with lemon in a clean bowl before raw turkey."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tbsp",
+              "name": "Lemon juice",
+              "state": "fresh or bottled, unsweetened",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 ½ lb",
+              "name": "93%-lean ground turkey",
+              "state": "raw",
+              "essentialState": true
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 1,
+              "rowspan": 8,
+              "text": "Mix turkey, egg, flax, feta and seasoning in a raw-poultry bowl just until combined. Then: Form patties about 100 g each, 3¼ inches across and ¾ inch thick; about two per adult."
+            },
+            {
+              "kind": "operation",
+              "col": 2,
+              "colspan": 1,
+              "rowspan": 9,
+              "text": "Lightly oil both baskets; load patties with gaps. Four per basket for base batch only if they fit; do not cram. Then: Air fry at 380°F for 14–18 min, flipping once halfway; each patty must reach 165°F."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 count",
+              "name": "Large egg",
+              "state": "as purchased",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "2 tbsp",
+              "name": "Ground flaxseed",
+              "state": "ground, not whole",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "⅓ cup",
+              "name": "Crumbled feta",
+              "state": "as sold",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tsp",
+              "name": "Dried oregano",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tsp",
+              "name": "Garlic powder",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "¼ tsp",
+              "name": "Fine salt",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "to taste",
+              "name": "Black pepper",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "1 tsp",
+              "name": "Olive oil",
+              "state": "as purchased",
+              "essentialState": false
+            }
+          ]
+        ]
+      },
+      "summary": "Eight patties cook across two baskets; serve with cucumber salad and yogurt.",
+      "activeMinutes": 15,
+      "totalTime": "30–40 min",
+      "attentionSummary": "Flip patties once; heat one family bread choice during cooking.",
+      "capacity": "The listed pan and basket capacity, cook times, and thermometer endpoint are for four servings.",
+      "timingNote": "Ingredients are scaled; keep food thickness, spacing, settings and safe endpoints fixed. Timings assume the four-serving batch and specified shortcuts. More food can require additional batches.",
+      "equipment": [
+        "Two air fryers, each with roughly 8×8 inches usable flat space for four patties",
+        "Instant-read thermometer",
+        "Clean board and serving tools"
+      ],
+      "ingredients": [
+        {
+          "quantity": "1 ½ lb",
+          "name": "93%-lean ground turkey",
+          "state": "raw",
+          "note": ""
+        },
+        {
+          "quantity": "1 count",
+          "name": "Large egg",
+          "state": "as purchased",
+          "note": "For fractional eggs, beat whole eggs and weigh 50 g per large-egg portion; half an egg is about 25 g."
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Ground flaxseed",
+          "state": "ground, not whole",
+          "note": "Ground seed acts as a binder; whole seeds are not equivalent."
+        },
+        {
+          "quantity": "⅓ cup",
+          "name": "Crumbled feta",
+          "state": "as sold",
+          "note": "Cheese label and rennet vary."
+        },
+        {
+          "quantity": "1 tsp",
+          "name": "Dried oregano",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "1 tsp",
+          "name": "Garlic powder",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "¼ tsp",
+          "name": "Fine salt",
+          "state": "dry",
+          "note": "Use the proportional split described in the method. Black pepper is to taste."
+        },
+        {
+          "quantity": "to taste",
+          "name": "Black pepper",
+          "state": "dry",
+          "note": "To taste; quantity unspecified."
+        },
+        {
+          "quantity": "1 tsp",
+          "name": "Olive oil",
+          "state": "as purchased",
+          "note": "Lightly oil baskets; all oil counted in nutrition."
+        },
+        {
+          "quantity": "10.6 oz",
+          "name": "Cucumber",
+          "state": "fresh, diced",
+          "note": ""
+        },
+        {
+          "quantity": "5 oz",
+          "name": "Salad greens",
+          "state": "washed, ready to eat",
+          "note": "Buy by scaled edible weight."
+        },
+        {
+          "quantity": "½ cup",
+          "name": "Plain strained Greek yogurt",
+          "state": "plain, strained",
+          "note": "At least 9 g protein and no more than 4 g total carbs per 100 g; regular yogurt changes nutrition."
+        },
+        {
+          "quantity": "1 tbsp",
+          "name": "Lemon juice",
+          "state": "fresh or bottled, unsweetened",
+          "note": "Nutrition uses 15 g per tablespoon; use the scaled total."
+        }
+      ],
+      "familyIngredient": null,
+      "familyOptions": [
+        {
+          "choiceId": "pita_one",
+          "label": "Pita",
+          "quantityPerPerson": "1 count",
+          "name": "Pita",
+          "state": "ready to eat; warm briefly",
+          "note": "One ready-to-eat 60 g pita per non-keto diner; warm briefly. Contains wheat; check package. Serve pita alongside both patties and salad.",
+          "nutritionAddedPerPerson": {
+            "kcal": 165,
+            "protein_g": 5.46,
+            "carbs_g": 33.42,
+            "fiber_g": 1.32,
+            "net_carbs_g": 32.1
+          },
+          "allergens": [
+            "wheat"
+          ]
+        },
+        {
+          "choiceId": "bun_one",
+          "label": "Bun",
+          "quantityPerPerson": "1 count",
+          "name": "Bun",
+          "state": "ready to eat; warm briefly",
+          "note": "One 45 g ready-to-eat bun per non-keto diner; warm briefly. Contains wheat; check package. The bread accompanies both patties; use a double-patty bun or serve the second patty beside it.",
+          "nutritionAddedPerPerson": {
+            "kcal": 125.55,
+            "protein_g": 4.3965,
+            "carbs_g": 22.554000000000002,
+            "fiber_g": 0.81,
+            "net_carbs_g": 21.744000000000003
+          },
+          "allergens": [
+            "wheat"
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "title": "Prepare",
+          "text": "Preheat both fryers to 380°F. Prepare cucumber, greens, and yogurt mixed with lemon first. Mix turkey, egg, flax, feta, oregano, garlic, salt, and pepper just until combined. If the scaled egg amount is half an egg, beat one whole egg and use half by weight, about 25 g."
+        },
+        {
+          "title": "Cook",
+          "text": "Form patties about 100 g each, 3¼ inches across and ¾ inch thick; allow about two per adult. Oil baskets lightly. In the four-serving batch, put four patties in each only if they fit with gaps; about 8×8 inches of usable flat space per basket is a starting fit check. Do not cram them in."
+        },
+        {
+          "title": "Finish",
+          "text": "Cook about 14–18 minutes, flipping once halfway, until each patty reaches 165°F. If serving non-keto diners, warm the chosen family bread during cooking. Serve patties with cucumber, greens, and yogurt sauce. A family bun is one double-patty serving, or put one patty in the bun and the other beside it; pita goes alongside the full plate."
+        }
+      ],
+      "timeline": [
+        {
+          "phase": "Prepare and form",
+          "duration": "10–12 min",
+          "attention": "Prepare cold sides first; mix lightly and form patties roughly 100 g each, 3¼ inches across and ¾ inch thick."
+        },
+        {
+          "phase": "Air fry",
+          "duration": "14–18 min",
+          "attention": "Four patties per basket only if gaps remain; flip once halfway, check each for 165°F. Warm one bread choice during cook."
+        },
+        {
+          "phase": "Serve",
+          "duration": "2 min",
+          "attention": "Two patties per person with cucumber, greens, and yogurt."
+        }
+      ],
+      "tips": [
+        "Ground flax binds; whole flax is not equivalent.",
+        "Do a cold basket fit check before committing to air frying."
+      ],
+      "fallback": "If patties do not fit with gaps, bake on half-sheet pans at 425°F for about 18–22 min; check every patty for 165°F. Four-serving base batch can fit on one pan; larger batches may need more pans or rounds. Allow 35–40 min for the base batch.",
+      "limitations": [
+        "Patties may require the oven fallback in smaller fryers.",
+        "Check every packaged ingredient label for additional allergens; this data is not an allergy guarantee."
+      ],
+      "sources": [
+        {
+          "title": "USDA FoodData Central source data",
+          "url": "https://fdc.nal.usda.gov/download-datasets/"
+        },
+        {
+          "title": "FoodSafety.gov safe minimum temperatures",
+          "url": "https://www.foodsafety.gov/food-safety-charts/safe-minimum-internal-temperatures"
+        },
+        {
+          "title": "USDA poultry handling guidance",
+          "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/poultry/chicken-farm-table"
+        }
+      ],
+      "nutrition": {
+        "kcal": 377.87275,
+        "protein_g": 39.90043749999999,
+        "carbs_g": 7.6529575,
+        "fiber_g": 2.2632499999999998,
+        "net_carbs_g": 5.3897075
+      },
+      "familyNutrition": null,
+      "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
+      "allergens": [
+        "egg",
+        "milk"
+      ],
+      "flavorRationale": "Ground flax binds the turkey; feta and lemon yogurt keep a lean patty from tasting flat.",
+      "disclaimer": "These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.",
+      "leftovers": "Refrigerate in shallow containers within two hours, or one hour above 90°F. Use within 3–4 days or freeze; reheat to 165°F. Keep cold greens and yogurt separate.",
+      "safety": "Prepare cold sides first. Keep raw-poultry tools separate; use clean serving utensils. Probe more than one thick piece. A timer is not a doneness test.",
+      "image": {
+        "src": "/media/recipes/greek-turkey-patties-960.webp",
+        "width": 960,
+        "height": 720,
+        "cardSrc": "/media/recipes/greek-turkey-patties-480.webp",
+        "cardSrcset": "/media/recipes/greek-turkey-patties-480.webp 480w, /media/recipes/greek-turkey-patties-960.webp 960w",
+        "detailSrcset": "/media/recipes/greek-turkey-patties-480.webp 480w, /media/recipes/greek-turkey-patties-960.webp 960w, /media/recipes/greek-turkey-patties-1440.webp 1440w",
+        "alt": "Illustration of two turkey-feta patties with cucumber, salad greens and yogurt.",
+        "caption": "AI-generated illustration; appearance and portions are approximate. Keto base shown; family starch is separate."
+      }
+    },
+    {
+      "recipeId": "tomato-lentil-and-chicken-bake",
+      "title": "Tomato, lentil, and chicken bake",
+      "group": "nonketo",
+      "servings": 4,
+      "units": "us",
+      "familyDiners": 0,
+      "cookingFlow": {
+        "notation": "Tabular Recipe Notation (TRN)",
+        "prep": [
+          "Preheat oven to 425°F (bake). Use a shallow 13×9-inch metal baking dish, foil and an instant-read thermometer.",
+          "Use fully cooked, refrigerated chicken chopped no larger than ¾ inch; raw chicken, dry lentils and frozen chicken blocks are not substitutes. Drain and rinse canned lentils; retain tomato juice; roughly chop fresh spinach.",
+          "Keep the mixed bake no more than 1 inch deep; split into shallow dishes if needed."
+        ],
+        "columns": 4,
+        "rows": [
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "16.9 oz",
+              "name": "Canned cooked lentils",
+              "state": "drained and rinsed",
+              "essentialState": true
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 1,
+              "rowspan": 10,
+              "text": "Mix in shallow metal baking dish"
+            },
+            {
+              "kind": "operation",
+              "col": 2,
+              "colspan": 1,
+              "rowspan": 11,
+              "text": "Fold in fully cooked chicken; spread and gently press to an even layer ≤1 inch deep Then: Cover tightly with foil; bake at 425°F about 20–25 min, until center and several chicken pieces reach 165°F; continue if needed"
+            },
+            {
+              "kind": "operation",
+              "col": 3,
+              "colspan": 1,
+              "rowspan": 13,
+              "text": "Finish baked mixture with lemon and feta Then: Plate finished meal: divide the moist bake equally among selected adult portions"
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "14.5 oz",
+              "name": "Canned diced tomatoes",
+              "state": "with juice, room temperature",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "5 oz",
+              "name": "Baby spinach",
+              "state": "fresh, roughly chopped",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tbsp",
+              "name": "Olive oil",
+              "state": "as purchased",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tsp",
+              "name": "Smoked paprika",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tsp",
+              "name": "Ground cumin",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "½ tsp",
+              "name": "Garlic powder",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "½ tsp",
+              "name": "Dried oregano",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "¼ tsp",
+              "name": "Fine salt",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "to taste",
+              "name": "Black pepper",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "12 oz",
+              "name": "Fully cooked chicken breast",
+              "state": "plain, refrigerated, chopped no larger than ¾ inch",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 3,
+              "rowspan": 1,
+              "text": "1 tbsp",
+              "name": "Lemon juice",
+              "state": "fresh or bottled, unsweetened",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 3,
+              "rowspan": 1,
+              "text": "2.1 oz",
+              "name": "Crumbled feta",
+              "state": "as sold",
+              "essentialState": false
+            }
+          ]
+        ]
+      },
+      "summary": "A covered, moist bake reheats already-cooked chicken with lentils and tomato.",
+      "activeMinutes": 10,
+      "totalTime": "35–40 min",
+      "attentionSummary": "No mid-cook action; probe several spots before serving.",
+      "capacity": "The listed pan and basket capacity, cook times, and thermometer endpoint are for four servings.",
+      "timingNote": "Ingredients are scaled; keep food thickness, spacing, settings and safe endpoints fixed. Timings assume the four-serving batch and specified shortcuts. More food can require additional batches.",
+      "equipment": [
+        "Oven at 425°F on bake",
+        "13×9-inch shallow metal baking dish",
+        "Foil cover",
+        "Instant-read thermometer"
+      ],
+      "ingredients": [
+        {
+          "quantity": "12 oz",
+          "name": "Fully cooked chicken breast",
+          "state": "plain, refrigerated, chopped no larger than ¾ inch",
+          "note": "Already fully cooked; raw chicken is not a substitute."
+        },
+        {
+          "quantity": "16.9 oz",
+          "name": "Canned cooked lentils",
+          "state": "drained and rinsed",
+          "note": "Drained weight; canned yield varies. · About 2 × 15 oz (425 g) cans, assuming ~240 g drained per can; check actual yield."
+        },
+        {
+          "quantity": "14.5 oz",
+          "name": "Canned diced tomatoes",
+          "state": "with juice, room temperature",
+          "note": "do not drain. · Buy 1 × 14.5 oz (411 g) cans; measure out the required weight."
+        },
+        {
+          "quantity": "5 oz",
+          "name": "Baby spinach",
+          "state": "fresh, roughly chopped",
+          "note": ""
+        },
+        {
+          "quantity": "1 tbsp",
+          "name": "Olive oil",
+          "state": "as purchased",
+          "note": "Mix into the bake; all oil counted in nutrition."
+        },
+        {
+          "quantity": "1 tsp",
+          "name": "Smoked paprika",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "1 tsp",
+          "name": "Ground cumin",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "½ tsp",
+          "name": "Garlic powder",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "½ tsp",
+          "name": "Dried oregano",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "¼ tsp",
+          "name": "Fine salt",
+          "state": "dry",
+          "note": "Use the proportional split described in the method. Black pepper is to taste."
+        },
+        {
+          "quantity": "to taste",
+          "name": "Black pepper",
+          "state": "dry",
+          "note": "To taste; quantity unspecified."
+        },
+        {
+          "quantity": "1 tbsp",
+          "name": "Lemon juice",
+          "state": "fresh or bottled, unsweetened",
+          "note": "Nutrition uses 15 g per tablespoon; use the scaled total."
+        },
+        {
+          "quantity": "2.1 oz",
+          "name": "Crumbled feta",
+          "state": "as sold",
+          "note": "Cheese label and rennet vary."
+        }
+      ],
+      "familyIngredient": null,
+      "familyOptions": [],
+      "steps": [
+        {
+          "title": "Prepare",
+          "text": "Heat the oven to 425°F. In a 13×9-inch shallow metal baking dish, mix lentils, tomatoes, spinach, oil, spices, and salt. Fold in cooked chicken. Spread and gently press to an even layer no more than 1 inch deep; split into two shallow dishes if needed."
+        },
+        {
+          "title": "Cook",
+          "text": "Cover tightly with foil. Bake about 20–25 minutes. Check the center and several chicken pieces for 165°F; continue if needed."
+        },
+        {
+          "title": "Finish",
+          "text": "Finish with lemon and feta, then divide into the selected number of equal adult portions. This is a moist bake."
+        }
+      ],
+      "timeline": [
+        {
+          "phase": "Preheat and mix",
+          "duration": "10–12 min",
+          "attention": "Mix in shallow dish; keep depth no more than 1 inch, split dishes if needed. Cover tightly."
+        },
+        {
+          "phase": "Bake",
+          "duration": "20–25 min",
+          "attention": "Check center and several chicken pieces for 165°F."
+        },
+        {
+          "phase": "Finish",
+          "duration": "2 min",
+          "attention": "Add lemon and feta; divide equally."
+        }
+      ],
+      "tips": [
+        "Covered tomato liquid protects cooked chicken from drying.",
+        "This is moist, not a crisp tray bake."
+      ],
+      "fallback": "",
+      "limitations": [
+        "Do not substitute raw chicken, dry lentils, or frozen chicken blocks.",
+        "First cook should log depth, starting temperatures, and time to 165°F.",
+        "Check every packaged ingredient label for additional allergens; this data is not an allergy guarantee."
+      ],
+      "sources": [
+        {
+          "title": "USDA FoodData Central source data",
+          "url": "https://fdc.nal.usda.gov/download-datasets/"
+        },
+        {
+          "title": "FoodSafety.gov safe minimum temperatures",
+          "url": "https://www.foodsafety.gov/food-safety-charts/safe-minimum-internal-temperatures"
+        },
+        {
+          "title": "ABC chicken-lentil tray pairing",
+          "url": "https://www.abc.net.au/news/2024-11-02/easy-chicken-and-lentil-tray-bake/104313206"
+        }
+      ],
+      "nutrition": {
+        "kcal": 379.669125,
+        "protein_g": 41.412838750000006,
+        "carbs_g": 30.76150625,
+        "fiber_g": 12.5683,
+        "net_carbs_g": 18.19320625
+      },
+      "familyNutrition": null,
+      "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
+      "allergens": [
+        "milk"
+      ],
+      "flavorRationale": "A tight foil cover and tomato liquid keep precooked chicken moist while lentils heat through.",
+      "disclaimer": "These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.",
+      "leftovers": "Refrigerate in shallow containers within two hours, or one hour above 90°F. Use within 3–4 days or freeze; reheat to 165°F. Keep cold greens and yogurt separate.",
+      "safety": "Prepare cold sides first. Keep raw-poultry tools separate; use clean serving utensils. Probe more than one thick piece. A timer is not a doneness test.",
+      "image": {
+        "src": "/media/recipes/tomato-lentil-and-chicken-bake-960.webp",
+        "width": 960,
+        "height": 720,
+        "cardSrc": "/media/recipes/tomato-lentil-and-chicken-bake-480.webp",
+        "cardSrcset": "/media/recipes/tomato-lentil-and-chicken-bake-480.webp 480w, /media/recipes/tomato-lentil-and-chicken-bake-960.webp 960w",
+        "detailSrcset": "/media/recipes/tomato-lentil-and-chicken-bake-480.webp 480w, /media/recipes/tomato-lentil-and-chicken-bake-960.webp 960w, /media/recipes/tomato-lentil-and-chicken-bake-1440.webp 1440w",
+        "alt": "Illustration of a moist tomato, lentil and chicken bake with spinach and feta.",
+        "caption": "AI-generated illustration; appearance and portions are approximate."
+      }
+    },
+    {
+      "recipeId": "harissa-chickpea-and-cauliflower-bowls",
+      "title": "Harissa chickpea and cauliflower bowls",
+      "group": "nonketo",
+      "servings": 4,
+      "units": "us",
+      "familyDiners": 0,
+      "cookingFlow": {
+        "notation": "Tabular Recipe Notation (TRN)",
+        "prep": [
+          "Preheat oven to 425°F (bake); use two 18×13-inch half-sheet pans. Drain, rinse and thoroughly pat chickpeas dry; use fresh cauliflower florets about 1 inch across and washed salad greens.",
+          "Use the specified Mina mild harissa and the full scaled strained-yogurt amount. Hot concentrated pastes and regular yogurt change the recipe and nutrition.",
+          "Preserve uncrowded single-layer spacing. For six/eight servings use extra pans or base-size batches; original cook times apply to the four-serving batch and extra pans or rounds can extend elapsed time."
+        ],
+        "columns": 4,
+        "rows": [
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "16.9 oz",
+              "name": "Canned chickpeas",
+              "state": "drained, rinsed, patted dry",
+              "essentialState": true
+            },
+            {
+              "kind": "operation",
+              "col": 2,
+              "colspan": 1,
+              "rowspan": 6,
+              "text": "Toss dried chickpeas and cauliflower thoroughly; spread uncrowded across two pans Then: Roast on two half-sheet pans at 425°F about 22–25 min; stir once and swap racks halfway; cauliflower tender and browned, chickpeas soft inside"
+            },
+            {
+              "kind": "operation",
+              "col": 3,
+              "colspan": 1,
+              "rowspan": 14,
+              "text": "Plate finished meal: divide all cold yogurt sauce equally among plates; add greens and roast, then hemp"
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "1 ½ lb",
+              "name": "Cauliflower florets",
+              "state": "fresh, about 1 inch across",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "2 tbsp",
+              "name": "Olive oil",
+              "state": "as purchased",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 1,
+              "rowspan": 4,
+              "text": "Mix roasting dressing"
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "2 tbsp",
+              "name": "Mina mild harissa",
+              "state": "jarred",
+              "essentialState": true
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tsp",
+              "name": "Ground cumin",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "¼ tsp",
+              "name": "Fine salt",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "2 ½ cup",
+              "name": "Plain strained Greek yogurt",
+              "state": "plain, strained",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 2,
+              "rowspan": 6,
+              "text": "During roasting, mix cold yogurt sauce in a separate bowl"
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "2 tbsp",
+              "name": "Mina mild harissa",
+              "state": "jarred",
+              "essentialState": true
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "¼ tsp",
+              "name": "Fine salt",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "2 tbsp",
+              "name": "Lemon juice",
+              "state": "fresh or bottled, unsweetened",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "½ tsp",
+              "name": "Garlic powder",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "to taste",
+              "name": "Black pepper",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 3,
+              "rowspan": 1,
+              "text": "5 oz",
+              "name": "Salad greens",
+              "state": "washed, ready to eat",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 3,
+              "rowspan": 1,
+              "text": "2 tbsp",
+              "name": "Hemp hearts",
+              "state": "hulled",
+              "essentialState": false
+            }
+          ]
+        ]
+      },
+      "summary": "Roasted chickpeas and cauliflower get a full protein portion of strained yogurt.",
+      "activeMinutes": 12,
+      "totalTime": "35–40 min",
+      "attentionSummary": "Stir and swap pans once halfway through roasting.",
+      "capacity": "The listed pan and basket capacity, cook times, and thermometer endpoint are for four servings.",
+      "timingNote": "Ingredients are scaled; keep food thickness, spacing, settings and safe endpoints fixed. Timings assume the four-serving batch and specified shortcuts. More food can require additional batches.",
+      "equipment": [
+        "Oven at 425°F on bake",
+        "Two 18×13-inch half-sheet pans"
+      ],
+      "ingredients": [
+        {
+          "quantity": "16.9 oz",
+          "name": "Canned chickpeas",
+          "state": "drained, rinsed, patted dry",
+          "note": "Drained weight; canned yield varies. · About 2 × 15 oz (425 g) cans, assuming ~240 g drained per can; check actual yield."
+        },
+        {
+          "quantity": "1 ½ lb",
+          "name": "Cauliflower florets",
+          "state": "fresh, about 1 inch across",
+          "note": ""
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Olive oil",
+          "state": "as purchased",
+          "note": "Mix with harissa; all oil counted in nutrition."
+        },
+        {
+          "quantity": "4 tbsp",
+          "name": "Mina mild harissa",
+          "state": "jarred",
+          "note": "Measured Mina mild harissa; half for roasting and half for yogurt. Hot concentrated pastes are not equivalent."
+        },
+        {
+          "quantity": "1 tsp",
+          "name": "Ground cumin",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "½ tsp",
+          "name": "Garlic powder",
+          "state": "dry",
+          "note": "For yogurt sauce."
+        },
+        {
+          "quantity": "½ tsp",
+          "name": "Fine salt",
+          "state": "dry",
+          "note": "Half for roasting and half for the yogurt sauce."
+        },
+        {
+          "quantity": "to taste",
+          "name": "Black pepper",
+          "state": "dry",
+          "note": "To taste in yogurt."
+        },
+        {
+          "quantity": "2 ½ cup",
+          "name": "Plain strained Greek yogurt",
+          "state": "plain, strained",
+          "note": "At least 9 g protein and no more than 4 g total carbs per 100 g; regular yogurt changes nutrition."
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Lemon juice",
+          "state": "fresh or bottled, unsweetened",
+          "note": "Nutrition uses 15 g per tablespoon; use the scaled total."
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Hemp hearts",
+          "state": "hulled",
+          "note": "Use hulled hemp hearts in the measured portion."
+        },
+        {
+          "quantity": "5 oz",
+          "name": "Salad greens",
+          "state": "washed, ready to eat",
+          "note": "Buy by scaled edible weight."
+        }
+      ],
+      "familyIngredient": null,
+      "familyOptions": [],
+      "steps": [
+        {
+          "title": "Prepare",
+          "text": "Heat the oven to 425°F. Mix oil, half the harissa, cumin and half the salt. Toss thoroughly dried chickpeas and cauliflower with it. Spread across two half-sheet pans without crowding."
+        },
+        {
+          "title": "Cook",
+          "text": "Roast for about 22–25 minutes, stirring once and swapping racks halfway, until cauliflower is tender and browned. Chickpeas should still be soft inside."
+        },
+        {
+          "title": "Finish",
+          "text": "During roasting, mix yogurt with the remaining harissa and salt, lemon, garlic and pepper. Divide all the yogurt evenly among the selected number of plates, then add greens and roasted ingredients. Finish with hemp. This uses the specified mild harissa; hotter concentrated pastes do not inherit the same quantity or nutrition."
+        }
+      ],
+      "timeline": [
+        {
+          "phase": "Preheat and load",
+          "duration": "10–12 min",
+          "attention": "Dry rinsed chickpeas; toss with cauliflower, oil, half the mild harissa, cumin and half the salt; spread over two pans."
+        },
+        {
+          "phase": "Roast",
+          "duration": "22–25 min",
+          "attention": "Stir once and swap racks halfway. Mix yogurt with remaining mild harissa/salt, lemon, garlic and pepper during cooking."
+        },
+        {
+          "phase": "Assemble",
+          "duration": "2 min",
+          "attention": "Divide the full scaled yogurt amount equally among plates; add greens, roast, and hemp."
+        }
+      ],
+      "tips": [
+        "The full scaled strained-yogurt amount is required for the stated protein per adult.",
+        "Chickpeas should remain soft inside.",
+        "Pat chickpeas dry with a clean towel before seasoning; wet surfaces steam instead of browning. The doubled mild-harissa dose is a design improvement that still needs tasting."
+      ],
+      "fallback": "",
+      "limitations": [
+        "Ordinary yogurt or omitted yogurt changes protein and calories.",
+        "Mina mild harissa label underlies nutrition; concentrated alternatives need a new calculation.",
+        "Check harissa and yogurt labels for additional allergens. This data is not an allergy guarantee.",
+        "For six/eight servings preserve the original single-layer spacing with extra pans or base-size batches. Original cook times apply to the original four-serving batch; more pans or rounds can extend total time."
+      ],
+      "sources": [
+        {
+          "title": "USDA FoodData Central source data",
+          "url": "https://fdc.nal.usda.gov/download-datasets/"
+        },
+        {
+          "title": "FoodSafety.gov safe minimum temperatures",
+          "url": "https://www.foodsafety.gov/food-safety-charts/safe-minimum-internal-temperatures"
+        },
+        {
+          "title": "Mina mild harissa",
+          "url": "https://mina.co/products/mina-harissa-mild"
+        }
+      ],
+      "nutrition": {
+        "kcal": 425.85637499999996,
+        "protein_g": 28.835533750000003,
+        "carbs_g": 45.436038749999994,
+        "fiber_g": 12.017999999999999,
+        "net_carbs_g": 33.418038749999994
+      },
+      "familyNutrition": null,
+      "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
+      "allergens": [
+        "milk"
+      ],
+      "flavorRationale": "Cumin-roasted cauliflower and soft-centered chickpeas meet a cold lemon-harissa yogurt sauce. Splitting the mild harissa between roast and sauce keeps some pepper flavor out of the oven; a little salt seasons the full yogurt portion.",
+      "disclaimer": "These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.",
+      "leftovers": "Refrigerate in shallow containers within two hours, or one hour above 90°F. Use within 3–4 days or freeze; reheat to 165°F. Keep cold greens and yogurt separate.",
+      "safety": "Prepare cold sides first. Keep raw-poultry tools separate; use clean serving utensils. Probe more than one thick piece. A timer is not a doneness test.",
+      "image": {
+        "src": "/media/recipes/harissa-chickpea-and-cauliflower-bowls-960.webp",
+        "width": 960,
+        "height": 720,
+        "cardSrc": "/media/recipes/harissa-chickpea-and-cauliflower-bowls-480.webp",
+        "cardSrcset": "/media/recipes/harissa-chickpea-and-cauliflower-bowls-480.webp 480w, /media/recipes/harissa-chickpea-and-cauliflower-bowls-960.webp 960w",
+        "detailSrcset": "/media/recipes/harissa-chickpea-and-cauliflower-bowls-480.webp 480w, /media/recipes/harissa-chickpea-and-cauliflower-bowls-960.webp 960w, /media/recipes/harissa-chickpea-and-cauliflower-bowls-1440.webp 1440w",
+        "alt": "Illustration of chickpeas and roasted cauliflower over harissa yogurt with hemp hearts.",
+        "caption": "AI-generated illustration; appearance and portions are approximate."
+      }
+    },
+    {
+      "recipeId": "lemon-chicken-potatoes-and-green-beans",
+      "title": "Lemon chicken, potatoes, and green beans",
+      "group": "nonketo",
+      "servings": 4,
+      "units": "us",
+      "familyDiners": 0,
+      "cookingFlow": {
+        "notation": "Tabular Recipe Notation (TRN)",
+        "prep": [
+          "Preheat oven to 425°F (bake). Use two 18×13-inch half-sheet pans, a vented microwave-safe dish, a roughly 1000 W microwave and an instant-read thermometer.",
+          "Before handling raw chicken, mix oil, oregano, garlic, zest and pepper in a clean bowl. Reserve half for drained potatoes, one quarter for beans and one quarter for chicken; give each one third of the salt. Use separate bowls and keep vegetables and their tools away from raw-poultry juices.",
+          "Use thawed, unfolded thighs ≤¾ inch thick; cut potatoes no larger than ¾ inch and trim beans. Keep potatoes and beans in separate single-layer areas on one vegetable pan and chicken on its own pan.",
+          "Check that beans fit the reserved half-pan without a dense pile; extra pans or rounds can add time. For six/eight servings microwave potatoes in separate base-size loads until fork-tender; microwave time does not scale linearly.",
+          "Start chicken and potatoes together; at roast minute 10 add beans to their reserved area and swap racks. Remove each component at its own endpoint."
+        ],
+        "columns": 6,
+        "rows": [
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "1 ½ lb",
+              "name": "Boneless skinless chicken thighs",
+              "state": "raw, thawed, unfolded; no more than ¾ inch thick",
+              "essentialState": true
+            },
+            {
+              "kind": "operation",
+              "col": 2,
+              "colspan": 3,
+              "rowspan": 7,
+              "text": "Coat raw chicken in its separate bowl with reserved seasoning and one third of salt; unfold onto its own pan Then: Roast chicken on separate pan at 425°F for 20–25 min, until thickest pieces reach 165°F; remove when ready"
+            },
+            {
+              "kind": "operation",
+              "col": 5,
+              "colspan": 1,
+              "rowspan": 24,
+              "text": "Plate finished meal: serve cooked chicken beside vegetables; finish all with lemon juice"
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "½ tbsp",
+              "name": "Olive oil",
+              "state": "as purchased",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 1,
+              "rowspan": 5,
+              "text": "Use reserved quarter of clean-bowl seasoning mix"
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "¼ tsp",
+              "name": "Dried oregano",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "¼ tsp",
+              "name": "Garlic powder",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "¼ tsp",
+              "name": "Lemon zest",
+              "state": "finely grated",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "to taste",
+              "name": "Black pepper",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "¼ tsp",
+              "name": "Fine salt",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 ¼ lb",
+              "name": "Baby potatoes",
+              "state": "fresh, cut no larger than ¾ inch",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 1,
+              "rowspan": 2,
+              "text": "Microwave in vented dish on high about 6–8 min at ~1000 W until just fork-tender; carefully uncover and drain"
+            },
+            {
+              "kind": "operation",
+              "col": 2,
+              "colspan": 1,
+              "rowspan": 8,
+              "text": "Coat drained potatoes with reserved seasoning and one third of salt Then: Spread on half the vegetable pan, reserve other half; start with chicken and roast at 425°F for 10 min"
+            },
+            {
+              "kind": "operation",
+              "col": 3,
+              "colspan": 1,
+              "rowspan": 15,
+              "text": "Keep beans and potatoes in separate areas; roast at 425°F another 10–15 min until both tender; remove each when ready"
+            },
+            {
+              "kind": "operation",
+              "col": 4,
+              "colspan": 1,
+              "rowspan": 16,
+              "text": "Sprinkle yeast over cooked vegetables"
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "2 tbsp",
+              "name": "Water",
+              "state": "potable",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tbsp",
+              "name": "Olive oil",
+              "state": "as purchased",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 1,
+              "rowspan": 5,
+              "text": "Use reserved half of clean-bowl seasoning mix"
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "½ tsp",
+              "name": "Dried oregano",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "½ tsp",
+              "name": "Garlic powder",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "½ tsp",
+              "name": "Lemon zest",
+              "state": "finely grated",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "to taste",
+              "name": "Black pepper",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "¼ tsp",
+              "name": "Fine salt",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "1 lb",
+              "name": "Green beans",
+              "state": "fresh, trimmed",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 2,
+              "colspan": 1,
+              "rowspan": 7,
+              "text": "Coat beans in separate clean bowl with reserved seasoning and one third of salt; set aside until minute 10 Then: Add beans to reserved vegetable-pan area at roast minute 10; swap racks"
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "½ tbsp",
+              "name": "Olive oil",
+              "state": "as purchased",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 1,
+              "rowspan": 5,
+              "text": "Use reserved quarter of clean-bowl seasoning mix"
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "¼ tsp",
+              "name": "Dried oregano",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "¼ tsp",
+              "name": "Garlic powder",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "¼ tsp",
+              "name": "Lemon zest",
+              "state": "finely grated",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "to taste",
+              "name": "Black pepper",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 2,
+              "rowspan": 1,
+              "text": "¼ tsp",
+              "name": "Fine salt",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 4,
+              "rowspan": 1,
+              "text": "2 tbsp",
+              "name": "Nutritional yeast",
+              "state": "flakes",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 5,
+              "rowspan": 1,
+              "text": "2 tbsp",
+              "name": "Lemon juice",
+              "state": "fresh or bottled, unsweetened",
+              "essentialState": false
+            }
+          ]
+        ]
+      },
+      "summary": "Microwave potatoes while prepping, then roast with chicken and add beans after 10 minutes.",
+      "activeMinutes": 15,
+      "totalTime": "35–45 min",
+      "attentionSummary": "Microwave potatoes first; add beans and swap racks after 10 minutes.",
+      "capacity": "The listed pan and basket capacity, cook times, and thermometer endpoint are for four servings.",
+      "timingNote": "Ingredients are scaled; keep food thickness, spacing, settings and safe endpoints fixed. Timings assume the four-serving batch and specified shortcuts. More food can require additional batches.",
+      "equipment": [
+        "Oven at 425°F on bake",
+        "Microwave about 1000 W",
+        "Vented microwave-safe dish",
+        "Two 18×13-inch half-sheet pans",
+        "Instant-read thermometer"
+      ],
+      "ingredients": [
+        {
+          "quantity": "1 ½ lb",
+          "name": "Boneless skinless chicken thighs",
+          "state": "raw, thawed, unfolded; no more than ¾ inch thick",
+          "note": ""
+        },
+        {
+          "quantity": "1 ¼ lb",
+          "name": "Baby potatoes",
+          "state": "fresh, cut no larger than ¾ inch",
+          "note": ""
+        },
+        {
+          "quantity": "1 lb",
+          "name": "Green beans",
+          "state": "fresh, trimmed",
+          "note": ""
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Olive oil",
+          "state": "as purchased",
+          "note": "Half to potatoes; one quarter each to beans and chicken. All oil counted in nutrition."
+        },
+        {
+          "quantity": "1 tsp",
+          "name": "Dried oregano",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "1 tsp",
+          "name": "Garlic powder",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "¾ tsp",
+          "name": "Fine salt",
+          "state": "dry",
+          "note": "Use the proportional split described in the method. Black pepper is to taste."
+        },
+        {
+          "quantity": "to taste",
+          "name": "Black pepper",
+          "state": "dry",
+          "note": "To taste; quantity unspecified."
+        },
+        {
+          "quantity": "1 tsp",
+          "name": "Lemon zest",
+          "state": "finely grated",
+          "note": "Use finely grated zest."
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Lemon juice",
+          "state": "fresh or bottled, unsweetened",
+          "note": "Nutrition uses 15 g per tablespoon; use the scaled total."
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Nutritional yeast",
+          "state": "flakes",
+          "note": "Add after cooking; brand density varies."
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Water",
+          "state": "potable",
+          "note": "Microwave steaming water; drain before roasting."
+        }
+      ],
+      "familyIngredient": null,
+      "familyOptions": [],
+      "steps": [
+        {
+          "title": "Prepare",
+          "text": "Heat the oven to 425°F. Put potato pieces and water in a microwave-safe dish with a vented microwave-safe cover. Microwave on high for about 6–8 minutes in a roughly 1000 W microwave, until just fork-tender, then carefully uncover and drain. Prepare the rest during this step."
+        },
+        {
+          "title": "Cook",
+          "text": "Before handling raw chicken, mix the oil, oregano, garlic, zest and pepper in a clean bowl. Give half to the drained potatoes, one quarter to beans and one quarter to chicken in separate bowls; give each one third of the salt. Spread potatoes over one half of a half-sheet pan, reserving the other half for beans. Set beans aside. Put unfolded chicken on the second pan. Keep the vegetable portion and tools away from raw-poultry juices."
+        },
+        {
+          "title": "Finish",
+          "text": "Roast chicken and potatoes for 20–25 minutes. Add green beans to the vegetable pan after the first 10 minutes, keeping them in a separate area rather than piling them over potatoes. Swap racks at that addition. Chicken must reach 165°F; potatoes and beans should be tender. Remove each when ready."
+        },
+        {
+          "title": "Serve",
+          "text": "Finish with lemon juice. Sprinkle yeast over vegetables after cooking."
+        }
+      ],
+      "timeline": [
+        {
+          "phase": "Preheat and microwave",
+          "duration": "12–16 min",
+          "attention": "Microwave potatoes with the measured water until just fork-tender; drain carefully. Prep chicken and beans during this stage."
+        },
+        {
+          "phase": "First roast",
+          "duration": "10 min",
+          "attention": "Potatoes on half a vegetable pan; chicken on second pan."
+        },
+        {
+          "phase": "Add beans and finish",
+          "duration": "10–15 min",
+          "attention": "Add beans to reserved area and swap racks; check chicken for 165°F and vegetables for tenderness."
+        },
+        {
+          "phase": "Finish",
+          "duration": "2 min",
+          "attention": "Add lemon; sprinkle yeast over vegetables."
+        }
+      ],
+      "tips": [
+        "Keep beans and potatoes in separate single-layer areas.",
+        "Skipping microwave step lengthens roasting.",
+        "Check that the full bean portion fits the reserved half-pan without a dense pile. An extra pan or rounds can add time; record this fit on the first cook."
+      ],
+      "fallback": "",
+      "limitations": [
+        "Microwave head start of 567 g potatoes at about 1000 W is an untested estimate; fork-tender endpoint controls.",
+        "Smaller pans can require extra batches.",
+        "Check every packaged ingredient label for additional allergens; this data is not an allergy guarantee.",
+        "Microwave load and heating time do not scale linearly; for six/eight servings microwave potato portions in separate base-size loads until fork-tender, allowing extra elapsed time."
+      ],
+      "sources": [
+        {
+          "title": "USDA FoodData Central source data",
+          "url": "https://fdc.nal.usda.gov/download-datasets/"
+        },
+        {
+          "title": "FoodSafety.gov safe minimum temperatures",
+          "url": "https://www.foodsafety.gov/food-safety-charts/safe-minimum-internal-temperatures"
+        },
+        {
+          "title": "Bob's Red Mill nutritional yeast label",
+          "url": "https://www.bobsredmill.com/product/nutritional-yeast"
+        },
+        {
+          "title": "Potatoes USA microwave guidance",
+          "url": "https://potatogoodness.com/wp-content/uploads/2018/04/Wow_Book_For_Web_Potatoes_USA_Branding.pdf"
+        }
+      ],
+      "nutrition": {
+        "kcal": 422.31525,
+        "protein_g": 39.589437499999995,
+        "carbs_g": 34.7864825,
+        "fiber_g": 6.792750000000001,
+        "net_carbs_g": 27.993732499999997
+      },
+      "familyNutrition": null,
+      "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
+      "allergens": [],
+      "flavorRationale": "The same lemon, garlic and oregano oil seasons the chicken and both vegetables. The microwave head start makes the potatoes tender before roasting, and delayed beans keep their texture. Lemon and yeast finish the dish after the hot oven.",
+      "disclaimer": "These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.",
+      "leftovers": "Refrigerate in shallow containers within two hours, or one hour above 90°F. Use within 3–4 days or freeze; reheat to 165°F. Keep cold greens and yogurt separate.",
+      "safety": "Prepare cold sides first. Keep raw-poultry tools separate; use clean serving utensils. Probe more than one thick piece. A timer is not a doneness test.",
+      "image": {
+        "src": "/media/recipes/lemon-chicken-potatoes-and-green-beans-960.webp",
+        "width": 960,
+        "height": 720,
+        "cardSrc": "/media/recipes/lemon-chicken-potatoes-and-green-beans-480.webp",
+        "cardSrcset": "/media/recipes/lemon-chicken-potatoes-and-green-beans-480.webp 480w, /media/recipes/lemon-chicken-potatoes-and-green-beans-960.webp 960w",
+        "detailSrcset": "/media/recipes/lemon-chicken-potatoes-and-green-beans-480.webp 480w, /media/recipes/lemon-chicken-potatoes-and-green-beans-960.webp 960w, /media/recipes/lemon-chicken-potatoes-and-green-beans-1440.webp 1440w",
+        "alt": "Illustration of lemon-oregano chicken, roasted baby potatoes and green beans.",
+        "caption": "AI-generated illustration; appearance and portions are approximate."
+      }
+    },
+    {
+      "recipeId": "sheet-pan-gnocchi-white-beans-and-broccoli",
+      "title": "Sheet-pan gnocchi, white beans, and broccoli",
+      "group": "nonketo",
+      "servings": 4,
+      "units": "us",
+      "familyDiners": 0,
+      "cookingFlow": {
+        "notation": "Tabular Recipe Notation (TRN)",
+        "prep": [
+          "Preheat oven to 425°F (bake); use two 18×13-inch half-sheet pans. Use shelf-stable, unfrozen gnocchi; do not boil first. Drain and rinse canned beans; use fresh broccoli florets about 1½ inches across.",
+          "Preserve uncrowded single-layer spacing. For six/eight servings use extra pans or base-size batches; original cook times apply to the four-serving batch and extra pans or rounds can extend elapsed time.",
+          "Use the full scaled Parmesan amount: half incorporated while warm and half divided among plates. Cheese rennet varies; check the label if vegetarian food is required."
+        ],
+        "columns": 5,
+        "rows": [
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 lb",
+              "name": "DeLallo potato gnocchi",
+              "state": "shelf-stable, not frozen",
+              "essentialState": true
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 1,
+              "rowspan": 8,
+              "text": "Toss and divide across two half-sheet pans; gnocchi remain unboiled Then: Roast at 425°F for 12 min on two half-sheet pans"
+            },
+            {
+              "kind": "operation",
+              "col": 2,
+              "colspan": 1,
+              "rowspan": 10,
+              "text": "At minute 12 add oiled beans to both pans, stir everything once and swap racks Then: Continue roasting at 425°F for 13–18 min (25–30 min total), until gnocchi centers tender and broccoli tender and browned Then: Press a few softened tomatoes with serving spoon; toss their juices through gnocchi and beans"
+            },
+            {
+              "kind": "operation",
+              "col": 3,
+              "colspan": 1,
+              "rowspan": 13,
+              "text": "While warm, toss in yeast, lemon and half the Parmesan"
+            },
+            {
+              "kind": "operation",
+              "col": 4,
+              "colspan": 1,
+              "rowspan": 15,
+              "text": "Plate finished meal: divide equally among selected adult portions; top with remaining half of Parmesan and hemp"
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 lb",
+              "name": "Broccoli florets",
+              "state": "fresh, about 1½ inches across",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "10.6 oz",
+              "name": "Cherry tomatoes",
+              "state": "fresh",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "2 tbsp",
+              "name": "Olive oil",
+              "state": "as purchased",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tsp",
+              "name": "Dried oregano",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "½ tsp",
+              "name": "Garlic powder",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "¼ tsp",
+              "name": "Fine salt",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "to taste",
+              "name": "Black pepper",
+              "state": "dry",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "16.9 oz",
+              "name": "Canned cannellini beans",
+              "state": "drained and rinsed",
+              "essentialState": true
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 1,
+              "rowspan": 2,
+              "text": "Toss drained, rinsed beans with remaining one third of oil"
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "1 tbsp",
+              "name": "Olive oil",
+              "state": "as purchased",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 3,
+              "rowspan": 1,
+              "text": "1 tbsp",
+              "name": "Nutritional yeast",
+              "state": "flakes",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 3,
+              "rowspan": 1,
+              "text": "1 tbsp",
+              "name": "Lemon juice",
+              "state": "fresh or bottled, unsweetened",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 3,
+              "rowspan": 1,
+              "text": "1.8 oz",
+              "name": "Pre-grated Parmesan",
+              "state": "as sold",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 4,
+              "rowspan": 1,
+              "text": "1.8 oz",
+              "name": "Pre-grated Parmesan",
+              "state": "as sold",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 4,
+              "rowspan": 1,
+              "text": "2 tbsp",
+              "name": "Hemp hearts",
+              "state": "hulled",
+              "essentialState": false
+            }
+          ]
+        ]
+      },
+      "summary": "Shelf-stable gnocchi roasts without boiling; beans join midway to avoid drying.",
+      "activeMinutes": 12,
+      "totalTime": "40–45 min",
+      "attentionSummary": "Add beans, stir, and swap racks once at minute 12.",
+      "capacity": "The listed pan and basket capacity, cook times, and thermometer endpoint are for four servings.",
+      "timingNote": "Ingredients are scaled; keep food thickness, spacing, settings and safe endpoints fixed. Timings assume the four-serving batch and specified shortcuts. More food can require additional batches.",
+      "equipment": [
+        "Oven at 425°F on bake",
+        "Two 18×13-inch half-sheet pans"
+      ],
+      "ingredients": [
+        {
+          "quantity": "1 lb",
+          "name": "DeLallo potato gnocchi",
+          "state": "shelf-stable, not frozen",
+          "note": "brand and style affect timing and nutrition. · Buy 1 × 16 oz (454 g) packages; measure out the required weight."
+        },
+        {
+          "quantity": "16.9 oz",
+          "name": "Canned cannellini beans",
+          "state": "drained and rinsed",
+          "note": "Drained weight; canned yield varies. · About 2 × 15 oz (425 g) cans, assuming ~240 g drained per can; check actual yield."
+        },
+        {
+          "quantity": "1 lb",
+          "name": "Broccoli florets",
+          "state": "fresh, about 1½ inches across",
+          "note": ""
+        },
+        {
+          "quantity": "10.6 oz",
+          "name": "Cherry tomatoes",
+          "state": "fresh",
+          "note": "Buy by the scaled edible weight; produce size varies."
+        },
+        {
+          "quantity": "3 tbsp",
+          "name": "Olive oil",
+          "state": "as purchased",
+          "note": "Two thirds for first roast; one third with beans midway. All oil counted in nutrition."
+        },
+        {
+          "quantity": "1 tsp",
+          "name": "Dried oregano",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "½ tsp",
+          "name": "Garlic powder",
+          "state": "dry",
+          "note": ""
+        },
+        {
+          "quantity": "¼ tsp",
+          "name": "Fine salt",
+          "state": "dry",
+          "note": "Use the proportional split described in the method. Black pepper is to taste."
+        },
+        {
+          "quantity": "to taste",
+          "name": "Black pepper",
+          "state": "dry",
+          "note": "To taste; quantity unspecified."
+        },
+        {
+          "quantity": "1 tbsp",
+          "name": "Nutritional yeast",
+          "state": "flakes",
+          "note": "Add after cooking; brand density varies."
+        },
+        {
+          "quantity": "1 tbsp",
+          "name": "Lemon juice",
+          "state": "fresh or bottled, unsweetened",
+          "note": "Nutrition uses 15 g per tablespoon; use the scaled total."
+        },
+        {
+          "quantity": "2 tbsp",
+          "name": "Hemp hearts",
+          "state": "hulled",
+          "note": "Use hulled hemp hearts in the measured portion."
+        },
+        {
+          "quantity": "3.5 oz",
+          "name": "Pre-grated Parmesan",
+          "state": "as sold",
+          "note": "Required for stated protein; check rennet label if vegetarian food is needed."
+        }
+      ],
+      "familyIngredient": null,
+      "familyOptions": [],
+      "steps": [
+        {
+          "title": "Prepare",
+          "text": "Heat the oven to 425°F. Toss gnocchi, broccoli, and tomatoes with two thirds of the oil, oregano, garlic, salt, and pepper. Divide across two half-sheet pans. Do not boil gnocchi first."
+        },
+        {
+          "title": "Cook",
+          "text": "Roast for 12 minutes. Toss beans with the remaining oil. Add them to the pans, stir everything once, and swap racks. Continue roasting for about 13–18 minutes, until gnocchi are tender inside and broccoli is tender and browned."
+        },
+        {
+          "title": "Finish",
+          "text": "At the finish, press a few softened tomatoes with the serving spoon and toss their juices through the gnocchi and beans. Toss in yeast, lemon and half the Parmesan while warm; divide equally into the selected number of adult portions and top with the remaining Parmesan and hemp. The full measured Parmesan is included in the nutrition."
+        }
+      ],
+      "timeline": [
+        {
+          "phase": "Preheat and load",
+          "duration": "10–12 min",
+          "attention": "Toss shelf-stable unboiled gnocchi, broccoli and tomatoes with two thirds of the measured oil and seasoning; spread on two pans."
+        },
+        {
+          "phase": "First roast",
+          "duration": "12 min",
+          "attention": "No stirring yet."
+        },
+        {
+          "phase": "Add beans and finish",
+          "duration": "13–18 min",
+          "attention": "Toss drained beans with the remaining oil; add, stir all once, swap racks. Cook until gnocchi centers and broccoli are tender."
+        },
+        {
+          "phase": "Finish",
+          "duration": "2 min",
+          "attention": "Press a few softened tomatoes and toss their juices through the gnocchi and beans; incorporate the measured finishes, with all Parmesan divided among plates."
+        }
+      ],
+      "tips": [
+        "The full scaled Parmesan amount is required for the stated protein per adult.",
+        "Animal rennet is possible in Parmesan; this recipe is plant-forward and is not labeled vegetarian without checking the specific cheese.",
+        "Adding beans halfway helps avoid dry beans.",
+        "Tomato juices help the warm cheese and yeast coat the food instead of sitting on top as dry powder; do not keep roasting after the gnocchi centers are tender."
+      ],
+      "fallback": "",
+      "limitations": [
+        "Other brands, fresh or frozen gnocchi, and gluten-free products can change timing and nutrition.",
+        "USDA canned white bean proxy lacks an explicit drained-state qualifier; this is an approximation.",
+        "Check the gnocchi label for egg, soy, and other allergens. This data is not an allergy guarantee.",
+        "For six/eight servings preserve the original single-layer spacing with extra pans or base-size batches. Original cook times apply to the original four-serving batch; more pans or rounds can extend total time."
+      ],
+      "sources": [
+        {
+          "title": "USDA FoodData Central source data",
+          "url": "https://fdc.nal.usda.gov/download-datasets/"
+        },
+        {
+          "title": "FoodSafety.gov safe minimum temperatures",
+          "url": "https://www.foodsafety.gov/food-safety-charts/safe-minimum-internal-temperatures"
+        },
+        {
+          "title": "Bob's Red Mill nutritional yeast label",
+          "url": "https://www.bobsredmill.com/product/nutritional-yeast"
+        },
+        {
+          "title": "DeLallo potato gnocchi label",
+          "url": "https://www.delallo.com/delallo-potato-gnocchi-16-oz/"
+        },
+        {
+          "title": "DeLallo sheet-pan gnocchi method",
+          "url": "https://www.delallo.com/recipe/sheet-pan-pesto-gnocchi/"
+        }
+      ],
+      "nutrition": {
+        "kcal": 604.0294107142857,
+        "protein_g": 26.719741964285713,
+        "carbs_g": 81.42849303571431,
+        "fiber_g": 11.834803571428571,
+        "net_carbs_g": 69.59368946428575
+      },
+      "familyNutrition": null,
+      "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
+      "allergens": [
+        "milk",
+        "wheat"
+      ],
+      "flavorRationale": "Roasted shelf-stable gnocchi stays tender inside; later beans avoid drying, while Parmesan supplies protein.",
+      "disclaimer": "These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.",
+      "leftovers": "Refrigerate in shallow containers within two hours, or one hour above 90°F. Use within 3–4 days or freeze; reheat to 165°F. Keep cold greens and yogurt separate.",
+      "safety": "Prepare cold sides first. Keep raw-poultry tools separate; use clean serving utensils. Probe more than one thick piece. A timer is not a doneness test.",
+      "image": {
+        "src": "/media/recipes/sheet-pan-gnocchi-white-beans-and-broccoli-960.webp",
+        "width": 960,
+        "height": 720,
+        "cardSrc": "/media/recipes/sheet-pan-gnocchi-white-beans-and-broccoli-480.webp",
+        "cardSrcset": "/media/recipes/sheet-pan-gnocchi-white-beans-and-broccoli-480.webp 480w, /media/recipes/sheet-pan-gnocchi-white-beans-and-broccoli-960.webp 960w",
+        "detailSrcset": "/media/recipes/sheet-pan-gnocchi-white-beans-and-broccoli-480.webp 480w, /media/recipes/sheet-pan-gnocchi-white-beans-and-broccoli-960.webp 960w, /media/recipes/sheet-pan-gnocchi-white-beans-and-broccoli-1440.webp 1440w",
+        "alt": "Illustration of roasted gnocchi, white beans, broccoli, tomatoes and Parmesan.",
+        "caption": "AI-generated illustration; appearance and portions are approximate."
+      }
+    }
+  ]
+}

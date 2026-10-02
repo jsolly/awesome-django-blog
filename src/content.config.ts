@@ -3,6 +3,7 @@ import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 
 const slug = z.string().regex(/^[A-Za-z0-9_-]+$/);
+const timestamp = z.string().datetime({ offset: true }).pipe(z.coerce.date());
 const posts = defineCollection({
   loader: glob({ pattern: '*.md', base: './src/content/posts', generateId: ({ entry }) => entry }),
   schema: z.object({
@@ -11,7 +12,7 @@ const posts = defineCollection({
     imageAlt: z.string().default(''), imageAttribution: z.string().default(''),
     imageWidth: z.number().int().positive().nullable().default(null),
     imageHeight: z.number().int().positive().nullable().default(null),
-    published: z.coerce.date(), updated: z.coerce.date(),
+    published: timestamp, updated: timestamp,
     author: z.string().default('John Solly'), feedAuthor: z.string().default('John_Solly'),
     excerpt: z.string().default(''),
     legacyId: z.number().int().optional(), related: z.array(slug).default([]),

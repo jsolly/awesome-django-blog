@@ -39,15 +39,17 @@ content:
         type: boolean
         default: true
       - name: published
-        type: date
+        label: Publication timestamp
+        type: string
         required: true
-        options:
-          time: true
+        description: "ISO 8601 with seconds and a timezone, for example 2026-10-02T14:00:00Z. Preserve this value on existing posts."
+        pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$'
       - name: updated
-        type: date
+        label: Updated timestamp
+        type: string
         required: true
-        options:
-          time: true
+        description: "ISO 8601 with seconds and a timezone. Change this when making an editorial update."
+        pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$'
       - name: author
         type: string
         default: John Solly
@@ -56,7 +58,11 @@ content:
         type: string
         default: John_Solly
       - name: image
-        type: image
+        label: Cover image URL or media path
+        type: string
+        default: /media/default.webp
+        description: "Upload through Media, then paste its /media/... path here; existing HTTPS media URLs are preserved."
+        pattern: '^(?:/media/\S+|https://\S+)$'
       - name: imageAlt
         label: Image description
         type: string

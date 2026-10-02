@@ -16,6 +16,8 @@ remains public. Do not introduce database/auth/AI backends without a new scope d
 
 `.pages.yml` uses a Markdown code editor, structured metadata, new-post draft
 labels and `settings.content.merge: true` to preserve unmanaged reconciliation keys.
+Timestamps use validated ISO strings to preserve seconds, precision and timezones;
+the cover image uses a URL/media-path string with uploads through the Media sidebar.
 Do not replace the body with WYSIWYG without a verified complex-article roundtrip.
 Legacy slugs are case-sensitive and stable. Preserve author names, timestamps,
 excerpts and related links. CommonMark is configured without smart punctuation or
@@ -43,7 +45,7 @@ an empty index. It needs the installed dotagents gate library, Bash 5, actionlin
 gitleaks and pinned Node dependencies. Use `npm run worktree:init` for fresh checkouts.
 Never set `core.hooksPath`; the trusted dotagents dispatcher owns it.
 
-The importer `scripts/import-django.mjs` writes only to an empty destination.
+The importer `scripts/import-legacy.mjs` writes only to an empty destination.
 `npm run verify:migration -- .migration-work/source-2026-10-02.json` compares the
 actual build against the private authoritative source; its source oracle must not
 use the application's converter or renderer. Private export evidence stays ignored.
@@ -62,9 +64,9 @@ invoked drain adds `ow-ci`; skipped checks cannot satisfy `ci`.
 Canonical production URL: <https://www.blogthedata.com>. Vercel production branch
 is `main`, install `npm ci`, build `npm run build`, output `dist`, Node 24.
 `vercel.json` disables other Git refs and supplies redirects/security/feed MIME.
-No Vercel project has been provisioned for this repo yet. Current production is
-still Django on Heroku app `blogthedata`; **disable Heroku auto deploy before merging
-this runtime replacement**. Follow [the cutover runbook](docs/astro-migration.md).
+Vercel project `blogthedata` has been provisioned without a Git connection or
+deployment. Current production is the legacy Heroku app `blogthedata`. Heroku
+automatic deploys are disabled, and the existing release is retained for rollback. Follow [the cutover runbook](docs/astro-migration.md).
 
 A release requires successful production deployment plus that exact SHA's canonical
 production smoke. `/release.json` records `VERCEL_GIT_COMMIT_SHA` (CI/local use
@@ -87,11 +89,12 @@ code and iframe checks in both viewports. Screenshots/evidence belong in ignored
 
 ## Cloud and data safety
 
-Project creation, DNS, infrastructure deployment, production DB writes and destructive
-cloud changes are John's human operations. Keep Heroku/database/S3/CloudFront/IAM
+John authorized migration backups and hosting administration. Infrastructure deployment,
+production DB writes and destructive cloud changes remain John's human operations. Keep Heroku/database/S3/CloudFront/IAM
 resources intact through the cutover and rollback window. The AWS bucket is
 `blogthedata` in account `730335616323`; do not widen the retained bucket-scoped
-policy. No new AWS service or frontend AWS credential is needed. Do not delete
+policy. All new AWS resources must be defined with CloudFormation. The recovery bucket is
+a manual prerequisite; the frontend needs no AWS credentials. Do not delete
 ignored exports or local rollback state. See the runbook for independent backups.
 
 Cross-repo rules remain canon in dotagents; this task does not authorize fleet

@@ -1,10 +1,10 @@
 # Astro migration and cutover
 
-Production still runs Django on Heroku. The replacement on
+Production still runs the legacy application on Heroku. The replacement on
 `codex/astro-svelte-pagescms` remains unmerged and undeployed. The CMS rehearsal,
-final content reconciliation, independent backups and human hosting/DNS steps
-below remain required. **Disable Heroku automatic deploys before merging the
-runtime replacement.** Otherwise GitHub main would send Astro to the old app.
+final content reconciliation, independent backups and hosting/DNS steps
+below remain required. Heroku automatic deploys were disabled and verified after
+a reload on October 2, 2026; the existing serving release remains available for rollback.
 
 ## Architecture decisions
 
@@ -24,7 +24,8 @@ See [publishing instructions](publishing.md).
 
 Ordinary new images upload into `public/media` through PagesCMS. Large objects
 are uploaded separately into existing S3 and linked by CloudFront URL. Existing
-AWS media URLs remain. There is no integrated S3 uploader or new AWS service.
+AWS media URLs remain. There is no integrated S3 uploader. A separate recovery bucket is defined through
+CloudFormation; no request-time AWS service is needed.
 Neither PagesCMS nor the frontend needs AWS credentials for public media.
 
 ## Source and verification
@@ -32,13 +33,15 @@ Neither PagesCMS nor the frontend needs AWS credentials for public media.
 The read-only Heroku export on October 2, 2026 supplied 106 published articles,
 six categories, 379 related scores and two historical aliases. It includes no
 users or comments. Source IDs, author identity, timestamps, excerpts, descriptions,
-image metadata, slug case and related associations are retained. The receipt at
+image metadata, slug case and ranked related associations are retained for the
+105 unchanged articles. One user-authorized recipe rewrite keeps its URL,
+publication, authorship, category, legacy identity and ranked associations. The receipt at
 `src/content/migration-receipt.json` records source SHA-256 and stable URLs.
 
 The private source is `.migration-work/source-2026-10-02.json`. This ignored
 local evidence is not an independent production backup. Git history preserves
 legacy code; ignored SQLite, media, virtualenv and exports were retained.
-Tracked Django apps/tests/migrations, requirements, Heroku entrypoints,
+Tracked server apps/tests/migrations, requirements, Heroku entrypoints,
 CKEditor/HTMX/chart assets, AI embeddings, obsolete Linode backup scripts and
 Python tooling were removed. Node tooling, CI, Dependabot and active docs replaced
 their consumers together. No production resource or data was deleted.
@@ -70,6 +73,14 @@ and removal of the inventoried recipe stylesheet after migrating its layout to
 bundled CSS. Unknown scripts/styles fail reconciliation. The everyday gate permits
 future edits; source parity is a migration/cutover check, not a content freeze.
 
+The recipe article is an explicit exception in
+`src/content/intentional-rewrites.json`. SHA-256 hashes pin its original raw legacy
+record and complete replacement post. The oracle rejects later changes to either,
+checks preserved identity fields, and derives feed expectations from the reviewed
+replacement metadata. Built-output contracts verify all twelve no-JavaScript
+recipes, TRN tables, first-party images and assistant downloads. The remaining
+105 articles retain their independent raw-source checks. See [recipe maintenance](recipes.md).
+
 Public URLs remain `/`, `/all-posts/`, `/search/?searched=...`, existing posts
 and categories, `/rss/`, `/atom/`, `/sitemap.xml`, `/privacy/`,
 `/works-cited/` and security resources. Search/query pagination requires JavaScript;
@@ -84,8 +95,9 @@ The favorite-podcasts alias still targets its existing published article.
 
 ## Required CMS rehearsal
 
-John installs the [PagesCMS GitHub App](https://app.pagescms.org) for
-`jsolly/awesome-django-blog` only. For the initial rehearsal, select a separate
+Use the [PagesCMS GitHub App](https://app.pagescms.org) to access
+`jsolly/awesome-django-blog`. Prefer repository-scoped access for a new installation;
+do not alter unrelated access on an existing installation. For the initial rehearsal, select a separate
 editorial branch based on the reviewed migration head, where `.pages.yml` exists.
 After cutover, start editorial branches from current main. Never weaken
 protected-main policy. The authenticated rehearsal remains unrun.
@@ -102,17 +114,26 @@ protected-main policy. The authenticated rehearsal remains unrun.
 `settings.content.merge: true` retains unmanaged reconciliation metadata. If the
 hosted CMS changes it anyway, stop publishing and repair the schema before cutover.
 
-## Human production cutover
+## Production cutover
 
 The inspected Vercel team is `jsolly's projects`, ID
-`team_T8yHg0aDz7nCbyBgJh5a2saR`. No project for this repository exists yet.
-Project provisioning, cloud configuration, DNS and database backup writes are
-John's human steps under fleet policy. No agent deployment is part of this work.
+`team_T8yHg0aDz7nCbyBgJh5a2saR`. Project `blogthedata`, ID
+`prj_QxSNy3z51xOp295HUvPfDa1JY9h8`, was created without a Git connection or
+deployment on October 2, 2026. It uses Astro, Node 24, `npm ci`, `npm run build`
+and output `dist`; project previews are disabled. Heroku automatic deploys were
+disabled and the dashboard setting verified after a reload the same day.
+John explicitly authorized migration backups and admin activities on October 2,
+2026. The agent can perform these steps using available authorized access.
+Sign-in and any required human input use Chrome. New security-sensitive access
+grants and binding terms still need approval when presented. No teardown is authorized.
 
-1. Freeze Django publishing. Record the current Heroku release/version/full SHA,
+1. Freeze publishing in the old application. Record the current Heroku release/version/full SHA,
    original DNS records and a successful old-host article/search check. Make an
-   independent database backup and retain media outside this checkout. No Heroku
-   backups were listed during inspection. Record S3 bucket/object inventory,
+   independent database backup and retain media outside this checkout. Heroku
+   backup b001 was captured and restored locally on October 2; all 106 posts and
+   six categories matched the source export after matching the export’s millisecond timestamp precision.
+   The local S3 copy contains 1,009 files, 101,335,569 bytes. These local artifacts
+   still require independent durable retention and a frozen final inventory. Record S3 bucket/object inventory,
    versioning/backup status and a recovery copy; GitHub is not a backup for S3.
 2. Re-export content, categories, similarities, redirects and sites. Import into
    a new empty scratch directory and reconcile changed articles with the CMS files.
@@ -121,7 +142,8 @@ John's human steps under fleet policy. No agent deployment is part of this work.
 3. Disable Heroku automatic deploys for `blogthedata` in its GitHub deployment
    settings, retaining the serving release/database. Record the setting before
    allowing `/ship` to merge this runtime replacement after green `CI / ci`.
-4. Import `jsolly/awesome-django-blog` into Vercel with Astro, production branch
+4. Connect `jsolly/awesome-django-blog` to the existing Vercel project after the
+   reviewed Astro replacement lands on `main`. Use Astro, production branch
    `main`, Node 24, install `npm ci`, build `npm run build`, output `dist`.
    Confirm `vercel.json` suppresses all other Git refs. Keep protected main and
    Vercel deployment protection intact; do not add runtime AWS secrets.
@@ -146,9 +168,9 @@ John's human steps under fleet policy. No agent deployment is part of this work.
    window. Retain Heroku/database/S3/CloudFront/IAM until separately authorized
    retirement. No teardown commands are included in this migration.
 
-These Heroku commands are cwd-independent. The backup capture/download are
-**human-only production writes/backup operations**. Use them after confirming no
-existing download would be overwritten. The export is read-only.
+These Heroku commands are cwd-independent. Backup capture/download are authorized
+migration admin operations. Use a fresh destination to preserve earlier receipts.
+The export is read-only.
 
 ```bash
 npx --yes heroku@11.10.0 releases -a blogthedata --num 5
@@ -158,8 +180,11 @@ npx --yes heroku@11.10.0 run --no-tty -a blogthedata -- python manage.py dumpdat
 ```
 
 Move the DB/media backups to durable independent storage and record their receipt
-before cutover. Exact Vercel project IDs/domain records are unavailable until human
-creation; use the actual supplied settings above rather than guessed commands.
+before cutover. Domain records are unavailable until the domains are added;
+use Vercel's actual supplied records rather than guessed commands.
+The prepared private S3 configuration and exact human infrastructure step are in
+[migration-backups.md](migration-backups.md). This infrastructure is not deployed;
+manual creation is required after review.
 
 For the media backup, use your existing authorized AWS profile and confirm
 `aws sts get-caller-identity` reports account `730335616323`. The commands below
@@ -201,6 +226,6 @@ been run against Vercel because no deployment exists.
 During the freeze, restore the recorded original DNS routing to the retained
 Heroku release, then verify canonical reading/search. Keep deployment receipts for
 diagnosis. No post-freeze content is lost because publishing is paused. After
-publishing resumes, reconcile Git-authored changes back into Django before any
+publishing resumes, reconcile Git-authored changes back into the retained application before any
 rollback to the old application. Never delete production resources as part of the
 code migration.

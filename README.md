@@ -5,9 +5,8 @@ metadata live in GitHub and are edited with PagesCMS. Vercel builds production f
 protected `main`; ordinary images live in the repository and existing large media
 remains on AWS S3/CloudFront.
 
-The migration is implemented locally. Production still runs Django on Heroku until
-the [cutover runbook](docs/astro-migration.md) is completed. Do not merge the runtime
-replacement before disabling Heroku automatic deploys.
+The migration is implemented locally. Production still runs the legacy application on Heroku until
+the [cutover runbook](docs/astro-migration.md) is completed. Heroku automatic deploys are disabled; the serving release is retained for rollback.
 
 ## Develop
 

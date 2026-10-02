@@ -1,6 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import About from '../../../components/About.astro';
+import RecipeExperience from '../../../components/recipes/RecipeExperience.astro';
 import PostCards from '../../../components/PostCards.svelte';
 import { blogContent, dateLabel, site } from '../../../lib/content';
 import { articleHtml, imageUrl, headingId } from '../../../lib/html';
@@ -9,10 +10,15 @@ export async function getStaticPaths() { const { posts } = await blogContent(); 
 const { post } = Astro.props;
 const { posts, categories } = await blogContent();
 const data = post.data;
+const interactiveMealPost = data.slug === '15-minute-dump-and-go-instant-pot-recipes';
 const category = categories.find(category => category.data.slug === data.category);
 const image = imageUrl(data.image);
 const url = `${site}/post/${data.slug}/`;
-const related = posts.filter(candidate => data.related.includes(candidate.data.slug));
+const postsBySlug = new Map(posts.map(candidate => [candidate.data.slug, candidate]));
+const related = data.related.flatMap((slug: string) => {
+  const candidate = postsBySlug.get(slug);
+  return candidate ? [candidate] : [];
+});
 const structured = { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: data.title, description: data.description, image: new URL(image, site).href, datePublished: data.published.toISOString(), dateModified: data.updated.toISOString(), author: { '@type': 'Person', name: data.author }, mainEntityOfPage: url };
 ---
 <Base title={data.title} description={data.description} image={image} imageAlt={data.imageAlt} article>
@@ -20,11 +26,11 @@ const structured = { '@context': 'https://schema.org', '@type': 'BlogPosting', h
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href={`/category/${data.category}/`}>{category?.data.name}</a></nav>
   <article>
     <h1 id={headingId(data.title)}>{data.title}<a class="heading-link" href={`#${headingId(data.title)}`} aria-label="Link to this heading">#</a></h1>
-    <figure><img class="article-hero" src={image} alt={data.imageAlt} width={data.imageWidth ?? undefined} height={data.imageHeight ?? undefined} fetchpriority="high" />{data.imageAttribution && <figcaption>{data.imageAttribution}</figcaption>}</figure>
+    {!interactiveMealPost && <figure><img class="article-hero" src={image} alt={data.imageAlt} width={data.imageWidth ?? undefined} height={data.imageHeight ?? undefined} fetchpriority="high" />{data.imageAttribution && <figcaption>{data.imageAttribution}</figcaption>}</figure>}
     <p class="post-meta"><time datetime={data.published.toISOString()}>{dateLabel(data.published)}</time> in <a href={`/category/${data.category}/`}>{category?.data.name}</a></p>
     <p class="post-meta">Updated <time datetime={data.updated.toISOString()}>{dateLabel(data.updated)}</time> · By {data.author}</p>
-    <div class="article-actions"><button id="print-article" type="button">Print this post</button><a href={`https://twitter.com/intent/tweet/?text=${encodeURIComponent(data.title)}&url=${encodeURIComponent(url)}`} rel="noopener noreferrer" target="_blank">Share on X</a><a href={`https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(data.title)}`} rel="noopener noreferrer" target="_blank">Reddit</a><a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`} rel="noopener noreferrer" target="_blank">LinkedIn</a></div>
-    <div class="article-body post-text" set:html={articleHtml(post.html)} />
+    <div class="article-actions">{!interactiveMealPost && <button id="print-article" type="button">Print this post</button>}<a href={`https://twitter.com/intent/tweet/?text=${encodeURIComponent(data.title)}&url=${encodeURIComponent(url)}`} rel="noopener noreferrer" target="_blank">Share on X</a><a href={`https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(data.title)}`} rel="noopener noreferrer" target="_blank">Reddit</a><a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`} rel="noopener noreferrer" target="_blank">LinkedIn</a></div>
+    {interactiveMealPost ? <RecipeExperience fallbackHtml={articleHtml(post.html)} /> : <div class="article-body post-text" set:html={articleHtml(post.html)} />}
   </article>
   <div class="article-actions"><a href="/">Back to home</a><a href="/all-posts/">All posts</a><span id="heading-copy-status" role="status" /></div>
   {related.length > 0 && <section class="related-posts"><h2>Related posts</h2><PostCards posts={cards(related, categories)} /></section>}

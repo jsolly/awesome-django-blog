@@ -7,7 +7,7 @@ source "${DOTAGENTS_GATE_LIB:-$HOME/code/dotagents/gate/gate-lib.sh}" || {
 }
 gate_enter_committing_tree "${BASH_SOURCE[0]}"
 gate_require_lib 12
-gate_begin_commit "awesome-django-blog"
+gate_begin_commit "awesome-blog"
 run_step "bash floor" gate_check_bash_floor
 gate_require_node
 run_step "YAML validation" npm run check:yaml

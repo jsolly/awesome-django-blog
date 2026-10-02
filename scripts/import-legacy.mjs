@@ -8,7 +8,7 @@ import { htmlToMarkdown } from './html-to-markdown.mjs';
 const slugPattern = /^[A-Za-z0-9_-]+$/u;
 
 export function convertExport(records) {
-  if (!Array.isArray(records)) throw new Error('Expected a Django dumpdata array');
+  if (!Array.isArray(records)) throw new Error('Expected a legacy export record array');
   const categories = records.filter(row => row.model === 'blog.category').map(row => ({
     slug: row.fields.slug, name: row.fields.name, description: row.fields.description,
     legacyId: row.pk,
@@ -93,7 +93,7 @@ export async function importExport({ sourcePath, destination }) {
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   const [, , sourcePath, destination] = process.argv;
-  if (!sourcePath || !destination) throw new Error('Usage: node scripts/import-django.mjs <dumpdata.json> <empty-directory>');
+  if (!sourcePath || !destination) throw new Error('Usage: node scripts/import-legacy.mjs <dumpdata.json> <empty-directory>');
   const receipt = await importExport({ sourcePath, destination: resolve(destination) });
   process.stdout.write(`Imported ${receipt.posts} posts and ${receipt.categories} categories.\n`);
 }

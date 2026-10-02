@@ -23,11 +23,17 @@ runtime CSS/JS from third-party CDNs. Preserve existing heading text if its link
 fragment must stay stable; H1–H3 fragments follow the former blog's algorithm.
 
 Upload ordinary images through the CMS to `public/media`. Resize/compress before
-uploading. Put large downloads, videos or datasets in existing S3 separately and
+uploading, then paste the uploaded `/media/...` path into the cover-image field.
+That field also preserves existing HTTPS media URLs. Put large downloads, videos or datasets in existing S3 separately and
 link their CloudFront URLs. The CMS does not upload to S3. Never paste AWS credentials
 into article metadata or CMS fields.
 
-Update `updated` when editing a post. Keep published slugs and their case unchanged.
+Publication and update timestamps use ISO 8601 strings with seconds and an explicit
+timezone, such as `2026-10-02T14:00:00Z`. Preserve an existing publication timestamp;
+update `updated` when editing a post. The build rejects invalid or timezone-free
+timestamps. String fields preserve seconds, fractional precision and timezone
+instead of roundtripping them through the CMS's minute-resolution date control.
+Keep published slugs and their case unchanged.
 Category slugs are equally stable. Choose up to three related posts manually; there
 is no embedding service. Unmanaged legacy IDs/image paths remain for reconciliation.
 
