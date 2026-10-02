@@ -80,6 +80,7 @@ run_step "yaml lint"      npm run check:yaml
 run_step "actionlint"             npm run check:actions
 run_step "markdown lint"         npm run check:md
 run_step "smoke scenario"        npm run smoke:scenario-contract
+run_step "stack protection contracts" npm run test:stack-protection
 run_step "ruff lint"      ruff check --config ./config/pyproject.toml app
 run_step "collectstatic"  python3 manage.py collectstatic --noinput
 run_step "migrate"        python3 manage.py migrate --noinput

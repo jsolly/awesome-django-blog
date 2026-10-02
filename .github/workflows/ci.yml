@@ -146,6 +146,8 @@ jobs:
         if: steps.verified-tree.outputs.run_full != 'false'
       - run: npm run check:md
         if: steps.verified-tree.outputs.run_full != 'false'
+      - run: npm run test:stack-protection
+        if: steps.verified-tree.outputs.run_full != 'false'
       - uses: actions/setup-python@v7
         if: steps.verified-tree.outputs.run_full != 'false'
         with:
