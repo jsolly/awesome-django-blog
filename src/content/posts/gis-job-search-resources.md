@@ -1,28 +1,31 @@
 ---
 slug: gis-job-search-resources
-title: "Find Your Dream Job: A Guide to Job Searching and Interviewing"
+title: "Find Your Dream Job: A Guide to Job Searching and Interviewing [CMS
+  rehearsal]"
 category: resources
-description: Find your dream job with this guide on job searching, researching companies, interviewing, and resumes/cover letters.
+description: Find your dream job with this guide on job searching, researching
+  companies, interviewing, and resumes/cover letters.
 draft: false
 image: https://d1d7p8ufhgz4ld.cloudfront.net/media/post_metaimgs/shakingHandsInterview.webp
 legacyImage: post_metaimgs/shakingHandsInterview.webp
 imageAlt: Two people shaking hands
-imageAttribution: "Stable Diffusion 2.1 Prompt: A typical job interview. Shaking hands. Professional. No faces."
+imageAttribution: "Stable Diffusion 2.1 Prompt: A typical job interview. Shaking
+  hands. Professional. No faces."
 imageWidth: 512
 imageHeight: 512
-published: "2022-03-14T14:22:15Z"
-updated: "2022-03-14T14:22:15Z"
+published: 2022-03-14T14:22:15Z
+updated: 2022-03-14T14:22:15Z
 author: John Solly
 feedAuthor: John_Solly
 legacyAuthorId: 2
-excerpt: <p>Find your dream job with this guide on job searching, researching companies, interviewing, and resumes/cover letters.</p>
+excerpt: <p>Find your dream job with this guide on job searching, researching
+  companies, interviewing, and resumes/cover letters.</p>
 legacyId: 20
 related:
   - 15-minute-dump-and-go-instant-pot-recipes
   - compress-minify-assets-69-percent-faster-page-load
   - Adding-views-likes-to-posts
 ---
-
 ## Finding a Position
 
 <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/feed/">LinkedIn! </a> \- Connect with recruiters and reach out to real people who work at the companies you are interested in. If you see a 2nd-degree connection, ask one of your 1sts for an introduction! Turn on job alerts!
