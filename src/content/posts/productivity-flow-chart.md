@@ -1,6 +1,6 @@
 ---
 slug: productivity-flow-chart
-title: "Creating Unique Content: Applying the Eisenhower Matrix [CMS rehearsal]"
+title: "Creating Unique Content: Applying the Eisenhower Matrix"
 category: productivity
 description: Discover the unique value you can offer through content creation
   using the Eisenhower Matrix. Prioritize the most important tasks and create
