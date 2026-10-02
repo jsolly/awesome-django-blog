@@ -30,12 +30,12 @@ case "${1:-}" in
     rc=0
     gate_check_stack_protection "${STACKS[@]}" || rc=$?
     if [ "$rc" -eq 1 ]; then
-      echo "  John, after reviewing: cd /Users/johnsolly/code/awesome-django-blog && git switch main && git pull --ff-only && npm run protect:stacks" >&2
+      echo "  John, after reviewing: cd /Users/johnsolly/code/awesome-blog && git switch main && git pull --ff-only && npm run protect:stacks" >&2
     fi
     exit "$rc"
     ;;
   "")
-    gate_apply_stack_protection jsolly/awesome-django-blog "${STACKS[@]}"
+    gate_apply_stack_protection jsolly/awesome-blog "${STACKS[@]}"
     ;;
   *)
     echo "usage: $0 [--check]" >&2

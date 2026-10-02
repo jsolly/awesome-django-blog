@@ -23,7 +23,7 @@ Assistant JSON uses schemaVersion1 and contains current settings, stable recipe 
 ## Maintenance in this repository
 
 The canonical recipe data is `src/components/recipes/recipes.json`. Run these commands
-from `/Users/johnsolly/code/awesome-django-blog` after editing it:
+from `/Users/johnsolly/code/awesome-blog` after editing it:
 
 ```bash
 npm run recipes:sync

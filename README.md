@@ -5,13 +5,15 @@ metadata live in GitHub and are edited with PagesCMS. Vercel builds production f
 protected `main`; ordinary images live in the repository and existing large media
 remains on AWS S3/CloudFront.
 
-The migration is implemented locally. Production still runs the legacy application on Heroku until
-the [cutover runbook](docs/astro-migration.md) is completed. Heroku automatic deploys are disabled; the serving release is retained for rollback.
+Production is live on Vercel at <https://www.blogthedata.com>. Heroku automatic
+deploys are disabled; the old serving release and independent backups are retained
+for rollback. Publishing remains frozen until the initial rollback window is
+accepted. See the [migration runbook](docs/astro-migration.md).
 
 ## Develop
 
 Use Node 24 (`.nvmrc`), npm, and Bash 5 for repository scripts. Commands run from
-`/Users/johnsolly/code/awesome-django-blog`.
+`/Users/johnsolly/code/awesome-blog`.
 
 ```bash
 npm ci

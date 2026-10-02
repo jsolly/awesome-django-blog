@@ -25,7 +25,7 @@ GFM autolinking; complex authored HTML is retained and sanitized.
 
 ## Commands
 
-Commands run from `/Users/johnsolly/code/awesome-django-blog`.
+Commands run from `/Users/johnsolly/code/awesome-blog`.
 
 ```bash
 npm ci
@@ -53,7 +53,7 @@ Git history keeps legacy code; ignored SQLite, virtualenv and media state is ret
 
 ## Ship and release
 
-Ship profile: `vercel-static` (cutover pending).
+Ship profile: `vercel-static`.
 
 Integration is branch → PR → merge on green `CI / ci`. Start new work from freshly
 fetched `origin/main`. Every remote push and PR runs through `/ship`; never push
@@ -64,13 +64,13 @@ invoked drain adds `ow-ci`; skipped checks cannot satisfy `ci`.
 Canonical production URL: <https://www.blogthedata.com>. Vercel production branch
 is `main`, install `npm ci`, build `npm run build`, output `dist`, Node 24.
 `vercel.json` disables other Git refs and supplies redirects/security/feed MIME.
-Vercel project `blogthedata` is connected to GitHub production branch `main`;
-project previews are disabled and deployment protection remains enabled. Linking
-the repository did not create a deployment. The first protected-main change after
-linking must produce a successful production deployment. Verify its project-domain
-behavior and full SHA before domain cutover; canonical smoke follows DNS changes.
-Current production is the legacy Heroku app `blogthedata`. Heroku
-automatic deploys are disabled, and the existing release is retained for rollback. Follow [the cutover runbook](docs/astro-migration.md).
+Vercel project `blogthedata` deploys GitHub repository `jsolly/awesome-blog` from
+protected `main`; project previews are disabled and deployment protection remains
+enabled. Canonical production serves the static site over valid HTTPS. Every
+release must match its full SHA and pass canonical Production smoke. Heroku
+automatic deploys are disabled; release v315 and its database/media remain for
+rollback. Publishing stays frozen until John accepts the initial rollback window.
+Follow [the migration runbook](docs/astro-migration.md).
 
 A release requires successful production deployment plus that exact SHA's canonical
 production smoke. `/release.json` records `VERCEL_GIT_COMMIT_SHA` (CI/local use
