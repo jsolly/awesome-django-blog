@@ -1,0 +1,111 @@
+media:
+  input: public/media
+  output: /media
+  categories: [image]
+settings:
+  content:
+    merge: true
+content:
+  - name: posts
+    label: Posts
+    type: collection
+    path: src/content/posts
+    format: yaml-frontmatter
+    filename: "{fields.slug}.md"
+    view:
+      primary: title
+      fields: [title, category, published, draft]
+      sort: published
+      order: desc
+    fields:
+      - name: title
+        type: string
+        required: true
+      - name: slug
+        type: string
+        required: true
+        description: "Stable article URL. Keep the slug unchanged when editing a published post."
+      - name: category
+        type: reference
+        required: true
+        options:
+          collection: categories
+          value: "{fields.slug}"
+          label: "{fields.name}"
+      - name: description
+        type: text
+        required: true
+      - name: draft
+        type: boolean
+        default: true
+      - name: published
+        label: Publication timestamp
+        type: string
+        required: true
+        description: "ISO 8601 with seconds and a timezone, for example 2026-10-02T14:00:00Z. Preserve this value on existing posts."
+        pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$'
+      - name: updated
+        label: Updated timestamp
+        type: string
+        required: true
+        description: "ISO 8601 with seconds and a timezone. Change this when making an editorial update."
+        pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$'
+      - name: author
+        type: string
+        default: John Solly
+      - name: feedAuthor
+        label: Feed author name
+        type: string
+        default: John_Solly
+      - name: image
+        label: Cover image URL or media path
+        type: string
+        default: /media/default.webp
+        description: "Upload through Media, then paste its /media/... path here; existing HTTPS media URLs are preserved."
+        pattern: '^(?:/media/\S+|https://\S+)$'
+      - name: imageAlt
+        label: Image description
+        type: string
+      - name: imageAttribution
+        type: string
+      - name: imageWidth
+        type: number
+      - name: imageHeight
+        type: number
+      - name: related
+        type: reference
+        options:
+          collection: posts
+          value: "{fields.slug}"
+          label: "{fields.title}"
+          multiple: true
+          max: 3
+      - name: body
+        type: code
+        required: true
+        options:
+          format: markdown
+      - name: excerpt
+        label: Card excerpt
+        type: code
+        options:
+          format: html
+  - name: categories
+    label: Categories
+    type: collection
+    path: src/content/categories
+    format: json
+    filename: "{fields.slug}.json"
+    view:
+      primary: name
+    fields:
+      - name: name
+        type: string
+        required: true
+      - name: slug
+        type: string
+        required: true
+        description: "Stable category URL. Preserve case on existing slugs."
+      - name: description
+        type: text
+        required: true

@@ -1,0 +1,17 @@
+title = "Blogthedata secret scanning"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "generic-api-key"
+
+# Audited public browser identifier, 2026-10-01. All criteria must match;
+# future commits, other files and non-public token lines remain scanned.
+[[rules.allowlists]]
+description = "Historical public visitor-map identifier"
+condition = "AND"
+commits = ["cac84b32ebfc9d57908598a898fbf84792f2d5c6"]
+paths = ['''(^|/)siteanalytics/templates/siteanalytics/mapbox_map\.html$''']
+regexTarget = "line"
+regexes = ['''mapboxgl\.accessToken\s*=\s*['"]pk\.''']

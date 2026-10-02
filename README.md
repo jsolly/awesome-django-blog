@@ -1,207 +1,56 @@
-# Awesome Django Blog
+# Blogthedata
 
-![CodeStyle](https://img.shields.io/badge/ruff-orange?logo=ruff&label=code-style)
-![Linting](https://img.shields.io/badge/ruff-orange?logo=ruff&label=linting)
-![PythonVersion](https://img.shields.io/badge/3.14-yellow?logo=Python&logoColor=yellow&label=Python)
-[![License](https://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+A static technical blog built with Astro and Svelte. Markdown articles and category
+metadata live in GitHub and are edited with PagesCMS. Vercel builds production from
+protected `main`; ordinary images live in the repository and existing large media
+remains on AWS S3/CloudFront.
 
-Awesome-django-blog is a fully functional blogging platform built using the Django web framework. It includes features such as creating and managing blog posts, comments, and categories, as well as user authentication and authorization.
+The migration is implemented locally. Production still runs the legacy application on Heroku until
+the [cutover runbook](docs/astro-migration.md) is completed. Heroku automatic deploys are disabled; the serving release is retained for rollback.
 
-![image](https://github.com/jsolly/awesome-django-blog/assets/9572232/e0066fc2-d68e-4561-b3e4-18ece55e09b2)
+## Develop
 
----
+Use Node 24 (`.nvmrc`), npm, and Bash 5 for repository scripts. Commands run from
+`/Users/johnsolly/code/awesome-django-blog`.
 
-## Table of Contents
-
-- [Installation](#installation)
-- [Development](#development)
-- [Features](#features)
-- [Contributing](#contributing)
-- [Support](#support)
-- [License](#license)
-
-## Installation
-
-```shell
-# first install Python 3.14.x
-git clone https://github.com/jsolly/awesome-django-blog.git
-cd awesome-django-blog
-python3 -m venv .venv # Create virtual environment
-source .venv/bin/activate # Activate virtual environment
-pip install -r requirements.txt
-python manage.py setup_env # Creates .env.local file from .env.example
-python3 manage.py migrate # Create empty schema (if you are using postgres, you need to create the database first. The default database is sqlite3)
-python3 manage.py runserver
-```
-
-### Seed Posts (Optional)
-
-This command creates sample posts.
-
-```shell
-python3 manage.py import_posts utilities/seed_posts/posts.json
-```
-
-### Default Accounts
-
-The app comes preinstalled with two users. One is an admin and the other can only add comments to posts.
-
-**(Username/Password)**:
-
-- admin/admin<br>
-- comment_only/comment_only
-
-## Development
-
-### Coverage
-
-```shell
-coverage run --rcfile=config/.coveragerc -m pytest tests
-coverage report -m --skip-covered --rcfile=config/.coveragerc
-```
-
-### Tests
-
-```shell
-pytest app
-```
-
-### Linting
-
-```shell
-ruff check --config ./config/pyproject.toml app
-```
-
-### Formating
-
-```shell
-ruff format app
-```
-
-### Pre-commit gate
-
-The quality gate runs Bash-floor checks, lint, the public smoke scenario contract,
-collectstatic, migrations, pytest and coverage on every commit. Install the
-pinned Node tooling in this checkout:
-
-```shell
+```bash
 npm ci
-npm run gate
+npx --no-install playwright install chromium
+npm run gate:app
+npm run dev
 ```
 
-The dotagents installer configures the trusted hook dispatcher. See
-[Git hooks in AGENTS.md](AGENTS.md#git-hooks) for setup and approval of your own
-hook edits. The gate logic lives in `.git-hooks/pre-commit`; a failure aborts
-the commit.
+The local site is <http://127.0.0.1:4321>. `npm run build` writes `dist/`;
+`npm run preview` serves that build. No application secrets, database or cloud
+credentials are required. `npm run worktree:init` installs pinned Node dependencies
+in a fresh checkout. The full `npm run gate` also runs the shared dotagents security
+and repository checks; see [AGENTS.md](AGENTS.md).
 
-### Live Reload
+## Content and behavior
 
-If you want to automatically reload the server whenever you make changes to source code, you can set `LIVERELOAD` in the .env.local file to True. You can learn more about this tool [on their GitHub page](https://github.com/tjwalch/django-livereload-server).
+Posts are `src/content/posts/*.md` with YAML frontmatter. Categories are JSON files
+in `src/content/categories`. `.pages.yml` supplies typed metadata and a Markdown
+source editor. CommonMark prose and headings are converted from the old HTML;
+complex tables, code, styled blocks and embeds retain HTML to preserve authored
+meaning. No MDX or executable article scripts are enabled. Rendering sanitizes HTML.
 
-To use livereload, you have to run these commands in TWO SEPARATE terminal windows. Or you can use the included vscode launch.json to run both commands at once.
+The site provides article reading, category pages, a complete archive, GET search,
+pagination, RSS/Atom feeds, sitemap, heading links and print controls. Search and
+pagination use Svelte in the browser; the archive remains readable without
+JavaScript. Drafts are excluded from every public output. Reader accounts, comments,
+AI endpoints and the status dashboard were retired with the static migration.
 
-```sh
-python3 manage.py runserver
-python3 manage.py livereload
-```
+## Publish
 
----
+Install the PagesCMS GitHub App for this repository, then edit an editorial branch
+created from current `main`. Save changes, open a PR, pass `CI / ci`, and merge
+through the existing review process. Vercel deploys `main` only; automatic branch
+previews are disabled. See [publishing instructions](docs/publishing.md) and the
+[deployment/cutover runbook](docs/astro-migration.md).
 
-## Features
+New images upload into `public/media`. Large objects are uploaded separately to S3
+and linked with their CloudFront URL; the CMS has no AWS credentials or S3 uploader.
+Retain stable post and category slugs, including case, when editing existing content.
 
-### Functional Features
-
-- User profile with avatar (automatic sizing and compression using Pillow)
-- User Login with Django built-in auth to create posts and leave comments
-- Ckeditor 5 for authoring blog posts (also includes spell check, code snippets, character
-  counter, and more!)
-- Add real-time comments without page reloads for a smooth user experience.
-- Slugified URLs for more readable links
-- Open Graph protocol compliant social media sharing for beautiful share cards (LinkedIn, Twitter, Facebook, Instagram, Reddit, etc)
-- Smart and powerful Global search so you can find any blog post with a keyword search.
-- Display site visitors in a web map
-- Light and Dark Theme that automatically switch based on user's current system theme.
-- Blog reading time so viewers can estimate how long it will take them to read a post.
-- Atom and RSS feed so users can subscribe to your latest blog posts.
-- GPT3 powered blog post title, slug, and metadesc generator so you can harness the power of AI in your blog post authoring workflow
-- Copy to clipboard anchor links on every header within a blog post so you can share specific sections of a post.
-- Site-wide 'breadcumbs' so your users can know exactly where they are and navigate with ease.
-- Each page is optimized for viewing (and printing) so break out those 8 1/2 by 11s and print out some content!
-- GPT-powered Chatbot that can answer questions about your blog and help you find content.
-- Related posts at the end of each post detail page so users can quickly navigate to a similar post on your blog.
-- Syntax highlighting with Prism.js for beautiful code blocks in a variety of languages. Also includes line numbers and copy to clipboard functionality. Automatically changes light/dark theme based on user's current system theme.
-
-### Non-Functional Features
-
-- No CSS/Layout frameworks (Bootstrap, Tailwind, etc). All CSS and components are custom and optimized for performance.
-- HTMX for dynamic page updates without a page refresh
-- Robots.txt, security.txt, and sitemap.xml for optimized SEO and security
-- Git hooks for automatic static file generation (manage.py collectstatic)
-- Local pre-commit quality gate (bash floor, lint, collectstatic, migrations, tests + coverage) via `.git-hooks/pre-commit`. Push with confidence!
-- Compatible with Sqllite or postgres databases for fast protyping and production
-- Deploy static assets to Amazon S3 + Cloudfront just by changing a few settings in the .env.local file.
-- Procfile included for easy deployment with Heroku or other services that use Procfile.
-- Optimized for Performance, SEO, and A11Y
-- Latest Django 6.1
-- Unit test coverage measured on every push (coverage.py) for a maintainable codebase
-- 100% linted with [ruff](https://pypi.org/project/ruff/) and PEP8 compliant for beautiful Python code.
-- pip dependency checks with [Dependabot](https://github.com/dependabot) for automated security and updates.
-- Formatted with [Ruff](https://github.com/astral-sh/ruff) for beauty and speed.
-- Strict Content Security Policy preventing inline styles and scripts for better security
-- Subresource Integrity for better security
-- [A+ Score on Mozilla Observatory](https://observatory.mozilla.org/analyze/blogthedata.com)
-- 100/100 for Performance, SEO, and Accessibility according to Google Lighthouse
-- Automatic Conversion of images (.png, .jpeg, etc) to .webp for blazingly fast image loads.
-- Badges for formatter and linting
-- Automated, rotating backups of blog posts using local and cloud storage
-- Status page for monitoring uptime and performance of your blog at <https://blogthedata.com/status> using Apache Echarts.
-- Custom 404 and 500 pages that look really cool. So even if your users are lost or your app is broke, they are still having a good time.
-- Canonical domain middleware to force <www>. prefix and redirect non-www. requests to www.
-- HTML minification to reduce page weight and improve load times
-
-## Depreciated Features
-
-- ~~Leaflet.js and OpenLayers maps 🗺~~ (Removed in <https://github.com/jsolly/awesome-django-blog/pull/246>)
-- ~~Honeypot Admin page to automatically block IPs trying to login with an admin account~~ (Removed in
-  <https://github.com/jsolly/awesome-django-blog/pull/105>)
-- ~~Ko-Fi donation button ☕️~~ (removed in <https://github.com/jsolly/awesome-django-blog/commit/c857bb7599836c614aff523756bbf1381e0dd948>)
-- ~~Post views and likes~~ (Removed in
-  <https://github.com/jsolly/awesome-django-blog/pull/77>)
-- ~~Newsletter Sign up 🗞~~ (removed in <https://github.com/jsolly/awesome-django-blog/pull/140>)
-- ~~Github Integration to show active issue backlog without leaving blog~~ (removed
-  in <https://github.com/jsolly/awesome-django-blog/pull/121>)
-  [commit:5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b](https://github.com/jsolly/awesome-django-blog/commit/5c050a5b68d9c8ce7dcf90fdef44377cc28eab6b))
-- ~~Portfolio page with testimonials, contact me, Web vitals, and more!~~ (removed in <https://github.com/jsolly/awesome-django-blog/pull/404>)
-
-## Contributing
-
-We ♥️ our contributors.
-
-📕 We expect everyone participating in the community to abide by our [Code of Conduct](https://github.com/jsolly/awesome-django-blog/blob/main/docs/CODE_OF_CONDUCT.md). Please read and follow it. <br>
-🤝 If you'd like to contribute, start by reading our [Contribution Guide](https://github.com/jsolly/awesome-django-blog/blob/main/docs/CONTRIBUTING.md).<br>
-👾 Explore some [good first issues](https://github.com/jsolly/awesome-django-blog/labels/good_first_issue).<br>
-
-Let's build great software together.
-
-### Top Contributors
-
-|                                               John Solly                                               |                                                     Praise Dike                                                      |
-| :----------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: |
-|   [![jsolly](https://avatars1.githubusercontent.com/u/9572232?v=3&s=200)](https://github.com/jsolly)   |  [![freedompraise](https://avatars1.githubusercontent.com/u/70984186?v=4&s=200)](https://github.com/freedompraise)   |
-| <a href="https://github.com/jsolly" rel="noopener noreferrer" target="_blank"> `github.com/jsolly`</a> | <a href="https://github.com/freedompraise" rel="noopener noreferrer" target="_blank"> `github.com/freedompraise`</a> |
-
----
-
-## Support
-
-Reach out to me on X!
-  <a href="https://twitter.com/_jsolly" rel="noopener noreferrer" target="_blank">
-  `@_jsolly`</a>
-
----
-
-## License
-
-[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
-
-- **[MIT license](http://opensource.org/licenses/mit-license.php)**
+See [contributing](docs/CONTRIBUTING.md), [security](docs/SECURITY.md), and
+[license](LICENSE).

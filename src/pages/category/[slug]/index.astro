@@ -1,0 +1,11 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PostCards from '../../../components/PostCards.svelte';
+import { blogContent } from '../../../lib/content';
+import { cards } from '../../../lib/cards';
+export async function getStaticPaths() { const { categories } = await blogContent(); return categories.map(category => ({ params: { slug: category.data.slug }, props: { category } })); }
+const { category } = Astro.props;
+const { posts, categories } = await blogContent();
+const matching = posts.filter(post => post.data.category === category.data.slug);
+---
+<Base title={category.data.name} description={category.data.description}><h1>{category.data.name}</h1><p>{category.data.description}</p>{matching.length ? <PostCards posts={cards(matching, categories)} pageSize={3} client:load /> : <p>No posts in this category yet.</p>}</Base>

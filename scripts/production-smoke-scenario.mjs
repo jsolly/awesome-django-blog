@@ -2,7 +2,20 @@ import assert from 'node:assert/strict';
 
 export const productionUrl = 'https://www.blogthedata.com';
 
-export async function smoke({ page, verifyHttp }) {
+export async function verifyRelease({ verifyHttp, releaseSha }) {
+  const response = await verifyHttp(`${productionUrl}/release.json`);
+  assert.equal((await response.json()).sha, releaseSha, 'Canonical site must serve the intended release');
+}
+
+export async function verifyFeeds({ verifyHttp }) {
+  for (const [path, mime, root] of [['rss', 'application/rss+xml', '<rss'], ['atom', 'application/atom+xml', '<feed']]) {
+    const response = await verifyHttp(`${productionUrl}/${path}/`);
+    assert.ok(response.headers.get('content-type')?.startsWith(mime), `${path} has XML feed MIME type`);
+    assert.ok((await response.text()).includes(root), `${path} serves a feed document`);
+  }
+}
+
+export async function smoke({ page, verifyHttp, artifacts }) {
   await page.getByRole('heading', { name: 'Latest Posts!', exact: true }).waitFor();
   const post = page.locator('a.post-card-link').first();
   const title = (await post.textContent()).trim();
@@ -23,4 +36,13 @@ export async function smoke({ page, verifyHttp }) {
   await result.waitFor();
   assert.equal(await result.getAttribute('href'), postPath, 'search finds the article just read');
   await verifyHttp(page.url());
+  await verifyFeeds({ verifyHttp });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(productionUrl);
+  const menu = page.getByRole('button', { name: 'Menu', exact: true });
+  await menu.click();
+  assert.equal(await menu.getAttribute('aria-expanded'), 'true', 'Mobile menu opens');
+  await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'All posts', exact: true }).click();
+  await page.waitForURL(`${productionUrl}/all-posts/`);
+  if (artifacts) await page.screenshot({ path: `${artifacts}/mobile.png`, fullPage: true });
 }

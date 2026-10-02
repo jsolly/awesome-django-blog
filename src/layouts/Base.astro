@@ -1,0 +1,49 @@
+---
+import Navigation from '../components/Navigation.svelte';
+import { blogContent, site } from '../lib/content';
+import '../styles/global.css';
+import '../styles/article-content.css';
+interface Props { title: string; description?: string; image?: string; imageAlt?: string; noindex?: boolean; article?: boolean }
+const { title, description = 'Articles about geospatial development, web development, AI and productivity by John Solly.', image = '/media/default.webp', imageAlt = 'John Solly', noindex = false, article = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, site).href;
+const { posts, categories } = await blogContent();
+const navigation = categories.map(({ data }) => ({ slug: data.slug, name: data.name, count: posts.filter(post => post.data.category === data.slug).length }));
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | Blogthedata</title><meta name="description" content={description} />
+    <link rel="canonical" href={canonical} /><link rel="icon" href="/favicon.ico" />
+    <link rel="alternate" type="application/rss+xml" title="Blogthedata RSS" href="/rss/" />
+    <link rel="alternate" type="application/atom+xml" title="Blogthedata Atom" href="/atom/" />
+    <meta property="og:title" content={title} /><meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} /><meta property="og:type" content={article ? 'article' : 'website'} />
+    <meta property="og:image" content={new URL(image, site).href} /><meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <slot name="head" />
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/"><img src="/logo.webp" alt="" width="40" height="44" />Solly's Blog</a>
+        <Navigation categories={navigation} client:load />
+        <form action="/search/" method="get" role="search" class="search-form">
+          <label class="visually-hidden" for="site-search">Search</label>
+          <input id="site-search" type="search" name="searched" placeholder="Search posts..." /><button type="submit">Search</button>
+        </form>
+      </div>
+    </header>
+    <div class="page-layout" data-page={Astro.url.pathname}>
+      <aside class="sidebar">
+        <nav aria-label="Blog categories"><h2>Navigate to a category</h2><a class:list={['category-link', { active: Astro.url.pathname === '/' }]} href="/">Blog home</a>
+          {navigation.map(category => <a class:list={['category-link', { active: Astro.url.pathname === `/category/${category.slug}/` }]} href={`/category/${category.slug}/`}>{category.name}<span>{category.count}</span></a>)}
+        </nav>
+      </aside>
+      <main id="main"><slot /></main>
+    </div>
+    <footer class="site-footer"><nav aria-label="Footer"><a href="/">Home</a><a href="/all-posts/">All posts</a><a href="/privacy/">Privacy</a><a href="/works-cited/">Works cited</a><a href="/rss/">RSS</a><a href="/atom/">Atom</a><a href="#top">Back to top</a></nav><p>Designed &amp; built by John Solly</p></footer>
+  </body>
+</html>

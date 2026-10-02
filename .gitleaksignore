@@ -1,7 +1,6 @@
 # Audited historical non-secret identifiers, verified 2026-10-01.
 # Two AWS access-key IDs without secret keys in the June resource-import plan.
-# One public Mapbox browser token in the historical visitor-map template.
 # Exact fingerprints only; future commits and all other matches remain scanned.
+# The historical public visitor-map identifier is scoped in .gitleaks.toml.
 2e06e32827878a0da3b87a9fe50a4703051908a1:docs/superpowers/plans/2026-06-09-aws-clickops-to-iac.md:aws-access-token:17
 2e06e32827878a0da3b87a9fe50a4703051908a1:docs/superpowers/plans/2026-06-09-aws-clickops-to-iac.md:aws-access-token:96
-cac84b32ebfc9d57908598a898fbf84792f2d5c6:django_project/siteanalytics/templates/siteanalytics/mapbox_map.html:generic-api-key:20

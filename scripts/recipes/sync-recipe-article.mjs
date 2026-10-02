@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {generateRecipeArticle} from './article-generator.mjs';
+const root=new URL('../../src/components/recipes/',import.meta.url);
+const file=new URL('../../src/content/posts/15-minute-dump-and-go-instant-pot-recipes.md',import.meta.url);
+const data=JSON.parse(fs.readFileSync(new URL('recipes.json',root),'utf8'));
+const current=fs.readFileSync(file,'utf8');
+const article=generateRecipeArticle(current,data);
+if(process.argv.includes('--check')) assert.equal(current,article,'Run npm run recipes:sync to update the complete recipe article.');
+else fs.writeFileSync(file,article);
+console.log('Complete recipe article matches canonical recipes.json.');

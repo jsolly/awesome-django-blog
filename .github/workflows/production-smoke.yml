@@ -21,12 +21,18 @@ concurrency:
   cancel-in-progress: false
 jobs:
   smoke:
-    # Replace blogthedata with the host's production deployment environment name.
+    # Set this repo variable only after observing the new Vercel project's actual
+    # production environment. Heroku statuses cannot verify an Astro release.
     if: >-
       (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
       (github.event_name == 'deployment_status' &&
        github.event.deployment_status.state == 'success' &&
-       github.event.deployment.environment == 'blogthedata')
+       github.event.deployment.creator.login == 'vercel[bot]' &&
+       (github.event.deployment.ref == 'main' ||
+        github.event.deployment.ref == 'refs/heads/main' ||
+        github.event.deployment.ref == github.event.deployment.sha) &&
+       vars.VERCEL_PRODUCTION_ENVIRONMENT != '' &&
+       github.event.deployment.environment == vars.VERCEL_PRODUCTION_ENVIRONMENT)
     runs-on: ubuntu-24.04-arm
     timeout-minutes: 15
     env:
@@ -37,8 +43,13 @@ jobs:
         with:
           # The deployed commit's scenario, so a later merge's assertions never test an older build.
           ref: ${{ github.event.deployment.sha || inputs.release_sha }}
+          fetch-depth: 0
           persist-credentials: false
-      - uses: actions/setup-node@v6
+      - name: Verify the release belongs to main
+        run: |
+          [[ "$PRODUCTION_SMOKE_RELEASE_SHA" =~ ^[0-9a-f]{40}$ ]] || exit 1
+          git merge-base --is-ancestor "$PRODUCTION_SMOKE_RELEASE_SHA" origin/main
+      - uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
           cache: npm

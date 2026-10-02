@@ -1,0 +1,26 @@
+/* Rendered CKEditor media still uses these content classes after conversion. */
+#main, .article-body, main > article { min-width: 0; }
+.article-body iframe[style] { min-height: 0; }
+.article-body figure.image-style-side { float: right; margin-left: 1.5rem; max-width: 50%; }
+.article-body::after { content: ""; display: block; clear: both; }
+.article-body figure.table { max-width: 100%; overflow-x: auto; }
+.article-body figure.table > table { display: table; }
+.page-layout[data-page="/post/15-minute-dump-and-go-instant-pot-recipes/"] .article-body table { min-width: 720px; color: #171717; --blue: #0057d8; }
+
+/* Migrated from this article's authored layout stylesheet. Keep the wide recipe
+   table scrollable without widening the viewport or squeezing its columns. */
+@media (max-width: 1239px) {
+  .page-layout[data-page="/post/15-minute-dump-and-go-instant-pot-recipes/"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .page-layout[data-page="/post/15-minute-dump-and-go-instant-pot-recipes/"] .sidebar {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .article-body figure.image-style-side { float: none; margin: 1rem 0; max-width: 100%; }
+}
+@media print {
+  .page-layout[data-page="/post/15-minute-dump-and-go-instant-pot-recipes/"] .article-body table { min-width: 0; }
+  .article-body figure.table { overflow: visible; }
+}

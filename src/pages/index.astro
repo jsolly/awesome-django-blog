@@ -1,0 +1,9 @@
+---
+import Base from '../layouts/Base.astro';
+import About from '../components/About.astro';
+import PostCards from '../components/PostCards.svelte';
+import { blogContent } from '../lib/content';
+import { cards } from '../lib/cards';
+const { posts, categories } = await blogContent();
+---
+<Base title="Solly's Blog"><About /><h1>Latest Posts!</h1><PostCards posts={cards(posts, categories)} pageSize={3} client:load /></Base>
