@@ -29,7 +29,7 @@ const navigation = categories.map(({ data }) => ({ slug: data.slug, name: data.n
     <header class="site-header">
       <div class="header-inner">
         <a class="brand" href="/"><img src="/logo.webp" alt="" width="40" height="44" />Solly's Blog</a>
-        <Navigation categories={navigation} client:load />
+        <Navigation categories={navigation} pathname={Astro.url.pathname} client:load />
         <form action="/search/" method="get" role="search" class="search-form">
           <label class="visually-hidden" for="site-search">Search</label>
           <input id="site-search" type="search" name="searched" placeholder="Search posts..." /><button type="submit">Search</button>
@@ -37,11 +37,6 @@ const navigation = categories.map(({ data }) => ({ slug: data.slug, name: data.n
       </div>
     </header>
     <div class="page-layout" data-page={Astro.url.pathname}>
-      <aside class="sidebar">
-        <nav aria-label="Blog categories"><h2>Navigate to a category</h2><a class:list={['category-link', { active: Astro.url.pathname === '/' }]} href="/">Blog home</a>
-          {navigation.map(category => <a class:list={['category-link', { active: Astro.url.pathname === `/category/${category.slug}/` }]} href={`/category/${category.slug}/`}>{category.name}<span>{category.count}</span></a>)}
-        </nav>
-      </aside>
       <main id="main"><slot /></main>
     </div>
     <footer class="site-footer"><nav aria-label="Footer"><a href="/">Home</a><a href="/all-posts/">All posts</a><a href="/privacy/">Privacy</a><a href="/works-cited/">Works cited</a><a href="/rss/">RSS</a><a href="/atom/">Atom</a><a href="#top">Back to top</a></nav><p>Designed &amp; built by John Solly</p></footer>
