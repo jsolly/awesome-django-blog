@@ -23,6 +23,18 @@ Legacy slugs are case-sensitive and stable. Preserve author names, timestamps,
 excerpts and related links. CommonMark is configured without smart punctuation or
 GFM autolinking; complex authored HTML is retained and sanitized.
 
+## Frontend stack
+
+Astro owns pages and content; Svelte owns interactive islands. Use the installed
+shadcn-svelte controls for new or replaced standard UI controls, loading the
+shared `/shadcn-svelte` skill. Navigation and search use the generated Button and
+Input sources in `src/lib/components/ui`. Import the defining `.svelte` file
+directly. `components.json` and the `$lib` paths support the pinned local CLI.
+`src/styles/ui.css` maps UI utilities to the existing site theme without a
+Tailwind preflight reset; source scanning is limited to the UI component directory
+and the navigation/search sources. Preserve authored article styling and recipe workflows.
+Canon: `~/code/dotagents/rules/frontend-stack.md`.
+
 ## Commands
 
 Commands run from `/Users/johnsolly/code/awesome-blog`.

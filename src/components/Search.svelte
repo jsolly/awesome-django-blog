@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Button from '../lib/components/ui/button/button.svelte';
+  import Input from '../lib/components/ui/input/input.svelte';
   import { onMount } from 'svelte';
   import { z } from 'zod';
   import { searchEntry, createArticleSearch } from '../lib/search';
@@ -24,11 +26,11 @@
 <h1>{query ? `You searched for '${query}'` : 'Search posts'}</h1>
 <form action="/search/" method="get" role="search" class="search-form search-page-form">
   <label for="article-search">Search articles</label>
-  <div><input id="article-search" type="search" name="searched" bind:value={query} placeholder="Title, topic or phrase" /><button type="submit">Search</button></div>
+  <div><Input id="article-search" type="search" name="searched" bind:value={query} placeholder="Title, topic or phrase" /><Button type="submit">Search</Button></div>
 </form>
 <div aria-live="polite" aria-busy={searchState.kind === 'loading'}>
   {#if searchState.kind === 'loading'}<p>Loading search...</p>
-  {:else if searchState.kind === 'error'}<p>Search couldn't load. <button onclick={loadIndex}>Try again</button> or <a href="/all-posts/">browse all posts</a>.</p>
+  {:else if searchState.kind === 'error'}<p>Search couldn't load. <Button onclick={loadIndex}>Try again</Button> or <a href="/all-posts/">browse all posts</a>.</p>
   {:else if query.trim()}
     <p>{results.length} {results.length === 1 ? 'result' : 'results'}</p>
     {#if !results.length}<p>No articles matched. Try a shorter phrase or another topic.</p>{/if}
