@@ -1,0 +1,15 @@
+---
+---
+<aside class="recipe-pwa" aria-label="Use recipes offline">
+  <p id="recipe-offline-status" role="status">Save recipes to your home screen. On iPhone or iPad, open in Safari and choose Share → Add to Home Screen. Other browsers offer Install or Add to Home Screen in their menu.</p>
+  <p>Recipe tools and illustrations work offline once saved. External source links and other blog pages need a connection.</p>
+</aside>
+<script>
+  import './recipe-pwa-client.mjs';
+</script>
+<style>
+  .recipe-pwa { border:1px solid var(--border, #999); border-radius:12px; padding:1rem; margin:1rem 0; }
+  .recipe-pwa p { margin:0.3rem 0; }
+  :global(html.recipe-offline .related-posts img) { display:none; }
+  @media print { .recipe-pwa { display:none; } }
+</style>

@@ -20,7 +20,29 @@ flow stores the mandatory TRN operation tree: ingredient leaves with fractional 
 
 Assistant JSON uses schemaVersion1 and contains current settings, stable recipe IDs, readable quantities, food states, dependency cells, steps, sources, restrictions, estimates and illustration metadata. Static downloads are for4adults, US units, no family starch selected; every shared recipe includes per-person starch options. Downloaded current-setting JSON and copied Markdown use the same recipeDocument as printing.
 
-## Maintenance in this repository
+## Installable recipe page
+
+The recipe article is a standalone PWA at its existing URL. Its manifest and
+home-screen icons are in `public/recipes-pwa`. Safari users can choose Share →
+Add to Home Screen; supported desktop and Android browsers offer installation
+in their browser menu.
+
+The production build generates a service worker beside the recipe page. It
+precaches the built recipe page, its JavaScript/CSS/font dependencies, recipe
+illustrations and the two assistant downloads as one versioned snapshot. The
+page reports when that snapshot is ready. Other blog pages and external recipe
+sources require a connection. Local settings and dinner plans retain the existing
+browser storage behavior.
+
+New snapshots download on a connected visit. Updates wait until all recipe tabs
+and app windows close, then activate on reopening. No forced reload interrupts
+cooking. Failed downloads leave the previous snapshot available; browser storage
+eviction or clearing site data requires another connected visit.
+
+Use a production build and `npm run preview` to verify offline behavior. The
+worker is generated at build time and is absent from the development server.
+
+## Maintenance commands
 
 The canonical recipe data is `src/components/recipes/recipes.json`. Run these commands
 from `/Users/johnsolly/code/awesome-blog` after editing it:

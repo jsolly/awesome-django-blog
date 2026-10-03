@@ -76,6 +76,15 @@
           "value": "application/atom+xml; charset=utf-8"
         }
       ]
+    },
+    {
+      "source": "/post/15-minute-dump-and-go-instant-pot-recipes/service-worker.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
+      ]
     }
   ],
   "redirects": [

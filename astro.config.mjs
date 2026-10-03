@@ -1,13 +1,14 @@
 import { defineConfig } from 'astro/config';
 import svelte from '@astrojs/svelte';
 import { satteri } from '@astrojs/markdown-satteri';
+import recipePwa from './scripts/recipes/pwa-build.mjs';
 
 export default defineConfig({
   site: 'https://www.blogthedata.com',
   output: 'static',
   trailingSlash: 'always',
   prerenderConflictBehavior: 'error',
-  integrations: [svelte()],
+  integrations: [svelte(), recipePwa()],
   markdown: { syntaxHighlight: 'prism', processor: satteri({ features: { smartPunctuation: false, gfm: false } }) },
   security: {
     csp: {
