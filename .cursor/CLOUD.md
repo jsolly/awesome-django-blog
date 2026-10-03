@@ -141,6 +141,12 @@ missing, follow this repo's `AGENTS.md` **Local UI verification** stanza instead
 Product UI must not load runtime CSS/JS from third-party CDNs (jsDelivr, unpkg, cdnjs, esm.sh,
 Google Fonts CSS, and similar). Prefer npm/local packages and first-party origins. Detailed policy: `~/.cursor/dotagents-package/rules/no-cdn-app-assets.md`; also read this repo's `AGENTS.md` when present.
 
+Use Svelte + shadcn-svelte for new frontends. Existing Svelte repos use
+shadcn-svelte for new or replaced standard controls; load `/shadcn-svelte`.
+Framework migrations and alternative stacks require explicit user direction.
+Policy: `~/.cursor/dotagents-package/rules/frontend-stack.md`. Record the stack
+and any user-directed exception in this repo's `AGENTS.md`.
+
 Vercel Git repos must not auto-Preview every branch. Production stays on `main`; opt-in `/preview`
 only when John asks. Canon: laptop global brief **No automatic Vercel Previews**; also this repo's
 `AGENTS.md` when present.

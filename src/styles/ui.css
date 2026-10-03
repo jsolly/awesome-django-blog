@@ -1,0 +1,29 @@
+/* Utilities only: preserve authored article and existing site styles. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+@source "../lib/components/ui";
+@source "../components/Navigation.svelte";
+@source "../components/Search.svelte";
+@import "shadcn-svelte/tailwind.css";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--text);
+  --color-primary: var(--button);
+  --color-primary-foreground: var(--button-text);
+  --color-secondary: var(--hover);
+  --color-secondary-foreground: var(--text);
+  --color-muted: var(--hover);
+  --color-muted-foreground: var(--muted);
+  --color-border: var(--border);
+  --color-input: var(--input-border);
+  --color-ring: #cf7700;
+  --color-destructive: #b91c1c;
+  --radius-lg: 10px;
+  --radius-md: 8px;
+  --radius-sm: 6px;
+}
+
+/* Existing typography and padding set control height, including mobile targets. */
+[data-slot="button"], [data-slot="input"] { height: auto; }
