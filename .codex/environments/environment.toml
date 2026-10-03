@@ -1,0 +1,5 @@
+version = 1
+name = "awesome-blog"
+
+[setup]
+script = "npm run worktree:init"
