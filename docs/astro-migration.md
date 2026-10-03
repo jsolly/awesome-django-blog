@@ -6,11 +6,15 @@ at `ff5c534034a11dc50cb18316cc1758df0a03267f`. Its landed tree matches the revie
 PR tree; [main CI](https://github.com/jsolly/awesome-blog/actions/runs/37048700608)
 reused that tree's successful validation. The CMS rehearsal, frozen final-source
 reconciliation and independent durable backup recovery are complete. Canonical
-DNS, HTTPS, exact-release manual Production smoke and the complete public-content
-audit passed. The repository is now `jsolly/awesome-blog`; renamed-repository
-automatic smoke and hosted CMS verification remain required. Heroku automatic
-deploys are disabled; release v315 remains available for rollback. Publishing
-stays frozen until John accepts the initial rollback window.
+DNS, HTTPS and the complete public-content audit passed. The repository is now
+`jsolly/awesome-blog`. The renamed-repository Git production release at
+`2293c3d4197010235a0af620bb4ce0661332493c` passed
+[automatic Production smoke](https://github.com/jsolly/awesome-blog/actions/runs/37078297297),
+and the post-rename hosted CMS rehearsal passed. John accepted the cutover and
+closed the initial rollback window on October 2, 2026. Publishing may resume through
+PagesCMS editorial branches and PRs. Heroku automatic deploys remain disabled;
+release v315, its database/media and all backups remain retained until separately
+authorized retirement.
 
 ## Architecture decisions
 
@@ -130,6 +134,17 @@ remote image URLs, its full body and unmanaged legacy keys.
 The table and embedded-frame articles retained their exact bodies and meaningful
 metadata after hosted saves; original titles were restored afterward.
 
+After the repository rename, the hosted CMS saved and reopened an isolated draft,
+then published it on the rehearsal branch. The roundtrip preserved the body,
+code, image URL, unmanaged legacy keys and the timestamp
+`2026-10-02T19:40:23.123456-04:00`, apart from a terminal blank line in the body.
+Draft exclusion and published article/category/archive/search/feed/sitemap output
+passed, as did desktop and mobile reading. Literal GFM table syntax remains literal
+under the declared CommonMark policy. [Rehearsal PR #685](https://github.com/jsolly/awesome-blog/pull/685)
+passed [CI](https://github.com/jsolly/awesome-blog/actions/runs/37079129740) and closed
+without merging; its fixture is absent from `main` and production. Automatic branch
+previews remained disabled.
+
 1. Save and reopen existing table, code and iframe posts. Compare the source diff,
    metadata, timestamps, media URLs and unmanaged legacy keys. Confirm source body
    editing does not rewrite retained markup.
@@ -154,7 +169,7 @@ and Vercel authentication on deployment URLs while custom domains remain public.
 The canonical DNS cutover completed on October 2, 2026. Both Cloudflare CNAMEs
 point to Vercel with DNS-only service and TTL Auto; the Google verification TXT
 record is unchanged. HTTPS validates and the apex redirects to www, preserving
-the requested path and query. Git production deployment
+the requested path and query. The initial Git production deployment
 `dpl_4vJESG2KYmB6KvVThp4twNKC9Yrn` served full SHA
 `4e0347ba886dbe36e1e02cf85ea80a67bec78765`. Its
 [canonical Production smoke](https://github.com/jsolly/awesome-blog/actions/runs/37072840179)
@@ -163,10 +178,19 @@ articles and their bare URLs, 13 other pages, 241 referenced assets, four feed
 forms and both historical aliases in both URL forms, including the documented
 pre-existing 404. Automatic smoke was skipped before the environment variable
 was saved. John then saved `VERCEL_PRODUCTION_ENVIRONMENT=Production` and renamed
-the same repository, ID `286148731`, to `awesome-blog`. The next renamed-repository
-Git release must prove automatic smoke and the hosted CMS integration.
+the same repository, ID `286148731`, to `awesome-blog`.
+[Identity PR #684](https://github.com/jsolly/awesome-blog/pull/684) then landed at
+`2293c3d4197010235a0af620bb4ce0661332493c`. Its Git-triggered Vercel production
+deployment `dpl_DbF7JTxAMg4wwynVLVPcBqegovHu` reached READY, and GitHub deployment
+`6820445317` triggered the successful
+[automatic canonical Production smoke](https://github.com/jsolly/awesome-blog/actions/runs/37078297297)
+for that exact SHA without fallback. The post-rename hosted CMS rehearsal above
+also passed. John explicitly chose to retain Vercel's existing All repositories
+GitHub App access; no permissions changed.
 Heroku automatic deploys remain disabled; release v315 and its database/media
-are retained. Publishing stays frozen until John accepts the initial rollback window.
+are retained. John accepted the verified cutover and closed the initial rollback
+window on October 2, 2026. Publishing may resume through the new CMS workflow;
+acceptance does not authorize teardown of retained resources or backups.
 John explicitly authorized migration backups and admin activities on October 2,
 2026. The agent can perform these steps using available authorized access.
 Sign-in and any required human input use Chrome. New security-sensitive access
@@ -282,13 +306,14 @@ canonical site serves that exact SHA, then checks article reading, GET search,
 RSS/Atom MIME and mobile navigation. It uses only public GETs and browser reads.
 Receipts, traces and screenshots upload even on failure. The canonical manual
 [Production smoke](https://github.com/jsolly/awesome-blog/actions/runs/37072840179)
-passed for the Vercel release recorded above. Automatic smoke on the next
-renamed-repository Git production release and hosted CMS verification remain
-required before initial rollback acceptance.
+passed for the initial Vercel cutover release. The renamed-repository Git release
+recorded above passed [automatic Production smoke](https://github.com/jsolly/awesome-blog/actions/runs/37078297297),
+and hosted CMS verification passed in rehearsal PR #685. John accepted these checks
+and closed the initial rollback window on October 2, 2026.
 
-During the freeze, restore the recorded original DNS routing to the retained
-Heroku release, then verify canonical reading/search. Keep deployment receipts for
-diagnosis. No post-freeze content is lost because publishing is paused. After
-publishing resumes, reconcile Git-authored changes back into the retained application before any
-rollback to the old application. Never delete production resources as part of the
-code migration.
+Publishing may now resume. Before any rollback to the old application, reconcile
+Git-authored changes made after the frozen export back into the retained application.
+Restore the recorded original DNS routing to the retained Heroku release, then
+verify canonical reading/search. Keep deployment receipts for diagnosis. Retain
+Heroku, its database/media and independent backups until separately authorized
+retirement; migration acceptance does not authorize deleting production resources.
