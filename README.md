@@ -7,8 +7,10 @@ remains on AWS S3/CloudFront.
 
 Production is live on Vercel at <https://www.blogthedata.com>. Heroku automatic
 deploys are disabled; the old serving release and independent backups are retained
-for rollback. Publishing remains frozen until the initial rollback window is
-accepted. See the [migration runbook](docs/astro-migration.md).
+for recovery. John accepted the cutover and closed the initial rollback window on
+October 2, 2026. Publishing may resume through PagesCMS editorial branches and PRs.
+Retain the old resources and backups until separately authorized retirement.
+See the [migration runbook](docs/astro-migration.md).
 
 ## Develop
 

@@ -69,7 +69,8 @@ protected `main`; project previews are disabled and deployment protection remain
 enabled. Canonical production serves the static site over valid HTTPS. Every
 release must match its full SHA and pass canonical Production smoke. Heroku
 automatic deploys are disabled; release v315 and its database/media remain for
-rollback. Publishing stays frozen until John accepts the initial rollback window.
+recovery. John accepted the cutover and closed the initial rollback window on
+October 2, 2026; publishing may resume through PagesCMS editorial branches and PRs.
 Follow [the migration runbook](docs/astro-migration.md).
 
 A release requires successful production deployment plus that exact SHA's canonical
@@ -95,7 +96,8 @@ code and iframe checks in both viewports. Screenshots/evidence belong in ignored
 
 John authorized migration backups and hosting administration. Infrastructure deployment,
 production DB writes and destructive cloud changes remain John's human operations. Keep Heroku/database/S3/CloudFront/IAM
-resources intact through the cutover and rollback window. The AWS bucket is
+resources and independent backups intact until separately authorized retirement.
+Cutover acceptance does not authorize teardown. The AWS bucket is
 `blogthedata` in account `730335616323`; do not widen the retained bucket-scoped
 policy. All new AWS resources must be defined with CloudFormation. The recovery
 bucket has been provisioned through CloudFormation and its exact-version database
