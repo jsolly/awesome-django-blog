@@ -36,7 +36,7 @@ test('public article, GET search, feeds and mobile navigation are read-only', as
       const url = new URL(route.request().url());
       assert.equal(route.request().method(), 'GET');
       const body = url.pathname === '/'
-        ? '<h1>Latest Posts!</h1><a class="post-card-link" href="/post/example/">Example post</a><button aria-expanded="false" onclick="this.setAttribute(\'aria-expanded\',\'true\')">Menu</button><nav aria-label="Main navigation"><a href="/all-posts/">All posts</a></nav><footer><nav aria-label="Footer"><a href="/all-posts/">All posts</a></nav></footer>'
+        ? '<h1>Latest Posts!</h1><a class="post-card-link" href="/post/example/">Example post</a><button aria-expanded="false" aria-label="Open menu" onclick="const open=this.getAttribute(\'aria-expanded\')!==\'true\';this.setAttribute(\'aria-expanded\',String(open));this.setAttribute(\'aria-label\',open?\'Close menu\':\'Open menu\')">Menu</button><nav aria-label="Main navigation"><a href="/all-posts/">All posts</a></nav><footer><nav aria-label="Footer"><a href="/all-posts/">All posts</a></nav></footer>'
         : url.pathname === '/post/example/'
           ? '<article><h1>Example post</h1><div class="post-text">Public article content</div></article>'
           : url.pathname === '/all-posts/'

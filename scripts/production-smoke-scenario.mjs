@@ -60,9 +60,13 @@ export async function smoke({ page, verifyHttp, artifacts }) {
   await verifyFeeds({ verifyHttp });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(productionUrl);
-  const menu = page.getByRole('button', { name: 'Menu', exact: true });
+  const menu = page.getByRole('button', { name: 'Open menu', exact: true });
   await menu.click();
-  assert.equal(await menu.getAttribute('aria-expanded'), 'true', 'Mobile menu opens');
+  const closeMenu = page.getByRole('button', { name: 'Close menu', exact: true });
+  assert.equal(await closeMenu.getAttribute('aria-expanded'), 'true', 'Mobile menu opens');
+  await closeMenu.click();
+  assert.equal(await menu.getAttribute('aria-expanded'), 'false', 'Mobile menu closes');
+  await menu.click();
   await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'All posts', exact: true }).click();
   await page.waitForURL(`${productionUrl}/all-posts/`);
   if (artifacts) await page.screenshot({ path: `${artifacts}/mobile.png`, fullPage: true });

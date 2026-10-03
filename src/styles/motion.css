@@ -1,0 +1,96 @@
+/* Shared timings for interactive state changes. */
+:root { --motion-fast: 160ms; --motion-panel: 240ms; --motion-ease: cubic-bezier(.2, .8, .2, 1); }
+button, input, select, a, summary {
+  transition: color var(--motion-fast) ease, background-color var(--motion-fast) ease,
+    border-color var(--motion-fast) ease, box-shadow var(--motion-fast) ease;
+}
+button:hover:not(:disabled) { filter: brightness(1.08); }
+button { transition: filter var(--motion-fast) ease, background-color var(--motion-fast) ease, border-color var(--motion-fast) ease; }
+.navigation-panel { display: contents; }
+.menu-line { transform-origin: 12px 12px; transition: transform var(--motion-panel) var(--motion-ease), opacity var(--motion-fast) ease; }
+.menu-toggle[aria-expanded=true] .top { transform: translateY(6px) rotate(45deg); transform-origin: 12px 6px; }
+.menu-toggle[aria-expanded=true] .middle { opacity: 0; }
+.menu-toggle[aria-expanded=true] .bottom { transform: translateY(-6px) rotate(-45deg); transform-origin: 12px 18px; }
+/* Native disclosures retain their keyboard and no-JavaScript behavior. */
+@supports selector(::details-content) {
+  details::details-content {
+    opacity: 0;
+    transition: opacity var(--motion-panel) ease, content-visibility var(--motion-panel) allow-discrete;
+  }
+  details[open]::details-content { opacity: 1; }
+  @supports (interpolate-size: allow-keywords) {
+    details { interpolate-size: allow-keywords; }
+    details::details-content {
+      block-size: 0;
+      overflow: clip;
+      transition: block-size var(--motion-panel) var(--motion-ease), opacity var(--motion-panel) ease,
+        content-visibility var(--motion-panel) allow-discrete;
+    }
+    details[open]::details-content { block-size: auto; }
+    /* The desktop category dropdown is positioned outside the disclosure box. */
+    .category-menu::details-content { block-size: auto; overflow: visible; }
+    @media (max-width: 900px) {
+      .category-menu::details-content { block-size: 0; overflow: clip; }
+      .category-menu[open]::details-content { block-size: auto; }
+    }
+  }
+}
+@media (max-width: 900px) {
+  .navigation-panel {
+    display: grid; grid-template-rows: 1fr; width: 100%; order: 3; opacity: 1;
+    visibility: visible;
+    transition: grid-template-rows var(--motion-panel) var(--motion-ease), opacity var(--motion-fast) ease,
+      visibility 0s;
+  }
+  .navigation-panel nav { transition: padding-top var(--motion-panel) var(--motion-ease); }
+  .navigation-panel.collapsed nav { padding-top: 0; }
+  .navigation-panel.collapsed {
+    grid-template-rows: 0fr; opacity: 0; visibility: hidden;
+    transition: grid-template-rows var(--motion-panel) var(--motion-ease), opacity var(--motion-fast) ease,
+      visibility 0s var(--motion-panel);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after, details::details-content {
+    transition-duration: 0s !important; animation-duration: 0s !important;
+    animation-iteration-count: 1 !important; scroll-behavior: auto !important;
+  }
+}
+@media print { details::details-content { transition: none; } }
+
+/* Match the portfolio: a transparent underline fades in on hover or focus. */
+a:not(.card-image, .brand, .heading-link) {
+  text-decoration: underline 2px transparent;
+  text-underline-offset: 4px;
+  text-decoration-skip-ink: none;
+  transition: text-decoration-color 300ms cubic-bezier(.4, 0, .2, 1),
+    color var(--motion-fast) ease, background-color var(--motion-fast) ease;
+}
+a:not(.card-image, .brand, .heading-link):is(:hover, :focus-visible) {
+  text-decoration-color: currentColor;
+}
+@media (prefers-reduced-motion: reduce) {
+  a { transition: none !important; }
+}
+@media print {
+  a:not(.card-image, .brand, .heading-link) { text-decoration-color: currentColor; }
+}
+
+@keyframes load-more-bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-6px); }
+  60% { transform: translateY(-3px); }
+}
+.load-more .load-more-button {
+  display:inline-flex;align-items:center;justify-content:center;
+  border:2px solid var(--heading);border-radius:2rem;padding:1rem 2rem;
+  color:var(--heading);background:transparent;font-size:1.2rem;font-weight:600;
+  text-decoration:none;min-height:64px;
+  transition:background-color 240ms ease,color 240ms ease;
+}
+.load-more .load-more-button:is(:hover,:focus-visible) {background:var(--heading);color:var(--paper);text-decoration:none}
+.load-more-button.paused {animation:load-more-bounce 1.8s ease-in-out 2}
+@media(prefers-reduced-motion:reduce){.load-more-button.paused{animation:none}}
+
+/* Weight keeps prose links identifiable without a resting underline. */
+main p a, main li a, main td a, main dd a { font-weight: 600; }
