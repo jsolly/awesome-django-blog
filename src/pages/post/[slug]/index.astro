@@ -23,7 +23,7 @@ const structured = { '@context': 'https://schema.org', '@type': 'BlogPosting', h
 ---
 <Base title={data.title} description={data.description} image={image} imageAlt={data.imageAlt} article>
   <Fragment slot="head"><meta property="article:published_time" content={data.published.toISOString()} /><meta property="article:modified_time" content={data.updated.toISOString()} /><script type="application/ld+json" set:html={JSON.stringify(structured).replace(/</g, '\\u003c')} /></Fragment>
-  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href={`/category/${data.category}/`}>{category?.data.name}</a></nav>
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href={`/category/${data.category}/`}>{category?.data.name}</a></nav>
   <article>
     <h1 id={headingId(data.title)}>{data.title}<a class="heading-link" href={`#${headingId(data.title)}`} aria-label="Link to this heading">#</a></h1>
     {!interactiveMealPost && <figure><img class="article-hero" src={image} alt={data.imageAlt} width={data.imageWidth ?? undefined} height={data.imageHeight ?? undefined} fetchpriority="high" />{data.imageAttribution && <figcaption>{data.imageAttribution}</figcaption>}</figure>}

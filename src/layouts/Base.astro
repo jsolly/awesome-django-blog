@@ -1,8 +1,14 @@
 ---
 import Navigation from '../components/Navigation.svelte';
 import { blogContent, site } from '../lib/content';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/poppins/600.css';
+import '@fontsource/poppins/700.css';
+import '../styles/theme.css';
 import '../styles/global.css';
 import '../styles/article-content.css';
+import '../styles/motion.css';
 interface Props { title: string; description?: string; image?: string; imageAlt?: string; noindex?: boolean; article?: boolean }
 const { title, description = 'Articles about geospatial development, web development, AI and productivity by John Solly.', image = '/media/default.webp', imageAlt = 'John Solly', noindex = false, article = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, site).href;
@@ -22,6 +28,13 @@ const navigation = categories.map(({ data }) => ({ slug: data.slug, name: data.n
     <meta property="og:image" content={new URL(image, site).href} /><meta property="og:image:alt" content={imageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     {noindex && <meta name="robots" content="noindex, follow" />}
+    <noscript><style>
+      @media (max-width: 900px) {
+        .navigation-panel.collapsed { grid-template-rows: 1fr !important; opacity: 1 !important; visibility: visible !important; }
+        .navigation-panel.collapsed nav { padding-top: 1rem !important; }
+        .menu-toggle { display: none !important; }
+      }
+    </style></noscript>
     <slot name="head" />
   </head>
   <body id="top">
@@ -30,10 +43,6 @@ const navigation = categories.map(({ data }) => ({ slug: data.slug, name: data.n
       <div class="header-inner">
         <a class="brand" href="/"><img src="/logo.webp" alt="" width="40" height="44" />Solly's Blog</a>
         <Navigation categories={navigation} pathname={Astro.url.pathname} client:load />
-        <form action="/search/" method="get" role="search" class="search-form">
-          <label class="visually-hidden" for="site-search">Search</label>
-          <input id="site-search" type="search" name="searched" placeholder="Search posts..." /><button type="submit">Search</button>
-        </form>
       </div>
     </header>
     <div class="page-layout" data-page={Astro.url.pathname}>

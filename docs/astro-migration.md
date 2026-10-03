@@ -96,8 +96,16 @@ recipes, TRN tables, first-party images and assistant downloads. The remaining
 
 Public URLs remain `/`, `/all-posts/`, `/search/?searched=...`, existing posts
 and categories, `/rss/`, `/atom/`, `/sitemap.xml`, `/privacy/`,
-`/works-cited/` and security resources. Search/query pagination requires JavaScript;
-the archive lists every published article without it. Drafts are excluded from
+`/works-cited/` and security resources. Browser search uses bundled MiniSearch
+with title-weighted ranking, partial words and limited typo tolerance. Homepage and
+category lists append posts as the reader scrolls. Automatic loading pauses after
+three extra batches; the manual Load more link loads a batch and enables the next
+three automatic batches.
+A `?page=N` URL restores the first N batches; loading replaces the current history
+entry so returning from an article restores the list and scroll position. Search
+and incremental loading require JavaScript; the archive lists every published
+article without it. Mobile navigation starts closed before hydration and remains
+visible with JavaScript disabled. Drafts are excluded from
 routes, search, feeds, sitemap and client props. Heading links, print and related
 posts remain. The static build sanitizes HTML and emits hashed script CSP.
 
