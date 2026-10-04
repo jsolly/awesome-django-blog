@@ -5213,7 +5213,7 @@
           "name": "Plain lowfat Greek yogurt",
           "amount": 400,
           "unit": "g",
-          "state": "plain, unsweetened, about 2% fat",
+          "state": "plain, unsweetened, 2% fat",
           "note": "",
           "scale": "linear"
         },
@@ -5373,7 +5373,9 @@
       "type": "smoothie",
       "capacity": "Blend two servings at a time in a 1.5 L blender. Keep the jar below its marked fill limit.",
       "timingNote": "Allow about 5 minutes for four servings in two batches.",
-      "safety": ""
+      "safety": "",
+      "estimatedYieldMl": 1288,
+      "yieldEstimateNote": "Estimated from ingredient mass using approximately 1 g/ml for the blended mixture. Finished volume has not been measured; aeration, blender retention and extra liquid affect yield."
     },
     {
       "id": "strawberry-avocado-smoothie",
@@ -5398,7 +5400,7 @@
           "name": "Plain lowfat Greek yogurt",
           "amount": 400,
           "unit": "g",
-          "state": "plain, unsweetened, about 2% fat",
+          "state": "plain, unsweetened, 2% fat",
           "note": "",
           "scale": "linear"
         },
@@ -5545,7 +5547,9 @@
       "type": "smoothie",
       "capacity": "Blend two servings at a time in a 1.5 L blender. Keep the jar below its marked fill limit.",
       "timingNote": "Allow about 5 minutes for four servings in two batches.",
-      "safety": ""
+      "safety": "",
+      "estimatedYieldMl": 1228,
+      "yieldEstimateNote": "Estimated from ingredient mass using approximately 1 g/ml for the blended mixture. Finished volume has not been measured; aeration, blender retention and extra liquid affect yield."
     },
     {
       "id": "strawberry-banana-smoothie",
@@ -5570,7 +5574,7 @@
           "name": "Plain lowfat Greek yogurt",
           "amount": 600,
           "unit": "g",
-          "state": "plain, unsweetened, about 2% fat",
+          "state": "plain, unsweetened, 2% fat",
           "note": "",
           "scale": "linear"
         },
@@ -5704,7 +5708,9 @@
       "type": "smoothie",
       "capacity": "Blend two servings at a time in a 1.5 L blender. Keep the jar below its marked fill limit.",
       "timingNote": "Allow about 5 minutes for four servings in two batches.",
-      "safety": ""
+      "safety": "",
+      "estimatedYieldMl": 2000,
+      "yieldEstimateNote": "Estimated from ingredient mass using approximately 1 g/ml for the blended mixture. Finished volume has not been measured; aeration, blender retention and extra liquid affect yield."
     },
     {
       "id": "banana-flax-smoothie",
@@ -5729,7 +5735,7 @@
           "name": "Plain lowfat Greek yogurt",
           "amount": 600,
           "unit": "g",
-          "state": "plain, unsweetened, about 2% fat",
+          "state": "plain, unsweetened, 2% fat",
           "note": "",
           "scale": "linear"
         },
@@ -5863,7 +5869,387 @@
       "type": "smoothie",
       "capacity": "Blend two servings at a time in a 1.5 L blender. Keep the jar below its marked fill limit.",
       "timingNote": "Allow about 5 minutes for four servings in two batches.",
-      "safety": ""
+      "safety": "",
+      "estimatedYieldMl": 1520,
+      "yieldEstimateNote": "Estimated from ingredient mass using approximately 1 g/ml for the blended mixture. Finished volume has not been measured; aeration, blender retention and extra liquid affect yield."
+    },
+    {
+      "id": "strawberry-hemp-smoothie",
+      "key": "strawberry-hemp-smoothie",
+      "title": "Strawberry-hemp smoothie",
+      "group": "keto",
+      "proteinType": "vegetarian",
+      "vegetarian": true,
+      "appliance": "blender",
+      "activeMinutes": 5,
+      "totalMin": 5,
+      "totalMax": 5,
+      "timeVariable": false,
+      "summary": "A tangy strawberry smoothie with hulled hemp hearts for a nutty finish, without banana or added sugar.",
+      "allergens": [
+        "milk"
+      ],
+      "boosters": [],
+      "ingredients": [
+        {
+          "id": "yogurt",
+          "name": "Plain lowfat Greek yogurt",
+          "amount": 400,
+          "unit": "g",
+          "state": "plain, unsweetened, 2% fat",
+          "note": "",
+          "scale": "linear"
+        },
+        {
+          "id": "strawberry",
+          "name": "Strawberries",
+          "amount": 240,
+          "unit": "g",
+          "state": "hulled",
+          "note": "",
+          "scale": "linear"
+        },
+        {
+          "id": "hemp",
+          "name": "Hulled hemp hearts",
+          "unit": "g",
+          "state": "hulled, unsalted",
+          "note": "",
+          "scale": "linear",
+          "amount": 80
+        },
+        {
+          "id": "water",
+          "name": "Cold water",
+          "amount": 600,
+          "unit": "ml",
+          "state": "",
+          "note": "",
+          "scale": "linear"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Prepare",
+          "text": "Hull and quarter the strawberries. Weigh the yogurt and hulled hemp hearts."
+        },
+        {
+          "title": "Blend",
+          "text": "Blend in batches of up to two servings, adding water first, for 30\u201360 seconds per batch until smooth."
+        },
+        {
+          "title": "Serve",
+          "text": "Divide among serving glasses and serve chilled."
+        }
+      ],
+      "equipment": [
+        "Blender with at least 1.5 L capacity; blend two servings per batch"
+      ],
+      "timeline": [
+        {
+          "phase": "Prepare",
+          "duration": "3 min",
+          "attention": "Weigh and prepare ingredients."
+        },
+        {
+          "phase": "Blend",
+          "duration": "2 min",
+          "attention": "Blend in two batches."
+        }
+      ],
+      "tips": [
+        "Pour cold water in first, then add the other ingredients.",
+        "Use chilled ingredients; blend thoroughly so the hemp hearts are smooth.",
+        "Serve promptly. Ground seeds thicken on standing; blend again with a little extra water if needed."
+      ],
+      "fallback": "",
+      "limitations": [
+        "Designed recipe, not kitchen-tested. Check tartness, seed texture and thickness on the first blend.",
+        "Use plain unsweetened yogurt and unsweetened fruit. Brand labels can change the carbohydrate estimate.",
+        "Larger serving selections require additional blender batches; keep below the marked fill limit."
+      ],
+      "sources": [
+        {
+          "title": "Yogurt, Greek, plain, lowfat \u2014 USDA FoodData Central",
+          "url": "https://fdc.nal.usda.gov/food-details/170903/nutrients"
+        },
+        {
+          "title": "Strawberries, raw \u2014 USDA FoodData Central",
+          "url": "https://fdc.nal.usda.gov/food-details/167762/nutrients"
+        },
+        {
+          "title": "Seeds, hemp seed, hulled \u2014 USDA FoodData Central",
+          "url": "https://fdc.nal.usda.gov/food-details/170148/nutrients"
+        }
+      ],
+      "nutrition": {
+        "kcal": 202.8,
+        "protein_g": 16.664,
+        "carbs_g": 10.282,
+        "fiber_g": 2.0,
+        "net_carbs_g": 8.282
+      },
+      "familyOptions": [],
+      "attentionSummary": "Blend until smooth; serve chilled.",
+      "flavorRationale": "Greek yogurt supplies a creamy, tangy base; strawberries add fruit flavor and hemp hearts give body without avocado.",
+      "midCookActions": 0,
+      "image": {
+        "src": "/media/recipes/strawberry-hemp-smoothie.svg",
+        "cardSrc": "/media/recipes/strawberry-hemp-smoothie.svg",
+        "cardSrcset": "/media/recipes/strawberry-hemp-smoothie.svg 512w",
+        "detailSrcset": "/media/recipes/strawberry-hemp-smoothie.svg 512w",
+        "width": 512,
+        "height": 384,
+        "alt": "Illustration of strawberry-hemp smoothie in a glass.",
+        "caption": "Smoothie illustration."
+      },
+      "flow": {
+        "prep": [
+          "Hull and quarter the strawberries. Weigh the yogurt and hulled hemp hearts.",
+          "Use chilled ingredients; blend at most two servings per batch in a 1.5 L blender."
+        ],
+        "root": {
+          "action": "Divide among serving glasses and serve chilled.",
+          "children": [
+            {
+              "action": "Blend in batches of up to two servings for 30\u201360 sec per batch, until smooth.",
+              "children": [
+                {
+                  "ingredientId": "yogurt",
+                  "fraction": 1
+                },
+                {
+                  "ingredientId": "strawberry",
+                  "fraction": 1
+                },
+                {
+                  "ingredientId": "hemp",
+                  "fraction": 1
+                },
+                {
+                  "ingredientId": "water",
+                  "fraction": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "appliancesNeeded": [
+        "Blender"
+      ],
+      "type": "smoothie",
+      "capacity": "Blend two servings at a time in a 1.5 L blender. Keep the jar below its marked fill limit.",
+      "timingNote": "Allow about 5 minutes for four servings in two batches.",
+      "safety": "",
+      "estimatedYieldMl": 1320,
+      "yieldEstimateNote": "Estimated from ingredient mass using approximately 1 g/ml for the blended mixture. Finished volume has not been measured; aeration, blender retention and extra liquid affect yield."
+    },
+    {
+      "id": "cucumber-spinach-lime-smoothie",
+      "key": "cucumber-spinach-lime-smoothie",
+      "title": "Cucumber-spinach-lime smoothie",
+      "group": "keto",
+      "proteinType": "vegetarian",
+      "vegetarian": true,
+      "appliance": "blender",
+      "activeMinutes": 5,
+      "totalMin": 5,
+      "totalMax": 5,
+      "timeVariable": false,
+      "summary": "A fresh, savory green smoothie with cucumber, raw spinach, lime and ground flaxseed, without added sugar.",
+      "allergens": [
+        "milk"
+      ],
+      "boosters": [],
+      "ingredients": [
+        {
+          "id": "yogurt",
+          "name": "Plain lowfat Greek yogurt",
+          "amount": 400,
+          "unit": "g",
+          "state": "plain, unsweetened, 2% fat",
+          "note": "",
+          "scale": "linear"
+        },
+        {
+          "id": "cucumber",
+          "name": "Cucumber",
+          "amount": 240,
+          "unit": "g",
+          "state": "trimmed, chopped",
+          "note": "",
+          "scale": "linear"
+        },
+        {
+          "id": "spinach",
+          "name": "Raw spinach",
+          "unit": "g",
+          "state": "fresh, washed",
+          "note": "",
+          "scale": "linear",
+          "amount": 120
+        },
+        {
+          "id": "lime",
+          "name": "Lime juice",
+          "amount": 24,
+          "unit": "g",
+          "state": "",
+          "note": "",
+          "scale": "linear"
+        },
+        {
+          "id": "flax",
+          "name": "Ground flaxseed",
+          "amount": 32,
+          "unit": "g",
+          "state": "",
+          "note": "",
+          "scale": "linear"
+        },
+        {
+          "id": "water",
+          "name": "Cold water",
+          "amount": 600,
+          "unit": "ml",
+          "state": "",
+          "note": "",
+          "scale": "linear"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Prepare",
+          "text": "Rinse cucumber and spinach under running water. Trim and chop cucumber; juice the lime and weigh the juice."
+        },
+        {
+          "title": "Blend",
+          "text": "Blend in batches of up to two servings, adding water first, for 30\u201360 seconds per batch until smooth."
+        },
+        {
+          "title": "Serve",
+          "text": "Divide among serving glasses and serve chilled."
+        }
+      ],
+      "equipment": [
+        "Blender with at least 1.5 L capacity; blend two servings per batch"
+      ],
+      "timeline": [
+        {
+          "phase": "Prepare",
+          "duration": "3 min",
+          "attention": "Weigh and prepare ingredients."
+        },
+        {
+          "phase": "Blend",
+          "duration": "2 min",
+          "attention": "Blend in two batches."
+        }
+      ],
+      "tips": [
+        "Pour cold water in first, then add the other ingredients.",
+        "Use chilled ingredients; blend thoroughly so the seeds and greens are smooth.",
+        "Serve promptly. Ground seeds thicken on standing; blend again with a little extra water if needed."
+      ],
+      "fallback": "",
+      "limitations": [
+        "Designed recipe, not kitchen-tested. Check tartness, seed texture and thickness on the first blend.",
+        "Use plain unsweetened yogurt and fresh produce. Brand labels can change the carbohydrate estimate.",
+        "Larger serving selections require additional blender batches; keep below the marked fill limit."
+      ],
+      "sources": [
+        {
+          "title": "Yogurt, Greek, plain, lowfat \u2014 USDA FoodData Central",
+          "url": "https://fdc.nal.usda.gov/food-details/170903/nutrients"
+        },
+        {
+          "title": "Cucumber, with peel, raw \u2014 USDA FoodData Central",
+          "url": "https://fdc.nal.usda.gov/food-details/168409/nutrients"
+        },
+        {
+          "title": "Spinach, raw \u2014 USDA FoodData Central",
+          "url": "https://fdc.nal.usda.gov/food-details/168462/nutrients"
+        },
+        {
+          "title": "Lime juice, raw \u2014 USDA FoodData Central",
+          "url": "https://fdc.nal.usda.gov/food-details/168156/nutrients"
+        },
+        {
+          "title": "Seeds, flaxseed \u2014 USDA FoodData Central",
+          "url": "https://fdc.nal.usda.gov/food-details/169414/nutrients"
+        }
+      ],
+      "nutrition": {
+        "kcal": 133.12,
+        "protein_g": 12.6864,
+        "carbs_g": 10.0226,
+        "fiber_g": 3.168,
+        "net_carbs_g": 6.8546
+      },
+      "familyOptions": [],
+      "attentionSummary": "Blend until smooth; serve chilled.",
+      "flavorRationale": "Cucumber and lime keep this savory smoothie fresh; yogurt gives body and ground flaxseed thickens it.",
+      "midCookActions": 0,
+      "image": {
+        "src": "/media/recipes/cucumber-spinach-lime-smoothie.svg",
+        "cardSrc": "/media/recipes/cucumber-spinach-lime-smoothie.svg",
+        "cardSrcset": "/media/recipes/cucumber-spinach-lime-smoothie.svg 512w",
+        "detailSrcset": "/media/recipes/cucumber-spinach-lime-smoothie.svg 512w",
+        "width": 512,
+        "height": 384,
+        "alt": "Illustration of cucumber-spinach-lime smoothie in a glass.",
+        "caption": "Smoothie illustration."
+      },
+      "flow": {
+        "prep": [
+          "Rinse cucumber and spinach under running water. Trim and chop cucumber; juice the lime and weigh the juice.",
+          "Use chilled ingredients; blend at most two servings per batch in a 1.5 L blender."
+        ],
+        "root": {
+          "action": "Divide among serving glasses and serve chilled.",
+          "children": [
+            {
+              "action": "Blend in batches of up to two servings for 30\u201360 sec per batch, until smooth.",
+              "children": [
+                {
+                  "ingredientId": "yogurt",
+                  "fraction": 1
+                },
+                {
+                  "ingredientId": "cucumber",
+                  "fraction": 1
+                },
+                {
+                  "ingredientId": "spinach",
+                  "fraction": 1
+                },
+                {
+                  "ingredientId": "lime",
+                  "fraction": 1
+                },
+                {
+                  "ingredientId": "flax",
+                  "fraction": 1
+                },
+                {
+                  "ingredientId": "water",
+                  "fraction": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "appliancesNeeded": [
+        "Blender"
+      ],
+      "type": "smoothie",
+      "capacity": "Blend two servings at a time in a 1.5 L blender. Keep the jar below its marked fill limit.",
+      "timingNote": "Allow about 5 minutes for four servings in two batches.",
+      "safety": "",
+      "estimatedYieldMl": 1416,
+      "yieldEstimateNote": "Estimated from ingredient mass using approximately 1 g/ml for the blended mixture. Finished volume has not been measured; aeration, blender retention and extra liquid affect yield."
     }
   ]
 }

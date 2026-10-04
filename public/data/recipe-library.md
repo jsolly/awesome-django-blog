@@ -1,6 +1,6 @@
 # Easy Meals recipe library
 
-17 complete four-serving recipes. Keto bases are shown without family starch; separate measured per-person options are included below each shared recipe. Small seasoning amounts use spoon measures. Recipes are newly designed and not kitchen-tested.
+19 complete four-serving recipes. Keto bases are shown without family starch; separate measured per-person options are included below each shared recipe. Small seasoning amounts use spoon measures. Recipes are newly designed and not kitchen-tested.
 
 ## Lemon salmon and asparagus
 
@@ -74,7 +74,7 @@ Lemon brightens the salmon; hemp adds a mild nutty finish without another cookin
 
 If either basket cannot hold its full batch, use two half-sheet pans at 425°F: fish about 12–18 min, asparagus 10–15 min; allow 25–35 min total.
 
-### Estimated nutrition per adult
+### Nutrition per serving
 
 468 kcal; 39.0 g protein; 6.0 g total carbs; 2.7 g fiber; 3.3 g net carbs
 
@@ -182,7 +182,7 @@ Smoked paprika and oregano season the thighs while lemon and yeast sharpen the b
 
 If baskets cannot hold the batch, use two oven pans at 425°F for about 20–25 min; allow 35–40 min total and check chicken for 165°F.
 
-### Estimated nutrition per adult
+### Nutrition per serving
 
 317 kcal; 37.9 g protein; 9.5 g total carbs; 3.8 g fiber; 5.7 g net carbs
 
@@ -286,7 +286,7 @@ Separating wet zucchini keeps cod from steaming in vegetable liquid; pesto stays
 
 - Pesto goes on after cooking to protect basil flavor.
 
-### Estimated nutrition per adult
+### Nutrition per serving
 
 328 kcal; 33.9 g protein; 7.1 g total carbs; 2.3 g fiber; 4.8 g net carbs
 
@@ -404,7 +404,7 @@ Dry spinach prevents a watery center; feta, hemp, and yeast add savory depth.
 
 - Feta can use animal rennet. For a vegetarian version, check for vegetarian or microbial rennet; the generic cheese label is not verified here.
 
-### Estimated nutrition per adult
+### Nutrition per serving
 
 408 kcal; 30.3 g protein; 9.9 g total carbs; 5.0 g fiber; 4.9 g net carbs
 
@@ -526,7 +526,7 @@ Warm spices coat small chicken pieces and cauliflower; cold lemon yogurt balance
 
 - Keep ready-to-eat greens away from raw-poultry tools.
 
-### Estimated nutrition per adult
+### Nutrition per serving
 
 339 kcal; 39.7 g protein; 11.6 g total carbs; 3.8 g fiber; 7.8 g net carbs
 
@@ -642,7 +642,7 @@ Roasting spaced strips concentrates pepper flavor; lime, avocado, and yogurt rou
 
 - Keep pieces separate so they roast rather than steam.
 
-### Estimated nutrition per adult
+### Nutrition per serving
 
 378 kcal; 37.5 g protein; 13.0 g total carbs; 5.9 g fiber; 7.1 g net carbs
 
@@ -758,7 +758,7 @@ Salsa after pressure cooking keeps its tang and meets the cooker’s need for th
 
 - The slaw is lightly dressed rather than creamy. Toss thoroughly and allow it to sit during cooking; check the first-cook texture before changing yogurt or lime amounts.
 
-### Estimated nutrition per adult
+### Nutrition per serving
 
 327 kcal; 38.6 g protein; 13.9 g total carbs; 5.5 g fiber; 8.4 g net carbs
 
@@ -884,7 +884,7 @@ Ground flax binds the turkey; feta and lemon yogurt keep a lean patty from tasti
 
 If patties do not fit with gaps, bake on half-sheet pans at 425°F for about 18–22 min; check every patty for 165°F. Four-serving base batch can fit on one pan; larger batches may need more pans or rounds. Allow 35–40 min for the base batch.
 
-### Estimated nutrition per adult
+### Nutrition per serving
 
 378 kcal; 39.9 g protein; 7.7 g total carbs; 2.3 g fiber; 5.4 g net carbs
 
@@ -996,7 +996,7 @@ A tight foil cover and tomato liquid keep precooked chicken moist while lentils 
 
 - This is moist, not a crisp tray bake.
 
-### Estimated nutrition per adult
+### Nutrition per serving
 
 380 kcal; 41.4 g protein; 30.8 g total carbs; 12.6 g fiber; 18.2 g net carbs
 
@@ -1106,7 +1106,7 @@ Cumin-roasted cauliflower and soft-centered chickpeas meet a cold lemon-harissa 
 
 - Pat chickpeas dry with a clean towel before seasoning; wet surfaces steam instead of browning. The doubled mild-harissa dose is a design improvement that still needs tasting.
 
-### Estimated nutrition per adult
+### Nutrition per serving
 
 426 kcal; 28.8 g protein; 45.4 g total carbs; 12.0 g fiber; 33.4 g net carbs
 
@@ -1228,7 +1228,7 @@ The same lemon, garlic and oregano oil seasons the chicken and both vegetables. 
 
 - Check that the full bean portion fits the reserved half-pan without a dense pile. An extra pan or rounds can add time; record this fit on the first cook.
 
-### Estimated nutrition per adult
+### Nutrition per serving
 
 422 kcal; 39.6 g protein; 34.8 g total carbs; 6.8 g fiber; 28.0 g net carbs
 
@@ -1348,7 +1348,7 @@ Roasted shelf-stable gnocchi stays tender inside; later beans avoid drying, whil
 
 - Tomato juices help the warm cheese and yeast coat the food instead of sitting on top as dry powder; do not keep roasting after the gnocchi centers are tender.
 
-### Estimated nutrition per adult
+### Nutrition per serving
 
 604 kcal; 26.7 g protein; 81.4 g total carbs; 11.8 g fiber; 69.6 g net carbs
 
@@ -1472,7 +1472,7 @@ Ground flax binds the turkey; feta and lemon yogurt keep a lean patty from tasti
 
 - Use a nonstick pan and divide the measured oil between batches.
 
-### Estimated nutrition per adult
+### Nutrition per serving
 
 378 kcal; 39.9 g protein; 7.7 g total carbs; 2.3 g fiber; 5.4 g net carbs
 
@@ -1508,17 +1508,17 @@ A creamy avocado-lime smoothie with plain Greek yogurt and no added sugar.
 
 Blend until smooth; serve chilled.
 
-The listed pan and basket capacity, cook times, and thermometer endpoint are for four servings.
+Blend two servings at a time in a 1.5 L blender. Keep the jar below its marked fill limit.
 
-Ingredients are scaled; keep food thickness, spacing, settings and safe endpoints fixed. Timings assume the four-serving batch and specified shortcuts. More food can require additional batches.
+Allow about 5 minutes for four servings in two batches.
 
 ### Cooking flow (Tabular Recipe Notation)
 
-<div class="trn-scroll" tabindex="0" role="region" aria-label="Avocado-lime smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Prepare fruit and vegetables as listed; use chilled ingredients.</td></tr><tr><td colspan="2" class="trn-prep">Blend two servings at a time in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>400g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, about 2% fat</small></th><td rowspan="6" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>240g</strong> Avocado flesh<small class="trn-state-detail">peeled, pitted</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>200g</strong> Cucumber<small class="trn-state-detail">trimmed, chopped</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>20g</strong> Lime juice<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>28g</strong> Ground flaxseed<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>13.5 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Avocado-lime smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Prepare fruit and vegetables as listed; use chilled ingredients.</td></tr><tr><td colspan="2" class="trn-prep">Blend two servings at a time in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>400g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, 2% fat</small></th><td rowspan="6" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>240g</strong> Avocado flesh<small class="trn-state-detail">peeled, pitted</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>200g</strong> Cucumber<small class="trn-state-detail">trimmed, chopped</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>20g</strong> Lime juice<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>28g</strong> Ground flaxseed<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>14 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
 
 ### Ingredients
 
-- 400g Plain lowfat Greek yogurt — plain, unsweetened, about 2% fat
+- 400g Plain lowfat Greek yogurt — plain, unsweetened, 2% fat
 
 - 240g Avocado flesh — peeled, pitted
 
@@ -1528,7 +1528,7 @@ Ingredients are scaled; keep food thickness, spacing, settings and safe endpoint
 
 - 28g Ground flaxseed
 
-- 13.5 fl oz Cold water
+- 14 fl oz Cold water
 
 ### Equipment
 
@@ -1536,7 +1536,7 @@ Ingredients are scaled; keep food thickness, spacing, settings and safe endpoint
 
 ### Cook
 
-Prepare cold sides first. Keep raw-poultry tools separate; use clean serving utensils. Probe more than one thick piece. A timer is not a doneness test.
+Wash fresh produce and use a clean blender. Keep yogurt and finished smoothies chilled.
 
 1. **Prepare.** Peel avocado or banana, trim cucumber, and hull strawberries as applicable. Weigh the edible ingredients.
 
@@ -1560,11 +1560,11 @@ Greek yogurt gives the smoothie body and a tangy finish.
 
 - Use chilled or frozen fruit for a cold smoothie.
 
-### Estimated nutrition per adult
+### Nutrition per 8 fl oz glass (estimated)
 
-215 kcal; 12.8 g protein; 13.3 g total carbs; 6.2 g fiber; 7.1 g net carbs
+158 kcal; 9.4 g protein; 9.8 g total carbs; 4.6 g fiber; 5.2 g net carbs
 
-Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.
+This batch makes about 5.4 eight-fluid-ounce glasses. Yield is estimated; added liquid and blending affect actual volume. Estimated from ingredient mass using approximately 1 g/ml for the blended mixture. Finished volume has not been measured; aeration, blender retention and extra liquid affect yield. Per estimated glass: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.
 
 Known allergens for these plates: milk. Check product labels and cross-contact.
 
@@ -1574,7 +1574,7 @@ Known allergens for these plates: milk. Check product labels and cross-contact.
 
 ### Leftovers
 
-Refrigerate in shallow containers within two hours, or one hour above 90°F. Use within 3–4 days or freeze; reheat to 165°F. Keep cold greens and yogurt separate.
+Serve chilled immediately for best texture; refrigerate any remainder promptly.
 
 ### Sources
 
@@ -1592,17 +1592,17 @@ A creamy strawberry-avocado smoothie with plain Greek yogurt and no added sugar.
 
 Blend until smooth; serve chilled.
 
-The listed pan and basket capacity, cook times, and thermometer endpoint are for four servings.
+Blend two servings at a time in a 1.5 L blender. Keep the jar below its marked fill limit.
 
-Ingredients are scaled; keep food thickness, spacing, settings and safe endpoints fixed. Timings assume the four-serving batch and specified shortcuts. More food can require additional batches.
+Allow about 5 minutes for four servings in two batches.
 
 ### Cooking flow (Tabular Recipe Notation)
 
-<div class="trn-scroll" tabindex="0" role="region" aria-label="Strawberry-avocado smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Prepare fruit and vegetables as listed; use chilled ingredients.</td></tr><tr><td colspan="2" class="trn-prep">Blend two servings at a time in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>400g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, about 2% fat</small></th><td rowspan="5" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>200g</strong> Avocado flesh<small class="trn-state-detail">peeled, pitted</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>200g</strong> Strawberries<small class="trn-state-detail">hulled</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>28g</strong> Ground flaxseed<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>13.5 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Strawberry-avocado smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Prepare fruit and vegetables as listed; use chilled ingredients.</td></tr><tr><td colspan="2" class="trn-prep">Blend two servings at a time in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>400g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, 2% fat</small></th><td rowspan="5" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>200g</strong> Avocado flesh<small class="trn-state-detail">peeled, pitted</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>200g</strong> Strawberries<small class="trn-state-detail">hulled</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>28g</strong> Ground flaxseed<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>14 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
 
 ### Ingredients
 
-- 400g Plain lowfat Greek yogurt — plain, unsweetened, about 2% fat
+- 400g Plain lowfat Greek yogurt — plain, unsweetened, 2% fat
 
 - 200g Avocado flesh — peeled, pitted
 
@@ -1610,7 +1610,7 @@ Ingredients are scaled; keep food thickness, spacing, settings and safe endpoint
 
 - 28g Ground flaxseed
 
-- 13.5 fl oz Cold water
+- 14 fl oz Cold water
 
 ### Equipment
 
@@ -1618,7 +1618,7 @@ Ingredients are scaled; keep food thickness, spacing, settings and safe endpoint
 
 ### Cook
 
-Prepare cold sides first. Keep raw-poultry tools separate; use clean serving utensils. Probe more than one thick piece. A timer is not a doneness test.
+Wash fresh produce and use a clean blender. Keep yogurt and finished smoothies chilled.
 
 1. **Prepare.** Peel avocado or banana, trim cucumber, and hull strawberries as applicable. Weigh the edible ingredients.
 
@@ -1642,11 +1642,11 @@ Greek yogurt gives the smoothie body and a tangy finish.
 
 - Use chilled or frozen fruit for a cold smoothie.
 
-### Estimated nutrition per adult
+### Nutrition per 8 fl oz glass (estimated)
 
-206 kcal; 12.6 g protein; 14.1 g total carbs; 6.3 g fiber; 7.8 g net carbs
+159 kcal; 9.7 g protein; 10.8 g total carbs; 4.8 g fiber; 6.0 g net carbs
 
-Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.
+This batch makes about 5.2 eight-fluid-ounce glasses. Yield is estimated; added liquid and blending affect actual volume. Estimated from ingredient mass using approximately 1 g/ml for the blended mixture. Finished volume has not been measured; aeration, blender retention and extra liquid affect yield. Per estimated glass: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.
 
 Known allergens for these plates: milk. Check product labels and cross-contact.
 
@@ -1656,7 +1656,7 @@ Known allergens for these plates: milk. Check product labels and cross-contact.
 
 ### Leftovers
 
-Refrigerate in shallow containers within two hours, or one hour above 90°F. Use within 3–4 days or freeze; reheat to 165°F. Keep cold greens and yogurt separate.
+Serve chilled immediately for best texture; refrigerate any remainder promptly.
 
 ### Sources
 
@@ -1674,23 +1674,23 @@ A creamy strawberry-banana smoothie with plain Greek yogurt and no added sugar.
 
 Blend until smooth; serve chilled.
 
-The listed pan and basket capacity, cook times, and thermometer endpoint are for four servings.
+Blend two servings at a time in a 1.5 L blender. Keep the jar below its marked fill limit.
 
-Ingredients are scaled; keep food thickness, spacing, settings and safe endpoints fixed. Timings assume the four-serving batch and specified shortcuts. More food can require additional batches.
+Allow about 5 minutes for four servings in two batches.
 
 ### Cooking flow (Tabular Recipe Notation)
 
-<div class="trn-scroll" tabindex="0" role="region" aria-label="Strawberry-banana smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Prepare fruit and vegetables as listed; use chilled ingredients.</td></tr><tr><td colspan="2" class="trn-prep">Blend two servings at a time in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>600g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, about 2% fat</small></th><td rowspan="4" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>600g</strong> Strawberries<small class="trn-state-detail">hulled</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>400g</strong> Banana<small class="trn-state-detail">peeled, sliced</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>13.5 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Strawberry-banana smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Prepare fruit and vegetables as listed; use chilled ingredients.</td></tr><tr><td colspan="2" class="trn-prep">Blend two servings at a time in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>600g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, 2% fat</small></th><td rowspan="4" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>600g</strong> Strawberries<small class="trn-state-detail">hulled</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>400g</strong> Banana<small class="trn-state-detail">peeled, sliced</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>14 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
 
 ### Ingredients
 
-- 600g Plain lowfat Greek yogurt — plain, unsweetened, about 2% fat
+- 600g Plain lowfat Greek yogurt — plain, unsweetened, 2% fat
 
 - 600g Strawberries — hulled
 
 - 400g Banana — peeled, sliced
 
-- 13.5 fl oz Cold water
+- 14 fl oz Cold water
 
 ### Equipment
 
@@ -1698,7 +1698,7 @@ Ingredients are scaled; keep food thickness, spacing, settings and safe endpoint
 
 ### Cook
 
-Prepare cold sides first. Keep raw-poultry tools separate; use clean serving utensils. Probe more than one thick piece. A timer is not a doneness test.
+Wash fresh produce and use a clean blender. Keep yogurt and finished smoothies chilled.
 
 1. **Prepare.** Peel avocado or banana, trim cucumber, and hull strawberries as applicable. Weigh the edible ingredients.
 
@@ -1722,11 +1722,11 @@ Greek yogurt gives the smoothie body and a tangy finish.
 
 - Use chilled or frozen fruit for a cold smoothie.
 
-### Estimated nutrition per adult
+### Nutrition per 8 fl oz glass (estimated)
 
-247 kcal; 17.0 g protein; 40.3 g total carbs; 5.6 g fiber; 34.7 g net carbs
+117 kcal; 8.1 g protein; 19.1 g total carbs; 2.6 g fiber; 16.4 g net carbs
 
-Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.
+This batch makes about 8.5 eight-fluid-ounce glasses. Yield is estimated; added liquid and blending affect actual volume. Estimated from ingredient mass using approximately 1 g/ml for the blended mixture. Finished volume has not been measured; aeration, blender retention and extra liquid affect yield. Per estimated glass: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.
 
 Known allergens for these plates: milk. Check product labels and cross-contact.
 
@@ -1736,7 +1736,7 @@ Known allergens for these plates: milk. Check product labels and cross-contact.
 
 ### Leftovers
 
-Refrigerate in shallow containers within two hours, or one hour above 90°F. Use within 3–4 days or freeze; reheat to 165°F. Keep cold greens and yogurt separate.
+Serve chilled immediately for best texture; refrigerate any remainder promptly.
 
 ### Sources
 
@@ -1754,23 +1754,23 @@ A creamy banana-flax smoothie with plain Greek yogurt and no added sugar.
 
 Blend until smooth; serve chilled.
 
-The listed pan and basket capacity, cook times, and thermometer endpoint are for four servings.
+Blend two servings at a time in a 1.5 L blender. Keep the jar below its marked fill limit.
 
-Ingredients are scaled; keep food thickness, spacing, settings and safe endpoints fixed. Timings assume the four-serving batch and specified shortcuts. More food can require additional batches.
+Allow about 5 minutes for four servings in two batches.
 
 ### Cooking flow (Tabular Recipe Notation)
 
-<div class="trn-scroll" tabindex="0" role="region" aria-label="Banana-flax smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Prepare fruit and vegetables as listed; use chilled ingredients.</td></tr><tr><td colspan="2" class="trn-prep">Blend two servings at a time in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>600g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, about 2% fat</small></th><td rowspan="4" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>480g</strong> Banana<small class="trn-state-detail">peeled, sliced</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>40g</strong> Ground flaxseed<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>13.5 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Banana-flax smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Prepare fruit and vegetables as listed; use chilled ingredients.</td></tr><tr><td colspan="2" class="trn-prep">Blend two servings at a time in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>600g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, 2% fat</small></th><td rowspan="4" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>480g</strong> Banana<small class="trn-state-detail">peeled, sliced</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>40g</strong> Ground flaxseed<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>14 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
 
 ### Ingredients
 
-- 600g Plain lowfat Greek yogurt — plain, unsweetened, about 2% fat
+- 600g Plain lowfat Greek yogurt — plain, unsweetened, 2% fat
 
 - 480g Banana — peeled, sliced
 
 - 40g Ground flaxseed
 
-- 13.5 fl oz Cold water
+- 14 fl oz Cold water
 
 ### Equipment
 
@@ -1778,7 +1778,7 @@ Ingredients are scaled; keep food thickness, spacing, settings and safe endpoint
 
 ### Cook
 
-Prepare cold sides first. Keep raw-poultry tools separate; use clean serving utensils. Probe more than one thick piece. A timer is not a doneness test.
+Wash fresh produce and use a clean blender. Keep yogurt and finished smoothies chilled.
 
 1. **Prepare.** Peel avocado or banana, trim cucumber, and hull strawberries as applicable. Weigh the edible ingredients.
 
@@ -1802,11 +1802,11 @@ Greek yogurt gives the smoothie body and a tangy finish.
 
 - Use chilled or frozen fruit for a cold smoothie.
 
-### Estimated nutrition per adult
+### Nutrition per 8 fl oz glass (estimated)
 
-270 kcal; 18.1 g protein; 36.2 g total carbs; 5.8 g fiber; 30.4 g net carbs
+168 kcal; 11.2 g protein; 22.5 g total carbs; 3.6 g fiber; 18.9 g net carbs
 
-Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.
+This batch makes about 6.4 eight-fluid-ounce glasses. Yield is estimated; added liquid and blending affect actual volume. Estimated from ingredient mass using approximately 1 g/ml for the blended mixture. Finished volume has not been measured; aeration, blender retention and extra liquid affect yield. Per estimated glass: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.
 
 Known allergens for these plates: milk. Check product labels and cross-contact.
 
@@ -1816,10 +1816,198 @@ Known allergens for these plates: milk. Check product labels and cross-contact.
 
 ### Leftovers
 
-Refrigerate in shallow containers within two hours, or one hour above 90°F. Use within 3–4 days or freeze; reheat to 165°F. Keep cold greens and yogurt separate.
+Serve chilled immediately for best texture; refrigerate any remainder promptly.
 
 ### Sources
 
 - [USDA FoodData Central ingredient profiles](https://fdc.nal.usda.gov/)
+
+These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.
+
+---
+
+## Strawberry-hemp smoothie
+
+4 adult servings · US measures · keto · 5 min active per base batch · 5–5 min
+
+A tangy strawberry smoothie with hulled hemp hearts for a nutty finish, without banana or added sugar.
+
+Blend until smooth; serve chilled.
+
+Blend two servings at a time in a 1.5 L blender. Keep the jar below its marked fill limit.
+
+Allow about 5 minutes for four servings in two batches.
+
+### Cooking flow (Tabular Recipe Notation)
+
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Strawberry-hemp smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Hull and quarter the strawberries. Weigh the yogurt and hulled hemp hearts.</td></tr><tr><td colspan="2" class="trn-prep">Use chilled ingredients; blend at most two servings per batch in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>400g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, 2% fat</small></th><td rowspan="4" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>240g</strong> Strawberries<small class="trn-state-detail">hulled</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>80g</strong> Hulled hemp hearts<small class="trn-state-detail">hulled, unsalted</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>20 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
+
+### Ingredients
+
+- 400g Plain lowfat Greek yogurt — plain, unsweetened, 2% fat
+
+- 240g Strawberries — hulled
+
+- 80g Hulled hemp hearts — hulled, unsalted
+
+- 20 fl oz Cold water
+
+### Equipment
+
+- Blender with at least 1.5 L capacity; blend two servings per batch
+
+### Cook
+
+Wash fresh produce and use a clean blender. Keep yogurt and finished smoothies chilled.
+
+1. **Prepare.** Hull and quarter the strawberries. Weigh the yogurt and hulled hemp hearts.
+
+2. **Blend.** Blend in batches of up to two servings, adding water first, for 30–60 seconds per batch until smooth.
+
+3. **Serve.** Divide among serving glasses and serve chilled.
+
+### Attention timeline
+
+- Prepare: 3 min. Weigh and prepare ingredients.
+
+- Blend: 2 min. Blend in two batches.
+
+Stages can overlap; endpoints and appliance behavior override the estimate.
+
+### Flavor and capacity
+
+Greek yogurt supplies a creamy, tangy base; strawberries add fruit flavor and hemp hearts give body without avocado.
+
+- Pour cold water in first, then add the other ingredients.
+
+- Use chilled ingredients; blend thoroughly so the hemp hearts are smooth.
+
+- Serve promptly. Ground seeds thicken on standing; blend again with a little extra water if needed.
+
+### Nutrition per 8 fl oz glass (estimated)
+
+145 kcal; 11.9 g protein; 7.4 g total carbs; 1.4 g fiber; 5.9 g net carbs
+
+This batch makes about 5.6 eight-fluid-ounce glasses. Yield is estimated; added liquid and blending affect actual volume. Estimated from ingredient mass using approximately 1 g/ml for the blended mixture. Finished volume has not been measured; aeration, blender retention and extra liquid affect yield. Per estimated glass: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.
+
+Known allergens for these plates: milk. Check product labels and cross-contact.
+
+### First-cook checks and limits
+
+- Designed recipe, not kitchen-tested. Check tartness, seed texture and thickness on the first blend.
+
+- Use plain unsweetened yogurt and unsweetened fruit. Brand labels can change the carbohydrate estimate.
+
+- Larger serving selections require additional blender batches; keep below the marked fill limit.
+
+### Leftovers
+
+Serve chilled immediately for best texture; refrigerate any remainder promptly.
+
+### Sources
+
+- [Yogurt, Greek, plain, lowfat — USDA FoodData Central](https://fdc.nal.usda.gov/food-details/170903/nutrients)
+
+- [Strawberries, raw — USDA FoodData Central](https://fdc.nal.usda.gov/food-details/167762/nutrients)
+
+- [Seeds, hemp seed, hulled — USDA FoodData Central](https://fdc.nal.usda.gov/food-details/170148/nutrients)
+
+These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.
+
+---
+
+## Cucumber-spinach-lime smoothie
+
+4 adult servings · US measures · keto · 5 min active per base batch · 5–5 min
+
+A fresh, savory green smoothie with cucumber, raw spinach, lime and ground flaxseed, without added sugar.
+
+Blend until smooth; serve chilled.
+
+Blend two servings at a time in a 1.5 L blender. Keep the jar below its marked fill limit.
+
+Allow about 5 minutes for four servings in two batches.
+
+### Cooking flow (Tabular Recipe Notation)
+
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Cucumber-spinach-lime smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Rinse cucumber and spinach under running water. Trim and chop cucumber; juice the lime and weigh the juice.</td></tr><tr><td colspan="2" class="trn-prep">Use chilled ingredients; blend at most two servings per batch in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>400g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, 2% fat</small></th><td rowspan="6" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>240g</strong> Cucumber<small class="trn-state-detail">trimmed, chopped</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>120g</strong> Raw spinach<small class="trn-state-detail">fresh, washed</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>24g</strong> Lime juice<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>32g</strong> Ground flaxseed<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>20 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
+
+### Ingredients
+
+- 400g Plain lowfat Greek yogurt — plain, unsweetened, 2% fat
+
+- 240g Cucumber — trimmed, chopped
+
+- 120g Raw spinach — fresh, washed
+
+- 24g Lime juice
+
+- 32g Ground flaxseed
+
+- 20 fl oz Cold water
+
+### Equipment
+
+- Blender with at least 1.5 L capacity; blend two servings per batch
+
+### Cook
+
+Wash fresh produce and use a clean blender. Keep yogurt and finished smoothies chilled.
+
+1. **Prepare.** Rinse cucumber and spinach under running water. Trim and chop cucumber; juice the lime and weigh the juice.
+
+2. **Blend.** Blend in batches of up to two servings, adding water first, for 30–60 seconds per batch until smooth.
+
+3. **Serve.** Divide among serving glasses and serve chilled.
+
+### Attention timeline
+
+- Prepare: 3 min. Weigh and prepare ingredients.
+
+- Blend: 2 min. Blend in two batches.
+
+Stages can overlap; endpoints and appliance behavior override the estimate.
+
+### Flavor and capacity
+
+Cucumber and lime keep this savory smoothie fresh; yogurt gives body and ground flaxseed thickens it.
+
+- Pour cold water in first, then add the other ingredients.
+
+- Use chilled ingredients; blend thoroughly so the seeds and greens are smooth.
+
+- Serve promptly. Ground seeds thicken on standing; blend again with a little extra water if needed.
+
+### Nutrition per 8 fl oz glass (estimated)
+
+89 kcal; 8.5 g protein; 6.7 g total carbs; 2.1 g fiber; 4.6 g net carbs
+
+This batch makes about 6.0 eight-fluid-ounce glasses. Yield is estimated; added liquid and blending affect actual volume. Estimated from ingredient mass using approximately 1 g/ml for the blended mixture. Finished volume has not been measured; aeration, blender retention and extra liquid affect yield. Per estimated glass: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.
+
+Known allergens for these plates: milk. Check product labels and cross-contact.
+
+### First-cook checks and limits
+
+- Designed recipe, not kitchen-tested. Check tartness, seed texture and thickness on the first blend.
+
+- Use plain unsweetened yogurt and fresh produce. Brand labels can change the carbohydrate estimate.
+
+- Larger serving selections require additional blender batches; keep below the marked fill limit.
+
+### Leftovers
+
+Serve chilled immediately for best texture; refrigerate any remainder promptly.
+
+### Sources
+
+- [Yogurt, Greek, plain, lowfat — USDA FoodData Central](https://fdc.nal.usda.gov/food-details/170903/nutrients)
+
+- [Cucumber, with peel, raw — USDA FoodData Central](https://fdc.nal.usda.gov/food-details/168409/nutrients)
+
+- [Spinach, raw — USDA FoodData Central](https://fdc.nal.usda.gov/food-details/168462/nutrients)
+
+- [Lime juice, raw — USDA FoodData Central](https://fdc.nal.usda.gov/food-details/168156/nutrients)
+
+- [Seeds, flaxseed — USDA FoodData Central](https://fdc.nal.usda.gov/food-details/169414/nutrients)
 
 These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.

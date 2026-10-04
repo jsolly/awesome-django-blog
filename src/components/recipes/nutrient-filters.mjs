@@ -1,4 +1,4 @@
-import {dailyNutrition} from './nutrition.mjs';
+import {dailyNutrition,recordedOmega3} from './nutrition.mjs';
 import {ingredientAmount} from './recipe-logic.mjs';
 const immuneNutrients = new Set(['vitamin_a','vitamin_c','vitamin_d','zinc','selenium']);
 export function nutrientFilters(recipe,servings){
@@ -7,6 +7,7 @@ export function nutrientFilters(recipe,servings){
  return {
   immune: nutrients.filter(n=>immuneNutrients.has(n.key)&&rich(n)).length>=2,
   iron: nutrients.some(n=>n.key==='iron'&&rich(n)),
+  omega: recordedOmega3(recipe,servings,ingredientAmount)>=0.5,
  };
 }
 
@@ -24,6 +25,8 @@ export const recipeStarches={
  'pan-fried-greek-turkey-patties':['bread'],
  'avocado-lime-smoothie':['none'],
  'strawberry-avocado-smoothie':['fruit'],
+ 'strawberry-hemp-smoothie':['fruit'],
+ 'cucumber-spinach-lime-smoothie':['none'],
  'strawberry-banana-smoothie':['fruit'],
  'banana-flax-smoothie':['fruit'],
  'tomato-lentil-and-chicken-bake':['legumes'],
@@ -31,6 +34,16 @@ export const recipeStarches={
  'lemon-chicken-potatoes-and-green-beans':['potatoes'],
  'sheet-pan-gnocchi-white-beans-and-broccoli':['pasta','potatoes','legumes'],
 };
+// Omit shared bases such as water and yogurt; the remaining ingredients distinguish smoothies.
+export function smoothieIngredientChoices(recipes){
+ const smoothies=recipes.filter(recipe=>recipe.type==='smoothie');
+ const ingredients=new Map();
+ for(const recipe of smoothies)for(const ingredient of recipe.ingredients){
+  const entry=ingredients.get(ingredient.id)||{name:ingredient.name,count:0};
+  ingredients.set(ingredient.id,{...entry,count:entry.count+1});
+ }
+ return Object.fromEntries([...ingredients].filter(([,entry])=>entry.count<smoothies.length).sort((a,b)=>a[1].name.localeCompare(b[1].name)).map(([id,entry])=>[id,entry.name]));
+}
 export function normalizeSelection(value,options){
  const values=Array.isArray(value)?value:typeof value==='string'?[value]:[];
  return [...new Set(values.filter(item=>item!=='all'&&Object.hasOwn(options,item)))];
@@ -55,7 +68,7 @@ export function availableAppliances(value){
 export function hasAppliances(recipe,inventory){
  return recipe.appliancesNeeded.every(key=>(inventory[key]||0)>=(key==='Two air fryers'?2:1)&&(key!=='Pans'||inventory.Oven>0));
 }
-export function matchesRecipe(recipe,servings,{protein='all',carb='all',starch='all',immune=false,iron=false,appliances=defaultAppliances}={}){
+export function matchesRecipe(recipe,servings,{protein='all',carb='all',starch='all',immune=false,iron=false,omega=false,ingredients=[],appliances=defaultAppliances}={}){
  const flags=nutrientFilters(recipe,servings);
- return hasAppliances(recipe,appliances)&&selectedMatches(protein,recipe.proteinType)&&selectedMatches(carb,recipe.group)&&(Array.isArray(starch)?!starch.length||starch.some(type=>recipeStarches[recipe.id]?.includes(type)):starch==='all'||recipeStarches[recipe.id]?.includes(starch))&&(!immune||flags.immune)&&(!iron||flags.iron);
+ return (!ingredients.length||recipe.ingredients.some(ingredient=>ingredients.includes(ingredient.id)))&&hasAppliances(recipe,appliances)&&selectedMatches(protein,recipe.proteinType)&&selectedMatches(carb,recipe.group)&&(Array.isArray(starch)?!starch.length||starch.some(type=>recipeStarches[recipe.id]?.includes(type)):starch==='all'||recipeStarches[recipe.id]?.includes(starch))&&(!immune||flags.immune)&&(!iron||flags.iron)&&(!omega||flags.omega);
 }

@@ -25,3 +25,21 @@ test('exports keep family choices, food states, allergies, limits and tiny spoon
  assert.equal(bundle.recipes.length,recipes.length);assert.equal(new Set(bundle.recipes.map(r=>r.recipeId)).size,recipes.length);
  assert(bundle.recipes.every(r=>r.sources.length&&r.steps.length&&r.ingredients.length&&r.image));
 });
+
+test('new keto smoothies scale ingredients and keep cold preparation in exports',()=>{
+ for(const [id,netCarbs] of [['strawberry-hemp-smoothie',8.282],['cucumber-spinach-lime-smoothie',6.8546]]){
+  const recipe=recipes.find(r=>r.id===id);
+  assert(recipe);assert.equal(recipe.type,'smoothie');assert.equal(recipe.group,'keto');
+  assert.equal(recipe.nutrition.net_carbs_g,netCarbs);
+  for(const servings of [2,4,6,8]){
+   const document=recipeDocument(recipe,{servings,units:'metric'});
+   assert.equal(document.ingredients.find(i=>i.name==='Plain lowfat Greek yogurt').quantity,`${100*servings}g`);
+   assert.ok(Math.abs(document.nutrition.net_carbs_g-netCarbs*4*236.5882365/recipe.estimatedYieldMl)<1e-9);
+   assert.match(document.nutritionHeading,/8 fl oz glass.*estimated/);
+   assert.match(document.capacity,/two servings/);
+   assert.match(document.safety,/chilled/);assert.doesNotMatch(document.safety,/poultry|thermometer/);
+   assert.doesNotMatch(document.leftovers,/reheat/);
+   assert.equal(document.cookingFlow.rows.flat().filter(c=>c.kind==='ingredient').length,recipe.ingredients.length);
+  }
+ }
+});

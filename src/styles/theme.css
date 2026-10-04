@@ -1,5 +1,6 @@
 /* Portfolio theme, adapted from jsolly-website's semantic tokens. */
 :root {
+  color-scheme: light;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-heading: "Poppins", "Inter", ui-sans-serif, system-ui, sans-serif;
   --background: #fafafa;
@@ -17,6 +18,7 @@
 }
 @media (prefers-color-scheme: dark) {
   :root {
+    color-scheme: dark;
     --background: #171717;
     --paper: #222;
     --text: #d4d4d4;
@@ -35,5 +37,5 @@
 
 @media print {
   .article-body :not(pre)>code { background: #eee !important; color: #000; }
-  :root { --background: #fff; --paper: #fff; --text: #000; --heading: #000; --muted: #333; --border: #aaa; --blue: #000; --shadow-soft: none; }
+  :root { color-scheme: light; --background: #fff; --paper: #fff; --text: #000; --heading: #000; --muted: #333; --border: #aaa; --blue: #000; --shadow-soft: none; }
 }
