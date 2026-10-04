@@ -1,6 +1,6 @@
 ---
 slug: 15-minute-dump-and-go-instant-pot-recipes
-title: "Easy Meals"
+title: "Easy Meals & Smoothies"
 category: resources
 description: "Easy meals and smoothies with keto and non-keto options, serving scaling and appliance filters."
 draft: false
@@ -54,6 +54,8 @@ Every recipe includes **Tabular Recipe Notation (TRN)**, the recipe-summary form
 <tr><td><a href="#strawberry-avocado-smoothie">Strawberry-avocado smoothie</a></td><td>Keto</td><td>Blender</td><td>5</td><td>5–5</td><td>Blend until smooth; serve chilled.</td></tr>
 <tr><td><a href="#strawberry-banana-smoothie">Strawberry-banana smoothie</a></td><td>Non-keto</td><td>Blender</td><td>5</td><td>5–5</td><td>Blend until smooth; serve chilled.</td></tr>
 <tr><td><a href="#banana-flax-smoothie">Banana-flax smoothie</a></td><td>Non-keto</td><td>Blender</td><td>5</td><td>5–5</td><td>Blend until smooth; serve chilled.</td></tr>
+<tr><td><a href="#strawberry-hemp-smoothie">Strawberry-hemp smoothie</a></td><td>Keto</td><td>Blender</td><td>5</td><td>5–5</td><td>Blend until smooth; serve chilled.</td></tr>
+<tr><td><a href="#cucumber-spinach-lime-smoothie">Cucumber-spinach-lime smoothie</a></td><td>Keto</td><td>Blender</td><td>5</td><td>5–5</td><td>Blend until smooth; serve chilled.</td></tr>
 </tbody>
 </table>
 </div>
@@ -82,35 +84,39 @@ Pressure instructions assume an **Instant Pot Duo 6QT covered by the Duo V5 manu
 
 ## Nutrition and keto portions
 
-The estimates include every measured oil, sauce, seed topping, cheese, and salad ingredient. Family starches are separate. The aim is roughly 25 g or more protein and at least 100 g non-starchy vegetables per person, measured as edible ingredients before cooking. Vegetable weights are not cooked serving weights, and canned tomato weights include juice.
+The estimates include every measured oil, sauce, seed topping, cheese, and salad ingredient. Family starches are separate. Meal recipes aim for roughly 25 g or more protein and at least 100 g non-starchy vegetables per person, measured as edible ingredients before cooking. Vegetable weights are not cooked serving weights, and canned tomato weights include juice.
 
 For keto portions, the calculated target is 10 g net carbs or less. Net carbs here means US total carbohydrate minus fiber. Check your own daily carb budget and labels; this does not guarantee ketosis. Use plain strained Greek yogurt with at least 9 g protein and no more than 4 g total carbs per 100 g. Regular unstrained yogurt is not an equivalent protein substitute.
 
 Calculations use [USDA FoodData Central](https://fdc.nal.usda.gov/download-datasets/) and the specified manufacturer labels. They are rounded estimates, not lab measurements. Brands, meat fat, drained yields, and retained cooking liquid vary. Calories are shown because some of these are lighter dinners. Add food to suit your appetite; count any additions separately.
 
+Smoothie nutrition is shown per estimated 8 fl oz glass. Finished yields are estimated from ingredient mass at approximately 1 g/ml, not measured blender output. Air, blender retention, and added liquid change the actual volume. Meal nutrition is shown for one quarter of the recipe.
+
 <!-- recipe-generated:table:nutrition:begin -->
 
 <div class="recipe-table-scroll">
 <table>
-<thead><tr><th scope="col">Meal, one quarter of recipe</th><th scope="col">kcal</th><th scope="col">Protein g</th><th scope="col">Total carbs g</th><th scope="col">Fiber g</th><th scope="col">Net carbs g</th></tr></thead>
+<thead><tr><th scope="col">Recipe</th><th scope="col">Nutrition basis</th><th scope="col">kcal</th><th scope="col">Protein g</th><th scope="col">Total carbs g</th><th scope="col">Fiber g</th><th scope="col">Net carbs g</th></tr></thead>
 <tbody>
-<tr><td><a href="#lemon-salmon-and-asparagus">Lemon salmon and asparagus</a></td><td>468</td><td>39.0</td><td>6.0</td><td>2.7</td><td>3.3</td></tr>
-<tr><td><a href="#smoky-chicken-thighs-and-broccoli">Smoky chicken thighs and broccoli</a></td><td>317</td><td>37.9</td><td>9.5</td><td>3.8</td><td>5.7</td></tr>
-<tr><td><a href="#pesto-cod-and-zucchini">Pesto cod and zucchini</a></td><td>328</td><td>33.9</td><td>7.1</td><td>2.3</td><td>4.8</td></tr>
-<tr><td><a href="#spinach-feta-and-hemp-frittata">Spinach, feta, and hemp frittata</a></td><td>408</td><td>30.3</td><td>9.9</td><td>5.0</td><td>4.9</td></tr>
-<tr><td><a href="#shawarma-chicken-bowls">Shawarma chicken bowls</a></td><td>339</td><td>39.7</td><td>11.6</td><td>3.8</td><td>7.8</td></tr>
-<tr><td><a href="#sheet-pan-chicken-fajitas">Sheet-pan chicken fajitas</a></td><td>378</td><td>37.5</td><td>13.0</td><td>5.9</td><td>7.1</td></tr>
-<tr><td><a href="#salsa-verde-shredded-chicken">Salsa verde shredded chicken</a></td><td>327</td><td>38.6</td><td>13.9</td><td>5.5</td><td>8.4</td></tr>
-<tr><td><a href="#greek-turkey-patties">Greek turkey patties</a></td><td>378</td><td>39.9</td><td>7.7</td><td>2.3</td><td>5.4</td></tr>
-<tr><td><a href="#tomato-lentil-and-chicken-bake">Tomato, lentil, and chicken bake</a></td><td>380</td><td>41.4</td><td>30.8</td><td>12.6</td><td>18.2</td></tr>
-<tr><td><a href="#harissa-chickpea-and-cauliflower-bowls">Harissa chickpea and cauliflower bowls</a></td><td>426</td><td>28.8</td><td>45.4</td><td>12.0</td><td>33.4</td></tr>
-<tr><td><a href="#lemon-chicken-potatoes-and-green-beans">Lemon chicken, potatoes, and green beans</a></td><td>422</td><td>39.6</td><td>34.8</td><td>6.8</td><td>28.0</td></tr>
-<tr><td><a href="#sheet-pan-gnocchi-white-beans-and-broccoli">Sheet-pan gnocchi, white beans, and broccoli</a></td><td>604</td><td>26.7</td><td>81.4</td><td>11.8</td><td>69.6</td></tr>
-<tr><td><a href="#pan-fried-greek-turkey-patties">Pan-fried Greek turkey patties</a></td><td>378</td><td>39.9</td><td>7.7</td><td>2.3</td><td>5.4</td></tr>
-<tr><td><a href="#avocado-lime-smoothie">Avocado-lime smoothie</a></td><td>215</td><td>12.8</td><td>13.3</td><td>6.2</td><td>7.1</td></tr>
-<tr><td><a href="#strawberry-avocado-smoothie">Strawberry-avocado smoothie</a></td><td>206</td><td>12.6</td><td>14.1</td><td>6.3</td><td>7.8</td></tr>
-<tr><td><a href="#strawberry-banana-smoothie">Strawberry-banana smoothie</a></td><td>247</td><td>17.0</td><td>40.3</td><td>5.6</td><td>34.7</td></tr>
-<tr><td><a href="#banana-flax-smoothie">Banana-flax smoothie</a></td><td>270</td><td>18.1</td><td>36.2</td><td>5.8</td><td>30.4</td></tr>
+<tr><td><a href="#lemon-salmon-and-asparagus">Lemon salmon and asparagus</a></td><td>One quarter of recipe</td><td>468</td><td>39.0</td><td>6.0</td><td>2.7</td><td>3.3</td></tr>
+<tr><td><a href="#smoky-chicken-thighs-and-broccoli">Smoky chicken thighs and broccoli</a></td><td>One quarter of recipe</td><td>317</td><td>37.9</td><td>9.5</td><td>3.8</td><td>5.7</td></tr>
+<tr><td><a href="#pesto-cod-and-zucchini">Pesto cod and zucchini</a></td><td>One quarter of recipe</td><td>328</td><td>33.9</td><td>7.1</td><td>2.3</td><td>4.8</td></tr>
+<tr><td><a href="#spinach-feta-and-hemp-frittata">Spinach, feta, and hemp frittata</a></td><td>One quarter of recipe</td><td>408</td><td>30.3</td><td>9.9</td><td>5.0</td><td>4.9</td></tr>
+<tr><td><a href="#shawarma-chicken-bowls">Shawarma chicken bowls</a></td><td>One quarter of recipe</td><td>339</td><td>39.7</td><td>11.6</td><td>3.8</td><td>7.8</td></tr>
+<tr><td><a href="#sheet-pan-chicken-fajitas">Sheet-pan chicken fajitas</a></td><td>One quarter of recipe</td><td>378</td><td>37.5</td><td>13.0</td><td>5.9</td><td>7.1</td></tr>
+<tr><td><a href="#salsa-verde-shredded-chicken">Salsa verde shredded chicken</a></td><td>One quarter of recipe</td><td>327</td><td>38.6</td><td>13.9</td><td>5.5</td><td>8.4</td></tr>
+<tr><td><a href="#greek-turkey-patties">Greek turkey patties</a></td><td>One quarter of recipe</td><td>378</td><td>39.9</td><td>7.7</td><td>2.3</td><td>5.4</td></tr>
+<tr><td><a href="#tomato-lentil-and-chicken-bake">Tomato, lentil, and chicken bake</a></td><td>One quarter of recipe</td><td>380</td><td>41.4</td><td>30.8</td><td>12.6</td><td>18.2</td></tr>
+<tr><td><a href="#harissa-chickpea-and-cauliflower-bowls">Harissa chickpea and cauliflower bowls</a></td><td>One quarter of recipe</td><td>426</td><td>28.8</td><td>45.4</td><td>12.0</td><td>33.4</td></tr>
+<tr><td><a href="#lemon-chicken-potatoes-and-green-beans">Lemon chicken, potatoes, and green beans</a></td><td>One quarter of recipe</td><td>422</td><td>39.6</td><td>34.8</td><td>6.8</td><td>28.0</td></tr>
+<tr><td><a href="#sheet-pan-gnocchi-white-beans-and-broccoli">Sheet-pan gnocchi, white beans, and broccoli</a></td><td>One quarter of recipe</td><td>604</td><td>26.7</td><td>81.4</td><td>11.8</td><td>69.6</td></tr>
+<tr><td><a href="#pan-fried-greek-turkey-patties">Pan-fried Greek turkey patties</a></td><td>One quarter of recipe</td><td>378</td><td>39.9</td><td>7.7</td><td>2.3</td><td>5.4</td></tr>
+<tr><td><a href="#avocado-lime-smoothie">Avocado-lime smoothie</a></td><td>8 fl oz glass (estimated)</td><td>158</td><td>9.4</td><td>9.8</td><td>4.6</td><td>5.2</td></tr>
+<tr><td><a href="#strawberry-avocado-smoothie">Strawberry-avocado smoothie</a></td><td>8 fl oz glass (estimated)</td><td>159</td><td>9.7</td><td>10.8</td><td>4.8</td><td>6.0</td></tr>
+<tr><td><a href="#strawberry-banana-smoothie">Strawberry-banana smoothie</a></td><td>8 fl oz glass (estimated)</td><td>117</td><td>8.1</td><td>19.1</td><td>2.6</td><td>16.4</td></tr>
+<tr><td><a href="#banana-flax-smoothie">Banana-flax smoothie</a></td><td>8 fl oz glass (estimated)</td><td>168</td><td>11.2</td><td>22.5</td><td>3.6</td><td>18.9</td></tr>
+<tr><td><a href="#strawberry-hemp-smoothie">Strawberry-hemp smoothie</a></td><td>8 fl oz glass (estimated)</td><td>145</td><td>11.9</td><td>7.4</td><td>1.4</td><td>5.9</td></tr>
+<tr><td><a href="#cucumber-spinach-lime-smoothie">Cucumber-spinach-lime smoothie</a></td><td>8 fl oz glass (estimated)</td><td>89</td><td>8.5</td><td>6.7</td><td>2.1</td><td>4.6</td></tr>
 </tbody>
 </table>
 </div>
@@ -1055,16 +1061,16 @@ About 5 minutes hands-on; 5–5 minutes total. Four adult servings. A creamy avo
 
 **Cooking flow · Tabular Recipe Notation**
 
-<div class="trn-scroll" tabindex="0" role="region" aria-label="Avocado-lime smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Prepare fruit and vegetables as listed; use chilled ingredients.</td></tr><tr><td colspan="2" class="trn-prep">Blend two servings at a time in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>400g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, about 2% fat</small></th><td rowspan="6" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>240g</strong> Avocado flesh<small class="trn-state-detail">peeled, pitted</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>200g</strong> Cucumber<small class="trn-state-detail">trimmed, chopped</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>20g</strong> Lime juice<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>28g</strong> Ground flaxseed<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>13.5 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Avocado-lime smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Prepare fruit and vegetables as listed; use chilled ingredients.</td></tr><tr><td colspan="2" class="trn-prep">Blend two servings at a time in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>400g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, 2% fat</small></th><td rowspan="6" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>240g</strong> Avocado flesh<small class="trn-state-detail">peeled, pitted</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>200g</strong> Cucumber<small class="trn-state-detail">trimmed, chopped</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>20g</strong> Lime juice<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>28g</strong> Ground flaxseed<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>14 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
 
 **Ingredients**
 
-- 400g Plain lowfat Greek yogurt — plain, unsweetened, about 2% fat
+- 400g Plain lowfat Greek yogurt — plain, unsweetened, 2% fat
 - 240g Avocado flesh — peeled, pitted
 - 200g Cucumber — trimmed, chopped
 - 20g Lime juice
 - 28g Ground flaxseed
-- 13.5 fl oz (400 ml) Cold water
+- 14 fl oz (400 ml) Cold water
 
 **Equipment and capacity**
 
@@ -1107,15 +1113,15 @@ About 5 minutes hands-on; 5–5 minutes total. Four adult servings. A creamy str
 
 **Cooking flow · Tabular Recipe Notation**
 
-<div class="trn-scroll" tabindex="0" role="region" aria-label="Strawberry-avocado smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Prepare fruit and vegetables as listed; use chilled ingredients.</td></tr><tr><td colspan="2" class="trn-prep">Blend two servings at a time in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>400g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, about 2% fat</small></th><td rowspan="5" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>200g</strong> Avocado flesh<small class="trn-state-detail">peeled, pitted</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>200g</strong> Strawberries<small class="trn-state-detail">hulled</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>28g</strong> Ground flaxseed<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>13.5 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Strawberry-avocado smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Prepare fruit and vegetables as listed; use chilled ingredients.</td></tr><tr><td colspan="2" class="trn-prep">Blend two servings at a time in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>400g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, 2% fat</small></th><td rowspan="5" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>200g</strong> Avocado flesh<small class="trn-state-detail">peeled, pitted</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>200g</strong> Strawberries<small class="trn-state-detail">hulled</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>28g</strong> Ground flaxseed<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>14 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
 
 **Ingredients**
 
-- 400g Plain lowfat Greek yogurt — plain, unsweetened, about 2% fat
+- 400g Plain lowfat Greek yogurt — plain, unsweetened, 2% fat
 - 200g Avocado flesh — peeled, pitted
 - 200g Strawberries — hulled
 - 28g Ground flaxseed
-- 13.5 fl oz (400 ml) Cold water
+- 14 fl oz (400 ml) Cold water
 
 **Equipment and capacity**
 
@@ -1158,14 +1164,14 @@ About 5 minutes hands-on; 5–5 minutes total. Four adult servings. A creamy str
 
 **Cooking flow · Tabular Recipe Notation**
 
-<div class="trn-scroll" tabindex="0" role="region" aria-label="Strawberry-banana smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Prepare fruit and vegetables as listed; use chilled ingredients.</td></tr><tr><td colspan="2" class="trn-prep">Blend two servings at a time in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>600g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, about 2% fat</small></th><td rowspan="4" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>600g</strong> Strawberries<small class="trn-state-detail">hulled</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>400g</strong> Banana<small class="trn-state-detail">peeled, sliced</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>13.5 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Strawberry-banana smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Prepare fruit and vegetables as listed; use chilled ingredients.</td></tr><tr><td colspan="2" class="trn-prep">Blend two servings at a time in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>600g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, 2% fat</small></th><td rowspan="4" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>600g</strong> Strawberries<small class="trn-state-detail">hulled</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>400g</strong> Banana<small class="trn-state-detail">peeled, sliced</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>14 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
 
 **Ingredients**
 
-- 600g Plain lowfat Greek yogurt — plain, unsweetened, about 2% fat
+- 600g Plain lowfat Greek yogurt — plain, unsweetened, 2% fat
 - 600g Strawberries — hulled
 - 400g Banana — peeled, sliced
-- 13.5 fl oz (400 ml) Cold water
+- 14 fl oz (400 ml) Cold water
 
 **Equipment and capacity**
 
@@ -1208,14 +1214,14 @@ About 5 minutes hands-on; 5–5 minutes total. Four adult servings. A creamy ban
 
 **Cooking flow · Tabular Recipe Notation**
 
-<div class="trn-scroll" tabindex="0" role="region" aria-label="Banana-flax smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Prepare fruit and vegetables as listed; use chilled ingredients.</td></tr><tr><td colspan="2" class="trn-prep">Blend two servings at a time in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>600g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, about 2% fat</small></th><td rowspan="4" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>480g</strong> Banana<small class="trn-state-detail">peeled, sliced</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>40g</strong> Ground flaxseed<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>13.5 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Banana-flax smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Prepare fruit and vegetables as listed; use chilled ingredients.</td></tr><tr><td colspan="2" class="trn-prep">Blend two servings at a time in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>600g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, 2% fat</small></th><td rowspan="4" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>480g</strong> Banana<small class="trn-state-detail">peeled, sliced</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>40g</strong> Ground flaxseed<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>14 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
 
 **Ingredients**
 
-- 600g Plain lowfat Greek yogurt — plain, unsweetened, about 2% fat
+- 600g Plain lowfat Greek yogurt — plain, unsweetened, 2% fat
 - 480g Banana — peeled, sliced
 - 40g Ground flaxseed
-- 13.5 fl oz (400 ml) Cold water
+- 14 fl oz (400 ml) Cold water
 
 **Equipment and capacity**
 
@@ -1245,3 +1251,117 @@ Greek yogurt gives the smoothie body and a tangy finish.
 These sources support safety, labels or comparable cooking methods; this exact recipe has not been kitchen-tested.
 
 <!-- recipe-generated:recipe:banana-flax-smoothie:end -->
+
+<!-- recipe-generated:recipe:strawberry-hemp-smoothie:begin -->
+
+<div id="strawberry-hemp-smoothie"></div>
+
+### Strawberry-hemp smoothie
+
+<figure class="recipe-illustration"><img src="/media/recipes/strawberry-hemp-smoothie.svg" width="512" height="384" srcset="/media/recipes/strawberry-hemp-smoothie.svg 512w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of strawberry-hemp smoothie in a glass." loading="lazy" decoding="async" /><figcaption>Smoothie illustration.</figcaption></figure>
+
+About 5 minutes hands-on; 5–5 minutes total. Four adult servings. A tangy strawberry smoothie with hulled hemp hearts for a nutty finish, without banana or added sugar.
+
+**Cooking flow · Tabular Recipe Notation**
+
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Strawberry-hemp smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Hull and quarter the strawberries. Weigh the yogurt and hulled hemp hearts.</td></tr><tr><td colspan="2" class="trn-prep">Use chilled ingredients; blend at most two servings per batch in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>400g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, 2% fat</small></th><td rowspan="4" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>240g</strong> Strawberries<small class="trn-state-detail">hulled</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>80g</strong> Hulled hemp hearts<small class="trn-state-detail">hulled, unsalted</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>20 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
+
+**Ingredients**
+
+- 400g Plain lowfat Greek yogurt — plain, unsweetened, 2% fat
+- 240g Strawberries — hulled
+- 80g Hulled hemp hearts — hulled, unsalted
+- 20 fl oz (600 ml) Cold water
+
+**Equipment and capacity**
+
+- Blender with at least 1.5 L capacity; blend two servings per batch
+
+**Method**
+
+1. **Prepare.** Hull and quarter the strawberries. Weigh the yogurt and hulled hemp hearts.
+2. **Blend.** Blend in batches of up to two servings, adding water first, for 30–60 seconds per batch until smooth.
+3. **Serve.** Divide among serving glasses and serve chilled.
+
+**Why it works**
+
+Greek yogurt supplies a creamy, tangy base; strawberries add fruit flavor and hemp hearts give body without avocado.
+
+- Pour cold water in first, then add the other ingredients.
+- Use chilled ingredients; blend thoroughly so the hemp hearts are smooth.
+- Serve promptly. Ground seeds thicken on standing; blend again with a little extra water if needed.
+
+**First-cook checks and limits**
+
+- Designed recipe, not kitchen-tested. Check tartness, seed texture and thickness on the first blend.
+- Use plain unsweetened yogurt and unsweetened fruit. Brand labels can change the carbohydrate estimate.
+- Larger serving selections require additional blender batches; keep below the marked fill limit.
+
+**Sources**
+
+- [Yogurt, Greek, plain, lowfat — USDA FoodData Central](https://fdc.nal.usda.gov/food-details/170903/nutrients)
+- [Strawberries, raw — USDA FoodData Central](https://fdc.nal.usda.gov/food-details/167762/nutrients)
+- [Seeds, hemp seed, hulled — USDA FoodData Central](https://fdc.nal.usda.gov/food-details/170148/nutrients)
+
+These sources support safety, labels or comparable cooking methods; this exact recipe has not been kitchen-tested.
+
+<!-- recipe-generated:recipe:strawberry-hemp-smoothie:end -->
+
+<!-- recipe-generated:recipe:cucumber-spinach-lime-smoothie:begin -->
+
+<div id="cucumber-spinach-lime-smoothie"></div>
+
+### Cucumber-spinach-lime smoothie
+
+<figure class="recipe-illustration"><img src="/media/recipes/cucumber-spinach-lime-smoothie.svg" width="512" height="384" srcset="/media/recipes/cucumber-spinach-lime-smoothie.svg 512w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of cucumber-spinach-lime smoothie in a glass." loading="lazy" decoding="async" /><figcaption>Smoothie illustration.</figcaption></figure>
+
+About 5 minutes hands-on; 5–5 minutes total. Four adult servings. A fresh, savory green smoothie with cucumber, raw spinach, lime and ground flaxseed, without added sugar.
+
+**Cooking flow · Tabular Recipe Notation**
+
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Cucumber-spinach-lime smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Rinse cucumber and spinach under running water. Trim and chop cucumber; juice the lime and weigh the juice.</td></tr><tr><td colspan="2" class="trn-prep">Use chilled ingredients; blend at most two servings per batch in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>400g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, 2% fat</small></th><td rowspan="6" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>240g</strong> Cucumber<small class="trn-state-detail">trimmed, chopped</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>120g</strong> Raw spinach<small class="trn-state-detail">fresh, washed</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>24g</strong> Lime juice<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>32g</strong> Ground flaxseed<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>20 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
+
+**Ingredients**
+
+- 400g Plain lowfat Greek yogurt — plain, unsweetened, 2% fat
+- 240g Cucumber — trimmed, chopped
+- 120g Raw spinach — fresh, washed
+- 24g Lime juice
+- 32g Ground flaxseed
+- 20 fl oz (600 ml) Cold water
+
+**Equipment and capacity**
+
+- Blender with at least 1.5 L capacity; blend two servings per batch
+
+**Method**
+
+1. **Prepare.** Rinse cucumber and spinach under running water. Trim and chop cucumber; juice the lime and weigh the juice.
+2. **Blend.** Blend in batches of up to two servings, adding water first, for 30–60 seconds per batch until smooth.
+3. **Serve.** Divide among serving glasses and serve chilled.
+
+**Why it works**
+
+Cucumber and lime keep this savory smoothie fresh; yogurt gives body and ground flaxseed thickens it.
+
+- Pour cold water in first, then add the other ingredients.
+- Use chilled ingredients; blend thoroughly so the seeds and greens are smooth.
+- Serve promptly. Ground seeds thicken on standing; blend again with a little extra water if needed.
+
+**First-cook checks and limits**
+
+- Designed recipe, not kitchen-tested. Check tartness, seed texture and thickness on the first blend.
+- Use plain unsweetened yogurt and fresh produce. Brand labels can change the carbohydrate estimate.
+- Larger serving selections require additional blender batches; keep below the marked fill limit.
+
+**Sources**
+
+- [Yogurt, Greek, plain, lowfat — USDA FoodData Central](https://fdc.nal.usda.gov/food-details/170903/nutrients)
+- [Cucumber, with peel, raw — USDA FoodData Central](https://fdc.nal.usda.gov/food-details/168409/nutrients)
+- [Spinach, raw — USDA FoodData Central](https://fdc.nal.usda.gov/food-details/168462/nutrients)
+- [Lime juice, raw — USDA FoodData Central](https://fdc.nal.usda.gov/food-details/168156/nutrients)
+- [Seeds, flaxseed — USDA FoodData Central](https://fdc.nal.usda.gov/food-details/169414/nutrients)
+
+These sources support safety, labels or comparable cooking methods; this exact recipe has not been kitchen-tested.
+
+<!-- recipe-generated:recipe:cucumber-spinach-lime-smoothie:end -->

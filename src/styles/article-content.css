@@ -5,7 +5,7 @@
 .article-body::after { content: ""; display: block; clear: both; }
 .article-body figure.table { max-width: 100%; overflow-x: auto; }
 .article-body figure.table > table { display: table; }
-.page-layout[data-page="/post/15-minute-dump-and-go-instant-pot-recipes/"] .article-body table { min-width: 720px; color: #171717; --blue: #0057d8; }
+.page-layout[data-page="/post/15-minute-dump-and-go-instant-pot-recipes/"] .article-body table { min-width: 720px; color: var(--recipe-ink); }
 
 /* Migrated from this article's authored layout stylesheet. Keep the wide recipe
    table scrollable without widening the viewport or squeezing its columns. */

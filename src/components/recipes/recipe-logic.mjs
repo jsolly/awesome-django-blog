@@ -47,7 +47,7 @@ export function ingredientAmount(ingredient, servings) {
 }
 
 /** US measures come from typed source quantities, never a generic g-to-cup ratio. */
-export function formatIngredient(ingredient, servings, units = 'metric') {
+export function formatIngredient(ingredient, servings, units = 'metric', {wholeOunces=false}={}) {
   const amount = ingredientAmount(ingredient, servings);
   if (!Number.isFinite(amount)) return '—';
   if (amount === 0) return 'to taste';
@@ -63,7 +63,7 @@ export function formatIngredient(ingredient, servings, units = 'metric') {
   if(units==='us'&&!hasUS&&unit==='g'){shown=amount/28.349523125;unit='oz';}
   if(units==='us'&&!hasUS&&unit==='ml'){shown=amount/29.5735295625;unit='fl oz';}
   // Typed source measures can land just below a decimal half after rescaling.
-  const roundedOunces = Math.round((shown + Number.EPSILON * Math.abs(shown)) * 10) / 10;
+  const roundedOunces = wholeOunces?Math.round(shown):Math.round((shown + Number.EPSILON * Math.abs(shown)) * 10) / 10;
   const quantity=unit==='oz'||unit==='fl oz'?String(roundedOunces):formatQuantity(shown);
   return `${quantity}${unit ? ` ${unit}` : ''}`;
 }
@@ -97,6 +97,27 @@ export function servingNutrition(recipe,servings=4){
   for(const key of NUTRIENTS)result[key]+=(Number(ingredient.nutritionBatch[key]??0)*(actual-count/4))/count;
  }
  return result;
+}
+
+/** Smoothie volumes are explicit estimates, separate from the canonical per-recipe-portion macros. */
+export function smoothieGlassesPerBatch(recipe, fluidOunces=8){
+ if(recipe.type!=='smoothie'||!finite(fluidOunces)||fluidOunces<=0)throw new Error('A smoothie and positive glass size are required.');
+ if(!finite(recipe.estimatedYieldMl)||recipe.estimatedYieldMl<=0)throw new Error('Estimated smoothie yield is required.');
+ return recipe.estimatedYieldMl/(fluidOunces*29.5735295625);
+}
+export function smoothiePortionNutrition(recipe,fluidOunces=8){
+ const glassesPerBatch=smoothieGlassesPerBatch(recipe,fluidOunces);
+ return Object.fromEntries(NUTRIENTS.map(key=>[key,recipe.nutrition[key]*BASE_SERVINGS/glassesPerBatch]));
+}
+export function displayNutrition(recipe,servings=4){
+ return recipe.type==='smoothie'?smoothiePortionNutrition(recipe):servingNutrition(recipe,servings);
+}
+export function nutritionHeading(recipe){
+ return recipe.type==='smoothie'?'Nutrition per 8 fl oz glass (estimated)':'Nutrition per serving';
+}
+export function smoothieYieldNote(recipe,servings=4){
+ const glasses=smoothieGlassesPerBatch(recipe)*validateSettings({servings}).servings/4;
+ return `This batch makes about ${glasses.toFixed(1)} eight-fluid-ounce glasses. Yield is estimated; added liquid and blending affect actual volume.`;
 }
 
 /** A family's serving receives one chosen starch; the keto base stays untouched. */

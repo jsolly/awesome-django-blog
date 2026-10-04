@@ -1,0 +1,68 @@
+/* Shared by the recipe library, its portaled dialogs and the no-JavaScript article. */
+:root {
+  --recipe-canvas: #f5f4ec;
+  --recipe-paper: #fffef8;
+  --recipe-ink: #25392b;
+  --recipe-muted: #53614e;
+  --recipe-line: #d4dacb;
+  --recipe-accent: #365b3d;
+  --recipe-accent-text: #ffffff;
+  --recipe-soft: #e8ecdf;
+  --recipe-warm: #f1dfb7;
+  --recipe-input-border: #aeb8a2;
+  --recipe-badge: #e3ead8;
+  --recipe-badge-shared: #ede1c8;
+  --recipe-badge-nonketo: #e8e3f0;
+  --recipe-family: #f1ecd9;
+  --recipe-flow-paper: #fffdf5;
+  --recipe-flow-ink: #241c14;
+  --recipe-flow-caption: #eff3e5;
+  --recipe-flow-prep: #f0f4e9;
+  --recipe-focus: #a65c16;
+}
+@media screen and (prefers-color-scheme: dark) {
+  :root {
+    --recipe-canvas: #18211c;
+    --recipe-paper: #222d25;
+    --recipe-ink: #e4ece2;
+    --recipe-muted: #b6c2b1;
+    --recipe-line: #4c5e4f;
+    --recipe-accent: #a6d5a9;
+    --recipe-accent-text: #142219;
+    --recipe-soft: #303f30;
+    --recipe-warm: #4b4028;
+    --recipe-input-border: #71866f;
+    --recipe-badge: #34452e;
+    --recipe-badge-shared: #4b402c;
+    --recipe-badge-nonketo: #41364d;
+    --recipe-family: #3c3b2b;
+    --recipe-flow-paper: #222d25;
+    --recipe-flow-ink: #e4ece2;
+    --recipe-flow-caption: #303f30;
+    --recipe-flow-prep: #2c3b2d;
+    --recipe-focus: #e6ac65;
+  }
+}
+@media print {
+  :root {
+    --recipe-canvas: #f5f4ec;
+    --recipe-paper: #fffef8;
+    --recipe-ink: #25392b;
+    --recipe-muted: #53614e;
+    --recipe-line: #d4dacb;
+    --recipe-accent: #365b3d;
+    --recipe-accent-text: #ffffff;
+    --recipe-soft: #e8ecdf;
+    --recipe-warm: #f1dfb7;
+    --recipe-input-border: #aeb8a2;
+    --recipe-badge: #e3ead8;
+    --recipe-badge-shared: #ede1c8;
+    --recipe-badge-nonketo: #e8e3f0;
+    --recipe-family: #f1ecd9;
+    --recipe-flow-paper: #fffdf5;
+    --recipe-flow-ink: #241c14;
+    --recipe-flow-caption: #eff3e5;
+    --recipe-flow-prep: #f0f4e9;
+    --recipe-focus: #a65c16;
+  }
+}

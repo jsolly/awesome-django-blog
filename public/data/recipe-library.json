@@ -564,6 +564,7 @@
         "fiber_g": 2.7287500000000002,
         "net_carbs_g": 3.2697075000000004
       },
+      "nutritionHeading": "Nutrition per serving",
       "familyNutrition": null,
       "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
       "allergens": [
@@ -1155,6 +1156,7 @@
         "fiber_g": 3.7858,
         "net_carbs_g": 5.719599999999998
       },
+      "nutritionHeading": "Nutrition per serving",
       "familyNutrition": null,
       "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
       "allergens": [],
@@ -1694,6 +1696,7 @@
         "fiber_g": 2.2862500000000003,
         "net_carbs_g": 4.817999999999998
       },
+      "nutritionHeading": "Nutrition per serving",
       "familyNutrition": null,
       "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
       "allergens": [
@@ -2327,6 +2330,7 @@
         "fiber_g": 4.983125,
         "net_carbs_g": 4.928253749999999
       },
+      "nutritionHeading": "Nutrition per serving",
       "familyNutrition": null,
       "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
       "allergens": [
@@ -3137,6 +3141,7 @@
         "fiber_g": 3.7775875,
         "net_carbs_g": 7.81341625
       },
+      "nutritionHeading": "Nutrition per serving",
       "familyNutrition": null,
       "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
       "allergens": [
@@ -3773,6 +3778,7 @@
         "fiber_g": 5.878475,
         "net_carbs_g": 7.12970625
       },
+      "nutritionHeading": "Nutrition per serving",
       "familyNutrition": null,
       "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
       "allergens": [
@@ -4370,6 +4376,7 @@
         "fiber_g": 5.470000000000001,
         "net_carbs_g": 8.404588749999998
       },
+      "nutritionHeading": "Nutrition per serving",
       "familyNutrition": null,
       "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
       "allergens": [
@@ -5026,6 +5033,7 @@
         "fiber_g": 2.2632499999999998,
         "net_carbs_g": 5.3897075
       },
+      "nutritionHeading": "Nutrition per serving",
       "familyNutrition": null,
       "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
       "allergens": [
@@ -5635,6 +5643,7 @@
         "fiber_g": 12.5683,
         "net_carbs_g": 18.19320625
       },
+      "nutritionHeading": "Nutrition per serving",
       "familyNutrition": null,
       "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
       "allergens": [
@@ -6256,6 +6265,7 @@
         "fiber_g": 12.017999999999999,
         "net_carbs_g": 33.418038749999994
       },
+      "nutritionHeading": "Nutrition per serving",
       "familyNutrition": null,
       "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
       "allergens": [
@@ -7057,6 +7067,7 @@
         "fiber_g": 6.792750000000001,
         "net_carbs_g": 27.993732499999997
       },
+      "nutritionHeading": "Nutrition per serving",
       "familyNutrition": null,
       "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
       "allergens": [],
@@ -7715,6 +7726,7 @@
         "fiber_g": 11.834803571428571,
         "net_carbs_g": 69.59368946428575
       },
+      "nutritionHeading": "Nutrition per serving",
       "familyNutrition": null,
       "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
       "allergens": [
@@ -8371,6 +8383,7 @@
         "fiber_g": 2.2632499999999998,
         "net_carbs_g": 5.3897075
       },
+      "nutritionHeading": "Nutrition per serving",
       "familyNutrition": null,
       "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
       "allergens": [
@@ -8400,8 +8413,8 @@
           "unit": "g",
           "dailyValue": 78,
           "usdaId": 1004,
-          "amount": 13.7257,
-          "percent": 18
+          "amount": 10.08490421654674,
+          "percent": 13
         },
         {
           "key": "saturated_fat",
@@ -8409,8 +8422,8 @@
           "unit": "g",
           "dailyValue": 20,
           "usdaId": 1258,
-          "amount": 2.7809099999999995,
-          "percent": 14
+          "amount": 2.043262710450978,
+          "percent": 10
         },
         {
           "key": "cholesterol",
@@ -8418,8 +8431,8 @@
           "unit": "mg",
           "dailyValue": 300,
           "usdaId": 1253,
-          "amount": 10,
-          "percent": 3
+          "amount": 7.3474607608695655,
+          "percent": 2
         },
         {
           "key": "sodium",
@@ -8427,8 +8440,8 @@
           "unit": "mg",
           "dailyValue": 2300,
           "usdaId": 1093,
-          "amount": 41.400000000000006,
-          "percent": 2
+          "amount": 30.418487550000005,
+          "percent": 1
         },
         {
           "key": "vitamin_a",
@@ -8436,8 +8449,8 @@
           "unit": "mcg RAE",
           "dailyValue": 900,
           "usdaId": 1106,
-          "amount": 96.8,
-          "percent": 11
+          "amount": 71.12342016521738,
+          "percent": 8
         },
         {
           "key": "vitamin_c",
@@ -8445,8 +8458,8 @@
           "unit": "mg",
           "dailyValue": 90,
           "usdaId": 1162,
-          "amount": 9.741999999999999,
-          "percent": 11
+          "amount": 7.15789627323913,
+          "percent": 8
         },
         {
           "key": "vitamin_d",
@@ -8463,8 +8476,8 @@
           "unit": "mg",
           "dailyValue": 15,
           "usdaId": 1109,
-          "amount": 1.3296999999999999,
-          "percent": 9
+          "amount": 0.976991857372826,
+          "percent": 7
         },
         {
           "key": "vitamin_k",
@@ -8472,8 +8485,8 @@
           "unit": "mcg",
           "dailyValue": 120,
           "usdaId": 1185,
-          "amount": 21.331,
-          "percent": 18
+          "amount": 15.67286854901087,
+          "percent": 13
         },
         {
           "key": "thiamin",
@@ -8481,8 +8494,8 @@
           "unit": "mg",
           "dailyValue": 1.2,
           "usdaId": 1165,
-          "amount": 0.21403,
-          "percent": 18
+          "amount": 0.1572577026648913,
+          "percent": 13
         },
         {
           "key": "riboflavin",
@@ -8490,8 +8503,8 @@
           "unit": "mg",
           "dailyValue": 1.3,
           "usdaId": 1166,
-          "amount": 0.33952000000000004,
-          "percent": 26
+          "amount": 0.2494609877530435,
+          "percent": 19
         },
         {
           "key": "niacin",
@@ -8499,8 +8512,8 @@
           "unit": "mg",
           "dailyValue": 16,
           "usdaId": 1167,
-          "amount": 1.5115,
-          "percent": 9
+          "amount": 1.110568694005435,
+          "percent": 7
         },
         {
           "key": "vitamin_b6",
@@ -8508,8 +8521,8 @@
           "unit": "mg",
           "dailyValue": 1.7,
           "usdaId": 1175,
-          "amount": 0.26421,
-          "percent": 16
+          "amount": 0.1941272607629348,
+          "percent": 11
         },
         {
           "key": "folate",
@@ -8517,8 +8530,8 @@
           "unit": "mcg DFE",
           "dailyValue": 400,
           "usdaId": 1190,
-          "amount": 70.69,
-          "percent": 18
+          "amount": 51.93920011858695,
+          "percent": 13
         },
         {
           "key": "vitamin_b12",
@@ -8526,8 +8539,8 @@
           "unit": "mcg",
           "dailyValue": 2.4,
           "usdaId": 1178,
-          "amount": 0.52,
-          "percent": 22
+          "amount": 0.3820679595652174,
+          "percent": 16
         },
         {
           "key": "pantothenic_acid",
@@ -8535,8 +8548,8 @@
           "unit": "mg",
           "dailyValue": 5,
           "usdaId": 1170,
-          "amount": 1.508,
-          "percent": 30
+          "amount": 1.1079970827391303,
+          "percent": 22
         },
         {
           "key": "choline",
@@ -8544,8 +8557,8 @@
           "unit": "mg",
           "dailyValue": 550,
           "usdaId": 1180,
-          "amount": 32.483999999999995,
-          "percent": 6
+          "amount": 23.867491535608693,
+          "percent": 4
         },
         {
           "key": "calcium",
@@ -8553,8 +8566,8 @@
           "unit": "mg",
           "dailyValue": 1300,
           "usdaId": 1087,
-          "amount": 148.74999999999997,
-          "percent": 11
+          "amount": 109.29347881793475,
+          "percent": 8
         },
         {
           "key": "iron",
@@ -8562,8 +8575,8 @@
           "unit": "mg",
           "dailyValue": 18,
           "usdaId": 1089,
-          "amount": 0.9156,
-          "percent": 5
+          "amount": 0.6727335072652174,
+          "percent": 4
         },
         {
           "key": "magnesium",
@@ -8571,8 +8584,8 @@
           "unit": "mg",
           "dailyValue": 420,
           "usdaId": 1090,
-          "amount": 62.739999999999995,
-          "percent": 15
+          "amount": 46.09796881369565,
+          "percent": 11
         },
         {
           "key": "phosphorus",
@@ -8580,8 +8593,8 @@
           "unit": "mg",
           "dailyValue": 1250,
           "usdaId": 1091,
-          "amount": 225.83999999999997,
-          "percent": 18
+          "amount": 165.93505382347826,
+          "percent": 13
         },
         {
           "key": "potassium",
@@ -8589,8 +8602,8 @@
           "unit": "mg",
           "dailyValue": 4700,
           "usdaId": 1092,
-          "amount": 568.26,
-          "percent": 12
+          "amount": 417.5268051971739,
+          "percent": 9
         },
         {
           "key": "zinc",
@@ -8598,8 +8611,8 @@
           "unit": "mg",
           "dailyValue": 11,
           "usdaId": 1095,
-          "amount": 1.3918000000000001,
-          "percent": 13
+          "amount": 1.0226195886978262,
+          "percent": 9
         },
         {
           "key": "copper",
@@ -8607,8 +8620,8 @@
           "unit": "mg",
           "dailyValue": 0.9,
           "usdaId": 1098,
-          "amount": 0.24225000000000002,
-          "percent": 27
+          "amount": 0.17799223693206523,
+          "percent": 20
         },
         {
           "key": "manganese",
@@ -8616,8 +8629,8 @@
           "unit": "mg",
           "dailyValue": 2.3,
           "usdaId": 1101,
-          "amount": 0.30634000000000006,
-          "percent": 13
+          "amount": 0.2250821129484783,
+          "percent": 10
         },
         {
           "key": "selenium",
@@ -8625,8 +8638,8 @@
           "unit": "mcg",
           "dailyValue": 55,
           "usdaId": 1103,
-          "amount": 14.573000000000002,
-          "percent": 26
+          "amount": 10.707454566815219,
+          "percent": 19
         }
       ],
       "recipeId": "avocado-lime-smoothie",
@@ -8652,7 +8665,7 @@
               "rowspan": 1,
               "text": "400g",
               "name": "Plain lowfat Greek yogurt",
-              "state": "plain, unsweetened, about 2% fat",
+              "state": "plain, unsweetened, 2% fat",
               "essentialState": false
             },
             {
@@ -8717,7 +8730,7 @@
               "col": 0,
               "colspan": 1,
               "rowspan": 1,
-              "text": "13.5 fl oz",
+              "text": "14 fl oz",
               "name": "Cold water",
               "state": "",
               "essentialState": false
@@ -8729,8 +8742,8 @@
       "activeMinutes": 5,
       "totalTime": "5–5 min",
       "attentionSummary": "Blend until smooth; serve chilled.",
-      "capacity": "The listed pan and basket capacity, cook times, and thermometer endpoint are for four servings.",
-      "timingNote": "Ingredients are scaled; keep food thickness, spacing, settings and safe endpoints fixed. Timings assume the four-serving batch and specified shortcuts. More food can require additional batches.",
+      "capacity": "Blend two servings at a time in a 1.5 L blender. Keep the jar below its marked fill limit.",
+      "timingNote": "Allow about 5 minutes for four servings in two batches.",
       "equipment": [
         "Blender with at least 1.5 L capacity; blend two servings per batch"
       ],
@@ -8738,7 +8751,7 @@
         {
           "quantity": "400g",
           "name": "Plain lowfat Greek yogurt",
-          "state": "plain, unsweetened, about 2% fat",
+          "state": "plain, unsweetened, 2% fat",
           "note": ""
         },
         {
@@ -8766,7 +8779,7 @@
           "note": ""
         },
         {
-          "quantity": "13.5 fl oz",
+          "quantity": "14 fl oz",
           "name": "Cold water",
           "state": "",
           "note": ""
@@ -8815,21 +8828,22 @@
         }
       ],
       "nutrition": {
-        "kcal": 215.13,
-        "protein_g": 12.776299999999999,
-        "carbs_g": 13.3156,
-        "fiber_g": 6.201,
-        "net_carbs_g": 7.1146
+        "kcal": 158.06592334858695,
+        "protein_g": 9.387336291909781,
+        "carbs_g": 9.783584850743479,
+        "fiber_g": 4.556160417815217,
+        "net_carbs_g": 5.227424432928261
       },
+      "nutritionHeading": "Nutrition per 8 fl oz glass (estimated)",
       "familyNutrition": null,
-      "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
+      "nutritionNote": "This batch makes about 5.4 eight-fluid-ounce glasses. Yield is estimated; added liquid and blending affect actual volume. Estimated from ingredient mass using approximately 1 g/ml for the blended mixture. Finished volume has not been measured; aeration, blender retention and extra liquid affect yield. Per estimated glass: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
       "allergens": [
         "milk"
       ],
       "flavorRationale": "Greek yogurt gives the smoothie body and a tangy finish.",
       "disclaimer": "These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.",
-      "leftovers": "Refrigerate in shallow containers within two hours, or one hour above 90°F. Use within 3–4 days or freeze; reheat to 165°F. Keep cold greens and yogurt separate.",
-      "safety": "Prepare cold sides first. Keep raw-poultry tools separate; use clean serving utensils. Probe more than one thick piece. A timer is not a doneness test.",
+      "leftovers": "Serve chilled immediately for best texture; refrigerate any remainder promptly.",
+      "safety": "Wash fresh produce and use a clean blender. Keep yogurt and finished smoothies chilled.",
       "image": {
         "src": "/media/recipes/avocado-lime-smoothie.svg",
         "cardSrc": "/media/recipes/avocado-lime-smoothie.svg",
@@ -8849,8 +8863,8 @@
           "unit": "g",
           "dailyValue": 78,
           "usdaId": 1004,
-          "amount": 12.3512,
-          "percent": 16
+          "amount": 9.518399435370684,
+          "percent": 12
         },
         {
           "key": "saturated_fat",
@@ -8858,8 +8872,8 @@
           "unit": "g",
           "dailyValue": 20,
           "usdaId": 1258,
-          "amount": 2.55691,
-          "percent": 13
+          "amount": 1.9704717517564003,
+          "percent": 10
         },
         {
           "key": "cholesterol",
@@ -8867,7 +8881,7 @@
           "unit": "mg",
           "dailyValue": 300,
           "usdaId": 1253,
-          "amount": 10,
+          "amount": 7.706457214983713,
           "percent": 3
         },
         {
@@ -8876,8 +8890,8 @@
           "unit": "mg",
           "dailyValue": 2300,
           "usdaId": 1093,
-          "amount": 40.1,
-          "percent": 2
+          "amount": 30.90289343208469,
+          "percent": 1
         },
         {
           "key": "vitamin_a",
@@ -8885,8 +8899,8 @@
           "unit": "mcg RAE",
           "dailyValue": 900,
           "usdaId": 1106,
-          "amount": 94,
-          "percent": 10
+          "amount": 72.4406978208469,
+          "percent": 8
         },
         {
           "key": "vitamin_c",
@@ -8894,8 +8908,8 @@
           "unit": "mg",
           "dailyValue": 90,
           "usdaId": 1162,
-          "amount": 35.242,
-          "percent": 39
+          "amount": 27.159096517045597,
+          "percent": 30
         },
         {
           "key": "vitamin_d",
@@ -8912,8 +8926,8 @@
           "unit": "mg",
           "dailyValue": 15,
           "usdaId": 1109,
-          "amount": 1.2417,
-          "percent": 8
+          "amount": 0.9569107923845277,
+          "percent": 6
         },
         {
           "key": "vitamin_k",
@@ -8921,8 +8935,8 @@
           "unit": "mcg",
           "dailyValue": 120,
           "usdaId": 1185,
-          "amount": 12.100999999999999,
-          "percent": 10
+          "amount": 9.325583875851791,
+          "percent": 8
         },
         {
           "key": "thiamin",
@@ -8930,8 +8944,8 @@
           "unit": "mg",
           "dailyValue": 1.2,
           "usdaId": 1165,
-          "amount": 0.20457999999999998,
-          "percent": 17
+          "amount": 0.1576587017041368,
+          "percent": 13
         },
         {
           "key": "riboflavin",
@@ -8939,8 +8953,8 @@
           "unit": "mg",
           "dailyValue": 1.3,
           "usdaId": 1166,
-          "amount": 0.32027000000000005,
-          "percent": 25
+          "amount": 0.24681470522428342,
+          "percent": 19
         },
         {
           "key": "niacin",
@@ -8948,8 +8962,8 @@
           "unit": "mg",
           "dailyValue": 16,
           "usdaId": 1167,
-          "amount": 1.4746000000000001,
-          "percent": 9
+          "amount": 1.1363941809214984,
+          "percent": 7
         },
         {
           "key": "vitamin_b6",
@@ -8957,8 +8971,8 @@
           "unit": "mg",
           "dailyValue": 1.7,
           "usdaId": 1175,
-          "amount": 0.24011,
-          "percent": 14
+          "amount": 0.18503974418897393,
+          "percent": 11
         },
         {
           "key": "folate",
@@ -8966,8 +8980,8 @@
           "unit": "mcg DFE",
           "dailyValue": 400,
           "usdaId": 1190,
-          "amount": 70.59,
-          "percent": 18
+          "amount": 54.39988148057003,
+          "percent": 14
         },
         {
           "key": "vitamin_b12",
@@ -8975,8 +8989,8 @@
           "unit": "mcg",
           "dailyValue": 2.4,
           "usdaId": 1178,
-          "amount": 0.52,
-          "percent": 22
+          "amount": 0.4007357751791531,
+          "percent": 17
         },
         {
           "key": "pantothenic_acid",
@@ -8984,8 +8998,8 @@
           "unit": "mg",
           "dailyValue": 5,
           "usdaId": 1170,
-          "amount": 1.29595,
-          "percent": 26
+          "amount": 0.9987183227758142,
+          "percent": 20
         },
         {
           "key": "choline",
@@ -8993,8 +9007,8 @@
           "unit": "mg",
           "dailyValue": 550,
           "usdaId": 1180,
-          "amount": 30.659,
-          "percent": 6
+          "amount": 23.627227175418565,
+          "percent": 4
         },
         {
           "key": "calcium",
@@ -9002,8 +9016,8 @@
           "unit": "mg",
           "dailyValue": 1300,
           "usdaId": 1087,
-          "amount": 146.85,
-          "percent": 11
+          "amount": 113.16932420203582,
+          "percent": 9
         },
         {
           "key": "iron",
@@ -9011,8 +9025,8 @@
           "unit": "mg",
           "dailyValue": 18,
           "usdaId": 1089,
-          "amount": 0.9211,
-          "percent": 5
+          "amount": 0.7098417740721498,
+          "percent": 4
         },
         {
           "key": "magnesium",
@@ -9020,8 +9034,8 @@
           "unit": "mg",
           "dailyValue": 420,
           "usdaId": 1090,
-          "amount": 59.44,
-          "percent": 14
+          "amount": 45.807181685863185,
+          "percent": 11
         },
         {
           "key": "phosphorus",
@@ -9029,8 +9043,8 @@
           "unit": "mg",
           "dailyValue": 1250,
           "usdaId": 1091,
-          "amount": 219.94,
-          "percent": 18
+          "amount": 169.4958199863518,
+          "percent": 14
         },
         {
           "key": "potassium",
@@ -9038,8 +9052,8 @@
           "unit": "mg",
           "dailyValue": 4700,
           "usdaId": 1092,
-          "amount": 516.91,
-          "percent": 11
+          "amount": 398.35447989972306,
+          "percent": 8
         },
         {
           "key": "zinc",
@@ -9047,8 +9061,8 @@
           "unit": "mg",
           "dailyValue": 11,
           "usdaId": 1095,
-          "amount": 1.2938,
-          "percent": 12
+          "amount": 0.9970614344745928,
+          "percent": 9
         },
         {
           "key": "copper",
@@ -9056,8 +9070,8 @@
           "unit": "mg",
           "dailyValue": 0.9,
           "usdaId": 1098,
-          "amount": 0.2254,
-          "percent": 25
+          "amount": 0.17370354562573287,
+          "percent": 19
         },
         {
           "key": "manganese",
@@ -9065,8 +9079,8 @@
           "unit": "mg",
           "dailyValue": 2.3,
           "usdaId": 1101,
-          "amount": 0.44474,
-          "percent": 19
+          "amount": 0.3427369781791857,
+          "percent": 15
         },
         {
           "key": "selenium",
@@ -9074,8 +9088,8 @@
           "unit": "mcg",
           "dailyValue": 55,
           "usdaId": 1103,
-          "amount": 14.578,
-          "percent": 27
+          "amount": 11.234473328003256,
+          "percent": 20
         }
       ],
       "recipeId": "strawberry-avocado-smoothie",
@@ -9101,7 +9115,7 @@
               "rowspan": 1,
               "text": "400g",
               "name": "Plain lowfat Greek yogurt",
-              "state": "plain, unsweetened, about 2% fat",
+              "state": "plain, unsweetened, 2% fat",
               "essentialState": false
             },
             {
@@ -9154,7 +9168,7 @@
               "col": 0,
               "colspan": 1,
               "rowspan": 1,
-              "text": "13.5 fl oz",
+              "text": "14 fl oz",
               "name": "Cold water",
               "state": "",
               "essentialState": false
@@ -9166,8 +9180,8 @@
       "activeMinutes": 5,
       "totalTime": "5–5 min",
       "attentionSummary": "Blend until smooth; serve chilled.",
-      "capacity": "The listed pan and basket capacity, cook times, and thermometer endpoint are for four servings.",
-      "timingNote": "Ingredients are scaled; keep food thickness, spacing, settings and safe endpoints fixed. Timings assume the four-serving batch and specified shortcuts. More food can require additional batches.",
+      "capacity": "Blend two servings at a time in a 1.5 L blender. Keep the jar below its marked fill limit.",
+      "timingNote": "Allow about 5 minutes for four servings in two batches.",
       "equipment": [
         "Blender with at least 1.5 L capacity; blend two servings per batch"
       ],
@@ -9175,7 +9189,7 @@
         {
           "quantity": "400g",
           "name": "Plain lowfat Greek yogurt",
-          "state": "plain, unsweetened, about 2% fat",
+          "state": "plain, unsweetened, 2% fat",
           "note": ""
         },
         {
@@ -9197,7 +9211,7 @@
           "note": ""
         },
         {
-          "quantity": "13.5 fl oz",
+          "quantity": "14 fl oz",
           "name": "Cold water",
           "state": "",
           "note": ""
@@ -9246,21 +9260,22 @@
         }
       ],
       "nutrition": {
-        "kcal": 206.38,
-        "protein_g": 12.565299999999999,
-        "carbs_g": 14.0666,
-        "fiber_g": 6.261,
-        "net_carbs_g": 7.805599999999999
+        "kcal": 159.04586400283387,
+        "protein_g": 9.683394684343483,
+        "carbs_g": 10.840365106028989,
+        "fiber_g": 4.825012862301302,
+        "net_carbs_g": 6.015352243727686
       },
+      "nutritionHeading": "Nutrition per 8 fl oz glass (estimated)",
       "familyNutrition": null,
-      "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
+      "nutritionNote": "This batch makes about 5.2 eight-fluid-ounce glasses. Yield is estimated; added liquid and blending affect actual volume. Estimated from ingredient mass using approximately 1 g/ml for the blended mixture. Finished volume has not been measured; aeration, blender retention and extra liquid affect yield. Per estimated glass: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
       "allergens": [
         "milk"
       ],
       "flavorRationale": "Greek yogurt gives the smoothie body and a tangy finish.",
       "disclaimer": "These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.",
-      "leftovers": "Refrigerate in shallow containers within two hours, or one hour above 90°F. Use within 3–4 days or freeze; reheat to 165°F. Keep cold greens and yogurt separate.",
-      "safety": "Prepare cold sides first. Keep raw-poultry tools separate; use clean serving utensils. Probe more than one thick piece. A timer is not a doneness test.",
+      "leftovers": "Serve chilled immediately for best texture; refrigerate any remainder promptly.",
+      "safety": "Wash fresh produce and use a clean blender. Keep yogurt and finished smoothies chilled.",
       "image": {
         "src": "/media/recipes/strawberry-avocado-smoothie.svg",
         "cardSrc": "/media/recipes/strawberry-avocado-smoothie.svg",
@@ -9280,8 +9295,8 @@
           "unit": "g",
           "dailyValue": 78,
           "usdaId": 1004,
-          "amount": 3.66,
-          "percent": 5
+          "amount": 1.7318258911799997,
+          "percent": 2
         },
         {
           "key": "saturated_fat",
@@ -9289,8 +9304,8 @@
           "unit": "g",
           "dailyValue": 20,
           "usdaId": 1258,
-          "amount": 1.9795,
-          "percent": 10
+          "amount": 0.9366528283034998,
+          "percent": 5
         },
         {
           "key": "cholesterol",
@@ -9298,8 +9313,8 @@
           "unit": "mg",
           "dailyValue": 300,
           "usdaId": 1253,
-          "amount": 15,
-          "percent": 5
+          "amount": 7.097647094999999,
+          "percent": 2
         },
         {
           "key": "sodium",
@@ -9307,8 +9322,8 @@
           "unit": "mg",
           "dailyValue": 2300,
           "usdaId": 1093,
-          "amount": 53.5,
-          "percent": 2
+          "amount": 25.314941305499996,
+          "percent": 1
         },
         {
           "key": "vitamin_a",
@@ -9316,8 +9331,8 @@
           "unit": "mcg RAE",
           "dailyValue": 900,
           "usdaId": 1106,
-          "amount": 139.5,
-          "percent": 16
+          "amount": 66.00811798349999,
+          "percent": 7
         },
         {
           "key": "vitamin_c",
@@ -9325,8 +9340,8 @@
           "unit": "mg",
           "dailyValue": 90,
           "usdaId": 1162,
-          "amount": 98.10000000000001,
-          "percent": 109
+          "amount": 46.4186120013,
+          "percent": 52
         },
         {
           "key": "vitamin_d",
@@ -9343,8 +9358,8 @@
           "unit": "mg",
           "dailyValue": 15,
           "usdaId": 1109,
-          "amount": 0.595,
-          "percent": 4
+          "amount": 0.28154000143499996,
+          "percent": 2
         },
         {
           "key": "vitamin_k",
@@ -9352,8 +9367,8 @@
           "unit": "mcg",
           "dailyValue": 120,
           "usdaId": 1185,
-          "amount": 4.1,
-          "percent": 3
+          "amount": 1.9400235392999996,
+          "percent": 2
         },
         {
           "key": "thiamin",
@@ -9361,8 +9376,8 @@
           "unit": "mg",
           "dailyValue": 1.2,
           "usdaId": 1165,
-          "amount": 0.133,
-          "percent": 11
+          "amount": 0.06293247090899999,
+          "percent": 5
         },
         {
           "key": "riboflavin",
@@ -9370,8 +9385,8 @@
           "unit": "mg",
           "dailyValue": 1.3,
           "usdaId": 1166,
-          "amount": 0.45550000000000007,
-          "percent": 35
+          "amount": 0.2155318834515,
+          "percent": 17
         },
         {
           "key": "niacin",
@@ -9379,8 +9394,8 @@
           "unit": "mg",
           "dailyValue": 16,
           "usdaId": 1167,
-          "amount": 1.5394999999999999,
-          "percent": 10
+          "amount": 0.7284551801834999,
+          "percent": 5
         },
         {
           "key": "vitamin_b6",
@@ -9388,8 +9403,8 @@
           "unit": "mg",
           "dailyValue": 1.7,
           "usdaId": 1175,
-          "amount": 0.52,
-          "percent": 31
+          "amount": 0.24605176595999997,
+          "percent": 14
         },
         {
           "key": "folate",
@@ -9397,8 +9412,8 @@
           "unit": "mcg DFE",
           "dailyValue": 400,
           "usdaId": 1190,
-          "amount": 74,
-          "percent": 19
+          "amount": 35.015059001999994,
+          "percent": 9
         },
         {
           "key": "vitamin_b12",
@@ -9406,8 +9421,8 @@
           "unit": "mcg",
           "dailyValue": 2.4,
           "usdaId": 1178,
-          "amount": 0.78,
-          "percent": 33
+          "amount": 0.36907764893999995,
+          "percent": 15
         },
         {
           "key": "pantothenic_acid",
@@ -9415,8 +9430,8 @@
           "unit": "mg",
           "dailyValue": 5,
           "usdaId": 1170,
-          "amount": 1.2265,
-          "percent": 25
+          "amount": 0.5803509441344998,
+          "percent": 12
         },
         {
           "key": "choline",
@@ -9424,8 +9439,8 @@
           "unit": "mg",
           "dailyValue": 550,
           "usdaId": 1180,
-          "amount": 41.150000000000006,
-          "percent": 7
+          "amount": 19.47121186395,
+          "percent": 4
         },
         {
           "key": "calcium",
@@ -9433,8 +9448,8 @@
           "unit": "mg",
           "dailyValue": 1300,
           "usdaId": 1087,
-          "amount": 201.5,
-          "percent": 16
+          "amount": 95.34505930949999,
+          "percent": 7
         },
         {
           "key": "iron",
@@ -9442,8 +9457,8 @@
           "unit": "mg",
           "dailyValue": 18,
           "usdaId": 1089,
-          "amount": 0.9349999999999998,
-          "percent": 5
+          "amount": 0.44242000225499983,
+          "percent": 2
         },
         {
           "key": "magnesium",
@@ -9451,8 +9466,8 @@
           "unit": "mg",
           "dailyValue": 420,
           "usdaId": 1090,
-          "amount": 63,
-          "percent": 15
+          "amount": 29.810117798999997,
+          "percent": 7
         },
         {
           "key": "phosphorus",
@@ -9460,8 +9475,8 @@
           "unit": "mg",
           "dailyValue": 1250,
           "usdaId": 1091,
-          "amount": 263.5,
-          "percent": 21
+          "amount": 124.68200063549997,
+          "percent": 10
         },
         {
           "key": "potassium",
@@ -9469,8 +9484,8 @@
           "unit": "mg",
           "dailyValue": 4700,
           "usdaId": 1092,
-          "amount": 799,
-          "percent": 17
+          "amount": 378.06800192699995,
+          "percent": 8
         },
         {
           "key": "zinc",
@@ -9478,8 +9493,8 @@
           "unit": "mg",
           "dailyValue": 11,
           "usdaId": 1095,
-          "amount": 1.26,
-          "percent": 11
+          "amount": 0.5962023559799999,
+          "percent": 5
         },
         {
           "key": "copper",
@@ -9487,8 +9502,8 @@
           "unit": "mg",
           "dailyValue": 0.9,
           "usdaId": 1098,
-          "amount": 0.1815,
-          "percent": 20
+          "amount": 0.08588152984949998,
+          "percent": 10
         },
         {
           "key": "manganese",
@@ -9496,8 +9511,8 @@
           "unit": "mg",
           "dailyValue": 2.3,
           "usdaId": 1101,
-          "amount": 0.8594999999999999,
-          "percent": 37
+          "amount": 0.4066951785434999,
+          "percent": 18
         },
         {
           "key": "selenium",
@@ -9505,8 +9520,8 @@
           "unit": "mcg",
           "dailyValue": 55,
           "usdaId": 1103,
-          "amount": 20.200000000000003,
-          "percent": 37
+          "amount": 9.5581647546,
+          "percent": 17
         }
       ],
       "recipeId": "strawberry-banana-smoothie",
@@ -9532,7 +9547,7 @@
               "rowspan": 1,
               "text": "600g",
               "name": "Plain lowfat Greek yogurt",
-              "state": "plain, unsweetened, about 2% fat",
+              "state": "plain, unsweetened, 2% fat",
               "essentialState": false
             },
             {
@@ -9573,7 +9588,7 @@
               "col": 0,
               "colspan": 1,
               "rowspan": 1,
-              "text": "13.5 fl oz",
+              "text": "14 fl oz",
               "name": "Cold water",
               "state": "",
               "essentialState": false
@@ -9585,8 +9600,8 @@
       "activeMinutes": 5,
       "totalTime": "5–5 min",
       "attentionSummary": "Blend until smooth; serve chilled.",
-      "capacity": "The listed pan and basket capacity, cook times, and thermometer endpoint are for four servings.",
-      "timingNote": "Ingredients are scaled; keep food thickness, spacing, settings and safe endpoints fixed. Timings assume the four-serving batch and specified shortcuts. More food can require additional batches.",
+      "capacity": "Blend two servings at a time in a 1.5 L blender. Keep the jar below its marked fill limit.",
+      "timingNote": "Allow about 5 minutes for four servings in two batches.",
       "equipment": [
         "Blender with at least 1.5 L capacity; blend two servings per batch"
       ],
@@ -9594,7 +9609,7 @@
         {
           "quantity": "600g",
           "name": "Plain lowfat Greek yogurt",
-          "state": "plain, unsweetened, about 2% fat",
+          "state": "plain, unsweetened, 2% fat",
           "note": ""
         },
         {
@@ -9610,7 +9625,7 @@
           "note": ""
         },
         {
-          "quantity": "13.5 fl oz",
+          "quantity": "14 fl oz",
           "name": "Cold water",
           "state": "",
           "note": ""
@@ -9659,21 +9674,22 @@
         }
       ],
       "nutrition": {
-        "kcal": 246.5,
-        "protein_g": 17.02,
-        "carbs_g": 40.269999999999996,
-        "fiber_g": 5.6,
-        "net_carbs_g": 34.669999999999995
+        "kcal": 116.63800059449999,
+        "protein_g": 8.053463570459998,
+        "carbs_g": 19.054816567709995,
+        "fiber_g": 2.6497882487999997,
+        "net_carbs_g": 16.405028318909995
       },
+      "nutritionHeading": "Nutrition per 8 fl oz glass (estimated)",
       "familyNutrition": null,
-      "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
+      "nutritionNote": "This batch makes about 8.5 eight-fluid-ounce glasses. Yield is estimated; added liquid and blending affect actual volume. Estimated from ingredient mass using approximately 1 g/ml for the blended mixture. Finished volume has not been measured; aeration, blender retention and extra liquid affect yield. Per estimated glass: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
       "allergens": [
         "milk"
       ],
       "flavorRationale": "Greek yogurt gives the smoothie body and a tangy finish.",
       "disclaimer": "These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.",
-      "leftovers": "Refrigerate in shallow containers within two hours, or one hour above 90°F. Use within 3–4 days or freeze; reheat to 165°F. Keep cold greens and yogurt separate.",
-      "safety": "Prepare cold sides first. Keep raw-poultry tools separate; use clean serving utensils. Probe more than one thick piece. A timer is not a doneness test.",
+      "leftovers": "Serve chilled immediately for best texture; refrigerate any remainder promptly.",
+      "safety": "Wash fresh produce and use a clean blender. Keep yogurt and finished smoothies chilled.",
       "image": {
         "src": "/media/recipes/strawberry-banana-smoothie.svg",
         "cardSrc": "/media/recipes/strawberry-banana-smoothie.svg",
@@ -9693,8 +9709,8 @@
           "unit": "g",
           "dailyValue": 78,
           "usdaId": 1004,
-          "amount": 7.491999999999999,
-          "percent": 10
+          "amount": 4.66452386278421,
+          "percent": 6
         },
         {
           "key": "saturated_fat",
@@ -9702,8 +9718,8 @@
           "unit": "g",
           "dailyValue": 20,
           "usdaId": 1258,
-          "amount": 2.3457,
-          "percent": 12
+          "amount": 1.4604342798896053,
+          "percent": 7
         },
         {
           "key": "cholesterol",
@@ -9711,8 +9727,8 @@
           "unit": "mg",
           "dailyValue": 300,
           "usdaId": 1253,
-          "amount": 15,
-          "percent": 5
+          "amount": 9.339009335526317,
+          "percent": 3
         },
         {
           "key": "sodium",
@@ -9720,8 +9736,8 @@
           "unit": "mg",
           "dailyValue": 2300,
           "usdaId": 1093,
-          "amount": 55.2,
-          "percent": 2
+          "amount": 34.367554354736846,
+          "percent": 1
         },
         {
           "key": "vitamin_a",
@@ -9729,8 +9745,8 @@
           "unit": "mcg RAE",
           "dailyValue": 900,
           "usdaId": 1106,
-          "amount": 138.6,
-          "percent": 15
+          "amount": 86.29244626026316,
+          "percent": 10
         },
         {
           "key": "vitamin_c",
@@ -9738,8 +9754,8 @@
           "unit": "mg",
           "dailyValue": 90,
           "usdaId": 1162,
-          "amount": 11.7,
-          "percent": 13
+          "amount": 7.284427281710526,
+          "percent": 8
         },
         {
           "key": "vitamin_d",
@@ -9756,7 +9772,7 @@
           "unit": "mg",
           "dailyValue": 15,
           "usdaId": 1109,
-          "amount": 0.211,
+          "amount": 0.13136873131973684,
           "percent": 1
         },
         {
@@ -9765,7 +9781,7 @@
           "unit": "mcg",
           "dailyValue": 120,
           "usdaId": 1185,
-          "amount": 1.3299999999999998,
+          "amount": 0.82805882775,
           "percent": 1
         },
         {
@@ -9774,8 +9790,8 @@
           "unit": "mg",
           "dailyValue": 1.2,
           "usdaId": 1165,
-          "amount": 0.2676,
-          "percent": 22
+          "amount": 0.1666079265457895,
+          "percent": 14
         },
         {
           "key": "riboflavin",
@@ -9783,8 +9799,8 @@
           "unit": "mg",
           "dailyValue": 1.3,
           "usdaId": 1166,
-          "amount": 0.45320000000000005,
-          "percent": 35
+          "amount": 0.28216260205736843,
+          "percent": 22
         },
         {
           "key": "niacin",
@@ -9792,8 +9808,8 @@
           "unit": "mg",
           "dailyValue": 16,
           "usdaId": 1167,
-          "amount": 1.4015000000000002,
-          "percent": 9
+          "amount": 0.8725747722493422,
+          "percent": 5
         },
         {
           "key": "vitamin_b6",
@@ -9801,8 +9817,8 @@
           "unit": "mg",
           "dailyValue": 1.7,
           "usdaId": 1175,
-          "amount": 0.5702,
-          "percent": 34
+          "amount": 0.3550068748744737,
+          "percent": 21
         },
         {
           "key": "folate",
@@ -9810,8 +9826,8 @@
           "unit": "mcg DFE",
           "dailyValue": 400,
           "usdaId": 1190,
-          "amount": 50.7,
-          "percent": 13
+          "amount": 31.56585155407895,
+          "percent": 8
         },
         {
           "key": "vitamin_b12",
@@ -9819,8 +9835,8 @@
           "unit": "mcg",
           "dailyValue": 2.4,
           "usdaId": 1178,
-          "amount": 0.78,
-          "percent": 33
+          "amount": 0.4856284854473684,
+          "percent": 20
         },
         {
           "key": "pantothenic_acid",
@@ -9828,8 +9844,8 @@
           "unit": "mg",
           "dailyValue": 5,
           "usdaId": 1170,
-          "amount": 1.2043,
-          "percent": 24
+          "amount": 0.7497979295182895,
+          "percent": 15
         },
         {
           "key": "choline",
@@ -9837,8 +9853,8 @@
           "unit": "mg",
           "dailyValue": 550,
           "usdaId": 1180,
-          "amount": 42.43,
-          "percent": 8
+          "amount": 26.416944407092107,
+          "percent": 5
         },
         {
           "key": "calcium",
@@ -9846,8 +9862,8 @@
           "unit": "mg",
           "dailyValue": 1300,
           "usdaId": 1087,
-          "amount": 204,
-          "percent": 16
+          "amount": 127.0105269631579,
+          "percent": 10
         },
         {
           "key": "iron",
@@ -9855,8 +9871,8 @@
           "unit": "mg",
           "dailyValue": 18,
           "usdaId": 1089,
-          "amount": 0.9450000000000001,
-          "percent": 5
+          "amount": 0.588357588138158,
+          "percent": 3
         },
         {
           "key": "magnesium",
@@ -9864,8 +9880,8 @@
           "unit": "mg",
           "dailyValue": 420,
           "usdaId": 1090,
-          "amount": 88.1,
-          "percent": 21
+          "amount": 54.85111483065789,
+          "percent": 13
         },
         {
           "key": "phosphorus",
@@ -9873,8 +9889,8 @@
           "unit": "mg",
           "dailyValue": 1250,
           "usdaId": 1091,
-          "amount": 296.1,
-          "percent": 24
+          "amount": 184.3520442832895,
+          "percent": 15
         },
         {
           "key": "potassium",
@@ -9882,8 +9898,8 @@
           "unit": "mg",
           "dailyValue": 4700,
           "usdaId": 1092,
-          "amount": 722.4,
-          "percent": 15
+          "amount": 449.7666895989474,
+          "percent": 10
         },
         {
           "key": "zinc",
@@ -9891,8 +9907,8 @@
           "unit": "mg",
           "dailyValue": 11,
           "usdaId": 1095,
-          "amount": 1.514,
-          "percent": 14
+          "amount": 0.9426173422657895,
+          "percent": 9
         },
         {
           "key": "copper",
@@ -9900,8 +9916,8 @@
           "unit": "mg",
           "dailyValue": 0.9,
           "usdaId": 1098,
-          "amount": 0.2471,
-          "percent": 27
+          "amount": 0.15384461378723685,
+          "percent": 17
         },
         {
           "key": "manganese",
@@ -9909,8 +9925,8 @@
           "unit": "mg",
           "dailyValue": 2.3,
           "usdaId": 1101,
-          "amount": 0.5827000000000001,
-          "percent": 25
+          "amount": 0.362789382654079,
+          "percent": 16
         },
         {
           "key": "selenium",
@@ -9918,8 +9934,8 @@
           "unit": "mcg",
           "dailyValue": 55,
           "usdaId": 1103,
-          "amount": 22.34,
-          "percent": 41
+          "amount": 13.908897903710526,
+          "percent": 25
         }
       ],
       "recipeId": "banana-flax-smoothie",
@@ -9945,7 +9961,7 @@
               "rowspan": 1,
               "text": "600g",
               "name": "Plain lowfat Greek yogurt",
-              "state": "plain, unsweetened, about 2% fat",
+              "state": "plain, unsweetened, 2% fat",
               "essentialState": false
             },
             {
@@ -9986,7 +10002,7 @@
               "col": 0,
               "colspan": 1,
               "rowspan": 1,
-              "text": "13.5 fl oz",
+              "text": "14 fl oz",
               "name": "Cold water",
               "state": "",
               "essentialState": false
@@ -9998,8 +10014,8 @@
       "activeMinutes": 5,
       "totalTime": "5–5 min",
       "attentionSummary": "Blend until smooth; serve chilled.",
-      "capacity": "The listed pan and basket capacity, cook times, and thermometer endpoint are for four servings.",
-      "timingNote": "Ingredients are scaled; keep food thickness, spacing, settings and safe endpoints fixed. Timings assume the four-serving batch and specified shortcuts. More food can require additional batches.",
+      "capacity": "Blend two servings at a time in a 1.5 L blender. Keep the jar below its marked fill limit.",
+      "timingNote": "Allow about 5 minutes for four servings in two batches.",
       "equipment": [
         "Blender with at least 1.5 L capacity; blend two servings per batch"
       ],
@@ -10007,7 +10023,7 @@
         {
           "quantity": "600g",
           "name": "Plain lowfat Greek yogurt",
-          "state": "plain, unsweetened, about 2% fat",
+          "state": "plain, unsweetened, 2% fat",
           "note": ""
         },
         {
@@ -10023,7 +10039,7 @@
           "note": ""
         },
         {
-          "quantity": "13.5 fl oz",
+          "quantity": "14 fl oz",
           "name": "Cold water",
           "state": "",
           "note": ""
@@ -10072,21 +10088,22 @@
         }
       ],
       "nutrition": {
-        "kcal": 269.7,
-        "protein_g": 18.062,
-        "carbs_g": 36.206,
-        "fiber_g": 5.85,
-        "net_carbs_g": 30.356
+        "kcal": 167.91538785276313,
+        "protein_g": 11.245412441218422,
+        "carbs_g": 22.541878133471055,
+        "fiber_g": 3.6422136408552626,
+        "net_carbs_g": 18.89966449261579
       },
+      "nutritionHeading": "Nutrition per 8 fl oz glass (estimated)",
       "familyNutrition": null,
-      "nutritionNote": "Per adult: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
+      "nutritionNote": "This batch makes about 6.4 eight-fluid-ounce glasses. Yield is estimated; added liquid and blending affect actual volume. Estimated from ingredient mass using approximately 1 g/ml for the blended mixture. Finished volume has not been measured; aeration, blender retention and extra liquid affect yield. Per estimated glass: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
       "allergens": [
         "milk"
       ],
       "flavorRationale": "Greek yogurt gives the smoothie body and a tangy finish.",
       "disclaimer": "These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.",
-      "leftovers": "Refrigerate in shallow containers within two hours, or one hour above 90°F. Use within 3–4 days or freeze; reheat to 165°F. Keep cold greens and yogurt separate.",
-      "safety": "Prepare cold sides first. Keep raw-poultry tools separate; use clean serving utensils. Probe more than one thick piece. A timer is not a doneness test.",
+      "leftovers": "Serve chilled immediately for best texture; refrigerate any remainder promptly.",
+      "safety": "Wash fresh produce and use a clean blender. Keep yogurt and finished smoothies chilled.",
       "image": {
         "src": "/media/recipes/banana-flax-smoothie.svg",
         "cardSrc": "/media/recipes/banana-flax-smoothie.svg",
@@ -10095,6 +10112,900 @@
         "width": 512,
         "height": 384,
         "alt": "Illustration of banana-flax smoothie in a glass.",
+        "caption": "Smoothie illustration."
+      }
+    },
+    {
+      "dailyNutrition": [
+        {
+          "key": "fat",
+          "label": "Total fat",
+          "unit": "g",
+          "dailyValue": 78,
+          "usdaId": 1004,
+          "amount": 8.4956684925,
+          "percent": 11
+        },
+        {
+          "key": "saturated_fat",
+          "label": "Saturated fat",
+          "unit": "g",
+          "dailyValue": 20,
+          "usdaId": 1258,
+          "amount": 1.5478606139499997,
+          "percent": 8
+        },
+        {
+          "key": "cholesterol",
+          "label": "Cholesterol",
+          "unit": "mg",
+          "dailyValue": 300,
+          "usdaId": 1253,
+          "amount": 7.1693405,
+          "percent": 2
+        },
+        {
+          "key": "sodium",
+          "label": "Sodium",
+          "unit": "mg",
+          "dailyValue": 2300,
+          "usdaId": 1093,
+          "amount": 25.52285218,
+          "percent": 1
+        },
+        {
+          "key": "vitamin_a",
+          "label": "Vitamin A",
+          "unit": "mcg RAE",
+          "dailyValue": 900,
+          "usdaId": 1106,
+          "amount": 65.09761173999999,
+          "percent": 7
+        },
+        {
+          "key": "vitamin_c",
+          "label": "Vitamin C",
+          "unit": "mg",
+          "dailyValue": 90,
+          "usdaId": 1162,
+          "amount": 25.938673929,
+          "percent": 29
+        },
+        {
+          "key": "vitamin_d",
+          "label": "Vitamin D",
+          "unit": "mcg",
+          "dailyValue": 20,
+          "usdaId": 1114,
+          "amount": null,
+          "percent": null
+        },
+        {
+          "key": "vitamin_e",
+          "label": "Vitamin E",
+          "unit": "mg",
+          "dailyValue": 15,
+          "usdaId": 1109,
+          "amount": 0.2681333347,
+          "percent": 2
+        },
+        {
+          "key": "vitamin_k",
+          "label": "Vitamin K",
+          "unit": "mcg",
+          "dailyValue": 120,
+          "usdaId": 1185,
+          "amount": null,
+          "percent": null
+        },
+        {
+          "key": "thiamin",
+          "label": "Thiamin (B1)",
+          "unit": "mg",
+          "dailyValue": 1.2,
+          "usdaId": 1165,
+          "amount": 0.22468713127,
+          "percent": 19
+        },
+        {
+          "key": "riboflavin",
+          "label": "Riboflavin (B2)",
+          "unit": "mg",
+          "dailyValue": 1.3,
+          "usdaId": 1166,
+          "amount": 0.21737440396000002,
+          "percent": 17
+        },
+        {
+          "key": "niacin",
+          "label": "Niacin (B3)",
+          "unit": "mg",
+          "dailyValue": 16,
+          "usdaId": 1167,
+          "amount": 1.62643658583,
+          "percent": 10
+        },
+        {
+          "key": "vitamin_b6",
+          "label": "Vitamin B6",
+          "unit": "mg",
+          "dailyValue": 1.7,
+          "usdaId": 1175,
+          "amount": 0.14568099896,
+          "percent": 9
+        },
+        {
+          "key": "folate",
+          "label": "Folate",
+          "unit": "mcg DFE",
+          "dailyValue": 400,
+          "usdaId": 1190,
+          "amount": 34.69960802,
+          "percent": 9
+        },
+        {
+          "key": "vitamin_b12",
+          "label": "Vitamin B12",
+          "unit": "mcg",
+          "dailyValue": 2.4,
+          "usdaId": 1178,
+          "amount": null,
+          "percent": null
+        },
+        {
+          "key": "pantothenic_acid",
+          "label": "Pantothenic acid (B5)",
+          "unit": "mg",
+          "dailyValue": 5,
+          "usdaId": 1170,
+          "amount": null,
+          "percent": null
+        },
+        {
+          "key": "choline",
+          "label": "Choline",
+          "unit": "mg",
+          "dailyValue": 550,
+          "usdaId": 1180,
+          "amount": null,
+          "percent": null
+        },
+        {
+          "key": "calcium",
+          "label": "Calcium",
+          "unit": "mg",
+          "dailyValue": 1300,
+          "usdaId": 1087,
+          "amount": 99.36705932999999,
+          "percent": 8
+        },
+        {
+          "key": "iron",
+          "label": "Iron",
+          "unit": "mg",
+          "dailyValue": 18,
+          "usdaId": 1089,
+          "amount": 1.3449682778,
+          "percent": 7
+        },
+        {
+          "key": "magnesium",
+          "label": "Magnesium",
+          "unit": "mg",
+          "dailyValue": 420,
+          "usdaId": 1090,
+          "amount": 113.84912714000001,
+          "percent": 27
+        },
+        {
+          "key": "phosphorus",
+          "label": "Phosphorus",
+          "unit": "mg",
+          "dailyValue": 1250,
+          "usdaId": 1091,
+          "amount": 345.13205166999995,
+          "percent": 28
+        },
+        {
+          "key": "potassium",
+          "label": "Potassium",
+          "unit": "mg",
+          "dailyValue": 4700,
+          "usdaId": 1092,
+          "amount": 338.96641884,
+          "percent": 7
+        },
+        {
+          "key": "zinc",
+          "label": "Zinc",
+          "unit": "mg",
+          "dailyValue": 11,
+          "usdaId": 1095,
+          "amount": 1.9099123091999997,
+          "percent": 17
+        },
+        {
+          "key": "copper",
+          "label": "Copper",
+          "unit": "mg",
+          "dailyValue": 0.9,
+          "usdaId": 1098,
+          "amount": 0.26512221169,
+          "percent": 29
+        },
+        {
+          "key": "manganese",
+          "label": "Manganese",
+          "unit": "mg",
+          "dailyValue": 2.3,
+          "usdaId": 1101,
+          "amount": 1.26080022033,
+          "percent": 55
+        },
+        {
+          "key": "selenium",
+          "label": "Selenium",
+          "unit": "mcg",
+          "dailyValue": 55,
+          "usdaId": 1103,
+          "amount": null,
+          "percent": null
+        }
+      ],
+      "recipeId": "strawberry-hemp-smoothie",
+      "type": "smoothie",
+      "title": "Strawberry-hemp smoothie",
+      "group": "keto",
+      "servings": 4,
+      "units": "us",
+      "familyDiners": 0,
+      "cookingFlow": {
+        "notation": "Tabular Recipe Notation (TRN)",
+        "prep": [
+          "Hull and quarter the strawberries. Weigh the yogurt and hulled hemp hearts.",
+          "Use chilled ingredients; blend at most two servings per batch in a 1.5 L blender."
+        ],
+        "columns": 2,
+        "rows": [
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "400g",
+              "name": "Plain lowfat Greek yogurt",
+              "state": "plain, unsweetened, 2% fat",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 1,
+              "rowspan": 4,
+              "text": "Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "240g",
+              "name": "Strawberries",
+              "state": "hulled",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "80g",
+              "name": "Hulled hemp hearts",
+              "state": "hulled, unsalted",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "20 fl oz",
+              "name": "Cold water",
+              "state": "",
+              "essentialState": false
+            }
+          ]
+        ]
+      },
+      "summary": "A tangy strawberry smoothie with hulled hemp hearts for a nutty finish, without banana or added sugar.",
+      "activeMinutes": 5,
+      "totalTime": "5–5 min",
+      "attentionSummary": "Blend until smooth; serve chilled.",
+      "capacity": "Blend two servings at a time in a 1.5 L blender. Keep the jar below its marked fill limit.",
+      "timingNote": "Allow about 5 minutes for four servings in two batches.",
+      "equipment": [
+        "Blender with at least 1.5 L capacity; blend two servings per batch"
+      ],
+      "ingredients": [
+        {
+          "quantity": "400g",
+          "name": "Plain lowfat Greek yogurt",
+          "state": "plain, unsweetened, 2% fat",
+          "note": ""
+        },
+        {
+          "quantity": "240g",
+          "name": "Strawberries",
+          "state": "hulled",
+          "note": ""
+        },
+        {
+          "quantity": "80g",
+          "name": "Hulled hemp hearts",
+          "state": "hulled, unsalted",
+          "note": ""
+        },
+        {
+          "quantity": "20 fl oz",
+          "name": "Cold water",
+          "state": "",
+          "note": ""
+        }
+      ],
+      "familyIngredient": null,
+      "familyOptions": [],
+      "steps": [
+        {
+          "title": "Prepare",
+          "text": "Hull and quarter the strawberries. Weigh the yogurt and hulled hemp hearts."
+        },
+        {
+          "title": "Blend",
+          "text": "Blend in batches of up to two servings, adding water first, for 30–60 seconds per batch until smooth."
+        },
+        {
+          "title": "Serve",
+          "text": "Divide among serving glasses and serve chilled."
+        }
+      ],
+      "timeline": [
+        {
+          "phase": "Prepare",
+          "duration": "3 min",
+          "attention": "Weigh and prepare ingredients."
+        },
+        {
+          "phase": "Blend",
+          "duration": "2 min",
+          "attention": "Blend in two batches."
+        }
+      ],
+      "tips": [
+        "Pour cold water in first, then add the other ingredients.",
+        "Use chilled ingredients; blend thoroughly so the hemp hearts are smooth.",
+        "Serve promptly. Ground seeds thicken on standing; blend again with a little extra water if needed."
+      ],
+      "fallback": "",
+      "limitations": [
+        "Designed recipe, not kitchen-tested. Check tartness, seed texture and thickness on the first blend.",
+        "Use plain unsweetened yogurt and unsweetened fruit. Brand labels can change the carbohydrate estimate.",
+        "Larger serving selections require additional blender batches; keep below the marked fill limit."
+      ],
+      "sources": [
+        {
+          "title": "Yogurt, Greek, plain, lowfat — USDA FoodData Central",
+          "url": "https://fdc.nal.usda.gov/food-details/170903/nutrients"
+        },
+        {
+          "title": "Strawberries, raw — USDA FoodData Central",
+          "url": "https://fdc.nal.usda.gov/food-details/167762/nutrients"
+        },
+        {
+          "title": "Seeds, hemp seed, hulled — USDA FoodData Central",
+          "url": "https://fdc.nal.usda.gov/food-details/170148/nutrients"
+        }
+      ],
+      "nutrition": {
+        "kcal": 145.39422534,
+        "protein_g": 11.946989009200001,
+        "carbs_g": 7.3715159021,
+        "fiber_g": 1.4338681,
+        "net_carbs_g": 5.9376478021
+      },
+      "nutritionHeading": "Nutrition per 8 fl oz glass (estimated)",
+      "familyNutrition": null,
+      "nutritionNote": "This batch makes about 5.6 eight-fluid-ounce glasses. Yield is estimated; added liquid and blending affect actual volume. Estimated from ingredient mass using approximately 1 g/ml for the blended mixture. Finished volume has not been measured; aeration, blender retention and extra liquid affect yield. Per estimated glass: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
+      "allergens": [
+        "milk"
+      ],
+      "flavorRationale": "Greek yogurt supplies a creamy, tangy base; strawberries add fruit flavor and hemp hearts give body without avocado.",
+      "disclaimer": "These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.",
+      "leftovers": "Serve chilled immediately for best texture; refrigerate any remainder promptly.",
+      "safety": "Wash fresh produce and use a clean blender. Keep yogurt and finished smoothies chilled.",
+      "image": {
+        "src": "/media/recipes/strawberry-hemp-smoothie.svg",
+        "cardSrc": "/media/recipes/strawberry-hemp-smoothie.svg",
+        "cardSrcset": "/media/recipes/strawberry-hemp-smoothie.svg 512w",
+        "detailSrcset": "/media/recipes/strawberry-hemp-smoothie.svg 512w",
+        "width": 512,
+        "height": 384,
+        "alt": "Illustration of strawberry-hemp smoothie in a glass.",
+        "caption": "Smoothie illustration."
+      }
+    },
+    {
+      "dailyNutrition": [
+        {
+          "key": "fat",
+          "label": "Total fat",
+          "unit": "g",
+          "dailyValue": 78,
+          "usdaId": 1004,
+          "amount": 3.662439367288136,
+          "percent": 5
+        },
+        {
+          "key": "saturated_fat",
+          "label": "Saturated fat",
+          "unit": "g",
+          "dailyValue": 20,
+          "usdaId": 1258,
+          "amount": 1.0456799056288981,
+          "percent": 5
+        },
+        {
+          "key": "cholesterol",
+          "label": "Cholesterol",
+          "unit": "mg",
+          "dailyValue": 300,
+          "usdaId": 1253,
+          "amount": 6.683283516949152,
+          "percent": 2
+        },
+        {
+          "key": "sodium",
+          "label": "Sodium",
+          "unit": "mg",
+          "dailyValue": 2300,
+          "usdaId": 1093,
+          "amount": 41.0487273611017,
+          "percent": 2
+        },
+        {
+          "key": "vitamin_a",
+          "label": "Vitamin A",
+          "unit": "mcg RAE",
+          "dailyValue": 900,
+          "usdaId": 1106,
+          "amount": 156.26853519330507,
+          "percent": 17
+        },
+        {
+          "key": "vitamin_c",
+          "label": "Vitamin C",
+          "unit": "mg",
+          "dailyValue": 90,
+          "usdaId": 1162,
+          "amount": 8.52653311092373,
+          "percent": 9
+        },
+        {
+          "key": "vitamin_d",
+          "label": "Vitamin D",
+          "unit": "mcg",
+          "dailyValue": 20,
+          "usdaId": 1114,
+          "amount": 0,
+          "percent": 0
+        },
+        {
+          "key": "vitamin_e",
+          "label": "Vitamin E",
+          "unit": "mg",
+          "dailyValue": 15,
+          "usdaId": 1109,
+          "amount": 0.47117148794491515,
+          "percent": 3
+        },
+        {
+          "key": "vitamin_k",
+          "label": "Vitamin K",
+          "unit": "mcg",
+          "dailyValue": 120,
+          "usdaId": 1185,
+          "amount": 103.78470973470338,
+          "percent": 86
+        },
+        {
+          "key": "thiamin",
+          "label": "Thiamin (B1)",
+          "unit": "mg",
+          "dailyValue": 1.2,
+          "usdaId": 1165,
+          "amount": 0.14477328754415253,
+          "percent": 12
+        },
+        {
+          "key": "riboflavin",
+          "label": "Riboflavin (B2)",
+          "unit": "mg",
+          "dailyValue": 1.3,
+          "usdaId": 1166,
+          "amount": 0.2160571895359322,
+          "percent": 17
+        },
+        {
+          "key": "niacin",
+          "label": "Niacin (B3)",
+          "unit": "mg",
+          "dailyValue": 16,
+          "usdaId": 1167,
+          "amount": 0.48648957376576263,
+          "percent": 3
+        },
+        {
+          "key": "vitamin_b6",
+          "label": "Vitamin B6",
+          "unit": "mg",
+          "dailyValue": 1.7,
+          "usdaId": 1175,
+          "amount": 0.11870848182805084,
+          "percent": 7
+        },
+        {
+          "key": "folate",
+          "label": "Folate",
+          "unit": "mcg DFE",
+          "dailyValue": 400,
+          "usdaId": 1190,
+          "amount": 54.77619170491525,
+          "percent": 14
+        },
+        {
+          "key": "vitamin_b12",
+          "label": "Vitamin B12",
+          "unit": "mcg",
+          "dailyValue": 2.4,
+          "usdaId": 1178,
+          "amount": 0.34753074288135594,
+          "percent": 14
+        },
+        {
+          "key": "pantothenic_acid",
+          "label": "Pantothenic acid (B5)",
+          "unit": "mg",
+          "dailyValue": 5,
+          "usdaId": 1170,
+          "amount": 0.4886014913571186,
+          "percent": 10
+        },
+        {
+          "key": "choline",
+          "label": "Choline",
+          "unit": "mg",
+          "dailyValue": 550,
+          "usdaId": 1180,
+          "amount": 20.846497946067796,
+          "percent": 4
+        },
+        {
+          "key": "calcium",
+          "label": "Calcium",
+          "unit": "mg",
+          "dailyValue": 1300,
+          "usdaId": 1087,
+          "amount": 117.3183588565254,
+          "percent": 9
+        },
+        {
+          "key": "iron",
+          "label": "Iron",
+          "unit": "mg",
+          "dailyValue": 18,
+          "usdaId": 1089,
+          "amount": 0.9923339365966101,
+          "percent": 6
+        },
+        {
+          "key": "magnesium",
+          "label": "Magnesium",
+          "unit": "mg",
+          "dailyValue": 420,
+          "usdaId": 1090,
+          "amount": 49.683529665,
+          "percent": 12
+        },
+        {
+          "key": "phosphorus",
+          "label": "Phosphorus",
+          "unit": "mg",
+          "dailyValue": 1250,
+          "usdaId": 1091,
+          "amount": 145.896079175,
+          "percent": 12
+        },
+        {
+          "key": "potassium",
+          "label": "Potassium",
+          "unit": "mg",
+          "dailyValue": 4700,
+          "usdaId": 1092,
+          "amount": 313.218765305339,
+          "percent": 7
+        },
+        {
+          "key": "zinc",
+          "label": "Zinc",
+          "unit": "mg",
+          "dailyValue": 11,
+          "usdaId": 1095,
+          "amount": 0.8227122009364407,
+          "percent": 7
+        },
+        {
+          "key": "copper",
+          "label": "Copper",
+          "unit": "mg",
+          "dailyValue": 0.9,
+          "usdaId": 1098,
+          "amount": 0.12285211760855931,
+          "percent": 14
+        },
+        {
+          "key": "manganese",
+          "label": "Manganese",
+          "unit": "mg",
+          "dailyValue": 2.3,
+          "usdaId": 1101,
+          "amount": 0.349629293905678,
+          "percent": 15
+        },
+        {
+          "key": "selenium",
+          "label": "Selenium",
+          "unit": "mcg",
+          "dailyValue": 55,
+          "usdaId": 1103,
+          "amount": 9.970122350584745,
+          "percent": 18
+        }
+      ],
+      "recipeId": "cucumber-spinach-lime-smoothie",
+      "type": "smoothie",
+      "title": "Cucumber-spinach-lime smoothie",
+      "group": "keto",
+      "servings": 4,
+      "units": "us",
+      "familyDiners": 0,
+      "cookingFlow": {
+        "notation": "Tabular Recipe Notation (TRN)",
+        "prep": [
+          "Rinse cucumber and spinach under running water. Trim and chop cucumber; juice the lime and weigh the juice.",
+          "Use chilled ingredients; blend at most two servings per batch in a 1.5 L blender."
+        ],
+        "columns": 2,
+        "rows": [
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "400g",
+              "name": "Plain lowfat Greek yogurt",
+              "state": "plain, unsweetened, 2% fat",
+              "essentialState": false
+            },
+            {
+              "kind": "operation",
+              "col": 1,
+              "colspan": 1,
+              "rowspan": 6,
+              "text": "Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled."
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "240g",
+              "name": "Cucumber",
+              "state": "trimmed, chopped",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "120g",
+              "name": "Raw spinach",
+              "state": "fresh, washed",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "24g",
+              "name": "Lime juice",
+              "state": "",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "32g",
+              "name": "Ground flaxseed",
+              "state": "",
+              "essentialState": false
+            }
+          ],
+          [
+            {
+              "kind": "ingredient",
+              "col": 0,
+              "colspan": 1,
+              "rowspan": 1,
+              "text": "20 fl oz",
+              "name": "Cold water",
+              "state": "",
+              "essentialState": false
+            }
+          ]
+        ]
+      },
+      "summary": "A fresh, savory green smoothie with cucumber, raw spinach, lime and ground flaxseed, without added sugar.",
+      "activeMinutes": 5,
+      "totalTime": "5–5 min",
+      "attentionSummary": "Blend until smooth; serve chilled.",
+      "capacity": "Blend two servings at a time in a 1.5 L blender. Keep the jar below its marked fill limit.",
+      "timingNote": "Allow about 5 minutes for four servings in two batches.",
+      "equipment": [
+        "Blender with at least 1.5 L capacity; blend two servings per batch"
+      ],
+      "ingredients": [
+        {
+          "quantity": "400g",
+          "name": "Plain lowfat Greek yogurt",
+          "state": "plain, unsweetened, 2% fat",
+          "note": ""
+        },
+        {
+          "quantity": "240g",
+          "name": "Cucumber",
+          "state": "trimmed, chopped",
+          "note": ""
+        },
+        {
+          "quantity": "120g",
+          "name": "Raw spinach",
+          "state": "fresh, washed",
+          "note": ""
+        },
+        {
+          "quantity": "24g",
+          "name": "Lime juice",
+          "state": "",
+          "note": ""
+        },
+        {
+          "quantity": "32g",
+          "name": "Ground flaxseed",
+          "state": "",
+          "note": ""
+        },
+        {
+          "quantity": "20 fl oz",
+          "name": "Cold water",
+          "state": "",
+          "note": ""
+        }
+      ],
+      "familyIngredient": null,
+      "familyOptions": [],
+      "steps": [
+        {
+          "title": "Prepare",
+          "text": "Rinse cucumber and spinach under running water. Trim and chop cucumber; juice the lime and weigh the juice."
+        },
+        {
+          "title": "Blend",
+          "text": "Blend in batches of up to two servings, adding water first, for 30–60 seconds per batch until smooth."
+        },
+        {
+          "title": "Serve",
+          "text": "Divide among serving glasses and serve chilled."
+        }
+      ],
+      "timeline": [
+        {
+          "phase": "Prepare",
+          "duration": "3 min",
+          "attention": "Weigh and prepare ingredients."
+        },
+        {
+          "phase": "Blend",
+          "duration": "2 min",
+          "attention": "Blend in two batches."
+        }
+      ],
+      "tips": [
+        "Pour cold water in first, then add the other ingredients.",
+        "Use chilled ingredients; blend thoroughly so the seeds and greens are smooth.",
+        "Serve promptly. Ground seeds thicken on standing; blend again with a little extra water if needed."
+      ],
+      "fallback": "",
+      "limitations": [
+        "Designed recipe, not kitchen-tested. Check tartness, seed texture and thickness on the first blend.",
+        "Use plain unsweetened yogurt and fresh produce. Brand labels can change the carbohydrate estimate.",
+        "Larger serving selections require additional blender batches; keep below the marked fill limit."
+      ],
+      "sources": [
+        {
+          "title": "Yogurt, Greek, plain, lowfat — USDA FoodData Central",
+          "url": "https://fdc.nal.usda.gov/food-details/170903/nutrients"
+        },
+        {
+          "title": "Cucumber, with peel, raw — USDA FoodData Central",
+          "url": "https://fdc.nal.usda.gov/food-details/168409/nutrients"
+        },
+        {
+          "title": "Spinach, raw — USDA FoodData Central",
+          "url": "https://fdc.nal.usda.gov/food-details/168462/nutrients"
+        },
+        {
+          "title": "Lime juice, raw — USDA FoodData Central",
+          "url": "https://fdc.nal.usda.gov/food-details/168156/nutrients"
+        },
+        {
+          "title": "Seeds, flaxseed — USDA FoodData Central",
+          "url": "https://fdc.nal.usda.gov/food-details/169414/nutrients"
+        }
+      ],
+      "nutrition": {
+        "kcal": 88.96787017762712,
+        "protein_g": 8.478680800942373,
+        "carbs_g": 6.698387737697457,
+        "fiber_g": 2.1172642181694914,
+        "net_carbs_g": 4.581123519527965
+      },
+      "nutritionHeading": "Nutrition per 8 fl oz glass (estimated)",
+      "familyNutrition": null,
+      "nutritionNote": "This batch makes about 6.0 eight-fluid-ounce glasses. Yield is estimated; added liquid and blending affect actual volume. Estimated from ingredient mass using approximately 1 g/ml for the blended mixture. Finished volume has not been measured; aeration, blender retention and extra liquid affect yield. Per estimated glass: base includes measured sauces, seeds and sides. Family nutrition adds one selected starch portion. US net carbs = total carbohydrate − fiber. Labels and food variation matter; no guarantee of ketosis.",
+      "allergens": [
+        "milk"
+      ],
+      "flavorRationale": "Cucumber and lime keep this savory smoothie fresh; yogurt gives body and ground flaxseed thickens it.",
+      "disclaimer": "These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.",
+      "leftovers": "Serve chilled immediately for best texture; refrigerate any remainder promptly.",
+      "safety": "Wash fresh produce and use a clean blender. Keep yogurt and finished smoothies chilled.",
+      "image": {
+        "src": "/media/recipes/cucumber-spinach-lime-smoothie.svg",
+        "cardSrc": "/media/recipes/cucumber-spinach-lime-smoothie.svg",
+        "cardSrcset": "/media/recipes/cucumber-spinach-lime-smoothie.svg 512w",
+        "detailSrcset": "/media/recipes/cucumber-spinach-lime-smoothie.svg 512w",
+        "width": 512,
+        "height": 384,
+        "alt": "Illustration of cucumber-spinach-lime smoothie in a glass.",
         "caption": "Smoothie illustration."
       }
     }

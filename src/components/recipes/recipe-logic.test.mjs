@@ -140,3 +140,21 @@ test('shuffle preserves the source and visits every index with a fresh random ch
 test('gram threshold preserves subgram source measures',()=>{const i=ingredient('spice','spice',1,'g','dry',{displayMeasure:'spoon',us:{amount:0.5,unit:'tsp'}});assert.equal(formatIngredient(i,4,'us'),'1g');assert.equal(formatIngredient(i,2,'us'),'¼ tsp');});
 
 test('display rounds gram amounts without changing scaling weights',()=>{const i=ingredient('paprika','paprika',2.3,'g');for(const count of [2,4,6,8])assert.equal(formatIngredient(i,count,'us'),`${Math.round(2.3*count/4)}g`);assert.ok(Math.abs(ingredientAmount(i,6)-3.45)<1e-10);});
+
+test('smoothie nutrition uses explicit estimated fluid yield, independent of batch selection',async()=>{
+ const {smoothiePortionNutrition}=await import('./recipe-logic.mjs');
+ const smoothie={type:'smoothie',estimatedYieldMl:800,nutrition:{kcal:200,protein_g:10,carbs_g:12,fiber_g:4,net_carbs_g:8}};
+ const portion=smoothiePortionNutrition(smoothie);
+ assert.ok(Math.abs(portion.net_carbs_g-9.46352946)<1e-7);
+ assert.ok(Math.abs(smoothiePortionNutrition(smoothie,4).net_carbs_g-portion.net_carbs_g/2)<1e-9);
+ assert.throws(()=>smoothiePortionNutrition({...smoothie,estimatedYieldMl:undefined}),/yield/);
+ assert.throws(()=>smoothiePortionNutrition(smoothie,0),/positive glass/);
+});
+test('whole-ounce smoothie display keeps canonical quantities intact',()=>{
+ const water={id:'water',amount:400,unit:'ml',scale:'linear'};
+ assert.equal(formatIngredient(water,4,'us'),'13.5 fl oz');
+ assert.equal(formatIngredient(water,4,'us',{wholeOunces:true}),'14 fl oz');
+ assert.equal(formatIngredient(water,2,'us',{wholeOunces:true}),'7 fl oz');
+ assert.equal(formatIngredient(water,4,'metric',{wholeOunces:true}),'400 ml');
+ assert.equal(water.amount,400);
+});

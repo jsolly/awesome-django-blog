@@ -218,7 +218,8 @@
           "vitamin_d": 11.0,
           "vitamin_c": 3.9,
           "choline": 78.5
-        }
+        },
+        "omega3RecordedGramsPer100g": 2.1140000000000003
       },
       {
         "food": "asparagus",
@@ -251,7 +252,8 @@
           "niacin": 0.978,
           "pantothenic_acid": 0.274,
           "vitamin_b6": 0.091
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "olive_oil",
@@ -284,7 +286,8 @@
           "selenium": 0.0,
           "vitamin_k": 60.2,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "garlic_powder",
@@ -317,7 +320,8 @@
           "selenium": 23.9,
           "vitamin_e": 0.67,
           "fat": 0.73
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.012
       },
       {
         "food": "lemon_zest",
@@ -349,7 +353,8 @@
           "fat": 0.3,
           "vitamin_d": 0.0,
           "selenium": 0.7
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "lemon_juice",
@@ -382,7 +387,8 @@
           "zinc": 0.05,
           "fat": 0.24,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.009
       },
       {
         "food": "hemp",
@@ -409,7 +415,8 @@
           "niacin": 9.2,
           "vitamin_b6": 0.6,
           "folate": 110.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 8.684
       },
       {
         "food": "salt",
@@ -442,7 +449,8 @@
           "choline": 0.0,
           "vitamin_d": 0.0,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       }
     ],
     "smoky-chicken-thighs-and-broccoli": [
@@ -476,7 +484,8 @@
           "folate": 4.0,
           "vitamin_k": 2.9,
           "vitamin_c": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.039
       },
       {
         "food": "broccoli",
@@ -509,7 +518,8 @@
           "folate": 63.0,
           "vitamin_a": 31.0,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "olive_oil",
@@ -542,7 +552,8 @@
           "selenium": 0.0,
           "vitamin_k": 60.2,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "paprika",
@@ -575,7 +586,8 @@
           "folate": 49.0,
           "saturated_fat": 2.14,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.453
       },
       {
         "food": "garlic_powder",
@@ -608,7 +620,8 @@
           "selenium": 23.9,
           "vitamin_e": 0.67,
           "fat": 0.73
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.012
       },
       {
         "food": "oregano",
@@ -641,7 +654,8 @@
           "riboflavin": 0.528,
           "saturated_fat": 1.551,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.621
       },
       {
         "food": "lemon_juice",
@@ -674,7 +688,8 @@
           "zinc": 0.05,
           "fat": 0.24,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.009
       },
       {
         "food": "yeast",
@@ -707,7 +722,8 @@
           "vitamin_e": 0.0,
           "vitamin_d": 0.0,
           "choline": 32.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "salt",
@@ -740,7 +756,8 @@
           "choline": 0.0,
           "vitamin_d": 0.0,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       }
     ],
     "pesto-cod-and-zucchini": [
@@ -775,7 +792,8 @@
           "potassium": 413.0,
           "zinc": 0.45,
           "selenium": 33.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.184
       },
       {
         "food": "zucchini",
@@ -808,7 +826,8 @@
           "vitamin_e": 0.12,
           "vitamin_k": 4.3,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.061
       },
       {
         "food": "pesto_label",
@@ -837,7 +856,8 @@
           "vitamin_b6": 0.178,
           "fat": 42.42,
           "choline": 13.7
-        }
+        },
+        "omega3RecordedGramsPer100g": 1.747
       },
       {
         "food": "olive_oil",
@@ -870,7 +890,8 @@
           "selenium": 0.0,
           "vitamin_k": 60.2,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "lemon_juice",
@@ -903,7 +924,8 @@
           "zinc": 0.05,
           "fat": 0.24,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.009
       },
       {
         "food": "hemp",
@@ -930,7 +952,8 @@
           "niacin": 9.2,
           "vitamin_b6": 0.6,
           "folate": 110.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 8.684
       },
       {
         "food": "salt",
@@ -963,7 +986,8 @@
           "choline": 0.0,
           "vitamin_d": 0.0,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       }
     ],
     "spinach-feta-and-hemp-frittata": [
@@ -998,7 +1022,8 @@
           "vitamin_d": 2.0,
           "vitamin_k": 0.3,
           "vitamin_c": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.094
       },
       {
         "food": "spinach_frozen",
@@ -1031,7 +1056,8 @@
           "vitamin_b12": 0.0,
           "cholesterol": 0.0,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "feta",
@@ -1064,7 +1090,8 @@
           "riboflavin": 0.844,
           "vitamin_b12": 1.69,
           "selenium": 15.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "hemp",
@@ -1091,7 +1118,8 @@
           "niacin": 9.2,
           "vitamin_b6": 0.6,
           "folate": 110.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 8.684
       },
       {
         "food": "yeast",
@@ -1124,7 +1152,8 @@
           "vitamin_e": 0.0,
           "vitamin_d": 0.0,
           "choline": 32.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "garlic_powder",
@@ -1157,7 +1186,8 @@
           "selenium": 23.9,
           "vitamin_e": 0.67,
           "fat": 0.73
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.012
       },
       {
         "food": "olive_oil",
@@ -1190,7 +1220,8 @@
           "selenium": 0.0,
           "vitamin_k": 60.2,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "lettuce",
@@ -1223,7 +1254,8 @@
           "iron": 0.97,
           "magnesium": 14.0,
           "phosphorus": 30.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "lemon_juice",
@@ -1256,7 +1288,8 @@
           "zinc": 0.05,
           "fat": 0.24,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.009
       },
       {
         "food": "salt",
@@ -1289,7 +1322,8 @@
           "choline": 0.0,
           "vitamin_d": 0.0,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       }
     ],
     "shawarma-chicken-bowls": [
@@ -1323,7 +1357,8 @@
           "folate": 4.0,
           "vitamin_k": 2.9,
           "vitamin_c": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.039
       },
       {
         "food": "cauliflower",
@@ -1356,7 +1391,8 @@
           "pantothenic_acid": 0.667,
           "vitamin_b6": 0.184,
           "choline": 44.3
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.015
       },
       {
         "food": "olive_oil",
@@ -1389,7 +1425,8 @@
           "selenium": 0.0,
           "vitamin_k": 60.2,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "cumin",
@@ -1421,7 +1458,8 @@
           "folate": 10.0,
           "vitamin_d": 0.0,
           "vitamin_b6": 0.435
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "paprika",
@@ -1454,7 +1492,8 @@
           "folate": 49.0,
           "saturated_fat": 2.14,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.453
       },
       {
         "food": "garlic_powder",
@@ -1487,7 +1526,8 @@
           "selenium": 23.9,
           "vitamin_e": 0.67,
           "fat": 0.73
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.012
       },
       {
         "food": "turmeric",
@@ -1520,7 +1560,8 @@
           "vitamin_b6": 0.107,
           "choline": 49.2,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.003
       },
       {
         "food": "cinnamon",
@@ -1553,7 +1594,8 @@
           "zinc": 1.83,
           "vitamin_e": 2.32,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.011
       },
       {
         "food": "yogurt2",
@@ -1586,7 +1628,8 @@
           "vitamin_k": 0.2,
           "cholesterol": 10.0,
           "saturated_fat": 1.23
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.007
       },
       {
         "food": "lemon_juice",
@@ -1619,7 +1662,8 @@
           "zinc": 0.05,
           "fat": 0.24,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.009
       },
       {
         "food": "cucumber",
@@ -1652,7 +1696,8 @@
           "magnesium": 13.0,
           "phosphorus": 24.0,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "lettuce",
@@ -1685,7 +1730,8 @@
           "iron": 0.97,
           "magnesium": 14.0,
           "phosphorus": 30.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "salt",
@@ -1718,7 +1764,8 @@
           "choline": 0.0,
           "vitamin_d": 0.0,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       }
     ],
     "sheet-pan-chicken-fajitas": [
@@ -1752,7 +1799,8 @@
           "folate": 4.0,
           "vitamin_k": 2.9,
           "vitamin_c": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.039
       },
       {
         "food": "red_pepper",
@@ -1785,7 +1833,8 @@
           "vitamin_b6": 0.291,
           "fat": 0.3,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "onion",
@@ -1818,7 +1867,8 @@
           "cholesterol": 0.0,
           "vitamin_b12": 0.0,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "olive_oil",
@@ -1851,7 +1901,8 @@
           "selenium": 0.0,
           "vitamin_k": 60.2,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "chili_powder",
@@ -1884,7 +1935,8 @@
           "riboflavin": 0.94,
           "saturated_fat": 2.462,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.519
       },
       {
         "food": "cumin",
@@ -1916,7 +1968,8 @@
           "folate": 10.0,
           "vitamin_d": 0.0,
           "vitamin_b6": 0.435
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "paprika",
@@ -1949,7 +2002,8 @@
           "folate": 49.0,
           "saturated_fat": 2.14,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.453
       },
       {
         "food": "garlic_powder",
@@ -1982,7 +2036,8 @@
           "selenium": 23.9,
           "vitamin_e": 0.67,
           "fat": 0.73
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.012
       },
       {
         "food": "lime_juice",
@@ -2015,7 +2070,8 @@
           "vitamin_b12": 0.0,
           "cholesterol": 0.0,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "lettuce",
@@ -2048,7 +2104,8 @@
           "iron": 0.97,
           "magnesium": 14.0,
           "phosphorus": 30.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "avocado",
@@ -2081,7 +2138,8 @@
           "folate": 81.0,
           "vitamin_d": 0.0,
           "choline": 14.2
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.111
       },
       {
         "food": "yogurt2",
@@ -2114,7 +2172,8 @@
           "vitamin_k": 0.2,
           "cholesterol": 10.0,
           "saturated_fat": 1.23
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.007
       },
       {
         "food": "salt",
@@ -2147,7 +2206,8 @@
           "choline": 0.0,
           "vitamin_d": 0.0,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       }
     ],
     "salsa-verde-shredded-chicken": [
@@ -2181,7 +2241,8 @@
           "folate": 4.0,
           "vitamin_k": 2.9,
           "vitamin_c": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.039
       },
       {
         "food": "chicken_broth",
@@ -2214,7 +2275,8 @@
           "choline": 3.1,
           "folate": 3.0,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "salsa",
@@ -2247,7 +2309,8 @@
           "pantothenic_acid": 0.154,
           "vitamin_b6": 0.083,
           "sodium": 906.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "cumin",
@@ -2279,7 +2342,8 @@
           "folate": 10.0,
           "vitamin_d": 0.0,
           "vitamin_b6": 0.435
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "garlic_powder",
@@ -2312,7 +2376,8 @@
           "selenium": 23.9,
           "vitamin_e": 0.67,
           "fat": 0.73
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.012
       },
       {
         "food": "lime_juice",
@@ -2345,7 +2410,8 @@
           "vitamin_b12": 0.0,
           "cholesterol": 0.0,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "cabbage",
@@ -2378,7 +2444,8 @@
           "cholesterol": 0.0,
           "vitamin_b12": 0.0,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "avocado",
@@ -2411,7 +2478,8 @@
           "folate": 81.0,
           "vitamin_d": 0.0,
           "choline": 14.2
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.111
       },
       {
         "food": "yogurt2",
@@ -2444,7 +2512,8 @@
           "vitamin_k": 0.2,
           "cholesterol": 10.0,
           "saturated_fat": 1.23
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.007
       }
     ],
     "greek-turkey-patties": [
@@ -2479,7 +2548,8 @@
           "vitamin_e": 0.11,
           "vitamin_k": 0.0,
           "folate": 7.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.134
       },
       {
         "food": "egg",
@@ -2512,7 +2582,8 @@
           "vitamin_d": 2.0,
           "vitamin_k": 0.3,
           "vitamin_c": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.094
       },
       {
         "food": "flax",
@@ -2545,7 +2616,8 @@
           "choline": 78.7,
           "saturated_fat": 3.663,
           "cholesterol": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "feta",
@@ -2578,7 +2650,8 @@
           "riboflavin": 0.844,
           "vitamin_b12": 1.69,
           "selenium": 15.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "oregano",
@@ -2611,7 +2684,8 @@
           "riboflavin": 0.528,
           "saturated_fat": 1.551,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.621
       },
       {
         "food": "garlic_powder",
@@ -2644,7 +2718,8 @@
           "selenium": 23.9,
           "vitamin_e": 0.67,
           "fat": 0.73
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.012
       },
       {
         "food": "olive_oil",
@@ -2677,7 +2752,8 @@
           "selenium": 0.0,
           "vitamin_k": 60.2,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "cucumber",
@@ -2710,7 +2786,8 @@
           "magnesium": 13.0,
           "phosphorus": 24.0,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "lettuce",
@@ -2743,7 +2820,8 @@
           "iron": 0.97,
           "magnesium": 14.0,
           "phosphorus": 30.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "yogurt2",
@@ -2776,7 +2854,8 @@
           "vitamin_k": 0.2,
           "cholesterol": 10.0,
           "saturated_fat": 1.23
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.007
       },
       {
         "food": "lemon_juice",
@@ -2809,7 +2888,8 @@
           "zinc": 0.05,
           "fat": 0.24,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.009
       },
       {
         "food": "salt",
@@ -2842,7 +2922,8 @@
           "choline": 0.0,
           "vitamin_d": 0.0,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       }
     ],
     "tomato-lentil-and-chicken-bake": [
@@ -2877,7 +2958,8 @@
           "vitamin_k": 0.3,
           "choline": 85.3,
           "selenium": 27.6
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.03
       },
       {
         "food": "lentils_cooked",
@@ -2910,7 +2992,8 @@
           "pantothenic_acid": 0.638,
           "vitamin_b6": 0.178,
           "selenium": 2.8
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "tomato_canned",
@@ -2943,7 +3026,8 @@
           "iron": 0.57,
           "magnesium": 10.0,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "spinach_raw",
@@ -2976,7 +3060,8 @@
           "saturated_fat": 0.063,
           "vitamin_d": 0.0,
           "selenium": 1.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "olive_oil",
@@ -3009,7 +3094,8 @@
           "selenium": 0.0,
           "vitamin_k": 60.2,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "paprika",
@@ -3042,7 +3128,8 @@
           "folate": 49.0,
           "saturated_fat": 2.14,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.453
       },
       {
         "food": "cumin",
@@ -3074,7 +3161,8 @@
           "folate": 10.0,
           "vitamin_d": 0.0,
           "vitamin_b6": 0.435
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "garlic_powder",
@@ -3107,7 +3195,8 @@
           "selenium": 23.9,
           "vitamin_e": 0.67,
           "fat": 0.73
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.012
       },
       {
         "food": "oregano",
@@ -3140,7 +3229,8 @@
           "riboflavin": 0.528,
           "saturated_fat": 1.551,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.621
       },
       {
         "food": "lemon_juice",
@@ -3173,7 +3263,8 @@
           "zinc": 0.05,
           "fat": 0.24,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.009
       },
       {
         "food": "feta",
@@ -3206,7 +3297,8 @@
           "riboflavin": 0.844,
           "vitamin_b12": 1.69,
           "selenium": 15.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "salt",
@@ -3239,7 +3331,8 @@
           "choline": 0.0,
           "vitamin_d": 0.0,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       }
     ],
     "harissa-chickpea-and-cauliflower-bowls": [
@@ -3272,7 +3365,8 @@
           "selenium": 3.1,
           "vitamin_e": 0.29,
           "vitamin_k": 3.4
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "cauliflower",
@@ -3305,7 +3399,8 @@
           "pantothenic_acid": 0.667,
           "vitamin_b6": 0.184,
           "choline": 44.3
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.015
       },
       {
         "food": "olive_oil",
@@ -3338,7 +3433,8 @@
           "selenium": 0.0,
           "vitamin_k": 60.2,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "harissa",
@@ -3371,7 +3467,8 @@
           "vitamin_b6": 0.291,
           "fat": 0.3,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "cumin",
@@ -3403,7 +3500,8 @@
           "folate": 10.0,
           "vitamin_d": 0.0,
           "vitamin_b6": 0.435
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "garlic_powder",
@@ -3436,7 +3534,8 @@
           "selenium": 23.9,
           "vitamin_e": 0.67,
           "fat": 0.73
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.012
       },
       {
         "food": "yogurt2",
@@ -3469,7 +3568,8 @@
           "vitamin_k": 0.2,
           "cholesterol": 10.0,
           "saturated_fat": 1.23
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.007
       },
       {
         "food": "lemon_juice",
@@ -3502,7 +3602,8 @@
           "zinc": 0.05,
           "fat": 0.24,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.009
       },
       {
         "food": "hemp",
@@ -3529,7 +3630,8 @@
           "niacin": 9.2,
           "vitamin_b6": 0.6,
           "folate": 110.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 8.684
       },
       {
         "food": "lettuce",
@@ -3562,7 +3664,8 @@
           "iron": 0.97,
           "magnesium": 14.0,
           "phosphorus": 30.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "salt",
@@ -3595,7 +3698,8 @@
           "choline": 0.0,
           "vitamin_d": 0.0,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       }
     ],
     "lemon-chicken-potatoes-and-green-beans": [
@@ -3629,7 +3733,8 @@
           "folate": 4.0,
           "vitamin_k": 2.9,
           "vitamin_c": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.039
       },
       {
         "food": "potato",
@@ -3662,7 +3767,8 @@
           "zinc": 0.3,
           "selenium": 0.4,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "green_beans",
@@ -3695,7 +3801,8 @@
           "saturated_fat": 0.05,
           "vitamin_d": 0.0,
           "selenium": 0.6
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "olive_oil",
@@ -3728,7 +3835,8 @@
           "selenium": 0.0,
           "vitamin_k": 60.2,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "oregano",
@@ -3761,7 +3869,8 @@
           "riboflavin": 0.528,
           "saturated_fat": 1.551,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.621
       },
       {
         "food": "garlic_powder",
@@ -3794,7 +3903,8 @@
           "selenium": 23.9,
           "vitamin_e": 0.67,
           "fat": 0.73
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.012
       },
       {
         "food": "lemon_zest",
@@ -3826,7 +3936,8 @@
           "fat": 0.3,
           "vitamin_d": 0.0,
           "selenium": 0.7
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "lemon_juice",
@@ -3859,7 +3970,8 @@
           "zinc": 0.05,
           "fat": 0.24,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.009
       },
       {
         "food": "yeast",
@@ -3892,7 +4004,8 @@
           "vitamin_e": 0.0,
           "vitamin_d": 0.0,
           "choline": 32.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "salt",
@@ -3925,7 +4038,8 @@
           "choline": 0.0,
           "vitamin_d": 0.0,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       }
     ],
     "sheet-pan-gnocchi-white-beans-and-broccoli": [
@@ -3958,7 +4072,8 @@
           "folate": 26.0,
           "cholesterol": 18.0,
           "saturated_fat": 3.42
-        }
+        },
+        "omega3RecordedGramsPer100g": 0
       },
       {
         "food": "white_beans_canned",
@@ -3990,7 +4105,8 @@
           "vitamin_b12": 0.0,
           "cholesterol": 0.0,
           "selenium": 1.6
-        }
+        },
+        "omega3RecordedGramsPer100g": 0
       },
       {
         "food": "broccoli",
@@ -4023,7 +4139,8 @@
           "folate": 63.0,
           "vitamin_a": 31.0,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "tomato_raw",
@@ -4056,7 +4173,8 @@
           "thiamin": 0.037,
           "riboflavin": 0.019,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "olive_oil",
@@ -4089,7 +4207,8 @@
           "selenium": 0.0,
           "vitamin_k": 60.2,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "oregano",
@@ -4122,7 +4241,8 @@
           "riboflavin": 0.528,
           "saturated_fat": 1.551,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.621
       },
       {
         "food": "garlic_powder",
@@ -4155,7 +4275,8 @@
           "selenium": 23.9,
           "vitamin_e": 0.67,
           "fat": 0.73
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.012
       },
       {
         "food": "yeast",
@@ -4188,7 +4309,8 @@
           "vitamin_e": 0.0,
           "vitamin_d": 0.0,
           "choline": 32.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "lemon_juice",
@@ -4221,7 +4343,8 @@
           "zinc": 0.05,
           "fat": 0.24,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.009
       },
       {
         "food": "hemp",
@@ -4248,7 +4371,8 @@
           "niacin": 9.2,
           "vitamin_b6": 0.6,
           "folate": 110.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 8.684
       },
       {
         "food": "parmesan",
@@ -4281,7 +4405,8 @@
           "riboflavin": 0.358,
           "vitamin_b12": 1.4,
           "vitamin_c": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.102
       },
       {
         "food": "salt",
@@ -4314,7 +4439,8 @@
           "choline": 0.0,
           "vitamin_d": 0.0,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       }
     ],
     "pan-fried-greek-turkey-patties": [
@@ -4349,7 +4475,8 @@
           "vitamin_e": 0.11,
           "vitamin_k": 0.0,
           "folate": 7.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.134
       },
       {
         "food": "egg",
@@ -4382,7 +4509,8 @@
           "vitamin_d": 2.0,
           "vitamin_k": 0.3,
           "vitamin_c": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.094
       },
       {
         "food": "flax",
@@ -4415,7 +4543,8 @@
           "choline": 78.7,
           "saturated_fat": 3.663,
           "cholesterol": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "feta",
@@ -4448,7 +4577,8 @@
           "riboflavin": 0.844,
           "vitamin_b12": 1.69,
           "selenium": 15.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "oregano",
@@ -4481,7 +4611,8 @@
           "riboflavin": 0.528,
           "saturated_fat": 1.551,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.621
       },
       {
         "food": "garlic_powder",
@@ -4514,7 +4645,8 @@
           "selenium": 23.9,
           "vitamin_e": 0.67,
           "fat": 0.73
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.012
       },
       {
         "food": "olive_oil",
@@ -4547,7 +4679,8 @@
           "selenium": 0.0,
           "vitamin_k": 60.2,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "cucumber",
@@ -4580,7 +4713,8 @@
           "magnesium": 13.0,
           "phosphorus": 24.0,
           "vitamin_d": 0.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "lettuce",
@@ -4613,7 +4747,8 @@
           "iron": 0.97,
           "magnesium": 14.0,
           "phosphorus": 30.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "yogurt2",
@@ -4646,7 +4781,8 @@
           "vitamin_k": 0.2,
           "cholesterol": 10.0,
           "saturated_fat": 1.23
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.007
       },
       {
         "food": "lemon_juice",
@@ -4679,7 +4815,8 @@
           "zinc": 0.05,
           "fat": 0.24,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.009
       },
       {
         "food": "salt",
@@ -4712,7 +4849,8 @@
           "choline": 0.0,
           "vitamin_d": 0.0,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       }
     ],
     "avocado-lime-smoothie": [
@@ -4747,7 +4885,8 @@
           "copper": 0.021,
           "manganese": 0.007,
           "selenium": 12.4
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.007
       },
       {
         "food": "avocado",
@@ -4780,7 +4919,8 @@
           "copper": 0.19,
           "manganese": 0.142,
           "selenium": 0.4
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.111
       },
       {
         "food": "cucumber",
@@ -4813,7 +4953,8 @@
           "copper": 0.041,
           "manganese": 0.079,
           "selenium": 0.3
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "lime",
@@ -4846,7 +4987,8 @@
           "copper": 0.027,
           "manganese": 0.018,
           "selenium": 0.1
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "flax",
@@ -4879,7 +5021,8 @@
           "copper": 1.22,
           "manganese": 2.482,
           "selenium": 25.4
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       }
     ],
     "strawberry-avocado-smoothie": [
@@ -4914,7 +5057,8 @@
           "copper": 0.021,
           "manganese": 0.007,
           "selenium": 12.4
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.007
       },
       {
         "food": "avocado",
@@ -4947,7 +5091,8 @@
           "copper": 0.19,
           "manganese": 0.142,
           "selenium": 0.4
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.111
       },
       {
         "food": "strawberry",
@@ -4980,7 +5125,8 @@
           "copper": 0.048,
           "manganese": 0.386,
           "selenium": 0.4
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "flax",
@@ -5013,7 +5159,8 @@
           "copper": 1.22,
           "manganese": 2.482,
           "selenium": 25.4
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       }
     ],
     "strawberry-banana-smoothie": [
@@ -5048,7 +5195,8 @@
           "copper": 0.021,
           "manganese": 0.007,
           "selenium": 12.4
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.007
       },
       {
         "food": "strawberry",
@@ -5081,7 +5229,8 @@
           "copper": 0.048,
           "manganese": 0.386,
           "selenium": 0.4
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "banana",
@@ -5114,7 +5263,8 @@
           "copper": 0.078,
           "manganese": 0.27,
           "selenium": 1.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       }
     ],
     "banana-flax-smoothie": [
@@ -5149,7 +5299,8 @@
           "copper": 0.021,
           "manganese": 0.007,
           "selenium": 12.4
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.007
       },
       {
         "food": "banana",
@@ -5182,7 +5333,8 @@
           "copper": 0.078,
           "manganese": 0.27,
           "selenium": 1.0
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
       },
       {
         "food": "flax",
@@ -5215,7 +5367,278 @@
           "copper": 1.22,
           "manganese": 2.482,
           "selenium": 25.4
-        }
+        },
+        "omega3RecordedGramsPer100g": 0.0
+      }
+    ],
+    "strawberry-hemp-smoothie": [
+      {
+        "food": "yogurt",
+        "grams": 400,
+        "source": "https://fdc.nal.usda.gov/food-details/170903/nutrients",
+        "nutrients": {
+          "fat": 1.92,
+          "saturated_fat": 1.23,
+          "cholesterol": 10.0,
+          "sodium": 34.0,
+          "vitamin_a": 90.0,
+          "vitamin_c": 0.8,
+          "vitamin_d": 0.0,
+          "vitamin_e": 0.04,
+          "vitamin_k": 0.2,
+          "thiamin": 0.044,
+          "riboflavin": 0.233,
+          "niacin": 0.197,
+          "vitamin_b6": 0.055,
+          "folate": 12.0,
+          "vitamin_b12": 0.52,
+          "pantothenic_acid": 0.47,
+          "choline": 15.2,
+          "calcium": 115.0,
+          "iron": 0.04,
+          "magnesium": 11.0,
+          "phosphorus": 137.0,
+          "potassium": 141.0,
+          "zinc": 0.6,
+          "copper": 0.021,
+          "manganese": 0.007,
+          "selenium": 12.4
+        },
+        "omega3RecordedGramsPer100g": 0.007
+      },
+      {
+        "food": "strawberry",
+        "grams": 240,
+        "source": "https://fdc.nal.usda.gov/food-details/167762/nutrients",
+        "nutrients": {
+          "fat": 0.3,
+          "saturated_fat": 0.015,
+          "cholesterol": 0.0,
+          "sodium": 1.0,
+          "vitamin_a": 1.0,
+          "vitamin_c": 58.8,
+          "vitamin_d": 0.0,
+          "vitamin_e": 0.29,
+          "vitamin_k": 2.2,
+          "thiamin": 0.024,
+          "riboflavin": 0.022,
+          "niacin": 0.386,
+          "vitamin_b6": 0.047,
+          "folate": 24.0,
+          "vitamin_b12": 0.0,
+          "pantothenic_acid": 0.125,
+          "choline": 5.7,
+          "calcium": 16.0,
+          "iron": 0.41,
+          "magnesium": 13.0,
+          "phosphorus": 24.0,
+          "potassium": 153.0,
+          "zinc": 0.14,
+          "copper": 0.048,
+          "manganese": 0.386,
+          "selenium": 0.4
+        },
+        "omega3RecordedGramsPer100g": 0.0
+      },
+      {
+        "food": "hemp",
+        "grams": 80,
+        "source": "https://fdc.nal.usda.gov/food-details/170148/nutrients",
+        "nutrients": {
+          "fat": 48.75,
+          "saturated_fat": 4.6,
+          "cholesterol": 0.0,
+          "sodium": 5.0,
+          "vitamin_a": 1.0,
+          "vitamin_c": 0.5,
+          "vitamin_e": 0.8,
+          "thiamin": 1.275,
+          "riboflavin": 0.285,
+          "niacin": 9.2,
+          "vitamin_b6": 0.6,
+          "folate": 110.0,
+          "calcium": 70.0,
+          "iron": 7.95,
+          "magnesium": 700.0,
+          "phosphorus": 1650.0,
+          "potassium": 1200.0,
+          "zinc": 9.9,
+          "copper": 1.6,
+          "manganese": 7.6
+        },
+        "omega3RecordedGramsPer100g": 8.684
+      }
+    ],
+    "cucumber-spinach-lime-smoothie": [
+      {
+        "food": "yogurt",
+        "grams": 400,
+        "source": "https://fdc.nal.usda.gov/food-details/170903/nutrients",
+        "nutrients": {
+          "fat": 1.92,
+          "saturated_fat": 1.23,
+          "cholesterol": 10.0,
+          "sodium": 34.0,
+          "vitamin_a": 90.0,
+          "vitamin_c": 0.8,
+          "vitamin_d": 0.0,
+          "vitamin_e": 0.04,
+          "vitamin_k": 0.2,
+          "thiamin": 0.044,
+          "riboflavin": 0.233,
+          "niacin": 0.197,
+          "vitamin_b6": 0.055,
+          "folate": 12.0,
+          "vitamin_b12": 0.52,
+          "pantothenic_acid": 0.47,
+          "choline": 15.2,
+          "calcium": 115.0,
+          "iron": 0.04,
+          "magnesium": 11.0,
+          "phosphorus": 137.0,
+          "potassium": 141.0,
+          "zinc": 0.6,
+          "copper": 0.021,
+          "manganese": 0.007,
+          "selenium": 12.4
+        },
+        "omega3RecordedGramsPer100g": 0.007
+      },
+      {
+        "food": "cucumber",
+        "grams": 240,
+        "source": "https://fdc.nal.usda.gov/food-details/168409/nutrients",
+        "nutrients": {
+          "fat": 0.11,
+          "saturated_fat": 0.037,
+          "cholesterol": 0.0,
+          "sodium": 2.0,
+          "vitamin_a": 5.0,
+          "vitamin_c": 2.8,
+          "vitamin_d": 0.0,
+          "vitamin_e": 0.03,
+          "vitamin_k": 16.4,
+          "thiamin": 0.027,
+          "riboflavin": 0.033,
+          "niacin": 0.098,
+          "vitamin_b6": 0.04,
+          "folate": 7.0,
+          "vitamin_b12": 0.0,
+          "pantothenic_acid": 0.259,
+          "choline": 6.0,
+          "calcium": 16.0,
+          "iron": 0.28,
+          "magnesium": 13.0,
+          "phosphorus": 24.0,
+          "potassium": 147.0,
+          "zinc": 0.2,
+          "copper": 0.041,
+          "manganese": 0.079,
+          "selenium": 0.3
+        },
+        "omega3RecordedGramsPer100g": 0.0
+      },
+      {
+        "food": "spinach",
+        "grams": 120,
+        "source": "https://fdc.nal.usda.gov/food-details/168462/nutrients",
+        "nutrients": {
+          "fat": 0.39,
+          "saturated_fat": 0.063,
+          "cholesterol": 0.0,
+          "sodium": 79.0,
+          "vitamin_a": 469.0,
+          "vitamin_c": 28.1,
+          "vitamin_d": 0.0,
+          "vitamin_e": 2.03,
+          "vitamin_k": 482.9,
+          "thiamin": 0.078,
+          "riboflavin": 0.189,
+          "niacin": 0.724,
+          "vitamin_b6": 0.195,
+          "folate": 194.0,
+          "vitamin_b12": 0.0,
+          "pantothenic_acid": 0.065,
+          "choline": 19.3,
+          "calcium": 99.0,
+          "iron": 2.71,
+          "magnesium": 79.0,
+          "phosphorus": 49.0,
+          "potassium": 558.0,
+          "zinc": 0.53,
+          "copper": 0.13,
+          "manganese": 0.897,
+          "selenium": 1.0
+        },
+        "omega3RecordedGramsPer100g": 0.0
+      },
+      {
+        "food": "lime",
+        "grams": 24,
+        "source": "https://fdc.nal.usda.gov/food-details/168156/nutrients",
+        "nutrients": {
+          "fat": 0.07,
+          "saturated_fat": 0.008,
+          "cholesterol": 0.0,
+          "sodium": 2.0,
+          "vitamin_a": 2.0,
+          "vitamin_c": 30.0,
+          "vitamin_d": 0.0,
+          "vitamin_e": 0.22,
+          "vitamin_k": 0.6,
+          "thiamin": 0.025,
+          "riboflavin": 0.015,
+          "niacin": 0.142,
+          "vitamin_b6": 0.038,
+          "folate": 10.0,
+          "vitamin_b12": 0.0,
+          "pantothenic_acid": 0.123,
+          "choline": 5.1,
+          "calcium": 14.0,
+          "iron": 0.09,
+          "magnesium": 8.0,
+          "phosphorus": 14.0,
+          "potassium": 117.0,
+          "zinc": 0.08,
+          "copper": 0.027,
+          "manganese": 0.018,
+          "selenium": 0.1
+        },
+        "omega3RecordedGramsPer100g": 0.0
+      },
+      {
+        "food": "flax",
+        "grams": 32,
+        "source": "https://fdc.nal.usda.gov/food-details/169414/nutrients",
+        "nutrients": {
+          "fat": 42.16,
+          "saturated_fat": 3.663,
+          "cholesterol": 0.0,
+          "sodium": 30.0,
+          "vitamin_a": 0.0,
+          "vitamin_c": 0.6,
+          "vitamin_d": 0.0,
+          "vitamin_e": 0.31,
+          "vitamin_k": 4.3,
+          "thiamin": 1.644,
+          "riboflavin": 0.161,
+          "niacin": 3.08,
+          "vitamin_b6": 0.473,
+          "folate": 87.0,
+          "vitamin_b12": 0.0,
+          "pantothenic_acid": 0.985,
+          "choline": 78.7,
+          "calcium": 255.0,
+          "iron": 5.73,
+          "magnesium": 392.0,
+          "phosphorus": 642.0,
+          "potassium": 813.0,
+          "zinc": 4.34,
+          "copper": 1.22,
+          "manganese": 2.482,
+          "selenium": 25.4
+        },
+        "omega3RecordedGramsPer100g": 0.0
       }
     ]
   },
@@ -5232,5 +5655,6 @@
   ],
   "brandSources": {
     "yeast": "https://www.bobsredmill.com/product/nutritional-yeast"
-  }
+  },
+  "omega3SourceNote": "Recorded ALA (USDA 1404), EPA (1278), and DHA (1272) grams per 100 g from the same USDA SR Legacy source foods. Missing observations are excluded; this is a lower bound, not a complete total."
 }

@@ -27,8 +27,8 @@ export function flowGrid(recipe,settings={}){
   const item={...node,parent,start:leaves.length};
   if(!node.children){item.depth=0;item.rows=1;const ingredient=recipe.ingredients.find(i=>i.id===node.ingredientId);
    const amount=ingredientAmount(ingredient,servings)*Number(node.fraction??1);
-   const total=formatIngredient(ingredient,servings,units);
-   item.quantity=node.share==='pinch'?`pinch of`:node.share==='remainder'?`${Number(node.fraction??1)===0.5?`½ remaining (${total} total)`:`Remainder of ${total}`}`:formatIngredient({...ingredient,amount,us:ingredient.us?{...ingredient.us,amount:ingredient.us.amount*amount/ingredient.amount}:undefined,scale:'fixed'},4,units);
+   const total=formatIngredient(ingredient,servings,units,{wholeOunces:recipe.type==='smoothie'});
+   item.quantity=node.share==='pinch'?`pinch of`:node.share==='remainder'?`${Number(node.fraction??1)===0.5?`½ remaining (${total} total)`:`Remainder of ${total}`}`:formatIngredient({...ingredient,amount,us:ingredient.us?{...ingredient.us,amount:ingredient.us.amount*amount/ingredient.amount}:undefined,scale:'fixed'},4,units,{wholeOunces:recipe.type==='smoothie'});
    item.name=node.share==='pinch'?'salt':ingredient.name;item.state=cookText([ingredient.state,ingredient.note,purchaseNote(ingredient,servings)].filter(Boolean).join(' · '),units);leaves.push(item);return item;
   }
   item.children=node.children.map(child=>walk(child,item));item.depth=1+Math.max(...item.children.map(child=>child.depth));item.rows=leaves.length-item.start;item.action=cookText(node.action,units);operations.push(item);return item;
