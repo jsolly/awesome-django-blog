@@ -1,8 +1,8 @@
 {
   "id": "/post/15-minute-dump-and-go-instant-pot-recipes/",
-  "name": "Blogthedata Recipe Library",
-  "short_name": "Recipes",
-  "description": "Twelve dinners with recipe scaling and grocery lists, available offline.",
+  "name": "Easy Meals",
+  "short_name": "Easy Meals",
+  "description": "Meals and smoothies with serving scaling and appliance filters, available offline.",
   "start_url": "/post/15-minute-dump-and-go-instant-pot-recipes/",
   "scope": "/post/15-minute-dump-and-go-instant-pot-recipes/",
   "display": "standalone",

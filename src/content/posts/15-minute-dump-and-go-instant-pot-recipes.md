@@ -1,8 +1,8 @@
 ---
 slug: 15-minute-dump-and-go-instant-pot-recipes
-title: "Fast dump-and-go meals: keto, family-friendly, and non-keto"
+title: "Easy Meals"
 category: resources
-description: "12 low-attention dinners with serving scaling, unit conversion, practical filters, family starch add-ons and a consolidated shopping list."
+description: "Easy meals and smoothies with keto and non-keto options, serving scaling and appliance filters."
 draft: false
 image: "/media/default.webp"
 legacyImage: post_metaimgs/butterChicken.webp
@@ -15,7 +15,7 @@ updated: "2026-10-02T12:09:30Z"
 author: John Solly
 feedAuthor: John_Solly
 legacyAuthorId: 2
-excerpt: "Twelve low-attention dinners with diet and appliance filters, serving scaling, unit conversions and separate family starches."
+excerpt: "Easy meals and smoothies with keto and family choices, serving scaling and appliance filters."
 legacyId: 116
 related:
   - gis-job-search-resources
@@ -23,13 +23,9 @@ related:
   - improve-sleep-quality-red-screens-ios-macos
 ---
 
-I want dinner to cook while I do something else. I have two air fryers, two Instant Pots, and a conventional oven. My priority is a meal that needs very little attention once it starts.
+Choose meals or smoothies, then filter by protein, carb type, meal style, nutrition and the appliances you have. Most meals need little hands-on time; the pan-fried turkey patties need attention at the stove. Smoothies take about five minutes in a blender.
 
-These 12 dinners skip browning, overnight marinades, reductions, and constant stirring. Each serves four and needs about 8–15 minutes of total hands-on work. That includes sauces, shaking or flipping, and finishing. Most take 25–40 minutes to reach the table; the pressure chicken, potato dinner and gnocchi can take about 45; the spinach frittata needs 40–50 minutes including safe spinach handling.
-
-The first group is keto. The second uses one keto main with a separate starch for family members. The third includes legumes, potatoes, or gnocchi as part of the meal.
-
-These are newly designed recipes, not kitchen-tested recipes. The methods have been checked against appliance guidance and comparable recipes, and the nutrition has been calculated. Actual flavor, texture, and timing still need a first cook. The thermometer decides when dinner is ready.
+Keto options keep carbs low. Shared mains offer a separate family starch, while Not Keto options include higher-carb ingredients or fruit. Ingredient amounts scale with servings. These recipes are not kitchen-tested.
 
 Every recipe includes **Tabular Recipe Notation (TRN)**, the recipe-summary format used by [Michael Chu’s Cooking for Engineers](https://www.cookingforengineers.com/). Read ingredient rows into merged operation cells from left to right. Components remain separate until plating; detailed instructions follow each table. Small seasoning and finishing amounts use familiar spoon measures rather than tiny gram targets.
 
@@ -53,6 +49,11 @@ Every recipe includes **Tabular Recipe Notation (TRN)**, the recipe-summary form
 <tr><td><a href="#harissa-chickpea-and-cauliflower-bowls">Harissa chickpea and cauliflower bowls</a></td><td>Non-keto</td><td>Oven</td><td>12</td><td>35–40</td><td>Stir and swap pans once halfway through roasting.</td></tr>
 <tr><td><a href="#lemon-chicken-potatoes-and-green-beans">Lemon chicken, potatoes, and green beans</a></td><td>Non-keto</td><td>Microwave + oven</td><td>15</td><td>35–45</td><td>Microwave potatoes first; add beans and swap racks after 10 minutes.</td></tr>
 <tr><td><a href="#sheet-pan-gnocchi-white-beans-and-broccoli">Sheet-pan gnocchi, white beans, and broccoli</a></td><td>Non-keto</td><td>Oven</td><td>12</td><td>40–45</td><td>Add beans, stir, and swap racks once at minute 12.</td></tr>
+<tr><td><a href="#pan-fried-greek-turkey-patties">Pan-fried Greek turkey patties</a></td><td>Keto + family</td><td>Frying pan</td><td>30</td><td>35–40</td><td>Turn each batch once; cook every patty to 165°F.</td></tr>
+<tr><td><a href="#avocado-lime-smoothie">Avocado-lime smoothie</a></td><td>Keto</td><td>Blender</td><td>5</td><td>5–5</td><td>Blend until smooth; serve chilled.</td></tr>
+<tr><td><a href="#strawberry-avocado-smoothie">Strawberry-avocado smoothie</a></td><td>Keto</td><td>Blender</td><td>5</td><td>5–5</td><td>Blend until smooth; serve chilled.</td></tr>
+<tr><td><a href="#strawberry-banana-smoothie">Strawberry-banana smoothie</a></td><td>Non-keto</td><td>Blender</td><td>5</td><td>5–5</td><td>Blend until smooth; serve chilled.</td></tr>
+<tr><td><a href="#banana-flax-smoothie">Banana-flax smoothie</a></td><td>Non-keto</td><td>Blender</td><td>5</td><td>5–5</td><td>Blend until smooth; serve chilled.</td></tr>
 </tbody>
 </table>
 </div>
@@ -105,6 +106,11 @@ Calculations use [USDA FoodData Central](https://fdc.nal.usda.gov/download-datas
 <tr><td><a href="#harissa-chickpea-and-cauliflower-bowls">Harissa chickpea and cauliflower bowls</a></td><td>426</td><td>28.8</td><td>45.4</td><td>12.0</td><td>33.4</td></tr>
 <tr><td><a href="#lemon-chicken-potatoes-and-green-beans">Lemon chicken, potatoes, and green beans</a></td><td>422</td><td>39.6</td><td>34.8</td><td>6.8</td><td>28.0</td></tr>
 <tr><td><a href="#sheet-pan-gnocchi-white-beans-and-broccoli">Sheet-pan gnocchi, white beans, and broccoli</a></td><td>604</td><td>26.7</td><td>81.4</td><td>11.8</td><td>69.6</td></tr>
+<tr><td><a href="#pan-fried-greek-turkey-patties">Pan-fried Greek turkey patties</a></td><td>378</td><td>39.9</td><td>7.7</td><td>2.3</td><td>5.4</td></tr>
+<tr><td><a href="#avocado-lime-smoothie">Avocado-lime smoothie</a></td><td>215</td><td>12.8</td><td>13.3</td><td>6.2</td><td>7.1</td></tr>
+<tr><td><a href="#strawberry-avocado-smoothie">Strawberry-avocado smoothie</a></td><td>206</td><td>12.6</td><td>14.1</td><td>6.3</td><td>7.8</td></tr>
+<tr><td><a href="#strawberry-banana-smoothie">Strawberry-banana smoothie</a></td><td>247</td><td>17.0</td><td>40.3</td><td>5.6</td><td>34.7</td></tr>
+<tr><td><a href="#banana-flax-smoothie">Banana-flax smoothie</a></td><td>270</td><td>18.1</td><td>36.2</td><td>5.8</td><td>30.4</td></tr>
 </tbody>
 </table>
 </div>
@@ -121,23 +127,23 @@ Calculations use [USDA FoodData Central](https://fdc.nal.usda.gov/download-datas
 
 <figure class="recipe-illustration"><img src="/media/recipes/lemon-salmon-and-asparagus-960.webp" width="960" height="720" srcset="/media/recipes/lemon-salmon-and-asparagus-480.webp 480w, /media/recipes/lemon-salmon-and-asparagus-960.webp 960w, /media/recipes/lemon-salmon-and-asparagus-1440.webp 1440w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of salmon with roasted asparagus, lemon and hemp hearts." loading="lazy" decoding="async" /><figcaption>AI-generated illustration; appearance and portions are approximate.</figcaption></figure>
 
-About 8 minutes hands-on; 20–25 minutes total. Four adult servings. Two air fryers let the salmon and asparagus finish at their own endpoints.
+About 8 minutes hands-on; 20–25 minutes total. Four adult servings. Lemon salmon with asparagus and garlic.
 
 **Cooking flow · Tabular Recipe Notation**
 
-<div class="trn-scroll" tabindex="0" role="region" aria-label="Lemon salmon and asparagus cooking flow, scroll horizontally"><table class="trn-table"><caption>Lemon salmon and asparagus · ingredient-to-operation cooking flow</caption><tbody><tr><td colspan="4" class="trn-prep">Preheat both air fryers to 390°F. Start both baskets together; remove each component at its own endpoint.</td></tr><tr><td colspan="4" class="trn-prep">Use uncrowded baskets with room for the full batch; keep 1-inch-thick salmon fillets apart and medium asparagus out of a dense pile.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 ½ lb</strong> Skin-on salmon fillets<small class="trn-state-essential">raw, thawed; individual fillets about 1 inch thick</small></th><td rowspan="1" colspan="1" class="trn-operation">Pat thawed, 1-inch-thick salmon fillets dry.</td><td rowspan="6" colspan="1" class="trn-operation">Rub dry salmon with oil, garlic, salt, pepper and zest. Then: Salmon basket: skin-side down with gaps; air fry at 390°F for 10–14 min, check at 10 min; reach 145°F.</td><td rowspan="12" colspan="1" class="trn-operation">Plate salmon and asparagus separately; finish both with lemon juice and hemp.</td></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>1 tbsp</strong> Olive oil<small class="trn-state-detail">as purchased</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>½ tsp</strong> Garlic powder<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>¼ tsp</strong> Fine salt<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>1 tsp</strong> Lemon zest<small class="trn-state-detail">finely grated</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 lb</strong> Asparagus<small class="trn-state-detail">trimmed, medium stalks</small></th><td rowspan="4" colspan="2" class="trn-operation">Toss trimmed, medium asparagus with oil, garlic and salt. Then: Asparagus basket: spread without a dense pile; air fry at 390°F for 7–10 min, check at 7 min; remove when ready.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tbsp</strong> Olive oil<small class="trn-state-detail">as purchased</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ tsp</strong> Garlic powder<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Fine salt<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>2 tbsp</strong> Lemon juice<small class="trn-state-detail">fresh or bottled, unsweetened</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>2 tbsp</strong> Hemp hearts<small class="trn-state-detail">hulled</small></th></tr></tbody></table></div>
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Lemon salmon and asparagus cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="4" class="trn-prep">Preheat both air fryers to 390°F. Start both baskets together; remove each component at its own endpoint.</td></tr><tr><td colspan="4" class="trn-prep">Use uncrowded baskets with room for the full batch; keep 1-inch-thick salmon fillets apart and medium asparagus out of a dense pile.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>680g</strong> Skin-on salmon fillets<small class="trn-state-essential">raw, thawed; individual fillets about 1 inch thick · Choose individual fillets about 170 g (6 oz) each, keeping the stated thickness.</small></th><td rowspan="1" colspan="1" class="trn-operation">Pat thawed, 1-inch-thick salmon fillets dry.</td><td rowspan="6" colspan="1" class="trn-operation">Rub dry salmon with oil, garlic, salt, pepper and zest. Then: Salmon basket: skin-side down with gaps; air fry at 390°F for 10–14 min, check at 10 min; reach 145°F.</td><td rowspan="12" colspan="1" class="trn-operation">Plate salmon and asparagus separately; finish both with lemon juice and hemp.</td></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>14g</strong> Olive oil<small class="trn-state-detail">as purchased · Half to asparagus; half to salmon.</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>2g</strong> Garlic powder<small class="trn-state-detail">Divide equally.</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>2g</strong> Fine salt<small class="trn-state-detail">Use the proportional split described in the method.</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>2g</strong> Lemon zest<small class="trn-state-detail">finely grated · Use finely grated zest.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>454g</strong> Asparagus<small class="trn-state-detail">trimmed, medium stalks</small></th><td rowspan="4" colspan="2" class="trn-operation">Toss trimmed, medium asparagus with oil, garlic and salt. Then: Asparagus basket: spread without a dense pile; air fry at 390°F for 7–10 min, check at 7 min; remove when ready.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>14g</strong> Olive oil<small class="trn-state-detail">as purchased · Half to asparagus; half to salmon.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Garlic powder<small class="trn-state-detail">Divide equally.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Fine salt<small class="trn-state-detail">Use the proportional split described in the method.</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>30g</strong> Lemon juice<small class="trn-state-detail">unsweetened</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>20g</strong> Hemp hearts<small class="trn-state-detail">hulled · Use hulled hemp hearts in the measured portion.</small></th></tr></tbody></table></div>
 
 **Ingredients**
 
-- 1 ½ lb (680 g) Skin-on salmon fillets — raw, thawed; individual fillets about 1 inch thick. Choose individual fillets about 170 g (6 oz) each, keeping the stated thickness.
-- 1 lb (454 g) Asparagus — trimmed, medium stalks
-- 2 tbsp (27 g) Olive oil — as purchased. Half to asparagus; half to salmon. All oil counted in nutrition.
-- 1 tsp Garlic powder — dry. Divide equally.
-- ½ tsp Fine salt — dry. Use the proportional split described in the method. Black pepper is to taste.
-- to taste Black pepper — dry. To taste; quantity intentionally unspecified in source.
-- 1 tsp Lemon zest — finely grated. Use finely grated zest.
-- 2 tbsp (30 g) Lemon juice — fresh or bottled, unsweetened. Nutrition uses 15 g per tablespoon; use the scaled total.
-- 2 tbsp (20 g) Hemp hearts — hulled. Use hulled hemp hearts in the measured portion.
+- 680g Skin-on salmon fillets — raw, thawed; individual fillets about 1 inch thick. Choose individual fillets about 170 g (6 oz) each, keeping the stated thickness.
+- 454g Asparagus — trimmed, medium stalks
+- 27g Olive oil — as purchased. Half to asparagus; half to salmon.
+- 3g Garlic powder. Divide equally.
+- 3g Fine salt. Use the proportional split described in the method.
+- to taste Black pepper
+- 2g Lemon zest — finely grated. Use finely grated zest.
+- 30g Lemon juice — unsweetened
+- 20g Hemp hearts — hulled. Use hulled hemp hearts in the measured portion.
 
 **Equipment and capacity**
 
@@ -184,24 +190,24 @@ These sources support safety, labels or comparable cooking methods; this exact r
 
 <figure class="recipe-illustration"><img src="/media/recipes/smoky-chicken-thighs-and-broccoli-960.webp" width="960" height="720" srcset="/media/recipes/smoky-chicken-thighs-and-broccoli-480.webp 480w, /media/recipes/smoky-chicken-thighs-and-broccoli-960.webp 960w, /media/recipes/smoky-chicken-thighs-and-broccoli-1440.webp 1440w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of smoky chicken thighs and browned broccoli with nutritional yeast." loading="lazy" decoding="async" /><figcaption>AI-generated illustration; appearance and portions are approximate.</figcaption></figure>
 
-About 12 minutes hands-on; 25–35 minutes total. Four adult servings. Chicken starts five minutes before broccoli; shake broccoli once.
+About 12 minutes hands-on; 25–35 minutes total. Four adult servings. Smoky chicken thighs with roasted broccoli.
 
 **Cooking flow · Tabular Recipe Notation**
 
-<div class="trn-scroll" tabindex="0" role="region" aria-label="Smoky chicken thighs and broccoli cooking flow, scroll horizontally"><table class="trn-table"><caption>Smoky chicken thighs and broccoli · ingredient-to-operation cooking flow</caption><tbody><tr><td colspan="4" class="trn-prep">Preheat both air fryers to 390°F. Start chicken first; start broccoli 5 min later.</td></tr><tr><td colspan="4" class="trn-prep">Keep broccoli and clean serving tools away from raw chicken and its bowl. Use uncrowded baskets; thighs must be unfolded and no more than ¾ inch thick.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 ½ lb</strong> Boneless skinless chicken thighs<small class="trn-state-essential">raw, thawed, unfolded; no more than ¾ inch thick</small></th><td rowspan="7" colspan="2" class="trn-operation">Separate raw-poultry bowl: coat unfolded thighs with oil, paprika, garlic, oregano, salt and pepper. Then: Chicken basket: smooth-side up, no overlap; air fry at 390°F for 16–22 min; thickest pieces must reach 165°F.</td><td rowspan="12" colspan="1" class="trn-operation">Plate cooked chicken and finished broccoli as separate components with clean serving tools.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tbsp</strong> Olive oil<small class="trn-state-detail">as purchased</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tsp</strong> Smoked paprika<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tsp</strong> Garlic powder<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ tsp</strong> Dried oregano<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ tsp</strong> Fine salt<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 lb</strong> Broccoli florets<small class="trn-state-detail">fresh, about 1½ inches across</small></th><td rowspan="3" colspan="1" class="trn-operation">Toss 1½-inch broccoli florets with oil and salt; load without crowding. Then: Broccoli basket: start 5 min after chicken; air fry at 390°F for 10–14 min, shake once halfway; stems fork-tender, crowns lightly browned.</td><td rowspan="5" colspan="1" class="trn-operation">Finish cooked broccoli with lemon juice and nutritional yeast.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tbsp</strong> Olive oil<small class="trn-state-detail">as purchased</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Fine salt<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>1 tbsp</strong> Lemon juice<small class="trn-state-detail">fresh or bottled, unsweetened</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>2 tbsp</strong> Nutritional yeast<small class="trn-state-detail">flakes</small></th></tr></tbody></table></div>
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Smoky chicken thighs and broccoli cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="4" class="trn-prep">Preheat both air fryers to 390°F. Start chicken first; start broccoli 5 min later.</td></tr><tr><td colspan="4" class="trn-prep">Use uncrowded baskets; thighs must be unfolded and no more than ¾ inch thick.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>680g</strong> Boneless skinless chicken thighs<small class="trn-state-essential">raw, thawed, unfolded; no more than ¾ inch thick</small></th><td rowspan="7" colspan="2" class="trn-operation">Coat unfolded thighs with oil, paprika, garlic, oregano, salt and pepper. Then: Chicken basket: smooth-side up, no overlap; air fry at 390°F for 16–22 min; thickest pieces must reach 165°F.</td><td rowspan="12" colspan="1" class="trn-operation">Plate cooked chicken and finished broccoli as separate components.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>14g</strong> Olive oil<small class="trn-state-detail">as purchased · Half to broccoli; half to chicken.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Smoked paprika<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>3g</strong> Garlic powder<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ tsp</strong> Dried oregano<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>3g</strong> Fine salt<small class="trn-state-detail">Use the proportional split described in the method.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>454g</strong> Broccoli florets<small class="trn-state-detail">about 1½ inches across</small></th><td rowspan="3" colspan="1" class="trn-operation">Toss 1½-inch broccoli florets with oil and salt; load without crowding. Then: Broccoli basket: start 5 min after chicken; air fry at 390°F for 10–14 min, shake once halfway; stems fork-tender, crowns lightly browned.</td><td rowspan="5" colspan="1" class="trn-operation">Finish cooked broccoli with lemon juice and nutritional yeast.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>14g</strong> Olive oil<small class="trn-state-detail">as purchased · Half to broccoli; half to chicken.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Fine salt<small class="trn-state-detail">Use the proportional split described in the method.</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>15g</strong> Lemon juice<small class="trn-state-detail">unsweetened</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>8g</strong> Nutritional yeast<small class="trn-state-detail">flakes · Add after cooking.</small></th></tr></tbody></table></div>
 
 **Ingredients**
 
-- 1 ½ lb (680 g) Boneless skinless chicken thighs — raw, thawed, unfolded; no more than ¾ inch thick
-- 1 lb (454 g) Broccoli florets — fresh, about 1½ inches across
-- 2 tbsp (27 g) Olive oil — as purchased. Half to broccoli; half to chicken. All oil counted in nutrition.
-- 1 tsp Smoked paprika — dry
-- 1 tsp Garlic powder — dry
-- ½ tsp Dried oregano — dry
-- ¾ tsp Fine salt — dry. Use the proportional split described in the method. Black pepper is to taste.
-- to taste Black pepper — dry. To taste; quantity unspecified.
-- 1 tbsp (15 g) Lemon juice — fresh or bottled, unsweetened. Nutrition uses 15 g per tablespoon; use the scaled total.
-- 2 tbsp (8 g) Nutritional yeast — flakes. Add after cooking; brand density varies.
+- 680g Boneless skinless chicken thighs — raw, thawed, unfolded; no more than ¾ inch thick
+- 454g Broccoli florets — about 1½ inches across
+- 27g Olive oil — as purchased. Half to broccoli; half to chicken.
+- 2g Smoked paprika
+- 3g Garlic powder
+- ½ tsp Dried oregano
+- 5g Fine salt. Use the proportional split described in the method.
+- to taste Black pepper
+- 15g Lemon juice — unsweetened
+- 8g Nutritional yeast — flakes. Add after cooking.
 
 **Equipment and capacity**
 
@@ -250,22 +256,22 @@ These sources support safety, labels or comparable cooking methods; this exact r
 
 <figure class="recipe-illustration"><img src="/media/recipes/pesto-cod-and-zucchini-960.webp" width="960" height="720" srcset="/media/recipes/pesto-cod-and-zucchini-480.webp 480w, /media/recipes/pesto-cod-and-zucchini-960.webp 960w, /media/recipes/pesto-cod-and-zucchini-1440.webp 1440w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of pesto-topped cod with roasted zucchini and hemp hearts." loading="lazy" decoding="async" /><figcaption>AI-generated illustration; appearance and portions are approximate.</figcaption></figure>
 
-About 11 minutes hands-on; 30–40 minutes total. Four adult servings. Separate oven pans keep moisture from zucchini away from cod.
+About 11 minutes hands-on; 30–40 minutes total. Four adult servings. Pesto cod with zucchini.
 
 **Cooking flow · Tabular Recipe Notation**
 
-<div class="trn-scroll" tabindex="0" role="region" aria-label="Pesto cod and zucchini cooking flow, scroll horizontally"><table class="trn-table"><caption>Pesto cod and zucchini · ingredient-to-operation cooking flow</caption><tbody><tr><td colspan="4" class="trn-prep">Heat oven to 425°F on bake. Use two separate 18×13-inch rimmed metal half-sheet pans.</td></tr><tr><td colspan="4" class="trn-prep">Start zucchini first; add fish pan 6 min later. Remove each pan at its own endpoint and serve promptly.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 ½ lb</strong> Cod fillets<small class="trn-state-essential">raw, thawed; individual fillets about 1 inch thick</small></th><td rowspan="2" colspan="1" class="trn-operation">Pat thawed, 1-inch-thick cod dry; rub with oil and place on its own pan. Then: Fish pan: add 6 min after zucchini; roast at 425°F for 12–18 min, check at 12 min of fish cooking; reach 145°F.</td><td rowspan="3" colspan="1" class="trn-operation">Spoon pesto over cooked fish after roasting.</td><td rowspan="9" colspan="1" class="trn-operation">Plate pesto-topped cod and zucchini separately; finish both with lemon juice and hemp.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ tbsp</strong> Olive oil<small class="trn-state-detail">as purchased</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>45 g</strong> DeLallo basil pesto<small class="trn-state-essential">squeeze-bottle, as sold</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 ½ lb</strong> Zucchini<small class="trn-state-detail">fresh, sliced into ½-inch half-moons</small></th><td rowspan="4" colspan="2" class="trn-operation">Toss ½-inch zucchini half-moons with oil, salt and pepper; spread on separate pan. Then: Zucchini pan: roast at 425°F for 18–23 min; check at 18 min of zucchini cooking; browned edges and tender center.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 ½ tbsp</strong> Olive oil<small class="trn-state-detail">as purchased</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Fine salt<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>1 tbsp</strong> Lemon juice<small class="trn-state-detail">fresh or bottled, unsweetened</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>2 tbsp</strong> Hemp hearts<small class="trn-state-detail">hulled</small></th></tr></tbody></table></div>
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Pesto cod and zucchini cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="4" class="trn-prep">Heat oven to 425°F on bake. Use two separate 18×13-inch rimmed metal half-sheet pans.</td></tr><tr><td colspan="4" class="trn-prep">Start zucchini first; add fish pan 6 min later. Remove each pan at its own endpoint and serve promptly.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>680g</strong> Cod fillets<small class="trn-state-essential">raw, thawed; individual fillets about 1 inch thick · Choose individual fillets about 170 g (6 oz) each, keeping the stated thickness.</small></th><td rowspan="2" colspan="1" class="trn-operation">Pat thawed, 1-inch-thick cod dry; rub with oil and place on its own pan. Then: Fish pan: add 6 min after zucchini; roast at 425°F for 12–18 min, check at 12 min of fish cooking; reach 145°F.</td><td rowspan="3" colspan="1" class="trn-operation">Spoon pesto over cooked fish after roasting.</td><td rowspan="9" colspan="1" class="trn-operation">Plate pesto-topped cod and zucchini separately; finish both with lemon juice and hemp.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>7g</strong> Olive oil<small class="trn-state-detail">as purchased · Three quarters to zucchini; remainder to fish.</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>45g</strong> DeLallo basil pesto<small class="trn-state-essential">squeeze-bottle, as sold · Weigh the scaled amount; do not infer tablespoons from the unusual label volume. Substitute at most 2 g net carbs per 30 g.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>680g</strong> Zucchini<small class="trn-state-detail">sliced into ½-inch half-moons</small></th><td rowspan="4" colspan="2" class="trn-operation">Toss ½-inch zucchini half-moons with oil, salt and pepper; spread on separate pan. Then: Zucchini pan: roast at 425°F for 18–23 min; check at 18 min of zucchini cooking; browned edges and tender center.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>20g</strong> Olive oil<small class="trn-state-detail">as purchased · Three quarters to zucchini; remainder to fish.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Fine salt<small class="trn-state-detail">Use the measured salt in the zucchini seasoning.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>15g</strong> Lemon juice<small class="trn-state-detail">unsweetened</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>20g</strong> Hemp hearts<small class="trn-state-detail">hulled · Use hulled hemp hearts in the measured portion.</small></th></tr></tbody></table></div>
 
 **Ingredients**
 
-- 1 ½ lb (680 g) Cod fillets — raw, thawed; individual fillets about 1 inch thick. Choose individual fillets about 170 g (6 oz) each, keeping the stated thickness.
-- 1 ½ lb (680 g) Zucchini — fresh, sliced into ½-inch half-moons
-- 45 g DeLallo basil pesto — squeeze-bottle, as sold. Weigh the scaled amount; do not infer tablespoons from the unusual label volume. Substitute at most 2 g net carbs per 30 g.
-- 2 tbsp (27 g) Olive oil — as purchased. Three quarters to zucchini; remainder to fish. All oil counted in nutrition.
-- ¼ tsp Fine salt — dry. Use the measured salt in the zucchini seasoning.
-- to taste Black pepper — dry. To taste; quantity unspecified.
-- 1 tbsp (15 g) Lemon juice — fresh or bottled, unsweetened. Nutrition uses 15 g per tablespoon; use the scaled total.
-- 2 tbsp (20 g) Hemp hearts — hulled. Use hulled hemp hearts in the measured portion.
+- 680g Cod fillets — raw, thawed; individual fillets about 1 inch thick. Choose individual fillets about 170 g (6 oz) each, keeping the stated thickness.
+- 680g Zucchini — sliced into ½-inch half-moons
+- 45g DeLallo basil pesto — squeeze-bottle, as sold. Weigh the scaled amount; do not infer tablespoons from the unusual label volume. Substitute at most 2 g net carbs per 30 g.
+- 27g Olive oil — as purchased. Three quarters to zucchini; remainder to fish.
+- 2g Fine salt. Use the measured salt in the zucchini seasoning.
+- to taste Black pepper
+- 15g Lemon juice — unsweetened
+- 20g Hemp hearts — hulled. Use hulled hemp hearts in the measured portion.
 
 **Equipment and capacity**
 
@@ -311,26 +317,26 @@ These sources support safety, labels or comparable cooking methods; this exact r
 
 <figure class="recipe-illustration"><img src="/media/recipes/spinach-feta-and-hemp-frittata-960.webp" width="960" height="720" srcset="/media/recipes/spinach-feta-and-hemp-frittata-480.webp 480w, /media/recipes/spinach-feta-and-hemp-frittata-960.webp 960w, /media/recipes/spinach-feta-and-hemp-frittata-1440.webp 1440w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of spinach, feta and hemp frittata beside leafy salad." loading="lazy" decoding="async" /><figcaption>AI-generated illustration; appearance and portions are approximate.</figcaption></figure>
 
-About 15 minutes hands-on; 40–50 minutes total. Four adult servings. A baked egg dinner with a cold salad assembled while it cooks.
+About 15 minutes hands-on; 40–50 minutes total. Four adult servings. Spinach, feta and hemp frittata with salad.
 
 **Cooking flow · Tabular Recipe Notation**
 
-<div class="trn-scroll" tabindex="0" role="region" aria-label="Spinach, feta, and hemp frittata cooking flow, scroll horizontally"><table class="trn-table"><caption>Spinach, feta, and hemp frittata · ingredient-to-operation cooking flow</caption><tbody><tr><td colspan="5" class="trn-prep">Heat oven to 375°F on bake. Microwave spinach during preheating; never squeeze hot spinach with bare hands.</td></tr><tr><td colspan="5" class="trn-prep">Use one 9-inch square metal dish, at least 2 inches deep, for 2 or 4 servings; use two matching dishes for 6 or 8. Keep the mixture no deeper than the original four-serving layer.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>12 count</strong> Large eggs<small class="trn-state-detail">as purchased</small></th><td rowspan="5" colspan="1" class="trn-operation">Bowl: whisk eggs, water, garlic, salt and pepper.</td><td rowspan="9" colspan="1" class="trn-operation">Stir squeezed spinach, feta, hemp and yeast into whisked eggs.</td><td rowspan="10" colspan="1" class="trn-operation">Transfer to selected greased dishes; divide so the mixture is no deeper than the original four-serving layer. Then: Bake at 375°F for 25–30 min for the four-serving layer; at 2 servings check from 18 min; center set and 160°F. Then: Rest frittata 3 min, then cut into the selected number of equal adult portions.</td><td rowspan="13" colspan="1" class="trn-operation">Plate equal adult portions of rested frittata with the separate dressed-greens salad.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>⅓ cup</strong> Water<small class="trn-state-detail">potable</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ tsp</strong> Garlic powder<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Fine salt<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 lb</strong> Frozen chopped spinach<small class="trn-state-essential">package weight before thawing and squeezing</small></th><td rowspan="1" colspan="1" class="trn-operation">Microwave spinach according to package directions. Then: Fine-mesh sieve: cool spinach until safe to handle, then press very dry with a spoon.</td></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>½ cup</strong> Crumbled feta<small class="trn-state-detail">as sold</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>4 tbsp</strong> Hemp hearts<small class="trn-state-detail">hulled</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>2 tbsp</strong> Nutritional yeast<small class="trn-state-detail">flakes</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>⅓ tbsp</strong> Olive oil<small class="trn-state-detail">as purchased</small></th><td rowspan="1" colspan="2" class="trn-operation">Grease selected metal baking dishes with oil.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>5 oz</strong> Salad greens<small class="trn-state-detail">washed, ready to eat</small></th><td rowspan="3" colspan="3" class="trn-operation">Clean bowl, during baking: toss ready-to-eat greens with oil and lemon juice.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tbsp</strong> Olive oil<small class="trn-state-detail">as purchased</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tbsp</strong> Lemon juice<small class="trn-state-detail">fresh or bottled, unsweetened</small></th></tr></tbody></table></div>
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Spinach, feta, and hemp frittata cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="5" class="trn-prep">Heat oven to 375°F on bake. Microwave spinach during preheating.</td></tr><tr><td colspan="5" class="trn-prep">Use one 9-inch square metal dish, at least 2 inches deep, for 2 or 4 servings; use two matching dishes for 6 or 8. Keep the mixture no deeper than the original four-serving layer.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>600g</strong> Large eggs<small class="trn-state-detail">as purchased</small></th><td rowspan="5" colspan="1" class="trn-operation">Bowl: whisk eggs, water, garlic, salt and pepper.</td><td rowspan="9" colspan="1" class="trn-operation">Stir squeezed spinach, feta, hemp and yeast into whisked eggs.</td><td rowspan="10" colspan="1" class="trn-operation">Transfer to selected greased dishes; divide so the mixture is no deeper than the original four-serving layer. Then: Bake at 375°F for 25–30 min for the four-serving layer; at 2 servings check from 18 min; center set and 160°F. Then: Rest frittata 3 min, then cut into the selected number of equal portions.</td><td rowspan="13" colspan="1" class="trn-operation">Plate equal portions of rested frittata with the separate dressed-greens salad.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>⅓ cup</strong> Water<small class="trn-state-detail">potable · Mix into the eggs.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Garlic powder<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Fine salt<small class="trn-state-detail">Use the measured salt in the egg mixture; feta adds salt too.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>454g</strong> Frozen chopped spinach<small class="trn-state-essential">package weight before thawing and squeezing · Heat according to package directions, cool until safe to handle and press very dry in a sieve. · Buy 1 × 16 oz (454 g) packages; measure out the required weight.</small></th><td rowspan="1" colspan="1" class="trn-operation">Microwave spinach according to package directions. Then: Fine-mesh sieve: cool spinach until safe to handle, then press very dry with a spoon.</td></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>75g</strong> Crumbled feta<small class="trn-state-detail">as sold · Cheese label and rennet vary.</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>40g</strong> Hemp hearts<small class="trn-state-detail">hulled · Use hulled hemp hearts in the measured portion.</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>8g</strong> Nutritional yeast<small class="trn-state-detail">flakes · Mix into eggs.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>5g</strong> Olive oil<small class="trn-state-detail">as purchased · One quarter for dish; three quarters for salad. Base batch is 1 tsp + 1 tbsp.</small></th><td rowspan="1" colspan="2" class="trn-operation">Grease selected metal baking dishes with oil.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>142g</strong> Salad greens<small class="trn-state-detail">washed, ready to eat · Buy by scaled edible weight.</small></th><td rowspan="3" colspan="3" class="trn-operation">During baking, toss greens with oil and lemon juice.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>14g</strong> Olive oil<small class="trn-state-detail">as purchased · One quarter for dish; three quarters for salad. Base batch is 1 tsp + 1 tbsp.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>15g</strong> Lemon juice<small class="trn-state-detail">unsweetened</small></th></tr></tbody></table></div>
 
 **Ingredients**
 
-- 12 count Large eggs — as purchased
+- 600g Large eggs — as purchased
 - ⅓ cup (79 ml) Water — potable. Mix into the eggs.
-- 1 lb (454 g) Frozen chopped spinach — package weight before thawing and squeezing. Heat according to package directions, cool until safe to handle and press very dry in a sieve.
-- ½ cup (75 g) Crumbled feta — as sold. Cheese label and rennet vary.
-- 4 tbsp (40 g) Hemp hearts — hulled. Use hulled hemp hearts in the measured portion.
-- 2 tbsp (8 g) Nutritional yeast — flakes. Mix into eggs; brand density varies.
-- ½ tsp Garlic powder — dry
-- ¼ tsp Fine salt — dry. Use the measured salt in the egg mixture; feta adds salt too.
-- to taste Black pepper — dry. To taste; quantity unspecified.
-- 1 ⅓ tbsp (18 g) Olive oil — as purchased. One quarter for dish; three quarters for salad. Base batch is 1 tsp + 1 tbsp, all counted in nutrition.
-- 5 oz (142 g) Salad greens — washed, ready to eat. Buy by scaled edible weight.
-- 1 tbsp (15 g) Lemon juice — fresh or bottled, unsweetened. Nutrition uses 15 g per tablespoon; use the scaled total.
+- 454g Frozen chopped spinach — package weight before thawing and squeezing. Heat according to package directions, cool until safe to handle and press very dry in a sieve.
+- 75g Crumbled feta — as sold. Cheese label and rennet vary.
+- 40g Hemp hearts — hulled. Use hulled hemp hearts in the measured portion.
+- 8g Nutritional yeast — flakes. Mix into eggs.
+- 2g Garlic powder
+- 2g Fine salt. Use the measured salt in the egg mixture; feta adds salt too.
+- to taste Black pepper
+- 18g Olive oil — as purchased. One quarter for dish; three quarters for salad. Base batch is 1 tsp + 1 tbsp.
+- 142g Salad greens — washed, ready to eat. Buy by scaled edible weight.
+- 15g Lemon juice — unsweetened
 
 **Equipment and capacity**
 
@@ -380,10 +386,10 @@ Prepare the same main for everyone. Keep starch separate until plating. The time
 <table>
 <thead><tr><th scope="col">One family add-on per person</th><th scope="col">Approx kcal added</th><th scope="col">Total carbs g added</th><th scope="col">Fiber g added</th><th scope="col">Net carbs g added</th></tr></thead>
 <tbody>
-<tr><td>80 g Cooked rice</td><td>104</td><td>22.5</td><td>0.3</td><td>22.2</td></tr>
-<tr><td>60 g Pita</td><td>165</td><td>33.4</td><td>1.3</td><td>32.1</td></tr>
+<tr><td>80g Cooked rice</td><td>104</td><td>22.5</td><td>0.3</td><td>22.2</td></tr>
+<tr><td>60g Pita</td><td>165</td><td>33.4</td><td>1.3</td><td>32.1</td></tr>
 <tr><td>2 count Corn tortillas</td><td>109</td><td>22.3</td><td>3.1</td><td>19.2</td></tr>
-<tr><td>45 g Bun</td><td>126</td><td>22.6</td><td>0.8</td><td>21.7</td></tr>
+<tr><td>45g Bun</td><td>126</td><td>22.6</td><td>0.8</td><td>21.7</td></tr>
 </tbody>
 </table>
 </div>
@@ -400,28 +406,28 @@ The table uses generic USDA portions. A branded rice pouch or larger bread can d
 
 <figure class="recipe-illustration"><img src="/media/recipes/shawarma-chicken-bowls-960.webp" width="960" height="720" srcset="/media/recipes/shawarma-chicken-bowls-480.webp 480w, /media/recipes/shawarma-chicken-bowls-960.webp 960w, /media/recipes/shawarma-chicken-bowls-1440.webp 1440w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of shawarma-spiced chicken, cauliflower, cucumber and yogurt over greens." loading="lazy" decoding="async" /><figcaption>AI-generated illustration; appearance and portions are approximate. Keto base shown; family starch is separate.</figcaption></figure>
 
-About 14 minutes hands-on; 30–40 minutes total. Four adult servings. Spiced chicken and cauliflower roast on separate pans; starch stays on family plates.
+About 14 minutes hands-on; 30–40 minutes total. Four adult servings. Shawarma-spiced chicken, cauliflower and lemon yogurt.
 
 **Cooking flow · Tabular Recipe Notation**
 
-<div class="trn-scroll" tabindex="0" role="region" aria-label="Shawarma chicken bowls cooking flow, scroll horizontally"><table class="trn-table"><caption>Shawarma chicken bowls · ingredient-to-operation cooking flow</caption><tbody><tr><td colspan="4" class="trn-prep">Heat oven to 425°F on bake; use two 18×13-inch half-sheet pans.</td></tr><tr><td colspan="4" class="trn-prep">Prepare cold sides and yogurt sauce before raw chicken; keep greens and clean tools away from raw-poultry tools.</td></tr><tr><td colspan="4" class="trn-prep">Reserve a small pinch of the measured salt and ¼ of the measured garlic for sauce.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>5.3 oz</strong> Cucumber<small class="trn-state-detail">fresh, diced</small></th><td rowspan="2" colspan="2" class="trn-operation">Prepare cucumber and greens first with clean tools; keep cold.</td><td rowspan="17" colspan="1" class="trn-operation">Plate shawarma bowls: greens, cucumber, cooked chicken and cauliflower, yogurt sauce and remaining lemon.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>5 oz</strong> Salad greens<small class="trn-state-detail">washed, ready to eat</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ cup</strong> Plain strained Greek yogurt<small class="trn-state-detail">plain, strained</small></th><td rowspan="4" colspan="2" class="trn-operation">Mix yogurt sauce in a clean bowl before raw chicken.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Garlic powder<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>Small pinch from ¾ tsp</strong> Fine salt<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tbsp</strong> Lemon juice<small class="trn-state-detail">fresh or bottled, unsweetened</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2 tbsp</strong> Olive oil<small class="trn-state-detail">as purchased</small></th><td rowspan="8" colspan="1" class="trn-operation">Mix spiced oil in a clean bowl before raw chicken.</td><td rowspan="10" colspan="1" class="trn-operation">Split spiced oil equally: toss cauliflower on one pan; coat chicken in a separate raw-poultry bowl and spread on the other pan. Then: Roast separate pans at 425°F for 18–23 min: largest chicken pieces 165°F, cauliflower tender. Swap racks halfway only if browning unevenly.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2 tsp</strong> Ground cumin<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tsp</strong> Smoked paprika<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¾ tsp</strong> Garlic powder<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ tsp</strong> Ground turmeric<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Ground cinnamon<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>Remainder of ¾ tsp</strong> Fine salt<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>1 lb</strong> Cauliflower florets<small class="trn-state-detail">fresh, about 1 inch across</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>1 ½ lb</strong> Boneless skinless chicken thighs<small class="trn-state-essential">raw, thawed, cut into 1-inch pieces</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>1 tbsp</strong> Lemon juice<small class="trn-state-detail">fresh or bottled, unsweetened</small></th></tr></tbody></table></div>
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Shawarma chicken bowls cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>150g</strong> Cucumber<small class="trn-state-detail">diced</small></th><td rowspan="2" colspan="2" class="trn-operation">Prepare cucumber and greens.</td><td rowspan="25" colspan="1" class="trn-operation">Plate shawarma bowls: greens, cucumber, cooked chicken and cauliflower, yogurt sauce and remaining lemon.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>142g</strong> Salad greens<small class="trn-state-detail">washed, ready to eat · Buy by scaled edible weight.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>120g</strong> Plain strained Greek yogurt<small class="trn-state-detail">plain, strained · At least 9 g protein and no more than 4 g total carbs per 100 g.</small></th><td rowspan="4" colspan="2" class="trn-operation">Mix yogurt sauce.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Garlic powder<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>pinch of</strong> salt<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>15g</strong> Lemon juice<small class="trn-state-detail">unsweetened</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>14g</strong> Olive oil<small class="trn-state-detail"></small></th><td rowspan="9" colspan="1" class="trn-operation">Toss cauliflower with oil and spices on its own 18×13-inch pan.</td><td rowspan="18" colspan="1" class="trn-operation">Heat oven to 425°F on bake. Roast both pans for 18–23 min, until chicken reaches 165°F and cauliflower is tender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Ground cumin<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1g</strong> Smoked paprika<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1g</strong> Garlic powder<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Ground turmeric<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>⅛ tsp</strong> Ground cinnamon<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ remaining (5g total)</strong> Fine salt<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>454g</strong> Cauliflower florets<small class="trn-state-detail">about 1 inch across</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>14g</strong> Olive oil<small class="trn-state-detail"></small></th><td rowspan="9" colspan="1" class="trn-operation">Toss chicken with oil and spices on its own 18×13-inch pan.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Ground cumin<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1g</strong> Smoked paprika<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1g</strong> Garlic powder<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Ground turmeric<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>⅛ tsp</strong> Ground cinnamon<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ remaining (5g total)</strong> Fine salt<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>680g</strong> Boneless skinless chicken thighs<small class="trn-state-essential">raw, thawed, cut into 1-inch pieces</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>15g</strong> Lemon juice<small class="trn-state-detail">unsweetened</small></th></tr></tbody></table></div>
 
 **Ingredients**
 
-- 1 ½ lb (680 g) Boneless skinless chicken thighs — raw, thawed, cut into 1-inch pieces
-- 1 lb (454 g) Cauliflower florets — fresh, about 1 inch across
-- 2 tbsp (27 g) Olive oil — as purchased. Half of spiced oil to cauliflower; half to chicken. All oil counted in nutrition.
-- 2 tsp Ground cumin — dry
-- 1 tsp Smoked paprika — dry
-- 1 tsp Garlic powder — dry
-- ½ tsp Ground turmeric — dry
-- ¼ tsp Ground cinnamon — dry
-- ¾ tsp Fine salt — dry. Use the proportional split described in the method. Black pepper is to taste.
-- to taste Black pepper — dry. To taste; quantity unspecified.
-- ½ cup (120 g) Plain strained Greek yogurt — plain, strained. At least 9 g protein and no more than 4 g total carbs per 100 g; regular yogurt changes nutrition.
-- 2 tbsp (30 g) Lemon juice — fresh or bottled, unsweetened. Nutrition uses 15 g per tablespoon; use the scaled total.
-- 5.3 oz (150 g) Cucumber — fresh, diced
-- 5 oz (142 g) Salad greens — washed, ready to eat. Buy by scaled edible weight.
+- 680g Boneless skinless chicken thighs — raw, thawed, cut into 1-inch pieces
+- 454g Cauliflower florets — about 1 inch across
+- 27g Olive oil
+- 4g Ground cumin
+- 2g Smoked paprika
+- 3g Garlic powder
+- 2g Ground turmeric
+- ¼ tsp Ground cinnamon
+- 5g Fine salt
+- to taste Black pepper
+- 120g Plain strained Greek yogurt — plain, strained. At least 9 g protein and no more than 4 g total carbs per 100 g.
+- 30g Lemon juice — unsweetened
+- 150g Cucumber — diced
+- 142g Salad greens — washed, ready to eat. Buy by scaled edible weight.
 
 **Equipment and capacity**
 
@@ -432,14 +438,14 @@ About 14 minutes hands-on; 30–40 minutes total. Four adult servings. Spiced ch
 
 **Method**
 
-1. **Prepare.** Heat the oven to 425°F. Prepare cucumber and greens first. Reserve a small pinch of the measured salt and one quarter of the measured garlic for the yogurt sauce; mix these with the yogurt and half the lemon before handling raw chicken. Mix oil with remaining spices, salt and pepper. Toss cauliflower with half this mixture on one pan; toss chicken with the rest in a separate bowl and spread on the other.
+1. **Prepare.** Heat the oven to 425°F. Prepare cucumber and greens. Mix yogurt with its garlic, a pinch of salt and half the lemon juice. Toss cauliflower and chicken with their own oil and spice portions and half the remaining salt on separate 18×13-inch pans.
 2. **Cook.** Roast for 18–23 minutes, checking the largest chicken pieces for 165°F and cauliflower for tenderness. If your oven browns unevenly, swap racks halfway.
 3. **Finish.** Near the end of roasting, if serving non-keto diners, microwave ready-to-eat rice or briefly warm the chosen pita according to its package. Assemble greens, cucumber, chicken and cauliflower. Add the prepared yogurt sauce and remaining lemon. Put starch on family plates only.
 
 **Family add-on**
 
-- Per non-keto adult: ½ cup (80 g) Cooked rice. About ½ cup per non-keto diner; heat ready-cooked rice. Buy at least 320 g for four.
-- Per non-keto adult: 1 count (60 g) Pita. One ready-to-eat 60 g pita per non-keto diner; warm briefly. Contains wheat; check package.
+- Per non-keto adult: 80g (80 g) Cooked rice. About ½ cup per non-keto diner; heat ready-cooked rice. Buy at least 320 g for four.
+- Per non-keto adult: 60g (60 g) Pita. One ready-to-eat 60 g pita per non-keto diner; warm briefly. Contains wheat; check package.
 
 **Why it works**
 
@@ -471,27 +477,27 @@ These sources support safety, labels or comparable cooking methods; this exact r
 
 <figure class="recipe-illustration"><img src="/media/recipes/sheet-pan-chicken-fajitas-960.webp" width="960" height="720" srcset="/media/recipes/sheet-pan-chicken-fajitas-480.webp 480w, /media/recipes/sheet-pan-chicken-fajitas-960.webp 960w, /media/recipes/sheet-pan-chicken-fajitas-1440.webp 1440w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of chicken fajita strips, peppers, avocado, lettuce and yogurt in a bowl." loading="lazy" decoding="async" /><figcaption>AI-generated illustration; appearance and portions are approximate. Keto base shown; family starch is separate.</figcaption></figure>
 
-About 14 minutes hands-on; 30–40 minutes total. Four adult servings. Two spacious pans roast chicken and peppers; heat tortillas only for non-keto plates.
+About 14 minutes hands-on; 30–40 minutes total. Four adult servings. Chicken fajitas with roasted peppers and onions.
 
 **Cooking flow · Tabular Recipe Notation**
 
-<div class="trn-scroll" tabindex="0" role="region" aria-label="Sheet-pan chicken fajitas cooking flow, scroll horizontally"><table class="trn-table"><caption>Sheet-pan chicken fajitas · ingredient-to-operation cooking flow</caption><tbody><tr><td colspan="5" class="trn-prep">Heat oven to 425°F on bake; use two 18×13-inch half-sheet pans.</td></tr><tr><td colspan="5" class="trn-prep">Prepare lettuce and avocado before raw poultry; keep cold sides and clean tools away from raw-poultry equipment.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>5 oz</strong> Shredded lettuce<small class="trn-state-detail">washed, ready to eat</small></th><td rowspan="2" colspan="3" class="trn-operation">Prepare lettuce and avocado first with clean tools; keep cold.</td><td rowspan="13" colspan="1" class="trn-operation">Plate fajita bowls with cold lettuce, lime-finished filling, avocado and yogurt.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>5.3 oz</strong> Avocado flesh<small class="trn-state-detail">fresh, sliced; flesh weight</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2 tbsp</strong> Olive oil<small class="trn-state-detail">as purchased</small></th><td rowspan="6" colspan="1" class="trn-operation">Mix seasoned oil in a clean bowl before raw chicken.</td><td rowspan="9" colspan="1" class="trn-operation">Toss peppers and onion with half the seasoned oil; coat chicken separately with the rest. Spread on two half-sheet pans in a single layer, pieces apart. Then: Bake at 425°F for 18–22 min; largest chicken strips must reach 165°F. No stir if spaced; swap racks halfway if needed.</td><td rowspan="10" colspan="1" class="trn-operation">Finish cooked fajita filling with lime.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2 tsp</strong> Mild chili powder blend<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tsp</strong> Ground cumin<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tsp</strong> Smoked paprika<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ tsp</strong> Garlic powder<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ tsp</strong> Fine salt<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>10.6 oz</strong> Bell pepper<small class="trn-state-detail">fresh, sliced into ¼-inch strips</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>2.1 oz</strong> Onion<small class="trn-state-detail">fresh, sliced into ¼-inch strips</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>1 ½ lb</strong> Boneless skinless chicken thighs<small class="trn-state-essential">raw, thawed; strips about 1 inch wide, no more than ¾ inch thick</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>2 tbsp</strong> Lime juice<small class="trn-state-detail">fresh or bottled, unsweetened</small></th></tr><tr><th scope="row" colspan="4" class="trn-ingredient"><strong>¼ cup</strong> Plain strained Greek yogurt<small class="trn-state-detail">plain, strained</small></th></tr></tbody></table></div>
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Sheet-pan chicken fajitas cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="5" class="trn-prep">Heat oven to 425°F on bake; use two 18×13-inch half-sheet pans.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>142g</strong> Shredded lettuce<small class="trn-state-detail">washed, ready to eat · Buy by scaled edible weight.</small></th><td rowspan="2" colspan="3" class="trn-operation">Prepare lettuce and avocado.</td><td rowspan="13" colspan="1" class="trn-operation">Plate fajita bowls with cold lettuce, lime-finished filling, avocado and yogurt.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>150g</strong> Avocado flesh<small class="trn-state-detail">sliced; flesh weight</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>27g</strong> Olive oil<small class="trn-state-detail">as purchased · Half of spiced oil on vegetables; half on chicken.</small></th><td rowspan="6" colspan="1" class="trn-operation">Mix oil and seasoning.</td><td rowspan="9" colspan="1" class="trn-operation">Toss peppers and onion with half the seasoned oil; coat chicken separately with the rest. Spread on two half-sheet pans in a single layer, pieces apart. Then: Bake at 425°F for 18–22 min; largest chicken strips must reach 165°F. No stir if spaced; swap racks halfway if needed.</td><td rowspan="10" colspan="1" class="trn-operation">Finish cooked fajita filling with lime.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>5g</strong> Mild chili powder blend<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Ground cumin<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Smoked paprika<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Garlic powder<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>3g</strong> Fine salt<small class="trn-state-detail">Use the proportional split described in the method.</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>300g</strong> Bell pepper<small class="trn-state-detail">sliced into ¼-inch strips · Buy by the scaled edible weight; produce size varies.</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>60g</strong> Onion<small class="trn-state-detail">sliced into ¼-inch strips · Buy by the scaled edible weight; produce size varies.</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>680g</strong> Boneless skinless chicken thighs<small class="trn-state-essential">raw, thawed; strips about 1 inch wide, no more than ¾ inch thick</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>30g</strong> Lime juice<small class="trn-state-detail">unsweetened</small></th></tr><tr><th scope="row" colspan="4" class="trn-ingredient"><strong>60g</strong> Plain strained Greek yogurt<small class="trn-state-detail">plain, strained · At least 9 g protein and no more than 4 g total carbs per 100 g.</small></th></tr></tbody></table></div>
 
 **Ingredients**
 
-- 1 ½ lb (680 g) Boneless skinless chicken thighs — raw, thawed; strips about 1 inch wide, no more than ¾ inch thick
-- 10.6 oz (300 g) Bell pepper — fresh, sliced into ¼-inch strips. Buy by the scaled edible weight; produce size varies.
-- 2.1 oz (60 g) Onion — fresh, sliced into ¼-inch strips. Buy by the scaled edible weight; produce size varies.
-- 2 tbsp (27 g) Olive oil — as purchased. Half of spiced oil on vegetables; half on chicken. All oil counted in nutrition.
-- 2 tsp Mild chili powder blend — dry
-- 1 tsp Ground cumin — dry
-- 1 tsp Smoked paprika — dry
-- ½ tsp Garlic powder — dry
-- ½ tsp Fine salt — dry. Use the proportional split described in the method. Black pepper is to taste.
-- 2 tbsp (30 g) Lime juice — fresh or bottled, unsweetened. Nutrition uses 15 g per tablespoon; use the scaled total.
-- 5 oz (142 g) Shredded lettuce — washed, ready to eat. Buy by scaled edible weight.
-- 5.3 oz (150 g) Avocado flesh — fresh, sliced; flesh weight
-- ¼ cup (60 g) Plain strained Greek yogurt — plain, strained. At least 9 g protein and no more than 4 g total carbs per 100 g; regular yogurt changes nutrition.
+- 680g Boneless skinless chicken thighs — raw, thawed; strips about 1 inch wide, no more than ¾ inch thick
+- 300g Bell pepper — sliced into ¼-inch strips. Buy by the scaled edible weight; produce size varies.
+- 60g Onion — sliced into ¼-inch strips. Buy by the scaled edible weight; produce size varies.
+- 27g Olive oil — as purchased. Half of spiced oil on vegetables; half on chicken.
+- 5g Mild chili powder blend
+- 2g Ground cumin
+- 2g Smoked paprika
+- 2g Garlic powder
+- 3g Fine salt. Use the proportional split described in the method.
+- 30g Lime juice — unsweetened
+- 142g Shredded lettuce — washed, ready to eat. Buy by scaled edible weight.
+- 150g Avocado flesh — sliced; flesh weight
+- 60g Plain strained Greek yogurt — plain, strained. At least 9 g protein and no more than 4 g total carbs per 100 g.
 
 **Equipment and capacity**
 
@@ -540,23 +546,23 @@ These sources support safety, labels or comparable cooking methods; this exact r
 
 <figure class="recipe-illustration"><img src="/media/recipes/salsa-verde-shredded-chicken-960.webp" width="960" height="720" srcset="/media/recipes/salsa-verde-shredded-chicken-480.webp 480w, /media/recipes/salsa-verde-shredded-chicken-960.webp 960w, /media/recipes/salsa-verde-shredded-chicken-1440.webp 1440w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of green-salsa shredded chicken with cabbage slaw and avocado." loading="lazy" decoding="async" /><figcaption>AI-generated illustration; appearance and portions are approximate. Keto base shown; family starch is separate.</figcaption></figure>
 
-About 15 minutes hands-on; 40–45 minutes expected total. Four adult servings. Pressure-cooked thighs get salsa after cooking; cold slaw and rice fit into pressure time.
+About 15 minutes hands-on; 40–45 minutes expected total. Four adult servings. Salsa verde chicken with avocado and cabbage slaw.
 
 **Cooking flow · Tabular Recipe Notation**
 
-<div class="trn-scroll" tabindex="0" role="region" aria-label="Salsa verde shredded chicken cooking flow, scroll horizontally"><table class="trn-table"><caption>Salsa verde shredded chicken · ingredient-to-operation cooking flow</caption><tbody><tr><td colspan="4" class="trn-prep">Use the whole listed thin-broth minimum; follow your model’s higher minimum if required and stay below PC MAX.</td></tr><tr><td colspan="4" class="trn-prep">Pressure countdown starts after pressurization; do not leave the operating cooker unattended.</td></tr><tr><td colspan="4" class="trn-prep">Prepare slaw and avocado during pressure build; keep cold sides away from raw-poultry equipment.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>375 ml</strong> Low-sodium chicken broth<small class="trn-state-detail">thin, water-based</small></th><td rowspan="4" colspan="1" class="trn-operation">Load thin broth, cumin, garlic and separated thighs into Duo 6QT; leave salsa out. Seal; Keep Warm off. Cook on high pressure for 8 min. Then: Leave valve at Seal for 10 min after cooking; vent per manual, clear of steam. Open only after float valve drops. Then: Check thickest thighs for 165°F; if needed finish in liquid and recheck. Lift to clean board and shred; slice or chop safely cooked thighs if resistant.</td><td rowspan="6" colspan="1" class="trn-operation">Mix chicken with salsa, remaining lime and only enough cooked broth to moisten; reserve excess broth, no reduction.</td><td rowspan="10" colspan="1" class="trn-operation">Plate salsa-verde chicken over cold slaw, with avocado.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tsp</strong> Ground cumin<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ tsp</strong> Garlic powder<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 ½ lb</strong> Boneless skinless chicken thighs<small class="trn-state-essential">raw, thawed, separated and unfolded</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>½ cup</strong> Herdez mild salsa verde<small class="trn-state-essential">jarred, added after cooking</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>1 tbsp</strong> Lime juice<small class="trn-state-detail">fresh or bottled, unsweetened</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 lb</strong> Shredded cabbage<small class="trn-state-detail">plain, no carrots or dressing</small></th><td rowspan="3" colspan="2" class="trn-operation">During pressure build, toss cabbage with yogurt and half the lime in a clean bowl; let stand during cooking.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ cup</strong> Plain strained Greek yogurt<small class="trn-state-detail">plain, strained</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tbsp</strong> Lime juice<small class="trn-state-detail">fresh or bottled, unsweetened</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>5.3 oz</strong> Avocado flesh<small class="trn-state-detail">fresh, diced; flesh weight</small></th><td rowspan="1" colspan="2" class="trn-operation">Prepare avocado with clean tools during pressure build; keep separate from raw-poultry equipment.</td></tr></tbody></table></div>
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Salsa verde shredded chicken cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="4" class="trn-prep">Prepare slaw and avocado while pressure builds.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>375 ml</strong> Low-sodium chicken broth<small class="trn-state-detail">thin, water-based · 375 mL base minimum for Instant Pot Duo 6QT; use your model’s minimum.</small></th><td rowspan="4" colspan="1" class="trn-operation">Add broth, cumin, garlic and thighs; reserve salsa. High pressure: 8 min, Keep Warm off. Then: Natural release: 10 min, then vent. Open after the float drops. Then: Cook to 165°F, then shred.</td><td rowspan="6" colspan="1" class="trn-operation">Mix with salsa, remaining lime and enough broth to moisten.</td><td rowspan="10" colspan="1" class="trn-operation">Plate salsa-verde chicken over cold slaw, with avocado.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Ground cumin<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Garlic powder<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>680g</strong> Boneless skinless chicken thighs<small class="trn-state-essential">raw, thawed, separated and unfolded</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>124g</strong> Herdez mild salsa verde<small class="trn-state-essential">jarred, added after cooking · Substitute at most 2 g total carbs per 31 g; add only after pressure cooking.</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>15g</strong> Lime juice<small class="trn-state-detail">unsweetened</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>454g</strong> Shredded cabbage<small class="trn-state-detail">plain, no carrots or dressing</small></th><td rowspan="3" colspan="2" class="trn-operation">Toss cabbage with yogurt and half the lime.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>60g</strong> Plain strained Greek yogurt<small class="trn-state-detail">plain, strained · At least 9 g protein and no more than 4 g total carbs per 100 g.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>15g</strong> Lime juice<small class="trn-state-detail">unsweetened</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>150g</strong> Avocado flesh<small class="trn-state-detail">diced; flesh weight</small></th><td rowspan="1" colspan="2" class="trn-operation">Slice avocado.</td></tr></tbody></table></div>
 
 **Ingredients**
 
-- 1 ½ lb (680 g) Boneless skinless chicken thighs — raw, thawed, separated and unfolded
-- 375 ml Low-sodium chicken broth — thin, water-based. Duo 6QT V5 minimum; use your model’s higher minimum if required and stay below PC MAX. Nutrition conservatively counts all broth. Measure in mL in either mode: US cups and the manual’s nominal cup measure differ. Nutrition uses this minimum; a higher model minimum adds broth nutrients.
-- ½ cup (124 g) Herdez mild salsa verde — jarred, added after cooking. Substitute at most 2 g total carbs per 31 g; add only after pressure cooking.
-- 1 tsp Ground cumin — dry
-- ½ tsp Garlic powder — dry
-- 2 tbsp (30 g) Lime juice — fresh or bottled, unsweetened. Nutrition uses 15 g per tablespoon; use the scaled total.
-- 1 lb (454 g) Shredded cabbage — plain, no carrots or dressing
-- 5.3 oz (150 g) Avocado flesh — fresh, diced; flesh weight
-- ¼ cup (60 g) Plain strained Greek yogurt — plain, strained. At least 9 g protein and no more than 4 g total carbs per 100 g; regular yogurt changes nutrition.
+- 680g Boneless skinless chicken thighs — raw, thawed, separated and unfolded
+- 375 ml Low-sodium chicken broth — thin, water-based. 375 mL base minimum for Instant Pot Duo 6QT; use your model’s minimum.
+- 124g Herdez mild salsa verde — jarred, added after cooking. Substitute at most 2 g total carbs per 31 g; add only after pressure cooking.
+- 2g Ground cumin
+- 2g Garlic powder
+- 30g Lime juice — unsweetened
+- 454g Shredded cabbage — plain, no carrots or dressing
+- 150g Avocado flesh — diced; flesh weight
+- 60g Plain strained Greek yogurt — plain, strained. At least 9 g protein and no more than 4 g total carbs per 100 g.
 
 **Equipment and capacity**
 
@@ -574,7 +580,7 @@ About 15 minutes hands-on; 40–45 minutes expected total. Four adult servings. 
 
 **Family add-on**
 
-- Per non-keto adult: ½ cup (80 g) Cooked rice. About ½ cup per non-keto diner; heat ready-cooked rice. Buy at least 320 g for four.
+- Per non-keto adult: 80g (80 g) Cooked rice. About ½ cup per non-keto diner; heat ready-cooked rice. Buy at least 320 g for four.
 
 **Why it works**
 
@@ -612,27 +618,27 @@ These sources support safety, labels or comparable cooking methods; this exact r
 
 <figure class="recipe-illustration"><img src="/media/recipes/greek-turkey-patties-960.webp" width="960" height="720" srcset="/media/recipes/greek-turkey-patties-480.webp 480w, /media/recipes/greek-turkey-patties-960.webp 960w, /media/recipes/greek-turkey-patties-1440.webp 1440w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of two turkey-feta patties with cucumber, salad greens and yogurt." loading="lazy" decoding="async" /><figcaption>AI-generated illustration; appearance and portions are approximate. Keto base shown; family starch is separate.</figcaption></figure>
 
-About 15 minutes hands-on; 30–40 minutes total. Four adult servings. Eight patties cook across two baskets; serve with cucumber salad and yogurt.
+About 15 minutes hands-on; 30–40 minutes total. Four adult servings. Greek turkey patties with cucumber salad and yogurt.
 
 **Cooking flow · Tabular Recipe Notation**
 
-<div class="trn-scroll" tabindex="0" role="region" aria-label="Greek turkey patties cooking flow, scroll horizontally"><table class="trn-table"><caption>Greek turkey patties · ingredient-to-operation cooking flow</caption><tbody><tr><td colspan="4" class="trn-prep">Preheat both air fryers to 380°F; cold-fit four base-batch patties per basket with gaps (roughly 8×8 inches usable flat space each).</td></tr><tr><td colspan="4" class="trn-prep">Prepare cucumber, greens and lemon yogurt before raw turkey; use clean serving tools.</td></tr><tr><td colspan="4" class="trn-prep">If scaled egg is half an egg: beat one whole egg and weigh about 25 g.</td></tr><tr><td colspan="4" class="trn-prep">If patties do not fit, use half-sheet pan(s) at 425°F for 18–22 min; check every patty for 165°F.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>10.6 oz</strong> Cucumber<small class="trn-state-detail">fresh, diced</small></th><td rowspan="2" colspan="2" class="trn-operation">Prepare cucumber and greens first with clean tools; keep cold.</td><td rowspan="13" colspan="1" class="trn-operation">Plate two cooked turkey patties per adult with cold cucumber, greens and lemon-yogurt sauce.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>5 oz</strong> Salad greens<small class="trn-state-detail">washed, ready to eat</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ cup</strong> Plain strained Greek yogurt<small class="trn-state-detail">plain, strained</small></th><td rowspan="2" colspan="2" class="trn-operation">Mix yogurt with lemon in a clean bowl before raw turkey.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tbsp</strong> Lemon juice<small class="trn-state-detail">fresh or bottled, unsweetened</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 ½ lb</strong> 93%-lean ground turkey<small class="trn-state-essential">raw</small></th><td rowspan="8" colspan="1" class="trn-operation">Mix turkey, egg, flax, feta and seasoning in a raw-poultry bowl just until combined. Then: Form patties about 100 g each, 3¼ inches across and ¾ inch thick; about two per adult.</td><td rowspan="9" colspan="1" class="trn-operation">Lightly oil both baskets; load patties with gaps. Four per basket for base batch only if they fit; do not cram. Then: Air fry at 380°F for 14–18 min, flipping once halfway; each patty must reach 165°F.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 count</strong> Large egg<small class="trn-state-detail">as purchased</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2 tbsp</strong> Ground flaxseed<small class="trn-state-detail">ground, not whole</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>⅓ cup</strong> Crumbled feta<small class="trn-state-detail">as sold</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tsp</strong> Dried oregano<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tsp</strong> Garlic powder<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Fine salt<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>1 tsp</strong> Olive oil<small class="trn-state-detail">as purchased</small></th></tr></tbody></table></div>
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Greek turkey patties cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="4" class="trn-prep">Preheat both air fryers to 380°F. Arrange four patties per basket with gaps.</td></tr><tr><td colspan="4" class="trn-prep">If scaled egg is half an egg: beat one whole egg and weigh about 25 g.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>300g</strong> Cucumber<small class="trn-state-detail">diced</small></th><td rowspan="2" colspan="2" class="trn-operation">Prepare cucumber and greens.</td><td rowspan="13" colspan="1" class="trn-operation">Plate two cooked turkey patties per serving with cold cucumber, greens and lemon-yogurt sauce.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>142g</strong> Salad greens<small class="trn-state-detail">washed, ready to eat · Buy by scaled edible weight.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>120g</strong> Plain strained Greek yogurt<small class="trn-state-detail">plain, strained · At least 9 g protein and no more than 4 g total carbs per 100 g.</small></th><td rowspan="2" colspan="2" class="trn-operation">Mix yogurt and lemon.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>15g</strong> Lemon juice<small class="trn-state-detail">unsweetened</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>680g</strong> 93%-lean ground turkey<small class="trn-state-essential">raw</small></th><td rowspan="8" colspan="1" class="trn-operation">Mix turkey, egg, flax, feta and seasoning just until combined. Then: Form patties about 100 g each, 3¼ inches across and ¾ inch thick; about two per serving.</td><td rowspan="9" colspan="1" class="trn-operation">Lightly oil both baskets; load patties with gaps. Four per basket for base batch only if they fit; do not cram. Then: Air fry at 380°F for 14–18 min, flipping once halfway; each patty must reach 165°F.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>50g</strong> Large egg<small class="trn-state-detail">as purchased · For fractional eggs, beat whole eggs and weigh 50 g per large-egg portion; half an egg is about 25 g.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>14g</strong> Ground flaxseed<small class="trn-state-detail">ground, not whole · Ground seed acts as a binder; whole seeds are not equivalent.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>50g</strong> Crumbled feta<small class="trn-state-detail">as sold · Cheese label and rennet vary.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1g</strong> Dried oregano<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>3g</strong> Garlic powder<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Fine salt<small class="trn-state-detail">Use the proportional split described in the method.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>5g</strong> Olive oil<small class="trn-state-detail">as purchased · Lightly oil baskets.</small></th></tr></tbody></table></div>
 
 **Ingredients**
 
-- 1 ½ lb (680 g) 93%-lean ground turkey — raw
-- 1 count Large egg — as purchased. For fractional eggs, beat whole eggs and weigh 50 g per large-egg portion; half an egg is about 25 g.
-- 2 tbsp (14 g) Ground flaxseed — ground, not whole. Ground seed acts as a binder; whole seeds are not equivalent.
-- ⅓ cup (50 g) Crumbled feta — as sold. Cheese label and rennet vary.
-- 1 tsp Dried oregano — dry
-- 1 tsp Garlic powder — dry
-- ¼ tsp Fine salt — dry. Use the proportional split described in the method. Black pepper is to taste.
-- to taste Black pepper — dry. To taste; quantity unspecified.
-- 1 tsp Olive oil — as purchased. Lightly oil baskets; all oil counted in nutrition.
-- 10.6 oz (300 g) Cucumber — fresh, diced
-- 5 oz (142 g) Salad greens — washed, ready to eat. Buy by scaled edible weight.
-- ½ cup (120 g) Plain strained Greek yogurt — plain, strained. At least 9 g protein and no more than 4 g total carbs per 100 g; regular yogurt changes nutrition.
-- 1 tbsp (15 g) Lemon juice — fresh or bottled, unsweetened. Nutrition uses 15 g per tablespoon; use the scaled total.
+- 680g 93%-lean ground turkey — raw
+- 50g Large egg — as purchased. For fractional eggs, beat whole eggs and weigh 50 g per large-egg portion; half an egg is about 25 g.
+- 14g Ground flaxseed — ground, not whole. Ground seed acts as a binder; whole seeds are not equivalent.
+- 50g Crumbled feta — as sold. Cheese label and rennet vary.
+- 1g Dried oregano
+- 3g Garlic powder
+- 2g Fine salt. Use the proportional split described in the method.
+- to taste Black pepper
+- 5g Olive oil — as purchased. Lightly oil baskets.
+- 300g Cucumber — diced
+- 142g Salad greens — washed, ready to eat. Buy by scaled edible weight.
+- 120g Plain strained Greek yogurt — plain, strained. At least 9 g protein and no more than 4 g total carbs per 100 g.
+- 15g Lemon juice — unsweetened
 
 **Equipment and capacity**
 
@@ -648,8 +654,8 @@ About 15 minutes hands-on; 30–40 minutes total. Four adult servings. Eight pat
 
 **Family add-on**
 
-- Per non-keto adult: 1 count (60 g) Pita. One ready-to-eat 60 g pita per non-keto diner; warm briefly. Contains wheat; check package. Serve pita alongside both patties and salad.
-- Per non-keto adult: 1 count (45 g) Bun. One 45 g ready-to-eat bun per non-keto diner; warm briefly. Contains wheat; check package. The bread accompanies both patties; use a double-patty bun or serve the second patty beside it.
+- Per non-keto adult: 60g (60 g) Pita. One ready-to-eat 60 g pita per non-keto diner; warm briefly. Contains wheat; check package. Serve pita alongside both patties and salad.
+- Per non-keto adult: 45g (45 g) Bun. One 45 g ready-to-eat bun per non-keto diner; warm briefly. Contains wheat; check package. The bread accompanies both patties; use a double-patty bun or serve the second patty beside it.
 
 **Why it works**
 
@@ -687,27 +693,27 @@ These sources support safety, labels or comparable cooking methods; this exact r
 
 <figure class="recipe-illustration"><img src="/media/recipes/tomato-lentil-and-chicken-bake-960.webp" width="960" height="720" srcset="/media/recipes/tomato-lentil-and-chicken-bake-480.webp 480w, /media/recipes/tomato-lentil-and-chicken-bake-960.webp 960w, /media/recipes/tomato-lentil-and-chicken-bake-1440.webp 1440w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of a moist tomato, lentil and chicken bake with spinach and feta." loading="lazy" decoding="async" /><figcaption>AI-generated illustration; appearance and portions are approximate.</figcaption></figure>
 
-About 10 minutes hands-on; 35–40 minutes total. Four adult servings. A covered, moist bake reheats already-cooked chicken with lentils and tomato.
+About 10 minutes hands-on; 35–40 minutes total. Four adult servings. Chicken and lentils baked in tomato sauce.
 
 **Cooking flow · Tabular Recipe Notation**
 
-<div class="trn-scroll" tabindex="0" role="region" aria-label="Tomato, lentil, and chicken bake cooking flow, scroll horizontally"><table class="trn-table"><caption>Tomato, lentil, and chicken bake · ingredient-to-operation cooking flow</caption><tbody><tr><td colspan="4" class="trn-prep">Preheat oven to 425°F (bake). Use a shallow 13×9-inch metal baking dish, foil and an instant-read thermometer.</td></tr><tr><td colspan="4" class="trn-prep">Use fully cooked, refrigerated chicken chopped no larger than ¾ inch; raw chicken, dry lentils and frozen chicken blocks are not substitutes. Drain and rinse canned lentils; retain tomato juice; roughly chop fresh spinach.</td></tr><tr><td colspan="4" class="trn-prep">Keep the mixed bake no more than 1 inch deep; split into shallow dishes if needed.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>16.9 oz</strong> Canned cooked lentils<small class="trn-state-essential">drained and rinsed</small></th><td rowspan="10" colspan="1" class="trn-operation">Mix in shallow metal baking dish</td><td rowspan="11" colspan="1" class="trn-operation">Fold in fully cooked chicken; spread and gently press to an even layer ≤1 inch deep Then: Cover tightly with foil; bake at 425°F about 20–25 min, until center and several chicken pieces reach 165°F; continue if needed</td><td rowspan="13" colspan="1" class="trn-operation">Finish baked mixture with lemon and feta Then: Plate finished meal: divide the moist bake equally among selected adult portions</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>14.5 oz</strong> Canned diced tomatoes<small class="trn-state-detail">with juice, room temperature</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>5 oz</strong> Baby spinach<small class="trn-state-detail">fresh, roughly chopped</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tbsp</strong> Olive oil<small class="trn-state-detail">as purchased</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tsp</strong> Smoked paprika<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tsp</strong> Ground cumin<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ tsp</strong> Garlic powder<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ tsp</strong> Dried oregano<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Fine salt<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>12 oz</strong> Fully cooked chicken breast<small class="trn-state-detail">plain, refrigerated, chopped no larger than ¾ inch</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>1 tbsp</strong> Lemon juice<small class="trn-state-detail">fresh or bottled, unsweetened</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>2.1 oz</strong> Crumbled feta<small class="trn-state-detail">as sold</small></th></tr></tbody></table></div>
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Tomato, lentil, and chicken bake cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="4" class="trn-prep">Preheat oven to 425°F (bake). Use a shallow 13×9-inch metal baking dish, foil and an instant-read thermometer.</td></tr><tr><td colspan="4" class="trn-prep">Use fully cooked, refrigerated chicken chopped no larger than ¾ inch; raw chicken, dry lentils and frozen chicken blocks are not substitutes. Drain and rinse canned lentils; retain tomato juice; roughly chop spinach.</td></tr><tr><td colspan="4" class="trn-prep">Keep the mixed bake no more than 1 inch deep; split into shallow dishes if needed.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>480g</strong> Canned cooked lentils<small class="trn-state-essential">drained and rinsed · Drained weight; canned yield varies. · About 2 × 15 oz (425 g) cans, assuming ~240 g drained per can; check actual yield.</small></th><td rowspan="10" colspan="1" class="trn-operation">Mix in shallow metal baking dish.</td><td rowspan="11" colspan="1" class="trn-operation">Fold in fully cooked chicken; spread and gently press to an even layer ≤1 inch deep. Then: Cover tightly with foil; bake at 425°F about 20–25 min, until center and several chicken pieces reach 165°F; continue if needed.</td><td rowspan="13" colspan="1" class="trn-operation">Finish baked mixture with lemon and feta. Then: Plate finished meal: divide the moist bake equally among selected portions.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>411g</strong> Canned diced tomatoes<small class="trn-state-essential">with juice, room temperature · do not drain. · Buy 1 × 14.5 oz (411 g) cans; measure out the required weight.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>142g</strong> Baby spinach<small class="trn-state-detail">roughly chopped</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>14g</strong> Olive oil<small class="trn-state-detail">as purchased · Mix into the bake.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Smoked paprika<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Ground cumin<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Garlic powder<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ tsp</strong> Dried oregano<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Fine salt<small class="trn-state-detail">Use the proportional split described in the method.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>340g</strong> Fully cooked chicken breast<small class="trn-state-essential">plain, refrigerated, chopped no larger than ¾ inch · Already fully cooked; raw chicken is not a substitute.</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>15g</strong> Lemon juice<small class="trn-state-detail">unsweetened</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>60g</strong> Crumbled feta<small class="trn-state-detail">as sold · Cheese label and rennet vary.</small></th></tr></tbody></table></div>
 
 **Ingredients**
 
-- 12 oz (340 g) Fully cooked chicken breast — plain, refrigerated, chopped no larger than ¾ inch. Already fully cooked; raw chicken is not a substitute.
-- 16.9 oz (480 g) Canned cooked lentils — drained and rinsed. Drained weight; canned yield varies.
-- 14.5 oz (411 g) Canned diced tomatoes — with juice, room temperature. do not drain.
-- 5 oz (142 g) Baby spinach — fresh, roughly chopped
-- 1 tbsp (13.5 g) Olive oil — as purchased. Mix into the bake; all oil counted in nutrition.
-- 1 tsp Smoked paprika — dry
-- 1 tsp Ground cumin — dry
-- ½ tsp Garlic powder — dry
-- ½ tsp Dried oregano — dry
-- ¼ tsp Fine salt — dry. Use the proportional split described in the method. Black pepper is to taste.
-- to taste Black pepper — dry. To taste; quantity unspecified.
-- 1 tbsp (15 g) Lemon juice — fresh or bottled, unsweetened. Nutrition uses 15 g per tablespoon; use the scaled total.
-- 2.1 oz (60 g) Crumbled feta — as sold. Cheese label and rennet vary.
+- 340g Fully cooked chicken breast — plain, refrigerated, chopped no larger than ¾ inch. Already fully cooked; raw chicken is not a substitute.
+- 480g Canned cooked lentils — drained and rinsed. Drained weight; canned yield varies.
+- 411g Canned diced tomatoes — with juice, room temperature. do not drain.
+- 142g Baby spinach — roughly chopped
+- 14g Olive oil — as purchased. Mix into the bake.
+- 2g Smoked paprika
+- 2g Ground cumin
+- 2g Garlic powder
+- ½ tsp Dried oregano
+- 2g Fine salt. Use the proportional split described in the method.
+- to taste Black pepper
+- 15g Lemon juice — unsweetened
+- 60g Crumbled feta — as sold. Cheese label and rennet vary.
 
 **Equipment and capacity**
 
@@ -753,26 +759,26 @@ These sources support safety, labels or comparable cooking methods; this exact r
 
 <figure class="recipe-illustration"><img src="/media/recipes/harissa-chickpea-and-cauliflower-bowls-960.webp" width="960" height="720" srcset="/media/recipes/harissa-chickpea-and-cauliflower-bowls-480.webp 480w, /media/recipes/harissa-chickpea-and-cauliflower-bowls-960.webp 960w, /media/recipes/harissa-chickpea-and-cauliflower-bowls-1440.webp 1440w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of chickpeas and roasted cauliflower over harissa yogurt with hemp hearts." loading="lazy" decoding="async" /><figcaption>AI-generated illustration; appearance and portions are approximate.</figcaption></figure>
 
-About 12 minutes hands-on; 35–40 minutes total. Four adult servings. Roasted chickpeas and cauliflower get a full protein portion of strained yogurt.
+About 12 minutes hands-on; 35–40 minutes total. Four adult servings. Harissa chickpeas and cauliflower with yogurt.
 
 **Cooking flow · Tabular Recipe Notation**
 
-<div class="trn-scroll" tabindex="0" role="region" aria-label="Harissa chickpea and cauliflower bowls cooking flow, scroll horizontally"><table class="trn-table"><caption>Harissa chickpea and cauliflower bowls · ingredient-to-operation cooking flow</caption><tbody><tr><td colspan="4" class="trn-prep">Preheat oven to 425°F (bake); use two 18×13-inch half-sheet pans. Drain, rinse and thoroughly pat chickpeas dry; use fresh cauliflower florets about 1 inch across and washed salad greens.</td></tr><tr><td colspan="4" class="trn-prep">Use the specified Mina mild harissa and the full scaled strained-yogurt amount. Hot concentrated pastes and regular yogurt change the recipe and nutrition.</td></tr><tr><td colspan="4" class="trn-prep">Preserve uncrowded single-layer spacing. For six/eight servings use extra pans or base-size batches; original cook times apply to the four-serving batch and extra pans or rounds can extend elapsed time.</td></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>16.9 oz</strong> Canned chickpeas<small class="trn-state-essential">drained, rinsed, patted dry</small></th><td rowspan="6" colspan="1" class="trn-operation">Toss dried chickpeas and cauliflower thoroughly; spread uncrowded across two pans Then: Roast on two half-sheet pans at 425°F about 22–25 min; stir once and swap racks halfway; cauliflower tender and browned, chickpeas soft inside</td><td rowspan="14" colspan="1" class="trn-operation">Plate finished meal: divide all cold yogurt sauce equally among plates; add greens and roast, then hemp</td></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>1 ½ lb</strong> Cauliflower florets<small class="trn-state-detail">fresh, about 1 inch across</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2 tbsp</strong> Olive oil<small class="trn-state-detail">as purchased</small></th><td rowspan="4" colspan="1" class="trn-operation">Mix roasting dressing</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2 tbsp</strong> Mina mild harissa<small class="trn-state-essential">jarred</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tsp</strong> Ground cumin<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Fine salt<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2 ½ cup</strong> Plain strained Greek yogurt<small class="trn-state-detail">plain, strained</small></th><td rowspan="6" colspan="2" class="trn-operation">During roasting, mix cold yogurt sauce in a separate bowl</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2 tbsp</strong> Mina mild harissa<small class="trn-state-essential">jarred</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Fine salt<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2 tbsp</strong> Lemon juice<small class="trn-state-detail">fresh or bottled, unsweetened</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ tsp</strong> Garlic powder<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>5 oz</strong> Salad greens<small class="trn-state-detail">washed, ready to eat</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>2 tbsp</strong> Hemp hearts<small class="trn-state-detail">hulled</small></th></tr></tbody></table></div>
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Harissa chickpea and cauliflower bowls cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="4" class="trn-prep">Preheat oven to 425°F (bake); use two 18×13-inch half-sheet pans. Drain, rinse and thoroughly pat chickpeas dry; use cauliflower florets about 1 inch across and washed salad greens.</td></tr><tr><td colspan="4" class="trn-prep">Use the specified Mina mild harissa and the full scaled strained-yogurt amount.</td></tr><tr><td colspan="4" class="trn-prep">Keep ingredients in a single layer. For 6 or 8 servings, use extra pans or cook in batches.</td></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>480g</strong> Canned chickpeas<small class="trn-state-essential">drained, rinsed, patted dry · Drained weight; canned yield varies. · About 2 × 15 oz (425 g) cans, assuming ~240 g drained per can; check actual yield.</small></th><td rowspan="6" colspan="1" class="trn-operation">Toss dried chickpeas and cauliflower thoroughly; spread uncrowded across two pans. Then: Roast on two half-sheet pans at 425°F about 22–25 min; stir once and swap racks halfway; cauliflower tender and browned, chickpeas soft inside.</td><td rowspan="14" colspan="1" class="trn-operation">Plate finished meal: divide all cold yogurt sauce equally among plates; add greens and roast, then hemp.</td></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>680g</strong> Cauliflower florets<small class="trn-state-detail">about 1 inch across</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>27g</strong> Olive oil<small class="trn-state-detail">as purchased · Mix with harissa.</small></th><td rowspan="4" colspan="1" class="trn-operation">Mix roasting dressing.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>30g</strong> Mina mild harissa<small class="trn-state-essential">jarred · Measured Mina mild harissa; half for roasting and half for yogurt. Hot concentrated pastes are not equivalent.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Ground cumin<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Fine salt<small class="trn-state-detail">Half for roasting and half for the yogurt sauce.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>600g</strong> Plain strained Greek yogurt<small class="trn-state-detail">plain, strained · At least 9 g protein and no more than 4 g total carbs per 100 g.</small></th><td rowspan="6" colspan="2" class="trn-operation">During roasting, mix cold yogurt sauce in a separate bowl.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>30g</strong> Mina mild harissa<small class="trn-state-essential">jarred · Measured Mina mild harissa; half for roasting and half for yogurt. Hot concentrated pastes are not equivalent.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Fine salt<small class="trn-state-detail">Half for roasting and half for the yogurt sauce.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>30g</strong> Lemon juice<small class="trn-state-detail">unsweetened</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Garlic powder<small class="trn-state-detail">For yogurt sauce.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail">To taste in yogurt.</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>142g</strong> Salad greens<small class="trn-state-detail">washed, ready to eat · Buy by scaled edible weight.</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>20g</strong> Hemp hearts<small class="trn-state-detail">hulled · Use hulled hemp hearts in the measured portion.</small></th></tr></tbody></table></div>
 
 **Ingredients**
 
-- 16.9 oz (480 g) Canned chickpeas — drained, rinsed, patted dry. Drained weight; canned yield varies.
-- 1 ½ lb (680 g) Cauliflower florets — fresh, about 1 inch across
-- 2 tbsp (27 g) Olive oil — as purchased. Mix with harissa; all oil counted in nutrition.
-- 4 tbsp (60 g) Mina mild harissa — jarred. Measured Mina mild harissa; half for roasting and half for yogurt. Hot concentrated pastes are not equivalent.
-- 1 tsp Ground cumin — dry
-- ½ tsp Garlic powder — dry. For yogurt sauce.
-- ½ tsp Fine salt — dry. Half for roasting and half for the yogurt sauce.
-- to taste Black pepper — dry. To taste in yogurt.
-- 2 ½ cup (600 g) Plain strained Greek yogurt — plain, strained. At least 9 g protein and no more than 4 g total carbs per 100 g; regular yogurt changes nutrition.
-- 2 tbsp (30 g) Lemon juice — fresh or bottled, unsweetened. Nutrition uses 15 g per tablespoon; use the scaled total.
-- 2 tbsp (20 g) Hemp hearts — hulled. Use hulled hemp hearts in the measured portion.
-- 5 oz (142 g) Salad greens — washed, ready to eat. Buy by scaled edible weight.
+- 480g Canned chickpeas — drained, rinsed, patted dry. Drained weight; canned yield varies.
+- 680g Cauliflower florets — about 1 inch across
+- 27g Olive oil — as purchased. Mix with harissa.
+- 60g Mina mild harissa — jarred. Measured Mina mild harissa; half for roasting and half for yogurt. Hot concentrated pastes are not equivalent.
+- 2g Ground cumin
+- 2g Garlic powder. For yogurt sauce.
+- 3g Fine salt. Half for roasting and half for the yogurt sauce.
+- to taste Black pepper. To taste in yogurt.
+- 600g Plain strained Greek yogurt — plain, strained. At least 9 g protein and no more than 4 g total carbs per 100 g.
+- 30g Lemon juice — unsweetened
+- 20g Hemp hearts — hulled. Use hulled hemp hearts in the measured portion.
+- 142g Salad greens — washed, ready to eat. Buy by scaled edible weight.
 
 **Equipment and capacity**
 
@@ -818,25 +824,25 @@ These sources support safety, labels or comparable cooking methods; this exact r
 
 <figure class="recipe-illustration"><img src="/media/recipes/lemon-chicken-potatoes-and-green-beans-960.webp" width="960" height="720" srcset="/media/recipes/lemon-chicken-potatoes-and-green-beans-480.webp 480w, /media/recipes/lemon-chicken-potatoes-and-green-beans-960.webp 960w, /media/recipes/lemon-chicken-potatoes-and-green-beans-1440.webp 1440w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of lemon-oregano chicken, roasted baby potatoes and green beans." loading="lazy" decoding="async" /><figcaption>AI-generated illustration; appearance and portions are approximate.</figcaption></figure>
 
-About 15 minutes hands-on; 35–45 minutes total. Four adult servings. Microwave potatoes while prepping, then roast with chicken and add beans after 10 minutes.
+About 15 minutes hands-on; 35–45 minutes total. Four adult servings. Lemon chicken with potatoes and green beans.
 
 **Cooking flow · Tabular Recipe Notation**
 
-<div class="trn-scroll" tabindex="0" role="region" aria-label="Lemon chicken, potatoes, and green beans cooking flow, scroll horizontally"><table class="trn-table"><caption>Lemon chicken, potatoes, and green beans · ingredient-to-operation cooking flow</caption><tbody><tr><td colspan="6" class="trn-prep">Preheat oven to 425°F (bake). Use two 18×13-inch half-sheet pans, a vented microwave-safe dish, a roughly 1000 W microwave and an instant-read thermometer.</td></tr><tr><td colspan="6" class="trn-prep">Before handling raw chicken, mix oil, oregano, garlic, zest and pepper in a clean bowl. Reserve half for drained potatoes, one quarter for beans and one quarter for chicken; give each one third of the salt. Use separate bowls and keep vegetables and their tools away from raw-poultry juices.</td></tr><tr><td colspan="6" class="trn-prep">Use thawed, unfolded thighs ≤¾ inch thick; cut potatoes no larger than ¾ inch and trim beans. Keep potatoes and beans in separate single-layer areas on one vegetable pan and chicken on its own pan.</td></tr><tr><td colspan="6" class="trn-prep">Check that beans fit the reserved half-pan without a dense pile; extra pans or rounds can add time. For six/eight servings microwave potatoes in separate base-size loads until fork-tender; microwave time does not scale linearly.</td></tr><tr><td colspan="6" class="trn-prep">Start chicken and potatoes together; at roast minute 10 add beans to their reserved area and swap racks. Remove each component at its own endpoint.</td></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>1 ½ lb</strong> Boneless skinless chicken thighs<small class="trn-state-essential">raw, thawed, unfolded; no more than ¾ inch thick</small></th><td rowspan="7" colspan="3" class="trn-operation">Coat raw chicken in its separate bowl with reserved seasoning and one third of salt; unfold onto its own pan Then: Roast chicken on separate pan at 425°F for 20–25 min, until thickest pieces reach 165°F; remove when ready</td><td rowspan="24" colspan="1" class="trn-operation">Plate finished meal: serve cooked chicken beside vegetables; finish all with lemon juice</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ tbsp</strong> Olive oil<small class="trn-state-detail">as purchased</small></th><td rowspan="5" colspan="1" class="trn-operation">Use reserved quarter of clean-bowl seasoning mix</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Dried oregano<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Garlic powder<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Lemon zest<small class="trn-state-detail">finely grated</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>¼ tsp</strong> Fine salt<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 ¼ lb</strong> Baby potatoes<small class="trn-state-detail">fresh, cut no larger than ¾ inch</small></th><td rowspan="2" colspan="1" class="trn-operation">Microwave in vented dish on high about 6–8 min at ~1000 W until just fork-tender; carefully uncover and drain</td><td rowspan="8" colspan="1" class="trn-operation">Coat drained potatoes with reserved seasoning and one third of salt Then: Spread on half the vegetable pan, reserve other half; start with chicken and roast at 425°F for 10 min</td><td rowspan="15" colspan="1" class="trn-operation">Keep beans and potatoes in separate areas; roast at 425°F another 10–15 min until both tender; remove each when ready</td><td rowspan="16" colspan="1" class="trn-operation">Sprinkle yeast over cooked vegetables</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2 tbsp</strong> Water<small class="trn-state-detail">potable</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tbsp</strong> Olive oil<small class="trn-state-detail">as purchased</small></th><td rowspan="5" colspan="1" class="trn-operation">Use reserved half of clean-bowl seasoning mix</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ tsp</strong> Dried oregano<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ tsp</strong> Garlic powder<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ tsp</strong> Lemon zest<small class="trn-state-detail">finely grated</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>¼ tsp</strong> Fine salt<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>1 lb</strong> Green beans<small class="trn-state-detail">fresh, trimmed</small></th><td rowspan="7" colspan="1" class="trn-operation">Coat beans in separate clean bowl with reserved seasoning and one third of salt; set aside until minute 10 Then: Add beans to reserved vegetable-pan area at roast minute 10; swap racks</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ tbsp</strong> Olive oil<small class="trn-state-detail">as purchased</small></th><td rowspan="5" colspan="1" class="trn-operation">Use reserved quarter of clean-bowl seasoning mix</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Dried oregano<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Garlic powder<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Lemon zest<small class="trn-state-detail">finely grated</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>¼ tsp</strong> Fine salt<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="4" class="trn-ingredient"><strong>2 tbsp</strong> Nutritional yeast<small class="trn-state-detail">flakes</small></th></tr><tr><th scope="row" colspan="5" class="trn-ingredient"><strong>2 tbsp</strong> Lemon juice<small class="trn-state-detail">fresh or bottled, unsweetened</small></th></tr></tbody></table></div>
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Lemon chicken, potatoes, and green beans cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="6" class="trn-prep">Preheat oven to 425°F (bake). Use two 18×13-inch half-sheet pans, a vented microwave-safe dish, a roughly 1000 W microwave and an instant-read thermometer.</td></tr><tr><td colspan="6" class="trn-prep">Mix oil, oregano, garlic, zest and pepper. Reserve half for potatoes, one quarter for beans and one quarter for chicken; give each one third of the salt.</td></tr><tr><td colspan="6" class="trn-prep">Use thawed, unfolded thighs ≤¾ inch thick; cut potatoes no larger than ¾ inch and trim beans. Keep potatoes and beans in separate single-layer areas on one vegetable pan and chicken on its own pan.</td></tr><tr><td colspan="6" class="trn-prep">For 6 or 8 servings, microwave potatoes in batches until fork-tender.</td></tr><tr><td colspan="6" class="trn-prep">Start chicken and potatoes together; at roast minute 10 add beans to their reserved area and swap racks. Remove each component at its own endpoint.</td></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>680g</strong> Boneless skinless chicken thighs<small class="trn-state-essential">raw, thawed, unfolded; no more than ¾ inch thick</small></th><td rowspan="7" colspan="3" class="trn-operation">Coat chicken with reserved seasoning and one third of salt; unfold onto its own pan. Then: Roast chicken on separate pan at 425°F for 20–25 min, until thickest pieces reach 165°F; remove when ready.</td><td rowspan="24" colspan="1" class="trn-operation">Plate finished meal: serve cooked chicken beside vegetables; finish all with lemon juice.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>7g</strong> Olive oil<small class="trn-state-detail">as purchased · Half to potatoes; one quarter each to beans and chicken.</small></th><td rowspan="5" colspan="1" class="trn-operation">Use reserved quarter of seasoning mix.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Dried oregano<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Garlic powder<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Lemon zest<small class="trn-state-detail">finely grated · Use finely grated zest.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>2g</strong> Fine salt<small class="trn-state-detail">Use the proportional split described in the method.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>567g</strong> Baby potatoes<small class="trn-state-detail">cut no larger than ¾ inch</small></th><td rowspan="2" colspan="1" class="trn-operation">Microwave in vented dish on high about 6–8 min at ~1000 W until just fork-tender; carefully uncover and drain.</td><td rowspan="8" colspan="1" class="trn-operation">Coat drained potatoes with reserved seasoning and one third of salt. Then: Spread on half the vegetable pan, reserve other half; start with chicken and roast at 425°F for 10 min.</td><td rowspan="15" colspan="1" class="trn-operation">Keep beans and potatoes in separate areas; roast at 425°F another 10–15 min until both tender; remove each when ready.</td><td rowspan="16" colspan="1" class="trn-operation">Sprinkle yeast over cooked vegetables.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2 tbsp</strong> Water<small class="trn-state-essential">potable · Microwave steaming water; drain before roasting.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>14g</strong> Olive oil<small class="trn-state-detail">as purchased · Half to potatoes; one quarter each to beans and chicken.</small></th><td rowspan="5" colspan="1" class="trn-operation">Use reserved half of seasoning mix.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ tsp</strong> Dried oregano<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Garlic powder<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1g</strong> Lemon zest<small class="trn-state-detail">finely grated · Use finely grated zest.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>2g</strong> Fine salt<small class="trn-state-detail">Use the proportional split described in the method.</small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>454g</strong> Green beans<small class="trn-state-detail">trimmed</small></th><td rowspan="7" colspan="1" class="trn-operation">Coat beans with reserved seasoning and one third of salt; set aside until minute 10. Then: Add beans to reserved vegetable-pan area at roast minute 10; swap racks.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>7g</strong> Olive oil<small class="trn-state-detail">as purchased · Half to potatoes; one quarter each to beans and chicken.</small></th><td rowspan="5" colspan="1" class="trn-operation">Use reserved quarter of seasoning mix.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Dried oregano<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Garlic powder<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Lemon zest<small class="trn-state-detail">finely grated · Use finely grated zest.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>2g</strong> Fine salt<small class="trn-state-detail">Use the proportional split described in the method.</small></th></tr><tr><th scope="row" colspan="4" class="trn-ingredient"><strong>8g</strong> Nutritional yeast<small class="trn-state-detail">flakes · Add after cooking.</small></th></tr><tr><th scope="row" colspan="5" class="trn-ingredient"><strong>30g</strong> Lemon juice<small class="trn-state-detail">unsweetened</small></th></tr></tbody></table></div>
 
 **Ingredients**
 
-- 1 ½ lb (680 g) Boneless skinless chicken thighs — raw, thawed, unfolded; no more than ¾ inch thick
-- 1 ¼ lb (567 g) Baby potatoes — fresh, cut no larger than ¾ inch
-- 1 lb (454 g) Green beans — fresh, trimmed
-- 2 tbsp (27 g) Olive oil — as purchased. Half to potatoes; one quarter each to beans and chicken. All oil counted in nutrition.
-- 1 tsp Dried oregano — dry
-- 1 tsp Garlic powder — dry
-- ¾ tsp Fine salt — dry. Use the proportional split described in the method. Black pepper is to taste.
-- to taste Black pepper — dry. To taste; quantity unspecified.
-- 1 tsp Lemon zest — finely grated. Use finely grated zest.
-- 2 tbsp (30 g) Lemon juice — fresh or bottled, unsweetened. Nutrition uses 15 g per tablespoon; use the scaled total.
-- 2 tbsp (8 g) Nutritional yeast — flakes. Add after cooking; brand density varies.
+- 680g Boneless skinless chicken thighs — raw, thawed, unfolded; no more than ¾ inch thick
+- 567g Baby potatoes — cut no larger than ¾ inch
+- 454g Green beans — trimmed
+- 27g Olive oil — as purchased. Half to potatoes; one quarter each to beans and chicken.
+- 1g Dried oregano
+- 3g Garlic powder
+- 5g Fine salt. Use the proportional split described in the method.
+- to taste Black pepper
+- 2g Lemon zest — finely grated. Use finely grated zest.
+- 30g Lemon juice — unsweetened
+- 8g Nutritional yeast — flakes. Add after cooking.
 - 2 tbsp (30 ml) Water — potable. Microwave steaming water; drain before roasting.
 
 **Equipment and capacity**
@@ -888,27 +894,27 @@ These sources support safety, labels or comparable cooking methods; this exact r
 
 <figure class="recipe-illustration"><img src="/media/recipes/sheet-pan-gnocchi-white-beans-and-broccoli-960.webp" width="960" height="720" srcset="/media/recipes/sheet-pan-gnocchi-white-beans-and-broccoli-480.webp 480w, /media/recipes/sheet-pan-gnocchi-white-beans-and-broccoli-960.webp 960w, /media/recipes/sheet-pan-gnocchi-white-beans-and-broccoli-1440.webp 1440w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of roasted gnocchi, white beans, broccoli, tomatoes and Parmesan." loading="lazy" decoding="async" /><figcaption>AI-generated illustration; appearance and portions are approximate.</figcaption></figure>
 
-About 12 minutes hands-on; 40–45 minutes total. Four adult servings. Shelf-stable gnocchi roasts without boiling; beans join midway to avoid drying.
+About 12 minutes hands-on; 40–45 minutes total. Four adult servings. Roasted gnocchi, white beans and broccoli.
 
 **Cooking flow · Tabular Recipe Notation**
 
-<div class="trn-scroll" tabindex="0" role="region" aria-label="Sheet-pan gnocchi, white beans, and broccoli cooking flow, scroll horizontally"><table class="trn-table"><caption>Sheet-pan gnocchi, white beans, and broccoli · ingredient-to-operation cooking flow</caption><tbody><tr><td colspan="5" class="trn-prep">Preheat oven to 425°F (bake); use two 18×13-inch half-sheet pans. Use shelf-stable, unfrozen gnocchi; do not boil first. Drain and rinse canned beans; use fresh broccoli florets about 1½ inches across.</td></tr><tr><td colspan="5" class="trn-prep">Preserve uncrowded single-layer spacing. For six/eight servings use extra pans or base-size batches; original cook times apply to the four-serving batch and extra pans or rounds can extend elapsed time.</td></tr><tr><td colspan="5" class="trn-prep">Use the full scaled Parmesan amount: half incorporated while warm and half divided among plates. Cheese rennet varies; check the label if vegetarian food is required.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 lb</strong> DeLallo potato gnocchi<small class="trn-state-essential">shelf-stable, not frozen</small></th><td rowspan="8" colspan="1" class="trn-operation">Toss and divide across two half-sheet pans; gnocchi remain unboiled Then: Roast at 425°F for 12 min on two half-sheet pans</td><td rowspan="10" colspan="1" class="trn-operation">At minute 12 add oiled beans to both pans, stir everything once and swap racks Then: Continue roasting at 425°F for 13–18 min (25–30 min total), until gnocchi centers tender and broccoli tender and browned Then: Press a few softened tomatoes with serving spoon; toss their juices through gnocchi and beans</td><td rowspan="13" colspan="1" class="trn-operation">While warm, toss in yeast, lemon and half the Parmesan</td><td rowspan="15" colspan="1" class="trn-operation">Plate finished meal: divide equally among selected adult portions; top with remaining half of Parmesan and hemp</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 lb</strong> Broccoli florets<small class="trn-state-detail">fresh, about 1½ inches across</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>10.6 oz</strong> Cherry tomatoes<small class="trn-state-detail">fresh</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2 tbsp</strong> Olive oil<small class="trn-state-detail">as purchased</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tsp</strong> Dried oregano<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>½ tsp</strong> Garlic powder<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>¼ tsp</strong> Fine salt<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail">dry</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>16.9 oz</strong> Canned cannellini beans<small class="trn-state-essential">drained and rinsed</small></th><td rowspan="2" colspan="1" class="trn-operation">Toss drained, rinsed beans with remaining one third of oil</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1 tbsp</strong> Olive oil<small class="trn-state-detail">as purchased</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>1 tbsp</strong> Nutritional yeast<small class="trn-state-detail">flakes</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>1 tbsp</strong> Lemon juice<small class="trn-state-detail">fresh or bottled, unsweetened</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>1.8 oz</strong> Pre-grated Parmesan<small class="trn-state-detail">as sold</small></th></tr><tr><th scope="row" colspan="4" class="trn-ingredient"><strong>1.8 oz</strong> Pre-grated Parmesan<small class="trn-state-detail">as sold</small></th></tr><tr><th scope="row" colspan="4" class="trn-ingredient"><strong>2 tbsp</strong> Hemp hearts<small class="trn-state-detail">hulled</small></th></tr></tbody></table></div>
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Sheet-pan gnocchi, white beans, and broccoli cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="5" class="trn-prep">Preheat oven to 425°F (bake); use two 18×13-inch half-sheet pans. Use shelf-stable, unfrozen gnocchi; do not boil first. Drain and rinse canned beans; use broccoli florets about 1½ inches across.</td></tr><tr><td colspan="5" class="trn-prep">Keep ingredients in a single layer. For 6 or 8 servings, use extra pans or cook in batches.</td></tr><tr><td colspan="5" class="trn-prep">Add half the Parmesan while warm; divide the rest among plates.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>454g</strong> DeLallo potato gnocchi<small class="trn-state-essential">shelf-stable, not frozen · Buy 1 × 16 oz (454 g) packages; measure out the required weight.</small></th><td rowspan="8" colspan="1" class="trn-operation">Toss and divide across two half-sheet pans; gnocchi remain unboiled. Then: Roast at 425°F for 12 min on two half-sheet pans.</td><td rowspan="10" colspan="1" class="trn-operation">At minute 12 add oiled beans to both pans, stir everything once and swap racks. Then: Continue roasting at 425°F for 13–18 min (25–30 min total), until gnocchi centers tender and broccoli tender and browned. Then: Press a few softened tomatoes with serving spoon; toss their juices through gnocchi and beans.</td><td rowspan="13" colspan="1" class="trn-operation">While warm, toss in yeast, lemon and half the Parmesan.</td><td rowspan="15" colspan="1" class="trn-operation">Plate finished meal: divide equally among selected portions; top with remaining half of Parmesan and hemp.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>454g</strong> Broccoli florets<small class="trn-state-detail">about 1½ inches across</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>300g</strong> Cherry tomatoes<small class="trn-state-detail">Buy by the scaled edible weight; produce size varies.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>27g</strong> Olive oil<small class="trn-state-detail">as purchased · Two thirds for first roast; one third with beans midway.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1g</strong> Dried oregano<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Garlic powder<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Fine salt<small class="trn-state-detail">Use the proportional split described in the method.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>480g</strong> Canned cannellini beans<small class="trn-state-essential">drained and rinsed · Drained weight; canned yield varies. · About 2 × 15 oz (425 g) cans, assuming ~240 g drained per can; check actual yield.</small></th><td rowspan="2" colspan="1" class="trn-operation">Toss drained, rinsed beans with remaining one third of oil.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>14g</strong> Olive oil<small class="trn-state-detail">as purchased · Two thirds for first roast; one third with beans midway.</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>4g</strong> Nutritional yeast<small class="trn-state-detail">flakes · Add after cooking.</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>15g</strong> Lemon juice<small class="trn-state-detail">unsweetened</small></th></tr><tr><th scope="row" colspan="3" class="trn-ingredient"><strong>50g</strong> Pre-grated Parmesan<small class="trn-state-detail">as sold · Required for stated protein; check rennet label if vegetarian food is needed.</small></th></tr><tr><th scope="row" colspan="4" class="trn-ingredient"><strong>50g</strong> Pre-grated Parmesan<small class="trn-state-detail">as sold · Required for stated protein; check rennet label if vegetarian food is needed.</small></th></tr><tr><th scope="row" colspan="4" class="trn-ingredient"><strong>20g</strong> Hemp hearts<small class="trn-state-detail">hulled · Use hulled hemp hearts in the measured portion.</small></th></tr></tbody></table></div>
 
 **Ingredients**
 
-- 1 lb (454 g) DeLallo potato gnocchi — shelf-stable, not frozen. brand and style affect timing and nutrition.
-- 16.9 oz (480 g) Canned cannellini beans — drained and rinsed. Drained weight; canned yield varies.
-- 1 lb (454 g) Broccoli florets — fresh, about 1½ inches across
-- 10.6 oz (300 g) Cherry tomatoes — fresh. Buy by the scaled edible weight; produce size varies.
-- 3 tbsp (40.5 g) Olive oil — as purchased. Two thirds for first roast; one third with beans midway. All oil counted in nutrition.
-- 1 tsp Dried oregano — dry
-- ½ tsp Garlic powder — dry
-- ¼ tsp Fine salt — dry. Use the proportional split described in the method. Black pepper is to taste.
-- to taste Black pepper — dry. To taste; quantity unspecified.
-- 1 tbsp Nutritional yeast — flakes. Add after cooking; brand density varies.
-- 1 tbsp (15 g) Lemon juice — fresh or bottled, unsweetened. Nutrition uses 15 g per tablespoon; use the scaled total.
-- 2 tbsp (20 g) Hemp hearts — hulled. Use hulled hemp hearts in the measured portion.
-- 3.5 oz (100 g) Pre-grated Parmesan — as sold. Required for stated protein; check rennet label if vegetarian food is needed.
+- 454g DeLallo potato gnocchi — shelf-stable, not frozen
+- 480g Canned cannellini beans — drained and rinsed. Drained weight; canned yield varies.
+- 454g Broccoli florets — about 1½ inches across
+- 300g Cherry tomatoes. Buy by the scaled edible weight; produce size varies.
+- 41g Olive oil — as purchased. Two thirds for first roast; one third with beans midway.
+- 1g Dried oregano
+- 2g Garlic powder
+- 2g Fine salt. Use the proportional split described in the method.
+- to taste Black pepper
+- 4g Nutritional yeast — flakes. Add after cooking.
+- 15g Lemon juice — unsweetened
+- 20g Hemp hearts — hulled. Use hulled hemp hearts in the measured portion.
+- 100g Pre-grated Parmesan — as sold. Required for stated protein; check rennet label if vegetarian food is needed.
 
 **Equipment and capacity**
 
@@ -968,3 +974,274 @@ Reuse chicken thighs, broccoli, cauliflower, bagged greens, Greek yogurt, lemons
 Refrigerate cooked food in shallow containers within two hours, or one hour above 90°F. Use refrigerated leftovers within 3–4 days; freeze what you will not eat in that window. Reheat to 165°F. These limits follow [USDA storage guidance](https://ask.fsis.usda.gov/article/How-do-I-handle-leftovers-safely) and the [FoodSafety.gov temperature chart](https://www.foodsafety.gov/food-safety-charts/safe-minimum-internal-temperatures).
 
 Keep greens and yogurt sauces separate from cooked leftovers. Portion the cooked main before adding rice or bread so tomorrow's keto serving remains easy to identify.
+
+<!-- recipe-generated:recipe:pan-fried-greek-turkey-patties:begin -->
+
+<div id="pan-fried-greek-turkey-patties"></div>
+
+### Pan-fried Greek turkey patties
+
+<figure class="recipe-illustration"><img src="/media/recipes/greek-turkey-patties-960.webp" width="960" height="720" srcset="/media/recipes/greek-turkey-patties-480.webp 480w, /media/recipes/greek-turkey-patties-960.webp 960w, /media/recipes/greek-turkey-patties-1440.webp 1440w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of two turkey-feta patties with cucumber, salad greens and yogurt." loading="lazy" decoding="async" /><figcaption>AI-generated illustration; appearance and portions are approximate. Keto base shown; family starch is separate.</figcaption></figure>
+
+About 30 minutes hands-on; 35–40 minutes total. Four adult servings. Pan-fried turkey-feta patties with cucumber salad and lemon yogurt.
+
+**Cooking flow · Tabular Recipe Notation**
+
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Pan-fried Greek turkey patties cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="4" class="trn-prep">Heat a 12-inch nonstick frying pan over medium heat. Cook four patties per batch.</td></tr><tr><td colspan="4" class="trn-prep">If scaled egg is half an egg: beat one whole egg and weigh about 25 g.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>300g</strong> Cucumber<small class="trn-state-detail">diced</small></th><td rowspan="2" colspan="2" class="trn-operation">Prepare cucumber and greens.</td><td rowspan="13" colspan="1" class="trn-operation">Plate two cooked turkey patties per serving with cold cucumber, greens and lemon-yogurt sauce.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>142g</strong> Salad greens<small class="trn-state-detail">washed, ready to eat · Buy by scaled edible weight.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>120g</strong> Plain strained Greek yogurt<small class="trn-state-detail">plain, strained · At least 9 g protein and no more than 4 g total carbs per 100 g.</small></th><td rowspan="2" colspan="2" class="trn-operation">Mix yogurt and lemon.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>15g</strong> Lemon juice<small class="trn-state-detail">unsweetened</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>680g</strong> 93%-lean ground turkey<small class="trn-state-essential">raw</small></th><td rowspan="8" colspan="1" class="trn-operation">Mix turkey, egg, flax, feta and seasoning just until combined. Then: Form patties about 100 g each, 3¼ inches across and ¾ inch thick; about two per serving.</td><td rowspan="9" colspan="1" class="trn-operation">Divide oil between batches; add oil and four patties to the heated pan. Then: Pan-fry 5–6 min per side over medium heat until each patty reaches 165°F. Cook in batches of four.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>50g</strong> Large egg<small class="trn-state-detail">as purchased · For fractional eggs, beat whole eggs and weigh 50 g per large-egg portion; half an egg is about 25 g.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>14g</strong> Ground flaxseed<small class="trn-state-detail">ground, not whole · Ground seed acts as a binder; whole seeds are not equivalent.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>50g</strong> Crumbled feta<small class="trn-state-detail">as sold · Cheese label and rennet vary.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>1g</strong> Dried oregano<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>3g</strong> Garlic powder<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>2g</strong> Fine salt<small class="trn-state-detail">Use the proportional split described in the method.</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>to taste</strong> Black pepper<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="2" class="trn-ingredient"><strong>5g</strong> Olive oil<small class="trn-state-detail">as purchased · Divide among batches.</small></th></tr></tbody></table></div>
+
+**Ingredients**
+
+- 680g 93%-lean ground turkey — raw
+- 50g Large egg — as purchased. For fractional eggs, beat whole eggs and weigh 50 g per large-egg portion; half an egg is about 25 g.
+- 14g Ground flaxseed — ground, not whole. Ground seed acts as a binder; whole seeds are not equivalent.
+- 50g Crumbled feta — as sold. Cheese label and rennet vary.
+- 1g Dried oregano
+- 3g Garlic powder
+- 2g Fine salt. Use the proportional split described in the method.
+- to taste Black pepper
+- 5g Olive oil — as purchased. Divide among batches.
+- 300g Cucumber — diced
+- 142g Salad greens — washed, ready to eat. Buy by scaled edible weight.
+- 120g Plain strained Greek yogurt — plain, strained. At least 9 g protein and no more than 4 g total carbs per 100 g.
+- 15g Lemon juice — unsweetened
+
+**Equipment and capacity**
+
+- Stovetop and 12-inch nonstick frying pan
+- Instant-read thermometer
+- Mixing bowl
+
+**Method**
+
+1. **Prepare.** Mix yogurt with lemon. Prepare cucumber and greens. Mix turkey, egg, flax, feta and seasoning just until combined. Form about two patties per serving about 100 g each, 3¼ inches across and ¾ inch thick.
+2. **Pan-fry.** Heat a 12-inch nonstick frying pan over medium heat. Divide the oil among batches. Add oil and up to four patties at a time. Cook 5–6 minutes per side, until every patty reaches 165°F. Repeat until all patties are cooked.
+3. **Serve.** Serve two patties per person with cucumber, greens and lemon yogurt. Serve the selected bread alongside.
+
+**Family add-on**
+
+- Per non-keto adult: 60g (60 g) Pita. One ready-to-eat 60 g pita per non-keto diner; warm briefly. Contains wheat; check package. Serve pita alongside both patties and salad.
+- Per non-keto adult: 45g (45 g) Bun. One 45 g ready-to-eat bun per non-keto diner; warm briefly. Contains wheat; check package. The bread accompanies both patties; use a double-patty bun or serve the second patty beside it.
+
+**Why it works**
+
+Ground flax binds the turkey; feta and lemon yogurt keep a lean patty from tasting flat.
+
+- Mix turkey lightly to keep patties tender.
+- Use a nonstick pan and divide the measured oil between batches.
+
+**First-cook checks and limits**
+
+- Larger servings require more batches.
+
+**Sources**
+
+- [USDA FoodData Central source data](https://fdc.nal.usda.gov/download-datasets/)
+- [FoodSafety.gov safe minimum temperatures](https://www.foodsafety.gov/food-safety-charts/safe-minimum-internal-temperatures)
+- [USDA poultry handling guidance](https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/poultry/chicken-farm-table)
+
+These sources support safety, labels or comparable cooking methods; this exact recipe has not been kitchen-tested.
+
+<!-- recipe-generated:recipe:pan-fried-greek-turkey-patties:end -->
+
+<!-- recipe-generated:recipe:avocado-lime-smoothie:begin -->
+
+<div id="avocado-lime-smoothie"></div>
+
+### Avocado-lime smoothie
+
+<figure class="recipe-illustration"><img src="/media/recipes/avocado-lime-smoothie.svg" width="512" height="384" srcset="/media/recipes/avocado-lime-smoothie.svg 512w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of avocado-lime smoothie in a glass." loading="lazy" decoding="async" /><figcaption>Smoothie illustration.</figcaption></figure>
+
+About 5 minutes hands-on; 5–5 minutes total. Four adult servings. A creamy avocado-lime smoothie with plain Greek yogurt and no added sugar.
+
+**Cooking flow · Tabular Recipe Notation**
+
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Avocado-lime smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Prepare fruit and vegetables as listed; use chilled ingredients.</td></tr><tr><td colspan="2" class="trn-prep">Blend two servings at a time in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>400g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, about 2% fat</small></th><td rowspan="6" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>240g</strong> Avocado flesh<small class="trn-state-detail">peeled, pitted</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>200g</strong> Cucumber<small class="trn-state-detail">trimmed, chopped</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>20g</strong> Lime juice<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>28g</strong> Ground flaxseed<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>13.5 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
+
+**Ingredients**
+
+- 400g Plain lowfat Greek yogurt — plain, unsweetened, about 2% fat
+- 240g Avocado flesh — peeled, pitted
+- 200g Cucumber — trimmed, chopped
+- 20g Lime juice
+- 28g Ground flaxseed
+- 13.5 fl oz (400 ml) Cold water
+
+**Equipment and capacity**
+
+- Blender with at least 1.5 L capacity; blend two servings per batch
+
+**Method**
+
+1. **Prepare.** Peel avocado or banana, trim cucumber, and hull strawberries as applicable. Weigh the edible ingredients.
+2. **Blend.** Blend in batches of up to two servings, adding water first, for 30–60 seconds per batch until smooth.
+3. **Serve.** Divide among serving glasses and serve chilled.
+
+**Why it works**
+
+Greek yogurt gives the smoothie body and a tangy finish.
+
+- Pour water in first for easier blending.
+- Use chilled or frozen fruit for a cold smoothie.
+
+**First-cook checks and limits**
+
+- Larger servings need additional blender batches.
+
+**Sources**
+
+- [USDA FoodData Central ingredient profiles](https://fdc.nal.usda.gov/)
+
+These sources support safety, labels or comparable cooking methods; this exact recipe has not been kitchen-tested.
+
+<!-- recipe-generated:recipe:avocado-lime-smoothie:end -->
+
+<!-- recipe-generated:recipe:strawberry-avocado-smoothie:begin -->
+
+<div id="strawberry-avocado-smoothie"></div>
+
+### Strawberry-avocado smoothie
+
+<figure class="recipe-illustration"><img src="/media/recipes/strawberry-avocado-smoothie.svg" width="512" height="384" srcset="/media/recipes/strawberry-avocado-smoothie.svg 512w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of strawberry-avocado smoothie in a glass." loading="lazy" decoding="async" /><figcaption>Smoothie illustration.</figcaption></figure>
+
+About 5 minutes hands-on; 5–5 minutes total. Four adult servings. A creamy strawberry-avocado smoothie with plain Greek yogurt and no added sugar.
+
+**Cooking flow · Tabular Recipe Notation**
+
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Strawberry-avocado smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Prepare fruit and vegetables as listed; use chilled ingredients.</td></tr><tr><td colspan="2" class="trn-prep">Blend two servings at a time in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>400g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, about 2% fat</small></th><td rowspan="5" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>200g</strong> Avocado flesh<small class="trn-state-detail">peeled, pitted</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>200g</strong> Strawberries<small class="trn-state-detail">hulled</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>28g</strong> Ground flaxseed<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>13.5 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
+
+**Ingredients**
+
+- 400g Plain lowfat Greek yogurt — plain, unsweetened, about 2% fat
+- 200g Avocado flesh — peeled, pitted
+- 200g Strawberries — hulled
+- 28g Ground flaxseed
+- 13.5 fl oz (400 ml) Cold water
+
+**Equipment and capacity**
+
+- Blender with at least 1.5 L capacity; blend two servings per batch
+
+**Method**
+
+1. **Prepare.** Peel avocado or banana, trim cucumber, and hull strawberries as applicable. Weigh the edible ingredients.
+2. **Blend.** Blend in batches of up to two servings, adding water first, for 30–60 seconds per batch until smooth.
+3. **Serve.** Divide among serving glasses and serve chilled.
+
+**Why it works**
+
+Greek yogurt gives the smoothie body and a tangy finish.
+
+- Pour water in first for easier blending.
+- Use chilled or frozen fruit for a cold smoothie.
+
+**First-cook checks and limits**
+
+- Larger servings need additional blender batches.
+
+**Sources**
+
+- [USDA FoodData Central ingredient profiles](https://fdc.nal.usda.gov/)
+
+These sources support safety, labels or comparable cooking methods; this exact recipe has not been kitchen-tested.
+
+<!-- recipe-generated:recipe:strawberry-avocado-smoothie:end -->
+
+<!-- recipe-generated:recipe:strawberry-banana-smoothie:begin -->
+
+<div id="strawberry-banana-smoothie"></div>
+
+### Strawberry-banana smoothie
+
+<figure class="recipe-illustration"><img src="/media/recipes/strawberry-banana-smoothie.svg" width="512" height="384" srcset="/media/recipes/strawberry-banana-smoothie.svg 512w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of strawberry-banana smoothie in a glass." loading="lazy" decoding="async" /><figcaption>Smoothie illustration.</figcaption></figure>
+
+About 5 minutes hands-on; 5–5 minutes total. Four adult servings. A creamy strawberry-banana smoothie with plain Greek yogurt and no added sugar.
+
+**Cooking flow · Tabular Recipe Notation**
+
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Strawberry-banana smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Prepare fruit and vegetables as listed; use chilled ingredients.</td></tr><tr><td colspan="2" class="trn-prep">Blend two servings at a time in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>600g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, about 2% fat</small></th><td rowspan="4" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>600g</strong> Strawberries<small class="trn-state-detail">hulled</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>400g</strong> Banana<small class="trn-state-detail">peeled, sliced</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>13.5 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
+
+**Ingredients**
+
+- 600g Plain lowfat Greek yogurt — plain, unsweetened, about 2% fat
+- 600g Strawberries — hulled
+- 400g Banana — peeled, sliced
+- 13.5 fl oz (400 ml) Cold water
+
+**Equipment and capacity**
+
+- Blender with at least 1.5 L capacity; blend two servings per batch
+
+**Method**
+
+1. **Prepare.** Peel avocado or banana, trim cucumber, and hull strawberries as applicable. Weigh the edible ingredients.
+2. **Blend.** Blend in batches of up to two servings, adding water first, for 30–60 seconds per batch until smooth.
+3. **Serve.** Divide among serving glasses and serve chilled.
+
+**Why it works**
+
+Greek yogurt gives the smoothie body and a tangy finish.
+
+- Pour water in first for easier blending.
+- Use chilled or frozen fruit for a cold smoothie.
+
+**First-cook checks and limits**
+
+- Larger servings need additional blender batches.
+
+**Sources**
+
+- [USDA FoodData Central ingredient profiles](https://fdc.nal.usda.gov/)
+
+These sources support safety, labels or comparable cooking methods; this exact recipe has not been kitchen-tested.
+
+<!-- recipe-generated:recipe:strawberry-banana-smoothie:end -->
+
+<!-- recipe-generated:recipe:banana-flax-smoothie:begin -->
+
+<div id="banana-flax-smoothie"></div>
+
+### Banana-flax smoothie
+
+<figure class="recipe-illustration"><img src="/media/recipes/banana-flax-smoothie.svg" width="512" height="384" srcset="/media/recipes/banana-flax-smoothie.svg 512w" sizes="(max-width:600px) 340px, 640px" alt="Illustration of banana-flax smoothie in a glass." loading="lazy" decoding="async" /><figcaption>Smoothie illustration.</figcaption></figure>
+
+About 5 minutes hands-on; 5–5 minutes total. Four adult servings. A creamy banana-flax smoothie with plain Greek yogurt and no added sugar.
+
+**Cooking flow · Tabular Recipe Notation**
+
+<div class="trn-scroll" tabindex="0" role="region" aria-label="Banana-flax smoothie cooking flow, scroll horizontally"><table class="trn-table"><tbody><tr><td colspan="2" class="trn-prep">Prepare fruit and vegetables as listed; use chilled ingredients.</td></tr><tr><td colspan="2" class="trn-prep">Blend two servings at a time in a 1.5 L blender.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>600g</strong> Plain lowfat Greek yogurt<small class="trn-state-detail">plain, unsweetened, about 2% fat</small></th><td rowspan="4" colspan="1" class="trn-operation">Blend in batches of up to two servings for 30–60 sec per batch, until smooth. Then: Divide among serving glasses and serve chilled.</td></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>480g</strong> Banana<small class="trn-state-detail">peeled, sliced</small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>40g</strong> Ground flaxseed<small class="trn-state-detail"></small></th></tr><tr><th scope="row" colspan="1" class="trn-ingredient"><strong>13.5 fl oz</strong> Cold water<small class="trn-state-detail"></small></th></tr></tbody></table></div>
+
+**Ingredients**
+
+- 600g Plain lowfat Greek yogurt — plain, unsweetened, about 2% fat
+- 480g Banana — peeled, sliced
+- 40g Ground flaxseed
+- 13.5 fl oz (400 ml) Cold water
+
+**Equipment and capacity**
+
+- Blender with at least 1.5 L capacity; blend two servings per batch
+
+**Method**
+
+1. **Prepare.** Peel avocado or banana, trim cucumber, and hull strawberries as applicable. Weigh the edible ingredients.
+2. **Blend.** Blend in batches of up to two servings, adding water first, for 30–60 seconds per batch until smooth.
+3. **Serve.** Divide among serving glasses and serve chilled.
+
+**Why it works**
+
+Greek yogurt gives the smoothie body and a tangy finish.
+
+- Pour water in first for easier blending.
+- Use chilled or frozen fruit for a cold smoothie.
+
+**First-cook checks and limits**
+
+- Larger servings need additional blender batches.
+
+**Sources**
+
+- [USDA FoodData Central ingredient profiles](https://fdc.nal.usda.gov/)
+
+These sources support safety, labels or comparable cooking methods; this exact recipe has not been kitchen-tested.
+
+<!-- recipe-generated:recipe:banana-flax-smoothie:end -->

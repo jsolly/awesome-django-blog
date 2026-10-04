@@ -9,5 +9,5 @@ function writeGenerated(file,content){
  else writeFileSync(file,content);
 }
 writeGenerated(new URL('recipe-library.json',root),JSON.stringify(bundle,null,2)+'\n');
-writeGenerated(new URL('recipe-library.md',root),'# Fast dinners recipe library\n\nTwelve complete four-adult-serving recipes. Keto bases are shown without family starch; separate measured per-person options are included below each shared recipe. Small seasoning amounts use spoon measures. Recipes are newly designed and not kitchen-tested.\n\n'+bundle.recipes.map(d=>documentMarkdown(d,2)).join('\n---\n\n'));
+writeGenerated(new URL('recipe-library.md',root),`# Easy Meals recipe library\n\n${recipes.length} complete four-serving recipes. Keto bases are shown without family starch; separate measured per-person options are included below each shared recipe. Small seasoning amounts use spoon measures. Recipes are newly designed and not kitchen-tested.\n\n`+bundle.recipes.map(d=>documentMarkdown(d,2)).join('\n---\n\n'));
 console.log('Synchronized assistant JSON and Markdown.');

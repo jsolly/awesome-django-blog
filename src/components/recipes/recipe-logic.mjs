@@ -4,7 +4,6 @@ const SERVINGS = new Set([2, 4, 6, 8]);
 const NUTRIENTS = ['kcal', 'protein_g', 'carbs_g', 'fiber_g', 'net_carbs_g'];
 
 const finite = (value) => typeof value === 'number' && Number.isFinite(value);
-const clean = (value) => String(value ?? '').trim().toLocaleLowerCase();
 
 export function validateSettings(settings = {}) {
   const servings = SERVINGS.has(Number(settings?.servings)) ? Number(settings.servings) : BASE_SERVINGS;
@@ -52,6 +51,8 @@ export function formatIngredient(ingredient, servings, units = 'metric') {
   const amount = ingredientAmount(ingredient, servings);
   if (!Number.isFinite(amount)) return '—';
   if (amount === 0) return 'to taste';
+  const grams = ingredient.unit === 'g' ? amount : amount * ingredient.gramsPerUnit;
+  if (Number.isFinite(grams) && grams >= 1) return `${Math.round(grams)}g`;
   const hasUS = (units === 'us' || ingredient.displayMeasure === 'spoon')
     && finite(ingredient?.us?.amount) && ingredient.us.unit;
   const displayAmount = hasUS && ingredient.amount
@@ -77,36 +78,16 @@ export function temperature(fahrenheit, units = 'us', safety = false) {
   return `${shown}°C (${original})`;
 }
 
-export function filterRecipes(recipes, filters = {}) {
-  const {
-    query = '', group = '', appliance = '', maxActive = 0, maxTotal = 0,
-    proteinType = '', avoidAllergens = [], booster = '', sort = 'active', maxInterventions = -1, familyDiners = 0, familyChoice = {},
-  } = filters;
-  const words = clean(query).split(/\s+/).filter(Boolean);
-  const avoided = new Set((Array.isArray(avoidAllergens) ? avoidAllergens : []).map(clean));
-  return (Array.isArray(recipes) ? recipes : []).filter((recipe) => {
-    if (group && recipe.group !== group) return false;
-    if (appliance && recipe.appliance !== appliance) return false;
-    if (proteinType && (proteinType === 'vegetarian'
-      ? recipe.vegetarian !== true
-      : recipe.proteinType !== proteinType)) return false;
-    if (booster && !(recipe.boosters ?? []).some((item) => clean(item) === clean(booster))) return false;
-    if (Number(maxInterventions)>=0 && (!finite(recipe.midCookActions)||recipe.midCookActions>Number(maxInterventions))) return false;
-    if (Number(maxActive) > 0 && (!finite(recipe.activeMinutes) || recipe.activeMinutes > Number(maxActive))) return false;
-    if (Number(maxTotal) > 0 && (recipe.timeVariable || !finite(recipe.totalMax) || recipe.totalMax > Number(maxTotal))) return false;
-    const option = Number(familyDiners)>0 && recipe.group==='shared' ? ((recipe.familyOptions??[]).find(o=>o.id===familyChoice?.[recipe.id]) || recipe.familyOptions?.[0]) : null;
-    if ([...(recipe.allergens ?? []),...(option?.allergens??[])].some((allergen) => avoided.has(clean(allergen)))) return false;
-    const text = clean([recipe.title, recipe.key, ...(recipe.ingredients ?? []).map((i) => i.name)].join(' '));
-    return words.every((word) => text.includes(word));
-  }).sort((a, b) => {
-    if (sort === 'protein') return (b.nutrition?.protein_g ?? 0) - (a.nutrition?.protein_g ?? 0) || a.title.localeCompare(b.title);
-    const key = sort === 'total' ? 'totalMax' : 'activeMinutes';
-    return (a[key] ?? Infinity) - (b[key] ?? Infinity) || a.title.localeCompare(b.title);
-  });
+/** Shuffle a copy once per visit, preserving the canonical recipe collection. */
+export function shuffleRecipes(recipes, random = Math.random) {
+ const result = [...recipes];
+ for (let i=result.length-1;i>0;i--) {
+  const j=Math.floor(random()*(i+1));
+  [result[i],result[j]]=[result[j],result[i]];
+ }
+ return result;
 }
 
-
-/** Fixed liquid minimums can change nutrition per adult in smaller batches. */
 export function servingNutrition(recipe,servings=4){
  const count=validateSettings({servings}).servings;
  const result={...recipe.nutrition};
@@ -127,63 +108,6 @@ export function familyNutrition(recipe, choiceId, servings=4) {
     key,
     Number(recipe ? servingNutrition(recipe,servings)[key] : 0) + Number(option?.nutrition?.[key] ?? 0),
   ]));
-}
-
-/** Repeated foods combine only when their identity, food state, and measure agree. */
-export function shoppingList(recipes, selectedIds, settings = {}) {
-  const { servings, familyDiners } = validateSettings(settings);
-  const chosen = new Set(Array.isArray(selectedIds) ? selectedIds : []);
-  const familyChoice = settings?.familyChoice && typeof settings.familyChoice === 'object'
-    ? settings.familyChoice : {};
-  const lines = new Map();
-  const add = (item, amount, us) => {
-    if (!finite(amount) || amount < 0) return;
-    const state = item.state ?? '';
-    const key = JSON.stringify([item.id, state, item.unit]);
-    const current = lines.get(key);
-    if (!current) {
-      lines.set(key, {
-        id: item.id, name: item.name, state, amount, unit: item.unit,
-        category: item.category ?? '', note: item.note ?? '', ...(item.displayMeasure?{displayMeasure:item.displayMeasure}:{}), ...(item.package?{package:item.package}:{}),
-        ...(us ? { us: { amount: us.amount, unit: us.unit } } : {}),
-      });
-      return;
-    }
-    current.amount += amount;
-    if (current.displayMeasure !== item.displayMeasure) delete current.displayMeasure;
-    if (item.note && !current.note.split(' · ').includes(item.note)) {
-      current.note = [current.note, item.note].filter(Boolean).join(' · ');
-    }
-    if (current.us && us && current.us.unit === us.unit
-      && Math.abs(current.us.amount / (current.amount - amount) - us.amount / amount) < 0.0001) {
-      current.us.amount += us.amount;
-    } else { delete current.us; delete current.displayMeasure; }
-  };
-
-  for (const recipe of Array.isArray(recipes) ? recipes : []) {
-    if (!chosen.has(recipe.id)) continue;
-    for (const ingredient of recipe.ingredients ?? []) {
-      const amount = ingredientAmount(ingredient, servings);
-      const us = ingredient.us?.amount && ingredient.amount
-        ? { amount: ingredient.us.amount * amount / ingredient.amount, unit: ingredient.us.unit }
-        : undefined;
-      add(ingredient, amount, us);
-    }
-    if (recipe.group !== 'shared' || familyDiners === 0) continue;
-    const options = recipe.familyOptions ?? [];
-    const option = options.find((item) => item.id === familyChoice[recipe.id]) ?? options[0];
-    if (!option) continue;
-    add({
-      id: option.ingredientId ?? option.id,
-      name: option.ingredientName ?? option.label,
-      state: option.state ?? '', unit: option.unit, category: option.category,
-      note: option.note,
-    }, Number(option.amount) * familyDiners,
-    finite(option.us?.amount) && option.us.unit
-      ? { amount: option.us.amount * familyDiners, unit: option.us.unit }
-      : undefined);
-  }
-  return [...lines.values()].sort((a, b) => a.category.localeCompare(b.category) || a.name.localeCompare(b.name));
 }
 
 export function capacityNote(servings) {

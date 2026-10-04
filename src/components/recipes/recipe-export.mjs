@@ -1,4 +1,6 @@
 import {validateSettings,formatIngredient,servingNutrition,familyNutrition,capacityNote,purchaseNote} from './recipe-logic.mjs';
+import {dailyNutrition} from './nutrition.mjs';
+import {ingredientAmount} from './recipe-logic.mjs';
 import {flowGrid,gridHtml} from './trn-logic.mjs';
 import {cookText} from './display-units.mjs';
 export const recipeDisclaimer='These newly designed recipes have not been cooked, tasted or stopwatch-tested. Nutrition is an ingredient estimate, not laboratory analysis. Sources support safety, labels or comparable methods; they do not validate this exact recipe.';
@@ -13,7 +15,7 @@ export function recipeDocument(recipe, settings={}) {
  const grid=flowGrid(recipe,valid);
  const ingredients=recipe.ingredients.map(i=>({quantity:formatIngredient(i,servings,units),name:i.name,state:text(i.state),note:text([i.note,purchaseNote(i,servings)].filter(Boolean).join(' · '))}));
  const familyIngredient=option?{quantity:formatIngredient({...option,amount:option.amount*familyDiners,us:option.us?{...option.us,amount:option.us.amount*familyDiners}:undefined,scale:'fixed'},4,units),name:option.ingredientName,state:text(option.state),note:text(option.note),choiceId:option.id}:null;
- return {recipeId:recipe.id,title:recipe.title,group:recipe.group,servings,units,familyDiners,
+ return {dailyNutrition:dailyNutrition(recipe,servings,ingredientAmount),recipeId:recipe.id,type:recipe.type||'meal',title:recipe.title,group:recipe.group,servings,units,familyDiners,
   cookingFlow:{notation:'Tabular Recipe Notation (TRN)',prep:grid.prep,columns:grid.columns,rows:grid.rows.map(r=>r.cells)},
   summary:recipe.summary,activeMinutes:recipe.activeMinutes,
   totalTime:`${recipe.totalMin}–${recipe.totalMax}${servings>4?'+':''} min${servings>4?' / base batch':''}${recipe.timeVariable?' expected; pressure buildup can take longer':''}`,

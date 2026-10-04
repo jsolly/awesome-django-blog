@@ -40,7 +40,7 @@ before(async () => {
     if (failDownload && url.pathname === '/recipes-pwa/icon-512.png') { response.writeHead(503).end(); return; }
     try {
       let body = await readFile(path);
-      const types = { '.html': 'text/html', '.js': 'application/javascript', '.css': 'text/css', '.json': 'application/json', '.webmanifest': 'application/manifest+json', '.png': 'image/png', '.webp': 'image/webp', '.ico': 'image/x-icon', '.woff2': 'font/woff2' };
+      const types = { '.html': 'text/html', '.js': 'application/javascript', '.css': 'text/css', '.json': 'application/json', '.webmanifest': 'application/manifest+json', '.png': 'image/png', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.woff2': 'font/woff2' };
       response.writeHead(200, { 'Content-Type': types[extname(path)] ?? 'text/plain', 'Cache-Control': 'no-store' }).end(body);
     } catch { response.writeHead(404).end(); }
   });
@@ -59,7 +59,7 @@ for (const [name, viewport] of [['desktop', { width: 1280, height: 900 }], ['mob
     page.on('console', message => { if (['warning', 'error'].includes(message.type())) errors.push(message.text()); });
     try {
       await page.goto(`${origin}${recipeRoute}`);
-      await page.getByText('Recipes saved for offline use.', { exact: false }).waitFor();
+      await page.getByText('Recipes saved for offline use.', { exact: false }).waitFor({ state: 'attached' });
       await page.waitForFunction(() => navigator.serviceWorker.controller);
       const metadata = await page.evaluate(async () => {
         const manifest = await fetch(document.querySelector('link[rel="manifest"]').href).then(r => r.json());
@@ -75,19 +75,12 @@ for (const [name, viewport] of [['desktop', { width: 1280, height: 900 }], ['mob
       }
       await context.setOffline(true);
       await page.reload();
-      await page.getByText('You are offline.', { exact: false }).waitFor();
-      await page.getByRole('combobox', { name: 'Adult servings', exact: true }).selectOption('2');
-      await page.getByRole('combobox', { name: 'Measurements', exact: true }).selectOption('metric');
-      await page.getByRole('searchbox', { name: 'Search meals or ingredients' }).fill('salmon');
-      await page.waitForFunction(() => document.querySelectorAll('.recipe-card').length === 1);
-      await page.getByRole('checkbox', { name: /Add to plan/ }).check();
-      assert.ok(await page.locator('.groceries li').count() > 0);
-      await page.getByRole('button', { name: /See recipe/ }).click();
-      await page.getByRole('button', { name: 'Cooking view', exact: true }).click();
+      await page.getByText('You are offline.', { exact: false }).waitFor({ state: 'attached' });
+      await page.getByRole('combobox', { name: 'Servings', exact: true }).selectOption('2');
+      await page.locator('.recipe-card').filter({hasText:'Lemon salmon and asparagus'}).getByRole('button',{name:/See recipe/}).click();
       assert.ok(await page.locator('.recipe-detail').isVisible());
       assert.ok(await page.locator('.recipe-detail .trn-table').count() > 0);
       await page.waitForFunction(() => [...document.querySelectorAll('.recipe-detail img')].every(image => image.complete && image.naturalWidth > 0));
-      await page.getByRole('button', { name: 'Exit cooking view', exact: true }).click();
       assert.equal(await page.evaluate(async () => (await fetch('/data/recipe-library.json')).status), 200);
       assert.equal(await page.evaluate(async () => (await fetch('/data/recipe-library.md')).status), 200);
       await page.emulateMedia({ media: 'print' });
@@ -96,18 +89,89 @@ for (const [name, viewport] of [['desktop', { width: 1280, height: 900 }], ['mob
       if (process.env.PWA_SCREENSHOTS) {
         await mkdir('.migration-work/pwa', { recursive: true });
         await page.screenshot({ path: `.migration-work/pwa/${name}-offline.png`, fullPage: true });
-        await page.getByRole('button', { name: '← Back to dinners', exact: true }).click();
+        await page.getByRole('button', { name: '← Back to recipes', exact: true }).click();
         await page.evaluate(() => window.scrollTo(0, 0));
         await page.screenshot({ path: `.migration-work/pwa/${name}.png` });
       }
       // Changing the recipe URL's query or fragment still opens the cached app.
-      await page.goto(`${origin}${recipeRoute}?cooking=1#shopping-list`);
-      await page.getByRole('combobox', { name: 'Adult servings', exact: true }).waitFor();
-      assert.equal(await page.getByRole('combobox', { name: 'Adult servings', exact: true }).inputValue(), '2');
+      await page.goto(`${origin}${recipeRoute}?cooking=1#meal-results`);
+      await page.getByRole('combobox', { name: 'Servings', exact: true }).waitFor();
+      assert.equal(await page.getByRole('combobox', { name: 'Servings', exact: true }).inputValue(), '2');
       assert.deepEqual(errors, []);
       await context.setOffline(false);
       await page.goto(`${origin}/`);
       assert.equal(await page.evaluate(() => navigator.serviceWorker.controller), null);
+    } finally { await context.close(); }
+  });
+}
+
+for (const width of [390, 1280]) {
+  test(`Easy Meals preserves filters and recipe navigation at ${width}px`, { timeout: 60000 }, async () => {
+    const context = await browser.newContext({ viewport: { width, height: 984 } });
+    const page = await context.newPage();
+    const errors = [];
+    page.on('pageerror', error => errors.push(String(error)));
+    const ready = () => page.locator('[data-hydrated=true]').waitFor();
+    const stored = () => page.evaluate(() => JSON.parse(localStorage.getItem('blogthedata-recipes-v2')));
+    try {
+      await page.goto(`${origin}${recipeRoute}`); await ready();
+      await page.getByRole('button', { name: /^Protein:/ }).click();
+      await page.getByRole('checkbox', { name: 'Fish', exact: true }).check();
+      await page.getByRole('checkbox', { name: 'Turkey', exact: true }).check();
+      await page.keyboard.press('Escape');
+      await page.getByRole('button', { name: /^Carb:/ }).click();
+      await page.getByRole('checkbox', { name: 'No starch', exact: true }).check();
+      await page.getByRole('checkbox', { name: 'Bread', exact: true }).check();
+      await page.keyboard.press('Escape');
+      await page.getByRole('combobox', { name: 'Pressure cooker count', exact: true }).selectOption('0');
+      await page.getByRole('combobox', { name: 'Air fryer count', exact: true }).selectOption('0');
+      await page.getByRole('checkbox', { name: 'Oven', exact: true }).uncheck();
+      await page.getByRole('checkbox', { name: 'Microwave', exact: true }).uncheck();
+      assert.equal(await page.getByRole('checkbox', { name: 'Pans', exact: true }).isDisabled(), true);
+      assert.equal(await page.locator('.recipe-card').count(), 0);
+      const before = await stored();
+      assert.deepEqual(before.proteinChoice, ['fish', 'turkey']);
+      assert.deepEqual(before.starchChoice, ['none', 'bread']);
+      await page.reload(); await ready();
+      const after = await stored();
+      assert.deepEqual(after.proteinChoice, before.proteinChoice);
+      assert.deepEqual(after.starchChoice, before.starchChoice);
+      assert.deepEqual(after.appliancesOnHand, before.appliancesOnHand);
+      assert.equal(await page.getByRole('checkbox', { name: 'Pans', exact: true }).isDisabled(), true);
+      assert.equal(await page.locator('.recipe-card').count(), 0);
+      await page.getByRole('checkbox', { name: 'Oven', exact: true }).check();
+      await page.getByRole('checkbox', { name: 'Microwave', exact: true }).check();
+      await page.getByRole('checkbox', { name: 'Blender', exact: true }).check();
+      await page.getByRole('button', { name: 'Smoothies', exact: true }).click();
+      assert.equal(await page.locator('.recipe-card').count(), 4);
+      await page.getByRole('button', { name: 'Keto', exact: true }).click();
+      assert.equal(await page.locator('.recipe-card').count(), 2);
+      await page.reload(); await ready();
+      assert.equal(await page.getByRole('button', { name: 'Smoothies', exact: true }).getAttribute('aria-pressed'), 'true');
+      assert.deepEqual((await stored()).carbChoice, ['keto']);
+      assert.equal(await page.locator('.recipe-card').count(), 2);
+      await page.waitForFunction(() => [...document.querySelectorAll('.recipe-card img')].every(image => image.complete && image.naturalWidth > 0));
+      await page.getByRole('button', { name: 'Avocado-lime smoothie', exact: true }).click();
+      await page.locator('.recipe-takeover').waitFor();
+      await page.getByRole('button', { name: 'Learn more about Tabular Recipe Notation', exact: true }).click();
+      await page.locator('.method-dialog').waitFor();
+      await page.keyboard.press('Escape');
+      await page.locator('.method-dialog').waitFor({ state: 'detached' });
+      assert.equal(await page.locator('.recipe-takeover').isVisible(), true);
+      await page.keyboard.press('Escape');
+      await page.locator('.recipe-takeover').waitFor({ state: 'detached' });
+      assert.equal(new URL(page.url()).hash, '#meal-results');
+      await page.goBack(); await page.locator('.recipe-takeover').waitFor();
+      await page.goForward(); await page.locator('.recipe-takeover').waitFor({ state: 'detached' });
+      await page.evaluate(() => localStorage.setItem('blogthedata-recipes-v2', JSON.stringify({ collection: 'meal', ironRich: true, servings: 8 })));
+      await page.goto(`${origin}${recipeRoute}?deep-link=1#strawberry-banana-smoothie`);
+      await page.locator('.recipe-takeover').waitFor();
+      assert.match(await page.locator('.recipe-takeover').innerText(), /up to two servings/);
+      await page.keyboard.press('Escape');
+      await page.locator('.recipe-takeover').waitFor({ state: 'detached' });
+      assert.equal(await page.locator('.recipe-card').count(), 4);
+      assert.equal((await stored()).ironRich, false);
+      assert.deepEqual(errors, []);
     } finally { await context.close(); }
   });
 }
@@ -120,12 +184,12 @@ test('Distinct snapshot update waits for both tabs, then serves new recipes offl
     const tabs = [await context.newPage(), await context.newPage()];
     for (const page of tabs) {
       await page.goto(`${origin}${recipeRoute}`);
-      await page.getByText('Recipes saved for offline use.', { exact: false }).waitFor();
+      await page.getByText('Recipes saved for offline use.', { exact: false }).waitFor({ state: 'attached' });
       assert.equal(await snapshotLabel(page), 'A');
     }
     version = 2;
     await tabs[0].evaluate(async () => { const registration = await navigator.serviceWorker.getRegistration(); await registration.update(); });
-    await tabs[0].getByText('Updated recipes are downloaded.', { exact: false }).waitFor();
+    await tabs[0].getByText('Updated recipes are downloaded.', { exact: false }).waitFor({ state: 'attached' });
     await context.setOffline(true);
     for (const page of tabs) {
       await page.reload();
@@ -144,7 +208,7 @@ test('Distinct snapshot update waits for both tabs, then serves new recipes offl
     assert.equal(await snapshotLabel(reopened), 'B');
     assert.equal(await reopened.evaluate(async () => (await fetch('/data/recipe-library.json')).json().then(data => data.testSnapshot)), 'B');
     assert.deepEqual(await reopened.evaluate(() => caches.keys()), [snapshots[1].cache]);
-    await reopened.getByRole('combobox', { name: 'Adult servings', exact: true }).selectOption('6');
+    await reopened.getByRole('combobox', { name: 'Servings', exact: true }).selectOption('6');
   } finally { await context.close(); }
 });
 
@@ -154,17 +218,17 @@ test('Failed replacement preserves the previous offline snapshot and reports fai
   try {
     const page = await context.newPage();
     await page.goto(`${origin}${recipeRoute}`);
-    await page.getByText('Recipes saved for offline use.', { exact: false }).waitFor();
+    await page.getByText('Recipes saved for offline use.', { exact: false }).waitFor({ state: 'attached' });
     version = 2;
     failDownload = true;
     await page.evaluate(async () => { const registration = await navigator.serviceWorker.getRegistration(); await registration.update(); });
-    await page.getByText('Update download failed.', { exact: false }).waitFor();
+    await page.getByText('Update download failed.', { exact: false }).waitFor({ state: 'attached' });
     await context.setOffline(true);
     await page.reload();
-    await page.getByText('You are offline.', { exact: false }).waitFor();
+    await page.getByText('You are offline.', { exact: false }).waitFor({ state: 'attached' });
     assert.equal(await page.locator('meta[name="pwa-test-snapshot"]').getAttribute('content'), 'A');
     assert.equal(await page.evaluate(async () => (await fetch('/data/recipe-library.json')).json().then(data => data.testSnapshot)), 'A');
-    await page.getByRole('combobox', { name: 'Adult servings', exact: true }).selectOption('2');
+    await page.getByRole('combobox', { name: 'Servings', exact: true }).selectOption('2');
     assert.equal(await page.evaluate(async () => (await navigator.serviceWorker.getRegistration()).waiting), null);
   } finally { failDownload = false; await context.close(); }
 });
@@ -175,7 +239,7 @@ test('Failed first download does not claim offline readiness', { timeout: 60000 
   try {
     const page = await context.newPage();
     await page.goto(`${origin}${recipeRoute}`);
-    await page.getByText('Recipes could not be saved offline.', { exact: false }).waitFor();
+    await page.getByText('Recipes could not be saved offline.', { exact: false }).waitFor({ state: 'attached' });
     assert.equal(await page.evaluate(() => navigator.serviceWorker.controller), null);
   } finally { failDownload = false; await context.close(); }
 });

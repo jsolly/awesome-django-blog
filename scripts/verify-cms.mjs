@@ -27,7 +27,7 @@ try {
   assert.equal($('h1').clone().find('.heading-link').remove().end().text(), 'CMS source compatibility');
   assert.equal($('.article-body pre code').text(), '  keep indentation\n');
   assert.equal($('time').first().attr('datetime'), '2026-10-02T18:00:23.123Z');
-  assert.ok($('.post-meta').text().includes('John Solly'), 'Missing optional author must use its public default');
+  assert.equal(JSON.parse($('script[type="application/ld+json"]').text()).author.name, 'John Solly', 'Missing optional author must use its public metadata default');
   for (const invalid of ['2026-10-02', '2026-10-02T14:00:23']) {
     await writeFile(path, source.replace('published: 2026-10-02T14:00:23.123456-04:00', `published: ${invalid}`));
     const build = spawnSync('npm', ['run', 'build'], { encoding: 'utf8' });

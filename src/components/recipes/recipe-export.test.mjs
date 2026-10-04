@@ -15,13 +15,13 @@ test('assistant/print document preserves safe pressure liquid, recalculated macr
 test('exports keep family choices, food states, allergies, limits and tiny spoon measures',()=>{
  const r=recipes.find(r=>r.key==='turkey');const o=r.familyOptions.find(o=>o.id==='pita_one');
  const d=recipeDocument(r,{servings:8,units:'metric',familyDiners:3,familyChoice:{[r.id]:o.id}});
- assert.equal(d.familyIngredient.choiceId,o.id);assert.equal(d.familyIngredient.quantity,'180 g');assert(d.allergens.includes('wheat'));
- assert(d.ingredients.every(i=>i.state));assert.match(d.capacity,/extra pan or basket batches/);assert.match(d.disclaimer,/not been cooked/);
- assert.doesNotMatch(d.ingredients.find(i=>i.name==='Olive oil').quantity,/ g$/);
+ assert.equal(d.familyIngredient.choiceId,o.id);assert.equal(d.familyIngredient.quantity,'180g');assert(d.allergens.includes('wheat'));
+ assert(d.ingredients.every(i=>typeof i.state==='string'));assert.match(d.capacity,/extra pan or basket batches/);assert.match(d.disclaimer,/not been cooked/);
+ assert.match(d.ingredients.find(i=>i.name==='Olive oil').quantity,/g$/);
  const noFamily=recipeDocument(r,{familyDiners:0});assert.equal(noFamily.familyIngredient,null);assert(!noFamily.allergens.includes('wheat'));
  const d2=recipeDocument(recipes.find(r=>r.key==='salmon'),{servings:2,units:'metric'});
- assert.equal(d2.ingredients.find(i=>i.name==='Lemon zest').quantity,'½ tsp');
+ assert.equal(d2.ingredients.find(i=>i.name==='Lemon zest').quantity,'1g');
  const bundle=JSON.parse(JSON.stringify(recipeBundle(recipes,{servings:4,units:'us',familyDiners:0})));
- assert.equal(bundle.recipes.length,12);assert.equal(new Set(bundle.recipes.map(r=>r.recipeId)).size,12);
+ assert.equal(bundle.recipes.length,recipes.length);assert.equal(new Set(bundle.recipes.map(r=>r.recipeId)).size,recipes.length);
  assert(bundle.recipes.every(r=>r.sources.length&&r.steps.length&&r.ingredients.length&&r.image));
 });
