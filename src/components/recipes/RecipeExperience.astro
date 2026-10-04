@@ -1,8 +1,8 @@
 ---
 import RecipeLibrary from './RecipeLibrary.svelte';
 import data from './recipes.json';
-interface Props { fallbackHtml: string; headingTag?: 'h1'|'h2' }
-const {fallbackHtml,headingTag='h2'}=Astro.props;
+interface Props { fallbackHtml: string }
+const {fallbackHtml}=Astro.props;
 // The host sanitizes fallback HTML; restore only responsive URLs from our trusted image catalog.
 const responsiveFallbackHtml=fallbackHtml.replace(/<img\b[^>]*>/gu,tag=>{
   const image=data.recipes.find(r=>r.image && tag.includes(`src="${r.image.src}"`))?.image;
@@ -12,8 +12,8 @@ const responsiveFallbackHtml=fallbackHtml.replace(/<img\b[^>]*>/gu,tag=>{
 }).replace(/<div class="(trn-scroll|recipe-table-scroll)">/gu,(_tag,className)=>`<div class="${className}" tabindex="0" role="region" aria-label="${className==='trn-scroll'?'Cooking flow':'Recipe comparison table'}, scroll horizontally">`);
 ---
 <div class="recipe-experience">
-<p class="nojs-note">Interactive filters and scaling need JavaScript. <a href="#recipe-static">Read the complete four-serving recipes below.</a></p>
-<RecipeLibrary recipes={data.recipes} headingTag={headingTag} client:load />
+<p class="nojs-note">Interactive recipes and scaling need JavaScript. <a href="#recipe-static">Read the complete four-serving recipes below.</a></p>
+<RecipeLibrary recipes={data.recipes} client:load />
 <section id="recipe-static" class="article-body" aria-label="Complete four-serving recipes"><div set:html={responsiveFallbackHtml}/></section>
 </div>
 <style>

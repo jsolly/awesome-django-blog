@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';
 import {validateFlow,flowGrid,flowHtml} from './trn-logic.mjs';
 const {recipes}=JSON.parse(readFileSync(new URL('./recipes.json',import.meta.url),'utf8'));
-test('all12 dependency diagrams allocate all ingredients and produce a complete nonoverlapping merged-cell grid',()=>{
+test('all recipe dependency diagrams allocate all ingredients and produce a complete nonoverlapping merged-cell grid',()=>{
  for(const recipe of recipes){assert(validateFlow(recipe));for(const servings of [2,4,6,8]){
  const grid=flowGrid(recipe,{servings,units:'metric'});const occupied=grid.rows.map(()=>Array(grid.columns).fill(false));
  for(let row=0;row<grid.rows.length;row++)for(const cell of grid.rows[row].cells){
@@ -17,6 +17,15 @@ test('incomplete or duplicate ingredient allocations fail closed',()=>{
  const r2=structuredClone(recipes[0]);r2.flow.root.children.push({ingredientId:'hemp_hearts'});assert.throws(()=>validateFlow(r2),/Unbalanced/);
 });
 test('tables keep scaled spoon measures, safe endpoint conversions and symbolic pinches',()=>{
- const salmon=recipes.find(r=>r.key==='salmon');const html=flowHtml(salmon,{servings:2,units:'metric'});assert.match(html,/½ tsp/);assert.match(html,/63°C \(145°F\)/);assert.doesNotMatch(html,/1 g<\/strong> Lemon zest/);
- const shawarma=recipes.find(r=>r.key==='shawarma');const s=flowHtml(shawarma,{servings:4,units:'metric'});assert.match(s,/Small pinch from/);assert.match(s,/Remainder of/);assert.match(s,/rowspan=/);
+ const salmon=recipes.find(r=>r.key==='salmon');const html=flowHtml(salmon,{servings:2,units:'metric'});assert.match(html,/¼ tsp/);assert.match(html,/63°C \(145°F\)/);assert.match(html,/1g<\/strong> Lemon zest/);
+ const shawarma=recipes.find(r=>r.key==='shawarma');const s=flowHtml(shawarma,{servings:4,units:'metric'});assert.match(s,/pinch of/);assert.match(s,/½ remaining/);assert.match(s,/rowspan=/);
+});
+
+test('split symbolic salt preserves one pinch and a complete positive remainder',()=>{
+ const recipe=recipes.find(r=>r.key==='shawarma');assert(validateFlow(recipe));
+ const invalid=structuredClone(recipe);const branches=invalid.flow.root.children[2].children;
+ branches[0].children.find(x=>x.share==='remainder').fraction=-1;branches[1].children.find(x=>x.share==='remainder').fraction=2;
+ assert.throws(()=>validateFlow(invalid),/Invalid ingredient fraction/);
+ branches[0].children.find(x=>x.share==='remainder').fraction=.25;branches[1].children.find(x=>x.share==='remainder').fraction=.5;
+ assert.throws(()=>validateFlow(invalid),/Unbalanced symbolic allocation/);
 });

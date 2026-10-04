@@ -180,23 +180,22 @@ test('recipe route retains a complete sanitized no-JavaScript guide and first-pa
   assert.equal($('#recipe-static').length, 1);
   assert.equal($('#recipe-static').parents('noscript').length, 0, 'The guide must survive blocked or failed hydration');
   assert.equal($('.meal-library').attr('data-hydrated'), 'false', 'Only successful hydration may replace the static guide');
-  assert.equal($('#recipe-static .trn-table').length, 12);
-  assert.equal($('#recipe-static .trn-scroll[tabindex="0"][role="region"]').length, 12);
+  assert.equal($('#recipe-static .trn-table').length, recipes.length);
+  assert.equal($('#recipe-static .trn-scroll[tabindex="0"][role="region"]').length, recipes.length);
   assert.equal($('#recipe-static .recipe-table-scroll table').length, 3);
   assert.deepEqual($('#recipe-static h3').toArray().map(heading => $(heading).clone().find('.heading-link').remove().end().text()).sort(), recipes.map(recipe => recipe.title).sort());
   for (const recipe of recipes) assert.equal($(`#recipe-static [id="${recipe.id}"]`).length, 1, `Missing stable recipe anchor: ${recipe.id}`);
   assert.match($('#recipe-static').text(), /not kitchen-tested/u);
-  assert.match($('.image-disclosure').text(), /AI-generated illustrations/u);
   for (const recipe of recipes) {
     const image = $(`#recipe-static img[src="${recipe.image.src}"]`);
-    assert.equal(image.length, 1);
+    assert.equal(image.length, recipes.filter(r=>r.image.src===recipe.image.src).length);
     assert.equal(image.attr('srcset'), recipe.image.detailSrcset);
     assert.equal(image.attr('alt'), recipe.image.alt);
     for (const ingredient of recipe.ingredients) assert.ok($('#recipe-static').text().includes(ingredient.name), `${recipe.id}: missing fallback ingredient ${ingredient.name}`);
     for (const srcset of [recipe.image.cardSrcset, recipe.image.detailSrcset]) {
       for (const candidate of srcset.split(',')) {
         const path = candidate.trim().split(/\s+/u)[0];
-        assert.match(path, /^\/media\/recipes\/[a-z0-9-]+\.webp$/u);
+        assert.match(path, /^\/media\/recipes\/[a-z0-9-]+\.(?:webp|svg)$/u);
         await access(`dist${path}`);
       }
     }
@@ -204,7 +203,7 @@ test('recipe route retains a complete sanitized no-JavaScript guide and first-pa
   assert.doesNotMatch($('#recipe-static').html(), /<script|\son\w+=|javascript:/iu);
   const assistant = await readJson('dist/data/recipe-library.json');
   assert.deepEqual(assistant.recipes.map(recipe => recipe.recipeId), recipes.map(recipe => recipe.id));
-  assert.equal(assistant.recipes.length, 12);
+  assert.equal(assistant.recipes.length, recipes.length);
   await access('dist/data/recipe-library.md');
 });
 

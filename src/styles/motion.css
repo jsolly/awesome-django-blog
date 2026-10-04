@@ -59,21 +59,21 @@ button { transition: filter var(--motion-fast) ease, background-color var(--moti
 @media print { details::details-content { transition: none; } }
 
 /* Match the portfolio: a transparent underline fades in on hover or focus. */
-a:not(.card-image, .brand, .heading-link) {
+a:not(.card-image, .brand, .heading-link, .action-button, .social-link) {
   text-decoration: underline 2px transparent;
   text-underline-offset: 4px;
   text-decoration-skip-ink: none;
   transition: text-decoration-color 300ms cubic-bezier(.4, 0, .2, 1),
     color var(--motion-fast) ease, background-color var(--motion-fast) ease;
 }
-a:not(.card-image, .brand, .heading-link):is(:hover, :focus-visible) {
+a:not(.card-image, .brand, .heading-link, .action-button, .social-link):is(:hover, :focus-visible) {
   text-decoration-color: currentColor;
 }
 @media (prefers-reduced-motion: reduce) {
   a { transition: none !important; }
 }
 @media print {
-  a:not(.card-image, .brand, .heading-link) { text-decoration-color: currentColor; }
+  a:not(.card-image, .brand, .heading-link, .action-button, .social-link) { text-decoration-color: currentColor; }
 }
 
 @keyframes load-more-bounce {
